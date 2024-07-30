@@ -1,0 +1,8 @@
+{
+  "smtp": {
+    "module": {
+      "name": "Smtp",
+      "enabled": true
+    }
+  }
+}

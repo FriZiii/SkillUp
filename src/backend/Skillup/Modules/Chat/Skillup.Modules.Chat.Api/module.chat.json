@@ -1,0 +1,8 @@
+{
+  "chat": {
+    "module": {
+      "name": "Chat",
+      "enabled": true
+    }
+  }
+}
