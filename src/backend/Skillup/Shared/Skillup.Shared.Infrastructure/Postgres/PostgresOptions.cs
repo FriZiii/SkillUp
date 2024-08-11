@@ -20,6 +20,14 @@ namespace Skillup.Shared.Infrastructure.Postgres
         [EnvironmentVariable("POSTGRES_PORT")]
         public int Port { get; set; } = default!;
 
-        public string ConnectionString { get => connectionStringTemplate; }
+        public string ConnectionString
+        {
+            get => connectionStringTemplate
+                .Replace("{POSTGRES_HOST}", Host)
+                .Replace("{POSTGRES_PORT}", Port.ToString())
+                .Replace("{POSTGRES_DB}", DatabaseName)
+                .Replace("{POSTGRES_USER}", User)
+                .Replace("{POSTGRES_PASSWORD}", Password);
+        }
     }
 }
