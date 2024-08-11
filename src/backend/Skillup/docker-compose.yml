@@ -17,13 +17,13 @@ services:
       - ${POSTGRES_PORT}:5432
 
   skillup.smtpserver:
-    container_name: ${SMTP__HOST}
+    container_name: ${SMTP_HOST}
     image: changemakerstudiosus/papercut-smtp:latest
     env_file:
       - .env
     ports:
      - ${SMTP_HTTP_PORT}:80
-     - ${SMTP__PORT}:25
+     - ${SMTP_PORT}:25
 
   skillup.bootstrapper:
     container_name: skillup-api
