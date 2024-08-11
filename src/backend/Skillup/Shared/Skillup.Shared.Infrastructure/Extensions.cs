@@ -8,14 +8,13 @@ using Microsoft.OpenApi.Models;
 using Skillup.Shared.Abstractions.Modules;
 using Skillup.Shared.Infrastructure.Api;
 using Skillup.Shared.Infrastructure.Modules;
-using System.Reflection;
+using Skillup.Shared.Infrastructure.Services;
 
 namespace Skillup.Shared.Infrastructure
 {
     public static class Extensions
     {
-        public static IServiceCollection AddModularInfrastructure(this IServiceCollection services,
-            IList<Assembly> assemblies, IList<IModule> modules)
+        public static IServiceCollection AddModularInfrastructure(this IServiceCollection services, IList<IModule> modules)
         {
             var disabledModules = new List<string>();
             using (var serviceProvider = services.BuildServiceProvider())
@@ -64,9 +63,11 @@ namespace Skillup.Shared.Infrastructure
 
             services.AddModuleInfo(modules);
 
+            services.AddHostedService<DbContextInitializer>();
+
             services.AddControllers(options =>
             {
-                options.Conventions.Add(new ModulePrefixRouteConventions());
+                options.Conventions.Add(new ControllerModelConvention());
 
             })
             .ConfigureApplicationPartManager(manager =>
@@ -101,6 +102,27 @@ namespace Skillup.Shared.Infrastructure
             app.UseAuthorization();
 
             return app;
+        }
+
+        public static T GetOptions<T>(this IServiceCollection services, string sectionName) where T : new()
+        {
+            using var serviceProvider = services.BuildServiceProvider();
+            var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+            return configuration.GetOptions<T>(sectionName);
+        }
+
+        public static T GetOptions<T>(this IConfiguration configuration, string sectionName) where T : new()
+        {
+            var options = new T();
+            configuration.GetSection(sectionName).Bind(options);
+            return options;
+        }
+
+        public static IConfigurationSection GetSection(this IServiceCollection services, string sectionName)
+        {
+            using var serviceProvider = services.BuildServiceProvider();
+            var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+            return configuration.GetSection(sectionName);
         }
     }
 }
