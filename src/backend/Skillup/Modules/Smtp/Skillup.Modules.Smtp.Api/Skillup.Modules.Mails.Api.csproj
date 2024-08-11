@@ -7,18 +7,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="module.smtp.json" />
+      <None Remove="module.mails.json" />
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="module.smtp.json">
+      <Content Include="module.mails.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Shared\Skillup.Shared.Abstractions\Skillup.Shared.Abstractions.csproj" />
-      <ProjectReference Include="..\Skillup.Modules.Smtp.Core\Skillup.Modules.Smtp.Core.csproj" />
+      <ProjectReference Include="..\..\..\Shared\Skillup.Shared.Infrastructure\Skillup.Shared.Infrastructure.csproj" />
+      <ProjectReference Include="..\Skillup.Modules.Smtp.Core\Skillup.Modules.Mails.Core.csproj" />
     </ItemGroup>
 
 </Project>

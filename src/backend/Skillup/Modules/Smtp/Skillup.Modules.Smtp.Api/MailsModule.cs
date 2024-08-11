@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Skillup.Modules.Smtp.Core;
+using Skillup.Modules.Mails.Core;
 using Skillup.Shared.Abstractions.Modules;
 
-namespace Skillup.Modules.Smtp.Api
+namespace Skillup.Modules.Mails.Api
 {
-    internal class SmtpModule : IModule
+    internal class MailsModule : IModule
     {
-        public string Name => "Smtp";
+        public string Name => "Mails";
 
         public void Register(IServiceCollection services)
         {
