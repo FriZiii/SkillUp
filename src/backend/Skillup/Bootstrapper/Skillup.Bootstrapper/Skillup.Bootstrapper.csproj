@@ -4,14 +4,26 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>f1478131-9d17-44b8-88e7-26d4c4d2fee5</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <DockerfileContext>..\..</DockerfileContext>
+        <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
     </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
+    </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\Modules\Auth\Skillup.Modules.Auth.Api\Skillup.Modules.Auth.Api.csproj" />
       <ProjectReference Include="..\..\Modules\Chat\Skillup.Modules.Chat.Api\Skillup.Modules.Chat.Api.csproj" />
       <ProjectReference Include="..\..\Modules\Courses\Skillup.Modules.Courses.Api\Skillup.Modules.Courses.Api.csproj" />
       <ProjectReference Include="..\..\Modules\Notifications\Skillup.Modules.Notifications.Api\Skillup.Modules.Notifications.Api.csproj" />
-      <ProjectReference Include="..\..\Modules\Smtp\Skillup.Modules.Smtp.Api\Skillup.Modules.Smtp.Api.csproj" />
+      <ProjectReference Include="..\..\Modules\Smtp\Skillup.Modules.Smtp.Api\Skillup.Modules.Mails.Api.csproj" />
       <ProjectReference Include="..\..\Modules\Wallets\Skillup.Modules.Wallets.Api\Skillup.Modules.Wallets.Api.csproj" />
       <ProjectReference Include="..\..\Shared\Skillup.Shared.Abstractions\Skillup.Shared.Abstractions.csproj" />
       <ProjectReference Include="..\..\Shared\Skillup.Shared.Infrastructure\Skillup.Shared.Infrastructure.csproj" />
