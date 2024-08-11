@@ -11,7 +11,7 @@ var assemblies = ModuleLoader.LoadAssemblies(configuration, "Skillup.Modules.");
 var modules = ModuleLoader.LoadModules(assemblies);
 
 // Add modular infrastructure
-builder.Services.AddModularInfrastructure(assemblies, modules);
+builder.Services.AddModularInfrastructure(modules);
 modules.ForEach(module => module.Register(builder.Services));
 
 var app = builder.Build();
