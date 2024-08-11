@@ -27,7 +27,7 @@ namespace Skillup.Shared.Infrastructure
                         continue;
                     }
 
-                    if (!bool.Parse(value))
+                    if (value != null && bool.TryParse(value, out var result) && !result)
                     {
                         disabledModules.Add(key.Split(":")[0]);
                     }
