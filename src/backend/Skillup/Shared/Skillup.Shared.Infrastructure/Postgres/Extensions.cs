@@ -9,6 +9,9 @@ namespace Skillup.Shared.Infrastructure.Postgres
         public static IServiceCollection AddPostgres<T>(this IServiceCollection services) where T : DbContext
         {
             var connectionStringTemplate = services.GetSection("postgres:connectionString").Value;
+            if (string.IsNullOrEmpty(connectionStringTemplate))
+                throw new InvalidOperationException("Connection string template cannot be null or empty.");
+
             PostgresOptions options = (PostgresOptions)new PostgresOptions(connectionStringTemplate).InjectEnvironment();
 
             services.AddSingleton(options);
