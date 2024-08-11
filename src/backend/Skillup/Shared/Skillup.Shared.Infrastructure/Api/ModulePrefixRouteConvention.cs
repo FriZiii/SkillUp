@@ -2,7 +2,7 @@
 
 namespace Skillup.Shared.Infrastructure.Api
 {
-    internal class ModulePrefixRouteConventions : IControllerModelConvention
+    internal class ControllerModelConvention : IControllerModelConvention
     {
         public void Apply(ControllerModel controller)
         {
