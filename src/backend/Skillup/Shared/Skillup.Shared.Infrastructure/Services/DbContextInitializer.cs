@@ -4,14 +4,9 @@ using Microsoft.Extensions.Hosting;
 
 namespace Skillup.Shared.Infrastructure.Services
 {
-    internal class DbContextInitializer : IHostedService
+    internal class DbContextInitializer(IServiceProvider serviceProvider) : IHostedService
     {
-        private readonly IServiceProvider _serviceProvider;
-
-        public DbContextInitializer(IServiceProvider serviceProvider)
-        {
-            _serviceProvider = serviceProvider;
-        }
+        private readonly IServiceProvider _serviceProvider = serviceProvider;
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {

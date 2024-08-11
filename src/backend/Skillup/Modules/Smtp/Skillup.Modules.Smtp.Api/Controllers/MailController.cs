@@ -8,13 +8,9 @@ namespace Skillup.Modules.Mails.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    internal class MailController : Controller
+    internal class MailController(SmtpOptions smtpOptions) : Controller
     {
-        private readonly SmtpOptions _smtpOptions;
-        public MailController(SmtpOptions smtpOptions)
-        {
-            _smtpOptions = smtpOptions;
-        }
+        private readonly SmtpOptions _smtpOptions = smtpOptions;
 
         [HttpPost]
         public async Task<IActionResult> SendEmail(SendMailDto sendMailDto)
