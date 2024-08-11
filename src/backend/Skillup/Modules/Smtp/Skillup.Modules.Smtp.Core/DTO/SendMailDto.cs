@@ -2,13 +2,13 @@
 {
     internal class SendMailDto
     {
-        public string? SenderName { get; set; }
-        public string SenderMail { get; set; }
+        public string? SenderName { get; set; } = default!;
+        public string SenderMail { get; set; } = default!;
 
-        public string? ReciverName { get; set; }
-        public string ReciverMail { get; set; }
+        public string? ReciverName { get; set; } = default!;
+        public string ReciverMail { get; set; } = default!;
 
-        public string Subject { get; set; }
-        public string Body { get; set; }
+        public string Subject { get; set; } = default!;
+        public string Body { get; set; } = default!;
     }
 }
