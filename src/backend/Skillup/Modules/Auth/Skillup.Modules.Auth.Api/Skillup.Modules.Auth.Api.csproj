@@ -16,4 +16,8 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Skillup.Modules.Auth.Infrastructure\Skillup.Modules.Auth.Infrastructure.csproj" />
+    </ItemGroup>
+
 </Project>
