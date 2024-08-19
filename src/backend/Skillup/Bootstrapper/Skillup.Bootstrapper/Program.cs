@@ -1,5 +1,7 @@
+using Serilog;
 using Skillup.Shared.Infrastructure;
 using Skillup.Shared.Infrastructure.Modules;
+using Skillup.Shared.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ var modules = ModuleLoader.LoadModules(assemblies);
 // Add modular infrastructure
 builder.Services.AddModularInfrastructure(modules);
 modules.ForEach(module => module.Register(builder.Services));
+
+Log.Logger = LoggerConfig.CreateLogger(builder, modules);
 
 var app = builder.Build();
 
