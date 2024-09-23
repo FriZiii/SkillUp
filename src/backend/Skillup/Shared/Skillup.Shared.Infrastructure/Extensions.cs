@@ -9,6 +9,7 @@ using Skillup.Shared.Abstractions.Modules;
 using Skillup.Shared.Infrastructure.Api;
 using Skillup.Shared.Infrastructure.Modules;
 using Skillup.Shared.Infrastructure.Services;
+using System.Reflection;
 
 namespace Skillup.Shared.Infrastructure
 {
@@ -63,7 +64,10 @@ namespace Skillup.Shared.Infrastructure
 
             services.AddModuleInfo(modules);
 
+            services.AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
             services.AddHostedService<DbContextInitializer>();
+
 
             services.AddControllers(options =>
             {

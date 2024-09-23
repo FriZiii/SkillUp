@@ -7,7 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Shared\Skillup.Shared.Abstractions\Skillup.Shared.Abstractions.csproj" />
+      <ProjectReference Include="..\..\..\Shared\Skillup.Shared.Infrastructure\Skillup.Shared.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="DTO\" />
+      <Folder Include="Exceptions\" />
     </ItemGroup>
 
 </Project>
