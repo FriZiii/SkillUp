@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using Skillup.Shared.Abstractions.Modules;
 using Skillup.Shared.Abstractions.Time;
 using Skillup.Shared.Infrastructure.Api;
+using Skillup.Shared.Infrastructure.Exceptions;
 using Skillup.Shared.Infrastructure.Modules;
 using Skillup.Shared.Infrastructure.Services;
 using Skillup.Shared.Infrastructure.Time;
@@ -65,6 +66,8 @@ namespace Skillup.Shared.Infrastructure
 
             services.AddModuleInfo(modules);
 
+            services.AddErrorHandling();
+
             services.AddSingleton<IClock, UtcClock>();
 
             services.AddHostedService<DbContextInitializer>();
@@ -103,6 +106,7 @@ namespace Skillup.Shared.Infrastructure
                 ForwardedHeaders = ForwardedHeaders.All
             });
             app.UseCors("cors");
+            app.UseErrorHandling();
             app.UseRouting();
             app.UseAuthorization();
 
