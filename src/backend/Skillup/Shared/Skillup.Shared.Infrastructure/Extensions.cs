@@ -66,17 +66,16 @@ namespace Skillup.Shared.Infrastructure
                 swagger.DocumentFilter<GroupNameDocumentFilter>();
             });
 
+            services.AddModuleInfo(modules);
+
             services.AddPostgres();
             services.AddRabbitMQ();
 
-            services.AddModuleInfo(modules);
+            services.AddSingleton<IClock, UtcClock>();
 
             services.AddErrorHandling();
 
-            services.AddSingleton<IClock, UtcClock>();
-
             services.AddHostedService<DbContextInitializer>();
-
 
             services.AddControllers(options =>
             {
@@ -116,6 +115,20 @@ namespace Skillup.Shared.Infrastructure
             app.UseAuthorization();
 
             return app;
+        }
+
+        public static T GetOptions<T>(this IServiceCollection services, string sectionName) where T : new()
+        {
+            using var serviceProvider = services.BuildServiceProvider();
+            var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+            return configuration.GetOptions<T>(sectionName);
+        }
+
+        public static T GetOptions<T>(this IConfiguration configuration, string sectionName) where T : new()
+        {
+            var options = new T();
+            configuration.GetSection(sectionName).Bind(options);
+            return options;
         }
 
         public static IConfigurationSection GetSection(this IServiceCollection services, string sectionName)
