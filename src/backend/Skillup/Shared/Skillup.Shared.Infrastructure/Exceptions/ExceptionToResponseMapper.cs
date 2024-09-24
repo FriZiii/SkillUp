@@ -13,7 +13,7 @@ namespace Skillup.Shared.Infrastructure.Exceptions
             {
                 SkillupException ex => new ExceptionResponse(new ErrorsResponse(new Error(GetErrorCode(ex), ex.Message))
                     , HttpStatusCode.BadRequest),
-                _ => new ExceptionResponse(new ErrorsResponse(new Error("error", "There was an error.")),
+                _ => new ExceptionResponse(new ErrorsResponse(new Error("Error", "There was an error.")),
                     HttpStatusCode.InternalServerError)
             };
 
@@ -24,7 +24,7 @@ namespace Skillup.Shared.Infrastructure.Exceptions
         private static string GetErrorCode(object exception)
         {
             var type = exception.GetType();
-            return Codes.GetOrAdd(type, type.Name.Replace("_exception", string.Empty));
+            return Codes.GetOrAdd(type, type.Name);
         }
     }
 }
