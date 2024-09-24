@@ -6,7 +6,7 @@ namespace Skillup.Shared.Infrastructure.Postgres
 {
     public static class Extensions
     {
-        public static IServiceCollection AddPostgres<T>(this IServiceCollection services) where T : DbContext
+        public static IServiceCollection AddPostgres(this IServiceCollection services)
         {
             var connectionStringTemplate = services.GetSection("postgres:connectionString").Value;
             if (string.IsNullOrEmpty(connectionStringTemplate))
@@ -15,6 +15,15 @@ namespace Skillup.Shared.Infrastructure.Postgres
             PostgresOptions options = (PostgresOptions)new PostgresOptions(connectionStringTemplate).InjectEnvironment();
 
             services.AddSingleton(options);
+
+            return services;
+        }
+
+        public static IServiceCollection AddPostgres<T>(this IServiceCollection services) where T : DbContext
+        {
+            var serviceProvider = services.BuildServiceProvider();
+            var options = serviceProvider.GetRequiredService<PostgresOptions>();
+
             services.AddDbContext<T>(x => x.UseNpgsql(options.ConnectionString));
             return services;
         }

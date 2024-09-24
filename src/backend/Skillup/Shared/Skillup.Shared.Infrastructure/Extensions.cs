@@ -8,6 +8,8 @@ using Microsoft.OpenApi.Models;
 using Skillup.Shared.Abstractions.Modules;
 using Skillup.Shared.Infrastructure.Api;
 using Skillup.Shared.Infrastructure.Modules;
+using Skillup.Shared.Infrastructure.Postgres;
+using Skillup.Shared.Infrastructure.RabbitMQ;
 using Skillup.Shared.Infrastructure.Services;
 
 namespace Skillup.Shared.Infrastructure
@@ -61,6 +63,9 @@ namespace Skillup.Shared.Infrastructure
                 swagger.DocumentFilter<GroupNameDocumentFilter>();
             });
 
+            services.AddPostgres();
+            services.AddRabbitMQ();
+
             services.AddModuleInfo(modules);
 
             services.AddHostedService<DbContextInitializer>();
@@ -102,20 +107,6 @@ namespace Skillup.Shared.Infrastructure
             app.UseAuthorization();
 
             return app;
-        }
-
-        public static T GetOptions<T>(this IServiceCollection services, string sectionName) where T : new()
-        {
-            using var serviceProvider = services.BuildServiceProvider();
-            var configuration = serviceProvider.GetRequiredService<IConfiguration>();
-            return configuration.GetOptions<T>(sectionName);
-        }
-
-        public static T GetOptions<T>(this IConfiguration configuration, string sectionName) where T : new()
-        {
-            var options = new T();
-            configuration.GetSection(sectionName).Bind(options);
-            return options;
         }
 
         public static IConfigurationSection GetSection(this IServiceCollection services, string sectionName)
