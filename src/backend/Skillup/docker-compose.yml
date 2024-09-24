@@ -25,6 +25,19 @@ services:
      - ${SMTP_HTTP_PORT}:80
      - ${SMTP_PORT}:25
 
+  skillup.rabbitmq:
+    container_name: ${RABBITMQ_HOST}    
+    image: rabbitmq:3-management-alpine
+    environment:
+        RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+        RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    ports:
+        - ${RABBITMQ_PORT}:5672
+        - ${RABBITMQ_HTTP_PORT}:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+
   skillup.bootstrapper:
     container_name: skillup-api
     image: ${DOCKER_REGISTRY-}skillupbootstrapper
@@ -36,6 +49,7 @@ services:
     depends_on:
       - skillup.postgres
       - skillup.smtpserver
+      - skillup.rabbitmq
 
 volumes:
   postgres:
