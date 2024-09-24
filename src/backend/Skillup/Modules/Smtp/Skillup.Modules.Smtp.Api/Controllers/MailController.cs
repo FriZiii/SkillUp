@@ -1,37 +1,19 @@
-﻿using FluentEmail.Core;
-using FluentEmail.Smtp;
-using Microsoft.AspNetCore.Mvc;
-using Skillup.Modules.Mails.Core;
+﻿using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Mails.Core.DTO;
-using System.Net.Mail;
+using Skillup.Modules.Mails.Core.Services;
 namespace Skillup.Modules.Mails.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    internal class MailController(SmtpOptions smtpOptions) : Controller
+    internal class MailController(ISmtpService smtpService) : Controller
     {
-        private readonly SmtpOptions _smtpOptions = smtpOptions;
+        private readonly ISmtpService _smtpService = smtpService;
 
         [HttpPost]
-        public async Task<IActionResult> SendEmail(SendMailDto sendMailDto)
+        public async Task<IActionResult> SendEmail(SendMailDto mailDto)
         {
-            var sender = new SmtpSender(() => new SmtpClient(_smtpOptions.Host)
-            {
-                EnableSsl = _smtpOptions.SslEnabled,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                Port = _smtpOptions.Port,
-            });
-
-            Email.DefaultSender = sender;
-
-            var email = await Email
-                .From(sendMailDto.SenderMail, sendMailDto.SenderName)
-                .To(sendMailDto.ReciverMail, sendMailDto.ReciverName)
-                .Subject(sendMailDto.Subject)
-                .Body(sendMailDto.Body)
-                .SendAsync();
-
-            return Ok(email);
+            var result = await _smtpService.SendEmail(mailDto.Sender, mailDto.Reciver, mailDto.Message);
+            return Ok(result);
         }
     }
 }

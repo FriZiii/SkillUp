@@ -1,26 +1,25 @@
-﻿using MediatR;
+﻿using MassTransit;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Skillup.Modules.Auth.Core.Entities;
 using Skillup.Modules.Auth.Core.Exceptions;
 using Skillup.Modules.Auth.Core.Repositories;
+using Skillup.Shared.Abstractions.Events.Auth;
 using Skillup.Shared.Abstractions.Time;
 
 namespace Skillup.Modules.Auth.Core.Commands.Handlers
 {
-    internal class SignUpHandler : IRequestHandler<SignUp>
+    internal class SignUpHandler(IUserRepository userRepository,
+        RegistrationOptions registrationOptions,
+        IPublishEndpoint publishEndpoint,
+        IPasswordHasher<User> passwordHasher,
+        IClock clock) : IRequestHandler<SignUp>
     {
-        private readonly IUserRepository _userRepository;
-        private readonly RegistrationOptions _registrationOptions;
-        private readonly IPasswordHasher<User> _passwordHasher;
-        private readonly IClock _clock;
-
-        public SignUpHandler(IUserRepository userRepository, RegistrationOptions registrationOptions, IPasswordHasher<User> passwordHasher, IClock clock)
-        {
-            _userRepository = userRepository;
-            _registrationOptions = registrationOptions;
-            _passwordHasher = passwordHasher;
-            _clock = clock;
-        }
+        private readonly IUserRepository _userRepository = userRepository;
+        private readonly RegistrationOptions _registrationOptions = registrationOptions;
+        private readonly IPublishEndpoint _publishEndpoint = publishEndpoint;
+        private readonly IPasswordHasher<User> _passwordHasher = passwordHasher;
+        private readonly IClock _clock = clock;
 
         public async Task Handle(SignUp request, CancellationToken cancellationToken)
         {
@@ -63,7 +62,7 @@ namespace Skillup.Modules.Auth.Core.Commands.Handlers
 
             await _userRepository.Add(user);
 
-            //TODO : MESSAGE BROKER
+            await _publishEndpoint.Publish(new SignedUp(user.Id, user.Email), cancellationToken);
             //TODO : LOGS
         }
     }

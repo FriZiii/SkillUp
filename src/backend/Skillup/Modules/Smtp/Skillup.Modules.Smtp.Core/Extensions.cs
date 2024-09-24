@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Skillup.Shared.Infrastructure.EnvironmentInjector;
+using Skillup.Modules.Mails.Core.Consumers;
+using Skillup.Modules.Mails.Core.Services;
+using Skillup.Shared.Infrastructure.RabbitMQ;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 
@@ -9,8 +12,9 @@ internal static class Extensions
 {
     public static IServiceCollection AddCore(this IServiceCollection services)
     {
-        SmtpOptions options = (SmtpOptions)new SmtpOptions().InjectEnvironment();
-        services.AddSingleton(options);
-        return services;
+        return services
+            .AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
+            .AddScoped<ISmtpService, SmtpService>()
+            .AddConsumer<SignedUpConsumer>();
     }
 }
