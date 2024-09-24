@@ -6,10 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Skillup.Shared.Abstractions.Modules;
+using Skillup.Shared.Abstractions.Time;
 using Skillup.Shared.Infrastructure.Api;
 using Skillup.Shared.Infrastructure.Modules;
 using Skillup.Shared.Infrastructure.Services;
-using System.Reflection;
+using Skillup.Shared.Infrastructure.Time;
 
 namespace Skillup.Shared.Infrastructure
 {
@@ -64,7 +65,7 @@ namespace Skillup.Shared.Infrastructure
 
             services.AddModuleInfo(modules);
 
-            services.AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            services.AddSingleton<IClock, UtcClock>();
 
             services.AddHostedService<DbContextInitializer>();
 

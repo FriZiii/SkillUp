@@ -6,33 +6,31 @@ namespace Skillup.Modules.Auth.Core.DAL.Repositories
 {
     internal class UserRepository : IUserRepository
     {
-        private readonly AuthDbContext context;
+        private readonly AuthDbContext _context;
         private readonly DbSet<User> _users;
 
-        public UserRepository(AuthDbContext _context)
+        public UserRepository(AuthDbContext context)
         {
-            context = _context;
+            _context = context;
             _users = _context.Users;
         }
 
-        public Task Add(User user)
+        public async Task Add(User user)
         {
-            throw new NotImplementedException();
+            await _users.AddAsync(user);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<User> Get(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<User?> Get(Guid id)
+            => await _users.SingleOrDefaultAsync(x => x.Id == id);
 
-        public Task<User> Get(string email)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<User?> Get(string email)
+         => await _users.SingleOrDefaultAsync(x => x.Email == email);
 
-        public Task Update(User user)
+        public async Task Update(User user)
         {
-            throw new NotImplementedException();
+            _users.Update(user);
+            await _context.SaveChangesAsync();
         }
     }
 }

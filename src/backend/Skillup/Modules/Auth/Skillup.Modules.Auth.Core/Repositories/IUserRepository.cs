@@ -4,8 +4,8 @@ namespace Skillup.Modules.Auth.Core.Repositories
 {
     internal interface IUserRepository
     {
-        Task<User> Get(Guid id);
-        Task<User> Get(string email);
+        Task<User?> Get(Guid id);
+        Task<User?> Get(string email);
         Task Add(User user);
         Task Update(User user);
     }
