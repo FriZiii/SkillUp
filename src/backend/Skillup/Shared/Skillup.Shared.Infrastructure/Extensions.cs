@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
-using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
 using Skillup.Shared.Abstractions.Modules;
 using Skillup.Shared.Abstractions.Time;
 using Skillup.Shared.Infrastructure.Api;
@@ -13,6 +11,7 @@ using Skillup.Shared.Infrastructure.Modules;
 using Skillup.Shared.Infrastructure.Postgres;
 using Skillup.Shared.Infrastructure.RabbitMQ;
 using Skillup.Shared.Infrastructure.Services;
+using Skillup.Shared.Infrastructure.Swagger;
 using Skillup.Shared.Infrastructure.Time;
 
 namespace Skillup.Shared.Infrastructure
@@ -39,32 +38,7 @@ namespace Skillup.Shared.Infrastructure
                 }
             }
 
-            services.AddSwaggerGen(swagger =>
-            {
-                swagger.EnableAnnotations();
-                swagger.CustomSchemaIds(x => x.FullName);
-                swagger.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "Modular API",
-                    Version = "v1"
-                });
-
-                swagger.TagActionsBy(api =>
-                {
-                    if (api.GroupName != null)
-                    {
-                        return [api.GroupName];
-                    }
-                    if (api.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor)
-                    {
-                        return [controllerActionDescriptor.ControllerName];
-                    }
-                    throw new InvalidOperationException("Unable to determine tag for endpoint.");
-                });
-
-                swagger.DocInclusionPredicate((name, api) => true);
-                swagger.DocumentFilter<GroupNameDocumentFilter>();
-            });
+            services.AddSwagger();
 
             services.AddModuleInfo(modules);
 
@@ -110,6 +84,7 @@ namespace Skillup.Shared.Infrastructure
                 ForwardedHeaders = ForwardedHeaders.All
             });
             app.UseCors("cors");
+            app.UseHttpsRedirection();
             app.UseErrorHandling();
             app.UseRouting();
             app.UseAuthorization();

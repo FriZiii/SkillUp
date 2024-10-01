@@ -1,7 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Skillup.Shared.Infrastructure.Api
+namespace Skillup.Shared.Infrastructure.Swagger
 {
     internal class GroupNameDocumentFilter : IDocumentFilter
     {
