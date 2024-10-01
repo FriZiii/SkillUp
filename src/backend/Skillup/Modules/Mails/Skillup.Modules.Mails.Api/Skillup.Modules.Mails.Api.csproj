@@ -18,7 +18,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Shared\Skillup.Shared.Infrastructure\Skillup.Shared.Infrastructure.csproj" />
-      <ProjectReference Include="..\Skillup.Modules.Smtp.Core\Skillup.Modules.Mails.Core.csproj" />
+      <ProjectReference Include="..\Skillup.Modules.Mails.Core\Skillup.Modules.Mails.Core.csproj" />
     </ItemGroup>
 
 </Project>

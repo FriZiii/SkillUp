@@ -23,7 +23,7 @@
       <ProjectReference Include="..\..\Modules\Chat\Skillup.Modules.Chat.Api\Skillup.Modules.Chat.Api.csproj" />
       <ProjectReference Include="..\..\Modules\Courses\Skillup.Modules.Courses.Api\Skillup.Modules.Courses.Api.csproj" />
       <ProjectReference Include="..\..\Modules\Notifications\Skillup.Modules.Notifications.Api\Skillup.Modules.Notifications.Api.csproj" />
-      <ProjectReference Include="..\..\Modules\Smtp\Skillup.Modules.Smtp.Api\Skillup.Modules.Mails.Api.csproj" />
+      <ProjectReference Include="..\..\Modules\Mails\Skillup.Modules.Mails.Api\Skillup.Modules.Mails.Api.csproj" />
       <ProjectReference Include="..\..\Modules\Wallets\Skillup.Modules.Wallets.Api\Skillup.Modules.Wallets.Api.csproj" />
       <ProjectReference Include="..\..\Shared\Skillup.Shared.Abstractions\Skillup.Shared.Abstractions.csproj" />
       <ProjectReference Include="..\..\Shared\Skillup.Shared.Infrastructure\Skillup.Shared.Infrastructure.csproj" />

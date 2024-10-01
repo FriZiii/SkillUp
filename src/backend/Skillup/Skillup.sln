@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Shared.Infrastructu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Wallets.Api", "Modules\Wallets\Skillup.Modules.Wallets.Api\Skillup.Modules.Wallets.Api.csproj", "{EB5861C4-F0D2-4ADE-A25C-36353ED9A179}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Mails.Api", "Modules\Smtp\Skillup.Modules.Smtp.Api\Skillup.Modules.Mails.Api.csproj", "{1237264D-7674-4B32-AE52-695962099D66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Mails.Api", "Modules\Mails\Skillup.Modules.Mails.Api\Skillup.Modules.Mails.Api.csproj", "{1237264D-7674-4B32-AE52-695962099D66}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Notifications.Api", "Modules\Notifications\Skillup.Modules.Notifications.Api\Skillup.Modules.Notifications.Api.csproj", "{4B32EB5B-E589-4933-B3B1-BBEDEE5FBCF5}"
 EndProject
@@ -39,7 +39,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Chat.Api", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Auth.Api", "Modules\Auth\Skillup.Modules.Auth.Api\Skillup.Modules.Auth.Api.csproj", "{51117B25-4875-498F-A4B4-C8A351189178}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Mails.Core", "Modules\Smtp\Skillup.Modules.Smtp.Core\Skillup.Modules.Mails.Core.csproj", "{AA2323DD-FBEF-4DCE-8697-3A7E5D2A3319}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Mails.Core", "Modules\Mails\Skillup.Modules.Mails.Core\Skillup.Modules.Mails.Core.csproj", "{AA2323DD-FBEF-4DCE-8697-3A7E5D2A3319}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BADB4CB7-0A6A-47C5-B928-04D8C50CB124}"
 EndProject
