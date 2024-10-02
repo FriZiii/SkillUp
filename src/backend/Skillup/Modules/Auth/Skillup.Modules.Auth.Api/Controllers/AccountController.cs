@@ -10,7 +10,7 @@ namespace Skillup.Modules.Auth.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    internal class AuthController(IMediator mediator) : BaseController
+    internal class AccountController(IMediator mediator) : BaseController
     {
         [HttpPost("sign-up")]
         [SwaggerOperation("Sign up")]
@@ -42,6 +42,16 @@ namespace Skillup.Modules.Auth.Api.Controllers
         {
             await mediator.Send(new SignOut(new Guid()));
             return NoContent();
+        }
+
+        [HttpPut("activation")]
+        [SwaggerOperation("Activation")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Activation([FromQuery] Guid userId, [FromQuery] Guid activationToken)
+        {
+            await mediator.Send(new AccountActivation(userId, activationToken));
+            return Ok();
         }
     }
 }
