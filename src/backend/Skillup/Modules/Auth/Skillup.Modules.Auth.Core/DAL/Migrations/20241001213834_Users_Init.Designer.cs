@@ -12,7 +12,7 @@ using Skillup.Modules.Auth.Core.DAL;
 namespace Skillup.Modules.Auth.Core.DAL.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20240924081219_Users_Init")]
+    [Migration("20241001213834_Users_Init")]
     partial class Users_Init
     {
         /// <inheritdoc />
@@ -32,6 +32,9 @@ namespace Skillup.Modules.Auth.Core.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("ActivationToken")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -47,6 +50,9 @@ namespace Skillup.Modules.Auth.Core.DAL.Migrations
 
                     b.Property<int>("State")
                         .HasColumnType("integer");
+
+                    b.Property<DateTime>("TokenExpiration")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 

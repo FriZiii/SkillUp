@@ -9,6 +9,8 @@ namespace Skillup.Modules.Auth.Core.Entities
         public string Password { get; set; }
         public UserState State { get; set; }
         public DateTime CreatedAt { get; set; }
+        public Guid ActivationToken { get; set; }
+        public DateTime TokenExpiration { get; set; }
 
         //public Role Role { get; set; }
         //public string RoleId { get; set; }

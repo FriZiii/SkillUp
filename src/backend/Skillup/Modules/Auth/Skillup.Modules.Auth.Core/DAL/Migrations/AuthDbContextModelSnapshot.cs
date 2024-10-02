@@ -29,6 +29,9 @@ namespace Skillup.Modules.Auth.Core.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("ActivationToken")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -44,6 +47,9 @@ namespace Skillup.Modules.Auth.Core.DAL.Migrations
 
                     b.Property<int>("State")
                         .HasColumnType("integer");
+
+                    b.Property<DateTime>("TokenExpiration")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
