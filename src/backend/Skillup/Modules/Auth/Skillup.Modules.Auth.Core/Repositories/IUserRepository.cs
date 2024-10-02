@@ -8,5 +8,6 @@ namespace Skillup.Modules.Auth.Core.Repositories
         Task<User?> Get(string email);
         Task Add(User user);
         Task Update(User user);
+        Task ChangeState(Guid userId, UserState state);
     }
 }

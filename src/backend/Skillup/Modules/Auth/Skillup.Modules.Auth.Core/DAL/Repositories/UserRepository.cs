@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Auth.Core.Entities;
+using Skillup.Modules.Auth.Core.Exceptions;
 using Skillup.Modules.Auth.Core.Repositories;
 
 namespace Skillup.Modules.Auth.Core.DAL.Repositories
@@ -30,6 +31,13 @@ namespace Skillup.Modules.Auth.Core.DAL.Repositories
         public async Task Update(User user)
         {
             _users.Update(user);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task ChangeState(Guid userId, UserState state)
+        {
+            var userToChange = await _users.FirstOrDefaultAsync(x => x.Id.Equals(userId)) ?? throw new UserNotFoundException(userId);
+            userToChange.State = state;
             await _context.SaveChangesAsync();
         }
     }
