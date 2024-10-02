@@ -20,7 +20,7 @@ namespace Skillup.Shared.Infrastructure.Exceptions
             }
             catch (Exception exception)
             {
-                // TODO : LOGGING
+                // TODO : LOGS
                 await HandleErrorAsync(context, exception);
             }
         }
