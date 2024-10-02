@@ -16,7 +16,7 @@ namespace Skillup.Modules.Mails.Core.Consumers
 
         public async Task Consume(ConsumeContext<SignedUp> context)
         {
-            await _mediator.Send(new AccountActivation(context.Message.Email));
+            await _mediator.Send(new AccountActivation(context.Message.UserId, context.Message.Email, context.Message.ActivationToken, context.Message.TokenExpiration));
         }
     }
 }

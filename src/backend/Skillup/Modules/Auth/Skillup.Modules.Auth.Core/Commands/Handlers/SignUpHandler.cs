@@ -56,13 +56,15 @@ namespace Skillup.Modules.Auth.Core.Commands.Handlers
                 Email = email,
                 CreatedAt = now,
                 State = UserState.Inactive,
+                ActivationToken = Guid.NewGuid(),
+                TokenExpiration = now.AddHours(24),
             };
             var password = _passwordHasher.HashPassword(user, request.Password);
             user.Password = password;
 
             await _userRepository.Add(user);
 
-            await _publishEndpoint.Publish(new SignedUp(user.Id, user.Email), cancellationToken);
+            await _publishEndpoint.Publish(new SignedUp(user.Id, user.Email, user.ActivationToken, user.TokenExpiration), cancellationToken);
             //TODO : LOGS
         }
     }
