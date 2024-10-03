@@ -16,4 +16,8 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Skillup.Modules.Courses.Infrastracture\Skillup.Modules.Courses.Infrastracture.csproj" />
+    </ItemGroup>
+
 </Project>
