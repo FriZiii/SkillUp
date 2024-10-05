@@ -19,6 +19,8 @@ namespace Skillup.Modules.Courses.Infrastracture
 
             modelBuilder.ApplyConfiguration(new CoursesConfiguration());
             modelBuilder.Entity<Section>().HasMany(s => s.Elements).WithOne(e => e.Section).HasForeignKey(e => e.SectionId);
+            modelBuilder.Entity<Element>().HasOne(e => e.Asset).WithOne(a => a.Element).HasForeignKey<Element>(e => e.AssetId);
+
         }
     }
 }

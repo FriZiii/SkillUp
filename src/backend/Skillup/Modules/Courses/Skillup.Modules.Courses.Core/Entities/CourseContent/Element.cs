@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Skillup.Modules.Courses.Core.Entities.CourseContent.Assets;
 
 namespace Skillup.Modules.Courses.Core.Entities.CourseContent
 {
@@ -13,11 +9,12 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseContent
         public bool IsCompleted { get; set; }  // movies/lectures finished when clicked
 
         public bool IsFree { get; set; }  // is this section visible before buying the course?
-        public bool IsPublished { get; set; }  // only when published the section is visible for students
+        public bool IsPublished { get; set; } // only when published the section is visible for students
 
         public Guid SectionId { get; set; }
         public Section Section { get; set; }
-       // public Guid AssetId { get; set; }
-        //public Asset Asset { get; set; }      //asset meaning movie, article or exercise
+        public Guid AssetId { get; set; }
+        public Asset Asset { get; set; }      //asset meaning movie, article or exercise
+
     }
 }

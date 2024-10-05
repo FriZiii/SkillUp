@@ -3,12 +3,6 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Skillup.Modules.Courses.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Skillup.Modules.Courses.Infrastracture.Configurations
 {
@@ -16,7 +10,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Configurations
     {
         public void Configure(EntityTypeBuilder<Course> builder)
         {
-            builder.ToTable("Courses");
+            //builder.ToTable("Courses");
             builder.OwnsOne(c => c.Info);
             builder.HasOne(c => c.Category)
                 .WithMany(category => category.Courses)
@@ -30,7 +24,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Configurations
             var converter = new ValueConverter<List<string>, string>(
                 v => string.Join(",", v),   // Z listy do stringa
                 v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList());
-            var comparer = new ValueComparer<List<string>>((c1, c2) => c1.SequenceEqual(c2), 
+            var comparer = new ValueComparer<List<string>>((c1, c2) => c1.SequenceEqual(c2),
                 c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
                 c => c.ToList());
 
@@ -48,10 +42,11 @@ namespace Skillup.Modules.Courses.Infrastracture.Configurations
                 .HasConversion(
                     v => v.ToString(),
                     v => new Uri(v));
-            //builder.Property(c => c.Price.Value)
-            //    .HasColumnType("decimal(18,2)")
-            //    .HasColumnName("Price");
 
+            builder.OwnsOne(c => c.Price, p =>
+            {
+                p.Property(pp => pp.Value).HasColumnName("Price").HasColumnType("decimal(18,2)");
+            });
 
             builder.HasMany(c => c.Sections)
                 .WithOne(s => s.Course)

@@ -9,7 +9,9 @@ namespace Skillup.Modules.Courses.Core.Entities
         //public Author Author { get; set; }
         public CourseInfo Info { get; set; }   //course information (title, subtitle, description)
 
-
+        //
+        // Summary:
+        //     A read-only instance of the System.Guid structure whose value is all zeros.
         public Guid CategoryId { get; set; }
         public Category Category { get; set; }    // category of course (ex. languages / programming)
         public Guid SubcategoryId { get; set; }
@@ -23,7 +25,7 @@ namespace Skillup.Modules.Courses.Core.Entities
 
         //public string Language { get; set; } 
         public Uri ThumbnailUrl { get; set; } //minature photo of course
-        //public Price Price { get; set; }   //price of course
+        public Price Price { get; set; }   //price of course
 
         public List<Section> Sections { get; set; }
 
