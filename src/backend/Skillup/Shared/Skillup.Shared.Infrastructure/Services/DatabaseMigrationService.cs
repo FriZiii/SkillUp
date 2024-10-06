@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace Skillup.Shared.Infrastructure.Services
 {
-    internal class DbContextInitializer(IServiceProvider serviceProvider) : IHostedService
+    internal class DatabaseMigrationService(IServiceProvider serviceProvider) : IHostedService
     {
         private readonly IServiceProvider _serviceProvider = serviceProvider;
 
