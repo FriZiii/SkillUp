@@ -4,6 +4,16 @@ namespace Skillup.Modules.Auth.Core.Entities
 {
     internal class User
     {
+        public User(Guid id, Email email, UserState state, DateTime createdAt, Guid activationToken, DateTime tokenExpiration)
+        {
+            Id = id;
+            Email = email;
+            State = state;
+            CreatedAt = createdAt;
+            ActivationToken = activationToken;
+            TokenExpiration = tokenExpiration;
+        }
+
         public Guid Id { get; set; }
         public Email Email { get; set; }
         public string Password { get; set; }

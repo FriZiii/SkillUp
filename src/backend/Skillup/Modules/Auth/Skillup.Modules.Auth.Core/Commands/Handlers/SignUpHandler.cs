@@ -50,15 +50,7 @@ namespace Skillup.Modules.Auth.Core.Commands.Handlers
 
             var now = _clock.CurrentDate();
 
-            user = new User
-            {
-                Id = request.UserId,
-                Email = email,
-                CreatedAt = now,
-                State = UserState.Inactive,
-                ActivationToken = Guid.NewGuid(),
-                TokenExpiration = now.AddHours(24),
-            };
+            user = new User(request.UserId, email, UserState.Inactive, now, Guid.NewGuid(), now.AddHours(24));
             var password = _passwordHasher.HashPassword(user, request.Password);
             user.Password = password;
 

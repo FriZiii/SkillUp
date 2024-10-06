@@ -4,21 +4,25 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Auth.Api.Controllers.Base;
 using Skillup.Modules.Auth.Core.Commands;
+using Skillup.Modules.Auth.Core.Services;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Auth.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    internal class AccountController(IMediator mediator) : BaseController
+    internal class AccountController(IMediator mediator, IAuthTokenStorage authTokenStorage) : BaseController
     {
+        private readonly IMediator _mediator = mediator;
+        private readonly IAuthTokenStorage _authTokenStorage = authTokenStorage;
+
         [HttpPost("sign-up")]
         [SwaggerOperation("Sign up")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> SignUp(SignUp command)
         {
-            await mediator.Send(command);
+            await _mediator.Send(command);
             return Ok();
         }
 
@@ -28,8 +32,9 @@ namespace Skillup.Modules.Auth.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> SignIn(SignIn command)
         {
-            await mediator.Send(command);
-            return Ok();
+            await _mediator.Send(command);
+            var tokens = _authTokenStorage.GetTokens(command.Id);
+            return Ok(new { tokens.AccessToken, tokens.RefreshToken });
         }
 
         [Authorize]
@@ -40,7 +45,7 @@ namespace Skillup.Modules.Auth.Api.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> SignOut()
         {
-            await mediator.Send(new SignOut(new Guid()));
+            await _mediator.Send(new SignOut(new Guid(User.Claims.First(x => x.Type.Equals("Id")).Value)));
             return NoContent();
         }
 
@@ -50,7 +55,7 @@ namespace Skillup.Modules.Auth.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Activation([FromQuery] Guid userId, [FromQuery] Guid activationToken)
         {
-            await mediator.Send(new AccountActivation(userId, activationToken));
+            await _mediator.Send(new AccountActivation(userId, activationToken));
             return Ok();
         }
     }

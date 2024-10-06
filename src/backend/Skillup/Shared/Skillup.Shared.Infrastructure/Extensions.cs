@@ -4,13 +4,18 @@ using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Skillup.Shared.Abstractions.Modules;
+using Skillup.Shared.Abstractions.Storage;
 using Skillup.Shared.Abstractions.Time;
 using Skillup.Shared.Infrastructure.Api;
+using Skillup.Shared.Infrastructure.Auth;
+using Skillup.Shared.Infrastructure.Client;
 using Skillup.Shared.Infrastructure.Exceptions;
 using Skillup.Shared.Infrastructure.Modules;
 using Skillup.Shared.Infrastructure.Postgres;
 using Skillup.Shared.Infrastructure.RabbitMQ;
+using Skillup.Shared.Infrastructure.Seeder;
 using Skillup.Shared.Infrastructure.Services;
+using Skillup.Shared.Infrastructure.Storage;
 using Skillup.Shared.Infrastructure.Swagger;
 using Skillup.Shared.Infrastructure.Time;
 
@@ -44,12 +49,17 @@ namespace Skillup.Shared.Infrastructure
 
             services.AddPostgres();
             services.AddRabbitMQ();
+            services.AddMemoryCache();
+            services.AddAuth();
+            services.AddClient();
 
+            services.AddSingleton<IMemoryStorage, MemoryStorage>();
             services.AddSingleton<IClock, UtcClock>();
 
             services.AddErrorHandling();
 
-            services.AddHostedService<DbContextInitializer>();
+            services.AddHostedService<DatabaseMigrationService>();
+            services.AddHostedService<DatabaseSeederService>();
 
             services.AddControllers(options =>
             {
@@ -87,6 +97,7 @@ namespace Skillup.Shared.Infrastructure
             app.UseHttpsRedirection();
             app.UseErrorHandling();
             app.UseRouting();
+            app.UseAuth();
             app.UseAuthorization();
 
             return app;
