@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Skillup.Modules.Courses.Core.Entities
+﻿namespace Skillup.Modules.Courses.Core.Entities
 {
     public record Price
     {
