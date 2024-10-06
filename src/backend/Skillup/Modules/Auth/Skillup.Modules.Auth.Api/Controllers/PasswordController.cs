@@ -6,6 +6,8 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Auth.Api.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     internal class PasswordController : BaseController
     {
         [Authorize]
