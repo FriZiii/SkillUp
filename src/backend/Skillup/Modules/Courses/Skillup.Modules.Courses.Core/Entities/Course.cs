@@ -27,7 +27,6 @@ namespace Skillup.Modules.Courses.Core.Entities
         public Uri ThumbnailUrl { get; set; } //minature photo of course
         public Price Price { get; set; }   //price of course
 
-        public List<Section> Sections { get; set; }
-
+        public List<Section>? Sections { get; set; }
     }
 }

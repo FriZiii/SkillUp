@@ -13,11 +13,13 @@ namespace Skillup.Modules.Courses.Infrastracture.Configurations
 
             builder.HasOne(c => c.Category)
                 .WithMany(category => category.Courses)
-                .HasForeignKey(c => c.Id);
+                .HasForeignKey(c => c.Id)
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(c => c.Subcategory)
                 .WithMany(s => s.Courses)
-                .HasForeignKey(c => c.Id);
+                .HasForeignKey(c => c.Id)
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.Property(c => c.Level)
                 .HasConversion<string>();
