@@ -1,4 +1,4 @@
-﻿using MassTransit.Mediator;
+﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Application.Managments.Course;
