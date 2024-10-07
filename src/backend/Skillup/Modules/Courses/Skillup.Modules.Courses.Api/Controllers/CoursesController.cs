@@ -37,8 +37,12 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetAll()
         {
-            var courses = await _courseRepository.GetAll();
-            return Ok(courses);
+            var category = new Core.Entities.Category() { Name = "Programowanie" };
+            await _categoryRepository.Add(category);
+
+            await _subcategoryRepository.Add(new Core.Entities.Subcategory() { Name = "C#", CategoryId = category.Id });
+            //var courses = await _courseRepository.GetAll();
+            return Ok();
         }
     }
 }

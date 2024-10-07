@@ -18,16 +18,6 @@ namespace Skillup.Modules.Courses.Application.Managments.Course.Commands
         }
         public async Task Handle(AddCourse request, CancellationToken cancellationToken)
         {
-            var category = await _categoryRepository.GetById(request.CategoryId);
-            var subcategory = await _subcategoryRepository.GetById(request.SubcategoryId);
-            if (category == null)
-            {
-                throw new ArgumentNullException(nameof(category));
-            }
-            if (subcategory == null)
-            {
-                throw new ArgumentNullException();
-            }
             var course = new Core.Entities.Course()
             {
                 Info = new CourseInfo()
@@ -35,19 +25,12 @@ namespace Skillup.Modules.Courses.Application.Managments.Course.Commands
                     Title = request.Title,
                     Subtitle = request.Subtitle,
                 },
-                Category = category,
-                Subcategory = subcategory,
+                CategoryId = request.CategoryId,
+                SubcategoryId = request.SubcategoryId,
                 ThumbnailUrl = request.ThumbnailUrl,
             };
 
-            try
-            {
-                await _courseRepository.Add(course);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception();
-            }
+            await _courseRepository.Add(course);
         }
     }
 }
