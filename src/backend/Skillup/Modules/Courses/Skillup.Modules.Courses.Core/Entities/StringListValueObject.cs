@@ -1,24 +1,24 @@
 ﻿namespace Skillup.Modules.Courses.Core.Entities
 {
-    public record StringList
+    public record StringListValueObject
     {
         public List<string> Values { get; set; }
 
-        public StringList(List<string> values)
+        public StringListValueObject(List<string> values)
         {
             Values = values ?? throw new ArgumentNullException();
         }
-        public StringList Add(string value)
+        public StringListValueObject Add(string value)
         {
             var newList = new List<string>(Values) { value };
-            return new StringList(newList);
+            return new StringListValueObject(newList);
         }
 
-        public StringList Remove(string value)
+        public StringListValueObject Remove(string value)
         {
             var newList = new List<string>(Values);
             newList.Remove(value);
-            return new StringList(newList);
+            return new StringListValueObject(newList);
         }
     }
 }

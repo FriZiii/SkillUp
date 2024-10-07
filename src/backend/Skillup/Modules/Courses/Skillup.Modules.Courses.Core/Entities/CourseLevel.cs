@@ -5,6 +5,6 @@
         Beginner,
         Intermediate,
         Advanced,
-        AllLevels,
+        ForEveryone,
     }
 }

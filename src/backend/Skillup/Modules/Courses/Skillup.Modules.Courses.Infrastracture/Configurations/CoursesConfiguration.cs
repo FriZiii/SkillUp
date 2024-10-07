@@ -21,31 +21,26 @@ namespace Skillup.Modules.Courses.Infrastracture.Configurations
                 .HasForeignKey(c => c.Id)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.Property(c => c.Level)
-                .HasConversion<string>();
-
-            var converter = new ValueConverter<StringList, string>(
+            var converter = new ValueConverter<StringListValueObject, string>(
                 v => string.Join(",", v.Values),
-                v => new StringList(v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList()));
+                v => new StringListValueObject(v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList()));
 
-            builder.Property(c => c.ObjectivesSummary)
+            builder.OwnsOne(c => c.Details, d =>
+            {
+                d.Property(x => x.Level)
+                .HasConversion<string>();
+                d.Property(x => x.MustKnowBefore)
                 .HasConversion(converter);
-
-            builder.Property(c => c.MustKnowBefore)
+                d.Property(x => x.ObjectivesSummary)
                 .HasConversion(converter);
-
-            builder.Property(c => c.IntendedFor)
+                d.Property(x => x.IntendedFor)
                 .HasConversion(converter);
+            });
 
             builder.Property(c => c.ThumbnailUrl)
                 .HasConversion(
                     v => v.ToString(),
                     v => new Uri(v));
-
-            builder.OwnsOne(c => c.Price, p =>
-            {
-                p.Property(pp => pp.Value).HasColumnName("Price").HasColumnType("decimal(18,2)");
-            });
 
             builder.HasMany(c => c.Sections)
                 .WithOne(s => s.Course)

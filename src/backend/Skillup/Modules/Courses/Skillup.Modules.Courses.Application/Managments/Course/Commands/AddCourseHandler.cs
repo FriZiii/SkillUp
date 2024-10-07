@@ -20,10 +20,12 @@ namespace Skillup.Modules.Courses.Application.Managments.Course.Commands
         {
             var category = await _categoryRepository.GetById(request.CategoryId);
             var subcategory = await _subcategoryRepository.GetById(request.SubcategoryId);
-            if (category == null) {
+            if (category == null)
+            {
                 throw new ArgumentNullException(nameof(category));
             }
-            if (subcategory == null) {
+            if (subcategory == null)
+            {
                 throw new ArgumentNullException();
             }
             var course = new Core.Entities.Course()
@@ -32,16 +34,10 @@ namespace Skillup.Modules.Courses.Application.Managments.Course.Commands
                 {
                     Title = request.Title,
                     Subtitle = request.Subtitle,
-                    Description = request.Description,
                 },
                 Category = category,
                 Subcategory = subcategory,
-                Level = request.Level,
-                ObjectivesSummary = new StringList(request.ObjectivesSummary),
-                MustKnowBefore = new StringList(request.MustKnowBefore),
-                IntendedFor = new StringList(request.IntendedFor),
                 ThumbnailUrl = request.ThumbnailUrl,
-                Price = new Price(request.Price)
             };
 
             try

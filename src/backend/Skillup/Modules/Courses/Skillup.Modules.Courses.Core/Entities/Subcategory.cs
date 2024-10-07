@@ -4,7 +4,10 @@
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+
+        public Guid CategoryId { get; set; }
+        public Category Category { get; set; }
         public List<Course> Courses { get; set; }
-        //połączenie z kategorią zastanowic się jak bedzie najlepiej na frontendzie
+
     }
 }

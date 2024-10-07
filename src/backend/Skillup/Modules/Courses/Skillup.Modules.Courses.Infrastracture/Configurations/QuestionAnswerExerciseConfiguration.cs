@@ -4,11 +4,11 @@ using Skillup.Modules.Courses.Core.Entities.CourseContent.Assets.Exercises;
 
 namespace Skillup.Modules.Courses.Infrastracture.Configurations
 {
-    internal class QuestionAnswerConfiguration : IEntityTypeConfiguration<QuestionAnswer>
+    internal class QuestionAnswerExerciseConfiguration : IEntityTypeConfiguration<QuestionAnswer>
     {
         public void Configure(EntityTypeBuilder<QuestionAnswer> builder)
         {
-            builder.ToTable("QuestionAnswer")
+            builder.ToTable("QuestionAnswerExercise")
                .HasBaseType<Exercise>();
         }
     }
