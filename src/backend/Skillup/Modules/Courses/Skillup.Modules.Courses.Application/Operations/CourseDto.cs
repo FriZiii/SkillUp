@@ -1,4 +1,4 @@
-﻿namespace Skillup.Modules.Courses.Application.Managments.Course
+﻿namespace Skillup.Modules.Courses.Application.Operations
 {
     public class CourseDto
     {

@@ -2,7 +2,7 @@
 using Skillup.Modules.Courses.Core.Entities;
 using Skillup.Modules.Courses.Core.Interfaces;
 
-namespace Skillup.Modules.Courses.Application.Managments.Course.Commands
+namespace Skillup.Modules.Courses.Application.Operations.Commands.AddCourse
 {
     public class AddCourseHandler : IRequestHandler<AddCourse>
     {
@@ -18,7 +18,7 @@ namespace Skillup.Modules.Courses.Application.Managments.Course.Commands
         }
         public async Task Handle(AddCourse request, CancellationToken cancellationToken)
         {
-            var course = new Core.Entities.Course()
+            var course = new Course()
             {
                 Info = new CourseInfo()
                 {
