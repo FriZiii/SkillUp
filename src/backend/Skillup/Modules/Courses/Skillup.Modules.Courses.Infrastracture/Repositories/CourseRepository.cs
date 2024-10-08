@@ -21,6 +21,13 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task AddDetails(Guid courseId, CourseDetails details)
+        {
+            var course = await _courses.SingleOrDefaultAsync(c => c.Id == courseId);
+            course.Details = details;
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<Course>> GetAll()
         {
             return await _courses.ToListAsync();

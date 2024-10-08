@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Application.Operations.Commands.AddCourse;
+using Skillup.Modules.Courses.Application.Operations.Commands.AddDetails;
 using Skillup.Modules.Courses.Core.Interfaces;
 
 namespace Skillup.Modules.Courses.Api.Controllers
@@ -43,6 +44,15 @@ namespace Skillup.Modules.Courses.Api.Controllers
             await _subcategoryRepository.Add(new Core.Entities.Subcategory() { Name = "C#", CategoryId = category.Id });
             //var courses = await _courseRepository.GetAll();
             return Ok();
+        }
+
+        [HttpPost("details")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AddDetails(AddDetails addDetails)
+        {
+            await _mediator.Send(addDetails);
+            return Ok(addDetails);
         }
     }
 }
