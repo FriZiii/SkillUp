@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Skillup.Modules.Courses.Core.Entities;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 
 namespace Skillup.Modules.Courses.Infrastracture.Configurations
 {

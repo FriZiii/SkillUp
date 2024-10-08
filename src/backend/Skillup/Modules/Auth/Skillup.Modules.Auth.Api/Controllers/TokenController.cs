@@ -25,7 +25,7 @@ namespace Skillup.Modules.Auth.Api.Controllers
             var accessToken = Request.Headers.Authorization.ToString()["Bearer ".Length..].Trim();
             var refreshToken = Request.Cookies["refreshToken"];
 
-            var command = new Refresh(accessToken, refreshToken);
+            var command = new RefreshRequest(accessToken, refreshToken);
             await _mediator.Send(command);
 
             var tokens = _authTokenStorage.GetTokens(command.Id);

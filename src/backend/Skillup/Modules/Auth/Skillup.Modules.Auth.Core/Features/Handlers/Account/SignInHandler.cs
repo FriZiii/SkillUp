@@ -13,14 +13,14 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
         IPasswordHasher<User> passwordHasher,
         IAuthManager authManager,
         IAuthTokenStorage authTokenStorage
-        ) : IRequestHandler<SignIn>
+        ) : IRequestHandler<SignInRequest>
     {
         private readonly IUserRepository _userRepository = userRepository;
         private readonly IPasswordHasher<User> _passwordHasher = passwordHasher;
         private readonly IAuthManager _authManager = authManager;
         private readonly IAuthTokenStorage _authTokenStorage = authTokenStorage;
 
-        public async Task Handle(SignIn request, CancellationToken cancellationToken)
+        public async Task Handle(SignInRequest request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.Get(request.Email.ToLowerInvariant()) ?? throw new InvalidCredentialsException();
 

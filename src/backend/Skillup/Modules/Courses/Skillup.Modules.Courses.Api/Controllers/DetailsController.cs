@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Skillup.Modules.Courses.Application.Operations.Commands.AddDetails;
+using Skillup.Modules.Courses.Application.Features.Commands;
 
 namespace Skillup.Modules.Courses.Api.Controllers
 {
@@ -14,10 +14,10 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddDetails(AddDetails addDetails)
+        public async Task<IActionResult> AddDetails(AddDetailsRequest request)
         {
-            await _mediator.Send(addDetails);
-            return Ok(addDetails);
+            await _mediator.Send(request);
+            return Ok();
         }
     }
 }

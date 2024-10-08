@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Skillup.Modules.Courses.Core.Entities;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities;
+using Skillup.Shared.Abstractions.Kernel.ValueObjects;
 
 namespace Skillup.Modules.Courses.Infrastracture.Seeders
 {

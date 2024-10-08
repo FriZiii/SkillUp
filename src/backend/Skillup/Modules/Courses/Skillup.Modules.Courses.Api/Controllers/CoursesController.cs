@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Skillup.Modules.Courses.Application.Operations.Commands.AddCourse;
-using Skillup.Modules.Courses.Application.Operations.Queries.GetCourses;
+using Skillup.Modules.Courses.Application.Features.Commands;
+using Skillup.Modules.Courses.Core.Requests;
 
 namespace Skillup.Modules.Courses.Api.Controllers
 {
@@ -16,10 +16,10 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [Route("/Courses")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Add(AddCourse addCourse)
+        public async Task<IActionResult> Add(AddCourseRequest request)
         {
-            await _mediator.Send(addCourse);
-            return Ok(addCourse);
+            await _mediator.Send(request);
+            return Ok();
         }
 
         [HttpGet]
@@ -33,7 +33,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
 
             //await _subcategoryRepository.Add(new Core.Entities.Subcategory() { Name = "C#", CategoryId = category.Id });
 
-            var courses = await _mediator.Send(new GetCourses());
+            var courses = await _mediator.Send(new GetCoursesRequest());
             return Ok(courses);
         }
     }

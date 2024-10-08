@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Skillup.Modules.Courses.Core.Entities;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities;
+using Skillup.Shared.Abstractions.Kernel.ValueObjects;
 
 namespace Skillup.Modules.Courses.Infrastracture.Configurations
 {

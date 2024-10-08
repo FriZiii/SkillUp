@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Skillup.Modules.Courses.Core.Entities;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 using Skillup.Modules.Courses.Core.Interfaces;
 
 namespace Skillup.Modules.Courses.Infrastracture.Repositories
