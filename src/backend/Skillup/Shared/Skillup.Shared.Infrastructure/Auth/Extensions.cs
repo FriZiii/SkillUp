@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Skillup.Shared.Abstractions.Auth;
@@ -20,28 +19,13 @@ namespace Skillup.Shared.Infrastructure.Auth
                 ValidateIssuer = options.ValidateIssuer,
                 ValidIssuer = options.ValidIssuer,
                 ValidateIssuerSigningKey = options.ValidateIssuerSigningKey,
-
                 ValidateAudience = options.ValidateAudience,
                 ValidAudience = options.ValidAudience,
-
                 ValidateLifetime = options.ValidateLifetime,
                 RequireExpirationTime = options.RequireExpirationTime,
-
-                ClockSkew = TimeSpan.FromMinutes(1),
+                ClockSkew = TimeSpan.Zero,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.IssuerSigningKey)) ?? throw new ArgumentException("Missing issuer signing key.", nameof(options.IssuerSigningKey))
             };
-
-            if (string.IsNullOrWhiteSpace(options.IssuerSigningKey))
-            {
-                throw new ArgumentException("Missing issuer signing key.", nameof(options.IssuerSigningKey));
-            }
-
-            var rawKey = Encoding.UTF8.GetBytes(options.IssuerSigningKey);
-            tokenValidationParameters.IssuerSigningKey = new SymmetricSecurityKey(rawKey);
-
-            services.Configure<DataProtectionTokenProviderOptions>(o =>
-            {
-                o.TokenLifespan = TimeSpan.FromSeconds(options.RefreshTokenExpireSeconds);
-            });
 
             services.AddAuthentication(o =>
             {
@@ -51,6 +35,7 @@ namespace Skillup.Shared.Infrastructure.Auth
             {
                 o.RequireHttpsMetadata = options.RequireHttpsMetadata;
                 o.TokenValidationParameters = tokenValidationParameters;
+                o.MapInboundClaims = false;
             });
 
             services.AddSingleton(options);

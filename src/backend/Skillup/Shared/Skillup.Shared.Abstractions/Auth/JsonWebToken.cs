@@ -2,7 +2,7 @@
 {
     public class JsonWebToken
     {
-        public string AccessToken { get; set; }
+        public string Token { get; set; }
         public long Expiry { get; set; }
         public Guid UserId { get; set; }
         public string Role { get; set; }
