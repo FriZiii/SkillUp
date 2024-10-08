@@ -23,31 +23,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{F5C0DD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Bootstrapper", "Bootstrapper\Skillup.Bootstrapper\Skillup.Bootstrapper.csproj", "{8A472A14-ABC7-4EF9-9FC1-DE2A25952C03}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BADB4CB7-0A6A-47C5-B928-04D8C50CB124}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Shared.Abstractions", "Shared\Skillup.Shared.Abstractions\Skillup.Shared.Abstractions.csproj", "{711C1679-A05B-4D32-8B1F-117F2E798C5F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Shared.Infrastructure", "Shared\Skillup.Shared.Infrastructure\Skillup.Shared.Infrastructure.csproj", "{73693D62-39FB-4CAE-A0AF-3174CC36CADB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Wallets.Api", "Modules\Wallets\Skillup.Modules.Wallets.Api\Skillup.Modules.Wallets.Api.csproj", "{EB5861C4-F0D2-4ADE-A25C-36353ED9A179}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Mails.Api", "Modules\Smtp\Skillup.Modules.Smtp.Api\Skillup.Modules.Mails.Api.csproj", "{1237264D-7674-4B32-AE52-695962099D66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Mails.Api", "Modules\Mails\Skillup.Modules.Mails.Api\Skillup.Modules.Mails.Api.csproj", "{1237264D-7674-4B32-AE52-695962099D66}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Mails.Core", "Modules\Mails\Skillup.Modules.Mails.Core\Skillup.Modules.Mails.Core.csproj", "{AA2323DD-FBEF-4DCE-8697-3A7E5D2A3319}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Notifications.Api", "Modules\Notifications\Skillup.Modules.Notifications.Api\Skillup.Modules.Notifications.Api.csproj", "{4B32EB5B-E589-4933-B3B1-BBEDEE5FBCF5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Courses.Api", "Modules\Courses\Skillup.Modules.Courses.Api\Skillup.Modules.Courses.Api.csproj", "{8F288A25-639C-407E-80B1-E661E22D41E6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Chat.Api", "Modules\Chat\Skillup.Modules.Chat.Api\Skillup.Modules.Chat.Api.csproj", "{B60DB100-3D4D-49B4-A442-9F800765AAAA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Auth.Api", "Modules\Auth\Skillup.Modules.Auth.Api\Skillup.Modules.Auth.Api.csproj", "{51117B25-4875-498F-A4B4-C8A351189178}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Mails.Core", "Modules\Smtp\Skillup.Modules.Smtp.Core\Skillup.Modules.Mails.Core.csproj", "{AA2323DD-FBEF-4DCE-8697-3A7E5D2A3319}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Auth.Core", "Modules\Auth\Skillup.Modules.Auth.Core\Skillup.Modules.Auth.Core.csproj", "{238802F7-C8E1-48A4-882E-117E9E59B7E6}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BADB4CB7-0A6A-47C5-B928-04D8C50CB124}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillup.Modules.Auth.Core", "Modules\Auth\Skillup.Modules.Auth.Core\Skillup.Modules.Auth.Core.csproj", "{238802F7-C8E1-48A4-882E-117E9E59B7E6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillup.Modules.Auth.Application", "Modules\Auth\Skillup.Modules.Auth.Application\Skillup.Modules.Auth.Application.csproj", "{F2FE825E-565D-4BEA-A22B-FB48A32DCCEE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillup.Modules.Auth.Infrastructure", "Modules\Auth\Skillup.Modules.Auth.Infrastructure\Skillup.Modules.Auth.Infrastructure.csproj", "{2BF1B193-E99F-4ED5-8A52-4A7F48E0E0B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Courses.Api", "Modules\Courses\Skillup.Modules.Courses.Api\Skillup.Modules.Courses.Api.csproj", "{8F288A25-639C-407E-80B1-E661E22D41E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillup.Modules.Courses.Core", "Modules\Courses\Skillup.Modules.Courses.Core\Skillup.Modules.Courses.Core.csproj", "{5D315A59-0C37-4B7C-A1DE-4334599437AA}"
 EndProject

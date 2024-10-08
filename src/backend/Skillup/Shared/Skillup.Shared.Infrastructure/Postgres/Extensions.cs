@@ -8,7 +8,7 @@ namespace Skillup.Shared.Infrastructure.Postgres
     {
         public static IServiceCollection AddPostgres(this IServiceCollection services)
         {
-            var connectionStringTemplate = services.GetSection("postgres:connectionString").Value;
+            var connectionStringTemplate = services.GetSection("Postgres:ConnectionString").Value;
             if (string.IsNullOrEmpty(connectionStringTemplate))
                 throw new InvalidOperationException("Connection string template cannot be null or empty.");
 
