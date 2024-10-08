@@ -15,7 +15,8 @@ namespace Skillup.Modules.Courses.Infrastracture
                 .AddPostgres<CoursesDbContext>()
                 .AddScoped<ICourseRepository, CourseRepository>()
                 .AddScoped<ICategoryRepository, CategoryRepository>()
-                .AddScoped<ISubcategoryRepository, SubcategoryRepository>();
+                .AddScoped<ISubcategoryRepository, SubcategoryRepository>()
+                .AddScoped<ISectionRepository, SectionRepository>();
         }
     }
 }

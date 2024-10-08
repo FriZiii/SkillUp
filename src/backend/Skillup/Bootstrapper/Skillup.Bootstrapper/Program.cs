@@ -21,6 +21,12 @@ var app = builder.Build();
 app.UseModularInfrastructure();
 modules.ForEach(module => module.Use(app));
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 // Cnfigure endpoints
 app.MapControllers();
 app.MapGet("/", () => "Inflow API");

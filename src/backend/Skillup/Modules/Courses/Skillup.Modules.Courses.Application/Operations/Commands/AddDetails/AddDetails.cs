@@ -3,7 +3,7 @@ using Skillup.Modules.Courses.Core.Entities;
 
 namespace Skillup.Modules.Courses.Application.Operations.Commands.AddDetails
 {
-    public class AddDetails : IRequest
+    public record AddDetails : IRequest
     {
         public Guid CoruseId { get; set; }
         public string Description { get; set; }

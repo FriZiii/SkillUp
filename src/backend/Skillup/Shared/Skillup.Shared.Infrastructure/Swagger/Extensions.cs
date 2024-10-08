@@ -28,12 +28,12 @@ namespace Skillup.Shared.Infrastructure.Swagger
 
         public static IApplicationBuilder UseSwagger(this IApplicationBuilder app)
         {
-            var swaggerOptions = app.ApplicationServices.GetService<SwaggerOptions>();
-            if (swaggerOptions != null && swaggerOptions.Enabled)
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            //var swaggerOptions = app.ApplicationServices.GetService<SwaggerOptions>();
+            //if (swaggerOptions != null && swaggerOptions.Enabled)
+            //{
+            //    app.UseSwagger();
+            //    app.UseSwaggerUI();
+            //}
 
             return app;
         }
