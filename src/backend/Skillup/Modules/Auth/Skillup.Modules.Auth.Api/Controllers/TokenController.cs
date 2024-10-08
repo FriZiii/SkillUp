@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Auth.Api.Controllers.Base;
-using Skillup.Modules.Auth.Core.Commands.Token;
 using Skillup.Modules.Auth.Core.DTO;
+using Skillup.Modules.Auth.Core.Features.Commands.Token;
 using Skillup.Modules.Auth.Core.Services;
 using Swashbuckle.AspNetCore.Annotations;
 using IMediator = MediatR.IMediator;
