@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Skillup.Modules.Courses.Application.Mappings;
 using Skillup.Modules.Courses.Core.Interfaces;
 
 namespace Skillup.Modules.Courses.Application.Operations.Queries.GetCourses
@@ -13,8 +14,10 @@ namespace Skillup.Modules.Courses.Application.Operations.Queries.GetCourses
         }
         public async Task<IEnumerable<CourseDto>> Handle(GetCourses request, CancellationToken cancellationToken)
         {
+            var mapper = new CourseMapper();
             var courses = await _courseRepository.GetAll();
-            throw new NotImplementedException();
+            var coursesDtos = courses.Select(c => mapper.CourseToCourseDto(c)).ToList();
+            return coursesDtos;
         }
     }
 }

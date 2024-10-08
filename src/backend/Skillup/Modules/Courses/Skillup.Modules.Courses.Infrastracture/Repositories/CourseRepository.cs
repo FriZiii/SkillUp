@@ -30,7 +30,10 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task<IEnumerable<Course>> GetAll()
         {
-            return await _courses.ToListAsync();
+            return await _courses
+                .Include(c => c.Category)
+                .Include(c => c.Subcategory)
+                .ToListAsync();
         }
     }
 }

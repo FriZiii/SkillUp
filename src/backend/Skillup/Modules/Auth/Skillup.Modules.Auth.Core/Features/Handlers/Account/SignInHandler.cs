@@ -1,5 +1,4 @@
-﻿using MassTransit;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Skillup.Modules.Auth.Core.Entities;
 using Skillup.Modules.Auth.Core.Exceptions;
@@ -7,25 +6,19 @@ using Skillup.Modules.Auth.Core.Features.Commands.Account;
 using Skillup.Modules.Auth.Core.Repositories;
 using Skillup.Modules.Auth.Core.Services;
 using Skillup.Shared.Abstractions.Auth;
-using Skillup.Shared.Abstractions.Time;
 
 namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
 {
     internal class SignInHandler(IUserRepository userRepository,
-        RegistrationOptions registrationOptions,
-        IPublishEndpoint publishEndpoint,
         IPasswordHasher<User> passwordHasher,
         IAuthManager authManager,
-        IAuthTokenStorage authTokenStorage,
-        IClock clock) : IRequestHandler<SignIn>
+        IAuthTokenStorage authTokenStorage
+        ) : IRequestHandler<SignIn>
     {
         private readonly IUserRepository _userRepository = userRepository;
-        private readonly RegistrationOptions _registrationOptions = registrationOptions;
-        private readonly IPublishEndpoint _publishEndpoint = publishEndpoint;
         private readonly IPasswordHasher<User> _passwordHasher = passwordHasher;
         private readonly IAuthManager _authManager = authManager;
         private readonly IAuthTokenStorage _authTokenStorage = authTokenStorage;
-        private readonly IClock _clock = clock;
 
         public async Task Handle(SignIn request, CancellationToken cancellationToken)
         {
