@@ -1,16 +1,23 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
-using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
 using Skillup.Shared.Abstractions.Modules;
+using Skillup.Shared.Abstractions.Storage;
+using Skillup.Shared.Abstractions.Time;
 using Skillup.Shared.Infrastructure.Api;
+using Skillup.Shared.Infrastructure.Auth;
+using Skillup.Shared.Infrastructure.Client;
+using Skillup.Shared.Infrastructure.Exceptions;
 using Skillup.Shared.Infrastructure.Modules;
 using Skillup.Shared.Infrastructure.Postgres;
 using Skillup.Shared.Infrastructure.RabbitMQ;
+using Skillup.Shared.Infrastructure.Seeder;
 using Skillup.Shared.Infrastructure.Services;
+using Skillup.Shared.Infrastructure.Storage;
+using Skillup.Shared.Infrastructure.Swagger;
+using Skillup.Shared.Infrastructure.Time;
 
 namespace Skillup.Shared.Infrastructure
 {
@@ -36,39 +43,23 @@ namespace Skillup.Shared.Infrastructure
                 }
             }
 
-            services.AddSwaggerGen(swagger =>
-            {
-                swagger.EnableAnnotations();
-                swagger.CustomSchemaIds(x => x.FullName);
-                swagger.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "Modular API",
-                    Version = "v1"
-                });
-
-                swagger.TagActionsBy(api =>
-                {
-                    if (api.GroupName != null)
-                    {
-                        return [api.GroupName];
-                    }
-                    if (api.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor)
-                    {
-                        return [controllerActionDescriptor.ControllerName];
-                    }
-                    throw new InvalidOperationException("Unable to determine tag for endpoint.");
-                });
-
-                swagger.DocInclusionPredicate((name, api) => true);
-                swagger.DocumentFilter<GroupNameDocumentFilter>();
-            });
-
-            services.AddPostgres();
-            services.AddRabbitMQ();
+            services.AddSwagger();
 
             services.AddModuleInfo(modules);
 
-            services.AddHostedService<DbContextInitializer>();
+            services.AddPostgres();
+            services.AddRabbitMQ();
+            services.AddMemoryCache();
+            services.AddAuth();
+            services.AddClient();
+
+            services.AddSingleton<IMemoryStorage, MemoryStorage>();
+            services.AddSingleton<IClock, UtcClock>();
+
+            services.AddErrorHandling();
+
+            services.AddHostedService<DatabaseMigrationService>();
+            services.AddHostedService<DatabaseSeederService>();
 
             services.AddControllers(options =>
             {
@@ -103,10 +94,28 @@ namespace Skillup.Shared.Infrastructure
                 ForwardedHeaders = ForwardedHeaders.All
             });
             app.UseCors("cors");
+            app.UseHttpsRedirection();
+            app.UseErrorHandling();
             app.UseRouting();
+            app.UseAuth();
             app.UseAuthorization();
+            app.UseSwagger();
 
             return app;
+        }
+
+        public static T GetOptions<T>(this IServiceCollection services, string sectionName) where T : new()
+        {
+            using var serviceProvider = services.BuildServiceProvider();
+            var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+            return configuration.GetOptions<T>(sectionName);
+        }
+
+        public static T GetOptions<T>(this IConfiguration configuration, string sectionName) where T : new()
+        {
+            var options = new T();
+            configuration.GetSection(sectionName).Bind(options);
+            return options;
         }
 
         public static IConfigurationSection GetSection(this IServiceCollection services, string sectionName)
