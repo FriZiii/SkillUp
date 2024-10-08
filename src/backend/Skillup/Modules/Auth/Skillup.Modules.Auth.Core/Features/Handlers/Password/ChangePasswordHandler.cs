@@ -2,9 +2,10 @@
 using Microsoft.AspNetCore.Identity;
 using Skillup.Modules.Auth.Core.Entities;
 using Skillup.Modules.Auth.Core.Exceptions;
+using Skillup.Modules.Auth.Core.Features.Commands.Password;
 using Skillup.Modules.Auth.Core.Repositories;
 
-namespace Skillup.Modules.Auth.Core.Commands.Handlers
+namespace Skillup.Modules.Auth.Core.Features.Handlers.Password
 {
     internal class ChangePasswordHandler(IUserRepository userRepository, IPasswordHasher<User> passwordHasher) : IRequestHandler<ChangePassword>
     {

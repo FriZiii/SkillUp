@@ -3,11 +3,12 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Skillup.Modules.Auth.Core.Entities;
 using Skillup.Modules.Auth.Core.Exceptions;
+using Skillup.Modules.Auth.Core.Features.Commands.Account;
 using Skillup.Modules.Auth.Core.Repositories;
 using Skillup.Shared.Abstractions.Events.Auth;
 using Skillup.Shared.Abstractions.Time;
 
-namespace Skillup.Modules.Auth.Core.Commands.Handlers
+namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
 {
     internal class SignUpHandler(IUserRepository userRepository,
         RegistrationOptions registrationOptions,

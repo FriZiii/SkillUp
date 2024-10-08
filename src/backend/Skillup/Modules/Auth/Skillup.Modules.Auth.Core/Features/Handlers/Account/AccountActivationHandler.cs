@@ -1,9 +1,10 @@
 ﻿using MediatR;
 using Skillup.Modules.Auth.Core.Exceptions;
+using Skillup.Modules.Auth.Core.Features.Commands.Account;
 using Skillup.Modules.Auth.Core.Repositories;
 using Skillup.Shared.Abstractions.Time;
 
-namespace Skillup.Modules.Auth.Core.Commands.Handlers
+namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
 {
     internal class AccountActivationHandler(IUserRepository userRepository, IClock clock) : IRequestHandler<AccountActivation>
     {

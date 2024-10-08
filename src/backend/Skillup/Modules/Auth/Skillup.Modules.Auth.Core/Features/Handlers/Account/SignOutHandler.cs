@@ -1,6 +1,7 @@
 ﻿using MediatR;
+using Skillup.Modules.Auth.Core.Features.Commands.Account;
 
-namespace Skillup.Modules.Auth.Core.Commands.Handlers
+namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
 {
     internal class SignOutHandler : IRequestHandler<SignOut>
     {
@@ -8,7 +9,7 @@ namespace Skillup.Modules.Auth.Core.Commands.Handlers
         {
             await Task.CompletedTask;
 
-            //TODO : LOGS
+            //TODO : LOGS User with id {request.UserId} logged out 
         }
     }
 }
