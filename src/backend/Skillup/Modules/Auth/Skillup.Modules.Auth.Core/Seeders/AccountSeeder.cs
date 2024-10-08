@@ -28,8 +28,8 @@ namespace Skillup.Modules.Auth.Core.Seeders
             {
                 var users = new List<User>()
                 {
-                   CreateUser("", "", UserState.Active),
-                   CreateUser("", "", UserState.Inactive),
+                   CreateUser("user@skillup.com", "User123!", UserState.Active),
+                   CreateUser("inactive-user@skillup.com", "InactiveUser123!", UserState.Inactive),
                 };
 
                 await _users.AddRangeAsync(users);
