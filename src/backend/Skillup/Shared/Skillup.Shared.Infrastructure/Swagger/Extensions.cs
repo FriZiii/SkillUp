@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Controllers;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -9,9 +10,15 @@ namespace Skillup.Shared.Infrastructure.Swagger
     {
         public static IServiceCollection AddSwagger(this IServiceCollection services)
         {
+            var swaggerOptions = services.GetOptions<SwaggerOptions>("Swagger");
+
+            if (!swaggerOptions.Enabled)
+                return services;
+
+            services.AddSingleton(swaggerOptions);
             services.AddSwaggerGen(swagger =>
             {
-                ConfigureSwaggerBasics(swagger);
+                ConfigureSwaggerBasics(swagger, swaggerOptions);
                 ConfigureSwaggerTags(swagger);
                 ConfigureSwaggerSecurity(swagger);
             });
@@ -19,14 +26,26 @@ namespace Skillup.Shared.Infrastructure.Swagger
             return services;
         }
 
-        private static void ConfigureSwaggerBasics(SwaggerGenOptions swagger)
+        public static IApplicationBuilder UseSwagger(this IApplicationBuilder app)
+        {
+            var swaggerOptions = app.ApplicationServices.GetService<SwaggerOptions>();
+            if (swaggerOptions != null && swaggerOptions.Enabled)
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+
+            return app;
+        }
+
+        private static void ConfigureSwaggerBasics(SwaggerGenOptions swagger, SwaggerOptions swaggerOptions)
         {
             swagger.EnableAnnotations();
             swagger.CustomSchemaIds(x => x.FullName);
-            swagger.SwaggerDoc("v1", new OpenApiInfo
+            swagger.SwaggerDoc(swaggerOptions.Version, new OpenApiInfo
             {
-                Title = "Modular API",
-                Version = "v1"
+                Title = swaggerOptions.Title,
+                Version = swaggerOptions.Version
             });
         }
 
