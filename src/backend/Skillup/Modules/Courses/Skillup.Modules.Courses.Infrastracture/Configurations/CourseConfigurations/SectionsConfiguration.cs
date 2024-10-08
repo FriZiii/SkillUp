@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
 
-namespace Skillup.Modules.Courses.Infrastracture.Configurations
+namespace Skillup.Modules.Courses.Infrastracture.Configurations.CourseConfigurations
 {
     internal class SectionsConfiguration : IEntityTypeConfiguration<Section>
     {
