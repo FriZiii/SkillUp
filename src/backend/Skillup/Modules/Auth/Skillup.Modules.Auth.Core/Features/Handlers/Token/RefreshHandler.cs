@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Skillup.Modules.Auth.Core.Entities;
+using Skillup.Modules.Auth.Core.Exceptions;
 using Skillup.Modules.Auth.Core.Features.Commands.Token;
 using Skillup.Modules.Auth.Core.Repositories;
 using Skillup.Modules.Auth.Core.Services;
@@ -32,9 +33,17 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Token
             }
 
             //TODO : ROLES
-            var tokens = _authManager.RefreshAccessToken(request.RefreshToken, userId);
-            _authTokenStorage.SetToken(request.Id, tokens);
-            //TODO : LOGS
+
+            try
+            {
+                var tokens = _authManager.RefreshAccessToken(request.RefreshToken, userId);
+                _authTokenStorage.SetToken(request.Id, tokens);
+                //TODO : LOGS
+            }
+            catch (Exception ex)
+            {
+                throw new TokenValidationFailed();
+            }
         }
     }
 }
