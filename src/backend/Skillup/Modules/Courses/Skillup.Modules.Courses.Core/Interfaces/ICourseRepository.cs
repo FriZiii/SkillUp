@@ -1,4 +1,5 @@
-﻿using Skillup.Modules.Courses.Core.Entities.CourseEntities;
+﻿using RabbitMQ.Client;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 
 namespace Skillup.Modules.Courses.Core.Interfaces
 {
@@ -7,5 +8,6 @@ namespace Skillup.Modules.Courses.Core.Interfaces
         Task Add(Course course);
         Task<IEnumerable<Course>> GetAll();
         Task AddDetails(Guid courseId, CourseDetails details);
+        Task<Course> GetById(Guid id);
     }
 }

@@ -36,6 +36,16 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(courses);
         }
 
+        [HttpGet]
+        [Route("/Courses/ById")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetById(Guid courseId)
+        {
+            var course = await _mediator.Send(new GetCourseByIdRequest() { CourseId = courseId});
+            return Ok(course);
+        }
+
         [HttpPost]
         [Route("/Courses/categories")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
