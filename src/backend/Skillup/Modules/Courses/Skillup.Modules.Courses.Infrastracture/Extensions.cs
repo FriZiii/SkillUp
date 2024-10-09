@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Infrastracture.Repositories;
+using Skillup.Modules.Courses.Infrastracture.Seeders;
 using Skillup.Shared.Infrastructure.Postgres;
+using Skillup.Shared.Infrastructure.Seeder;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -14,6 +16,7 @@ namespace Skillup.Modules.Courses.Infrastracture
         {
             return services
                 .AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
+                .AddSeeder<CourseSeeder>()
                 .AddPostgres<CoursesDbContext>()
                 .AddScoped<ICourseRepository, CourseRepository>()
                 .AddScoped<ICategoryRepository, CategoryRepository>()
