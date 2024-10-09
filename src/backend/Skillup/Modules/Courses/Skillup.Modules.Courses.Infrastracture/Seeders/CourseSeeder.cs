@@ -33,6 +33,8 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
 
         private async Task SeedCategories(DbSet<Category> categories, DbSet<Subcategory> subcategories)
         {
+            var categoriesToAdd = new List<Category>();
+            var subcategoriesToAdd = new List<Subcategory>();
             var categoriesWithSubcategories = new Dictionary<string, List<string>>()
             {
                 { "Languages", new List<string> { "English", "German", "Spanish", "French", "Other" } },
@@ -54,7 +56,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                     Name = categoryWithSubcategory.Key
                 };
 
-                await categories.AddAsync(category);
+                categories.Add(category);
 
                 foreach (var subCategoryName in categoryWithSubcategory.Value)
                 {
@@ -64,9 +66,10 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                         CategoryId = category.Id
                     };
 
-                    await subcategories.AddAsync(subCategory);
+                    subcategoriesToAdd.Add(subCategory);
                 }
             }
+            await subcategories.AddRangeAsync(subcategoriesToAdd);
             await _context.SaveChangesAsync();
         }
 
