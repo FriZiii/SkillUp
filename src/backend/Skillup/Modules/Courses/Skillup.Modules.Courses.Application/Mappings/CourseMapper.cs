@@ -1,5 +1,6 @@
 ﻿using Riok.Mapperly.Abstractions;
 using Skillup.Modules.Courses.Application.Operations;
+using Skillup.Modules.Courses.Core.DTO;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 
 namespace Skillup.Modules.Courses.Application.Mappings
@@ -13,8 +14,16 @@ namespace Skillup.Modules.Courses.Application.Mappings
             {
                 Title = course.Info.Title,
                 Subtitle = course.Info.Subtitle,
-                Category = course.Category,
-                Subcategory = null,
+                Category = new CategoryDto()
+                {
+                    Id = course.Category.Id,
+                    Name = course.Category.Name,
+                    Subcategory = new SubcategoryDto()
+                    {
+                        Id = course.Subcategory.Id,
+                        Name = course.Subcategory.Name
+                    }
+                },
                 ThumbnailUrl = course.ThumbnailUrl,
             };
             return courseDto;

@@ -1,4 +1,5 @@
-﻿using Skillup.Modules.Courses.Core.Entities.CourseEntities;
+﻿using Skillup.Modules.Courses.Core.DTO;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 
 namespace Skillup.Modules.Courses.Application.Operations
 {
@@ -7,8 +8,7 @@ namespace Skillup.Modules.Courses.Application.Operations
         public string Title { get; set; }
         public string Subtitle { get; set; }
         //author
-        public Category Category { get; set; }
-        public Subcategory Subcategory { get; set; }
+        public CategoryDto Category { get; set; }
         public Uri ThumbnailUrl { get; set; }
     }
 }
