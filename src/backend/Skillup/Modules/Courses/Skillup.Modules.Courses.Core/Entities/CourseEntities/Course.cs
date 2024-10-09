@@ -1,4 +1,5 @@
 ﻿using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
+using Skillup.Shared.Abstractions.Time;
 
 namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
 {
@@ -18,7 +19,17 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
 
         //public string Language { get; set; } 
         public Uri ThumbnailUrl { get; set; } //minature photo of course
+        public DateTime CreatedAt { get; set; }
 
         public List<Section>? Sections { get; set; }
+
+        public Course(IClock clock)
+        {
+            CreatedAt = clock.CurrentDate();
+        }
+        public Course()
+        {
+
+        }
     }
 }

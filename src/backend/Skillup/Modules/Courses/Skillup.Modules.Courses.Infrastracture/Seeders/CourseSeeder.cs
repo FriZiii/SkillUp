@@ -2,6 +2,7 @@
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 using Skillup.Shared.Abstractions.Kernel.ValueObjects;
 using Skillup.Shared.Abstractions.Seeder;
+using Skillup.Shared.Abstractions.Time;
 
 namespace Skillup.Modules.Courses.Infrastracture.Seeders
 {
@@ -11,13 +12,15 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
         private readonly DbSet<Category> _categories;
         private readonly DbSet<Subcategory> _subcategories;
         private readonly DbSet<Course> _courses;
+        private readonly IClock _clock;
 
-        public CourseSeeder(CoursesDbContext context)
+        public CourseSeeder(CoursesDbContext context, IClock clock)
         {
             _context = context;
             _categories = context.Categories;
             _subcategories = context.Subcategories;
             _courses = context.Courses;
+            _clock = clock;
         }
         public async Task Seed()
         {
@@ -25,7 +28,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
             {
                 await SeedCategories(_categories, _subcategories);
             }
-            if(!await _courses.AnyAsync())
+            if (!await _courses.AnyAsync())
             {
                 await SeedCourses(_categories, _subcategories);
             }
@@ -77,7 +80,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
         {
             var coursesToAdd = new List<Course>
                 {
-                    new Course()
+                    new Course(_clock)
                     {
                         Info = new CourseInfo()
                         {
@@ -96,7 +99,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                         },
                         ThumbnailUrl = new Uri("https://cdn.pixabay.com/photo/2023/02/04/00/01/ai-generated-7766114_1280.jpg"),
                     },
-                    new Course()
+                    new Course(_clock)
                     {
                         Info = new CourseInfo()
                         {
@@ -115,7 +118,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                         },
                         ThumbnailUrl = new Uri("https://cdn.pixabay.com/photo/2023/02/04/00/01/ai-generated-7766114_1280.jpg"),
                     },
-                    new Course()
+                    new Course(_clock)
                     {
                         Info = new CourseInfo()
                         {
@@ -135,7 +138,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                         },
                         ThumbnailUrl = new Uri("https://cdn.pixabay.com/photo/2023/02/04/00/01/ai-generated-7766114_1280.jpg"),
                     },
-                    new Course()
+                    new Course(_clock)
                     {
                         Info = new CourseInfo()
                         {
@@ -154,7 +157,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                         },
                         ThumbnailUrl = new Uri("https://cdn.pixabay.com/photo/2023/02/04/00/01/ai-generated-7766114_1280.jpg"),
                     },
-                    new Course()
+                    new Course(_clock)
                     {
                         Info = new CourseInfo()
                         {
@@ -173,7 +176,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                         },
                         ThumbnailUrl = new Uri("https://cdn.pixabay.com/photo/2023/02/04/00/01/ai-generated-7766114_1280.jpg"),
                     },
-                    new Course()
+                    new Course(_clock)
                     {
                         Info = new CourseInfo()
                         {
@@ -192,7 +195,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                         },
                         ThumbnailUrl = new Uri("https://cdn.pixabay.com/photo/2023/02/04/00/01/ai-generated-7766114_1280.jpg"),
                     },
-                    new Course()
+                    new Course(_clock)
                     {
                         Info = new CourseInfo()
                         {
@@ -211,7 +214,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                         },
                         ThumbnailUrl = new Uri("https://cdn.pixabay.com/photo/2023/02/04/00/01/ai-generated-7766114_1280.jpg"),
                     },
-                    new Course()
+                    new Course(_clock)
                     {
                         Info = new CourseInfo()
                         {
@@ -230,7 +233,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                         },
                         ThumbnailUrl = new Uri("https://cdn.pixabay.com/photo/2023/02/04/00/01/ai-generated-7766114_1280.jpg"),
                     },
-                    new Course()
+                    new Course(_clock)
                     {
                         Info = new CourseInfo()
                         {
@@ -249,7 +252,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                         },
                         ThumbnailUrl = new Uri("https://cdn.pixabay.com/photo/2023/02/04/00/01/ai-generated-7766114_1280.jpg"),
                     },
-                    new Course()
+                    new Course(_clock)
                     {
                         Info = new CourseInfo()
                         {
@@ -268,7 +271,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                         },
                         ThumbnailUrl = new Uri("https://cdn.pixabay.com/photo/2023/02/04/00/01/ai-generated-7766114_1280.jpg"),
                     },
-                    new Course()
+                    new Course(_clock)
                     {
                         Info = new CourseInfo()
                         {
@@ -288,7 +291,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                         },
                         ThumbnailUrl = new Uri("https://cdn.pixabay.com/photo/2023/02/04/00/01/ai-generated-7766114_1280.jpg"),
                     },
-                    new Course()
+                    new Course(_clock)
                     {
                         Info = new CourseInfo()
                         {

@@ -9,6 +9,6 @@ namespace Skillup.Modules.Courses.Core.Requests
         //author
         public Guid CategoryId { get; set; }
         public Guid SubcategoryId { get; set; }
-        public Uri ThumbnailUrl { get; set; }
+        public string ThumbnailUrl { get; set; }
     }
 }
