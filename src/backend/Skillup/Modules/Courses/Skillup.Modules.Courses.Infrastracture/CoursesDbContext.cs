@@ -12,7 +12,10 @@ namespace Skillup.Modules.Courses.Infrastracture
         public DbSet<Subcategory> Subcategories { get; set; }
         public DbSet<Section> Sections { get; set; }
         public DbSet<Element> Elements { get; set; }
-        public DbSet<Asset> Assets { get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<Video> Videos { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
