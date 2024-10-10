@@ -10,5 +10,6 @@ namespace Skillup.Modules.Courses.Core.DTO
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
+        public List<ElementDto> Elements { get; set; }
     }
 }

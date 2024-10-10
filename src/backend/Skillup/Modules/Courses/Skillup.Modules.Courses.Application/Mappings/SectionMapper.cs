@@ -12,12 +12,14 @@ namespace Skillup.Modules.Courses.Application.Mappings
     [Mapper]
     public partial class SectionMapper
     {
+        ElementMapper elementMapper = new ElementMapper();
         public SectionDto SectionToSectionDto(Section section)
         {
             var sectionDto = new SectionDto()
             {
                 Id = section.Id,
                 Title = section.Title,
+                Elements = section.Elements.Select(e => elementMapper.ElementToElementDto(e)).ToList()
             };
             return sectionDto;
         }

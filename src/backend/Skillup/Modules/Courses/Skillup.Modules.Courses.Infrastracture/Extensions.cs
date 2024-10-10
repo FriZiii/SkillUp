@@ -21,7 +21,8 @@ namespace Skillup.Modules.Courses.Infrastracture
                 .AddScoped<ICourseRepository, CourseRepository>()
                 .AddScoped<ICategoryRepository, CategoryRepository>()
                 .AddScoped<ISubcategoryRepository, SubcategoryRepository>()
-                .AddScoped<ISectionRepository, SectionRepository>();
+                .AddScoped<ISectionRepository, SectionRepository>()
+                .AddScoped<IElementRepository, ElementRepository>();
         }
     }
 }

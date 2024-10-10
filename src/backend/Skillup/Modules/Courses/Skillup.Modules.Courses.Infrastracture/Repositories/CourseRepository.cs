@@ -42,7 +42,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
                 .Include(c => c.Category)
                 .Include(c => c.Subcategory)
                 .Include(c => c.Details)
-                .Include(c => c.Sections)
+                .Include(c => c.Sections).ThenInclude(s => s.Elements)
                 .FirstOrDefaultAsync(c => c.Id == id);
 
             return course;

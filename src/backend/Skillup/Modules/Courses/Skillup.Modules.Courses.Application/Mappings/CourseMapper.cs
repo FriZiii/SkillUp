@@ -8,7 +8,6 @@ namespace Skillup.Modules.Courses.Application.Mappings
     [Mapper]
     public partial class CourseMapper
     {
-        SectionMapper sectionMapper = new SectionMapper();
         public CourseDto CourseToCourseDto(Course course)
         {
             var courseDto = new CourseDto()
@@ -51,8 +50,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
                 Level = course.Details.Level,
                 ObjectivesSummary = course.Details.ObjectivesSummary.Values,
                 MustKnowBefore = course.Details.MustKnowBefore.Values,
-                IntendedFor = course.Details.IntendedFor.Values,
-                Sections = course.Sections.Select(s => sectionMapper.SectionToSectionDto(s)).ToList(),
+                IntendedFor = course.Details.IntendedFor.Values
             };
             return courseDetailDto;
         }

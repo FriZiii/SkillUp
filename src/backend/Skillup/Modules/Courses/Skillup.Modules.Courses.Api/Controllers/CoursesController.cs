@@ -45,19 +45,5 @@ namespace Skillup.Modules.Courses.Api.Controllers
             var course = await _mediator.Send(new GetCourseByIdRequest() { CourseId = courseId});
             return Ok(course);
         }
-
-        [HttpPost]
-        [Route("/Courses/categories")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> PostCategories()
-        {
-            var category = new Category() { Name = "Programowanie" };
-            await _categoryRepository.Add(category);
-
-            await _subcategoryRepository.Add(new Subcategory() { Name = "C#", CategoryId = category.Id });
-
-            return Ok();
-        }
     }
 }
