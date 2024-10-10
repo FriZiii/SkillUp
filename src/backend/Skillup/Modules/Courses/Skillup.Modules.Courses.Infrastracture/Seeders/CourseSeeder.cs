@@ -15,7 +15,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
         private readonly IClock _clock;
         private readonly SectionsSeeder _sectionsSeeder;
         private readonly ElementsSeeder _elementsSeeder;
-        private readonly AssetsSeeder _assetsSeeder;
+        private readonly ExerciseSeeder _exerciseSeeder;
 
         public CourseSeeder(CoursesDbContext context, IClock clock)
         {
@@ -26,7 +26,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
             _clock = clock;
             _sectionsSeeder = new SectionsSeeder(context);
             _elementsSeeder = new ElementsSeeder(context);
-            _assetsSeeder = new AssetsSeeder(context);
+            _exerciseSeeder = new ExerciseSeeder(context);
         }
         public async Task Seed()
         {
@@ -46,10 +46,10 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
             {
                 await _elementsSeeder.Seed();
             }
-            //if (!await _context.Assignments.AnyAsync() && !await _context.Videos.AnyAsync() && !await _context.Articles.AnyAsync())
-            //{
-            //    await _assetsSeeder.Seed();
-            //}
+            if (!await _context.QuizQuestionExercises.AnyAsync() && !await _context.QuestionAnswerExercises.AnyAsync() && !await _context.QuestionAnswerExercises.AnyAsync())
+            {
+                await _exerciseSeeder.Seed();
+            }
         }
 
         private async Task SeedCategories(DbSet<Category> categories, DbSet<Subcategory> subcategories)

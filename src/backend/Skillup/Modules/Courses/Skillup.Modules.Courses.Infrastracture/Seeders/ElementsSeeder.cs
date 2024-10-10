@@ -18,23 +18,19 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
         }
         public async Task Seed()
         {
-            var eleme1 = new Element()
-            {
-                Title = "What is .NET?",
-                IsFree = true,
-                IsPublished = true,
-                SectionId = (await _sections.FirstOrDefaultAsync(s => s.Title == "Introduction to C# and .NET Framework")).Id,
-                Asset = new Article()
-                {
-                    HTMLContent = ".NET is...."
-                },
-            };
-
-            await _elements.AddAsync(eleme1);
-            _context.SaveChanges();
             var elementsToAdd = new List<Element>()
             {
-
+                new Element()
+                {
+                    Title = "What is .NET?",
+                    IsFree = true,
+                    IsPublished = true,
+                    SectionId = (await _sections.FirstOrDefaultAsync(s => s.Title == "Introduction to C# and .NET Framework")).Id,
+                    Asset = new Article()
+                    {
+                        HTMLContent = ".NET is...."
+                    },
+                },
                 new Element()
                 {
                     Title = "Installing .NET SDK",
@@ -131,7 +127,6 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                     SectionId = (await _sections.FirstOrDefaultAsync(s => s.Title == "Common Vocabulary and Phrases")).Id,
                     Asset = new Assignment()
                     {
-                        ElementId = (await _elements.FirstOrDefaultAsync(e => e.Title == "Everyday Vocabulary: Food, Weather, Shopping")).Id,
                         Instruction = "Do something"
                     },
                 },
@@ -148,14 +143,13 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                 },
                 new Element()
                 {
-                    Title = "Asking and Answering Questions",
+                    Title = "Practising Present Simple",
                     IsFree = true,
                     IsPublished = true,
                     SectionId = (await _sections.FirstOrDefaultAsync(s => s.Title == "Conversational English")).Id,
                     Asset = new Assignment()
                     {
-                        ElementId = (await _elements.FirstOrDefaultAsync(e => e.Title == "Asking and Answering Questions")).Id,
-                        Instruction = "Do something"
+                        Instruction = "Use a proper verb form"
                     },
                 },
             };

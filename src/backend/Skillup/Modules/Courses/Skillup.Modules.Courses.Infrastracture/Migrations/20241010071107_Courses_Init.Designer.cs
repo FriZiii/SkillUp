@@ -12,8 +12,8 @@ using Skillup.Modules.Courses.Infrastracture;
 namespace Skillup.Modules.Courses.Infrastracture.Migrations
 {
     [DbContext(typeof(CoursesDbContext))]
-    [Migration("20241009170057_fix")]
-    partial class fix
+    [Migration("20241010071107_Courses_Init")]
+    partial class Courses_Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,9 +75,6 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("ElementId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
 
                     b.ToTable((string)null);
@@ -132,7 +129,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("AssetId")
+                    b.Property<Guid>("AssetId")
                         .HasColumnType("uuid");
 
                     b.Property<bool>("IsFree")
@@ -368,7 +365,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                 {
                     b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Asset", "Asset")
                         .WithOne("Element")
-                        .HasForeignKey("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element", "AssetId");
+                        .HasForeignKey("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element", "AssetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Section", "Section")
                         .WithMany("Elements")
