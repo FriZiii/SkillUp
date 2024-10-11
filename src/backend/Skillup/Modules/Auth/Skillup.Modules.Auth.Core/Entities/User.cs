@@ -9,7 +9,7 @@ namespace Skillup.Modules.Auth.Core.Entities
         {
             Id = id;
             Email = email;
-            Role = role,
+            Role = role;
             State = state;
             CreatedAt = createdAt;
             ActivationToken = activationToken;
