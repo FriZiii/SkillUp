@@ -22,14 +22,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
         }
         public async Task Handle(AddCourseRequest request, CancellationToken cancellationToken)
         {
-            var course = new Course()
-            {
-                //TODO: AuthorId = request.AuthorId
-                Title = request.Title,
-                CategoryId = request.CategoryId,
-                SubcategoryId = request.SubcategoryId,
-                CreatedAt = _clock.CurrentDate()
-            };
+            var course = new Course(request.Title, request.CategoryId, request.SubcategoryId, _clock.CurrentDate());
 
             await _courseRepository.Add(course);
 

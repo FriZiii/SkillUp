@@ -22,7 +22,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task<IEnumerable<Category>> GetAll()
         {
-            return await _catogories.ToListAsync();
+            return await _catogories.Include(c => c.Subcategories).ToListAsync();
         }
 
         public async Task<Category> GetById(Guid id)

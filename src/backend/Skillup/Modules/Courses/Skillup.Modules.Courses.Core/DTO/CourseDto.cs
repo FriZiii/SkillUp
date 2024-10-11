@@ -8,7 +8,7 @@ namespace Skillup.Modules.Courses.Application.Operations
         public string Title { get; set; }
         public bool IsPublished { get; set; }
         //author
-        public CategoryDto Category { get; set; }
+        public CourseCategoryDto Category { get; set; }
         public Uri? ThumbnailUrl { get; set; }
     }
 }

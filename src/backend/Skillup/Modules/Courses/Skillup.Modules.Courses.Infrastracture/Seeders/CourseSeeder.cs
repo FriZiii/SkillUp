@@ -94,13 +94,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
 
         private Course CreateCourse(string title, string categoryName, string subcategoryName, CourseDetails details)
         {
-            return new Course()
-            {
-                Title = title,
-                CategoryId = _categories.First(x => x.Name == categoryName).Id,
-                SubcategoryId = _subCategories.First(x => x.Name == subcategoryName).Id,
-                Details = details
-            };
+            return new Course(title, _categories.First(x => x.Name == categoryName).Id, _subCategories.First(x => x.Name == subcategoryName).Id, _clock.CurrentDate(), details);
         }
 
         private CourseDetails CreateCourseDetails(

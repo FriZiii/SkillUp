@@ -164,7 +164,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     SubcategoryId = table.Column<Guid>(type: "uuid", nullable: false),
                     Details_Subtitle = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
-                    ThumbnailUrl = table.Column<string>(type: "text", nullable: false),
+                    ThumbnailUrl = table.Column<string>(type: "text", nullable: true),
                     Difficulty = table.Column<string>(type: "text", nullable: false),
                     ObjectivesSummary = table.Column<string>(type: "text", nullable: false),
                     MustKnowBefore = table.Column<string>(type: "text", nullable: false),

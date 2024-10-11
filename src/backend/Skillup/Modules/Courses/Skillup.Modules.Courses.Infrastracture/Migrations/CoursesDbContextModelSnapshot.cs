@@ -316,7 +316,8 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
 
                     b.Navigation("Category");
 
-                    b.Navigation("Details");
+                    b.Navigation("Details")
+                        .IsRequired();
 
                     b.Navigation("Subcategory");
                 });

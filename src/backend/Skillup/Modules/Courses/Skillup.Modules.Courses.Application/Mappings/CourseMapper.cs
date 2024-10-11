@@ -15,7 +15,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
                 Id = course.Id,
                 Title = course.Title,
                 IsPublished = course.IsPublished,
-                Category = new CategoryDto()
+                Category = new CourseCategoryDto()
                 {
                     Id = course.Category.Id,
                     Name = course.Category.Name,
@@ -37,7 +37,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
                 Id = course.Id,
                 Title = course.Title,
                 IsPublished = course.IsPublished,
-                Category = new CategoryDto()
+                Category = new CourseCategoryDto()
                 {
                     Id = course.Category.Id,
                     Name = course.Category.Name,

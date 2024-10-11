@@ -12,7 +12,7 @@ using Skillup.Modules.Courses.Infrastracture;
 namespace Skillup.Modules.Courses.Infrastracture.Migrations
 {
     [DbContext(typeof(CoursesDbContext))]
-    [Migration("20241011070320_Course_Init")]
+    [Migration("20241011090054_Course_Init")]
     partial class Course_Init
     {
         /// <inheritdoc />
@@ -306,7 +306,6 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                                 .HasColumnType("text");
 
                             b1.Property<string>("ThumbnailUrl")
-                                .IsRequired()
                                 .HasColumnType("text")
                                 .HasColumnName("ThumbnailUrl");
 
