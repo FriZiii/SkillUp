@@ -4,8 +4,8 @@
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public List<Course> Courses { get; set; }
-        public List<Subcategory> Subcategories { get; set; }
+        public IEnumerable<Course> Courses { get; set; }
+        public IEnumerable<Subcategory> Subcategories { get; set; }
     }
 }
 

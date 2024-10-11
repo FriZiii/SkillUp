@@ -1,28 +1,37 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Application.Features.Commands;
-using Skillup.Modules.Courses.Core.Entities.CourseEntities;
-using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Requests;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Skillup.Modules.Courses.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    internal class CoursesController(IMediator mediator, ICategoryRepository categoryRepository, ISubcategoryRepository subcategoryRepository) : ControllerBase
+    internal class CoursesController(IMediator mediator) : ControllerBase
     {
         private readonly IMediator _mediator = mediator;
-        private readonly ICategoryRepository _categoryRepository = categoryRepository;
-        private readonly ISubcategoryRepository _subcategoryRepository = subcategoryRepository;
 
         [HttpPost]
+        [Authorize]
         [Route("/Courses")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Add(AddCourseRequest request)
         {
+            //TODO : User claims
+            var userIdClaim = User.FindFirst(JwtRegisteredClaimNames.Sub);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            request.AuthorId = Guid.Parse(userIdClaim.Value);
             await _mediator.Send(request);
+
+            await _mediator.Send(new GetCourseByIdRequest(request.CourseID));
+
             return Ok();
         }
 
@@ -37,12 +46,12 @@ namespace Skillup.Modules.Courses.Api.Controllers
         }
 
         [HttpGet]
-        [Route("/Courses/ById")]
+        [Route("/Courses/{courseId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetById(Guid courseId)
         {
-            var course = await _mediator.Send(new GetCourseByIdRequest() { CourseId = courseId});
+            var course = await _mediator.Send(new GetCourseByIdRequest(courseId));
             return Ok(course);
         }
     }

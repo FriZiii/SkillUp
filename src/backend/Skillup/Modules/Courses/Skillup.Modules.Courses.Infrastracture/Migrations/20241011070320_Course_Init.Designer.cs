@@ -12,8 +12,8 @@ using Skillup.Modules.Courses.Infrastracture;
 namespace Skillup.Modules.Courses.Infrastracture.Migrations
 {
     [DbContext(typeof(CoursesDbContext))]
-    [Migration("20241010071107_Courses_Init")]
-    partial class Courses_Init
+    [Migration("20241011070320_Course_Init")]
+    partial class Course_Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,10 +53,13 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("boolean");
+
                     b.Property<Guid>("SubcategoryId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("ThumbnailUrl")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -298,28 +301,14 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                                 .HasColumnType("text")
                                 .HasColumnName("ObjectivesSummary");
 
-                            b1.HasKey("CourseId");
-
-                            b1.ToTable("Courses", "courses");
-
-                            b1.WithOwner()
-                                .HasForeignKey("CourseId");
-                        });
-
-                    b.OwnsOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseInfo", "Info", b1 =>
-                        {
-                            b1.Property<Guid>("CourseId")
-                                .HasColumnType("uuid");
-
                             b1.Property<string>("Subtitle")
                                 .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("Subtitle");
+                                .HasColumnType("text");
 
-                            b1.Property<string>("Title")
+                            b1.Property<string>("ThumbnailUrl")
                                 .IsRequired()
                                 .HasColumnType("text")
-                                .HasColumnName("Title");
+                                .HasColumnName("ThumbnailUrl");
 
                             b1.HasKey("CourseId");
 
@@ -331,9 +320,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
 
                     b.Navigation("Category");
 
-                    b.Navigation("Details");
-
-                    b.Navigation("Info")
+                    b.Navigation("Details")
                         .IsRequired();
 
                     b.Navigation("Subcategory");

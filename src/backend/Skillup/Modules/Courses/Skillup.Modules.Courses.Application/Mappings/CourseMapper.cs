@@ -12,8 +12,9 @@ namespace Skillup.Modules.Courses.Application.Mappings
         {
             var courseDto = new CourseDto()
             {
-                Title = course.Info.Title,
-                Subtitle = course.Info.Subtitle,
+                Id = course.Id,
+                Title = course.Title,
+                Subtitle = course.Details.Subtitle,
                 Category = new CategoryDto()
                 {
                     Id = course.Category.Id,
@@ -24,7 +25,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
                         Name = course.Subcategory.Name
                     }
                 },
-                ThumbnailUrl = course.ThumbnailUrl,
+                ThumbnailUrl = course.Details.ThumbnailUrl,
             };
             return courseDto;
         }
@@ -33,8 +34,8 @@ namespace Skillup.Modules.Courses.Application.Mappings
         {
             var courseDetailDto = new CourseDetailDto()
             {
-                Title = course.Info.Title,
-                Subtitle = course.Info.Subtitle,
+                Title = course.Title,
+                Subtitle = course.Details.Subtitle,
                 Category = new CategoryDto()
                 {
                     Id = course.Category.Id,
@@ -45,7 +46,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
                         Name = course.Subcategory.Name
                     }
                 },
-                ThumbnailUrl = course.ThumbnailUrl,
+                ThumbnailUrl = course.Details.ThumbnailUrl,
                 Description = course.Details.Description,
                 Level = course.Details.Level,
                 ObjectivesSummary = course.Details.ObjectivesSummary.Values,

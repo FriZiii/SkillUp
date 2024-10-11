@@ -1,14 +1,14 @@
 ﻿using MediatR;
+using System.Text.Json.Serialization;
 
 namespace Skillup.Modules.Courses.Core.Requests
 {
-    public class AddCourseRequest : IRequest
+    public record AddCourseRequest(string Title, Guid CategoryId, Guid SubcategoryId) : IRequest
     {
-        public string Title { get; set; }
-        public string Subtitle { get; set; }
-        //author
-        public Guid CategoryId { get; set; }
-        public Guid SubcategoryId { get; set; }
-        public string ThumbnailUrl { get; set; }
+        [JsonIgnore]
+        public Guid AuthorId { get; set; }
+
+        [JsonIgnore]
+        public Guid CourseID { get; set; }
     }
 }

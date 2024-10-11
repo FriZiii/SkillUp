@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Skillup.Modules.Courses.Infrastracture.Migrations
 {
     /// <inheritdoc />
-    public partial class Courses_Init : Migration
+    public partial class Course_Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -159,15 +159,16 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Title = table.Column<string>(type: "text", nullable: false),
-                    Subtitle = table.Column<string>(type: "text", nullable: false),
+                    IsPublished = table.Column<bool>(type: "boolean", nullable: false),
                     CategoryId = table.Column<Guid>(type: "uuid", nullable: false),
                     SubcategoryId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    Difficulty = table.Column<string>(type: "text", nullable: true),
-                    ObjectivesSummary = table.Column<string>(type: "text", nullable: true),
-                    MustKnowBefore = table.Column<string>(type: "text", nullable: true),
-                    IntendedFor = table.Column<string>(type: "text", nullable: true),
+                    Details_Subtitle = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
                     ThumbnailUrl = table.Column<string>(type: "text", nullable: false),
+                    Difficulty = table.Column<string>(type: "text", nullable: false),
+                    ObjectivesSummary = table.Column<string>(type: "text", nullable: false),
+                    MustKnowBefore = table.Column<string>(type: "text", nullable: false),
+                    IntendedFor = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>

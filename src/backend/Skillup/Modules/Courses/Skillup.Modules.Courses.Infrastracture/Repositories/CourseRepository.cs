@@ -23,7 +23,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task AddDetails(Guid courseId, CourseDetails details)
         {
-            var course = await _courses.SingleOrDefaultAsync(c => c.Id == courseId);
+            var course = await _courses.FirstOrDefaultAsync(c => c.Id == courseId) ?? throw new Exception();  //TODO: Custom exception for null check in repo
             course.Details = details;
             await _context.SaveChangesAsync();
         }
@@ -36,13 +36,14 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
                 .ToListAsync();
         }
 
-        public async Task<Course> GetById(Guid id)
+        public async Task<Course?> GetById(Guid id)
         {
             var course = await _courses
                 .Include(c => c.Category)
-                .Include(c => c.Subcategory)
                 .Include(c => c.Details)
-                .Include(c => c.Sections).ThenInclude(s => s.Elements)
+                .Include(c => c.Subcategory)
+                .Include(c => c.Sections)
+                    .ThenInclude(s => s.Elements)
                 .FirstOrDefaultAsync(c => c.Id == id);
 
             return course;

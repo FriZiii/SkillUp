@@ -1,10 +1,10 @@
 ﻿using Skillup.Modules.Courses.Core.DTO;
-using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 
 namespace Skillup.Modules.Courses.Application.Operations
 {
     public class CourseDto
     {
+        public Guid Id { get; set; }
         public string Title { get; set; }
         public string Subtitle { get; set; }
         //author

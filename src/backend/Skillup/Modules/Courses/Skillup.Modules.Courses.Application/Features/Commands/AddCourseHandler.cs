@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
-using Skillup.Modules.Courses.Core.Exceptions;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Requests;
 using Skillup.Shared.Abstractions.Time;
@@ -23,28 +22,18 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
         }
         public async Task Handle(AddCourseRequest request, CancellationToken cancellationToken)
         {
-            Uri url;
-            try
+            var course = new Course()
             {
-                url = new Uri(request.ThumbnailUrl);
-            }
-            catch
-            {
-                throw new InvalidUrl();
-            }
-            var course = new Course(_clock)
-            {
-                Info = new CourseInfo()
-                {
-                    Title = request.Title,
-                    Subtitle = request.Subtitle,
-                },
-                CategoryId = request.CategoryId,
+                //TODO: AuthorId = request.AuthorId
+                Title = request.Title,
                 SubcategoryId = request.SubcategoryId,
-                ThumbnailUrl = url,
+                CategoryId = request.CategoryId,
+                CreatedAt = _clock.CurrentDate()
             };
 
             await _courseRepository.Add(course);
+
+            request.CourseID = course.Id;
         }
     }
 }

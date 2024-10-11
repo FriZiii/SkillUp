@@ -10,12 +10,6 @@ namespace Skillup.Modules.Courses.Infrastracture.Configurations.CourseConfigurat
     {
         public void Configure(EntityTypeBuilder<Course> builder)
         {
-            builder.OwnsOne(c => c.Info, i =>
-            {
-                i.Property(x => x.Title).HasColumnName("Title");
-                i.Property(x => x.Subtitle).HasColumnName("Subtitle");
-
-            });
 
             builder.HasOne(c => c.Category)
                 .WithMany(category => category.Courses)
@@ -35,24 +29,27 @@ namespace Skillup.Modules.Courses.Infrastracture.Configurations.CourseConfigurat
             {
                 d.Property(x => x.Description)
                 .HasColumnName("Description");
+
                 d.Property(x => x.Level)
                 .HasColumnName("Difficulty")
                 .HasConversion<string>();
+
                 d.Property(x => x.MustKnowBefore)
                 .HasColumnName("MustKnowBefore")
                 .HasConversion(converter);
+
                 d.Property(x => x.ObjectivesSummary)
                 .HasColumnName("ObjectivesSummary")
                 .HasConversion(converter);
+
                 d.Property(x => x.IntendedFor)
                 .HasColumnName("IntendedFor")
                 .HasConversion(converter);
-            });
 
-            builder.Property(c => c.ThumbnailUrl)
-                .HasConversion(
-                    v => v.ToString(),
-                    v => new Uri(v));
+                d.Property(x => x.ThumbnailUrl)
+                    .HasColumnName("ThumbnailUrl")
+                     .HasConversion(v => v.ToString(), v => new Uri(v));
+            });
 
             builder.HasMany(c => c.Sections)
                 .WithOne(s => s.Course)

@@ -18,9 +18,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
         }
         public async Task Seed()
         {
-            var course1 = await _courses.FirstOrDefaultAsync(c => c.Info.Title == "C# from basics");
-            var course2 = await _courses.FirstOrDefaultAsync(c => c.Info.Title == "Introduction to English");
-            var course3 = await _courses.FirstOrDefaultAsync(c => c.Info.Title == "Web Development for Beginners");
+            var course1 = await _courses.FirstOrDefaultAsync(c => c.Title == "C# from basics");
+            var course2 = await _courses.FirstOrDefaultAsync(c => c.Title == "Introduction to English");
+            var course3 = await _courses.FirstOrDefaultAsync(c => c.Title == "Web Development for Beginners");
 
             var sectionsToAdd = new List<Section>()
             {
@@ -74,33 +74,33 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                     Title = "Listening and Comprehension Skills",
                     CourseId = course2.Id
                 },
-                new Section()
-                {
-                    Title = "Introduction to Web Technologies",
-                    CourseId = course3.Id
-                },
-                new Section()
-                {
-                    Title = "HTML Basics and Structure",
-                    CourseId = course3.Id
-                },
-                new Section()
-                {
-                    Title = "CSS for Styling Web Pages",
-                    CourseId = course3.Id
-                },
-                new Section()
-                {
-                    Title = "Introduction to JavaScript",
-                    CourseId = course3.Id
-                },
-                new Section()
-                {
-                    Title = "Building a Simple Website",
-                    CourseId = course3.Id
-                }
+                //new Section()
+                //{
+                //    Title = "Introduction to Web Technologies",
+                //    CourseId = course3.Id
+                //},
+                //new Section()
+                //{
+                //    Title = "HTML Basics and Structure",
+                //    CourseId = course3.Id
+                //},
+                //new Section()
+                //{
+                //    Title = "CSS for Styling Web Pages",
+                //    CourseId = course3.Id
+                //},
+                //new Section()
+                //{
+                //    Title = "Introduction to JavaScript",
+                //    CourseId = course3.Id
+                //},
+                //new Section()
+                //{
+                //    Title = "Building a Simple Website",
+                //    CourseId = course3.Id
+                //}
             };
-            _sections.AddRange(sectionsToAdd);
+            await _sections.AddRangeAsync(sectionsToAdd);
             await _context.SaveChangesAsync();
         }
     }
