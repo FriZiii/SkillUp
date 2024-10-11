@@ -1,4 +1,5 @@
-﻿using Skillup.Shared.Abstractions.Kernel.ValueObjects;
+﻿using Skillup.Modules.Courses.Core.Options;
+using Skillup.Shared.Abstractions.Kernel.ValueObjects;
 
 namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
 {
@@ -8,7 +9,7 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
         {
             Subtitle = string.Empty;
             Description = string.Empty;
-            ThumbnailUrl = new Uri("https://cdn.pixabay.com/photo/2023/02/04/00/01/ai-generated-7766114_1280.jpg");
+            ThumbnailUrl = CourseModuleOptions.DefaultValues.DefaultTubnailPicture;
             Level = CourseLevel.None;
             ObjectivesSummary = new();
             MustKnowBefore = new();
