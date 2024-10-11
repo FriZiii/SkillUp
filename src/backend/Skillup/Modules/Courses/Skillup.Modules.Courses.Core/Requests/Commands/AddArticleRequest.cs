@@ -2,12 +2,5 @@
 
 namespace Skillup.Modules.Courses.Core.Requests.Commands
 {
-    public class AddArticleRequest : IRequest
-    {
-        public string Title { get; set; }
-        public bool IsFree { get; set; }
-        public bool IsPublished { get; set; }
-        public Guid SectionId { get; set; }
-        public string HTMLContent { get; set; }
-    }
+    public record AddArticleRequest(string Title, bool IsFree, bool IsPublished, Guid SectionId, string HTMLContent) : IRequest;
 }

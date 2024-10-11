@@ -6,7 +6,7 @@ using Skillup.Shared.Abstractions.Kernel.ValueObjects;
 
 namespace Skillup.Modules.Courses.Infrastracture.Configurations.CourseConfigurations
 {
-    public class CoursesConfiguration : IEntityTypeConfiguration<Course>
+    public class CourseConfiguration : IEntityTypeConfiguration<Course>
     {
         public void Configure(EntityTypeBuilder<Course> builder)
         {

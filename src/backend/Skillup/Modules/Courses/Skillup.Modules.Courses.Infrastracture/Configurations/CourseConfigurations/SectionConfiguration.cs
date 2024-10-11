@@ -4,7 +4,7 @@ using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
 
 namespace Skillup.Modules.Courses.Infrastracture.Configurations.CourseConfigurations
 {
-    internal class SectionsConfiguration : IEntityTypeConfiguration<Section>
+    internal class SectionConfiguration : IEntityTypeConfiguration<Section>
     {
         public void Configure(EntityTypeBuilder<Section> builder)
         {

@@ -39,12 +39,18 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             var course = await _courses
                 .Include(c => c.Category)
                 .Include(c => c.Subcategory)
-                .Include(c => c.Details)
                 .Include(c => c.Sections)
                     .ThenInclude(s => s.Elements)
                 .FirstOrDefaultAsync(c => c.Id == id);
 
             return course;
+        }
+
+        public async Task Publish(Guid courseId)
+        {
+            var course = await _courses.FirstOrDefaultAsync(c => c.Id == courseId) ?? throw new Exception();  //TODO: Custom exception for null check in repo
+            course.IsPublished = true;
+            await _context.SaveChangesAsync();
         }
     }
 }

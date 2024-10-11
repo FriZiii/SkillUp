@@ -34,6 +34,25 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(course);
         }
 
+        [HttpPatch]
+        [Authorize]
+        [Route("/Courses/{courseId}/Publish")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Publish(Guid courseId)
+        {
+            var userIdClaim = User.FindFirst(JwtRegisteredClaimNames.Sub);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            await _mediator.Send(new PublishCourseRequest(courseId));
+
+            var course = await _mediator.Send(new GetCourseByIdRequest(courseId));
+            //TODO: add possibility to unpublish a course
+            return Ok(course);
+        }
+
         [HttpGet]
         [Route("/Courses")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

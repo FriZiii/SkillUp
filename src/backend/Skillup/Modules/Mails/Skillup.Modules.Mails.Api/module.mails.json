@@ -1,8 +1,8 @@
 {
-  "mails": {
-    "module": {
-      "name": "Mails",
-      "enabled": true
+  "Mails": {
+    "Module": {
+      "Name": "Mails",
+      "Enabled": true
     }
   }
 }
