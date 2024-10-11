@@ -35,8 +35,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
                 throw new InvalidCredentialsException();
             }
 
-            //TODO : ROLES
-            var tokens = _authManager.CreateTokens(user.Id);
+            var tokens = _authManager.CreateTokens(user.Id, user.Role);
             _authTokenStorage.SetToken(request.Id, tokens);
             //TODO : LOGS
         }

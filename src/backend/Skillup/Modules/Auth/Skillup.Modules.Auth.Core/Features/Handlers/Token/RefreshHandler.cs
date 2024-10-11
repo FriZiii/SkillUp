@@ -32,16 +32,15 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Token
                 throw new Exception();
             }
 
-            //TODO : ROLES
-
             try
             {
-                var tokens = _authManager.RefreshAccessToken(request.RefreshToken, userId);
+                var tokens = _authManager.RefreshAccessToken(request.RefreshToken, user.Id, user.Role);
                 _authTokenStorage.SetToken(request.Id, tokens);
                 //TODO : LOGS
             }
             catch (Exception ex)
             {
+                //TODO : LOGS
                 throw new TokenValidationFailed();
             }
         }
