@@ -2,9 +2,9 @@
 
 namespace Skillup.Modules.Courses.Core.Exceptions
 {
-    public class InvalidUrl : SkillupException
+    public class InvalidUrlException : SkillupException
     {
-        public InvalidUrl() : base("Invalid url address.")
+        public InvalidUrlException() : base("Invalid url address.")
         {
         }
     }

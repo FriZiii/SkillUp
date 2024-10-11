@@ -26,8 +26,8 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
             {
                 //TODO: AuthorId = request.AuthorId
                 Title = request.Title,
-                SubcategoryId = request.SubcategoryId,
                 CategoryId = request.CategoryId,
+                SubcategoryId = request.SubcategoryId,
                 CreatedAt = _clock.CurrentDate()
             };
 

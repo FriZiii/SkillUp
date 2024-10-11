@@ -5,6 +5,7 @@ namespace Skillup.Modules.Courses.Core.DTO
 {
     public class CourseDetailDto : CourseDto
     {
+        public string Subtitle { get; set; }
         public string Description { get; set; }
         public CourseLevel Level { get; set; }
         public IEnumerable<string> ObjectivesSummary { get; set; }

@@ -14,7 +14,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
             {
                 Id = course.Id,
                 Title = course.Title,
-                Subtitle = course.Details.Subtitle,
+                IsPublished = course.IsPublished,
                 Category = new CategoryDto()
                 {
                     Id = course.Category.Id,
@@ -25,7 +25,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
                         Name = course.Subcategory.Name
                     }
                 },
-                ThumbnailUrl = course.Details.ThumbnailUrl,
+                ThumbnailUrl = course.Details?.ThumbnailUrl,
             };
             return courseDto;
         }
@@ -34,8 +34,9 @@ namespace Skillup.Modules.Courses.Application.Mappings
         {
             var courseDetailDto = new CourseDetailDto()
             {
+                Id = course.Id,
                 Title = course.Title,
-                Subtitle = course.Details.Subtitle,
+                IsPublished = course.IsPublished,
                 Category = new CategoryDto()
                 {
                     Id = course.Category.Id,
@@ -46,12 +47,13 @@ namespace Skillup.Modules.Courses.Application.Mappings
                         Name = course.Subcategory.Name
                     }
                 },
-                ThumbnailUrl = course.Details.ThumbnailUrl,
-                Description = course.Details.Description,
-                Level = course.Details.Level,
-                ObjectivesSummary = course.Details.ObjectivesSummary.Values,
-                MustKnowBefore = course.Details.MustKnowBefore.Values,
-                IntendedFor = course.Details.IntendedFor.Values
+                ThumbnailUrl = course.Details?.ThumbnailUrl,
+                Subtitle = course.Details?.Subtitle,
+                Description = course.Details?.Description,
+                Level = course.Details?.Level ?? CourseLevel.ForEveryone,
+                ObjectivesSummary = course.Details?.ObjectivesSummary.Values,
+                MustKnowBefore = course.Details?.MustKnowBefore.Values,
+                IntendedFor = course.Details?.IntendedFor.Values
             };
             return courseDetailDto;
         }
