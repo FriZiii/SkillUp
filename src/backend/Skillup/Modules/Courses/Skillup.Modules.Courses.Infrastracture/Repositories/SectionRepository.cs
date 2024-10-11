@@ -20,5 +20,22 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             _sections.Add(section);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<Section> GetById(Guid sectionId)
+        {
+            var section = await _sections
+                .Include(s => s.Elements)
+                .FirstOrDefaultAsync(s => s.Id == sectionId);
+            return section;
+        }
+
+        public async Task<List<Section>> GetSectionsByCourseId(Guid courseId)
+        {
+            var sections = await _sections
+                .Include(s => s.Elements)
+                .Where(s => s.CourseId == courseId)
+                .ToListAsync();
+            return sections;
+        }
     }
 }

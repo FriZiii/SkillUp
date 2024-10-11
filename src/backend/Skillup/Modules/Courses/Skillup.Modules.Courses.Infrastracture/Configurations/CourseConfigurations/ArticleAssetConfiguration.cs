@@ -4,12 +4,12 @@ using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets;
 
 namespace Skillup.Modules.Courses.Infrastracture.Configurations.CourseConfigurations
 {
-    internal class VideoAssetsConfiguration : IEntityTypeConfiguration<Video>
+    internal class ArticleAssetConfiguration : IEntityTypeConfiguration<Article>
     {
-        public void Configure(EntityTypeBuilder<Video> builder)
+        public void Configure(EntityTypeBuilder<Article> builder)
         {
-            builder.ToTable("VideoAssets")
-                     .HasBaseType<Asset>();
+            builder.ToTable("ArticleAssets")
+               .HasBaseType<Asset>();
         }
     }
 }

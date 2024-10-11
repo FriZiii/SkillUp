@@ -2,6 +2,7 @@
 {
     public enum CourseLevel
     {
+        None = 0,
         Beginner,
         Intermediate,
         Advanced,

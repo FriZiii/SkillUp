@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Skillup.Modules.Courses.Application.Features.Commands;
+using Skillup.Modules.Courses.Core.Requests.Commands;
 
 namespace Skillup.Modules.Courses.Api.Controllers
 {
@@ -11,12 +11,22 @@ namespace Skillup.Modules.Courses.Api.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
-        [HttpPost]
+        [HttpPut("/Courses/{courseId}/Details")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddDetails(AddDetailsRequest request)
+        public async Task<IActionResult> EditDetails(Guid courseId, EditDetailsRequest request)
         {
+            request.CourseId = courseId;
             await _mediator.Send(request);
+            return Ok();
+        }
+
+        [HttpPut("/Courses/{courseId}/Details/TumbnailPicture")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> EditTumbnailPicture(Guid courseId)
+        {
+            //TODO : Upload profile picture
             return Ok();
         }
     }

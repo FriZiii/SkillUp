@@ -5,20 +5,37 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
     public class Course
     {
         public Guid Id { get; set; }
-        //public Guid AuthorId { get; set; }      //authorsID
-        //public Author Author { get; set; }
-        public CourseInfo Info { get; set; }   //course information (title, subtitle, description)
-
+        //TODO : public Guid AuthorId { get; set; } 
+        public string Title { get; set; }   //course name (ex. full c# course from basics)
+        public bool IsPublished { get; set; }
         public Guid CategoryId { get; set; }
-        public Category Category { get; set; }    // category of course (ex. languages / programming)
         public Guid SubcategoryId { get; set; }
-        public Subcategory Subcategory { get; set; }  // subcategory of course (ex. english / databases)
+        public CourseDetails Details { get; set; } //lists of what student will learn, what they need to know before, and for whom is this course intended for
+        public DateTime CreatedAt { get; set; }
 
-        public CourseDetails? Details { get; set; } //lists of what student will learn, what they need to know before, and for whom is this course intended for
-
-        //public string Language { get; set; } 
-        public Uri ThumbnailUrl { get; set; } //minature photo of course
-
+        // Navigation properties
+        public Category Category { get; set; }
+        public Subcategory Subcategory { get; set; }
         public List<Section>? Sections { get; set; }
+
+        public Course(string title, Guid categoryId, Guid subcategoryId, DateTime now)
+        {
+            Title = title;
+            CategoryId = categoryId;
+            SubcategoryId = subcategoryId;
+            CreatedAt = now;
+            Details = new();
+        }
+
+        public Course(string title, Guid categoryId, Guid subcategoryId, DateTime now, CourseDetails details)
+        {
+            Title = title;
+            CategoryId = categoryId;
+            SubcategoryId = subcategoryId;
+            CreatedAt = now;
+            Details = details;
+        }
+
+        private Course() { } // For ef core
     }
 }

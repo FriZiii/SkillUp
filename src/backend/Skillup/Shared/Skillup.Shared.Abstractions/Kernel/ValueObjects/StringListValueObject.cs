@@ -2,12 +2,18 @@
 {
     public record StringListValueObject
     {
-        public List<string> Values { get; set; }
+        public IEnumerable<string> Values { get; set; }
 
         public StringListValueObject(List<string> values)
         {
             Values = values ?? throw new ArgumentNullException();
         }
+
+        public StringListValueObject()
+        {
+            Values = Enumerable.Empty<string>();
+        }
+
         public StringListValueObject Add(string value)
         {
             var newList = new List<string>(Values) { value };

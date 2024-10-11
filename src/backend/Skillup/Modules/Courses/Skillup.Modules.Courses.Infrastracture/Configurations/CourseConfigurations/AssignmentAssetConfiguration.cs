@@ -4,7 +4,7 @@ using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets;
 
 namespace Skillup.Modules.Courses.Infrastracture.Configurations.CourseConfigurations
 {
-    internal class AssignmentAssetsConfiguration : IEntityTypeConfiguration<Assignment>
+    internal class AssignmentAssetConfiguration : IEntityTypeConfiguration<Assignment>
     {
         public void Configure(EntityTypeBuilder<Assignment> builder)
         {
