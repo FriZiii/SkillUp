@@ -3,9 +3,9 @@ using Skillup.Modules.Auth.Core.Features.Commands.Account;
 
 namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
 {
-    internal class SignOutHandler : IRequestHandler<SignOut>
+    internal class SignOutHandler : IRequestHandler<SignOutRequest>
     {
-        public async Task Handle(SignOut request, CancellationToken cancellationToken)
+        public async Task Handle(SignOutRequest request, CancellationToken cancellationToken)
         {
             await Task.CompletedTask;
 

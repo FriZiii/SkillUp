@@ -1,8 +1,14 @@
 {
-  "courses": {
-    "module": {
-      "name": "Courses",
-      "enabled": true
+  "Courses": {
+    "Module": {
+      "Name": "Courses",
+      "Enabled": true
+    },
+    "ModuleOptions": {
+      "DefaultValues": {
+        "DefaultUserProfilePicture": "https://hips.hearstapps.com/hmg-prod/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg",
+        "DefaultTubnailPicture": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.nylabone.com%2Fdog101%2F10-intelligent-dog-breeds&psig=AOvVaw23B6umwzKRSKuVSnFmXnSn&ust=1728727529341000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLD97YOKhokDFQAAAAAdAAAAABAJ"
+      }
     }
   }
 }

@@ -23,29 +23,35 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{F5C0DD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Bootstrapper", "Bootstrapper\Skillup.Bootstrapper\Skillup.Bootstrapper.csproj", "{8A472A14-ABC7-4EF9-9FC1-DE2A25952C03}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BADB4CB7-0A6A-47C5-B928-04D8C50CB124}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Shared.Abstractions", "Shared\Skillup.Shared.Abstractions\Skillup.Shared.Abstractions.csproj", "{711C1679-A05B-4D32-8B1F-117F2E798C5F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Shared.Infrastructure", "Shared\Skillup.Shared.Infrastructure\Skillup.Shared.Infrastructure.csproj", "{73693D62-39FB-4CAE-A0AF-3174CC36CADB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Finances.Api", "Modules\Finances\Skillup.Modules.Finances.Api\Skillup.Modules.Finances.Api.csproj", "{EB5861C4-F0D2-4ADE-A25C-36353ED9A179}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillup.Modules.Finances.Core", "Modules\Finances\Skillup.Modules.Finances.Core\Skillup.Modules.Finances.Core.csproj", "{F5715301-023F-4050-9F7E-5199D4205DDB}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Mails.Api", "Modules\Mails\Skillup.Modules.Mails.Api\Skillup.Modules.Mails.Api.csproj", "{1237264D-7674-4B32-AE52-695962099D66}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Notifications.Api", "Modules\Notifications\Skillup.Modules.Notifications.Api\Skillup.Modules.Notifications.Api.csproj", "{4B32EB5B-E589-4933-B3B1-BBEDEE5FBCF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Mails.Core", "Modules\Mails\Skillup.Modules.Mails.Core\Skillup.Modules.Mails.Core.csproj", "{AA2323DD-FBEF-4DCE-8697-3A7E5D2A3319}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Courses.Api", "Modules\Courses\Skillup.Modules.Courses.Api\Skillup.Modules.Courses.Api.csproj", "{8F288A25-639C-407E-80B1-E661E22D41E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Notifications.Api", "Modules\Notifications\Skillup.Modules.Notifications.Api\Skillup.Modules.Notifications.Api.csproj", "{4B32EB5B-E589-4933-B3B1-BBEDEE5FBCF5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Chat.Api", "Modules\Chat\Skillup.Modules.Chat.Api\Skillup.Modules.Chat.Api.csproj", "{B60DB100-3D4D-49B4-A442-9F800765AAAA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Auth.Api", "Modules\Auth\Skillup.Modules.Auth.Api\Skillup.Modules.Auth.Api.csproj", "{51117B25-4875-498F-A4B4-C8A351189178}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Mails.Core", "Modules\Mails\Skillup.Modules.Mails.Core\Skillup.Modules.Mails.Core.csproj", "{AA2323DD-FBEF-4DCE-8697-3A7E5D2A3319}"
-EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BADB4CB7-0A6A-47C5-B928-04D8C50CB124}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Auth.Core", "Modules\Auth\Skillup.Modules.Auth.Core\Skillup.Modules.Auth.Core.csproj", "{238802F7-C8E1-48A4-882E-117E9E59B7E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillup.Modules.Finances.Core", "Modules\Finances\Skillup.Modules.Finances.Core\Skillup.Modules.Finances.Core.csproj", "{F5715301-023F-4050-9F7E-5199D4205DDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skillup.Modules.Courses.Api", "Modules\Courses\Skillup.Modules.Courses.Api\Skillup.Modules.Courses.Api.csproj", "{8F288A25-639C-407E-80B1-E661E22D41E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillup.Modules.Courses.Core", "Modules\Courses\Skillup.Modules.Courses.Core\Skillup.Modules.Courses.Core.csproj", "{5D315A59-0C37-4B7C-A1DE-4334599437AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillup.Modules.Courses.Infrastracture", "Modules\Courses\Skillup.Modules.Courses.Infrastracture\Skillup.Modules.Courses.Infrastracture.csproj", "{C804086C-1717-49EA-8628-E5A0A3DE93FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillup.Modules.Courses.Application", "Modules\Courses\Skillup.Modules.Courses.Application\Skillup.Modules.Courses.Application.csproj", "{8215A5CE-1B89-4DA6-B650-E589A49D8E36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +111,18 @@ Global
 		{F5715301-023F-4050-9F7E-5199D4205DDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5715301-023F-4050-9F7E-5199D4205DDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5715301-023F-4050-9F7E-5199D4205DDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D315A59-0C37-4B7C-A1DE-4334599437AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D315A59-0C37-4B7C-A1DE-4334599437AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D315A59-0C37-4B7C-A1DE-4334599437AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D315A59-0C37-4B7C-A1DE-4334599437AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C804086C-1717-49EA-8628-E5A0A3DE93FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C804086C-1717-49EA-8628-E5A0A3DE93FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C804086C-1717-49EA-8628-E5A0A3DE93FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C804086C-1717-49EA-8628-E5A0A3DE93FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8215A5CE-1B89-4DA6-B650-E589A49D8E36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8215A5CE-1B89-4DA6-B650-E589A49D8E36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8215A5CE-1B89-4DA6-B650-E589A49D8E36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8215A5CE-1B89-4DA6-B650-E589A49D8E36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +146,9 @@ Global
 		{AA2323DD-FBEF-4DCE-8697-3A7E5D2A3319} = {260CCC97-516B-4039-9346-D48713685354}
 		{238802F7-C8E1-48A4-882E-117E9E59B7E6} = {1EF20637-264D-4804-B5B9-B873E1F656E4}
 		{F5715301-023F-4050-9F7E-5199D4205DDB} = {E7B27A4B-F153-41B3-BE04-BFA74CD05BC0}
+		{5D315A59-0C37-4B7C-A1DE-4334599437AA} = {0CCAF292-9B40-4841-985A-F0068FBE2A12}
+		{C804086C-1717-49EA-8628-E5A0A3DE93FA} = {0CCAF292-9B40-4841-985A-F0068FBE2A12}
+		{8215A5CE-1B89-4DA6-B650-E589A49D8E36} = {0CCAF292-9B40-4841-985A-F0068FBE2A12}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ED4D30F8-9E03-48F1-BA18-5FB6694B89FC}

@@ -6,12 +6,12 @@ using Skillup.Shared.Abstractions.Time;
 
 namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
 {
-    internal class AccountActivationHandler(IUserRepository userRepository, IClock clock) : IRequestHandler<AccountActivation>
+    internal class AccountActivationHandler(IUserRepository userRepository, IClock clock) : IRequestHandler<AccountActivationRequest>
     {
         private readonly IUserRepository _userRepository = userRepository;
         private readonly IClock _clock = clock;
 
-        public async Task Handle(AccountActivation request, CancellationToken cancellationToken)
+        public async Task Handle(AccountActivationRequest request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.Get(request.UserId) ?? throw new UserNotFoundException(request.UserId);
 

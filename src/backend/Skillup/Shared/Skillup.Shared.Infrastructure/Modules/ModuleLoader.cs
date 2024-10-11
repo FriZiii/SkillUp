@@ -23,7 +23,7 @@ namespace Skillup.Shared.Infrastructure.Modules
                 }
 
                 var moduleName = file.Split(modulePart)[1].Split(".")[0].ToLowerInvariant();
-                var enabled = configuration.GetValue<bool>($"{moduleName}:module:enabled");
+                var enabled = configuration.GetValue<bool>($"{moduleName}:Module:Enabled");
                 if (!enabled)
                 {
                     disabledModules.Add(file);

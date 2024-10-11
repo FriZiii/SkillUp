@@ -1,8 +1,8 @@
 {
-  "finances": {
-    "module": {
-      "name": "Finances",
-      "enabled": true
+  "Finances": {
+    "Module": {
+      "Name": "Finances",
+      "Enabled": true
     }
   }
 }

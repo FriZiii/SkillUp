@@ -22,9 +22,9 @@ namespace Skillup.Modules.Auth.Api.Controllers
         [SwaggerOperation("Sign up")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> SignUp(SignUp command)
+        public async Task<IActionResult> SignUp(SignUpRequest request)
         {
-            await _mediator.Send(command);
+            await _mediator.Send(request);
             return NoContent();
         }
 
@@ -32,10 +32,10 @@ namespace Skillup.Modules.Auth.Api.Controllers
         [SwaggerOperation("Sign in")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> SignIn(SignIn command)
+        public async Task<IActionResult> SignIn(SignInRequest request)
         {
-            await _mediator.Send(command);
-            var tokens = _authTokenStorage.GetTokens(command.Id);
+            await _mediator.Send(request);
+            var tokens = _authTokenStorage.GetTokens(request.Id);
 
             return Ok(new TokensDto(tokens));
         }
@@ -53,7 +53,7 @@ namespace Skillup.Modules.Auth.Api.Controllers
             {
                 return Unauthorized();
             }
-            await _mediator.Send(new SignOut(Guid.Parse(userIdClaim.Value)));
+            await _mediator.Send(new SignOutRequest(Guid.Parse(userIdClaim.Value)));
             return NoContent();
         }
 
@@ -63,7 +63,7 @@ namespace Skillup.Modules.Auth.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Activation([FromQuery] Guid userId, [FromQuery] Guid activationToken)
         {
-            await _mediator.Send(new AccountActivation(userId, activationToken));
+            await _mediator.Send(new AccountActivationRequest(userId, activationToken));
             return NoContent();
         }
     }
