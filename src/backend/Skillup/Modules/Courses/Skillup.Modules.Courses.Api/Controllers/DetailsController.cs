@@ -16,7 +16,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> EditDetails(Guid courseId, EditDetailsRequest request)
         {
-            request.CoruseId = courseId;
+            request.CourseId = courseId;
             await _mediator.Send(request);
             return Ok();
         }

@@ -12,11 +12,12 @@ namespace Skillup.Modules.Courses.Api.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
-        [HttpPost]
+        [HttpPost("{courseId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddSection(AddSectionRequest request)
+        public async Task<IActionResult> AddSection(Guid courseId, AddSectionRequest request)
         {
+            request.CourseId = courseId;
             await _mediator.Send(request);
 
             var section = await _mediator.Send(new GetSectionByIdRequest(request.SectionId));

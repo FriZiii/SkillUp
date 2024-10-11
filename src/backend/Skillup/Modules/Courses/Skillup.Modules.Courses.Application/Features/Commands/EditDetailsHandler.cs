@@ -26,7 +26,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
                 IntendedFor = new StringListValueObject(request.IntendedFor),
             };
 
-            await _courseRepository.EditDetails(request.CoruseId, details);
+            await _courseRepository.EditDetails(request.CourseId, details);
         }
     }
 }

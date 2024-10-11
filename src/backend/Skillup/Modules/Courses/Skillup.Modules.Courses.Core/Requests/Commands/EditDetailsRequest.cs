@@ -8,6 +8,6 @@ namespace Skillup.Modules.Courses.Core.Requests.Commands
         List<string> ObjectivesSummary, List<string> MustKnowBefore, List<string> IntendedFor) : IRequest
     {
         [JsonIgnore]
-        public Guid CoruseId { get; set; }
+        public Guid CourseId { get; set; }
     }
 }
