@@ -16,7 +16,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
         }
         public async Task<SectionDto> Handle(GetSectionByIdRequest request, CancellationToken cancellationToken)
         {
-            SectionMapper sectionMapper = new SectionMapper();
+            SectionMapper sectionMapper = new();
             var section = await _sectionRepository.GetById(request.SectionId);
             var sectionDto = sectionMapper.SectionToSectionDto(section);
             return sectionDto;

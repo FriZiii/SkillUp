@@ -11,10 +11,6 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
         private readonly CoursesDbContext _context;
         private readonly DbSet<Course> _courses;
         private readonly IClock _clock;
-        private readonly CategorySeeder _categoriesSeeder;
-        private readonly SectionsSeeder _sectionsSeeder;
-        private readonly ElementsSeeder _elementsSeeder;
-        private readonly ExerciseSeeder _exerciseSeeder;
 
         private List<Category> _categories;
         private List<Subcategory> _subCategories;
@@ -24,20 +20,18 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
             _context = context;
             _courses = context.Courses;
             _clock = clock;
-            _categoriesSeeder = new CategorySeeder(context);
-            _sectionsSeeder = new SectionsSeeder(context);
-            _elementsSeeder = new ElementsSeeder(context);
-            _exerciseSeeder = new ExerciseSeeder(context);
         }
+
         public async Task Seed()
         {
-            _categories = await _context.Categories.ToListAsync();
-            _subCategories = await _context.Subcategories.ToListAsync();
-
             if (!await _context.Categories.AnyAsync() && !await _context.Subcategories.AnyAsync())
             {
+                var _categoriesSeeder = new CategorySeeder(_context);
                 await _categoriesSeeder.Seed();
             }
+
+            _categories = await _context.Categories.ToListAsync();
+            _subCategories = await _context.Subcategories.ToListAsync();
 
             if (!await _courses.AnyAsync())
             {
@@ -46,16 +40,19 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
 
             if (!await _context.Sections.AnyAsync())
             {
+                var _sectionsSeeder = new SectionsSeeder(_context);
                 await _sectionsSeeder.Seed();
             }
 
             if (!await _context.Elements.AnyAsync())
             {
+                var _elementsSeeder = new ElementsSeeder(_context);
                 await _elementsSeeder.Seed();
             }
 
             if (!await _context.QuizQuestionExercises.AnyAsync() && !await _context.QuestionAnswerExercises.AnyAsync() && !await _context.QuestionAnswerExercises.AnyAsync())
             {
+                var _exerciseSeeder = new ExerciseSeeder(_context);
                 await _exerciseSeeder.Seed();
             }
         }

@@ -7,14 +7,14 @@ namespace Skillup.Modules.Courses.Application.Mappings
     [Mapper]
     public partial class CategoryMapper
     {
-        SubcategoryMapper subcategoryMapper = new SubcategoryMapper();
+        SubcategoryMapper _subcategoryMapper = new();
         public CategoryDto CategoryToCategoryDto(Category category)
         {
             var categoryDto = new CategoryDto()
             {
                 Id = category.Id,
                 Name = category.Name,
-                Subcategories = category.Subcategories.Select(s => subcategoryMapper.SubcategoryToSubcategoryDto(s))
+                Subcategories = category.Subcategories.Select(s => _subcategoryMapper.SubcategoryToSubcategoryDto(s))
             };
             return categoryDto;
         }

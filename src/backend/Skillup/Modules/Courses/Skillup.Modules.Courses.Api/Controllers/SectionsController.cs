@@ -8,7 +8,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    internal class SectionController(IMediator mediator) : ControllerBase
+    internal class SectionsController(IMediator mediator) : ControllerBase
     {
         private readonly IMediator _mediator = mediator;
 
@@ -24,12 +24,12 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(section);
         }
 
-        [HttpGet]
+        [HttpGet("{courseId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetSectionsByCourseId(Guid courseId)
         {
-            var sections = await _mediator.Send(new GetSectionsRequest() { CourseId = courseId });
+            var sections = await _mediator.Send(new GetSectionsRequest(courseId));
             return Ok(sections);
         }
     }

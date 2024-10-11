@@ -14,6 +14,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
         {
             _courseRepository = courseRepository;
         }
+
         public async Task<CourseDetailDto> Handle(GetCourseByIdRequest request, CancellationToken cancellationToken)
         {
             var course = await _courseRepository.GetById(request.CourseId);

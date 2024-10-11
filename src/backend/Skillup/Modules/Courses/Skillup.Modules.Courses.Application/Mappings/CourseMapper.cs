@@ -47,13 +47,13 @@ namespace Skillup.Modules.Courses.Application.Mappings
                         Name = course.Subcategory.Name
                     }
                 },
-                ThumbnailUrl = course.Details?.ThumbnailUrl,
-                Subtitle = course.Details?.Subtitle,
-                Description = course.Details?.Description,
-                Level = course.Details?.Level ?? CourseLevel.ForEveryone,
-                ObjectivesSummary = course.Details?.ObjectivesSummary.Values,
-                MustKnowBefore = course.Details?.MustKnowBefore.Values,
-                IntendedFor = course.Details?.IntendedFor.Values
+                ThumbnailUrl = course.Details.ThumbnailUrl,
+                Subtitle = course.Details.Subtitle,
+                Description = course.Details.Description,
+                Level = course.Details.Level,
+                ObjectivesSummary = course.Details.ObjectivesSummary.Values,
+                MustKnowBefore = course.Details.MustKnowBefore.Values,
+                IntendedFor = course.Details.IntendedFor.Values
             };
             return courseDetailDto;
         }

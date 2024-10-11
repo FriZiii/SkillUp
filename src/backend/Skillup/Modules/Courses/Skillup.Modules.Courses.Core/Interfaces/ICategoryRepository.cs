@@ -6,6 +6,5 @@ namespace Skillup.Modules.Courses.Core.Interfaces
     {
         Task Add(Category category);
         Task<IEnumerable<Category>> GetAll();
-        Task<Category > GetById(Guid id);
     }
 }

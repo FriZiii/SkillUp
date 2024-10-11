@@ -16,9 +16,9 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
         }
         public async Task<IEnumerable<CategoryDto>> Handle(GetCategoriesRequest request, CancellationToken cancellationToken)
         {
-            CategoryMapper categoryMapper = new CategoryMapper();
+            CategoryMapper categoryMapper = new();
             var categories = await _categoryRepository.GetAll();
-            var categorisDtos = categories.Select(c => categoryMapper.CategoryToCategoryDto(c));
+            var categorisDtos = categories.Select(categoryMapper.CategoryToCategoryDto);
             return categorisDtos;
         }
     }

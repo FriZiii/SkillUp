@@ -24,10 +24,5 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         {
             return await _catogories.Include(c => c.Subcategories).ToListAsync();
         }
-
-        public async Task<Category> GetById(Guid id)
-        {
-            return await _catogories.SingleOrDefaultAsync(c => c.Id == id);
-        }
     }
 }

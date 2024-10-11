@@ -7,7 +7,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    internal class ElementController(IMediator mediator) : ControllerBase
+    internal class ElementsController(IMediator mediator) : ControllerBase
     {
         private readonly IMediator _mediator = mediator;
 

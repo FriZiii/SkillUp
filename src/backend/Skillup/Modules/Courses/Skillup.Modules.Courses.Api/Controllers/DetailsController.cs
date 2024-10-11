@@ -11,13 +11,22 @@ namespace Skillup.Modules.Courses.Api.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
-        [HttpPut("{courseId}")]
+        [HttpPut("/Courses/{courseId}/Details")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddDetails(Guid courseId, AddDetailsRequest request)
+        public async Task<IActionResult> EditDetails(Guid courseId, EditDetailsRequest request)
         {
             request.CoruseId = courseId;
             await _mediator.Send(request);
+            return Ok();
+        }
+
+        [HttpPut("/Courses/{courseId}/Details/TumbnailPicture")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> EditTumbnailPicture(Guid courseId)
+        {
+            //TODO : Upload profile picture
             return Ok();
         }
     }
