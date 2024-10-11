@@ -1,12 +1,12 @@
 {
-  "auth": {
-    "module": {
-      "name": "Auth",
-      "enabled": true
+  "Auth": {
+    "Module": {
+      "Name": "Auth",
+      "Enabled": true
     },
-    "registration": {
-      "enabled": true,
-      "invalidEmailProviders": [
+    "Registration": {
+      "Enabled": true,
+      "InvalidEmailProviders": [
         "discard",
         "dispostable",
         "mailinator"

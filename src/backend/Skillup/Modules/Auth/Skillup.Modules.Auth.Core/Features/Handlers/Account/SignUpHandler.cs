@@ -14,7 +14,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
         RegistrationOptions registrationOptions,
         IPublishEndpoint publishEndpoint,
         IPasswordHasher<User> passwordHasher,
-        IClock clock) : IRequestHandler<SignUp>
+        IClock clock) : IRequestHandler<SignUpRequest>
     {
         private readonly IUserRepository _userRepository = userRepository;
         private readonly RegistrationOptions _registrationOptions = registrationOptions;
@@ -22,7 +22,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
         private readonly IPasswordHasher<User> _passwordHasher = passwordHasher;
         private readonly IClock _clock = clock;
 
-        public async Task Handle(SignUp request, CancellationToken cancellationToken)
+        public async Task Handle(SignUpRequest request, CancellationToken cancellationToken)
         {
             if (!_registrationOptions.Enabled)
             {

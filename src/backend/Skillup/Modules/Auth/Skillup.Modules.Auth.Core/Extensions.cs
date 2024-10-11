@@ -19,7 +19,7 @@ namespace Skillup.Modules.Auth.Core
     {
         public static IServiceCollection AddCore(this IServiceCollection services)
         {
-            var registrationOptions = services.GetOptions<RegistrationOptions>("auth:registration");
+            var registrationOptions = services.GetOptions<RegistrationOptions>("Auth:Registration");
             services.AddSingleton(registrationOptions);
 
             return services

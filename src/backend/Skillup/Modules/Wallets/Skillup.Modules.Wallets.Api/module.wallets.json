@@ -1,8 +1,8 @@
 {
-  "wallets": {
-    "module": {
-      "name": "Wallets",
-      "enabled": true
+  "Wallets": {
+    "Module": {
+      "Name": "Wallets",
+      "Enabled": true
     }
   }
 }

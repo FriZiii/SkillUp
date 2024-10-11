@@ -8,7 +8,7 @@ using Skillup.Shared.Abstractions.Auth;
 
 namespace Skillup.Modules.Auth.Core.Features.Handlers.Token
 {
-    internal class RefreshHandler : IRequestHandler<Refresh>
+    internal class RefreshHandler : IRequestHandler<RefreshRequest>
     {
         private readonly IAuthManager _authManager;
         private readonly IUserRepository _userRepository;
@@ -21,7 +21,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Token
             _authTokenStorage = authTokenStorage;
         }
 
-        public async Task Handle(Refresh request, CancellationToken cancellationToken)
+        public async Task Handle(RefreshRequest request, CancellationToken cancellationToken)
         {
             var userId = _authManager.GetUserIdFromExpiredToken(request.AccessToken) ?? throw new Exception();
 
