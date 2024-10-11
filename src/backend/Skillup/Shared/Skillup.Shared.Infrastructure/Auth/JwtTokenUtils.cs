@@ -73,7 +73,7 @@ namespace Skillup.Shared.Infrastructure.Auth
             return userIdClaim;
         }
 
-        private static List<Claim> BuildClaims(AuthOptions options, Guid userId, DateTime now, UserRole? userRole = null, IDictionary<string, IEnumerable<string>>? claims)
+        private static List<Claim> BuildClaims(AuthOptions options, Guid userId, DateTime now, UserRole? userRole = null, IDictionary<string, IEnumerable<string>>? claims = null)
         {
             var jwtClaims = new List<Claim>
             {
