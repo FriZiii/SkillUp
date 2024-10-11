@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using Skillup.Modules.Courses.Application.Features.Commands;
 using Skillup.Modules.Courses.Application.Mappings;
 using Skillup.Modules.Courses.Application.Operations;
 using Skillup.Modules.Courses.Core.Interfaces;
+using Skillup.Modules.Courses.Core.Requests.Queries;
 
 namespace Skillup.Modules.Courses.Application.Features.Queries
 {

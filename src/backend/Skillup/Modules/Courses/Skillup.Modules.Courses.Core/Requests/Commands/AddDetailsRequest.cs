@@ -2,7 +2,7 @@
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 using System.Text.Json.Serialization;
 
-namespace Skillup.Modules.Courses.Application.Features.Commands
+namespace Skillup.Modules.Courses.Core.Requests.Commands
 {
     public record AddDetailsRequest(string Subtitle, string Description, CourseLevel Level,
         List<string> ObjectivesSummary, List<string> MustKnowBefore, List<string> IntendedFor, string? ThumbnailUrl) : IRequest

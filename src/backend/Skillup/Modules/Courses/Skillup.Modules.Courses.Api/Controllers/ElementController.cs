@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Skillup.Modules.Courses.Core.Requests;
+using Skillup.Modules.Courses.Core.Requests.Commands;
 
 namespace Skillup.Modules.Courses.Api.Controllers
 {

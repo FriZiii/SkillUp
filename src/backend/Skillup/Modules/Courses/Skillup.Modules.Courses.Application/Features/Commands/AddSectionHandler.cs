@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
 using Skillup.Modules.Courses.Core.Interfaces;
+using Skillup.Modules.Courses.Core.Requests.Commands;
 
 namespace Skillup.Modules.Courses.Application.Features.Commands
 {
@@ -21,6 +22,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
             };
             await _sectionRepository.Add(section);
 
+            request.SectionId = section.Id;
         }
     }
 }

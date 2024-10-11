@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Skillup.Modules.Courses.Application.Features.Commands;
-using Skillup.Modules.Courses.Core.Requests;
+using Skillup.Modules.Courses.Core.Requests.Commands;
+using Skillup.Modules.Courses.Core.Requests.Queries;
 
 namespace Skillup.Modules.Courses.Api.Controllers
 {
@@ -18,7 +18,10 @@ namespace Skillup.Modules.Courses.Api.Controllers
         public async Task<IActionResult> AddSection(AddSectionRequest request)
         {
             await _mediator.Send(request);
-            return Ok(request);
+
+            var section = await _mediator.Send(new GetSectionByIdRequest(request.SectionId));
+
+            return Ok(section);
         }
 
         [HttpGet]
@@ -26,7 +29,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetSectionsByCourseId(Guid courseId)
         {
-            var sections = await _mediator.Send(new GetSectionsRequest() { CourseId = courseId});
+            var sections = await _mediator.Send(new GetSectionsRequest() { CourseId = courseId });
             return Ok(sections);
         }
     }

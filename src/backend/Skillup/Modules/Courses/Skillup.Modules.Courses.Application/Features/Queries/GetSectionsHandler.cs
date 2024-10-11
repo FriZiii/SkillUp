@@ -4,7 +4,7 @@ using Skillup.Modules.Courses.Application.Features.Commands;
 using Skillup.Modules.Courses.Application.Mappings;
 using Skillup.Modules.Courses.Core.DTO;
 using Skillup.Modules.Courses.Core.Interfaces;
-using Skillup.Modules.Courses.Core.Requests;
+using Skillup.Modules.Courses.Core.Requests.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;

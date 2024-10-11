@@ -2,6 +2,7 @@
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 using Skillup.Modules.Courses.Core.Exceptions;
 using Skillup.Modules.Courses.Core.Interfaces;
+using Skillup.Modules.Courses.Core.Requests.Commands;
 using Skillup.Shared.Abstractions.Kernel.ValueObjects;
 
 namespace Skillup.Modules.Courses.Application.Features.Commands

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Skillup.Modules.Courses.Core.Requests
+namespace Skillup.Modules.Courses.Core.Requests.Queries
 {
     public class GetSectionsRequest : IRequest<List<SectionDto>>
     {

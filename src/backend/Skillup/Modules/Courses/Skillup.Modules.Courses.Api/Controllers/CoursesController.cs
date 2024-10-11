@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Skillup.Modules.Courses.Application.Features.Commands;
-using Skillup.Modules.Courses.Core.Requests;
+using Skillup.Modules.Courses.Core.Requests.Commands;
+using Skillup.Modules.Courses.Core.Requests.Queries;
 
 namespace Skillup.Modules.Courses.Api.Controllers
 {
@@ -28,9 +28,9 @@ namespace Skillup.Modules.Courses.Api.Controllers
             //request.AuthorId = Guid.Parse(userIdClaim.Value);
             await _mediator.Send(request);
 
-            await _mediator.Send(new GetCourseByIdRequest(request.CourseID));
+            var course = await _mediator.Send(new GetCourseByIdRequest(request.CourseID));
 
-            return Ok();
+            return Ok(course);
         }
 
         [HttpGet]

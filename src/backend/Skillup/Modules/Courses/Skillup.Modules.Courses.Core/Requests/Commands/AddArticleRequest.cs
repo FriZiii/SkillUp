@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Skillup.Modules.Courses.Core.Requests
+namespace Skillup.Modules.Courses.Core.Requests.Commands
 {
     public class AddArticleRequest : IRequest
     {
