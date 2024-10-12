@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
+using Skillup.Modules.Courses.Infrastracture.Seeders.Data;
 using Skillup.Shared.Abstractions.Kernel.ValueObjects;
 using Skillup.Shared.Abstractions.Seeder;
 using Skillup.Shared.Abstractions.Time;
+using System.Text.Json;
 
 namespace Skillup.Modules.Courses.Infrastracture.Seeders
 {
@@ -63,52 +65,40 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
             await _context.SaveChangesAsync();
         }
 
-        private List<Course> CreateCourses()
+        public IEnumerable<Course> CreateCourses()
         {
-            return
-            [
-                CreateCourse("C# from basics", "Programming", "Basics of programming",
-                    CreateCourseDetails(
-                        "Learn hot to write applications! Programming in practise!",
-                        "We invite both current programmers who want to gain a deep understanding of C# and individuals who have had no prior experience with programming but wish to learn what programming is and how to create applications.",
-                        CourseLevel.Beginner,
-                        ["Program applications in C# language", "A practical approach to programming", "What all this programming is about, in C# and beyond"],
-                        ["Knowledge of English at a basic level"],
-                        ["People who want to learn C# programming", "Beginner programmers who want to learn or improve on the C# language"],
-                        new Uri("https://cdn.pixabay.com/photo/2023/02/04/00/01/ai-generated-7766114_1280.jpg"))),
+            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
 
-                CreateCourse("Introduction to English", "Languages", "English",
-                    CreateCourseDetails(
-                        "Learn English from scratch!",
-                        "Perfect for those new to the English language. Start learning English with practical examples.",
-                        CourseLevel.Beginner,
-                        ["Understand basic English", "Learn practical phrases", "Communicate confidently in English"],
-                        ["No prior knowledge required"],
-                        ["Anyone new to English", "People interested in learning English"],
-                        new Uri("https://cdn.pixabay.com/photo/2023/02/04/00/01/ai-generated-7766114_1280.jpg")))
-            ];
+            var jsonString = File.ReadAllText(Path.Combine(path, "course-seeder-data.json"));
+            JsonSerializerOptions options = new()
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            var courseData = JsonSerializer.Deserialize<List<CourseJsonModel>>(jsonString, options);
+
+            return courseData!.Select(CreateCourseFromJson);
+        }
+
+        private Course CreateCourseFromJson(CourseJsonModel jsonModel)
+        {
+            var details = new CourseDetails()
+            {
+                Subtitle = jsonModel.Details.Subtitle,
+                Description = jsonModel.Details.Description,
+                Level = Enum.Parse<CourseLevel>(jsonModel.Details.Level),
+                ObjectivesSummary = new StringListValueObject(jsonModel.Details.ObjectivesSummary),
+                MustKnowBefore = new StringListValueObject(jsonModel.Details.MustKnowBefore),
+                IntendedFor = new StringListValueObject(jsonModel.Details.IntendedFor),
+                ThumbnailUrl = new Uri(jsonModel.Details.ThumbnailUrl)
+            };
+
+            return CreateCourse(jsonModel.Title, jsonModel.CategoryName, jsonModel.SubcategoryName, details);
         }
 
         private Course CreateCourse(string title, string categoryName, string subcategoryName, CourseDetails details)
         {
             return new Course(title, _categories.First(x => x.Name == categoryName).Id, _subCategories.First(x => x.Name == subcategoryName).Id, _clock.CurrentDate(), details);
-        }
-
-        private CourseDetails CreateCourseDetails(
-            string subtitle, string description, CourseLevel level,
-            List<string> objectivesSummary, List<string> mustKnowBefore, List<string> intendedFor,
-            Uri thumbnailUrl)
-        {
-            return new CourseDetails()
-            {
-                Subtitle = subtitle,
-                Description = description,
-                Level = level,
-                ObjectivesSummary = new StringListValueObject(objectivesSummary),
-                MustKnowBefore = new StringListValueObject(mustKnowBefore),
-                IntendedFor = new StringListValueObject(intendedFor),
-                ThumbnailUrl = thumbnailUrl,
-            };
         }
     }
 }

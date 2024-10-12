@@ -1,0 +1,232 @@
+[
+  {
+    "title": "C# from Basics",
+    "categoryName": "Programming",
+    "subcategoryName": "Basics of programming",
+    "details": {
+      "subtitle": "Learn how to write applications! Programming in practice!",
+      "description": "This course is designed for beginners who want to understand the fundamentals of C# programming, with a focus on practical application development.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Understand the basics of C# programming",
+        "Develop simple applications using C#",
+        "Explore object-oriented programming concepts"
+      ],
+      "mustKnowBefore": [
+        "Basic English skills"
+      ],
+      "intendedFor": [
+        "Aspiring C# developers",
+        "Beginners in programming"
+      ],
+      "thumbnailUrl": "https://cdn.pixabay.com/photo/2023/02/04/00/01/ai-generated-7766114_1280.jpg"
+    }
+  },
+  {
+    "title": "Introduction to German Language",
+    "categoryName": "Languages",
+    "subcategoryName": "German",
+    "details": {
+      "subtitle": "Start learning German from scratch",
+      "description": "This course offers a beginner-friendly introduction to German language, covering grammar, vocabulary, and everyday communication.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Learn fundamental German phrases",
+        "Understand basic German grammar",
+        "Communicate in daily situations"
+      ],
+      "mustKnowBefore": [
+        "No prior knowledge required"
+      ],
+      "intendedFor": [
+        "Beginners in German language",
+        "Travelers to Germany"
+      ],
+      "thumbnailUrl": "https://cdn.pixabay.com/photo/2016/11/29/12/54/berlin-1867562_1280.jpg"
+    }
+  },
+  {
+    "title": "Introduction to Artificial Intelligence",
+    "categoryName": "Programming",
+    "subcategoryName": "Artificial intelligence",
+    "details": {
+      "subtitle": "Explore AI and machine learning concepts",
+      "description": "This course introduces basic concepts in artificial intelligence and machine learning, perfect for anyone looking to understand AI technology.",
+      "level": "ForEveryone",
+      "objectivesSummary": [
+        "Understand the fundamentals of AI",
+        "Learn machine learning basics",
+        "Explore practical AI applications"
+      ],
+      "mustKnowBefore": [
+        "Basic understanding of algorithms (helpful, but not required)"
+      ],
+      "intendedFor": [
+        "AI enthusiasts",
+        "Aspiring data scientists"
+      ],
+      "thumbnailUrl": "https://cdn.pixabay.com/photo/2020/11/06/18/18/artificial-intelligence-5728990_1280.jpg"
+    }
+  },
+  {
+    "title": "Project Management with Agile and Scrum",
+    "categoryName": "Business and managing",
+    "subcategoryName": "Project management",
+    "details": {
+      "subtitle": "Master Agile and Scrum for project success",
+      "description": "Learn how to effectively manage projects using Agile and Scrum methodologies. This course focuses on real-world application of these tools.",
+      "level": "Intermediate",
+      "objectivesSummary": [
+        "Understand Agile principles",
+        "Implement Scrum in project workflows",
+        "Improve team collaboration and project delivery"
+      ],
+      "mustKnowBefore": [
+        "Basic knowledge of project management"
+      ],
+      "intendedFor": [
+        "Project managers",
+        "Team leaders in Agile environments"
+      ],
+      "thumbnailUrl": "https://cdn.pixabay.com/photo/2017/08/06/09/53/project-2594586_1280.jpg"
+    }
+  },
+  {
+    "title": "Algebra Essentials",
+    "categoryName": "Mathematics",
+    "subcategoryName": "Algebra",
+    "details": {
+      "subtitle": "Master algebra from the ground up",
+      "description": "A course designed for anyone new to algebra or looking to reinforce their understanding of core algebraic concepts.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Understand algebraic expressions and equations",
+        "Solve linear and quadratic equations",
+        "Apply algebra to real-world problems"
+      ],
+      "mustKnowBefore": [
+        "Basic arithmetic knowledge"
+      ],
+      "intendedFor": [
+        "Students beginning their algebra journey",
+        "Anyone needing a refresher in algebra"
+      ],
+      "thumbnailUrl": "https://cdn.pixabay.com/photo/2015/11/13/18/05/algebra-1044090_1280.jpg"
+    }
+  },
+  {
+    "title": "Creative Writing: A Beginner's Guide",
+    "categoryName": "Self-development",
+    "subcategoryName": "Creativity & hobbies",
+    "details": {
+      "subtitle": "Unlock your inner storyteller",
+      "description": "This course helps you explore the fundamentals of creative writing, from storytelling techniques to character creation.",
+      "level": "ForEveryone",
+      "objectivesSummary": [
+        "Develop basic writing skills",
+        "Understand the structure of stories",
+        "Create engaging characters and plots"
+      ],
+      "mustKnowBefore": [
+        "A passion for creativity"
+      ],
+      "intendedFor": [
+        "Aspiring writers",
+        "Anyone looking to improve their writing"
+      ],
+      "thumbnailUrl": "https://cdn.pixabay.com/photo/2016/10/25/12/28/notes-1761384_1280.jpg"
+    }
+  },
+  {
+    "title": "Finance for Non-Financial Managers",
+    "categoryName": "Business and managing",
+    "subcategoryName": "Finance",
+    "details": {
+      "subtitle": "Understand the basics of finance",
+      "description": "This course covers key financial concepts tailored for non-financial professionals. Learn how to interpret financial statements and make informed business decisions.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Understand financial statements",
+        "Learn budgeting and forecasting basics",
+        "Apply financial knowledge to business decisions"
+      ],
+      "mustKnowBefore": [
+        "No prior financial knowledge needed"
+      ],
+      "intendedFor": [
+        "Managers without a financial background",
+        "Small business owners"
+      ],
+      "thumbnailUrl": "https://cdn.pixabay.com/photo/2017/06/09/00/36/budget-2386684_1280.jpg"
+    }
+  },
+  {
+    "title": "Understanding World Religions",
+    "categoryName": "Humanities",
+    "subcategoryName": "Religions",
+    "details": {
+      "subtitle": "Explore the diversity of global religions",
+      "description": "This course offers an overview of the major world religions, their beliefs, practices, and impact on culture and society.",
+      "level": "ForEveryone",
+      "objectivesSummary": [
+        "Gain knowledge of different religious traditions",
+        "Understand the historical context of religions",
+        "Explore the role of religion in modern societies"
+      ],
+      "mustKnowBefore": [
+        "No prior knowledge required"
+      ],
+      "intendedFor": [
+        "Anyone interested in world religions",
+        "Students of humanities and culture"
+      ],
+      "thumbnailUrl": "https://cdn.pixabay.com/photo/2016/08/18/23/12/architecture-1602339_1280.jpg"
+    }
+  },
+  {
+    "title": "Basics of Cybersecurity",
+    "categoryName": "Programming",
+    "subcategoryName": "Cybersecurity",
+    "details": {
+      "subtitle": "Protect your systems and data",
+      "description": "Learn the essential principles of cybersecurity, including how to safeguard digital assets and mitigate security risks.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Understand cybersecurity threats and vulnerabilities",
+        "Learn how to secure data and networks",
+        "Explore common cybersecurity tools"
+      ],
+      "mustKnowBefore": [
+        "Basic computer knowledge"
+      ],
+      "intendedFor": [
+        "Aspiring cybersecurity professionals",
+        "IT enthusiasts"
+      ],
+      "thumbnailUrl": "https://cdn.pixabay.com/photo/2017/12/12/04/09/cyber-security-3015060_1280.jpg"
+    }
+  },
+  {
+    "title": "Physics: Classical Mechanics",
+    "categoryName": "Science",
+    "subcategoryName": "Physics",
+    "details": {
+      "subtitle": "Dive into the laws of motion and forces",
+      "description": "This course covers the foundational principles of classical mechanics, including Newton's laws, energy, and momentum.",
+      "level": "Intermediate",
+      "objectivesSummary": [
+        "Understand the fundamentals of classical mechanics",
+        "Apply Newton's laws to real-world scenarios",
+        "Explore concepts like energy and momentum"
+      ],
+      "mustKnowBefore": [
+        "Basic knowledge of physics"
+      ],
+      "intendedFor": [
+        "Students of physics",
+        "Anyone with an interest in classical mechanics"
+      ],
+      "thumbnailUrl": "https://cdn.pixabay.com/photo/2016/09/29/08/20/earth-1702735_1280.jpg"
+    }
+  }
+]
