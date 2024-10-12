@@ -43,10 +43,6 @@ namespace Skillup.Modules.Courses.Infrastracture.Configurations.UserConfiguratio
                     .HasColumnName("ShowCoursesOnUserProfile");
             });
 
-            builder.HasMany(u => u.PurchasedCourses)
-                .WithOne()
-                .HasForeignKey(pc => pc.UserId);
-
             builder.HasIndex(u => u.Id)
                 .IsUnique();
         }

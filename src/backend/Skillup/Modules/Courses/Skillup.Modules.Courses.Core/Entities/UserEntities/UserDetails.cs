@@ -2,7 +2,7 @@
 {
     public class UserDetails
     {
-        public string Title { get; set; }
-        public string Biography { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public string Biography { get; set; } = string.Empty;
     }
 }

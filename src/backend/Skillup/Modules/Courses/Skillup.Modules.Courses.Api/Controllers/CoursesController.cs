@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Requests.Commands;
 using Skillup.Modules.Courses.Core.Requests.Queries;
+using Skillup.Shared.Abstractions.Auth;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace Skillup.Modules.Courses.Api.Controllers
@@ -15,7 +16,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         private readonly IMediator _mediator = mediator;
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = nameof(UserRole.CourseAuthor))]
         [Route("/Courses")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
