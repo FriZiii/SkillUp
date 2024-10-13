@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Requests;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Courses.Api.Controllers
 {
@@ -12,6 +13,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         private readonly IMediator _mediator = mediator;
 
         [HttpPut("{UserId}")]
+        [SwaggerOperation("Edit user")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> EditUser(EditUserRequest request)
@@ -22,6 +24,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         }
 
         [HttpPut("{UserId}/Privacy-Settings")]
+        [SwaggerOperation("Edit privacy settings")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> EditPrivacySettings(EditUserPrivacySettingsRequest request)
@@ -32,6 +35,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         }
 
         [HttpPut("{UserId}/Profile-Picture")]
+        [SwaggerOperation("Edit profile picture")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> EditProfilePicture()

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Requests.Commands;
 using Skillup.Modules.Courses.Core.Requests.Queries;
 using Skillup.Shared.Abstractions.Auth;
+using Swashbuckle.AspNetCore.Annotations;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace Skillup.Modules.Courses.Api.Controllers
@@ -16,6 +17,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         private readonly IMediator _mediator = mediator;
 
         [HttpPost]
+        [SwaggerOperation("Add course")]
         [Authorize(Roles = nameof(UserRole.CourseAuthor))]
         [Route("/Courses")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -37,6 +39,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
 
         [HttpPatch]
         [Authorize]
+        [SwaggerOperation("Publish course")]
         [Route("/Courses/{courseId}/Publish")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -56,6 +59,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
 
         [HttpGet]
         [Route("/Courses")]
+        [SwaggerOperation("Get courses")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetAll()
@@ -65,6 +69,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         }
 
         [HttpGet]
+        [SwaggerOperation("Get course by id")]
         [Route("/Courses/{courseId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

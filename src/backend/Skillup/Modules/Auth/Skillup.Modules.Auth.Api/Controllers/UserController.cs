@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Auth.Api.Controllers.Base;
 using Skillup.Modules.Auth.Core.Features.Requests.User;
+using Swashbuckle.AspNetCore.Annotations;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace Skillup.Modules.Auth.Api.Controllers
@@ -21,6 +22,7 @@ namespace Skillup.Modules.Auth.Api.Controllers
 
         [Authorize]
         [HttpPatch("user-role")]
+        [SwaggerOperation("Change user role")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -41,6 +43,7 @@ namespace Skillup.Modules.Auth.Api.Controllers
 
         [Authorize]
         [HttpPatch("user-state")]
+        [SwaggerOperation("Change user state")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
