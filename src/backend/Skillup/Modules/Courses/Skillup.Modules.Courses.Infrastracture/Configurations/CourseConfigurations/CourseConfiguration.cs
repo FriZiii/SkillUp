@@ -54,6 +54,10 @@ namespace Skillup.Modules.Courses.Infrastracture.Configurations.CourseConfigurat
             builder.HasMany(c => c.Sections)
                 .WithOne(s => s.Course)
                 .HasForeignKey(s => s.CourseId);
+
+            builder.HasOne(c => c.Author)
+                .WithMany(a => a.CreatedCoures)
+                .HasForeignKey(c => c.AuthorId);
         }
     }
 }

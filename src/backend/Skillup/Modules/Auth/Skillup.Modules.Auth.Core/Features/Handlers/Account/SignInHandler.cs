@@ -10,13 +10,13 @@ using Skillup.Shared.Abstractions.Auth;
 namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
 {
     internal class SignInHandler(IUserRepository userRepository,
-        IPasswordHasher<User> passwordHasher,
+        IPasswordHasher<Entities.User> passwordHasher,
         IAuthManager authManager,
         IAuthTokenStorage authTokenStorage
         ) : IRequestHandler<SignInRequest>
     {
         private readonly IUserRepository _userRepository = userRepository;
-        private readonly IPasswordHasher<User> _passwordHasher = passwordHasher;
+        private readonly IPasswordHasher<Entities.User> _passwordHasher = passwordHasher;
         private readonly IAuthManager _authManager = authManager;
         private readonly IAuthTokenStorage _authTokenStorage = authTokenStorage;
 
@@ -35,8 +35,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
                 throw new InvalidCredentialsException();
             }
 
-            //TODO : ROLES
-            var tokens = _authManager.CreateTokens(user.Id);
+            var tokens = _authManager.CreateTokens(user.Id, user.Role);
             _authTokenStorage.SetToken(request.Id, tokens);
             //TODO : LOGS
         }

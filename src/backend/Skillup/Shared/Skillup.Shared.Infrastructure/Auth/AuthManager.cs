@@ -24,17 +24,17 @@ namespace Skillup.Shared.Infrastructure.Auth
             _issuer = options.Issuer;
         }
 
-        public AuthTokens CreateTokens(Guid userId, string? role = null, IDictionary<string, IEnumerable<string>>? claims = null)
+        public AuthTokens CreateTokens(Guid userId, UserRole userRole, IDictionary<string, IEnumerable<string>>? claims = null)
         {
             var now = _clock.CurrentDate();
             return new AuthTokens
             {
-                AccessToken = JwtTokenUtils.CreateToken(_options, userId, now, _options.TokenExpireSeconds, role, claims),
+                AccessToken = JwtTokenUtils.CreateToken(_options, userId, now, _options.TokenExpireSeconds, userRole, claims),
                 RefreshToken = JwtTokenUtils.CreateToken(_options, userId, now, _options.RefreshTokenExpireSeconds)
             };
         }
 
-        public AuthTokens RefreshAccessToken(string refreshToken, Guid userId, string? role = null, IDictionary<string, IEnumerable<string>>? claims = null)
+        public AuthTokens RefreshAccessToken(string refreshToken, Guid userId, UserRole userRole, IDictionary<string, IEnumerable<string>>? claims = null)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace Skillup.Shared.Infrastructure.Auth
             var now = _clock.CurrentDate();
             return new AuthTokens
             {
-                AccessToken = JwtTokenUtils.CreateToken(_options, userId, now, _options.TokenExpireSeconds, role, claims),
+                AccessToken = JwtTokenUtils.CreateToken(_options, userId, now, _options.TokenExpireSeconds, userRole, claims),
                 RefreshToken = refreshToken,
             };
         }
