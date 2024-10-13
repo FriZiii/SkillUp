@@ -10,4 +10,8 @@
       <ProjectReference Include="..\..\..\Shared\Skillup.Shared.Infrastructure\Skillup.Shared.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="DAL\Migrations\" />
+    </ItemGroup>
+
 </Project>

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
+using Skillup.Modules.Finances.Core.Entities;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Skillup.Shared.Infrastructure.Swagger
@@ -46,6 +48,11 @@ namespace Skillup.Shared.Infrastructure.Swagger
             {
                 Title = swaggerOptions.Title,
                 Version = swaggerOptions.Version
+            });
+            swagger.MapType<ItemType>(() => new OpenApiSchema
+            {
+                Type = "string",
+                Enum = Enum.GetNames(typeof(ItemType)).Select(name => (IOpenApiAny)new OpenApiString(name)).ToList()
             });
         }
 
