@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Exercises;
-using Skillup.Modules.Courses.Infrastracture.Seeders.Data;
+using Skillup.Modules.Courses.Infrastracture.Seeders.Data.JsonModels;
 using System.Text.Json;
 
 namespace Skillup.Modules.Courses.Infrastracture.Seeders
@@ -24,7 +24,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
         {
             if (!await _context.QuestionAnswerExercises.AnyAsync() && !await _context.QuizQuestionExercises.AnyAsync() && !await _context.QuizAnswer.AnyAsync())
             {
-                var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data", "JsonFiles");
+                var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
 
                 var jsonString = File.ReadAllText(Path.Combine(path, "quiz-seeder-data.json"));
                 data = JsonSerializer.Deserialize<List<QuizJsonModel>>(jsonString, _jsonSerializerOptions);
@@ -41,7 +41,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
 
         private IEnumerable<QuestionAnswer> CreateQuestions()
         {
-            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data", "JsonFiles");
+            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
 
             var jsonString = File.ReadAllText(Path.Combine(path, "question-seeder-data.json"));
             JsonSerializerOptions options = new()

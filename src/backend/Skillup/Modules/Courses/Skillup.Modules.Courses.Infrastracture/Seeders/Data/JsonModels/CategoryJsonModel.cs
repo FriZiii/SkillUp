@@ -1,4 +1,4 @@
-﻿namespace Skillup.Modules.Courses.Infrastracture.Seeders.Data
+﻿namespace Skillup.Modules.Courses.Infrastracture.Seeders.Data.JsonModels
 {
     internal class CategoryJsonModel
     {

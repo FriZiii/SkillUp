@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets;
-using Skillup.Modules.Courses.Infrastracture.Seeders.Data;
+using Skillup.Modules.Courses.Infrastracture.Seeders.Data.JsonModels;
 using System.Text.Json;
 
 namespace Skillup.Modules.Courses.Infrastracture.Seeders
@@ -33,7 +33,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
 
         private IEnumerable<Element> CreateArticleElements()
         {
-            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data", "JsonFiles");
+            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
 
             var jsonString = File.ReadAllText(Path.Combine(path, "article-seeder-data.json"));
             JsonSerializerOptions options = new()
@@ -48,7 +48,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
 
         private IEnumerable<Element> CreateVideosElements()
         {
-            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data", "JsonFiles");
+            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
 
             var jsonString = File.ReadAllText(Path.Combine(path, "video-seeder-data.json"));
             JsonSerializerOptions options = new()
@@ -63,7 +63,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
 
         private IEnumerable<Element> CreateAssignmentsElements()
         {
-            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data", "JsonFiles");
+            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
 
             var jsonString = File.ReadAllText(Path.Combine(path, "assignment-seeder-data.json"));
             JsonSerializerOptions options = new()

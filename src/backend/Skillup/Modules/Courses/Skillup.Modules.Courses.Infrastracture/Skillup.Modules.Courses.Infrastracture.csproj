@@ -7,38 +7,28 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Seeders\Data\JsonFiles\article-seeder-data.json" />
-		<None Remove="Seeders\Data\category-seeder-data.json" />
-		<None Remove="Seeders\Data\course-seeder-data.json" />
-		<None Remove="Seeders\Data\JsonFiles\assignment-seeder-data.json" />
-		<None Remove="Seeders\Data\JsonFiles\question-seeder-data.json" />
-		<None Remove="Seeders\Data\JsonFiles\quiz-seeder-data.json" />
-		<None Remove="Seeders\Data\JsonFiles\video-seeder-data.json" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="Seeders\Data\JsonFiles\article-seeder-data.json">
+      <Content Include="Seeders\Data\article-seeder-data.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
-      <Content Include="Seeders\Data\JsonFiles\assignment-seeder-data.json">
+      <Content Include="Seeders\Data\assignment-seeder-data.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
-		<Content Include="Seeders\Data\JsonFiles\category-seeder-data.json">
+      <Content Include="Seeders\Data\courseUser-seeder-data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+		<Content Include="Seeders\Data\category-seeder-data.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Seeders\Data\JsonFiles\course-seeder-data.json">
+		<Content Include="Seeders\Data\course-seeder-data.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Seeders\Data\JsonFiles\article-seeder-data.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="Seeders\Data\JsonFiles\question-seeder-data.json">
+		<Content Include="Seeders\Data\question-seeder-data.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Seeders\Data\JsonFiles\quiz-seeder-data.json">
+		<Content Include="Seeders\Data\quiz-seeder-data.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Seeders\Data\JsonFiles\video-seeder-data.json">
+		<Content Include="Seeders\Data\video-seeder-data.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
     </ItemGroup>

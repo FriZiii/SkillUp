@@ -29,20 +29,5 @@ namespace Skillup.Modules.Courses.Core.Entities.UserEntities
 
             PurchasedCourses = Enumerable.Empty<UserPurchasedCourse>();
         }
-
-
-        public User(Guid id, string email, string firstName, string lastName, Uri profilePicture, UserDetails details)
-        {
-            Id = id;
-            Email = email;
-            FirstName = firstName;
-            LastName = lastName;
-            ProfilePicture = profilePicture;
-            Details = details;
-            SocialMediaLinks = new();
-            PrivacySettings = new PrivacySettings();
-
-            PurchasedCourses = Enumerable.Empty<UserPurchasedCourse>();
-        }
     }
 }

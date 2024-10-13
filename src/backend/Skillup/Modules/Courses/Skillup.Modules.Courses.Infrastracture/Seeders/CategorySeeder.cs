@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
-using Skillup.Modules.Courses.Infrastracture.Seeders.Data;
+using Skillup.Modules.Courses.Infrastracture.Seeders.Data.JsonModels;
 using Skillup.Shared.Abstractions.Seeder;
 using System.Text.Json;
 
@@ -33,7 +33,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
         private async Task SeedCategories()
         {
 
-            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data", "JsonFiles");
+            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
 
             var jsonString = File.ReadAllText(Path.Combine(path, "category-seeder-data.json"));
             categoryData = JsonSerializer.Deserialize<List<CategoryJsonModel>>(jsonString, _jsonSerializerOptions);

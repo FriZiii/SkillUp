@@ -18,8 +18,8 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
             var _categoriesSeeder = new CategorySeeder(_context);
             await _categoriesSeeder.Seed();
 
-            var _authorSeeder = new AuthorSeeder(_context);
-            await _authorSeeder.Seed();
+            var _userSeeder = new CourseUserSeeder(_context);
+            await _userSeeder.Seed();
 
             var _courseSeeder = new CourseSeeder(_context, _clock);
             await _courseSeeder.Seed();

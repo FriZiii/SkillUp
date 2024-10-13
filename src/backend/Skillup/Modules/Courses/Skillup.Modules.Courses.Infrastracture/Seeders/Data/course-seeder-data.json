@@ -1,6 +1,6 @@
 [
   {
-    "authorId" :  "cece0863-6203-4a9e-b30a-57cbbac3c116",
+    "authorId" :  "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "C# from Basics",
     "categoryName": "Programming",
     "subcategoryName": "Basics of programming",
@@ -31,7 +31,7 @@
     ]
   },
   {
-    "authorId": "cece0863-6203-4a9e-b30a-57cbbac3c116",
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Introduction to German Language",
     "categoryName": "Languages",
     "subcategoryName": "German",
@@ -62,7 +62,7 @@
     ]
   },
   {
-    "authorId": "cece0863-6203-4a9e-b30a-57cbbac3c116",
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Introduction to Artificial Intelligence",
     "categoryName": "Programming",
     "subcategoryName": "Artificial intelligence",
@@ -93,7 +93,7 @@
     ]
   },
   {
-    "authorId": "cece0863-6203-4a9e-b30a-57cbbac3c116",
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Project Management with Agile and Scrum",
     "categoryName": "Business and managing",
     "subcategoryName": "Project management",
@@ -118,7 +118,7 @@
     "sections": []
   },
   {
-    "authorId": "cece0863-6203-4a9e-b30a-57cbbac3c116",
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Algebra Essentials",
     "categoryName": "Mathematics",
     "subcategoryName": "Algebra",
@@ -143,7 +143,7 @@
     "sections": []
   },
   {
-    "authorId": "cece0863-6203-4a9e-b30a-57cbbac3c116",
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Creative Writing: A Beginner's Guide",
     "categoryName": "Self-development",
     "subcategoryName": "Creativity & hobbies",
@@ -168,7 +168,7 @@
     "sections": []
   },
   {
-    "authorId": "cece0863-6203-4a9e-b30a-57cbbac3c116",
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Finance for Non-Financial Managers",
     "categoryName": "Business and managing",
     "subcategoryName": "Finance",
@@ -193,7 +193,7 @@
     "sections": []
   },
   {
-    "authorId": "cece0863-6203-4a9e-b30a-57cbbac3c116",
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Understanding World Religions",
     "categoryName": "Humanities",
     "subcategoryName": "Religions",
@@ -218,7 +218,7 @@
     "sections": []
   },
   {
-    "authorId": "cece0863-6203-4a9e-b30a-57cbbac3c116",
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Basics of Cybersecurity",
     "categoryName": "Programming",
     "subcategoryName": "Cybersecurity",
@@ -243,7 +243,7 @@
     "sections": []
   },
   {
-    "authorId": "cece0863-6203-4a9e-b30a-57cbbac3c116",
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Physics: Classical Mechanics",
     "categoryName": "Science",
     "subcategoryName": "Physics",

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
-using Skillup.Modules.Courses.Infrastracture.Seeders.Data;
+using Skillup.Modules.Courses.Infrastracture.Seeders.Data.JsonModels;
 using Skillup.Shared.Abstractions.Kernel.ValueObjects;
 using Skillup.Shared.Abstractions.Time;
 using System.Text.Json;
@@ -37,7 +37,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
 
         private IEnumerable<Course> CreateCourses()
         {
-            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data", "JsonFiles");
+            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
 
             var jsonString = File.ReadAllText(Path.Combine(path, "course-seeder-data.json"));
             JsonSerializerOptions options = new()
