@@ -7,6 +7,33 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Content Include="Seeders\Data\article-seeder-data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Seeders\Data\assignment-seeder-data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Seeders\Data\courseUser-seeder-data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+		<Content Include="Seeders\Data\category-seeder-data.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Seeders\Data\course-seeder-data.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Seeders\Data\question-seeder-data.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Seeders\Data\quiz-seeder-data.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Seeders\Data\video-seeder-data.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+    </ItemGroup>
+
+    <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
     </ItemGroup>
 
