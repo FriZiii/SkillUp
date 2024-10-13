@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Auth.Core.Entities;
-using Skillup.Modules.Auth.Core.Exceptions;
 using Skillup.Modules.Auth.Core.Repositories;
 using Skillup.Shared.Abstractions.Auth;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Auth.Core.DAL.Repositories
 {

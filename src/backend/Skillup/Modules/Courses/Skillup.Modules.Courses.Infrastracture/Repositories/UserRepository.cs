@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.UserEntities;
 using Skillup.Modules.Courses.Core.Interfaces;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Courses.Infrastracture.Repositories
 {
@@ -15,6 +16,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             _users = _context.Users;
         }
 
+        public async Task<User?> GetById(Guid userId)
+            => await _users.FirstOrDefaultAsync(_ => _.Id == userId);
+
         public async Task Add(User user)
         {
             await _users.AddAsync(user);
@@ -23,7 +27,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task Edit(User user)
         {
-            var userToEdit = await _users.FirstOrDefaultAsync(x => x.Id == user.Id) ?? throw new Exception(); //TODO: custom exception
+            var userToEdit = await _users.FirstOrDefaultAsync(x => x.Id == user.Id) ?? throw new UserNotFoundException(user.Id);
 
             userToEdit.Email = user.Email;
             userToEdit.FirstName = user.FirstName;
@@ -36,7 +40,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task EditUserPrivacySettings(Guid userId, PrivacySettings privacySettings)
         {
-            var userToEdit = await _users.FirstOrDefaultAsync(x => x.Id == userId) ?? throw new Exception(); //TODO: custom exception
+            var userToEdit = await _users.FirstOrDefaultAsync(x => x.Id == userId) ?? throw new UserNotFoundException(userId);
 
             userToEdit.PrivacySettings = privacySettings;
 

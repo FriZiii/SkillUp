@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System.Text.Json.Serialization;
 
-namespace Skillup.Modules.Courses.Core.Requests
+namespace Skillup.Modules.Courses.Core.Requests.Commands
 {
     public record class EditUserPrivacySettingsRequest(bool IsAccountPublicForLoggedInUsers, bool ShowCoursesOnUserProfile) : IRequest
     {

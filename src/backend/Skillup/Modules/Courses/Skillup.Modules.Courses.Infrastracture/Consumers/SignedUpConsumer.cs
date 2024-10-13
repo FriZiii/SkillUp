@@ -1,6 +1,6 @@
 ﻿using MassTransit;
 using MediatR;
-using Skillup.Modules.Courses.Core.Requests;
+using Skillup.Modules.Courses.Core.Requests.Commands;
 using Skillup.Shared.Abstractions.Events.Auth;
 
 namespace Skillup.Modules.Courses.Infrastracture.Consumers

@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Skillup.Modules.Courses.Core.Entities.UserEntities;
 using Skillup.Modules.Courses.Core.Interfaces;
-using Skillup.Modules.Courses.Core.Requests;
+using Skillup.Modules.Courses.Core.Requests.Commands;
 
 namespace Skillup.Modules.Courses.Application.Features.Commands
 {

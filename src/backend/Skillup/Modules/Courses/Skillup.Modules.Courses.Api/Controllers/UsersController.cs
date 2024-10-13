@@ -1,7 +1,8 @@
-﻿using MassTransit.Mediator;
+﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Skillup.Modules.Courses.Core.Requests;
+using Skillup.Modules.Courses.Core.Requests.Commands;
+using Skillup.Modules.Courses.Core.Requests.Queries;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Courses.Api.Controllers
@@ -12,24 +13,34 @@ namespace Skillup.Modules.Courses.Api.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
-        [HttpPut("{UserId}")]
+        [HttpGet("{userId}")]
+        [SwaggerOperation("Get user by id")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetUserById(Guid userId, [FromQuery] bool details = false)
+        {
+            return Ok(await _mediator.Send(new GetUserByIdRequest(userId, details)));
+        }
+
+        [HttpPut("{userId}")]
         [SwaggerOperation("Edit user")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> EditUser(EditUserRequest request)
+        public async Task<IActionResult> EditUser(Guid userId, EditUserRequest request)
         {
-            request.UserId = request.UserId;
+            request.UserId = userId;
             await _mediator.Send(request);
-            return Ok(request);
+
+            return Ok();
         }
 
-        [HttpPut("{UserId}/Privacy-Settings")]
+        [HttpPut("{userId}/Privacy-Settings")]
         [SwaggerOperation("Edit privacy settings")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> EditPrivacySettings(EditUserPrivacySettingsRequest request)
+        public async Task<IActionResult> EditPrivacySettings(Guid userId, EditUserPrivacySettingsRequest request)
         {
-            request.UserId = request.UserId;
+            request.UserId = userId;
             await _mediator.Send(request);
             return Ok(request);
         }
