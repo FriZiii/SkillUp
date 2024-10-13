@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Installing .NET SDK",
+    "isFree": true,
+    "isPublished": true,
+    "sectionTitle": "Introduction to C# and .NET Framework",
+    "Video": {
+      "url": "https://www.youtube.com/watch?v=md6YepdRfoA&ab_channel=afilmbykirk"
+    }
+  },
+  {
+    "title": "Setting up Visual Studio",
+    "isFree": true,
+    "isPublished": true,
+    "sectionTitle": "Introduction to C# and .NET Framework",
+    "Video": {
+      "url": "https://www.youtube.com/watch?v=md6YepdRfoA&ab_channel=afilmbykirk"
+    }
+  },
+  {
+    "title": "First C# Program: \"Hello World\"",
+    "isFree": true,
+    "isPublished": true,
+    "sectionTitle": "Introduction to C# and .NET Framework",
+    "Video": {
+      "url": "https://www.youtube.com/watch?v=md6YepdRfoA&ab_channel=afilmbykirk"
+    }
+  },
+  {
+    "title": "Numbers and Dates",
+    "isFree": true,
+    "isPublished": true,
+    "sectionTitle": "Basic Grammar and Sentence Structure",
+    "Video": {
+      "url": "https://www.youtube.com/watch?v=md6YepdRfoA&ab_channel=afilmbykirk"
+    }
+  }
+]

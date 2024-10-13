@@ -1,0 +1,116 @@
+[
+  {
+    "name": "Languages",
+    "subcategories": [
+      { "name": "English" },
+      { "name": "German" },
+      { "name": "Spanish" },
+      { "name": "French" },
+      { "name": "Other" }
+    ]
+  },
+  {
+    "name": "Programming",
+    "subcategories": [
+      { "name": "Basics of programming" },
+      { "name": "Game development" },
+      { "name": "Web development" },
+      { "name": "Mobile development" },
+      { "name": "Databases" },
+      { "name": "Artificial intelligence" },
+      { "name": "Cybersecurity" },
+      { "name": "Other" }
+    ]
+  },
+  {
+    "name": "Self-development",
+    "subcategories": [
+      { "name": "Professional development" },
+      { "name": "Motivation" },
+      { "name": "Health" },
+      { "name": "Sports" },
+      { "name": "Creativity & hobbies" },
+      { "name": "Other" }
+    ]
+  },
+  {
+    "name": "Business and managing",
+    "subcategories": [
+      { "name": "Project management" },
+      { "name": "Marketing" },
+      { "name": "Finance" },
+      { "name": "HR & recruitment" },
+      { "name": "Other" }
+    ]
+  },
+  {
+    "name": "Science",
+    "subcategories": [
+      { "name": "Mathematics" },
+      { "name": "Physics" },
+      { "name": "Biology" },
+      { "name": "Chemistry" },
+      { "name": "Engineering" },
+      { "name": "Other" }
+    ]
+  },
+  {
+    "name": "Mathematics",
+    "subcategories": [
+      { "name": "Algebra" },
+      { "name": "Analysis" },
+      { "name": "Statistics" },
+      { "name": "Probability" },
+      { "name": "Discrete mathematics" },
+      { "name": "Other" }
+    ]
+  },
+  {
+    "name": "Humanities",
+    "subcategories": [
+      { "name": "Philosophy" },
+      { "name": "History" },
+      { "name": "Art history" },
+      { "name": "Literature" },
+      { "name": "Culture" },
+      { "name": "Religions" },
+      { "name": "Law" },
+      { "name": "Other" }
+    ]
+  },
+  {
+    "name": "Art",
+    "subcategories": [
+      { "name": "Literature" },
+      { "name": "Music" },
+      { "name": "Visual arts" },
+      { "name": "Other" }
+    ]
+  },
+  {
+    "name": "Teaching",
+    "subcategories": [
+      { "name": "Teaching methods" },
+      { "name": "Online teaching" },
+      { "name": "Teaching children & teenagers" },
+      { "name": "Other" }
+    ]
+  },
+  {
+    "name": "Applications",
+    "subcategories": [
+      { "name": "Microsoft" },
+      { "name": "Apple" },
+      { "name": "Autodesk" },
+      { "name": "Adobe" },
+      { "name": "Google" },
+      { "name": "Other" }
+    ]
+  },
+  {
+    "name": "Other",
+    "subcategories": [
+      { "name": "Other" }
+    ]
+  }
+]
