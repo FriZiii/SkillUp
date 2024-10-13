@@ -1,4 +1,5 @@
 ﻿using Skillup.Modules.Auth.Core.Entities;
+using Skillup.Shared.Abstractions.Auth;
 
 namespace Skillup.Modules.Auth.Core.Repositories
 {
@@ -9,5 +10,7 @@ namespace Skillup.Modules.Auth.Core.Repositories
         Task Add(User user);
         Task Update(User user);
         Task ChangeState(Guid userId, UserState state);
+        Task ChangeRole(Guid userId, UserRole role);
+        Task<UserRole> GetUserRole(Guid userId);
     }
 }

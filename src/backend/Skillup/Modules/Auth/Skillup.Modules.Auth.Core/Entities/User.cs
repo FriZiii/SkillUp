@@ -1,13 +1,15 @@
-﻿using Skillup.Shared.Abstractions.Kernel.ValueObjects;
+﻿using Skillup.Shared.Abstractions.Auth;
+using Skillup.Shared.Abstractions.Kernel.ValueObjects;
 
 namespace Skillup.Modules.Auth.Core.Entities
 {
     internal class User
     {
-        public User(Guid id, Email email, UserState state, DateTime createdAt, Guid activationToken, DateTime tokenExpiration)
+        public User(Guid id, Email email, UserRole role, UserState state, DateTime createdAt, Guid activationToken, DateTime tokenExpiration)
         {
             Id = id;
             Email = email;
+            Role = role;
             State = state;
             CreatedAt = createdAt;
             ActivationToken = activationToken;
@@ -17,12 +19,10 @@ namespace Skillup.Modules.Auth.Core.Entities
         public Guid Id { get; set; }
         public Email Email { get; set; }
         public string Password { get; set; }
+        public UserRole Role { get; set; }
         public UserState State { get; set; }
         public DateTime CreatedAt { get; set; }
         public Guid ActivationToken { get; set; }
         public DateTime TokenExpiration { get; set; }
-
-        //public Role Role { get; set; }
-        //public string RoleId { get; set; }
     }
 }

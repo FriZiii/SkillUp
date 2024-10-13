@@ -45,7 +45,7 @@ namespace Skillup.Shared.Infrastructure.Auth
             return _tokenHandler.ValidateToken(refreshToken, tokenValidationParameters, out _);
         }
 
-        public static JsonWebToken CreateToken(AuthOptions options, Guid userId, DateTime now, int expireSeconds, string? role = null, IDictionary<string, IEnumerable<string>>? claims = null)
+        public static JsonWebToken CreateToken(AuthOptions options, Guid userId, DateTime now, int expireSeconds, UserRole? role = null, IDictionary<string, IEnumerable<string>>? claims = null)
         {
             var expires = now.AddSeconds(expireSeconds);
             var jwtClaims = BuildClaims(options, userId, now, role, claims);
@@ -63,7 +63,7 @@ namespace Skillup.Shared.Infrastructure.Auth
 
             var token = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            return new JsonWebToken(token, new DateTimeOffset(expires).ToUnixTimeMilliseconds(), userId, role ?? string.Empty, claims ?? EmptyClaims);
+            return new JsonWebToken(token, new DateTimeOffset(expires).ToUnixTimeMilliseconds(), userId, role, claims ?? EmptyClaims);
         }
 
         public static Claim? GetClaimFromToken(string token, string jwtClaimName)
@@ -73,7 +73,7 @@ namespace Skillup.Shared.Infrastructure.Auth
             return userIdClaim;
         }
 
-        private static List<Claim> BuildClaims(AuthOptions options, Guid userId, DateTime now, string? role, IDictionary<string, IEnumerable<string>>? claims)
+        private static List<Claim> BuildClaims(AuthOptions options, Guid userId, DateTime now, UserRole? userRole = null, IDictionary<string, IEnumerable<string>>? claims = null)
         {
             var jwtClaims = new List<Claim>
             {
@@ -84,9 +84,9 @@ namespace Skillup.Shared.Infrastructure.Auth
                 new(JwtRegisteredClaimNames.Aud, options.ValidAudience)
             };
 
-            if (!string.IsNullOrWhiteSpace(role))
+            if (userRole != null)
             {
-                jwtClaims.Add(new Claim(ClaimTypes.Role, role));
+                jwtClaims.Add(new(ClaimTypes.Role, userRole.Value.ToString()));
             }
 
             if (claims?.Any() == true)

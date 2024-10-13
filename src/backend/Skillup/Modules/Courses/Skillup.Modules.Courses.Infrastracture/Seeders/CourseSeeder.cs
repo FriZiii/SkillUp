@@ -30,31 +30,31 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                 await _categoriesSeeder.Seed();
             }
 
-            _categories = await _context.Categories.ToListAsync();
-            _subCategories = await _context.Subcategories.ToListAsync();
-
-            if (!await _courses.AnyAsync())
-            {
-                await SeedCourses();
-            }
-
-            if (!await _context.Sections.AnyAsync())
-            {
-                var _sectionsSeeder = new SectionsSeeder(_context);
-                await _sectionsSeeder.Seed();
-            }
-
-            if (!await _context.Elements.AnyAsync())
-            {
-                var _elementsSeeder = new ElementsSeeder(_context);
-                await _elementsSeeder.Seed();
-            }
-
-            if (!await _context.QuizQuestionExercises.AnyAsync() && !await _context.QuestionAnswerExercises.AnyAsync() && !await _context.QuestionAnswerExercises.AnyAsync())
-            {
-                var _exerciseSeeder = new ExerciseSeeder(_context);
-                await _exerciseSeeder.Seed();
-            }
+            //_categories = await _context.Categories.ToListAsync();
+            //_subCategories = await _context.Subcategories.ToListAsync();
+            //
+            //if (!await _courses.AnyAsync())
+            //{
+            //    await SeedCourses();
+            //}
+            //
+            //if (!await _context.Sections.AnyAsync())
+            //{
+            //    var _sectionsSeeder = new SectionsSeeder(_context);
+            //    await _sectionsSeeder.Seed();
+            //}
+            //
+            //if (!await _context.Elements.AnyAsync())
+            //{
+            //    var _elementsSeeder = new ElementsSeeder(_context);
+            //    await _elementsSeeder.Seed();
+            //}
+            //
+            //if (!await _context.QuizQuestionExercises.AnyAsync() && !await _context.QuestionAnswerExercises.AnyAsync() && !await _context.QuestionAnswerExercises.AnyAsync())
+            //{
+            //    var _exerciseSeeder = new ExerciseSeeder(_context);
+            //    await _exerciseSeeder.Seed();
+            //}
         }
 
         private async Task SeedCourses()
@@ -91,7 +91,8 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
 
         private Course CreateCourse(string title, string categoryName, string subcategoryName, CourseDetails details)
         {
-            return new Course(title, _categories.First(x => x.Name == categoryName).Id, _subCategories.First(x => x.Name == subcategoryName).Id, _clock.CurrentDate(), details);
+            //TODO : add author
+            return new Course(new Guid(), title, _categories.First(x => x.Name == categoryName).Id, _subCategories.First(x => x.Name == subcategoryName).Id, _clock.CurrentDate(), details);
         }
 
         private CourseDetails CreateCourseDetails(

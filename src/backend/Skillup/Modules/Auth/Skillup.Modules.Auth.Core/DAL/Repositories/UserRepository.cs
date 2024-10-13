@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Auth.Core.Entities;
-using Skillup.Modules.Auth.Core.Exceptions;
 using Skillup.Modules.Auth.Core.Repositories;
+using Skillup.Shared.Abstractions.Auth;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Auth.Core.DAL.Repositories
 {
@@ -39,6 +40,19 @@ namespace Skillup.Modules.Auth.Core.DAL.Repositories
             var userToChange = await _users.FirstOrDefaultAsync(x => x.Id.Equals(userId)) ?? throw new UserNotFoundException(userId);
             userToChange.State = state;
             await _context.SaveChangesAsync();
+        }
+
+        public async Task ChangeRole(Guid userId, UserRole role)
+        {
+            var userToChange = await _users.FirstOrDefaultAsync(x => x.Id.Equals(userId)) ?? throw new UserNotFoundException(userId);
+            userToChange.Role = role;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<UserRole> GetUserRole(Guid userId)
+        {
+            var user = await _users.FirstOrDefaultAsync(x => x.Equals(userId)) ?? throw new UserNotFoundException(userId);
+            return user.Role;
         }
     }
 }

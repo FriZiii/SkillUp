@@ -1,8 +1,6 @@
-﻿using Skillup.Shared.Abstractions.Exceptions;
-
-namespace Skillup.Modules.Auth.Core.Exceptions
+﻿namespace Skillup.Shared.Abstractions.Exceptions.GlobalExceptions
 {
-    internal class UserNotFoundException : SkillupException
+    public class UserNotFoundException : SkillupException
     {
         public string Email { get; }
         public Guid UserId { get; }
