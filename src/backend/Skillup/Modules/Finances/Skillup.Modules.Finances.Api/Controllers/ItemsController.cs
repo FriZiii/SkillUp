@@ -7,6 +7,7 @@ using Skillup.Modules.Finances.Core.Entities;
 using Skillup.Modules.Finances.Core.Features.Requests;
 using Skillup.Shared.Abstractions.Auth;
 using Skillup.Shared.Infrastructure.Auth;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Finances.Api.Controllers
 {
@@ -24,6 +25,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
         }
 
         [HttpGet("{itemId}")]
+        [SwaggerOperation("Get item by id")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetItemById(Guid itemId)
@@ -32,14 +34,16 @@ namespace Skillup.Modules.Finances.Api.Controllers
         }
 
         [HttpGet]
+        [SwaggerOperation("Get items by type")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetItemById([FromQuery] ItemType itemType)
+        public async Task<IActionResult> GetItemsByType([FromQuery] ItemType itemType)
         {
             return Ok(await _mediator.Send(new GetItemsByTypeRequest(itemType)));
         }
 
         [HttpPut("{itemId}")]
+        [SwaggerOperation("Edit item price")]
         [Authorize(Roles = nameof(UserRole.CourseAuthor))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
