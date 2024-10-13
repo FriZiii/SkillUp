@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
+using Skillup.Modules.Courses.Infrastracture.Seeders.Data;
+using System.Text.Json;
 
 namespace Skillup.Modules.Courses.Infrastracture.Seeders
 {
@@ -9,6 +11,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
         private readonly CoursesDbContext _context;
         private readonly DbSet<Course> _courses;
         private readonly DbSet<Section> _sections;
+        private List<Course> _courseList = new();
 
         public SectionsSeeder(CoursesDbContext context)
         {
@@ -18,90 +21,41 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
         }
         public async Task Seed()
         {
-            var course1 = await _courses.FirstOrDefaultAsync(c => c.Title == "C# from basics");
-            var course2 = await _courses.FirstOrDefaultAsync(c => c.Title == "Introduction to English");
-            var course3 = await _courses.FirstOrDefaultAsync(c => c.Title == "Web Development for Beginners");
-
-            var sectionsToAdd = new List<Section>()
+            if (!await _sections.AnyAsync())
             {
-                new Section()
-                {
-                    Title = "Introduction to C# and .NET Framework",
-                    CourseId = course1.Id
-                },
-                new Section()
-                {
-                    Title = "Basic Syntax and Data Types",
-                    CourseId = course1.Id
-                },
-                new Section()
-                {
-                    Title = "Control Structures and Loops",
-                    CourseId = course1.Id
-                },
-                new Section()
-                {
-                    Title = "Working with Classes and Objects",
-                    CourseId = course1.Id
-                },
-                new Section()
-                {
-                    Title = "Error Handling and Debugging",
-                    CourseId = course1.Id
-                },
-                new Section()
-                {
-                    Title = "Basic Grammar and Sentence Structure",
-                    CourseId = course2.Id
-                },
-                new Section()
-                {
-                    Title = "Common Vocabulary and Phrases",
-                    CourseId = course2.Id
-                },
-                new Section()
-                {
-                    Title = "Conversational English",
-                    CourseId = course2.Id
-                },
-                new Section()
-                {
-                    Title = "Reading and Writing in English",
-                    CourseId = course2.Id
-                },
-                new Section()
-                {
-                    Title = "Listening and Comprehension Skills",
-                    CourseId = course2.Id
-                },
-                //new Section()
-                //{
-                //    Title = "Introduction to Web Technologies",
-                //    CourseId = course3.Id
-                //},
-                //new Section()
-                //{
-                //    Title = "HTML Basics and Structure",
-                //    CourseId = course3.Id
-                //},
-                //new Section()
-                //{
-                //    Title = "CSS for Styling Web Pages",
-                //    CourseId = course3.Id
-                //},
-                //new Section()
-                //{
-                //    Title = "Introduction to JavaScript",
-                //    CourseId = course3.Id
-                //},
-                //new Section()
-                //{
-                //    Title = "Building a Simple Website",
-                //    CourseId = course3.Id
-                //}
-            };
-            await _sections.AddRangeAsync(sectionsToAdd);
-            await _context.SaveChangesAsync();
+                _courseList = await _courses.ToListAsync();
+                await _sections.AddRangeAsync(CreateSections());
+                await _context.SaveChangesAsync();
+            }
         }
+
+        public IEnumerable<Section> CreateSections()
+        {
+            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data", "JsonFiles");
+
+            var jsonString = File.ReadAllText(Path.Combine(path, "course-seeder-data.json"));
+            JsonSerializerOptions options = new()
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            var sections = new List<Section>();
+            var courseData = JsonSerializer.Deserialize<List<CourseJsonModel>>(jsonString, options);
+
+            foreach (var course in courseData!)
+            {
+                foreach (var section in course.Sections)
+                {
+                    sections.Add(new Section()
+                    {
+                        Title = section.Title,
+                        CourseId = _courseList.First(x => x.Title == course.Title).Id
+                    });
+                }
+            }
+
+            return sections;
+        }
+
     }
 }

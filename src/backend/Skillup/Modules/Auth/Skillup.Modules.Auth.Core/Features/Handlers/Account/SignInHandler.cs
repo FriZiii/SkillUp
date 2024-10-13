@@ -10,13 +10,13 @@ using Skillup.Shared.Abstractions.Auth;
 namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
 {
     internal class SignInHandler(IUserRepository userRepository,
-        IPasswordHasher<User> passwordHasher,
+        IPasswordHasher<Entities.User> passwordHasher,
         IAuthManager authManager,
         IAuthTokenStorage authTokenStorage
         ) : IRequestHandler<SignInRequest>
     {
         private readonly IUserRepository _userRepository = userRepository;
-        private readonly IPasswordHasher<User> _passwordHasher = passwordHasher;
+        private readonly IPasswordHasher<Entities.User> _passwordHasher = passwordHasher;
         private readonly IAuthManager _authManager = authManager;
         private readonly IAuthTokenStorage _authTokenStorage = authTokenStorage;
 

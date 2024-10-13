@@ -7,6 +7,43 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Seeders\Data\JsonFiles\article-seeder-data.json" />
+		<None Remove="Seeders\Data\category-seeder-data.json" />
+		<None Remove="Seeders\Data\course-seeder-data.json" />
+		<None Remove="Seeders\Data\JsonFiles\assignment-seeder-data.json" />
+		<None Remove="Seeders\Data\JsonFiles\question-seeder-data.json" />
+		<None Remove="Seeders\Data\JsonFiles\quiz-seeder-data.json" />
+		<None Remove="Seeders\Data\JsonFiles\video-seeder-data.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Seeders\Data\JsonFiles\article-seeder-data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Seeders\Data\JsonFiles\assignment-seeder-data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+		<Content Include="Seeders\Data\JsonFiles\category-seeder-data.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Seeders\Data\JsonFiles\course-seeder-data.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Seeders\Data\JsonFiles\article-seeder-data.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Seeders\Data\JsonFiles\question-seeder-data.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Seeders\Data\JsonFiles\quiz-seeder-data.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Seeders\Data\JsonFiles\video-seeder-data.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+    </ItemGroup>
+
+    <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
     </ItemGroup>
 

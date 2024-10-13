@@ -33,7 +33,7 @@ namespace Skillup.Modules.Auth.Core.Seeders
                    CreateUser("user@skillup.com", "Skillup123!", UserRole.User,UserState.Active),
                    CreateUser("admin@skillup.com", "Skillup123!", UserRole.Admin,UserState.Active),
                    CreateUser("moderator@skillup.com", "Skillup123!", UserRole.Moderator,UserState.Active),
-                   CreateUser("author@skillup.com", "Skillup123!", UserRole.CourseAuthor,UserState.Active),
+                   CreateUser(new Guid("cece0863-6203-4a9e-b30a-57cbbac3c116"), "author@skillup.com", "Skillup123!", UserRole.CourseAuthor,UserState.Active),
                 };
 
                 await _users.AddRangeAsync(users);
@@ -46,6 +46,17 @@ namespace Skillup.Modules.Auth.Core.Seeders
             var now = _clock.CurrentDate();
 
             var user = new User(Guid.NewGuid(), email, role, state, now, Guid.NewGuid(), now.AddHours(24));
+            var hashedPassword = _passwordHasher.HashPassword(user, password);
+            user.Password = hashedPassword;
+
+            return user;
+        }
+
+        private User CreateUser(Guid id, string email, string password, UserRole role, UserState state)
+        {
+            var now = _clock.CurrentDate();
+
+            var user = new User(id, email, role, state, now, Guid.NewGuid(), now.AddHours(24));
             var hashedPassword = _passwordHasher.HashPassword(user, password);
             user.Password = hashedPassword;
 
