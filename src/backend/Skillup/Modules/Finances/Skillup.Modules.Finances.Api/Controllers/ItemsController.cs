@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Finances.Core.Entities;
-using Skillup.Modules.Finances.Core.Features.Requests;
+using Skillup.Modules.Finances.Core.Features.Requests.Commannds;
+using Skillup.Modules.Finances.Core.Features.Requests.Queries;
 using Skillup.Shared.Abstractions.Auth;
 using Skillup.Shared.Infrastructure.Auth;
 using Swashbuckle.AspNetCore.Annotations;
@@ -57,7 +58,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
             request.ItemId = itemId;
             await _mediator.Send(request);
 
-            var editedItem = _mediator.Send(new GetItemByIdRequest(itemId));
+            var editedItem = await _mediator.Send(new GetItemByIdRequest(itemId));
             return Ok(editedItem);
         }
     }

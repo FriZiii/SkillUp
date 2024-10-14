@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Skillup.Modules.Finances.Core.Exceptions;
-using Skillup.Modules.Finances.Core.Features.Requests;
+using Skillup.Modules.Finances.Core.Features.Requests.Commannds;
 using Skillup.Modules.Finances.Core.Repositories;
 using Skillup.Modules.Finances.Core.ValueObjects;
 
-namespace Skillup.Modules.Finances.Core.Features.Handlers
+namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 {
     internal class EditItemPriceHandler : IRequestHandler<EditItemPriceRequest>
     {

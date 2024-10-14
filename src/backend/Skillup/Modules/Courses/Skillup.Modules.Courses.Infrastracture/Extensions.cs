@@ -29,13 +29,15 @@ namespace Skillup.Modules.Courses.Infrastracture
                 .AddSeeder<CourseModuleSeeder>()
                 .AddPostgres<CoursesDbContext>()
                 .AddConsumer<SignedUpConsumer>()
+                .AddConsumer<CoursePurchasedConsumer>()
                 .AddScoped<ICourseRepository, CourseRepository>()
                 .AddScoped<ICategoryRepository, CategoryRepository>()
                 .AddScoped<ISubcategoryRepository, SubcategoryRepository>()
                 .AddScoped<ISectionRepository, SectionRepository>()
                 .AddScoped<IElementRepository, ElementRepository>()
                 .AddScoped<IUserRepository, UserRepository>()
-                .AddScoped<ISectionRepository, SectionRepository>();
+                .AddScoped<ISectionRepository, SectionRepository>()
+                .AddScoped<IUserPurchasedCourseRepository, UserPurchasedCourseRepository>();
         }
     }
 }

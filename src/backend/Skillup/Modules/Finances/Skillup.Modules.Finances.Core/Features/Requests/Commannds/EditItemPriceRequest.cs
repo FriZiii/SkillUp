@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System.Text.Json.Serialization;
 
-namespace Skillup.Modules.Finances.Core.Features.Requests
+namespace Skillup.Modules.Finances.Core.Features.Requests.Commannds
 {
     internal record EditItemPriceRequest(decimal Currency) : IRequest
     {

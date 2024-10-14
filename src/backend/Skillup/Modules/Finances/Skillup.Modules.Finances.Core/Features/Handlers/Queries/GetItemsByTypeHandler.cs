@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Skillup.Modules.Finances.Core.Entities;
-using Skillup.Modules.Finances.Core.Features.Requests;
+using Skillup.Modules.Finances.Core.Features.Requests.Queries;
 using Skillup.Modules.Finances.Core.Repositories;
 
-namespace Skillup.Modules.Finances.Core.Features.Handlers
+namespace Skillup.Modules.Finances.Core.Features.Handlers.Queries
 {
     internal class GetItemsByTypeHandler : IRequestHandler<GetItemsByTypeRequest, IEnumerable<Item>>
     {
