@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
+using Skillup.Modules.Courses.Infrastracture.Seeders.Data.JsonModels;
 using Skillup.Shared.Abstractions.Seeder;
+using System.Text.Json;
 
 namespace Skillup.Modules.Courses.Infrastracture.Seeders
 {
@@ -9,6 +11,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
         private readonly CoursesDbContext _context;
         private DbSet<Category> _categories;
         private DbSet<Subcategory> _subCategories;
+        private JsonSerializerOptions _jsonSerializerOptions = new() { PropertyNameCaseInsensitive = true };
+        private List<CategoryJsonModel> categoryData = new();
+        private List<Category> _categoriesList = new();
 
         public CategorySeeder(CoursesDbContext context)
         {
@@ -27,44 +32,43 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
 
         private async Task SeedCategories()
         {
-            var categoriesToAdd = new List<Category>();
-            var subcategoriesToAdd = new List<Subcategory>();
-            var categoriesWithSubcategories = new Dictionary<string, List<string>>()
-            {
-                { "Languages", [ "English", "German", "Spanish", "French", "Other" ] },
-                { "Programming", ["Basics of programming", "Game development", "Web development", "Mobile development", "Databases", "Artificial intelligence", "Cybersecurity", "Other" ] },
-                { "Self-development", [ "Professional development", "Motivation", "Health", "Sports", "Creativity & hobbies", "Other" ] },
-                { "Business and managing",[ "Project management", "Marketing", "Finance", "HR & recruitment", "Other" ] },
-                { "Science",[ "Mathematics", "Physics", "Biology", "Chemistry", "Engineering", "Other" ] },
-                { "Mathematics",[ "Algebra", "Analysis", "Statistics", "Probability", "Discrete mathematics" ] },
-                { "Humanities",[ "Philosophy", "History", "Art history", "Literature", "Culture", "Religions", "Law", "Other" ] },
-                { "Art",[ "Literature", "Music", "Visual arts", "Other" ] },
-                { "Teaching",[ "Teaching methods", "Online teaching", "Teaching children & teenagers", "Other" ] },
-                { "Applications",[ "Microsoft", "Apple", "Autodesk", "Adobe", "Google", "Other" ] }
-            };
 
-            foreach (var categoryWithSubcategory in categoriesWithSubcategories)
-            {
-                var category = new Category
-                {
-                    Name = categoryWithSubcategory.Key
-                };
-                categoriesToAdd.Add(category);
+            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
 
-                foreach (var subCategoryName in categoryWithSubcategory.Value)
+            var jsonString = File.ReadAllText(Path.Combine(path, "category-seeder-data.json"));
+            categoryData = JsonSerializer.Deserialize<List<CategoryJsonModel>>(jsonString, _jsonSerializerOptions);
+
+            await _categories.AddRangeAsync(CreateCategories(categoryData!));
+            await _context.SaveChangesAsync();
+            _categoriesList = await _categories.ToListAsync();
+
+            await _subCategories.AddRangeAsync(CreateSubcategories(categoryData!));
+            await _context.SaveChangesAsync();
+        }
+
+        public List<Category> CreateCategories(List<CategoryJsonModel> categoryData)
+        {
+            return categoryData!.Select(CreateCategoryFromJson).ToList();
+        }
+
+        private Category CreateCategoryFromJson(CategoryJsonModel jsonModel)
+        {
+            return new Category() { Name = jsonModel.Name };
+        }
+
+        public IEnumerable<Subcategory> CreateSubcategories(List<CategoryJsonModel> categoryData)
+        {
+            var subcategories = new List<Subcategory>();
+
+            foreach (var category in categoryData!)
+            {
+                foreach (var subcategory in category.Subcategories)
                 {
-                    var subCategory = new Subcategory
-                    {
-                        Name = subCategoryName,
-                        Category = category
-                    };
-                    subcategoriesToAdd.Add(subCategory);
+                    subcategories.Add(new Subcategory() { Name = subcategory.Name, CategoryId = _categoriesList.First(x => x.Name == category.Name).Id });
                 }
             }
 
-            await _categories.AddRangeAsync(categoriesToAdd);
-            await _subCategories.AddRangeAsync(subcategoriesToAdd);
-            await _context.SaveChangesAsync();
+            return subcategories;
         }
     }
 }

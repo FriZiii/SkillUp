@@ -1,5 +1,6 @@
 [
   {
+    "authorId" :  "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "C# from Basics",
     "categoryName": "Programming",
     "subcategoryName": "Basics of programming",
@@ -20,9 +21,17 @@
         "Beginners in programming"
       ],
       "thumbnailUrl": "https://cdn.pixabay.com/photo/2023/02/04/00/01/ai-generated-7766114_1280.jpg"
-    }
+    },
+    "sections": [
+      { "title": "Introduction to C# and .NET Framework" },
+      { "title": "Basic Syntax and Data Types" },
+      { "title": "Control Structures and Loops" },
+      { "title": "Working with Classes and Objects" },
+      { "title": "Error Handling and Debugging" }
+    ]
   },
   {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Introduction to German Language",
     "categoryName": "Languages",
     "subcategoryName": "German",
@@ -43,9 +52,17 @@
         "Travelers to Germany"
       ],
       "thumbnailUrl": "https://cdn.pixabay.com/photo/2016/11/29/12/54/berlin-1867562_1280.jpg"
-    }
+    },
+    "sections": [
+      { "title": "Basic Grammar and Sentence Structure" },
+      { "title": "Common Vocabulary and Phrases" },
+      { "title": "Conversational English" },
+      { "title": "Reading and Writing in English" },
+      { "title": "Listening and Comprehension Skills" }
+    ]
   },
   {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Introduction to Artificial Intelligence",
     "categoryName": "Programming",
     "subcategoryName": "Artificial intelligence",
@@ -66,9 +83,17 @@
         "Aspiring data scientists"
       ],
       "thumbnailUrl": "https://cdn.pixabay.com/photo/2020/11/06/18/18/artificial-intelligence-5728990_1280.jpg"
-    }
+    },
+    "sections": [
+      { "title": "Introduction to Web Technologies" },
+      { "title": "HTML Basics and Structure" },
+      { "title": "CSS for Styling Web Pages" },
+      { "title": "Introduction to JavaScript" },
+      { "title": "Building a Simple Website" }
+    ]
   },
   {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Project Management with Agile and Scrum",
     "categoryName": "Business and managing",
     "subcategoryName": "Project management",
@@ -89,9 +114,11 @@
         "Team leaders in Agile environments"
       ],
       "thumbnailUrl": "https://cdn.pixabay.com/photo/2017/08/06/09/53/project-2594586_1280.jpg"
-    }
+    },
+    "sections": []
   },
   {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Algebra Essentials",
     "categoryName": "Mathematics",
     "subcategoryName": "Algebra",
@@ -112,9 +139,11 @@
         "Anyone needing a refresher in algebra"
       ],
       "thumbnailUrl": "https://cdn.pixabay.com/photo/2015/11/13/18/05/algebra-1044090_1280.jpg"
-    }
+    },
+    "sections": []
   },
   {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Creative Writing: A Beginner's Guide",
     "categoryName": "Self-development",
     "subcategoryName": "Creativity & hobbies",
@@ -135,9 +164,11 @@
         "Anyone looking to improve their writing"
       ],
       "thumbnailUrl": "https://cdn.pixabay.com/photo/2016/10/25/12/28/notes-1761384_1280.jpg"
-    }
+    },
+    "sections": []
   },
   {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Finance for Non-Financial Managers",
     "categoryName": "Business and managing",
     "subcategoryName": "Finance",
@@ -158,9 +189,11 @@
         "Small business owners"
       ],
       "thumbnailUrl": "https://cdn.pixabay.com/photo/2017/06/09/00/36/budget-2386684_1280.jpg"
-    }
+    },
+    "sections": []
   },
   {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Understanding World Religions",
     "categoryName": "Humanities",
     "subcategoryName": "Religions",
@@ -181,9 +214,11 @@
         "Students of humanities and culture"
       ],
       "thumbnailUrl": "https://cdn.pixabay.com/photo/2016/08/18/23/12/architecture-1602339_1280.jpg"
-    }
+    },
+    "sections": []
   },
   {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Basics of Cybersecurity",
     "categoryName": "Programming",
     "subcategoryName": "Cybersecurity",
@@ -204,9 +239,11 @@
         "IT enthusiasts"
       ],
       "thumbnailUrl": "https://cdn.pixabay.com/photo/2017/12/12/04/09/cyber-security-3015060_1280.jpg"
-    }
+    },
+    "sections": []
   },
   {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Physics: Classical Mechanics",
     "categoryName": "Science",
     "subcategoryName": "Physics",
@@ -227,6 +264,7 @@
         "Anyone with an interest in classical mechanics"
       ],
       "thumbnailUrl": "https://cdn.pixabay.com/photo/2016/09/29/08/20/earth-1702735_1280.jpg"
-    }
+    },
+    "sections": []
   }
 ]

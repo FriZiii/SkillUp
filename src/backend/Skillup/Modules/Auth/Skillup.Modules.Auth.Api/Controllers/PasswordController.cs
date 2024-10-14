@@ -17,7 +17,7 @@ namespace Skillup.Modules.Auth.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Change()
         {
-            // TODO
+            // TODO : PasswordController
             return NoContent();
         }
     }

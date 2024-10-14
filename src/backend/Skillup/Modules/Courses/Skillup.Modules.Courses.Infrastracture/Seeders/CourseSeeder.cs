@@ -1,21 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
-using Skillup.Modules.Courses.Infrastracture.Seeders.Data;
+using Skillup.Modules.Courses.Infrastracture.Seeders.Data.JsonModels;
 using Skillup.Shared.Abstractions.Kernel.ValueObjects;
-using Skillup.Shared.Abstractions.Seeder;
 using Skillup.Shared.Abstractions.Time;
 using System.Text.Json;
 
 namespace Skillup.Modules.Courses.Infrastracture.Seeders
 {
-    internal class CourseSeeder : ISeeder
+    internal class CourseSeeder
     {
         private readonly CoursesDbContext _context;
         private readonly DbSet<Course> _courses;
         private readonly IClock _clock;
 
-        private List<Category> _categories;
-        private List<Subcategory> _subCategories;
+        private List<Category> _categories = new();
+        private List<Subcategory> _subCategories = new();
 
         public CourseSeeder(CoursesDbContext context, IClock clock)
         {
@@ -26,46 +25,17 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
 
         public async Task Seed()
         {
-            if (!await _context.Categories.AnyAsync() && !await _context.Subcategories.AnyAsync())
-            {
-                var _categoriesSeeder = new CategorySeeder(_context);
-                await _categoriesSeeder.Seed();
-            }
-
             _categories = await _context.Categories.ToListAsync();
             _subCategories = await _context.Subcategories.ToListAsync();
 
             if (!await _courses.AnyAsync())
             {
-                await SeedCourses();
-            }
-
-            if (!await _context.Sections.AnyAsync())
-            {
-                var _sectionsSeeder = new SectionsSeeder(_context);
-                await _sectionsSeeder.Seed();
-            }
-
-            if (!await _context.Elements.AnyAsync())
-            {
-                var _elementsSeeder = new ElementsSeeder(_context);
-                await _elementsSeeder.Seed();
-            }
-
-            if (!await _context.QuizQuestionExercises.AnyAsync() && !await _context.QuestionAnswerExercises.AnyAsync() && !await _context.QuestionAnswerExercises.AnyAsync())
-            {
-                var _exerciseSeeder = new ExerciseSeeder(_context);
-                await _exerciseSeeder.Seed();
+                await _courses.AddRangeAsync(CreateCourses());
+                await _context.SaveChangesAsync();
             }
         }
 
-        private async Task SeedCourses()
-        {
-            await _courses.AddRangeAsync(CreateCourses());
-            await _context.SaveChangesAsync();
-        }
-
-        public IEnumerable<Course> CreateCourses()
+        private IEnumerable<Course> CreateCourses()
         {
             var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
 
@@ -93,12 +63,12 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                 ThumbnailUrl = new Uri(jsonModel.Details.ThumbnailUrl)
             };
 
-            return CreateCourse(jsonModel.Title, jsonModel.CategoryName, jsonModel.SubcategoryName, details);
+            return CreateCourse(jsonModel.AuthorId, jsonModel.Title, jsonModel.CategoryName, jsonModel.SubcategoryName, details);
         }
 
-        private Course CreateCourse(string title, string categoryName, string subcategoryName, CourseDetails details)
+        private Course CreateCourse(Guid id, string title, string categoryName, string subcategoryName, CourseDetails details)
         {
-            return new Course(title, _categories.First(x => x.Name == categoryName).Id, _subCategories.First(x => x.Name == subcategoryName).Id, _clock.CurrentDate(), details);
+            return new Course(id, title, _categories.First(x => x.Name == categoryName).Id, _subCategories.First(x => x.Name == subcategoryName).Id, _clock.CurrentDate(), details);
         }
     }
 }

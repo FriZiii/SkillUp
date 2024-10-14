@@ -5,6 +5,7 @@ using Skillup.Modules.Auth.Core.Entities;
 using Skillup.Modules.Auth.Core.Exceptions;
 using Skillup.Modules.Auth.Core.Features.Commands.Account;
 using Skillup.Modules.Auth.Core.Repositories;
+using Skillup.Shared.Abstractions.Auth;
 using Skillup.Shared.Abstractions.Events.Auth;
 using Skillup.Shared.Abstractions.Time;
 
@@ -13,13 +14,13 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
     internal class SignUpHandler(IUserRepository userRepository,
         RegistrationOptions registrationOptions,
         IPublishEndpoint publishEndpoint,
-        IPasswordHasher<User> passwordHasher,
+        IPasswordHasher<Entities.User> passwordHasher,
         IClock clock) : IRequestHandler<SignUpRequest>
     {
         private readonly IUserRepository _userRepository = userRepository;
         private readonly RegistrationOptions _registrationOptions = registrationOptions;
         private readonly IPublishEndpoint _publishEndpoint = publishEndpoint;
-        private readonly IPasswordHasher<User> _passwordHasher = passwordHasher;
+        private readonly IPasswordHasher<Entities.User> _passwordHasher = passwordHasher;
         private readonly IClock _clock = clock;
 
         public async Task Handle(SignUpRequest request, CancellationToken cancellationToken)
@@ -47,11 +48,9 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
                 throw new EmailInUseException();
             }
 
-            // TODO: ROLES
-
             var now = _clock.CurrentDate();
 
-            user = new User(request.UserId, email, UserState.Inactive, now, Guid.NewGuid(), now.AddHours(24));
+            user = new Entities.User(request.UserId, email, UserRole.User, UserState.Inactive, now, Guid.NewGuid(), now.AddHours(24));
             var password = _passwordHasher.HashPassword(user, request.Password);
             user.Password = password;
 

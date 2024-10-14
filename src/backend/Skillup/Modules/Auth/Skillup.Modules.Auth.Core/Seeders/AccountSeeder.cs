@@ -2,8 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Auth.Core.DAL;
 using Skillup.Modules.Auth.Core.Entities;
+using Skillup.Modules.Auth.Core.Seeders.Data;
+using Skillup.Shared.Abstractions.Auth;
 using Skillup.Shared.Abstractions.Seeder;
 using Skillup.Shared.Abstractions.Time;
+using System.Text.Json;
 
 namespace Skillup.Modules.Auth.Core.Seeders
 {
@@ -26,10 +29,22 @@ namespace Skillup.Modules.Auth.Core.Seeders
         {
             if (!await _users.AnyAsync())
             {
+                var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
+
+                var jsonString = File.ReadAllText(Path.Combine(path, "user-seeder-data.json"));
+                JsonSerializerOptions options = new()
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                var data = JsonSerializer.Deserialize<List<UserJsonModel>>(jsonString, options);
                 var users = new List<User>()
                 {
-                   CreateUser("user@skillup.com", "User123!", UserState.Active),
-                   CreateUser("inactive-user@skillup.com", "InactiveUser123!", UserState.Inactive),
+                   CreateUser(data[0].Id, data[0].Email, "Skillup123!", UserRole.User, UserState.Inactive),
+                   CreateUser(data[1].Id, data[1].Email, "Skillup123!", UserRole.User,UserState.Active),
+                   CreateUser(data[2].Id, data[2].Email, "Skillup123!", UserRole.Admin,UserState.Active),
+                   CreateUser(data[3].Id, data[3].Email, "Skillup123!", UserRole.Moderator,UserState.Active),
+                   CreateUser(data[4].Id, data[4].Email, "Skillup123!", UserRole.CourseAuthor,UserState.Active),
                 };
 
                 await _users.AddRangeAsync(users);
@@ -37,11 +52,22 @@ namespace Skillup.Modules.Auth.Core.Seeders
             }
         }
 
-        private User CreateUser(string email, string password, UserState state)
+        private User CreateUser(string email, string password, UserRole role, UserState state)
         {
             var now = _clock.CurrentDate();
 
-            var user = new User(Guid.NewGuid(), email, state, now, Guid.NewGuid(), now.AddHours(24));
+            var user = new User(Guid.NewGuid(), email, role, state, now, Guid.NewGuid(), now.AddHours(24));
+            var hashedPassword = _passwordHasher.HashPassword(user, password);
+            user.Password = hashedPassword;
+
+            return user;
+        }
+
+        private User CreateUser(Guid id, string email, string password, UserRole role, UserState state)
+        {
+            var now = _clock.CurrentDate();
+
+            var user = new User(id, email, role, state, now, Guid.NewGuid(), now.AddHours(24));
             var hashedPassword = _passwordHasher.HashPassword(user, password);
             user.Password = hashedPassword;
 

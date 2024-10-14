@@ -2,6 +2,7 @@
 using Skillup.Modules.Auth.Core.Exceptions;
 using Skillup.Modules.Auth.Core.Features.Commands.Account;
 using Skillup.Modules.Auth.Core.Repositories;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 using Skillup.Shared.Abstractions.Time;
 
 namespace Skillup.Modules.Auth.Core.Features.Handlers.Account

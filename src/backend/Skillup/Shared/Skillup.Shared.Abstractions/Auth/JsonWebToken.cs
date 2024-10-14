@@ -5,11 +5,11 @@
         public string Token { get; set; }
         public long Expiry { get; set; }
         public Guid UserId { get; set; }
-        public string Role { get; set; }
+        public UserRole? Role { get; set; }
         public IDictionary<string, IEnumerable<string>> Claims { get; set; }
 
 
-        public JsonWebToken(string token, long expiry, Guid userId, string role, IDictionary<string, IEnumerable<string>> claims)
+        public JsonWebToken(string token, long expiry, Guid userId, UserRole? role, IDictionary<string, IEnumerable<string>> claims)
         {
             Token = token;
             Expiry = expiry;
