@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 import { definePreset } from 'primeng/themes';
 import { Aura } from 'primeng/themes/aura';
@@ -8,10 +7,12 @@ import { ButtonModule } from 'primeng/button';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ButtonModule],
+  imports: [ButtonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
+
+
 export class AppComponent {
   title = 'Skillup';
 
