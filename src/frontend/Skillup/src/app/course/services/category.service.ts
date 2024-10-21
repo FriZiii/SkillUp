@@ -1,36 +1,29 @@
-import { HttpClient } from "@angular/common/http";
-import { inject, Injectable, Signal, signal } from "@angular/core";
-import { Category } from "../models/category.model";
-import { catchError, map, tap, throwError } from "rxjs";
-import { environment } from "../../../environments/environment";
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Category } from '../models/category.model';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class CategoryService {
-    private httpClient = inject(HttpClient);
-    private _categories = signal<Category[]>([]);
+  private httpClient = inject(HttpClient);
 
-    //categories : Signal<Category[]>;
-    categories = this._categories.asReadonly();
+  private categoriesSubject = new BehaviorSubject<Category[]>([]);
+  public categories$: Observable<Category[]> =
+    this.categoriesSubject.asObservable();
 
+  constructor() {
+    this.fetchCategories();
+  }
 
-    constructor(){
-        this.fetchCategories().subscribe({
-            next: (data) => {
-                this._categories = signal(data);
-            }
-        })
-    }
-    
-    loadCategories() {
-        return this.fetchCategories();
-    }
+  getCategories(): Observable<any[]> {
+    return this.categories$;
+  }
 
-    private fetchCategories(){
-        return this.httpClient
-        .get<Category[]>(environment.apiUrl + "/Courses/Categories")
-        .pipe(
-            map((resData) => resData),
-            catchError((error) => throwError(() => new Error("Something went wrong with fetching places")))
-        )
-    }
+  private fetchCategories() {
+    this.httpClient
+      .get<Category[]>(environment.apiUrl + '/Courses/Categories')
+      .pipe(tap((categories) => this.categoriesSubject.next(categories)))
+      .subscribe();
+  }
 }
