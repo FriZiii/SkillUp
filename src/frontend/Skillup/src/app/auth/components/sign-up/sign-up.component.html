@@ -1,0 +1,36 @@
+<form
+  class="flex flex-col items-center"
+  [formGroup]="signUpForm"
+  (ngSubmit)="subbmitSignUp()"
+>
+  <p-floatLabel class="w-full">
+    <input pInputText id="email" class="w-full" formControlName="email" />
+    <label for="email">Email</label>
+  </p-floatLabel>
+
+  <div class="flex w-full">
+    <p-floatlabel class="w-2/4">
+      <p-password id="password" class="w-2/4" formControlName="password" />
+      <label for="password">Password</label>
+    </p-floatlabel>
+
+    <p-floatlabel class="w-2/4">
+      <p-password
+        class="w-2/4"
+        id="passwordConfirm"
+        formControlName="passwordConfirm"
+      />
+      <label for="passwordConfirm">Confirm</label>
+    </p-floatlabel>
+  </div>
+
+  <div class="w-full">
+    <p-button
+      type="submit"
+      [style]="{ width: '100%' }"
+      label="Sign in"
+      icon="pi pi-sign-in"
+      iconPos="right"
+    />
+  </div>
+</form>

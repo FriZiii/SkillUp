@@ -2,17 +2,16 @@ import { Component } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 import { definePreset } from 'primeng/themes';
 import { Aura } from 'primeng/themes/aura';
-import { ButtonModule } from 'primeng/button';
+import { SignInComponent } from './auth/components/sign-in/sign-in.component';
+import { SignUpComponent } from './auth/components/sign-up/sign-up.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ButtonModule],
+  imports: [SignInComponent, SignUpComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-
-
 export class AppComponent {
   title = 'Skillup';
 
