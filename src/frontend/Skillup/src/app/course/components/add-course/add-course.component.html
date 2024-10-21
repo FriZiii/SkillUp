@@ -1,4 +1,8 @@
 <h1>Categories</h1>
 @for(category of categories; track category.id){
-    <p>category.name</p>
+    <h3>{{category.name}}</h3>
+    @for (subcategory of category.subcategories; track subcategory.id) 
+    {
+        <p>{{subcategory.name}}</p>
+    }
 }
