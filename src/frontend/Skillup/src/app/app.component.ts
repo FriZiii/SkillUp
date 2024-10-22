@@ -7,6 +7,8 @@ import { SignUpComponent } from './auth/components/sign-up/sign-up.component';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './core/components/header/header.component';
 import { FooterComponent } from './core/components/footer/footer.component';
+import { AddCourseComponent } from './course/components/add-course/add-course.component';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +18,8 @@ import { FooterComponent } from './core/components/footer/footer.component';
     SignUpComponent,
     RouterOutlet,
     HeaderComponent,
+    AddCourseComponent,
+    ToastModule,
     FooterComponent,
   ],
   templateUrl: './app.component.html',
