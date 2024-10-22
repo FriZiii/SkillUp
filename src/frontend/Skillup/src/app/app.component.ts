@@ -4,11 +4,20 @@ import { definePreset } from 'primeng/themes';
 import { Aura } from 'primeng/themes/aura';
 import { SignInComponent } from './auth/components/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/components/sign-up/sign-up.component';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './core/components/header/header.component';
+import { FooterComponent } from './core/components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [SignInComponent, SignUpComponent],
+  imports: [
+    SignInComponent,
+    SignUpComponent,
+    RouterOutlet,
+    HeaderComponent,
+    FooterComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
