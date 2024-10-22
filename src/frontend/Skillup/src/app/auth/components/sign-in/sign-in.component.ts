@@ -34,10 +34,6 @@ export class SignInComponent {
 
   subbmitSignIn() {
     const formValue = this.signInForm.value;
-    this.authService.signIn(formValue.email!, formValue.password!).subscribe({
-      next: (res: any) => {
-        console.log(res);
-      },
-    });
+    this.authService.signIn(formValue.email!, formValue.password!).subscribe();
   }
 }
