@@ -1,29 +1,36 @@
 <form
-  class="flex flex-col items-center"
+  class="flex flex-col gap-4"
   [formGroup]="signUpForm"
   (ngSubmit)="subbmitSignUp()"
 >
-  <p-floatLabel class="w-full">
-    <input pInputText id="email" class="w-full" formControlName="email" />
-    <label for="email">Email</label>
-  </p-floatLabel>
+  <div class="flex flex-col gap-8">
+    <p-floatLabel class="w-full">
+      <input pInputText id="email" class="w-full" formControlName="email" />
+      <label for="email">Email</label>
+    </p-floatLabel>
 
-  <div class="flex w-full">
-    <p-floatlabel class="w-2/4">
-      <p-password id="password" class="w-2/4" formControlName="password" />
-      <label for="password">Password</label>
-    </p-floatlabel>
+    <div class="flex w-full gap-2">
+      <p-floatlabel class="w-2/4">
+        <p-password
+          id="password"
+          [feedback]="false"
+          class="w-2/4"
+          formControlName="password"
+        />
+        <label for="password">Password</label>
+      </p-floatlabel>
 
-    <p-floatlabel class="w-2/4">
-      <p-password
-        class="w-2/4"
-        id="passwordConfirm"
-        formControlName="passwordConfirm"
-      />
-      <label for="passwordConfirm">Confirm</label>
-    </p-floatlabel>
+      <p-floatlabel class="w-2/4">
+        <p-password
+          [feedback]="false"
+          class="w-2/4"
+          id="passwordConfirm"
+          formControlName="passwordConfirm"
+        />
+        <label for="passwordConfirm">Confirm</label>
+      </p-floatlabel>
+    </div>
   </div>
-
   <div class="w-full">
     <p-button
       type="submit"
