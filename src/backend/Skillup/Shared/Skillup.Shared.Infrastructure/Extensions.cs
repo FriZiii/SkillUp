@@ -107,7 +107,7 @@ namespace Skillup.Shared.Infrastructure
             app.UseRouting();
             app.UseAuth();
             app.UseAuthorization();
-            app.UseSwagger();
+            app.UseSwaggerWithUi();
 
             return app;
         }

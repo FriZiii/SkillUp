@@ -24,7 +24,8 @@ COPY ["Modules/Courses/Skillup.Modules.Courses.Application/Skillup.Modules.Cours
 COPY ["Modules/Courses/Skillup.Modules.Courses.Core/Skillup.Modules.Courses.Core.csproj", "Modules/Courses/Skillup.Modules.Courses.Core/"]
 COPY ["Modules/Courses/Skillup.Modules.Courses.Infrastracture/Skillup.Modules.Courses.Infrastracture.csproj", "Modules/Courses/Skillup.Modules.Courses.Infrastracture/"]
 
-COPY ["Modules/Wallets/Skillup.Modules.Wallets.Api/Skillup.Modules.Wallets.Api.csproj", "Modules/Wallets/Skillup.Modules.Wallets.Api/"]
+COPY ["Modules/Finances/Skillup.Modules.Finances.Api/Skillup.Modules.Finances.Api.csproj", "Modules/Finances/Skillup.Modules.Finances.Api/"]
+COPY ["Modules/Finances/Skillup.Modules.Finances.Core/Skillup.Modules.Finances.Core.csproj", "Modules/Finances/Skillup.Modules.Finances.Core/"]
 
 COPY ["Modules/Mails/Skillup.Modules.Mails.Api/Skillup.Modules.Mails.Api.csproj", "Modules/Mails/Skillup.Modules.Mails.Api/"]
 COPY ["Modules/Mails/Skillup.Modules.Mails.Core/Skillup.Modules.Mails.Core.csproj", "Modules/Mails/Skillup.Modules.Mails.Core/"]

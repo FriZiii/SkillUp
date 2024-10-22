@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Auth.Api.Controllers.Base;
 using Skillup.Modules.Auth.Core.Features.Requests.User;
+using Skillup.Shared.Infrastructure.Auth;
 using Swashbuckle.AspNetCore.Annotations;
-using System.IdentityModel.Tokens.Jwt;
 
 namespace Skillup.Modules.Auth.Api.Controllers
 {
@@ -28,13 +28,10 @@ namespace Skillup.Modules.Auth.Api.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> ChangeUserRole(ChangeUserRoleRequest request)
         {
-            var userIdClaim = User.FindFirst(JwtRegisteredClaimNames.Sub);
-            if (userIdClaim == null)
-            {
-                return Unauthorized();
-            }
+            var userId = User.GetUserId();
+            if (userId == null) return Unauthorized();
 
-            request.RequestingUserId = Guid.Parse(userIdClaim.Value);
+            request.RequestingUserId = (Guid)userId;
 
             await _mediator.Send(request);
 
@@ -49,13 +46,10 @@ namespace Skillup.Modules.Auth.Api.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> ChangeUserState(ChangeUserStateRequest request)
         {
-            var userIdClaim = User.FindFirst(JwtRegisteredClaimNames.Sub);
-            if (userIdClaim == null)
-            {
-                return Unauthorized();
-            }
+            var userId = User.GetUserId();
+            if (userId == null) return Unauthorized();
 
-            request.RequestingUserId = Guid.Parse(userIdClaim.Value);
+            request.RequestingUserId = (Guid)userId;
 
             await _mediator.Send(request);
 

@@ -26,6 +26,8 @@ namespace Skillup.Shared.Infrastructure.RabbitMQ
                     });
 
                     cfg.ConfigureEndpoints(context);
+
+                    cfg.UseJsonSerializer();
                 });
             });
 
