@@ -1,14 +1,14 @@
-import { Component, importProvidersFrom } from '@angular/core';
+import { Component } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 import { definePreset } from 'primeng/themes';
 import { Aura } from 'primeng/themes/aura';
-import { ButtonModule } from 'primeng/button';
 import { AddCourseComponent } from "./course/components/add-course/add-course.component";
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ButtonModule, AddCourseComponent],
+  imports: [AddCourseComponent, ToastModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
