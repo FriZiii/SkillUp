@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
@@ -19,6 +19,18 @@ export class AuthService {
       email: email,
       password: password,
     });
+  }
+
+  activateAccount(userId: string, activationToken: string) {
+    const params = new HttpParams()
+      .set('userId', userId)
+      .set('activationToken', activationToken);
+
+    return this.httpClient.put(
+      environment.apiUrl + '/auth/account/activation',
+      {},
+      { params }
+    );
   }
 
   signOut() {
