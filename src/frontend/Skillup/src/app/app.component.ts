@@ -44,6 +44,14 @@ export class AppComponent {
         950: '{yellow.900}',
       },
     },
+    components: {
+      popover: {
+        gutter: '10',
+        arrow: {
+          offset: '-99999999', //TODO : Change this
+        },
+      },
+    },
   });
 
   constructor(private config: PrimeNGConfig) {

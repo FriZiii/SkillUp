@@ -29,7 +29,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Token
 
             if (user.State == UserState.Locked)
             {
-                throw new Exception();
+                throw new Exception(); //TODO: Custom Exception
             }
 
             try

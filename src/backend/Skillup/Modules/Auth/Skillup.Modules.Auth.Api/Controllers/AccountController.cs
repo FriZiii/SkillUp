@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Auth.Api.Controllers.Base;
-using Skillup.Modules.Auth.Core.DTO;
 using Skillup.Modules.Auth.Core.Features.Commands.Account;
 using Skillup.Modules.Auth.Core.Services;
 using Skillup.Shared.Infrastructure.Auth;
@@ -37,7 +36,16 @@ namespace Skillup.Modules.Auth.Api.Controllers
             await _mediator.Send(request);
             var tokens = _authTokenStorage.GetTokens(request.Id);
 
-            return Ok(new TokensDto(tokens));
+            HttpContext.Response.Cookies.Append("refreshToken", tokens.RefreshToken.Token, new CookieOptions
+            {
+                Expires = DateTimeOffset.FromUnixTimeMilliseconds(tokens.RefreshToken.Expiry),
+                HttpOnly = true,
+                IsEssential = true,
+                Secure = true,
+                SameSite = SameSiteMode.None
+            });
+
+            return Ok(new { tokens.AccessToken.Token });
         }
 
         [Authorize]

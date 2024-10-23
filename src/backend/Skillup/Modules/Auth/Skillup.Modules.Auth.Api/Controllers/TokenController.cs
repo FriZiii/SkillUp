@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Auth.Api.Controllers.Base;
-using Skillup.Modules.Auth.Core.DTO;
 using Skillup.Modules.Auth.Core.Features.Commands.Token;
 using Skillup.Modules.Auth.Core.Services;
 using Swashbuckle.AspNetCore.Annotations;
@@ -30,7 +29,7 @@ namespace Skillup.Modules.Auth.Api.Controllers
 
             var tokens = _authTokenStorage.GetTokens(command.Id);
 
-            return Ok(new TokensDto(tokens));
+            return Ok(new { tokens.AccessToken.Token });
         }
     }
 }

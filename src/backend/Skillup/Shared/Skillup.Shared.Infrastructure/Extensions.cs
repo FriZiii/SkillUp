@@ -58,6 +58,7 @@ namespace Skillup.Shared.Infrastructure
                 options.AddPolicy("cors",
                     builder => builder.WithOrigins("http://localhost:4200")
                                       .AllowAnyMethod()
+                                      .AllowCredentials()
                                       .AllowAnyHeader());
             });
 

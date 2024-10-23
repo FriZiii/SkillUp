@@ -27,10 +27,6 @@ export class AccountActivationComponent implements OnInit {
   activateAccount() {
     this.authService
       .activateAccount(this.userId, this.activationToken)
-      .subscribe({
-        next: (res: any) => {
-          console.log(res);
-        },
-      });
+      .subscribe();
   }
 }
