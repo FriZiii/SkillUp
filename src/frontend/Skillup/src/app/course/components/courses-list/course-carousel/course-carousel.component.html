@@ -1,0 +1,12 @@
+<p-carousel 
+    [value]="courses()" 
+    [numVisible]="3" 
+    [numScroll]="1" 
+    class="w-5/12"
+    >
+    
+    <ng-template let-course pTemplate="item">
+        
+    <app-course-carousel-item [course]="course"></app-course-carousel-item>
+    </ng-template>
+</p-carousel>

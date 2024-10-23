@@ -1,16 +1,21 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { AddCourse } from "../models/course.model";
+import { AddCourse, CourseListItem } from "../models/course.model";
 import { environment } from "../../../environments/environment";
-import { catchError, tap, throwError } from "rxjs";
+import { BehaviorSubject, catchError, Observable, tap, throwError } from "rxjs";
 
 
 @Injectable({ providedIn: 'root' })
 export class CoursesService {
     private httpClient = inject(HttpClient);
+    private coursesSubject = new BehaviorSubject<CourseListItem[]>([]);
+    courses$: Observable<CourseListItem[]> = this.coursesSubject.asObservable();
+
+    constructor(){
+        this.fetchCourses();
+    }
 
     addCourse(courseData: AddCourse){
-        console.log("prawieee");
         return this.httpClient
         .post<any>(environment.apiUrl + '/Courses', courseData)
         .pipe(
@@ -19,6 +24,19 @@ export class CoursesService {
                 console.log(response);
             })
         );
-
     }
+
+    getCourses(){
+        return this.courses$;
+    }
+
+    private fetchCourses(){
+        this.httpClient
+        .get<any>(environment.apiUrl + '/Courses')
+        .pipe(
+            tap((courses) => this.coursesSubject.next(courses)),
+            catchError(error => {return throwError(() => error)}))
+            .subscribe();
+    }
+
 }

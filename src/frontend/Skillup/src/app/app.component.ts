@@ -20,7 +20,7 @@ import { ToastModule } from 'primeng/toast';
     HeaderComponent,
     AddCourseComponent,
     ToastModule,
-    FooterComponent,
+    FooterComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
