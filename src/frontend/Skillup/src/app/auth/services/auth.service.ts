@@ -95,7 +95,6 @@ export class AuthService {
   }
 
   refreshTokens() {
-    console.log('refresh');
     return this.httpClient
       .post<{ token: string }>(
         environment.apiUrl + '/auth/token/refresh',
