@@ -2,7 +2,13 @@
 {
     public class UserPurchasedCourse
     {
-        public Guid UserId { get; set; }
-        public Guid CourseId { get; set; }
+        public UserPurchasedCourse(Guid userId, Guid courseId)
+        {
+            UserId = userId;
+            CourseId = courseId;
+        }
+
+        public Guid UserId { get; private set; }
+        public Guid CourseId { get; private set; }
     }
 }

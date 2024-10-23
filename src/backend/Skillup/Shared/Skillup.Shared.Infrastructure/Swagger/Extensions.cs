@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
+using Skillup.Modules.Finances.Core.Entities;
+using Skillup.Shared.Abstractions.Auth;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Skillup.Shared.Infrastructure.Swagger
@@ -12,13 +16,11 @@ namespace Skillup.Shared.Infrastructure.Swagger
         {
             var swaggerOptions = services.GetOptions<SwaggerOptions>("Swagger");
 
-            if (!swaggerOptions.Enabled)
-                return services;
-
             services.AddSingleton(swaggerOptions);
             services.AddSwaggerGen(swagger =>
             {
                 ConfigureSwaggerBasics(swagger, swaggerOptions);
+                ConfigureEnumMapping(swagger);
                 ConfigureSwaggerTags(swagger);
                 ConfigureSwaggerSecurity(swagger);
             });
@@ -26,14 +28,13 @@ namespace Skillup.Shared.Infrastructure.Swagger
             return services;
         }
 
-        public static IApplicationBuilder UseSwagger(this IApplicationBuilder app)
+        public static IApplicationBuilder UseSwaggerWithUi(this IApplicationBuilder app)
         {
-            //var swaggerOptions = app.ApplicationServices.GetService<SwaggerOptions>();
-            //if (swaggerOptions != null && swaggerOptions.Enabled)
-            //{
-            //    app.UseSwagger();
-            //    app.UseSwaggerUI();
-            //}
+            if (((WebApplication)app).Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
             return app;
         }
@@ -46,6 +47,21 @@ namespace Skillup.Shared.Infrastructure.Swagger
             {
                 Title = swaggerOptions.Title,
                 Version = swaggerOptions.Version
+            });
+        }
+
+        private static void ConfigureEnumMapping(SwaggerGenOptions swagger)
+        {
+            swagger.MapType<ItemType>(() => new OpenApiSchema
+            {
+                Type = "string",
+                Enum = Enum.GetNames(typeof(ItemType)).Select(name => (IOpenApiAny)new OpenApiString(name)).ToList()
+            });
+
+            swagger.MapType<UserRole>(() => new OpenApiSchema
+            {
+                Type = "string",
+                Enum = Enum.GetNames(typeof(UserRole)).Select(name => (IOpenApiAny)new OpenApiString(name)).ToList()
             });
         }
 
