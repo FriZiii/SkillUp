@@ -20,16 +20,9 @@ Log.Logger = LoggerConfig.CreateLogger(builder, modules);
 
 var app = builder.Build();
 
-
 // Use modular infrastructure
 app.UseModularInfrastructure();
 modules.ForEach(module => module.Use(app));
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 // Cnfigure endpoints
 app.MapControllers();

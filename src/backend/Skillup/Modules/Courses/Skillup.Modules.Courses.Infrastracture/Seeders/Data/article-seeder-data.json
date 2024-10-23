@@ -1,0 +1,56 @@
+[
+  {
+    "Title": "What is .NET?",
+    "IsFree": true,
+    "IsPublished": true,
+    "SectionTitle": "Introduction to C# and .NET Framework",
+    "Article": {
+      "HTMLContent": ".NET is...."
+    }
+  },
+  {
+    "Title": "Variables and Constants in C#",
+    "IsFree": true,
+    "IsPublished": true,
+    "SectionTitle": "Introduction to C# and .NET Framework",
+    "Article": {
+      "HTMLContent": "Variables...."
+    }
+  },
+  {
+    "Title": "Data Types (int, string, double, etc.)",
+    "IsFree": true,
+    "IsPublished": true,
+    "SectionTitle": "Introduction to C# and .NET Framework",
+    "Article": {
+      "HTMLContent": "Data Types...."
+    }
+  },
+  {
+    "Title": "If-Else Statements",
+    "IsFree": true,
+    "IsPublished": true,
+    "SectionTitle": "Introduction to C# and .NET Framework",
+    "Article": {
+      "HTMLContent": "...."
+    }
+  },
+  {
+    "Title": "For / While loop",
+    "IsFree": true,
+    "IsPublished": true,
+    "SectionTitle": "Introduction to C# and .NET Framework",
+    "Article": {
+      "HTMLContent": "...."
+    }
+  },
+  {
+    "Title": "Nouns and Pronouns",
+    "IsFree": true,
+    "IsPublished": true,
+    "SectionTitle": "Basic Grammar and Sentence Structure",
+    "Article": {
+      "HTMLContent": "...."
+    }
+  }
+]

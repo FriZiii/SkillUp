@@ -1,0 +1,59 @@
+[
+  {
+    "question": "Which of the following is a type of fruit?",
+    "elementTitle": "Everyday Vocabulary: Food, Weather, Shopping",
+    "answers": [
+      {
+        "answer": "Chicken"
+      },
+      {
+        "answer": "Carrot"
+      },
+      {
+        "answer": "Apple",
+        "isCorrect": true
+      },
+      {
+        "answer": "Bread"
+      }
+    ]
+  },
+  {
+    "question": "What do you call light rain that falls for a short period of time?",
+    "elementTitle": "Everyday Vocabulary: Food, Weather, Shopping",
+    "answers": [
+      {
+        "answer": "Thunderstorm"
+      },
+      {
+        "answer": "Drizzle",
+        "isCorrect": true
+      },
+      {
+        "answer": "Hail"
+      },
+      {
+        "answer": "Snow"
+      }
+    ]
+  },
+  {
+    "question": "What is the opposite of \"sunny\" weather?",
+    "elementTitle": "Everyday Vocabulary: Food, Weather, Shopping",
+    "answers": [
+      {
+        "answer": "Cloudy",
+        "isCorrect": true
+      },
+      {
+        "answer": "Windy"
+      },
+      {
+        "answer": "Warm"
+      },
+      {
+        "answer": "Dry"
+      }
+    ]
+  }
+]

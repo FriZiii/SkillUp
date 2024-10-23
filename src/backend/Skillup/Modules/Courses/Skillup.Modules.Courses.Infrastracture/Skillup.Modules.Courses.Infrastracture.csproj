@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="Seeders\Data\article-seeder-data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Seeders\Data\assignment-seeder-data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Seeders\Data\courseUser-seeder-data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+		<Content Include="Seeders\Data\category-seeder-data.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Seeders\Data\course-seeder-data.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Seeders\Data\question-seeder-data.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Seeders\Data\quiz-seeder-data.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Seeders\Data\video-seeder-data.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Shared\Skillup.Shared.Infrastructure\Skillup.Shared.Infrastructure.csproj" />
+      <ProjectReference Include="..\Skillup.Modules.Courses.Core\Skillup.Modules.Courses.Core.csproj" />
+    </ItemGroup>
+
+</Project>

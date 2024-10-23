@@ -7,7 +7,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Shared\Skillup.Shared.Abstractions\Skillup.Shared.Abstractions.csproj" />
+      <None Remove="Seeders\Data\user-seeder-data.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Seeders\Data\user-seeder-data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Shared\Skillup.Shared.Infrastructure\Skillup.Shared.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
