@@ -10,6 +10,13 @@ export interface CourseListItem{
     id: string;
     title: string;
     isPublished: boolean;
-    category: Category;
+    category: {
+        id: string;
+        name: string;
+        subcategory: {
+            id: string;
+            name: string;
+        };
+    };
     thumbnailUrl: string;
 }

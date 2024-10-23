@@ -50,7 +50,7 @@ export class AppComponent {
         arrow: {
           offset: '-99999999', //TODO : Change this
         },
-      },
+      }
     },
   });
 
