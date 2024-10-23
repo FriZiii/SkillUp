@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
@@ -24,7 +24,7 @@
       <ProjectReference Include="..\..\Modules\Courses\Skillup.Modules.Courses.Api\Skillup.Modules.Courses.Api.csproj" />
       <ProjectReference Include="..\..\Modules\Notifications\Skillup.Modules.Notifications.Api\Skillup.Modules.Notifications.Api.csproj" />
       <ProjectReference Include="..\..\Modules\Mails\Skillup.Modules.Mails.Api\Skillup.Modules.Mails.Api.csproj" />
-      <ProjectReference Include="..\..\Modules\Wallets\Skillup.Modules.Wallets.Api\Skillup.Modules.Wallets.Api.csproj" />
+      <ProjectReference Include="..\..\Modules\Finances\Skillup.Modules.Finances.Api\Skillup.Modules.Finances.Api.csproj" />
       <ProjectReference Include="..\..\Shared\Skillup.Shared.Abstractions\Skillup.Shared.Abstractions.csproj" />
       <ProjectReference Include="..\..\Shared\Skillup.Shared.Infrastructure\Skillup.Shared.Infrastructure.csproj" />
     </ItemGroup>

@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.JsonWebTokens;
 using Skillup.Modules.Auth.Api.Controllers.Base;
 using Skillup.Modules.Auth.Core.DTO;
 using Skillup.Modules.Auth.Core.Features.Commands.Account;
 using Skillup.Modules.Auth.Core.Services;
+using Skillup.Shared.Infrastructure.Auth;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Auth.Api.Controllers
@@ -48,12 +48,10 @@ namespace Skillup.Modules.Auth.Api.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async new Task<IActionResult> SignOut()
         {
-            var userIdClaim = User.FindFirst(JwtRegisteredClaimNames.Sub);
-            if (userIdClaim == null)
-            {
-                return Unauthorized();
-            }
-            await _mediator.Send(new SignOutRequest(Guid.Parse(userIdClaim.Value)));
+            var userId = User.GetUserId();
+            if (userId == null) return Unauthorized();
+
+            await _mediator.Send(new SignOutRequest((Guid)userId));
             return NoContent();
         }
 

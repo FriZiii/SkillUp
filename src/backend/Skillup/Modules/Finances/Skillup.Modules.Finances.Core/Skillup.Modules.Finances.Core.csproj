@@ -7,13 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="module.wallets.json" />
+      <ProjectReference Include="..\..\..\Shared\Skillup.Shared.Infrastructure\Skillup.Shared.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="module.wallets.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
+      <Folder Include="DAL\Migrations\" />
     </ItemGroup>
 
 </Project>

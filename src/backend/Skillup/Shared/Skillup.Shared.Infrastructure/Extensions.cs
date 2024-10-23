@@ -53,6 +53,14 @@ namespace Skillup.Shared.Infrastructure
             services.AddAuth();
             services.AddClient();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("cors",
+                    builder => builder.WithOrigins("http://localhost:4200")
+                                      .AllowAnyMethod()
+                                      .AllowAnyHeader());
+            });
+
             services.AddSingleton<IMemoryStorage, MemoryStorage>();
             services.AddSingleton<IClock, UtcClock>();
 
@@ -99,7 +107,7 @@ namespace Skillup.Shared.Infrastructure
             app.UseRouting();
             app.UseAuth();
             app.UseAuthorization();
-            app.UseSwagger();
+            app.UseSwaggerWithUi();
 
             return app;
         }

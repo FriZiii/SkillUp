@@ -43,6 +43,9 @@ services:
     image: ${DOCKER_REGISTRY-}skillupbootstrapper
     env_file:
       - .env
+    ports:
+      - ${API_HTTPS_PORT}:8081
+      - ${API_HTTP_PORT}:8080
     build:
       context: .
       dockerfile: Bootstrapper/Skillup.Bootstrapper/Dockerfile

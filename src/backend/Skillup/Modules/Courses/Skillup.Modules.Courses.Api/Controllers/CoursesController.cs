@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Requests.Commands;
 using Skillup.Modules.Courses.Core.Requests.Queries;
 using Skillup.Shared.Abstractions.Auth;
+using Skillup.Shared.Infrastructure.Auth;
 using Swashbuckle.AspNetCore.Annotations;
-using System.IdentityModel.Tokens.Jwt;
 
 namespace Skillup.Modules.Courses.Api.Controllers
 {
@@ -24,12 +24,10 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Add(AddCourseRequest request)
         {
-            var userIdClaim = User.FindFirst(JwtRegisteredClaimNames.Sub);
-            if (userIdClaim == null)
-            {
-                return Unauthorized();
-            }
-            request.AuthorId = Guid.Parse(userIdClaim.Value);
+            var userId = User.GetUserId();
+            if (userId == null) return Unauthorized();
+
+            request.AuthorId = (Guid)userId;
             await _mediator.Send(request);
 
             var course = await _mediator.Send(new GetCourseByIdRequest(request.CourseID));
@@ -38,18 +36,16 @@ namespace Skillup.Modules.Courses.Api.Controllers
         }
 
         [HttpPatch]
-        [Authorize]
+        [Authorize(Roles = nameof(UserRole.CourseAuthor))]
         [SwaggerOperation("Publish course")]
         [Route("/Courses/{courseId}/Publish")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Publish(Guid courseId)
         {
-            var userIdClaim = User.FindFirst(JwtRegisteredClaimNames.Sub);
-            if (userIdClaim == null)
-            {
-                return Unauthorized();
-            }
+            var userId = User.GetUserId();
+            if (userId == null) return Unauthorized();
+
             await _mediator.Send(new PublishCourseRequest(courseId));
 
             var course = await _mediator.Send(new GetCourseByIdRequest(courseId));

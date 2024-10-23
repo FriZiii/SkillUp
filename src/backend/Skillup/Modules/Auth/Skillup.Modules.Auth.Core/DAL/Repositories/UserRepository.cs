@@ -51,7 +51,7 @@ namespace Skillup.Modules.Auth.Core.DAL.Repositories
 
         public async Task<UserRole> GetUserRole(Guid userId)
         {
-            var user = await _users.FirstOrDefaultAsync(x => x.Equals(userId)) ?? throw new UserNotFoundException(userId);
+            var user = await _users.FirstOrDefaultAsync(x => x.Id.Equals(userId)) ?? throw new UserNotFoundException(userId);
             return user.Role;
         }
     }
