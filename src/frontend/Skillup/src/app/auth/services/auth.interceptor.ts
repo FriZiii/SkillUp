@@ -15,8 +15,6 @@ export const AuthInterceptor: HttpInterceptorFn = (
 ): Observable<HttpEvent<any>> => {
   const authService = inject(AuthService);
 
-  console.log(`Bearer ${authService.getAccessToken()}`);
-
   const modifiedReq = req.clone({
     setHeaders: {
       Authorization: `Bearer ${authService.getAccessToken()}`,

@@ -1,5 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import {
+  NavigationEnd,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+} from '@angular/router';
 import { Drawer, DrawerModule } from 'primeng/drawer';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
@@ -18,6 +23,7 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
   selector: 'app-header',
   standalone: true,
   imports: [
+    RouterLinkActive,
     BadgeModule,
     OverlayBadgeModule,
     PopoverModule,
@@ -37,12 +43,20 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   @ViewChild('drawerRef') drawerRef!: Drawer;
+  router = inject(Router);
+  visible: boolean = false;
+
+  ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.visible = false;
+      }
+    });
+  }
 
   closeCallback(e: Event): void {
     this.drawerRef.close(e);
   }
-
-  visible: boolean = false;
 }

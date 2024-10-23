@@ -3,11 +3,14 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { map, tap } from 'rxjs';
 import { MessageService } from 'primeng/api';
+import { UserService } from '../../user/services/user.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private messageService = inject(MessageService);
   private httpClient = inject(HttpClient);
+  private userService = inject(UserService);
+
   private accessTokenKey = 'access-token';
 
   signIn(email: string, password: string) {
@@ -119,8 +122,7 @@ export class AuthService {
     this.removeAccessToken();
     this.setAccessToken(token);
 
-    //const user = new User(token);
-    //this.user.next(user);
+    this.userService.setUserFromToken(token);
   }
 
   private setAccessToken(accessToken: string): void {
@@ -129,6 +131,7 @@ export class AuthService {
 
   private removeAccessToken(): void {
     localStorage.removeItem(this.accessTokenKey);
+    this.userService.clearUser();
   }
 
   getAccessToken(): string | null {
