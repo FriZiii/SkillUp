@@ -72,16 +72,5 @@ namespace Skillup.Modules.Auth.Api.Controllers
             await _mediator.Send(new AccountActivationRequest(userId, activationToken));
             return NoContent();
         }
-
-        [Authorize]
-        [HttpGet("test")]
-        [SwaggerOperation("Test")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult Test()
-        {
-            var userId = User.GetUserId();
-            if (userId == null) return Unauthorized();
-            return Ok(userId);
-        }
     }
 }
