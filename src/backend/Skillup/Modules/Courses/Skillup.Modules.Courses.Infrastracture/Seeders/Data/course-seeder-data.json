@@ -755,25 +755,25 @@
   },
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
-    "title": "Fast and healithy family meals",
+    "title": "Fast and Healthy Family Meals",
     "categoryName": "Other",
     "subcategoryName": "Other",
     "details": {
       "subtitle": "Learn how to cook quality meals for your family.",
-      "description": "This course is full of quick and nutricous meals that you will be albe to make at home for your family.",
+      "description": "This course is full of quick and nutritious meals that you will be able to make at home for your family.",
       "level": "Beginner",
       "objectivesSummary": [
-        "Cooking nutricous meals"
+        "Cooking nutritious meals"
       ],
       "mustKnowBefore": [
-        "You do not need to have prior knoledge"
+        "No prior knowledge required"
       ],
       "intendedFor": [
         "People wanting to cook quality meals",
-        "Begginers in cooking"
+        "Beginners in cooking"
       ],
-      "thumbnailUrl": "https://img.freepik.com/free-photo/woman-her-kitchen-surrounded-by-fresh-ingredients-expertly-flips-vegetables-wok-delicious-stir-fry_73899-27528.jpg?t=st=1729762924~exp=1729766524~hmac=ea72e75dbde9731e5023b1c5f3cb91d69f587abdeb69f8b6a0f94a29f7c1ba73&w=1380"
-    },
+    "thumbnailUrl": "https://img.freepik.com/free-photo/woman-her-kitchen-surrounded-by-fresh-ingredients-expertly-flips-vegetables-wok-delicious-stir-fry_73899-27528.jpg?t=st=1729762924~exp=1729766524~hmac=ea72e75dbde9731e5023b1c5f3cb91d69f587abdeb69f8b6a0f94a29f7c1ba73&w=1380"
+  },
     "sections": []
   }
 ]
