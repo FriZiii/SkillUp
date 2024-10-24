@@ -1,3 +1,12 @@
 :host ::ng-deep .p-menubar-submenu{
      z-index: 3;
 }
+
+:host ::ng-deep .p-menubar-root-list{
+     display: flex;
+     justify-content: center;
+}
+
+:host ::ng-deep .p-menubar{
+     display: block;
+}

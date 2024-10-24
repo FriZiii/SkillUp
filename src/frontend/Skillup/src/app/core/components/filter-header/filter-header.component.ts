@@ -20,7 +20,7 @@ export class FilterHeaderComponent {
 
   //Variables
   categories = this.categoryService.categories;
-  skeletonItems = new Array(11).fill({ label: '1' });
+  skeletonItems = new Array(11).fill({ label: '' });
 
   items = computed(() =>
     this.categories().map((category) => ({
@@ -32,11 +32,7 @@ export class FilterHeaderComponent {
         },
         ...category.subcategories.map((subcategory) => ({
           label: subcategory.name,
-          route:
-            'courses/' +
-            category.slug +
-            '/' +
-            subcategory.slug,
+          route: 'courses/' + category.slug + '/' + subcategory.slug,
         })),
       ],
     }))
