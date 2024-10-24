@@ -4,12 +4,14 @@ import { environment } from '../../../environments/environment';
 import { map, tap } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { UserService } from '../../user/services/user.service';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private messageService = inject(MessageService);
   private httpClient = inject(HttpClient);
   private userService = inject(UserService);
+  private router = inject(Router);
 
   private accessTokenKey = 'access-token';
 
@@ -93,8 +95,14 @@ export class AuthService {
   }
 
   signOut() {
-    // return this.httpClient.post(environment + '/auth/account/sign-out');
-    localStorage.removeItem(this.accessTokenKey);
+    return this.httpClient
+      .delete(environment.apiUrl + '/auth/account/sign-out')
+      .pipe(
+        tap(() => {
+          this.removeAccessToken();
+          this.router.navigate(['/']);
+        })
+      );
   }
 
   refreshTokens() {
@@ -118,11 +126,25 @@ export class AuthService {
       );
   }
 
+  autoSignIn() {
+    const token = this.getAccessToken();
+    if (!token) {
+      return;
+    }
+    this.userService.setUserFromToken(token);
+  }
+
   private handleAuthentication(token: string) {
     this.removeAccessToken();
     this.setAccessToken(token);
 
     this.userService.setUserFromToken(token);
+
+    this.handleRedirecting();
+  }
+
+  private handleRedirecting() {
+    this.router.navigate(['/']);
   }
 
   private setAccessToken(accessToken: string): void {

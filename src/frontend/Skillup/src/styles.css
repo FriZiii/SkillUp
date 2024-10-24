@@ -11,6 +11,34 @@
   @tailwind utilities;
 }
 
+body{
+  background-color: var(--p-surface-0)
+}
+
+header{
+  background-color: var(--p-surface-0)
+}
+
+footer{
+  background-color: var(--p-surface-200)
+}
+
+.container {
+  @apply w-full;
+  @apply max-w-[134rem];
+  @apply mx-auto;
+  @apply px-10;
+}
+
 .active-link {
-  @apply text-yellow-400; 
+  @apply text-primary; 
+}
+
+
+.custom-textarea {
+  @apply su-border focus:outline-none focus:border-primary;
+}
+
+.su-border{
+  @apply border-[1px] border-surface-300 rounded-md shadow-[0px_0px_#0000,0px_0px_#0000,0px_1px_2px_0px_rgba(18,18,23,0.05)] 
 }

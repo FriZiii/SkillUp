@@ -1,43 +1,56 @@
-<form
-  class="flex flex-col gap-4"
-  [formGroup]="signUpForm"
-  (ngSubmit)="subbmitSignUp()"
->
-  <div class="flex flex-col gap-8">
-    <p-floatLabel class="w-full">
-      <input pInputText id="email" class="w-full" formControlName="email" />
-      <label for="email">Email</label>
-    </p-floatLabel>
-
-    <div class="flex w-full gap-2">
-      <p-floatlabel class="w-2/4">
-        <p-password
-          id="password"
-          [feedback]="false"
-          class="w-2/4"
-          formControlName="password"
-        />
-        <label for="password">Password</label>
-      </p-floatlabel>
-
-      <p-floatlabel class="w-2/4">
-        <p-password
-          [feedback]="false"
-          class="w-2/4"
-          id="passwordConfirm"
-          formControlName="passwordConfirm"
-        />
-        <label for="passwordConfirm">Confirm</label>
-      </p-floatlabel>
-    </div>
+<div class="grid gap-6 grid-cols-12 py-24 min-h-screen">
+  <div class="col-span-6">
+    <img src="assets/svg/undraw_sign_up.svg" />
   </div>
-  <div class="w-full">
-    <p-button
-      type="submit"
-      [style]="{ width: '100%' }"
-      label="Sign in"
-      icon="pi pi-sign-in"
-      iconPos="right"
-    />
+  <div class="col-start-8 col-span-4 flex flex-col items-center">
+    <h1
+      class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl"
+    >
+      Sign up now to begin your educational adventure
+    </h1>
+    <form
+      class="w-full flex-col flex gap-4"
+      [formGroup]="signUpForm"
+      (ngSubmit)="subbmitSignUp()"
+    >
+      <div class="flex flex-col gap-8">
+        <p-floatLabel class="w-full">
+          <input pInputText id="email" class="w-full" formControlName="email" />
+          <label for="email">Email</label>
+        </p-floatLabel>
+
+        <div class="flex flex-wrap w-full">
+          <p-floatlabel class="w-2/4">
+            <p-password
+              id="password"
+              [feedback]="false"
+              class="w-2/4"
+              formControlName="password"
+            />
+            <label for="password">Password</label>
+          </p-floatlabel>
+
+          <p-floatlabel class="w-2/4">
+            <p-password
+              [feedback]="false"
+              class="w-2/4"
+              id="passwordConfirm"
+              formControlName="passwordConfirm"
+            />
+            <label for="passwordConfirm">Confirm</label>
+          </p-floatlabel>
+        </div>
+      </div>
+
+      <div class="w-full">
+        <p-button
+          type="submit"
+          [style]="{ width: '100%' }"
+          label="Sign in"
+          icon="pi pi-sign-in"
+          iconPos="right"
+        />
+      </div>
+    </form>
   </div>
-</form>
+</div>
