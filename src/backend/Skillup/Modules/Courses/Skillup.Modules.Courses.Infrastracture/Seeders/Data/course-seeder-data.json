@@ -1,6 +1,6 @@
 [
   {
-    "authorId" :  "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "C# from Basics",
     "categoryName": "Programming",
     "subcategoryName": "Basics of programming",
@@ -51,15 +51,40 @@
         "Beginners in German language",
         "Travelers to Germany"
       ],
-      "thumbnailUrl": "https://cdn.pixabay.com/photo/2016/11/29/12/54/berlin-1867562_1280.jpg"
+      "thumbnailUrl": "https://img.freepik.com/free-photo/traditional-bavarian-couple-with-flag-beer_23-2148284440.jpg?t=st=1729756372~exp=1729759972~hmac=f97756d6f2ddac93ca9d3b8e28f7246d8ab050c039d5214b9c7ff6acb18d1a44&w=740"
+    },
+    "sections": []
+  },
+  {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Mastering Basic English Conversation",
+    "categoryName": "Languages",
+    "subcategoryName": "English",
+    "details": {
+      "subtitle": "Improve your English speaking skills through practical exercises.",
+      "description": "This course helps beginners build a solid foundation in English conversation, focusing on pronunciation, grammar, and common phrases.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Improve pronunciation and fluency",
+        "Learn essential vocabulary and phrases",
+        "Engage in practical conversation exercises"
+      ],
+      "mustKnowBefore": [
+        "Basic understanding of English alphabet"
+      ],
+      "intendedFor": [
+        "Non-native English speakers",
+        "Beginners learning conversational English"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/english-books-resting-table-working-space_23-2149429590.jpg?t=st=1729757019~exp=1729760619~hmac=648d69feb8607e14050f46de8c128509f3f8bd51f07a3deeba817004894882a8&w=1060"
     },
     "sections": [
-      { "title": "Basic Grammar and Sentence Structure" },
-      { "title": "Common Vocabulary and Phrases" },
-      { "title": "Conversational English" },
-      { "title": "Reading and Writing in English" },
-      { "title": "Listening and Comprehension Skills" }
-    ]
+        { "title": "Basic Grammar and Sentence Structure" },
+        { "title": "Common Vocabulary and Phrases" },
+        { "title": "Conversational English" },
+        { "title": "Reading and Writing in English" },
+        { "title": "Listening and Comprehension Skills" }
+      ]
   },
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
@@ -82,7 +107,7 @@
         "AI enthusiasts",
         "Aspiring data scientists"
       ],
-      "thumbnailUrl": "https://cdn.pixabay.com/photo/2020/11/06/18/18/artificial-intelligence-5728990_1280.jpg"
+      "thumbnailUrl": "https://img.freepik.com/free-photo/ai-chip-artificial-intelligence-future-technology-innovation_53876-129780.jpg?t=st=1729756410~exp=1729760010~hmac=3767ec47189a0f89103ceabd42cfa6af7b964a16ebaa6ce06dbda758c8e7f748&w=740"
     },
     "sections": [
       { "title": "Introduction to Web Technologies" },
@@ -113,7 +138,7 @@
         "Project managers",
         "Team leaders in Agile environments"
       ],
-      "thumbnailUrl": "https://cdn.pixabay.com/photo/2017/08/06/09/53/project-2594586_1280.jpg"
+      "thumbnailUrl": "https://img.freepik.com/free-photo/close-up-hand-writing-business-plan_23-2148513828.jpg?t=st=1729756440~exp=1729760040~hmac=5dc85bc083c07311b20364d9419fe029ac8ed03499d8e8a642062b3f555780ae&w=1380"
     },
     "sections": []
   },
@@ -138,7 +163,7 @@
         "Students beginning their algebra journey",
         "Anyone needing a refresher in algebra"
       ],
-      "thumbnailUrl": "https://cdn.pixabay.com/photo/2015/11/13/18/05/algebra-1044090_1280.jpg"
+      "thumbnailUrl": "https://img.freepik.com/free-photo/blackboard-inscribed-with-scientific-formulas-calculations_1150-19413.jpg?t=st=1729756411~exp=1729760011~hmac=aeccf8a2080c82c21a894fcb2108e42197e292b95ae6a944465334fd9deb202d&w=1060"
     },
     "sections": []
   },
@@ -163,7 +188,7 @@
         "Aspiring writers",
         "Anyone looking to improve their writing"
       ],
-      "thumbnailUrl": "https://cdn.pixabay.com/photo/2016/10/25/12/28/notes-1761384_1280.jpg"
+      "thumbnailUrl": "https://img.freepik.com/free-photo/creativity-creative-ideas-imagination-inspiration-design-concept_53876-123736.jpg?t=st=1729756499~exp=1729760099~hmac=b3bb4f58c2c15f8af2420912eff2412fcc6d28de6f0d46ab8bf49a6187f804df&w=996"
     },
     "sections": []
   },
@@ -188,7 +213,7 @@
         "Managers without a financial background",
         "Small business owners"
       ],
-      "thumbnailUrl": "https://cdn.pixabay.com/photo/2017/06/09/00/36/budget-2386684_1280.jpg"
+      "thumbnailUrl": "https://img.freepik.com/free-photo/accountant-calculating-profit-with-financial-analysis-graphs_74855-4937.jpg?t=st=1729756525~exp=1729760125~hmac=2b34b01a08554b112f6435d441ff7d4555d7631c33583fb9cb48142c9c98e434&w=1060"
     },
     "sections": []
   },
@@ -213,7 +238,7 @@
         "Anyone interested in world religions",
         "Students of humanities and culture"
       ],
-      "thumbnailUrl": "https://cdn.pixabay.com/photo/2016/08/18/23/12/architecture-1602339_1280.jpg"
+      "thumbnailUrl": "https://img.freepik.com/free-photo/flat-lay-assortment-religious-symbols_23-2148629995.jpg?t=st=1729756548~exp=1729760148~hmac=d53a4ed9a8e8642236a66c49e3f3a61b7943a415eda43afa8ab17a3cd434583c&w=900"
     },
     "sections": []
   },
@@ -238,7 +263,7 @@
         "Aspiring cybersecurity professionals",
         "IT enthusiasts"
       ],
-      "thumbnailUrl": "https://cdn.pixabay.com/photo/2017/12/12/04/09/cyber-security-3015060_1280.jpg"
+      "thumbnailUrl": "https://img.freepik.com/free-photo/cybersecurity-specialist-operates-high-tech-military-control-center_482257-93284.jpg?t=st=1729756574~exp=1729760174~hmac=d2e54076dbadb556d56c621d83d7b3c91d75b2ef0bbd055dfbcf3bc30e4bf784&w=1380"
     },
     "sections": []
   },
@@ -263,8 +288,133 @@
         "Students of physics",
         "Anyone with an interest in classical mechanics"
       ],
-      "thumbnailUrl": "https://cdn.pixabay.com/photo/2016/09/29/08/20/earth-1702735_1280.jpg"
+      "thumbnailUrl": "https://img.freepik.com/free-photo/kids-interacting-with-plasma-ball_23-2150767787.jpg?t=st=1729756607~exp=1729760207~hmac=3900a29cdc59e6d82b85d4ebc7268528b9fccc7066de77ac49cf9e389fe98617&w=1060"
     },
     "sections": []
-  }
+  },
+  {
+      "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+      "title": "Introduction to Game Development",
+      "categoryName": "Programming",
+      "subcategoryName": "Game development",
+      "details": {
+        "subtitle": "Build your first game with C# and Unity!",
+        "description": "This course introduces game development using C# and the Unity engine, guiding beginners through the process of creating a simple game.",
+        "level": "Beginner",
+        "objectivesSummary": [
+          "Understand the basics of game development",
+          "Create a basic game using Unity and C#",
+          "Learn about game physics and rendering"
+        ],
+        "mustKnowBefore": [
+          "Basic English skills"
+        ],
+        "intendedFor": [
+          "Aspiring game developers",
+          "Beginners in game design"
+        ],
+        "thumbnailUrl": "https://img.freepik.com/free-photo/high-angle-hands-holding-controller_23-2149829169.jpg?t=st=1729756739~exp=1729760339~hmac=1103d913340a220831b5554fe89ea1d558584881aa3667aa492655d6ab37bdf9&w=1060"
+      },
+      "sections": [
+        { "title": "Introduction to Game Development and Unity" },
+        { "title": "C# for Game Development" },
+        { "title": "Game Physics and Mechanics" },
+        { "title": "Basic AI and Player Input" },
+        { "title": "Deploying Your Game" }
+      ]
+    },
+  {
+      "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+      "title": "Web Development with ASP.NET",
+      "categoryName": "Programming",
+      "subcategoryName": "Web development",
+      "details": {
+        "subtitle": "Build dynamic web applications with ASP.NET.",
+        "description": "This course covers the fundamentals of web development using the ASP.NET framework, perfect for beginners looking to create dynamic web apps.",
+        "level": "Beginner",
+        "objectivesSummary": [
+          "Learn the basics of web development",
+          "Build dynamic websites using ASP.NET",
+          "Understand the Model-View-Controller (MVC) pattern"
+        ],
+        "mustKnowBefore": [
+          "Basic English skills"
+        ],
+        "intendedFor": [
+          "Aspiring web developers",
+          "Beginners in ASP.NET"
+        ],
+        "thumbnailUrl": "https://img.freepik.com/free-photo/web-design-concept-with-drawings_1134-77.jpg?t=st=1729756769~exp=1729760369~hmac=1355a55488fcc41bd1ce5c78d79f83d3be228fcbdaee2a5d9394469b1c877fbe&w=1060"
+      },
+      "sections": [
+        { "title": "Introduction to Web Development and ASP.NET" },
+        { "title": "Basic HTML, CSS, and JavaScript" },
+        { "title": "C# for Web Development" },
+        { "title": "Building Web Apps with ASP.NET MVC" },
+        { "title": "Deploying Your Web Application" }
+      ]
+    },
+
+  {
+      "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+      "title": "Boosting Productivity and Motivation",
+      "categoryName": "Self-development",
+      "subcategoryName": "Motivation",
+      "details": {
+        "subtitle": "Achieve your goals with proven motivation techniques.",
+        "description": "This course teaches the fundamental principles of motivation and productivity, helping learners build habits that drive success.",
+        "level": "Beginner",
+        "objectivesSummary": [
+          "Learn key motivation techniques",
+          "Develop productivity habits",
+          "Achieve personal and professional goals"
+        ],
+        "mustKnowBefore": [
+          "Basic understanding of personal goals"
+        ],
+        "intendedFor": [
+          "Anyone looking to improve motivation",
+          "Beginners in self-development"
+        ],
+        "thumbnailUrl": "https://img.freepik.com/premium-photo/yes-i-can-can-powerful-message-photo_900946-1953.jpg?w=1060"
+      },
+      "sections": [
+        { "title": "Introduction to Motivation" },
+        { "title": "Time Management Techniques" },
+        { "title": "Building Effective Habits" },
+        { "title": "Goal Setting and Achievement" },
+        { "title": "Maintaining Long-term Motivation" }
+      ]
+    },
+  {
+      "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+      "title": "Music Theory for Beginners",
+      "categoryName": "Art",
+      "subcategoryName": "Music",
+      "details": {
+        "subtitle": "Learn the fundamentals of music theory and composition.",
+        "description": "This course teaches beginners the basic concepts of music theory, including reading music, understanding scales, chords, and rhythm.",
+        "level": "Beginner",
+        "objectivesSummary": [
+          "Learn how to read sheet music",
+          "Understand scales and chord progressions",
+          "Explore basic rhythm and timing"
+        ],
+        "mustKnowBefore": [
+          "Basic interest in music"
+        ],
+        "intendedFor": [
+          "Aspiring musicians",
+          "Beginners in music theory"
+        ],
+        "thumbnailUrl": "https://img.freepik.com/free-photo/flat-lay-music-notes_23-2148201678.jpg?t=st=1729757143~exp=1729760743~hmac=debdde54e8caa73126664c821763759b1ace341bfbec042fd21d39f789b88b3c&w=1060"
+      },
+      "sections": [
+        { "title": "Introduction to Music Theory" },
+        { "title": "Understanding Musical Notation" },
+        { "title": "Scales and Keys" },
+        { "title": "Chord Progressions" },
+        { "title": "Rhythm and Timing" }
+      ]
+    }
 ]
