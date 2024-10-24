@@ -1,0 +1,31 @@
+<div class="flex flex-col gap-2 w-full">
+  <div class="w-96 h-96 su-border">
+    <img
+      class="p-1 w-96 h-96 object-contain"
+      [src]="previewNewImage ? previewNewImage : user()!.profilePicture!"
+    />
+  </div>
+
+  <div class="flex flex-col justify-start items-start gap-1">
+    <p-fileupload
+      #fu
+      mode="basic"
+      chooseLabel="Choose"
+      chooseIcon="pi pi-upload"
+      (onSelect)="onSelectImage($event)"
+      accept="image/*"
+    />
+
+    <p-button
+      [style]="{ width: '100%' }"
+      label="Save"
+      class="w-full"
+    ></p-button>
+  </div>
+
+  <app-image-croper
+    [imageFile]="selectedFile!"
+    [croperVisibility]="showCroper"
+    (imageCroppedEvent)="onImageCropped($event)"
+  ></app-image-croper>
+</div>
