@@ -9,6 +9,7 @@ import { HeaderComponent } from './core/components/header/header.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { AddCourseComponent } from './course/components/add-course/add-course.component';
 import { ToastModule } from 'primeng/toast';
+import { FilterHeaderComponent } from "./core/components/filter-header/filter-header.component";
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ import { ToastModule } from 'primeng/toast';
     AddCourseComponent,
     ToastModule,
     FooterComponent,
-  ],
+    FilterHeaderComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -50,7 +52,7 @@ export class AppComponent {
         arrow: {
           offset: '-99999999', //TODO : Change this
         },
-      },
+      }
     },
   });
 
