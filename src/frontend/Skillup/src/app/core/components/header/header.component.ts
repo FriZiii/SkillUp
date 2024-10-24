@@ -1,4 +1,11 @@
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  signal,
+  Signal,
+  ViewChild,
+} from '@angular/core';
 import {
   NavigationEnd,
   Router,
@@ -18,6 +25,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PopoverModule } from 'primeng/popover';
 import { BadgeModule } from 'primeng/badge';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
+import { UserService } from '../../../user/services/user.service';
+import { User } from '../../../user/models/user.model';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -46,7 +56,11 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
 export class HeaderComponent implements OnInit {
   @ViewChild('drawerRef') drawerRef!: Drawer;
   router = inject(Router);
+  userService = inject(UserService);
+  authService = inject(AuthService);
+
   visible: boolean = false;
+  user = signal<User | null>(null);
 
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
@@ -54,9 +68,18 @@ export class HeaderComponent implements OnInit {
         this.visible = false;
       }
     });
+
+    this.userService.user.subscribe((user) => {
+      this.user.set(user);
+    });
   }
 
   closeCallback(e: Event): void {
     this.drawerRef.close(e);
+  }
+
+  signOut() {
+    this.authService.signOut().subscribe();
+    this.visible = false;
   }
 }
