@@ -22,12 +22,12 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.User
 
             if (request.UserId == request.RequestingUserId)
             {
-                if (request.Role == UserRole.CourseAuthor)
+                if (request.Role == UserRole.Instructor)
                 {
                     await ChangeRoleAndLog(request.UserId, request.Role);
                     return;
                 }
-                throw new UnauthorizedAccessException("Users cannot change their own role to anything other than CourseAuthor.");
+                throw new UnauthorizedAccessException("Users cannot change their own role to anything other than Instructor.");
             }
             else
             {
@@ -55,7 +55,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.User
             }
 
             if ((targetUserRole == UserRole.Admin && newRole != UserRole.Moderator) ||
-                (targetUserRole == UserRole.Moderator && newRole == UserRole.CourseAuthor))
+                (targetUserRole == UserRole.Moderator && newRole == UserRole.Instructor))
             {
                 throw new UnauthorizedAccessException("Users cannot decrease their own role.");
             }

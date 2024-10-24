@@ -45,7 +45,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
 
         [HttpPut("{itemId}")]
         [SwaggerOperation("Edit item price")]
-        [Authorize(Roles = nameof(UserRole.CourseAuthor))]
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
