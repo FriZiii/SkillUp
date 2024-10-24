@@ -14,12 +14,12 @@ import { routes } from '../../../app.routes';
   templateUrl: './filter-header.component.html',
   styleUrl: './filter-header.component.css',
 })
-export class FilterHeaderComponent implements OnInit {
+export class FilterHeaderComponent {
   //Services
   categoryService = inject(CategoryService);
 
   //Variables
-  categories = signal<Category[]>([]);
+  categories = this.categoryService.categories;
   items = computed(() =>
     this.categories().map((category) => ({
       label: category.name,
@@ -39,12 +39,6 @@ export class FilterHeaderComponent implements OnInit {
       ],
     }))
   );
-
-  ngOnInit(): void {
-    this.categoryService.getCategories().subscribe((data) => {
-      this.categories.set(data);
-    });
-  }
 
   hideSubMenu() {
     window.document.body.click();

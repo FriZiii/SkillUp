@@ -15,31 +15,24 @@ import { BehaviorSubject, Observable } from 'rxjs';
   selector: 'app-add-course',
   standalone: true,
   imports: [ReactiveFormsModule, StepperModule, ButtonModule, ToggleButtonModule, CardModule, InputTextModule, SelectModule],
-  providers: [CategoryService],
   templateUrl: './add-course.component.html',
   styleUrl: './add-course.component.css',
 })
-export class AddCourseComponent implements OnInit {
+export class AddCourseComponent {
   //Services
   courseCategoryService = inject(CategoryService);
   courseService = inject(CoursesService);
 
   //Variables
-  categories= signal<Category[]>([]);
+  categories= this.courseCategoryService.categories;
   categoryNames = computed(() => this.categories().map(category => ({id: category.id, name: category.name})));
-  selectedCategory = '';
+  selectedCategory = signal('');
   subcategoryNames = computed(() => {
-    const selectedCat = this.categories().find(category => category.id === this.selectedCategory);
+    const selectedCat = this.categories().find(category => category.id === this.selectedCategory());
     return selectedCat ? selectedCat.subcategories.map(sub => ({id: sub.id, name: sub.name})) : [];
   });
 
   destroyRef = inject(DestroyRef);
-
-  ngOnInit(): void {
-    this.courseCategoryService.getCategories().subscribe((data) => {
-      this.categories.set(data);
-    }); 
-  }
 
   //Form
   form: FormGroup = new FormGroup({
@@ -52,9 +45,6 @@ export class AddCourseComponent implements OnInit {
     const title = this.form.value.title;
     const category = this.form.value.category;
     const subcategory = this.form.value.subcategory;
-    console.log(title);
-    console.log(category);
-    console.log(subcategory);
     const subscription = this.courseService.addCourse({title: title, categoryId: category, subcategoryId: subcategory}).subscribe({
       next: (res) => {
         console.log(res)

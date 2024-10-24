@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
-import { AddCourse, CourseListItem } from "../models/course.model";
+import { inject, Injectable, signal } from "@angular/core";
+import { AddCourse, CourseDetail, CourseListItem } from "../models/course.model";
 import { environment } from "../../../environments/environment";
 import { BehaviorSubject, catchError, Observable, tap, throwError } from "rxjs";
 
@@ -10,9 +10,13 @@ export class CoursesService {
     private httpClient = inject(HttpClient);
     private coursesSubject = new BehaviorSubject<CourseListItem[]>([]);
     courses$: Observable<CourseListItem[]> = this.coursesSubject.asObservable();
+    public courses = signal<CourseListItem[]>([]);
 
     constructor(){
         this.fetchCourses();
+        this.courses$.subscribe((data) => {
+            this.courses.set(data);
+        });
     }
 
     addCourse(courseData: AddCourse){
@@ -20,8 +24,23 @@ export class CoursesService {
         .post<any>(environment.apiUrl + '/Courses', courseData)
         .pipe(
             catchError(error => {return throwError(() => error)}),
-            tap((response: any) => {
+            tap((response: CourseDetail) => {
                 console.log(response);
+                this.courses.set([...this.courses(), {
+                    id: response.id,
+                    title: response.title,
+                    isPublished: response.isPublished,
+                    category: {
+                        id: response.category.id,
+                        name: response.category.name,
+                        subcategory: {
+                            id: response.category.subcategory.id,
+                            name: response.category.subcategory.name,
+                        },
+                    },
+                    thumbnailUrl: response.thumbnailUrl
+                }])
+                console.log(this.courses());
             })
         );
     }
@@ -31,6 +50,7 @@ export class CoursesService {
     }
 
     private fetchCourses(){
+        console.log('fetch courses');
         this.httpClient
         .get<any>(environment.apiUrl + '/Courses')
         .pipe(
