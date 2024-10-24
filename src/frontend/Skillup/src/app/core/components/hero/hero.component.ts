@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { FilterHeaderComponent } from "../filter-header/filter-header.component";
+import { RouterLink } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [FilterHeaderComponent],
+  imports: [ButtonModule, RouterLink],
   templateUrl: './hero.component.html',
-  styleUrl: './hero.component.css'
+  styleUrl: './hero.component.css',
 })
-export class HeroComponent {
-
-}
+export class HeroComponent {}
