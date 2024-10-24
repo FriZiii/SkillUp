@@ -34,7 +34,6 @@ footer{
   @apply text-primary; 
 }
 
-
 .custom-textarea {
   @apply su-border focus:outline-none focus:border-primary;
 }
