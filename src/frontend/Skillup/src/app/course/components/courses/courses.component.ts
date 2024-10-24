@@ -1,13 +1,13 @@
 import { Component, computed, inject, input, OnInit, signal } from '@angular/core';
 import { CourseListItem } from '../../models/course.model';
-import { CourseCarouselItemComponent } from "../courses-list/course-carousel/course-carousel-item/course-carousel-item.component";
+import { CourseItemComponent } from "../courses-list/course-item/course-item.component";
 import { CoursesService } from '../../services/course.service';
 import { CoursesListComponent } from '../courses-list/courses-list.component';
 
 @Component({
   selector: 'app-courses',
   standalone: true,
-  imports: [CourseCarouselItemComponent],
+  imports: [CourseItemComponent],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.css'
 })

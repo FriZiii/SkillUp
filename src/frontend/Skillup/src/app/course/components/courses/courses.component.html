@@ -1,6 +1,6 @@
 <p>courses works!</p>
 <button (click)="onClick()">BNT</button>
  @for(course of coursesForCategory(); track course.id){
-    <app-course-carousel-item [course]="course"></app-course-carousel-item>
+    <app-course-item [course]="course"></app-course-item>
     <p>{{course.title}}</p>
 } 
