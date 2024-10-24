@@ -3,10 +3,9 @@
 }
 
 .courses-container{
-    width: 80%;
     display: flex;
     flex-wrap: wrap;
-    margin: auto;
+    justify-content: space-between;
 }
 
 .course-item{
