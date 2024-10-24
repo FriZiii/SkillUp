@@ -5,12 +5,12 @@ import { Category } from '../../../course/models/category.model';
 import { MegaMenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 import { NgIf } from '@angular/common';
-import { routes } from '../../../app.routes';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-filter-header',
   standalone: true,
-  imports: [MenubarModule, NgIf],
+  imports: [MenubarModule, NgIf, SkeletonModule],
   templateUrl: './filter-header.component.html',
   styleUrl: './filter-header.component.css',
 })
@@ -20,6 +20,8 @@ export class FilterHeaderComponent {
 
   //Variables
   categories = this.categoryService.categories;
+  skeletonItems = new Array(11).fill({ label: '1' });
+
   items = computed(() =>
     this.categories().map((category) => ({
       label: category.name,

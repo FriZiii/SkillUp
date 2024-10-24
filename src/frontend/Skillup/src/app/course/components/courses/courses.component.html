@@ -1,4 +1,4 @@
-<div class="w-screen grid gap-6 grid-cols-12 py-24 min-h-screen">
+<div class="grid gap-6 grid-cols-12 py-24 min-h-screen">
   <div class="courses-container col-start-2 col-span-10">
     @for(course of coursesForCategory(); track course.id){
     <app-course-item [course]="course" class="course-item"></app-course-item>
