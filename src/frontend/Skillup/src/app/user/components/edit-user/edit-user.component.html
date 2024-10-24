@@ -1,21 +1,23 @@
-<div class="flex flex-col w-full">
-  <h1
-    class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl"
-  >
-    Profile and settings
-  </h1>
+<div class="w-full">
+  <div class="flex flex-col">
+    <h1
+      class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl"
+    >
+      Profile and settings
+    </h1>
 
-  <p-tabs>
-    <p-tablist>
-      @for(tab of tabs; track tab.route){
-      <p-tab [value]="tab.route" [routerLink]="tab.route">
-        <span>{{ tab.label }}</span>
-      </p-tab>
-      }
-    </p-tablist>
-  </p-tabs>
+    <p-tabs>
+      <p-tablist>
+        @for(tab of tabs; track tab.route){
+        <p-tab [value]="tab.route" [routerLink]="tab.route">
+          <span>{{ tab.label }}</span>
+        </p-tab>
+        }
+      </p-tablist>
+    </p-tabs>
 
-  <div class="mt-8">
-    <router-outlet></router-outlet>
+    <div class="mt-8">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
