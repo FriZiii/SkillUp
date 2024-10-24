@@ -1,6 +1,6 @@
-<p-card [style]="{ width: '15rem', overflow: 'hidden', margin: '1rem'}">
+<p-card [style]="{ width: '15rem', overflow: 'hidden', margin: '0.5rem', height: '20rem'}">
     <ng-template pTemplate="header">
-        <img alt="course.title"  class="w-full" src={{course.thumbnailUrl}} />
+        <img alt="course.title"  class="w-full max-h-40" src={{course.thumbnailUrl}} />
     </ng-template>
     <ng-template pTemplate="title"> {{ course.title }} </ng-template>
     <ng-template pTemplate="subtitle"> Card subtitle </ng-template>
