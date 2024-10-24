@@ -12,7 +12,8 @@ namespace Skillup.Modules.Courses.Application.Mappings
             var subcategoryDto = new SubcategoryDto()
             {
                 Id = subcategory.Id,
-                Name = subcategory.Name
+                Name = subcategory.Name,
+                Slug = subcategory.Slug,
             };
             return subcategoryDto;
         }

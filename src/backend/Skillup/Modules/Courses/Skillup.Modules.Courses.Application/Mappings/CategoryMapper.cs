@@ -14,6 +14,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
             {
                 Id = category.Id,
                 Name = category.Name,
+                Slug = category.Slug,
                 Subcategories = category.Subcategories.Select(s => _subcategoryMapper.SubcategoryToSubcategoryDto(s))
             };
             return categoryDto;

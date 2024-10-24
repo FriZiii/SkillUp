@@ -19,10 +19,12 @@ namespace Skillup.Modules.Courses.Application.Mappings
                 {
                     Id = course.Category.Id,
                     Name = course.Category.Name,
+                    Slug = course.Category.Slug,
                     Subcategory = new SubcategoryDto()
                     {
                         Id = course.Subcategory.Id,
-                        Name = course.Subcategory.Name
+                        Name = course.Subcategory.Name,
+                        Slug = course.Subcategory.Slug
                     }
                 },
                 ThumbnailUrl = course.Details?.ThumbnailUrl,
@@ -41,10 +43,12 @@ namespace Skillup.Modules.Courses.Application.Mappings
                 {
                     Id = course.Category.Id,
                     Name = course.Category.Name,
+                    Slug = course.Category.Slug,
                     Subcategory = new SubcategoryDto()
                     {
                         Id = course.Subcategory.Id,
-                        Name = course.Subcategory.Name
+                        Name = course.Subcategory.Name,
+                        Slug = course.Subcategory.Slug
                     }
                 },
                 ThumbnailUrl = course.Details.ThumbnailUrl,
