@@ -1,0 +1,14 @@
+:host {
+    width: 100%;
+}
+
+.courses-container{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.course-item{
+    margin: 0 0.5rem 0.5rem 0.5rem;
+}

@@ -1,0 +1,4 @@
+@for( category of categories(); track category.id){
+    <h3>Courses about {{category.name}}</h3>
+    <app-course-carousel [courses]="getCoursesByCategory(category.id)"></app-course-carousel>
+}

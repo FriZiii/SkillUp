@@ -1,0 +1,7 @@
+<p>courses works!</p>
+<button (click)="onClick()">BNT</button>
+<div class="courses-container">
+ @for(course of coursesForCategory(); track course.id){
+    <app-course-item [course]="course" class="course-item"></app-course-item>
+} 
+</div>

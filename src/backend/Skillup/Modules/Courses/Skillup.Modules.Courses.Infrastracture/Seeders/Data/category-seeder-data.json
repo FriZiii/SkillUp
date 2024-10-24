@@ -46,7 +46,6 @@
   {
     "name": "Science",
     "subcategories": [
-      { "name": "Mathematics" },
       { "name": "Physics" },
       { "name": "Biology" },
       { "name": "Chemistry" },

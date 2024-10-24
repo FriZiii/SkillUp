@@ -10,6 +10,7 @@ import { FooterComponent } from './core/components/footer/footer.component';
 import { AddCourseComponent } from './course/components/add-course/add-course.component';
 import { ToastModule } from 'primeng/toast';
 import { AuthService } from './auth/services/auth.service';
+import { FilterHeaderComponent } from "./core/components/filter-header/filter-header.component";
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,8 @@ import { AuthService } from './auth/services/auth.service';
     AddCourseComponent,
     ToastModule,
     FooterComponent,
-  ],
+    FilterHeaderComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -67,7 +69,7 @@ export class AppComponent implements OnInit {
         arrow: {
           offset: '-99999999', //TODO : Change this
         },
-      },
+      }
     },
   });
 

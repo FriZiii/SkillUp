@@ -1,0 +1,14 @@
+<p-carousel 
+    [value]="courses()" 
+    [numVisible]="3" 
+    [numScroll]="1" 
+    class="w-5/12"
+    [responsiveOptions]="responsiveOptions"
+    [autoplayInterval]="5000"
+    circular="true"
+    >
+    <ng-template let-course pTemplate="item">
+        
+    <app-course-item [course]="course"></app-course-item>
+    </ng-template>
+</p-carousel>
