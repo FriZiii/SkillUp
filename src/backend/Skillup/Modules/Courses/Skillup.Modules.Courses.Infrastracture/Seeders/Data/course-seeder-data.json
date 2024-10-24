@@ -79,12 +79,12 @@
       "thumbnailUrl": "https://img.freepik.com/free-photo/english-books-resting-table-working-space_23-2149429590.jpg?t=st=1729757019~exp=1729760619~hmac=648d69feb8607e14050f46de8c128509f3f8bd51f07a3deeba817004894882a8&w=1060"
     },
     "sections": [
-        { "title": "Basic Grammar and Sentence Structure" },
-        { "title": "Common Vocabulary and Phrases" },
-        { "title": "Conversational English" },
-        { "title": "Reading and Writing in English" },
-        { "title": "Listening and Comprehension Skills" }
-      ]
+      { "title": "Basic Grammar and Sentence Structure" },
+      { "title": "Common Vocabulary and Phrases" },
+      { "title": "Conversational English" },
+      { "title": "Reading and Writing in English" },
+      { "title": "Listening and Comprehension Skills" }
+    ]
   },
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
@@ -293,128 +293,487 @@
     "sections": []
   },
   {
-      "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
-      "title": "Introduction to Game Development",
-      "categoryName": "Programming",
-      "subcategoryName": "Game development",
-      "details": {
-        "subtitle": "Build your first game with C# and Unity!",
-        "description": "This course introduces game development using C# and the Unity engine, guiding beginners through the process of creating a simple game.",
-        "level": "Beginner",
-        "objectivesSummary": [
-          "Understand the basics of game development",
-          "Create a basic game using Unity and C#",
-          "Learn about game physics and rendering"
-        ],
-        "mustKnowBefore": [
-          "Basic English skills"
-        ],
-        "intendedFor": [
-          "Aspiring game developers",
-          "Beginners in game design"
-        ],
-        "thumbnailUrl": "https://img.freepik.com/free-photo/high-angle-hands-holding-controller_23-2149829169.jpg?t=st=1729756739~exp=1729760339~hmac=1103d913340a220831b5554fe89ea1d558584881aa3667aa492655d6ab37bdf9&w=1060"
-      },
-      "sections": [
-        { "title": "Introduction to Game Development and Unity" },
-        { "title": "C# for Game Development" },
-        { "title": "Game Physics and Mechanics" },
-        { "title": "Basic AI and Player Input" },
-        { "title": "Deploying Your Game" }
-      ]
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Introduction to Game Development",
+    "categoryName": "Programming",
+    "subcategoryName": "Game development",
+    "details": {
+      "subtitle": "Build your first game with C# and Unity!",
+      "description": "This course introduces game development using C# and the Unity engine, guiding beginners through the process of creating a simple game.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Understand the basics of game development",
+        "Create a basic game using Unity and C#",
+        "Learn about game physics and rendering"
+      ],
+      "mustKnowBefore": [
+        "Basic English skills"
+      ],
+      "intendedFor": [
+        "Aspiring game developers",
+        "Beginners in game design"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/high-angle-hands-holding-controller_23-2149829169.jpg?t=st=1729756739~exp=1729760339~hmac=1103d913340a220831b5554fe89ea1d558584881aa3667aa492655d6ab37bdf9&w=1060"
     },
+    "sections": [
+      { "title": "Introduction to Game Development and Unity" },
+      { "title": "C# for Game Development" },
+      { "title": "Game Physics and Mechanics" },
+      { "title": "Basic AI and Player Input" },
+      { "title": "Deploying Your Game" }
+    ]
+  },
   {
-      "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
-      "title": "Web Development with ASP.NET",
-      "categoryName": "Programming",
-      "subcategoryName": "Web development",
-      "details": {
-        "subtitle": "Build dynamic web applications with ASP.NET.",
-        "description": "This course covers the fundamentals of web development using the ASP.NET framework, perfect for beginners looking to create dynamic web apps.",
-        "level": "Beginner",
-        "objectivesSummary": [
-          "Learn the basics of web development",
-          "Build dynamic websites using ASP.NET",
-          "Understand the Model-View-Controller (MVC) pattern"
-        ],
-        "mustKnowBefore": [
-          "Basic English skills"
-        ],
-        "intendedFor": [
-          "Aspiring web developers",
-          "Beginners in ASP.NET"
-        ],
-        "thumbnailUrl": "https://img.freepik.com/free-photo/web-design-concept-with-drawings_1134-77.jpg?t=st=1729756769~exp=1729760369~hmac=1355a55488fcc41bd1ce5c78d79f83d3be228fcbdaee2a5d9394469b1c877fbe&w=1060"
-      },
-      "sections": [
-        { "title": "Introduction to Web Development and ASP.NET" },
-        { "title": "Basic HTML, CSS, and JavaScript" },
-        { "title": "C# for Web Development" },
-        { "title": "Building Web Apps with ASP.NET MVC" },
-        { "title": "Deploying Your Web Application" }
-      ]
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Web Development with ASP.NET",
+    "categoryName": "Programming",
+    "subcategoryName": "Web development",
+    "details": {
+      "subtitle": "Build dynamic web applications with ASP.NET.",
+      "description": "This course covers the fundamentals of web development using the ASP.NET framework, perfect for beginners looking to create dynamic web apps.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Learn the basics of web development",
+        "Build dynamic websites using ASP.NET",
+        "Understand the Model-View-Controller (MVC) pattern"
+      ],
+      "mustKnowBefore": [
+        "Basic English skills"
+      ],
+      "intendedFor": [
+        "Aspiring web developers",
+        "Beginners in ASP.NET"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/web-design-concept-with-drawings_1134-77.jpg?t=st=1729756769~exp=1729760369~hmac=1355a55488fcc41bd1ce5c78d79f83d3be228fcbdaee2a5d9394469b1c877fbe&w=1060"
     },
+    "sections": [
+      { "title": "Introduction to Web Development and ASP.NET" },
+      { "title": "Basic HTML, CSS, and JavaScript" },
+      { "title": "C# for Web Development" },
+      { "title": "Building Web Apps with ASP.NET MVC" },
+      { "title": "Deploying Your Web Application" }
+    ]
+  },
 
   {
-      "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
-      "title": "Boosting Productivity and Motivation",
-      "categoryName": "Self-development",
-      "subcategoryName": "Motivation",
-      "details": {
-        "subtitle": "Achieve your goals with proven motivation techniques.",
-        "description": "This course teaches the fundamental principles of motivation and productivity, helping learners build habits that drive success.",
-        "level": "Beginner",
-        "objectivesSummary": [
-          "Learn key motivation techniques",
-          "Develop productivity habits",
-          "Achieve personal and professional goals"
-        ],
-        "mustKnowBefore": [
-          "Basic understanding of personal goals"
-        ],
-        "intendedFor": [
-          "Anyone looking to improve motivation",
-          "Beginners in self-development"
-        ],
-        "thumbnailUrl": "https://img.freepik.com/premium-photo/yes-i-can-can-powerful-message-photo_900946-1953.jpg?w=1060"
-      },
-      "sections": [
-        { "title": "Introduction to Motivation" },
-        { "title": "Time Management Techniques" },
-        { "title": "Building Effective Habits" },
-        { "title": "Goal Setting and Achievement" },
-        { "title": "Maintaining Long-term Motivation" }
-      ]
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Boosting Productivity and Motivation",
+    "categoryName": "Self-development",
+    "subcategoryName": "Motivation",
+    "details": {
+      "subtitle": "Achieve your goals with proven motivation techniques.",
+      "description": "This course teaches the fundamental principles of motivation and productivity, helping learners build habits that drive success.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Learn key motivation techniques",
+        "Develop productivity habits",
+        "Achieve personal and professional goals"
+      ],
+      "mustKnowBefore": [
+        "Basic understanding of personal goals"
+      ],
+      "intendedFor": [
+        "Anyone looking to improve motivation",
+        "Beginners in self-development"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/premium-photo/yes-i-can-can-powerful-message-photo_900946-1953.jpg?w=1060"
     },
+    "sections": [
+      { "title": "Introduction to Motivation" },
+      { "title": "Time Management Techniques" },
+      { "title": "Building Effective Habits" },
+      { "title": "Goal Setting and Achievement" },
+      { "title": "Maintaining Long-term Motivation" }
+    ]
+  },
   {
-      "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
-      "title": "Music Theory for Beginners",
-      "categoryName": "Art",
-      "subcategoryName": "Music",
-      "details": {
-        "subtitle": "Learn the fundamentals of music theory and composition.",
-        "description": "This course teaches beginners the basic concepts of music theory, including reading music, understanding scales, chords, and rhythm.",
-        "level": "Beginner",
-        "objectivesSummary": [
-          "Learn how to read sheet music",
-          "Understand scales and chord progressions",
-          "Explore basic rhythm and timing"
-        ],
-        "mustKnowBefore": [
-          "Basic interest in music"
-        ],
-        "intendedFor": [
-          "Aspiring musicians",
-          "Beginners in music theory"
-        ],
-        "thumbnailUrl": "https://img.freepik.com/free-photo/flat-lay-music-notes_23-2148201678.jpg?t=st=1729757143~exp=1729760743~hmac=debdde54e8caa73126664c821763759b1ace341bfbec042fd21d39f789b88b3c&w=1060"
-      },
-      "sections": [
-        { "title": "Introduction to Music Theory" },
-        { "title": "Understanding Musical Notation" },
-        { "title": "Scales and Keys" },
-        { "title": "Chord Progressions" },
-        { "title": "Rhythm and Timing" }
-      ]
-    }
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Music Theory for Beginners",
+    "categoryName": "Art",
+    "subcategoryName": "Music",
+    "details": {
+      "subtitle": "Learn the fundamentals of music theory and composition.",
+      "description": "This course teaches beginners the basic concepts of music theory, including reading music, understanding scales, chords, and rhythm.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Learn how to read sheet music",
+        "Understand scales and chord progressions",
+        "Explore basic rhythm and timing"
+      ],
+      "mustKnowBefore": [
+        "Basic interest in music"
+      ],
+      "intendedFor": [
+        "Aspiring musicians",
+        "Beginners in music theory"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/flat-lay-music-notes_23-2148201678.jpg?t=st=1729757143~exp=1729760743~hmac=debdde54e8caa73126664c821763759b1ace341bfbec042fd21d39f789b88b3c&w=1060"
+    },
+    "sections": [
+      { "title": "Introduction to Music Theory" },
+      { "title": "Understanding Musical Notation" },
+      { "title": "Scales and Keys" },
+      { "title": "Chord Progressions" },
+      { "title": "Rhythm and Timing" }
+    ]
+  },
+  {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Effective Online Teaching Strategies",
+    "categoryName": "Teaching",
+    "subcategoryName": "Online teaching",
+    "details": {
+      "subtitle": "Master the art of teaching in a virtual environment.",
+      "description": "This course covers essential strategies for online teaching, including engagement techniques, lesson planning, and using digital tools to enhance the learning experience.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Develop effective online teaching methods",
+        "Engage students in virtual classrooms",
+        "Use digital tools to enhance teaching"
+      ],
+      "mustKnowBefore": [
+        "Basic computer skills"
+      ],
+      "intendedFor": [
+        "Teachers transitioning to online education",
+        "Beginners in virtual teaching"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/girl-waiting-her-teacher-return-desk_23-2148999511.jpg?t=st=1729762294~exp=1729765894~hmac=fbe655a4743808c13620a4f6b03150621bdca7fd968a2748d0a0ae6c88cd1043&w=1060"
+    },
+    "sections": [
+      { "title": "Introduction to Online Teaching" },
+      { "title": "Planning Virtual Lessons" },
+      { "title": "Engaging Students in a Digital Classroom" },
+      { "title": "Using Technology for Teaching" },
+      { "title": "Evaluating and Improving Online Lessons" }
+    ]
+  },
+  {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Mastering Microsoft Excel: From Basics to Advanced",
+    "categoryName": "Applications",
+    "subcategoryName": "Microsoft",
+    "details": {
+      "subtitle": "Learn how to use Excel efficiently, from simple data entry to advanced functions.",
+      "description": "This course is designed for beginners who want to understand the fundamentals of Microsoft Excel, progressing to more advanced data analysis techniques and tools.",
+      "level": "ForEveryone",
+      "objectivesSummary": [
+        "Learn basic Excel functions and formulas",
+        "Create and format professional spreadsheets",
+        "Use advanced features like pivot tables and charts"
+      ],
+      "mustKnowBefore": [
+        "Basic computer knowledge"
+      ],
+      "intendedFor": [
+        "Aspiring Excel users",
+        "Beginners in data management"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/data-information-report-statistics-strategy-concept_53876-124952.jpg?t=st=1729762312~exp=1729765912~hmac=cf392afe4e69164818491e2af801bf2c0da437e6cc279d41ae6c9a0b999c6a92&w=826"
+    },
+    "sections": [
+      { "title": "Introduction to Microsoft Excel" },
+      { "title": "Basic Formulas and Functions" },
+      { "title": "Formatting and Organizing Data" },
+      { "title": "Working with Charts and Graphs" },
+      { "title": "Advanced Features: Pivot Tables and Macros" }
+    ]
+  },
+  {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Innovative Teaching Methods for the Classroom",
+    "categoryName": "Teaching",
+    "subcategoryName": "Teaching methods",
+    "details": {
+      "subtitle": "Enhance your teaching with creative and effective methods.",
+      "description": "This course covers a variety of modern teaching methods aimed at improving student engagement and learning outcomes in physical classrooms.",
+      "level": "Intermediate",
+      "objectivesSummary": [
+        "Learn innovative teaching techniques",
+        "Improve student engagement",
+        "Apply active learning strategies"
+      ],
+      "mustKnowBefore": [
+        "Basic teaching experience"
+      ],
+      "intendedFor": [
+        "Teachers looking to improve their methods",
+        "Intermediate-level educators"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/mother-asking-girls-question-answer_23-2147848705.jpg?t=st=1729762419~exp=1729766019~hmac=a6c17599c6166d91bebb09ffb0b9406b923373a65a4e0b8d2b19949ffab27f61&w=1060"
+    },
+    "sections": [
+      { "title": "Introduction to Teaching Methods" },
+      { "title": "Active Learning Strategies" },
+      { "title": "Student-centered Learning" },
+      { "title": "Creative Classroom Activities" },
+      { "title": "Assessing Student Progress" }
+    ]
+  },
+  {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Teaching Teenagers: Engaging and Motivating Adolescents",
+    "categoryName": "Teaching",
+    "subcategoryName": "Teaching children & teenagers",
+    "details": {
+      "subtitle": "Master the skills to teach and connect with teenagers.",
+      "description": "This course helps teachers understand the unique challenges of teaching teenagers, providing techniques to engage and motivate students in this age group.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Understand adolescent psychology",
+        "Learn techniques to engage teenagers",
+        "Motivate students with age-appropriate content"
+      ],
+      "mustKnowBefore": [
+        "Basic understanding of education"
+      ],
+      "intendedFor": [
+        "Teachers of teenagers",
+        "Beginners in adolescent education"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/everyone-is-smiling-listens-group-people-business-conference-modern-classroom-daytime_146671-16288.jpg?t=st=1729762383~exp=1729765983~hmac=284b1bd688ed63a19af1da4f2825104f569914a63f5331bbbf6994cfcb59540a&w=1060"
+    },
+    "sections": [
+      { "title": "Introduction to Adolescent Learning" },
+      { "title": "Engaging Teenage Students" },
+      { "title": "Classroom Management for Teenagers" },
+      { "title": "Creating Motivational Content" },
+      { "title": "Evaluating Adolescent Progress" }
+    ]
+  },
+  {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Using Adobe Photoshop for Beginners",
+    "categoryName": "Applications",
+    "subcategoryName": "Adobe",
+    "details": {
+      "subtitle": "Learn to create and edit graphics using Photoshop.",
+      "description": "This beginner course covers the basic tools and techniques in Adobe Photoshop, allowing users to create and manipulate digital images efficiently.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Understand the Photoshop interface",
+        "Learn basic image editing tools",
+        "Create and edit digital graphics"
+      ],
+      "mustKnowBefore": [
+        "Basic computer skills"
+      ],
+      "intendedFor": [
+        "Aspiring graphic designers",
+        "Beginners in digital art"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/adult-woman-exuding-elegance-studio-portrait-generative-ai_188544-12091.jpg?t=st=1729762438~exp=1729766038~hmac=6db57f0043a06e5abac4032d322996a6a53a46918902c436941f54b2ec82f6ce&w=1380"
+    },
+    "sections": [
+      { "title": "Introduction to Adobe Photoshop" },
+      { "title": "Basic Editing Tools" },
+      { "title": "Working with Layers" },
+      { "title": "Creating Digital Art" },
+      { "title": "Exporting and Saving Files" }
+    ]
+  },
+  {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Master Google Workspace: Collaborate Efficiently",
+    "categoryName": "Applications",
+    "subcategoryName": "Google",
+    "details": {
+      "subtitle": "Boost your productivity using Google’s suite of cloud-based tools.",
+      "description": "This course teaches beginners how to use Google Workspace (Docs, Sheets, Drive, etc.) for collaboration and efficient task management in both personal and professional environments.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Learn to use Google Docs and Sheets",
+        "Manage files in Google Drive",
+        "Collaborate in real-time using Google Workspace tools"
+      ],
+      "mustKnowBefore": [
+        "Basic computer skills"
+      ],
+      "intendedFor": [
+        "Aspiring remote workers",
+        "Beginners in cloud-based tools"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/young-woman-working-her-office_23-2149402410.jpg?t=st=1729762458~exp=1729766058~hmac=aa4071c31bf9d5ff3a4ff34ab1080e37b79f032ba69174b0c8c045e4d8fd427b&w=1060"
+    },
+    "sections": [
+      { "title": "Introduction to Google Workspace" },
+      { "title": "Google Docs: Writing and Editing" },
+      { "title": "Google Sheets: Data Management" },
+      { "title": "Organizing Files in Google Drive" },
+      { "title": "Collaboration with Google Meet and Chat" }
+    ]
+  },
+  {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Introduction to Western Philosophy",
+    "categoryName": "Humanities",
+    "subcategoryName": "Philosophy",
+    "details": {
+      "subtitle": "Explore the fundamental ideas of Western philosophical thought.",
+      "description": "This course introduces beginners to the key figures and concepts in Western philosophy, from ancient Greece to modern times, covering ethics, metaphysics, and epistemology.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Understand the basics of philosophical thinking",
+        "Learn about major philosophical figures and ideas",
+        "Explore how philosophy impacts modern life"
+      ],
+      "mustKnowBefore": [
+        "Basic reading and comprehension skills"
+      ],
+      "intendedFor": [
+        "Philosophy enthusiasts",
+        "Beginners interested in Western thought"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/beautiful-roman-figure-carving_23-2149413129.jpg?t=st=1729762593~exp=1729766193~hmac=44dd0ea1157deca1b01e4602e46fdb5d621cf49664cbd84b363e99e52e645663&w=1060"
+    },
+    "sections": []
+  },
+  {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "The Evolution of Visual Arts: From Cave Paintings to Modern Art",
+    "categoryName": "Art",
+    "subcategoryName": "Visual arts",
+    "details": {
+      "subtitle": "Discover the journey of visual art through the ages.",
+      "description": "This course covers the major movements and milestones in visual art history, from prehistoric cave paintings to contemporary art, offering insights into the evolution of artistic expression.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Explore major art movements and styles",
+        "Learn about iconic artists and their works",
+        "Understand the cultural impact of visual arts"
+      ],
+      "mustKnowBefore": [
+        "Interest in art and history"
+      ],
+      "intendedFor": [
+        "Art enthusiasts",
+        "Beginners in art history"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/painted-plain-white-t-shirt-with-colorful-design_23-2150564446.jpg?t=st=1729762613~exp=1729766213~hmac=01698c15e488ac4c4dacef8c22850c2819925612fe76991294e555b88ada5821&w=1060"
+    },
+    "sections": []
+  },
+  {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Music Composition: Write Your First Song",
+    "categoryName": "Art",
+    "subcategoryName": "Music",
+    "details": {
+      "subtitle": "Learn the basics of music composition and write your own song.",
+      "description": "This course helps beginners understand the fundamentals of music composition, from melody and harmony to arranging, so they can write and compose their first song.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Understand the basics of melody, harmony, and rhythm",
+        "Learn how to structure a song",
+        "Compose and arrange your own music"
+      ],
+      "mustKnowBefore": [
+        "Basic understanding of music theory"
+      ],
+      "intendedFor": [
+        "Aspiring musicians",
+        "Beginners in music composition"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/retro-microphone-isolated-color-background_1387-912.jpg?t=st=1729762127~exp=1729765727~hmac=7aa5777cc99af77803dafb0ee0ebc95322d51f0fb4ca8eafdda288aaef929d0a&w=1060"
+    },
+    "sections": []
+  },
+  {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Art History: A Journey Through Time",
+    "categoryName": "Humanities",
+    "subcategoryName": "Art history",
+    "details": {
+      "subtitle": "Explore the history of art from ancient to modern times.",
+      "description": "This course offers a comprehensive overview of art history, tracing key movements, artists, and styles from ancient civilizations to contemporary art.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Learn about major art movements and their significance",
+        "Understand the evolution of art through history",
+        "Explore the works of influential artists"
+      ],
+      "mustKnowBefore": [
+        "Interest in art and culture"
+      ],
+      "intendedFor": [
+        "Art history enthusiasts",
+        "Beginners interested in exploring art through history"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/world-globe-antique-store_23-2149640754.jpg?t=st=1729762742~exp=1729766342~hmac=b234e6d14d444f5419b5fce07f7af9205b91ea0fbc1e5670b1f19e567a5545eb&w=1060"
+    },
+    "sections": []
+  },
+  {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Exploring Cultural Diversity Through Literature",
+    "categoryName": "Humanities",
+    "subcategoryName": "Literature",
+    "details": {
+      "subtitle": "Discover global cultures through their literary works.",
+      "description": "This course introduces learners to world literature, showcasing how different cultures express their values, struggles, and identities through storytelling.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Read and analyze literary works from different cultures",
+        "Understand how literature reflects cultural diversity",
+        "Explore the themes of identity, tradition, and change in global literature"
+      ],
+      "mustKnowBefore": [
+        "Interest in reading and cultural studies"
+      ],
+      "intendedFor": [
+        "Lovers of literature",
+        "Beginners in world literature"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/opened-books-library-table_23-2147767300.jpg?t=st=1729762758~exp=1729766358~hmac=db007f90fc9461d0634b2caa0cb0f88cb8236feb3eafd40379a4f5dd3532f5df&w=1060"
+    },
+    "sections": []
+  },
+  {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Introduction to Legal Systems: Understanding Law",
+    "categoryName": "Humanities",
+    "subcategoryName": "Law",
+    "details": {
+      "subtitle": "Learn the basics of legal systems and how laws are created.",
+      "description": "This course provides an introduction to legal principles, focusing on how laws are made and applied in society. It covers the structure of courts, legal processes, and key areas of law.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Understand the basics of legal systems",
+        "Learn how laws are made and enforced",
+        "Explore key areas of law including criminal, civil, and constitutional law"
+      ],
+      "mustKnowBefore": [
+        "Interest in law and governance"
+      ],
+      "intendedFor": [
+        "Aspiring legal professionals",
+        "Beginners interested in law"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/still-life-with-scales-justice_23-2149776027.jpg?t=st=1729762774~exp=1729766374~hmac=a767d2e2bb304f61351bb479285cfabd97f57f4a8e6dbd29522a43e33ed46a9c&w=1060"
+    },
+    "sections": []
+  },
+  {
+    "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "title": "Fast and healithy family meals",
+    "categoryName": "Other",
+    "subcategoryName": "Other",
+    "details": {
+      "subtitle": "Learn how to cook quality meals for your family.",
+      "description": "This course is full of quick and nutricous meals that you will be albe to make at home for your family.",
+      "level": "Beginner",
+      "objectivesSummary": [
+        "Cooking nutricous meals"
+      ],
+      "mustKnowBefore": [
+        "You do not need to have prior knoledge"
+      ],
+      "intendedFor": [
+        "People wanting to cook quality meals",
+        "Begginers in cooking"
+      ],
+      "thumbnailUrl": "https://img.freepik.com/free-photo/woman-her-kitchen-surrounded-by-fresh-ingredients-expertly-flips-vegetables-wok-delicious-stir-fry_73899-27528.jpg?t=st=1729762924~exp=1729766524~hmac=ea72e75dbde9731e5023b1c5f3cb91d69f587abdeb69f8b6a0f94a29f7c1ba73&w=1380"
+    },
+    "sections": []
+  }
 ]
