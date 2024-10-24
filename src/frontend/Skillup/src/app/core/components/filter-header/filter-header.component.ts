@@ -26,15 +26,15 @@ export class FilterHeaderComponent {
       items: [
         {
           label: 'All',
-          route: 'courses/' + category.name.toLowerCase() + '/all',
+          route: 'courses/' + category.slug + '/all',
         },
         ...category.subcategories.map((subcategory) => ({
           label: subcategory.name,
           route:
             'courses/' +
-            category.name.toLowerCase() +
+            category.slug +
             '/' +
-            subcategory.name.toLowerCase(),
+            subcategory.slug,
         })),
       ],
     }))

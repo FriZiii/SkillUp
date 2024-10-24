@@ -20,9 +20,9 @@ export class CoursesComponent {
   //Variables
   courses = this.courseService.courses;
   coursesForCategory = computed(() =>  this.courses().filter(course => 
-    course.category.name.toLowerCase() === this.category().toLowerCase() && 
+    course.category.slug === this.category() && 
     (this.subcategory().toLowerCase() === 'all' || 
-     course.category.subcategory.name.toLowerCase() === this.subcategory().toLowerCase())
+     course.category.subcategory.slug === this.subcategory())
   )
 );
 

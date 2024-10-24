@@ -33,9 +33,11 @@ export class CoursesService {
                     category: {
                         id: response.category.id,
                         name: response.category.name,
+                        slug: response.category.slug,
                         subcategory: {
                             id: response.category.subcategory.id,
                             name: response.category.subcategory.name,
+                            slug: response.category.subcategory.slug,
                         },
                     },
                     thumbnailUrl: response.thumbnailUrl

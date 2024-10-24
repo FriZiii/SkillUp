@@ -13,9 +13,11 @@ export interface CourseListItem{
     category: {
         id: string;
         name: string;
+        slug: string;
         subcategory: {
             id: string;
             name: string;
+            slug: string;
         };
     };
     thumbnailUrl: string;
@@ -28,9 +30,11 @@ export interface CourseDetail{
     category: {
         id: string;
         name: string;
+        slug: string;
         subcategory: {
             id: string;
             name: string;
+            slug: string;
         };
     };
     thumbnailUrl: string;
