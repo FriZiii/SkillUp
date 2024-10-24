@@ -1,0 +1,10 @@
+<div class="grid gap-6 grid-cols-12 py-24 min-h-screen">
+  <div class="col-start-2 col-span-10">
+    @for( category of categories(); track category.id){
+    <h3>Courses about {{ category.name }}</h3>
+    <app-course-carousel
+      [courses]="getCoursesByCategory(category.id)"
+    ></app-course-carousel>
+    }
+  </div>
+</div>

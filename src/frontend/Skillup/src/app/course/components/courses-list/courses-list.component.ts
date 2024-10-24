@@ -1,27 +1,36 @@
-import { Component, inject } from '@angular/core';
-import { ButtonModule } from 'primeng/button';
-import { CarouselModule } from 'primeng/carousel';
+import { Component, computed, inject, input} from '@angular/core';
+import { CourseItemComponent } from "../course-item/course-item.component";
 import { CoursesService } from '../../services/course.service';
-import { CategoryService } from '../../services/category.service';
-import { CourseCarouselComponent } from './course-carousel/course-carousel.component';
 
 @Component({
-  selector: 'app-courses-list',
+  selector: 'app-courses',
   standalone: true,
-  imports: [CarouselModule, ButtonModule, CourseCarouselComponent],
+  imports: [CourseItemComponent],
   templateUrl: './courses-list.component.html',
   styleUrl: './courses-list.component.css'
 })
 export class CoursesListComponent {
+  //FromURL
+  category = input.required<string>();
+  subcategory = input.required<string>();
+
   //Services
   courseService = inject(CoursesService);
-  categoryService = inject(CategoryService);
 
   //Variables
   courses = this.courseService.courses;
-  categories = this.categoryService.categories;
+  coursesForCategory = computed(() =>  this.courses().filter(course => 
+    course.category.slug === this.category() && 
+    (this.subcategory().toLowerCase() === 'all' || 
+     course.category.subcategory.slug === this.subcategory())
+  )
+);
 
-  getCoursesByCategory(categoryId: string){
-    return this.courses().filter(course => course.category.id === categoryId);
+  onClick(){
+    console.log("cat" + this.category())
+    console.log("sub" + this.subcategory())
+    console.log(this.courses())
+    console.log(this.coursesForCategory())
   }
+
 }
