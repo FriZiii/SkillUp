@@ -7,7 +7,8 @@
       { "name": "Spanish" },
       { "name": "French" },
       { "name": "Other" }
-    ]
+    ],
+    "index" : 2
   },
   {
     "name": "Programming",
@@ -20,7 +21,8 @@
       { "name": "Artificial intelligence" },
       { "name": "Cybersecurity" },
       { "name": "Other" }
-    ]
+    ],
+    "index": 1
   },
   {
     "name": "Self-development",
@@ -31,17 +33,19 @@
       { "name": "Sports" },
       { "name": "Creativity & hobbies" },
       { "name": "Other" }
-    ]
+    ],
+    "index": 3
   },
   {
-    "name": "Business and managing",
+    "name": "Business",
     "subcategories": [
       { "name": "Project management" },
       { "name": "Marketing" },
       { "name": "Finance" },
       { "name": "HR & recruitment" },
       { "name": "Other" }
-    ]
+    ],
+    "index": 4
   },
   {
     "name": "Science",
@@ -51,7 +55,8 @@
       { "name": "Chemistry" },
       { "name": "Engineering" },
       { "name": "Other" }
-    ]
+    ],
+    "index": 5
   },
   {
     "name": "Mathematics",
@@ -62,7 +67,8 @@
       { "name": "Probability" },
       { "name": "Discrete mathematics" },
       { "name": "Other" }
-    ]
+    ],
+    "index": 6
   },
   {
     "name": "Humanities",
@@ -75,7 +81,8 @@
       { "name": "Religions" },
       { "name": "Law" },
       { "name": "Other" }
-    ]
+    ],
+    "index": 7
   },
   {
     "name": "Art",
@@ -84,7 +91,8 @@
       { "name": "Music" },
       { "name": "Visual arts" },
       { "name": "Other" }
-    ]
+    ],
+    "index": 8
   },
   {
     "name": "Teaching",
@@ -93,7 +101,8 @@
       { "name": "Online teaching" },
       { "name": "Teaching children & teenagers" },
       { "name": "Other" }
-    ]
+    ],
+    "index": 9
   },
   {
     "name": "Applications",
@@ -104,12 +113,14 @@
       { "name": "Adobe" },
       { "name": "Google" },
       { "name": "Other" }
-    ]
+    ],
+    "index": 10
   },
   {
     "name": "Other",
     "subcategories": [
       { "name": "Other" }
-    ]
+    ],
+    "index": 11
   }
 ]

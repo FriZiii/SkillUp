@@ -14,6 +14,7 @@
             }
         }
         public string Slug { get; set; }
+        public int Index { get; set; }
         public IEnumerable<Course> Courses { get; set; }
         public IEnumerable<Subcategory> Subcategories { get; set; }
     }

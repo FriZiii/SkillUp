@@ -32,7 +32,6 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
 
         private async Task SeedCategories()
         {
-
             var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
 
             var jsonString = File.ReadAllText(Path.Combine(path, "category-seeder-data.json"));
@@ -48,12 +47,13 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
 
         public List<Category> CreateCategories(List<CategoryJsonModel> categoryData)
         {
-            return categoryData!.Select(CreateCategoryFromJson).ToList();
+            var result = categoryData!.Select(CreateCategoryFromJson).ToList();
+            return result;
         }
 
         private Category CreateCategoryFromJson(CategoryJsonModel jsonModel)
         {
-            return new Category() { Name = jsonModel.Name };
+            return new Category() { Name = jsonModel.Name, Index = jsonModel.Index };
         }
 
         public IEnumerable<Subcategory> CreateSubcategories(List<CategoryJsonModel> categoryData)

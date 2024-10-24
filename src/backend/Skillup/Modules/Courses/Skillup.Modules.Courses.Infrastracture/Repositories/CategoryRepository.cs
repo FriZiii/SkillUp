@@ -14,15 +14,10 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             _context = context;
             _catogories = context.Categories;
         }
-        public async Task Add(Category category)
-        {
-            await _catogories.AddAsync(category);
-            await _context.SaveChangesAsync();
-        }
 
         public async Task<IEnumerable<Category>> GetAll()
         {
-            return await _catogories.Include(c => c.Subcategories).ToListAsync();
+            return await _catogories.Include(c => c.Subcategories).OrderBy(x => x.Index).ToListAsync();
         }
     }
 }

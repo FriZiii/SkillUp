@@ -120,7 +120,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Project Management with Agile and Scrum",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "Project management",
     "details": {
       "subtitle": "Master Agile and Scrum for project success",
@@ -195,7 +195,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Finance for Non-Financial Managers",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "Finance",
     "details": {
       "subtitle": "Understand the basics of finance",
@@ -2704,7 +2704,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Digital Marketing Fundamentals",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "Marketing",
     "details": {
       "subtitle": "Learn the basics of digital marketing strategies.",
@@ -2729,7 +2729,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Content Marketing Strategies for Growth",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "Marketing",
     "details": {
       "subtitle": "Create engaging content to attract and retain customers.",
@@ -2754,7 +2754,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Social Media Marketing Mastery",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "Marketing",
     "details": {
       "subtitle": "Maximize your brand's presence on social media platforms.",
@@ -2779,7 +2779,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Email Marketing Essentials: Building Relationships",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "Marketing",
     "details": {
       "subtitle": "Learn how to effectively use email as a marketing tool.",
@@ -2804,7 +2804,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Search Engine Optimization (SEO) Basics",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "Marketing",
     "details": {
       "subtitle": "Improve your website's visibility on search engines.",
@@ -2829,7 +2829,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Branding Basics: Building a Strong Brand Identity",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "Marketing",
     "details": {
       "subtitle": "Learn how to create and manage a brand.",
@@ -2854,7 +2854,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Influencer Marketing: Harnessing Social Proof",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "Marketing",
     "details": {
       "subtitle": "Utilize influencers to promote your brand.",
@@ -2879,7 +2879,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Analytics for Marketers: Data-Driven Decision Making",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "Marketing",
     "details": {
       "subtitle": "Learn how to use analytics to improve marketing strategies.",
@@ -2904,7 +2904,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Fundamentals of Human Resource Management",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "HR & recruitment",
     "details": {
       "subtitle": "Learn the key principles of HR management.",
@@ -2929,7 +2929,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Effective Recruitment Strategies",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "HR & recruitment",
     "details": {
       "subtitle": "Master the art of hiring the right talent.",
@@ -2954,7 +2954,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Employee Engagement and Retention Strategies",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "HR & recruitment",
     "details": {
       "subtitle": "Learn how to keep your employees motivated.",
@@ -2979,7 +2979,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Performance Management: Strategies for Success",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "HR & recruitment",
     "details": {
       "subtitle": "Develop effective performance management systems.",
@@ -3004,7 +3004,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Personal Finance Basics",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "Finance",
     "details": {
       "subtitle": "Manage your money effectively for a secure future.",
@@ -3029,7 +3029,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Introduction to Corporate Finance",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "Finance",
     "details": {
       "subtitle": "Understand the financial decisions in businesses.",
@@ -3054,7 +3054,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Investment Strategies for Beginners",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "Finance",
     "details": {
       "subtitle": "Learn how to invest wisely in financial markets.",
@@ -3079,7 +3079,7 @@
   {
     "authorId": "b8f81a03-6538-4e02-9de7-51c61831cd28",
     "title": "Financial Analysis and Forecasting",
-    "categoryName": "Business and managing",
+    "categoryName": "Business",
     "subcategoryName": "Finance",
     "details": {
       "subtitle": "Make informed financial decisions through analysis.",
