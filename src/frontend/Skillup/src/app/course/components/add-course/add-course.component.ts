@@ -9,6 +9,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { CoursesService } from '../../services/course.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-course',
@@ -37,7 +38,7 @@ export class AddCourseComponent implements OnInit {
   ngOnInit(): void {
     this.courseCategoryService.getCategories().subscribe((data) => {
       this.categories.set(data);
-    });
+    }); 
   }
 
   //Form
