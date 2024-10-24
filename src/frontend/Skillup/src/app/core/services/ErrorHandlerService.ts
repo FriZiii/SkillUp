@@ -13,6 +13,7 @@ export class ErrorHandlerService implements ErrorHandler {
   ngZone = inject(NgZone);
 
   handleError(error: any): void {
+    console.error('Error occurred:', error);
     this.ngZone.run(() => {
       this.messageService.add({
         severity: 'error',
@@ -21,6 +22,5 @@ export class ErrorHandlerService implements ErrorHandler {
         life: 5000,
       });
     });
-    console.error('Error occurred:', error);
   }
 }
