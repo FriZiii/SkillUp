@@ -1,4 +1,4 @@
-<div class="grid gap-6 grid-cols-12 py-24 min-h-screen">
+<div class="grid gap-6 grid-cols-12 py-24 min-h-screen w-screen">
   <div class="col-start-2 col-span-6">
     <img src="assets/svg/undraw_sign_up.svg" />
   </div>
@@ -24,7 +24,8 @@
             <p-password
               id="password"
               [feedback]="false"
-              class="w-2/4"
+              [style]="{ width: '100%' }"
+              [inputStyle]="{ width: '100%' }"
               formControlName="password"
             />
             <label for="password">Password</label>
@@ -33,7 +34,8 @@
           <p-floatlabel class="w-2/4">
             <p-password
               [feedback]="false"
-              class="w-2/4"
+              [style]="{ width: '100%' }"
+              [inputStyle]="{ width: '100%' }"
               id="passwordConfirm"
               formControlName="passwordConfirm"
             />
