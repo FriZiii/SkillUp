@@ -1,3 +1,20 @@
-:root .p-menubar-submenu {
-    background-color: #444; /* New background color for the submenu */
+:host{
+  overflow-y: hidden;
 }
+:host ::ng-deep .p-menubar-root-list {
+    justify-content: center;
+    
+}
+:host ::ng-deep .p-menubar-item-link {
+    padding: 2px;
+}
+:host ::ng-deep .p-menubar-submenu {
+    flex-direction: row;
+    justify-content: center;
+    width: 90%;
+    position: absolute;
+    right: 5%;
+    flex-wrap: wrap;
+}
+
+
