@@ -1,17 +1,17 @@
-<p-card [style]="{ width: '15rem', overflow: 'hidden', margin: '0.5rem', height: '20rem'}">
+<p-card [style]="{ width: '20rem', overflow: 'hidden', margin: '0.5rem', height: '26rem'}" class="prose">
     <ng-template pTemplate="header">
         <img alt="{{course.title}}"  class="w-full max-h-40" src={{course.thumbnailUrl}} />
     </ng-template>
-    <ng-template pTemplate="title"> {{ course.title | truncate  }}</ng-template>
+    <ng-template pTemplate="title"> {{ course.title }}</ng-template>
     <ng-template pTemplate="subtitle"> Card subtitle </ng-template>
     
     <div class="flex justify-between items-center">
-        <div class="mt-0 font-semibold text-xl">
+        <div >
             {{ '$' + '99' }}
         </div>
         <span>
             <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
-            <p-button icon="pi pi-shopping-cart" styleClass="ml-2" />
+            <p-button icon="pi pi-shopping-cart" class="ml-2" />
         </span>
     </div>
 </p-card> 
