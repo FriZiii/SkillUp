@@ -1,6 +1,6 @@
-import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from '../models/user.model';
-import { inject, Injectable } from '@angular/core';
+import { BehaviorSubject, filter, map, Observable, switchMap, tap } from 'rxjs';
+import { User, UserDetail } from '../models/user.model';
+import { inject, Injectable, signal } from '@angular/core';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { UserRole } from '../models/user-role.model';
 import { HttpClient } from '@angular/common/http';
@@ -16,9 +16,37 @@ interface CustomJwtPayload extends JwtPayload {
 export class UserService {
   httpClient = inject(HttpClient);
   private userSubject = new BehaviorSubject<User | null>(null);
+  //private userDetailSubject = new BehaviorSubject<UserDetail | null>(null);
 
   get user(): Observable<User | null> {
     return this.userSubject.asObservable();
+  }
+
+  get userDeatil(): Observable<UserDetail | null> {
+    return this.user.pipe(
+      filter((user): user is User => user !== null), // Upewniamy się, że user nie jest null
+      switchMap((user) =>
+        this.getData(user.id, true).pipe(
+          map((response: any) => {
+            const userDetail = new UserDetail(user.id, user.role);
+            userDetail.firstName = response.firstName;
+            userDetail.lastName = response.lastName;
+            userDetail.profilePicture = response.profilePicture;
+            userDetail.email = response.email;
+            userDetail.title = response.details.title;
+            userDetail.biography = response.details.biography;
+            userDetail.website = response.socialMediaLinks.website;
+            userDetail.twitter = response.socialMediaLinks.twitter;
+            userDetail.facebook = response.socialMediaLinks.facebook;
+            userDetail.linkedin = response.socialMediaLinks.linkedin;
+            userDetail.youtube = response.socialMediaLinks.youtube;
+            userDetail.isAccountPublicForLoggedInUsers = response.privacySettings.isAccountPublicForLoggedInUsers;
+            userDetail.showCoursesOnUserProfile = response.privacySettings.showCoursesOnUserProfile;
+            return userDetail;  // Tutaj zwracamy skonstruowany obiekt userDetail
+          })
+        )
+      )
+    );
   }
 
   setUserFromToken(token: string): void {
