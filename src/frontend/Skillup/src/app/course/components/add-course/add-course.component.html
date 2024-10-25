@@ -1,27 +1,32 @@
-<div class="w-screen flex justify-center">
-  <div [style]="{width: '50vw', height: '40vh'}" class="su-border rounded bg-surface-50 flex justify-center px-12 py-7">
-    
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="w-full">
-    <p-stepper [value]="1" class="basis-[50rem]" [linear]="true">
-      <p-step-list>
-        <p-step [value]="1">Header I</p-step>
-        <p-step [value]="2">Header II</p-step>
-        <p-step [value]="3">Header II</p-step>
-      </p-step-list>
-      <p-step-panels>
-        <p-step-panel [value]="1">
-          <ng-template #content let-activateCallback="activateCallback">
-            <div class="flex flex-col h-48">
+<div class="w-full flex justify-center">
+  <div
+    [style]="{ width: '780px' }"
+    class="flex justify-center px-12 py-7 su-section-mt"
+  >
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="w-full">
+      <p-stepper [value]="1" class="basis-[50rem]" [linear]="true">
+        <p-step-list>
+          <p-step [value]="1">Header I</p-step>
+          <p-step [value]="2">Header II</p-step>
+          <p-step [value]="3">Header II</p-step>
+        </p-step-list>
+        <p-step-panels>
+          <p-step-panel [value]="1">
+            <ng-template #content let-activateCallback="activateCallback">
               <div
-                class=" flex-auto flex justify-center items-center font-medium"
+                class="flex flex-col justify-center items-center prose su-section-mt"
               >
-                <div class="flex flex-col">
-                  <label class="text-slate-900 mb-4">Enter Course Title</label>
+                <h1>Enter Course Title</h1>
+                <div
+                  class="flex-auto flex justify-center items-center font-medium"
+                  [style]="{ width: '600px' }"
+                >
                   <input
                     id="title"
                     type="text"
                     pInputText
                     formControlName="title"
+                    fluid="true"
                   />
                 </div>
               </div>
@@ -36,86 +41,93 @@
                   "
                 />
               </div>
-            </div>
-          </ng-template>
-        </p-step-panel>
+            </ng-template>
+          </p-step-panel>
 
-        <p-step-panel [value]="2">
-          <ng-template #content let-activateCallback="activateCallback">
-            <div class="flex flex-col h-48">
+          <p-step-panel [value]="2">
+            <ng-template #content let-activateCallback="activateCallback">
               <div
-                class="flex-auto flex justify-center items-center font-medium"
+                class="flex flex-col justify-center items-center prose su-section-mt"
               >
-                <p-select
-                  [options]="categoryNames()"
-                  optionLabel="name"
-                  optionValue="id"
-                  placeholder="Select a Category"
-                  class="w-full md:w-56"
-                  formControlName="category"
-                  [(ngModel)]="selectedCategory"
+                <h1>Select a Category</h1>
+                <div
+                  class="flex-auto flex justify-center items-center font-medium"
+                  [style]="{ width: '600px' }"
+                >
+                  <p-select
+                    [options]="categoryNames()"
+                    optionLabel="name"
+                    optionValue="id"
+                    placeholder="Category"
+                    class="w-full"
+                    formControlName="category"
+                    [(ngModel)]="selectedCategory"
+                  />
+                </div>
+              </div>
+              <div class="flex pt-6 justify-between">
+                <p-button
+                  label="Back"
+                  severity="secondary"
+                  icon="pi pi-arrow-left"
+                  (onClick)="activateCallback(1)"
+                />
+                <p-button
+                  label="Next"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  (onClick)="activateCallback(3)"
+                  [disabled]="
+                    form.get('category')?.invalid ||
+                    form.get('category')?.pristine
+                  "
                 />
               </div>
-            </div>
-            <div class="flex pt-6 justify-between">
-              <p-button
-                label="Back"
-                severity="secondary"
-                icon="pi pi-arrow-left"
-                (onClick)="activateCallback(1)"
-              />
-              <p-button
-                label="Next"
-                icon="pi pi-arrow-right"
-                iconPos="right"
-                (onClick)="activateCallback(3)"
-                [disabled]="
-                  form.get('category')?.invalid ||
-                  form.get('category')?.pristine
-                "
-              />
-            </div>
-          </ng-template>
-        </p-step-panel>
+            </ng-template>
+          </p-step-panel>
 
-        <p-step-panel [value]="3">
-          <ng-template #content let-activateCallback="activateCallback">
-            <div class="flex flex-col h-48">
+          <p-step-panel [value]="3">
+            <ng-template #content let-activateCallback="activateCallback">
               <div
-                class="flex-auto flex justify-center items-center font-medium"
+                class="flex flex-col justify-center items-center prose su-section-mt"
               >
-                <p-select
-                  [options]="subcategoryNames()"
-                  optionLabel="name"
-                  optionValue="id"
-                  placeholder="Select a Subcategory"
-                  class="w-full md:w-56"
-                  formControlName="subcategory"
+                <h1>Select a Subcategory</h1>
+                <div
+                  class="flex-auto flex justify-center items-center font-medium prose"
+                  [style]="{ width: '600px' }"
+                >
+                  <p-select
+                    [options]="subcategoryNames()"
+                    optionLabel="name"
+                    optionValue="id"
+                    placeholder="Subcategory"
+                    class="w-full"
+                    formControlName="subcategory"
+                  />
+                </div>
+              </div>
+              <div class="flex pt-6 justify-between">
+                <p-button
+                  label="Back"
+                  icon="pi pi-arrow-left"
+                  iconPos="right"
+                  (onClick)="activateCallback(2)"
+                />
+                <p-button
+                  label="Submit"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  type="Submit"
+                  [disabled]="
+                    form.get('subcategory')?.invalid ||
+                    form.get('subcategory')?.pristine
+                  "
                 />
               </div>
-            </div>
-            <div class="flex pt-6 justify-between">
-              <p-button
-                label="Back"
-                icon="pi pi-arrow-left"
-                iconPos="right"
-                (onClick)="activateCallback(2)"
-              />
-              <p-button
-                label="Submit"
-                icon="pi pi-arrow-right"
-                iconPos="right"
-                type="Submit"
-                [disabled]="
-                  form.get('subcategory')?.invalid ||
-                  form.get('subcategory')?.pristine
-                "
-              />
-            </div>
-          </ng-template>
-        </p-step-panel>
-      </p-step-panels>
-    </p-stepper>
-  </form>
-</div>
+            </ng-template>
+          </p-step-panel>
+        </p-step-panels>
+      </p-stepper>
+    </form>
+  </div>
 </div>
