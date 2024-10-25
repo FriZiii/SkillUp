@@ -42,7 +42,6 @@ export class CoursesService {
                     },
                     thumbnailUrl: response.thumbnailUrl
                 }])
-                console.log(this.courses());
             })
         );
     }

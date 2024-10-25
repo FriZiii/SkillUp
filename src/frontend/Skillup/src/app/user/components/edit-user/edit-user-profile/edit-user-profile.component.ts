@@ -6,6 +6,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { UserService } from '../../../services/user.service';
 import { User, UserDetail } from '../../../models/user.model';
+import { ToastHandlerService } from '../../../../core/services/ToastHandlerService';
 
 @Component({
   selector: 'app-edit-user-profile',
@@ -23,7 +24,8 @@ import { User, UserDetail } from '../../../models/user.model';
 })
 export class EditUserProfileComponent implements OnInit {
   //Services
-  userService = inject(UserService)
+  userService = inject(UserService);
+  toastService = inject(ToastHandlerService);
 
   //Variables
   userDetail = signal<UserDetail | null>(null);
@@ -62,16 +64,7 @@ export class EditUserProfileComponent implements OnInit {
     
   }
 
-  onClick(){
-    console.log(this.userDetail());
-  }
-
   onSubmit(){
-    console.log(this.form.value.name);
-    
-    console.log(this.form.value.surname);
-    console.log(this.userDetail()?.id);
-
     const subscription = this.userService.editUser(this.userDetail()!.id, {
       firstName: this.form.value.name,
       lastName: this.form.value.surname,
@@ -88,6 +81,7 @@ export class EditUserProfileComponent implements OnInit {
       })
     .subscribe({
       next: (res) => {
+        this.toastService.showSuccessToast('Profile editted successfully')
       }
       })
         
