@@ -103,7 +103,6 @@ namespace Skillup.Shared.Infrastructure
                 ForwardedHeaders = ForwardedHeaders.All
             });
             app.UseCors("cors");
-            app.UseHttpsRedirection();
             app.UseErrorHandling();
             app.UseRouting();
             app.UseAuth();
