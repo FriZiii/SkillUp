@@ -80,7 +80,7 @@ export class UserService {
   editUser(userId: string, userData:EditUser){
     return this.httpClient.put<any>(`${environment.apiUrl}/courses/users/${userId}`, userData)
     .pipe(
-      catchError(error => {return throwError(() => error)}),
+      catchError(error => { return throwError(() => error)}),
       tap((response) => {console.log(response)})
     );
   }

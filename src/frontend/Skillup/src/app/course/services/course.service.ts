@@ -3,11 +3,13 @@ import { inject, Injectable, signal } from "@angular/core";
 import { AddCourse, CourseDetail, CourseListItem } from "../models/course.model";
 import { environment } from "../../../environments/environment";
 import { BehaviorSubject, catchError, Observable, tap, throwError } from "rxjs";
+import { ToastHandlerService } from "../../core/services/ToastHandlerService";
 
 
 @Injectable({ providedIn: 'root' })
 export class CoursesService {
     private httpClient = inject(HttpClient);
+    toastService = inject(ToastHandlerService);
     private coursesSubject = new BehaviorSubject<CourseListItem[]>([]);
     courses$: Observable<CourseListItem[]> = this.coursesSubject.asObservable();
     public courses = signal<CourseListItem[]>([]);
@@ -56,7 +58,10 @@ export class CoursesService {
         .get<any>(environment.apiUrl + '/Courses')
         .pipe(
             tap((courses) => this.coursesSubject.next(courses)),
-            catchError(error => {return throwError(() => error)}))
+            catchError(error => {
+                this.toastService.showErrorToast("Coud not fetch courses");
+                return throwError(() => error)
+            }))
             .subscribe();
     }
 

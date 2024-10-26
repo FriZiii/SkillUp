@@ -3,9 +3,11 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Category } from '../models/category.model';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { ToastHandlerService } from '../../core/services/ToastHandlerService';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService {
+  toastService = inject(ToastHandlerService);
   private httpClient = inject(HttpClient);
   public categories = signal<Category[]>([]);
 
@@ -28,6 +30,7 @@ export class CategoryService {
           this.categoriesSubject.next(categories);
         }),
         catchError((error) => {
+          this.toastService.showErrorToast("Coud not fetch categories")
           return throwError(() => error);
         })
       )

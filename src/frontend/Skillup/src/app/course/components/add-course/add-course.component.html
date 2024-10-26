@@ -1,8 +1,5 @@
 <div class="w-full flex justify-center">
-  <div
-    [style]="{ width: '780px' }"
-    class="flex justify-center px-12 py-7 su-section-mt"
-  >
+  <div class="flex justify-center px-12 py-7 su-section-mt lg:w-192">
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="w-full">
       <p-stepper [value]="1" class="basis-[50rem]" [linear]="true">
         <p-step-list>
@@ -18,8 +15,7 @@
               >
                 <h1>Enter Course Title</h1>
                 <div
-                  class="flex-auto flex justify-center items-center font-medium"
-                  [style]="{ width: '600px' }"
+                  class="flex-auto flex justify-center items-center font-medium lg:w-128 w-full"
                 >
                   <input
                     id="title"
@@ -51,8 +47,7 @@
               >
                 <h1>Select a Category</h1>
                 <div
-                  class="flex-auto flex justify-center items-center font-medium"
-                  [style]="{ width: '600px' }"
+                  class="flex-auto flex justify-center items-center font-medium lg:w-128 w-full"
                 >
                   <p-select
                     [options]="categoryNames()"
@@ -93,8 +88,7 @@
               >
                 <h1>Select a Subcategory</h1>
                 <div
-                  class="flex-auto flex justify-center items-center font-medium prose"
-                  [style]="{ width: '600px' }"
+                  class="flex-auto flex justify-center items-center font-medium prose lg:w-128 w-full"
                 >
                   <p-select
                     [options]="subcategoryNames()"
