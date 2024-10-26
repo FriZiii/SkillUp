@@ -40,7 +40,7 @@ footer{
 }
 
 .custom-textarea {
-  @apply su-border focus:outline-none focus:border-primary;
+  @apply su-border focus:outline-none focus:border-primary px-2;
 }
 
 .su-border{
