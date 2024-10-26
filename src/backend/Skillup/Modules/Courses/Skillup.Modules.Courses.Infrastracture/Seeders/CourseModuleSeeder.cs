@@ -13,6 +13,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
             _context = context;
             _clock = clock;
         }
+
         public async Task Seed()
         {
             var _categoriesSeeder = new CategorySeeder(_context);
