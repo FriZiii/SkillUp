@@ -22,9 +22,7 @@
   <ng-template pTemplate="subtitle"> Card subtitle </ng-template>
 
   <div class="flex justify-between items-center">
-    <div>
-      {{ "$" + "99" }}
-    </div>
+    <div>$ {{ course.price.amount }}</div>
     <span>
       <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
       <p-button icon="pi pi-shopping-cart" class="ml-2" />

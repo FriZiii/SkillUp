@@ -1,5 +1,5 @@
-import { Component, Input, input } from '@angular/core';
-import { CourseListItem } from '../../models/course.model';
+import { Component, Input, input, OnInit } from '@angular/core';
+import { Course, CourseListItem } from '../../models/course.model';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
@@ -12,6 +12,6 @@ import { TruncatePipe } from "../../../utils/pipes/truncate.pipe";
   templateUrl: './course-item.component.html',
   styleUrl: './course-item.component.css',
 })
-export class CourseItemComponent {
+export class CourseItemComponent{
   @Input() course!: CourseListItem;
 }
