@@ -27,7 +27,7 @@ services:
         - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
         - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
 
-    skillup.smtpserver:
+  skillup.smtpserver: #Development
     container_name: ${SMTP_HOST}
     image: changemakerstudiosus/papercut-smtp:latest
     env_file:
@@ -35,6 +35,18 @@ services:
     ports:
      - ${SMTP_HTTP_PORT}:80
      - ${SMTP_PORT}:25
+
+  skillup.localstack: #Development
+    image: localstack/localstack
+    container_name: ${LOCALSTACK_HOST}
+    ports:
+      - ${LOCALSTACK_PORT}:4566 
+    environment:
+      - SERVICES=s3
+    volumes:
+      - "./init.sh:/etc/localstack/init/ready.d/init-aws.sh"
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
 
   skillup.bootstrapper:
     container_name: skillup-api
@@ -50,8 +62,9 @@ services:
     depends_on:
       - skillup.postgres
       - skillup.rabbitmq
-      - skillup.smtpserver
-  
+      - skillup.smtpserver #Development
+      - skillup.localstack #Development
+
   skillup.nginx:
     container_name: skillup-nginx
     image: nginx:alpine
