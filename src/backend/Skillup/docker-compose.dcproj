@@ -13,12 +13,11 @@
   <ItemGroup>
     <None Include=".env" />
     <None Include=".env.example" />
-    <None Include="docker-compose.override.yml">
-      <DependentUpon>docker-compose.yml</DependentUpon>
-    </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
-    <None Include="nginx.conf" />
-    <None Include="init.sh" />
+    <None Include="LocalStack\init.sh" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Nginx\Certs\" />
   </ItemGroup>
 </Project>
