@@ -10,6 +10,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
+import { RouterModule } from '@angular/router';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @Component({
   selector: 'app-sign-up',
@@ -19,7 +21,9 @@ import { ButtonModule } from 'primeng/button';
     FloatLabelModule,
     PasswordModule,
     ButtonModule,
+    CheckboxModule,
     ReactiveFormsModule,
+    RouterModule
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css',
@@ -31,6 +35,7 @@ export class SignUpComponent {
     email: new FormControl('', Validators.required),
     password: new FormControl('', [Validators.required]),
     passwordConfirm: new FormControl('', [Validators.required]),
+    marketing: new FormControl(true)
   });
 
   subbmitSignUp() {
