@@ -13,6 +13,7 @@ services:
       - POSTGRES_HOST_AUTH_METHOD=${POSTGRES_HOST_AUTH_METHOD}
     ports:
       - ${POSTGRES_PORT}:5432
+    profiles: [dev, prod]
 
   skillup.rabbitmq:
     container_name: ${RABBITMQ_HOST}    
@@ -25,7 +26,8 @@ services:
         - ${RABBITMQ_HTTP_PORT}:15672
     volumes:
         - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq    
+    profiles: [dev, prod]
 
   skillup.smtpserver:
     container_name: ${SMTP_HOST}
@@ -51,7 +53,7 @@ services:
     profiles: [dev]
 
   skillup.bootstrapper.dev:
-    container_name: skillup-api
+    container_name: skillup-api-dev
     image: ${DOCKER_REGISTRY-}skillupbootstrapper
     environment:
       - aspnetcore_environment=${environment}
@@ -71,14 +73,14 @@ services:
     profiles: [dev]
 
   skillup.nginx.dev:
-    container_name: skillup-nginx
+    container_name: skillup-nginx-dev
     image: nginx:alpine
     env_file:
       - .env
     volumes:
       - ./nginx/nginx.development.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - skillup.bootstrapper    
+      - skillup.bootstrapper.dev    
     ports:
       - "${NGINX_PORT}:4000"
     profiles: [dev]
@@ -99,6 +101,7 @@ services:
     depends_on:
       - skillup.postgres
       - skillup.rabbitmq
+    profiles: [prod]
 
   skillup.nginx:
     container_name: skillup-nginx
@@ -109,9 +112,10 @@ services:
       - ./nginx/nginx.production.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/certs:/etc/ssl/certs
     depends_on:
-      - skillup.bootstrapper    
+      - skillup.bootstrapper   
     ports:
       - "${NGINX_PORT}:4000"
+    profiles: [prod]
 
 volumes:
   postgres:
