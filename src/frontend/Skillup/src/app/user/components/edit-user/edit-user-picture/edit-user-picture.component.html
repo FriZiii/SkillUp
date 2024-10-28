@@ -2,7 +2,7 @@
   <div class="w-96 h-96 su-border">
     <img
       class="p-1 w-96 h-96 object-contain"
-      [src]="previewNewImage ? previewNewImage : user()!.profilePicture!"
+      [src]="newImageUrl ? newImageUrl : user()?.profilePicture"
     />
   </div>
 
@@ -17,6 +17,7 @@
     />
 
     <p-button
+      (onClick)="upload()"
       [style]="{ width: '100%' }"
       label="Save"
       class="w-full"

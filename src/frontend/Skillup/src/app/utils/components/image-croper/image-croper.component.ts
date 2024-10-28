@@ -2,12 +2,14 @@ import {
   ImageCroppedEvent,
   ImageCropperComponent,
   LoadedImage,
+  base64ToFile,
 } from 'ngx-image-cropper';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ImageCroperResponse } from '../../models/image-croper-response.model';
 
 @Component({
   selector: 'app-image-croper',
@@ -23,17 +25,24 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 })
 export class ImageCroperComponent {
   @Input() imageFile: File | null = null;
-
   @Input() imageChangedEvent: Event | null = null;
   @Input() croperVisibility: boolean = false;
-  @Output() imageCroppedEvent = new EventEmitter<SafeUrl>();
+
   croperLoading = true;
-  croppedImage: SafeUrl = '';
+
+  @Output() imageCroppedEvent = new EventEmitter<ImageCroperResponse>();
+  croppedImageUrl: SafeUrl = '';
+  croppedImageFile: File | null = null;
 
   constructor(private sanitizer: DomSanitizer) {}
 
   onImageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl!);
+    this.croppedImageFile = new File([event.blob!], 'fileName', {
+      type: event.blob!.type,
+    });
+    this.croppedImageUrl = this.sanitizer.bypassSecurityTrustUrl(
+      event.objectUrl!
+    );
   }
 
   omImageLoaded(image: LoadedImage) {
@@ -41,8 +50,11 @@ export class ImageCroperComponent {
   }
 
   cropImage() {
-    this.croperLoading = true;
-    this.imageCroppedEvent.emit(this.croppedImage);
+    const response: ImageCroperResponse = {
+      file: this.croppedImageFile!,
+      url: this.croppedImageUrl,
+    };
+    this.imageCroppedEvent.emit(response);
   }
 
   onLoadImageFailed() {

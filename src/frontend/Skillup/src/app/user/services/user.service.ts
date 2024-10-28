@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, take, tap } from 'rxjs';
 import { User } from '../models/user.model';
 import { inject, Injectable } from '@angular/core';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
@@ -41,6 +41,27 @@ export class UserService {
 
   clearUser(): void {
     this.userSubject.next(null);
+  }
+
+  editProfilePicture(userId: string, file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.httpClient
+      .put<any>(
+        `${environment.apiUrl}/courses/users/${userId}/profile-picture`,
+        formData
+      )
+      .pipe(
+        tap((result: any) => {
+          this.userSubject.pipe(take(1)).subscribe((user) => {
+            if (user) {
+              user.profilePicture = result.profilePicture;
+              this.userSubject.next(user);
+            }
+          });
+        })
+      );
   }
 
   private getData(userId: string, details: boolean) {
