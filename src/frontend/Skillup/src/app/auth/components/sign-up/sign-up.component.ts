@@ -32,9 +32,9 @@ export class SignUpComponent {
   authService = inject(AuthService);
 
   signUpForm = new FormGroup({
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', [Validators.required]),
-    passwordConfirm: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern('^(?=.*[A-Z]).*$')]),
+    passwordConfirm: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern('^(?=.*[A-Z]).*$')]),
     marketing: new FormControl(true)
   });
 
@@ -42,4 +42,12 @@ export class SignUpComponent {
     const formValue = this.signUpForm.value;
     this.authService.signUp(formValue.email!, formValue.password!, formValue.marketing!).subscribe();
   }
+
+  
+passwordsMatchValidator(form: FormGroup) {
+  const password = form.value.password;
+  const passwordConfirm = form.value.passwordConfirm;
+  return password === passwordConfirm ? null : { passwordsMismatch: true };
 }
+}
+

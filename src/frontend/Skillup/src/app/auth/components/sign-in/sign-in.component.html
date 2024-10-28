@@ -54,6 +54,7 @@
             label="Sign in"
             icon="pi pi-sign-in"
             iconPos="right"
+            [disabled]="signInForm.invalid && signInForm.pristine"
           />
         </div>
 
