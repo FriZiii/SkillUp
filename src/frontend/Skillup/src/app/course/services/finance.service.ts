@@ -4,33 +4,34 @@ import { Category } from '../models/category.model';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ToastHandlerService } from '../../core/services/ToastHandlerService';
+import { Item, ItemType } from '../models/finance.model';
 
 @Injectable({ providedIn: 'root' })
-export class CategoryService {
+export class FinanceService {
   toastService = inject(ToastHandlerService);
   private httpClient = inject(HttpClient);
-  public categories = signal<Category[]>([]);
+  public items = signal<Item[]>([]);
 
-  private categoriesSubject = new BehaviorSubject<Category[]>([]);
-  public categories$: Observable<Category[]> =
-    this.categoriesSubject.asObservable();
+  private itemSubject = new BehaviorSubject<Item[]>([]);
+  public items$: Observable<Item[]> =
+    this.itemSubject.asObservable();
 
   constructor() {
-    this.fetchCategories();
-    this.categories$.subscribe((data) => {
-      this.categories.set(data);
+    this.fetchItems();
+    this.items$.subscribe((data) => {
+      this.items.set(data);
     });
   }
 
-  private fetchCategories() {
+  private fetchItems() {
     this.httpClient
-      .get<Category[]>(environment.apiUrl + '/Courses/Categories')
+      .get<any>(environment.apiUrl + '/Finances/Items?itemType=Course')
       .pipe(
-        tap((categories) => {
-          this.categoriesSubject.next(categories);
+        tap((items) => {
+          this.itemSubject.next(items);
         }),
         catchError((error) => {
-          this.toastService.showErrorToast("Coud not fetch categories")
+          this.toastService.showErrorToast("Coud not fetch prices")
           return throwError(() => error);
         })
       )
