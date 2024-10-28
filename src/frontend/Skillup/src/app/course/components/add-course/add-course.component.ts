@@ -49,7 +49,6 @@ export class AddCourseComponent {
     const subcategory = this.form.value.subcategory;
     const subscription = this.courseService.addCourse({title: title!, categoryId: category!, subcategoryId: subcategory!}).subscribe({
       next: (res) => {
-        console.log(res);
         this.toastService.showSuccessToast("Course sucessfully added")
       }
     })
