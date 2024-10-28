@@ -10,7 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { CoursesService } from '../../services/course.service';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ToastHandlerService } from '../../../core/services/ToastHandlerService';
+import { ToastHandlerService } from '../../../core/services/toasthandler.service';
 
 @Component({
   selector: 'app-add-course',
@@ -49,7 +49,7 @@ export class AddCourseComponent {
     const subcategory = this.form.value.subcategory;
     const subscription = this.courseService.addCourse({title: title, categoryId: category, subcategoryId: subcategory}).subscribe({
       next: (res) => {
-        this.toastService.showSuccessToast("Course sucessfully added")
+        this.toastService.showSuccess("Course sucessfully added")
       }
     })
     this.destroyRef.onDestroy(() => {

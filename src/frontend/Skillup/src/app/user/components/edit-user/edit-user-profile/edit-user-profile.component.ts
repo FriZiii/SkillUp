@@ -6,7 +6,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { UserService } from '../../../services/user.service';
 import { User, UserDetail } from '../../../models/user.model';
-import { ToastHandlerService } from '../../../../core/services/ToastHandlerService';
+import { ToastHandlerService } from '../../../../core/services/toasthandler.service';
 
 @Component({
   selector: 'app-edit-user-profile',
@@ -81,7 +81,7 @@ export class EditUserProfileComponent implements OnInit {
       })
     .subscribe({
       next: (res) => {
-        this.toastService.showSuccessToast('Profile editted successfully')
+        this.toastService.showSuccess('Profile editted successfully')
       }
       })
         

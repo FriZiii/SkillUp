@@ -5,6 +5,7 @@ import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { UserRole } from '../models/user-role.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { ToastHandlerService } from '../../core/services/toasthandler.service';
 
 interface CustomJwtPayload extends JwtPayload {
   'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'?: string;
@@ -14,6 +15,7 @@ interface CustomJwtPayload extends JwtPayload {
   providedIn: 'root',
 })
 export class UserService {
+  toastService = inject(ToastHandlerService)
   httpClient = inject(HttpClient);
   private userSubject = new BehaviorSubject<User | null>(null);
 
@@ -79,7 +81,7 @@ export class UserService {
   editUser(userId: string, userData:EditUser){
     return this.httpClient.put<any>(`${environment.apiUrl}/courses/users/${userId}`, userData)
     .pipe(
-      catchError(error => { return throwError(() => error)})
+      catchError(error => { return throwError(() => error)}),
     );
   }
 

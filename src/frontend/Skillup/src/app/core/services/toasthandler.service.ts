@@ -6,7 +6,7 @@ export class ToastHandlerService{
     messageService = inject(MessageService);
     ngZone = inject(NgZone);
 
-    showErrorToast(message: string){
+    showError(message: string){
         this.ngZone.run(() => {
             this.messageService.add({
             severity: 'error',
@@ -17,7 +17,7 @@ export class ToastHandlerService{
         });
     }
 
-    showSuccessToast(message: string) {
+    showSuccess(message: string) {
         this.ngZone.run(() => {
             this.messageService.add({
             severity: 'success',
@@ -28,7 +28,7 @@ export class ToastHandlerService{
         });
     }
 
-    showInfoToast(message: string) {
+    showInfo(message: string) {
         this.ngZone.run(() => {
             this.messageService.add({
             severity: 'info',
@@ -39,7 +39,7 @@ export class ToastHandlerService{
         });
     }
 
-    showWarnToast(message: string) {this.ngZone.run(() => {
+    showWarn(message: string) {this.ngZone.run(() => {
         this.messageService.add({
         severity: 'warn',
         summary: 'Warn',
