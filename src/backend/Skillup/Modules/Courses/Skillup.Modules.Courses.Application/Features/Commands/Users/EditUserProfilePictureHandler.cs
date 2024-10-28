@@ -32,7 +32,8 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Users
             var response = await _s3Service.Upload(request.File, S3FolderPaths.UserProfilePicture + key, true);
             if (response?.HttpStatusCode == HttpStatusCode.OK)
             {
-                await _userRepository.EditProfilePicture(request.UserId, key);
+                user.ProfilePictureKey = key;
+                await _userRepository.Edit(user);
             }
         }
     }

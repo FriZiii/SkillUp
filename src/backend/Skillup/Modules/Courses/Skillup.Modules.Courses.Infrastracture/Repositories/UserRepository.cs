@@ -33,7 +33,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             userToEdit.FirstName = user.FirstName;
             userToEdit.LastName = user.LastName;
             userToEdit.Details = user.Details;
+            userToEdit.ProfilePictureKey = user.ProfilePictureKey;
             userToEdit.SocialMediaLinks = user.SocialMediaLinks;
+            userToEdit.PrivacySettings = user.PrivacySettings;
 
             await _context.SaveChangesAsync();
         }
@@ -43,15 +45,6 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             var userToEdit = await _users.FirstOrDefaultAsync(x => x.Id == userId) ?? throw new UserNotFoundException(userId);
 
             userToEdit.PrivacySettings = privacySettings;
-
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task EditProfilePicture(Guid userId, string key)
-        {
-            var userToEdit = await _users.FirstOrDefaultAsync(x => x.Id == userId) ?? throw new UserNotFoundException(userId);
-
-            userToEdit.ProfilePictureKey = key;
 
             await _context.SaveChangesAsync();
         }
