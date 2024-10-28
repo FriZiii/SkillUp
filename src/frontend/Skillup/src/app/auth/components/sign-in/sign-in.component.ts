@@ -37,8 +37,18 @@ export class SignInComponent {
     remember: new FormControl(false)
   });
 
-  subbmitSignIn() {
+  submitSignIn() {
     const formValue = this.signInForm.value;
     this.authService.signIn(formValue.email!, formValue.password!).subscribe();
+  }
+
+  get emailIsInvalid(){
+    return this.signInForm.controls.email.dirty && this.signInForm.controls.email.invalid
+  }
+  get passwordIsInvalid(){
+    return this.signInForm.controls.password.dirty && this.signInForm.controls.password.invalid
+  }
+  get formIsInvalid(){
+    return this.signInForm.pristine || this.signInForm.controls.email.dirty && this.signInForm.controls.email.invalid || this.signInForm.controls.password.dirty && this.signInForm.controls.password.invalid
   }
 }

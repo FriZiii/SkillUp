@@ -8,7 +8,7 @@
       <form
         class="w-full flex-col flex gap-4"
         [formGroup]="signInForm"
-        (ngSubmit)="subbmitSignIn()"
+        (ngSubmit)="submitSignIn()"
       >
         <div class="flex flex-col">
           <p-floatLabel class="w-full mb-2">
@@ -21,9 +21,10 @@
             <label for="email">Email</label>
           </p-floatLabel>
 
-          
-          <p-button class="self-end btn-sm" [link]="true" routerLink="/">Forgot your password?</p-button>
-          
+          <p-button class="self-end btn-sm" [link]="true" routerLink="/"
+            >Forgot your password?</p-button
+          >
+
           <p-floatlabel class="w-full">
             <p-password
               [inputStyle]="{ width: '100%' }"
@@ -34,6 +35,16 @@
             />
             <label for="password">Password</label>
           </p-floatlabel>
+        </div>
+
+        <div class="prose-sm text-red-500">
+          @if(emailIsInvalid){
+          <p class="m-0">Email address is invalid!</p>
+          } @else if(passwordIsInvalid){
+          <p class="m-0">
+            Password must be at least 6 characters long and contain big letter!
+          </p>
+          }
         </div>
 
         <div class="flex items-center gap-1">
@@ -54,13 +65,11 @@
             label="Sign in"
             icon="pi pi-sign-in"
             iconPos="right"
-            [disabled]="signInForm.invalid && signInForm.pristine"
+            [disabled]="formIsInvalid"
           />
         </div>
-
       </form>
 
-      
       <p>
         Don't have an account yet?
         <p-button [link]="true" routerLink="/sign-up">Sign Up</p-button>

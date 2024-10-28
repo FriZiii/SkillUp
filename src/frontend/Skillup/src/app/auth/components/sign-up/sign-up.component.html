@@ -4,9 +4,7 @@
       <img src="assets/svg/undraw_sign_up.svg" />
     </div>
     <div class="col-start-8 col-span-3 flex flex-col items-center prose">
-      <h1 class="text-5xl">
-        Sign up now to begin your educational adventure
-      </h1>
+      <h1 class="text-5xl">Sign up now to begin your educational adventure</h1>
       <form
         class="w-full flex-col flex gap-4"
         [formGroup]="signUpForm"
@@ -48,6 +46,18 @@
           </div>
         </div>
 
+        <div class="prose-sm text-red-500">
+          @if(emailIsInvalid) {
+          <p class="m-0">Email address is invalid!</p>
+          } @else if(passwordIsInvalid) {
+          <p class="m-0">
+            Password must be at least 6 characters long and contain big letter!
+          </p>
+          } @else if (!passwordsAreEqual) {
+          <p class="m-0">Password must be equal!</p>
+          }
+        </div>
+
         <div class="flex items-center gap-1">
           <p-checkbox
             formControlName="marketing"
@@ -68,7 +78,7 @@
             label="Sign up"
             icon="pi pi-sign-in"
             iconPos="right"
-            [disabled]="signUpForm.invalid && signUpForm.pristine"
+            [disabled]="formIsInvalid"
           />
         </div>
       </form>

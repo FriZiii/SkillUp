@@ -1,8 +1,10 @@
 import { Component, inject } from '@angular/core';
 import {
+  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
@@ -44,10 +46,21 @@ export class SignUpComponent {
   }
 
   
-passwordsMatchValidator(form: FormGroup) {
-  const password = form.value.password;
-  const passwordConfirm = form.value.passwordConfirm;
-  return password === passwordConfirm ? null : { passwordsMismatch: true };
-}
+  get emailIsInvalid(){
+    return this.signUpForm.controls.email.dirty && this.signUpForm.controls.email.invalid
+  }
+  get passwordIsInvalid(){
+    return this.signUpForm.controls.password.dirty && this.signUpForm.controls.password.invalid
+  }
+  get formIsInvalid(){
+    return this.signUpForm.pristine || this.signUpForm.controls.email.dirty && this.signUpForm.controls.email.invalid || this.signUpForm.controls.password.dirty && this.signUpForm.controls.password.invalid || !this.passwordsAreEqual;
+  }
+  
+  get passwordsAreEqual(){
+    if(this.signUpForm.value.password === this.signUpForm.value.passwordConfirm){
+      return true;
+    }
+    return false;
+  }
 }
 
