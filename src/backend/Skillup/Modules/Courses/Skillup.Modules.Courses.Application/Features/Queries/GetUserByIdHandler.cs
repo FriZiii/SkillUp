@@ -24,7 +24,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
             var user = await _userRepository.GetById(request.UserId) ?? throw new UserNotFoundException(request.UserId);
             var userMapper = new UserMapper(_s3Service);
 
-            return await userMapper.UserToUserDto(user, request.Details);
+            return userMapper.UserToUserDto(user, request.Details);
         }
     }
 }

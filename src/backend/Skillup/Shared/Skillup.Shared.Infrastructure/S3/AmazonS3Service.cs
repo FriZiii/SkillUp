@@ -64,6 +64,18 @@ namespace Skillup.Shared.Infrastructure.S3
             return await _client.GetPreSignedURLAsync(preSignedUrlRequest);
         }
 
+        public string GetPulicUrl(string key)
+        {
+            if (_environment.IsDevelopment())
+            {
+                return $"http://localhost:{_options.Port}/{_options.BucketName}/{key}";
+            }
+            else
+            {
+                //TODO: Add public url from S3
+                return "";
+            }
+        }
         public async Task<DeleteObjectResponse?> Delete(string key)
         {
             var deleteObjectRequest = new DeleteObjectRequest()

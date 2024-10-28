@@ -10,9 +10,9 @@ namespace Skillup.Modules.Courses.Application.Mappings
     {
         private readonly IAmazonS3Service _s3Service = s3Service;
 
-        public async Task<UserDto> UserToUserDto(User user, bool details)
+        public UserDto UserToUserDto(User user, bool details)
         {
-            var profilePicture = await _s3Service.GetPresignedUrl(S3FolderPaths.UserProfilePicture + user.ProfilePictureKey);
+            var profilePicture = _s3Service.GetPulicUrl(S3FolderPaths.UserProfilePicture + user.ProfilePictureKey);
             if (details)
             {
                 return new DetailedUserDto()
