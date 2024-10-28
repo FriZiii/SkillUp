@@ -16,7 +16,6 @@ interface CustomJwtPayload extends JwtPayload {
 export class UserService {
   httpClient = inject(HttpClient);
   private userSubject = new BehaviorSubject<User | null>(null);
-  //private userDetailSubject = new BehaviorSubject<UserDetail | null>(null);
 
   get user(): Observable<User | null> {
     return this.userSubject.asObservable();
@@ -24,7 +23,7 @@ export class UserService {
 
   get userDeatil(): Observable<UserDetail | null> {
     return this.user.pipe(
-      filter((user): user is User => user !== null), // Upewniamy się, że user nie jest null
+      filter((user): user is User => user !== null),
       switchMap((user) =>
         this.getData(user.id, true).pipe(
           map((response: any) => {
@@ -80,8 +79,7 @@ export class UserService {
   editUser(userId: string, userData:EditUser){
     return this.httpClient.put<any>(`${environment.apiUrl}/courses/users/${userId}`, userData)
     .pipe(
-      catchError(error => { return throwError(() => error)}),
-      tap((response) => {console.log(response)})
+      catchError(error => { return throwError(() => error)})
     );
   }
 
