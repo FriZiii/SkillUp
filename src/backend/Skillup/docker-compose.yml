@@ -45,6 +45,7 @@ services:
     ports:
       - ${LOCALSTACK_PORT}:4566 
     environment:
+      - S3_SKIP_SIGNATURE_VALIDATION=0
       - SERVICES=s3
     volumes:
       - "./LocalStack/init.sh:/etc/localstack/init/ready.d/init-aws.sh"
