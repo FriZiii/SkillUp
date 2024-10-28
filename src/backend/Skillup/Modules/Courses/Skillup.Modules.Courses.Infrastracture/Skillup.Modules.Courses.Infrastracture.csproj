@@ -7,6 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Seeders\Data\Images\default-profile-picture.png" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Content Include="Seeders\Data\article-seeder-data.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
@@ -21,6 +25,9 @@
 		</Content>
 		<Content Include="Seeders\Data\course-seeder-data.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Seeders\Data\Images\default-profile-picture.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Seeders\Data\question-seeder-data.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>

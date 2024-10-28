@@ -16,7 +16,8 @@ export class EditUserPictureComponent implements OnInit {
   oldImage: SafeUrl =
     'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
 
-  previewNewImage: SafeUrl | null = null;
+  newImageUrl: SafeUrl | null = null;
+  newImageFile: File | null = null;
   showCroper = false;
 
   selectedFile: File | undefined;
@@ -34,8 +35,15 @@ export class EditUserPictureComponent implements OnInit {
     this.showCroper = true;
   }
 
-  onImageCropped(newCroppedImage: SafeUrl) {
-    this.previewNewImage = newCroppedImage;
+  onImageCropped(event: { file: File | null; url: SafeUrl }) {
+    this.newImageUrl = event.url;
+    this.newImageFile = event.file;
     this.showCroper = false;
+  }
+
+  upload() {
+    this.userService
+      .editProfilePicture(this.user()!.id, this.newImageFile!)
+      .subscribe();
   }
 }

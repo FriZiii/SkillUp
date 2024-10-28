@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.UserEntities;
+using Skillup.Modules.Courses.Core.Options;
 using Skillup.Modules.Courses.Infrastracture.Seeders.Data.JsonModels;
+using Skillup.Shared.Abstractions.S3;
 using System.Text.Json;
 
 namespace Skillup.Modules.Courses.Infrastracture.Seeders
@@ -8,17 +11,28 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
     internal class CourseUserSeeder
     {
         private readonly CoursesDbContext _context;
+        private readonly IAmazonS3Service _amazonS3Service;
         private readonly DbSet<User> _users;
 
-        public CourseUserSeeder(CoursesDbContext context)
+        public CourseUserSeeder(CoursesDbContext context, IAmazonS3Service amazonS3Service)
         {
             _context = context;
+            _amazonS3Service = amazonS3Service;
             _users = _context.Users;
         }
+
         public async Task Seed()
         {
             if (!await _users.AnyAsync())
             {
+                var filePath = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data", "Images", "default-profile-picture.png");
+                IFormFile file = new FormFile(new FileStream(filePath, FileMode.Open, FileAccess.Read), 0, new FileInfo(filePath).Length, "file", Path.GetFileName(filePath))
+                {
+                    Headers = new HeaderDictionary(),
+                    ContentType = "image/png"
+                };
+
+                await _amazonS3Service.Upload(file, S3FolderPaths.UserProfilePicture + CourseModuleOptions.DefaultValues.DefaultUserProfilePictureKey, true);
 
                 await _users.AddRangeAsync(CreateUsers());
                 await _context.SaveChangesAsync();
@@ -62,7 +76,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                 Email = jsonModel.Email,
                 FirstName = jsonModel.FirstName,
                 LastName = jsonModel.LastName,
-                ProfilePicture = jsonModel.ProfilePicture,
+                ProfilePictureKey = CourseModuleOptions.DefaultValues.DefaultUserProfilePictureKey,
                 Details = new UserDetails()
                 {
                     Title = jsonModel.Title,
