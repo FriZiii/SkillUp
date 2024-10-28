@@ -229,7 +229,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("ProfilePictureKey")
+                    b.Property<string>("ProfilePicture")
                         .IsRequired()
                         .HasColumnType("text");
 
