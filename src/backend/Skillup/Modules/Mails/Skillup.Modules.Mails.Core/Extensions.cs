@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Skillup.Modules.Mails.Core.Consumers;
 using Skillup.Modules.Mails.Core.DAL;
-using Skillup.Modules.Mails.Core.Seeder;
+using Skillup.Modules.Mails.Core.DAL.Repositories;
+using Skillup.Modules.Mails.Core.Repositories;
+using Skillup.Modules.Mails.Core.Seeders;
 using Skillup.Modules.Mails.Core.Services;
 using Skillup.Shared.Infrastructure.Postgres;
 using Skillup.Shared.Infrastructure.RabbitMQ;
@@ -21,6 +23,7 @@ internal static class Extensions
             .AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
             .AddScoped<ISmtpService, SmtpService>()
             .AddConsumer<SignedUpConsumer>()
-            .AddSeeder<MailSeeder>();
+            .AddSeeder<MailSeeder>()
+            .AddScoped<IUserRepository, UserRepository>();
     }
 }

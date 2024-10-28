@@ -2,7 +2,7 @@
   {
     "id": "d2bd9c9d-3734-48f8-baa7-112a403e5005",
     "email": "inactive@skillup.com",
-    "allowMarketingEmails":  false
+    "allowMarketingEmails": false
   },
   {
     "id": "4906f495-e74f-43fb-8577-4ad3099db157",
@@ -11,7 +11,7 @@
   },
   {
     "id": "db5c30b7-cb6c-4c36-b58f-effadbd52335",
-    "email": "admin@skillup.com", 
+    "email": "admin@skillup.com",
     "allowMarketingEmails": false
   },
   {

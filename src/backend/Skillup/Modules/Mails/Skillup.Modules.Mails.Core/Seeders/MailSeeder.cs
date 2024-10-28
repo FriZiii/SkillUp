@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Mails.Core.DAL;
 using Skillup.Modules.Mails.Core.Entities;
-using Skillup.Modules.Mails.Core.Seeder.Data;
+using Skillup.Modules.Mails.Core.Seeders.Data;
 using Skillup.Shared.Abstractions.Seeder;
 using System.Text.Json;
 
-namespace Skillup.Modules.Mails.Core.Seeder
+namespace Skillup.Modules.Mails.Core.Seeders
 {
     internal class MailSeeder : ISeeder
     {

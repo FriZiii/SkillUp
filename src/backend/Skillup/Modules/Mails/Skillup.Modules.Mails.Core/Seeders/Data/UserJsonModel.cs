@@ -1,4 +1,4 @@
-﻿namespace Skillup.Modules.Mails.Core.Seeder.Data
+﻿namespace Skillup.Modules.Mails.Core.Seeders.Data
 {
     internal class UserJsonModel
     {

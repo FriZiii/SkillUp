@@ -7,12 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Seeder\Data\mailuser-seeder-data.json" />
+      <None Remove="Seeders\Data\mailUser-seeder-data.json" />
       <None Remove="Templates\AccountActivation\account_activation.html" />
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="Seeder\Data\mailUser-seeder-data.json">
+      <Content Include="Seeders\Data\mailUser-seeder-data.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
       <Content Include="Templates\AccountActivation\account_activation.html">
