@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Skillup.Modules.Courses.Core.Requests.Commands;
+using Skillup.Modules.Courses.Core.Requests.Commands.Users;
 using Skillup.Modules.Courses.Core.Requests.Queries;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -45,14 +45,15 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(request);
         }
 
-        [HttpPut("{UserId}/Profile-Picture")]
+        [HttpPut("{userId}/Profile-Picture")]
         [SwaggerOperation("Edit profile picture")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> EditProfilePicture()
+        public async Task<IActionResult> EditProfilePicture(Guid userId, IFormFile file)
         {
-            //TODO : EditProfilePicture
-            return Ok();
+            await _mediator.Send(new EditUserProfilePictureRequest(userId, file));
+
+            return Ok(await _mediator.Send(new GetUserByIdRequest(userId)));
         }
     }
 }
