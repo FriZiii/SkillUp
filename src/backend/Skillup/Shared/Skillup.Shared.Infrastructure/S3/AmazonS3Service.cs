@@ -42,7 +42,7 @@ namespace Skillup.Shared.Infrastructure.S3
             return await _client.GetObjectAsync(getObjectRequest);
         }
 
-        public async Task<string> GetPresignedUrl(string key, double timeToLiveInSeconds)
+        public async Task<string> GetPresignedUrl(string key, double timeToLiveInSeconds = 604_800)
         {
             var preSignedUrlRequest = new GetPreSignedUrlRequest
             {
@@ -51,14 +51,14 @@ namespace Skillup.Shared.Infrastructure.S3
                 Expires = DateTime.UtcNow.AddSeconds(timeToLiveInSeconds),
             };
 
-            var url = await client.GetPreSignedURLAsync(preSignedUrlRequest);
+            var url = await _client.GetPreSignedURLAsync(preSignedUrlRequest);
 
             if (_environment.IsDevelopment())
             {
-                return url.Replace(options.ServiceURL, "http://localhost");
+                return url.Replace(_options.ServiceURL.Replace("http://", "https://"), "http://localhost");
             }
 
-            return await client.GetPreSignedURLAsync(preSignedUrlRequest);
+            return await _client.GetPreSignedURLAsync(preSignedUrlRequest);
         }
 
         public async Task<DeleteObjectResponse?> Delete(string key)

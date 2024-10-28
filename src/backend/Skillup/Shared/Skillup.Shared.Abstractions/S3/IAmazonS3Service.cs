@@ -7,7 +7,7 @@ namespace Skillup.Shared.Abstractions.S3
     {
         Task<PutObjectResponse?> Upload(IFormFile file, string key);
         Task<GetObjectResponse> Download(string key);
-        Task<string> GetPresignedUrl(string key, double timeToLiveInSeconds);
+        Task<string> GetPresignedUrl(string key, double timeToLiveInSeconds = 604_800);
         Task<DeleteObjectResponse?> Delete(string key);
     }
 }
