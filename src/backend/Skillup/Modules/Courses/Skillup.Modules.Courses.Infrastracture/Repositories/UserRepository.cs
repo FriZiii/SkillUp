@@ -46,5 +46,14 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
             await _context.SaveChangesAsync();
         }
+
+        public async Task EditProfilePicture(Guid userId, string key)
+        {
+            var userToEdit = await _users.FirstOrDefaultAsync(x => x.Id == userId) ?? throw new UserNotFoundException(userId);
+
+            userToEdit.ProfilePictureKey = key;
+
+            await _context.SaveChangesAsync();
+        }
     }
 }
