@@ -40,6 +40,6 @@ export class SignUpComponent {
 
   subbmitSignUp() {
     const formValue = this.signUpForm.value;
-    this.authService.signUp(formValue.email!, formValue.password!).subscribe();
+    this.authService.signUp(formValue.email!, formValue.password!, formValue.marketing!).subscribe();
   }
 }

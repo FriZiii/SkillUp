@@ -45,13 +45,14 @@ export class AuthService {
       );
   }
 
-  signUp(email: string, password: string) {
+  signUp(email: string, password: string, allowEmails: boolean) {
     return this.httpClient
       .post(
         environment.apiUrl + '/auth/account/sign-up',
         {
           email: email,
           password: password,
+          allowMarketingEmails: allowEmails
         },
         { observe: 'response' }
       )
