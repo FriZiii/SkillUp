@@ -29,7 +29,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Users
                 key = Guid.NewGuid().ToString();
             }
 
-            var response = await _s3Service.Upload(request.File, S3FolderPaths.UserProfilePicture + key);
+            var response = await _s3Service.Upload(request.File, S3FolderPaths.UserProfilePicture + key, true);
             if (response?.HttpStatusCode == HttpStatusCode.OK)
             {
                 await _userRepository.EditProfilePicture(request.UserId, key);

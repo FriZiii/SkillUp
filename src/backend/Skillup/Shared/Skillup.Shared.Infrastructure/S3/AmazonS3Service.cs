@@ -13,7 +13,7 @@ namespace Skillup.Shared.Infrastructure.S3
         private readonly AmazonS3Options _options = options;
         private readonly IWebHostEnvironment _environment = environment;
 
-        public async Task<PutObjectResponse?> Upload(IFormFile file, string key)
+        public async Task<PutObjectResponse?> Upload(IFormFile file, string key, bool isPublic = false)
         {
             var putObjectRequest = new PutObjectRequest()
             {
@@ -27,6 +27,9 @@ namespace Skillup.Shared.Infrastructure.S3
                     ["x-amz-meta-extension"] = Path.GetExtension(file.FileName)
                 }
             };
+
+            if (isPublic)
+                putObjectRequest.CannedACL = S3CannedACL.PublicRead;
 
             return await _client.PutObjectAsync(putObjectRequest);
         }
