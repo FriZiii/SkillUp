@@ -12,5 +12,8 @@ namespace Skillup.Shared.Infrastructure.S3
 
         [EnvironmentVariable("SERVICE_URL")]
         public string ServiceURL { get; set; }
+
+        [EnvironmentVariable("LOCALSTACK_PORT")]
+        public int Port { get; set; }
     }
 }

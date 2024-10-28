@@ -26,7 +26,7 @@ namespace Skillup.Shared.Infrastructure.S3
                 {
                     config = new AmazonS3Config
                     {
-                        ServiceURL = options.ServiceURL,
+                        ServiceURL = $"{options.ServiceURL}:{options.Port}",
                         ForcePathStyle = true,
                     };
                 }
