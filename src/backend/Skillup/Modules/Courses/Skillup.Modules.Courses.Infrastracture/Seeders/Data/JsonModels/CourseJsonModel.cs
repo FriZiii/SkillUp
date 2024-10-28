@@ -8,5 +8,6 @@
         public string SubcategoryName { get; set; }
         public CourseDetailsJsonModel Details { get; set; }
         public List<SectionJsonModel>? Sections { get; set; }
+        public Guid Id { get; set; }
     }
 }

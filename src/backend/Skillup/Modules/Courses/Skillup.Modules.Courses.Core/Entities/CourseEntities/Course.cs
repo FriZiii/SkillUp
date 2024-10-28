@@ -30,8 +30,9 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
             Details = new();
         }
 
-        public Course(Guid authorId, string title, Guid categoryId, Guid subcategoryId, DateTime now, CourseDetails details)
+        public Course(Guid id, Guid authorId, string title, Guid categoryId, Guid subcategoryId, DateTime now, CourseDetails details)
         {
+            Id = id;
             AuthorId = authorId;
             Title = title;
             CategoryId = categoryId;

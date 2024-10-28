@@ -1,9 +1,24 @@
-import { Category } from "./category.model";
-
 export interface AddCourse{
     title: string;
     categoryId: string;
     subcategoryId: string;
+}
+
+export interface Course{
+    id: string;
+    title: string;
+    isPublished: boolean;
+    category: {
+        id: string;
+        name: string;
+        slug: string;
+        subcategory: {
+            id: string;
+            name: string;
+            slug: string;
+        };
+    };
+    thumbnailUrl: string;
 }
 
 export interface CourseListItem{
@@ -21,6 +36,9 @@ export interface CourseListItem{
         };
     };
     thumbnailUrl: string;
+    price: {
+        amount: number;
+    };
 }
 
 export interface CourseDetail{

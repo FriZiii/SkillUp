@@ -1,6 +1,6 @@
 import { Component, input, OnInit } from '@angular/core';
 import { CourseItemComponent } from "../../course-item/course-item.component";
-import { CourseListItem } from '../../../models/course.model';
+import { Course, CourseListItem } from '../../../models/course.model';
 import { CarouselModule } from 'primeng/carousel';
 
 @Component({
