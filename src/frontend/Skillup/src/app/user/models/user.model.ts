@@ -12,3 +12,46 @@ export class User {
     this.role = role;
   }
 }
+
+export class UserDetail {
+  id: string;
+  firstName: string | null = null;
+  lastName: string | null = null;
+  profilePicture: string | null = null;
+  email: string | null = null;
+  details: {
+    title: string | null;
+    biography: string | null;
+  } = {title: null, biography: null}
+  socialMediaLinks: {
+    website: string | null;
+    twitter: string | null;
+    facebook: string | null;
+    linkedin: string | null;
+    youtube: string | null;
+  } = {website: null, twitter: null, facebook: null, linkedin: null, youtube: null};
+  privacySettings: {
+  isAccountPublicForLoggedInUsers: boolean;
+  showCoursesOnUserProfile: boolean;
+  } = {isAccountPublicForLoggedInUsers: false, showCoursesOnUserProfile: false};
+
+
+  constructor(id: string) {
+    this.id = id;
+  }
+}
+
+export interface EditUser{
+  firstName: string | null;
+  lastName: string | null;
+  email: string | null;
+  title: string | null;
+  biography: string | null;
+  socialMediaLinks: {
+    twitter: string | null;
+    facebook: string | null;
+    website: string | null;
+    linkedin: string | null;
+    youtube: string | null;
+  }
+}

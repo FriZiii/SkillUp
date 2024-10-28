@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 using Skillup.Modules.Courses.Infrastracture.Seeders.Data.JsonModels;
-using Skillup.Shared.Abstractions.Seeder;
 using System.Text.Json;
 
 namespace Skillup.Modules.Courses.Infrastracture.Seeders
 {
-    internal class CategorySeeder : ISeeder
+    internal class CategorySeeder
     {
         private readonly CoursesDbContext _context;
         private DbSet<Category> _categories;
