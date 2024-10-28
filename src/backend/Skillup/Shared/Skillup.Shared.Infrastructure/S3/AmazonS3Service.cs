@@ -4,14 +4,16 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using Skillup.Shared.Abstractions.S3;
+using Skillup.Shared.Abstractions.Time;
 
 namespace Skillup.Shared.Infrastructure.S3
 {
-    public class AmazonS3Service(IAmazonS3 client, AmazonS3Options options, IWebHostEnvironment environment) : IAmazonS3Service
+    public class AmazonS3Service(IAmazonS3 client, AmazonS3Options options, IWebHostEnvironment environment, IClock clock) : IAmazonS3Service
     {
         private readonly IAmazonS3 _client = client;
         private readonly AmazonS3Options _options = options;
         private readonly IWebHostEnvironment _environment = environment;
+        private readonly IClock _clock = clock;
 
         public async Task<PutObjectResponse?> Upload(IFormFile file, string key, bool isPublic = false)
         {
@@ -68,7 +70,7 @@ namespace Skillup.Shared.Infrastructure.S3
         {
             if (_environment.IsDevelopment())
             {
-                return $"http://localhost:{_options.Port}/{_options.BucketName}/{key}";
+                return $"http://localhost:{_options.Port}/{_options.BucketName}/{key}?timestamp={_clock.CurrentDate()}";
             }
             else
             {
