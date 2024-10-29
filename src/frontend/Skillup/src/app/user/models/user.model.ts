@@ -11,6 +11,10 @@ export class User {
     this.id = id;
     this.role = role;
   }
+
+  public isInRole(role: UserRole){
+    return this.role === role;
+  }
 }
 
 export class UserDetail {

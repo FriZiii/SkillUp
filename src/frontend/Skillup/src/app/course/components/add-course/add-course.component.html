@@ -1,11 +1,11 @@
 <div class="w-full flex justify-center">
-  <div class="flex justify-center px-12 py-7 su-section-mt lg:w-192">
+  <div class="h-screen flex justify-center px-12 py-8 su-section-mt lg:w-192">
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="w-full">
       <p-stepper [value]="1" class="basis-[50rem]" [linear]="true">
         <p-step-list>
-          <p-step [value]="1">Header I</p-step>
-          <p-step [value]="2">Header II</p-step>
-          <p-step [value]="3">Header II</p-step>
+          <p-step [value]="1">Title</p-step>
+          <p-step [value]="2">Category</p-step>
+          <p-step [value]="3">Subcategory</p-step>
         </p-step-list>
         <p-step-panels>
           <p-step-panel [value]="1">
@@ -13,9 +13,15 @@
               <div
                 class="flex flex-col justify-center items-center prose su-section-mt"
               >
-                <h1>Enter Course Title</h1>
+                <h1 class="text-6xl text-center mb-4">Enter Course Title</h1>
+                <p class="text-center">
+                  Think of a compelling course title that captures the essence
+                  of your content. Keep it clear and concise—aim for 5 words or
+                  less to grab attention effectively!
+                </p>
+
                 <div
-                  class="flex-auto flex justify-center items-center font-medium lg:w-128 w-full"
+                  class="flex-auto flex flex-col justify-center items-center font-medium lg:w-128 w-full m-4"
                 >
                   <input
                     id="title"
@@ -24,9 +30,16 @@
                     formControlName="title"
                     fluid="true"
                   />
+                  <div class="w-full">
+                    @if(titleIsInvalid) {
+                    <p class="m-0 text-red-500 prose-sm justify-self-start">
+                      Title is too long! Try choosing something else.
+                    </p>
+                    }
+                  </div>
                 </div>
               </div>
-              <div class="flex pt-6 justify-end">
+              <div class="flex pt-10 justify-end">
                 <p-button
                   label="Next"
                   icon="pi pi-arrow-right"
@@ -45,9 +58,15 @@
               <div
                 class="flex flex-col justify-center items-center prose su-section-mt"
               >
-                <h1>Select a Category</h1>
+                <h1 class="text-6xl text-center mb-4">Select a Category</h1>
+                <p class="text-center">
+                  Select a main category that best represents the subject of
+                  your course. Choosing the right category helps students find
+                  your course more easily.
+                </p>
+
                 <div
-                  class="flex-auto flex justify-center items-center font-medium lg:w-128 w-full"
+                  class="flex-auto flex justify-center items-center font-medium lg:w-128 w-full m-4"
                 >
                   <p-select
                     [options]="categoryNames()"
@@ -60,7 +79,7 @@
                   />
                 </div>
               </div>
-              <div class="flex pt-6 justify-between">
+              <div class="flex pt-10 justify-between">
                 <p-button
                   label="Back"
                   severity="secondary"
@@ -86,9 +105,15 @@
               <div
                 class="flex flex-col justify-center items-center prose su-section-mt"
               >
-                <h1>Select a Subcategory</h1>
+                <h1 class="text-6xl text-center mb-4">Select a Subcategory</h1>
+                <p class="text-center">
+                  Now, choose a specific subcategory to narrow down the focus of
+                  your course. This will help target the right audience and
+                  improve course visibility.
+                </p>
+
                 <div
-                  class="flex-auto flex justify-center items-center font-medium prose lg:w-128 w-full"
+                  class="flex-auto flex justify-center items-center font-medium prose lg:w-128 w-full m-4"
                 >
                   <p-select
                     [options]="subcategoryNames()"
@@ -100,7 +125,7 @@
                   />
                 </div>
               </div>
-              <div class="flex pt-6 justify-between">
+              <div class="flex pt-10 justify-between">
                 <p-button
                   label="Back"
                   icon="pi pi-arrow-left"

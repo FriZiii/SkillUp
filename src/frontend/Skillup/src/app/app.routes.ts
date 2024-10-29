@@ -10,6 +10,10 @@ import { EditUserProfileComponent } from './user/components/edit-user/edit-user-
 import { EditUserPictureComponent } from './user/components/edit-user/edit-user-picture/edit-user-picture.component';
 import { EditUserPrivacySettingsComponent } from './user/components/edit-user/edit-user-privacy-settings/edit-user-privacy-settings.component';
 import { CoursesCarouselsComponent } from './course/components/courses-carousels/courses-carousels.component';
+import { NotFoundComponent } from './core/components/not-found/not-found.component';
+import { AccessDeniedComponent } from './core/components/access-denied/access-denied.component';
+import { UserRole } from './user/models/user-role.model';
+import { hasRole } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -27,6 +31,8 @@ export const routes: Routes = [
   {
     path: 'course/new',
     component: AddCourseComponent,
+    canMatch: [hasRole],
+    data: {requiredRole: UserRole.Instructor}
   },
   {
     path: 'course-carousels',
@@ -49,4 +55,12 @@ export const routes: Routes = [
       { path: 'privacy-settings', component: EditUserPrivacySettingsComponent },
     ],
   },
+  {
+    path: 'access-denied',
+    component: AccessDeniedComponent,
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+  }
 ];

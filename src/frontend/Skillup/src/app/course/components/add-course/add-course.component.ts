@@ -37,17 +37,17 @@ export class AddCourseComponent {
   destroyRef = inject(DestroyRef);
 
   //Form
-  form: FormGroup = new FormGroup({
-    title: new FormControl('', {validators: [Validators.required],}),
-    category: new FormControl('', {validators: [Validators.required],}),
-    subcategory: new FormControl('', {validators: [Validators.required],}),
+  form = new FormGroup({
+    title: new FormControl('', [Validators.required, Validators.maxLength(32)]),
+    category: new FormControl('', [Validators.required]),
+    subcategory: new FormControl('', [Validators.required]),
   });
 
   onSubmit(){
     const title = this.form.value.title;
     const category = this.form.value.category;
     const subcategory = this.form.value.subcategory;
-    const subscription = this.courseService.addCourse({title: title, categoryId: category, subcategoryId: subcategory}).subscribe({
+    const subscription = this.courseService.addCourse({title: title!, categoryId: category!, subcategoryId: subcategory!}).subscribe({
       next: (res) => {
         this.toastService.showSuccess("Course sucessfully added")
       }
@@ -55,5 +55,9 @@ export class AddCourseComponent {
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe;
     });
+  }
+
+  get titleIsInvalid(){
+    return this.form.controls.title.dirty && this.form.controls.title.invalid; 
   }
 }
