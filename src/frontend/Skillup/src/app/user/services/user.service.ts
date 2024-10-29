@@ -85,4 +85,14 @@ export class UserService {
     );
   }
 
+  editUserPrivacySettings(userId: string, publicAccount: boolean, visibleCourses: boolean){
+    return this.httpClient.put<any>(`${environment.apiUrl}/courses/users/${userId}/Privacy-Settings`, {
+      isAccountPublicForLoggedInUsers: publicAccount,
+      showCoursesOnUserProfile: visibleCourses
+    })
+    .pipe(
+      catchError(error => { return throwError(() => error)}),
+    );
+  }
+
 }
