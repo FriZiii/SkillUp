@@ -1,0 +1,27 @@
+[
+  {
+    "id": "d2bd9c9d-3734-48f8-baa7-112a403e5005",
+    "email": "inactive@skillup.com",
+    "allowMarketingEmails": false
+  },
+  {
+    "id": "4906f495-e74f-43fb-8577-4ad3099db157",
+    "email": "user@skillup.com",
+    "allowMarketingEmails": true
+  },
+  {
+    "id": "db5c30b7-cb6c-4c36-b58f-effadbd52335",
+    "email": "admin@skillup.com",
+    "allowMarketingEmails": false
+  },
+  {
+    "id": "51cc888b-8651-475d-935e-89aa85fe1843",
+    "email": "moderator@skillup.com",
+    "allowMarketingEmails": false
+  },
+  {
+    "id": "b8f81a03-6538-4e02-9de7-51c61831cd28",
+    "email": "instructor@skillup.com",
+    "allowMarketingEmails": true
+  }
+]

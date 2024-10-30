@@ -1,90 +1,95 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="lg:grid lg:grid-cols-9 flex flex-col">
-    <div class="col-start-1 col-span-4 flex flex-col gap-4">
-      <input pInputText placeholder="First name" formControlName="name" />
-      <input pInputText placeholder="Last name" formControlName="surname" />
-      <input pInputText placeholder="Title" formControlName="title" />
-      <textarea
-        class="custom-textarea"
-        rows="7"
-        formControlName="biography"
-      ></textarea>
-    </div>
+<div class="w-full">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="lg:grid lg:grid-cols-9 flex flex-col">
+      <div class="col-start-1 col-span-4 flex flex-col gap-4">
+        <input pInputText placeholder="First name" formControlName="name" />
+        <input pInputText placeholder="Last name" formControlName="surname" />
+        <input pInputText placeholder="Title" formControlName="title" />
+        <textarea
+          class="custom-textarea"
+          rows="7"
+          formControlName="biography"
+        ></textarea>
+      </div>
 
-    <div class="col-start-6 col-span-4 flex flex-col gap-4 lg:mt-0 mt-4">
-      <p-inputgroup>
-        <p-inputgroup-addon>
-          <i class="pi pi-globe"></i>
-        </p-inputgroup-addon>
-        <input
-          pInputText
-          placeholder="Your website url"
-          formControlName="website"
-        />
-      </p-inputgroup>
+      <div class="col-start-6 col-span-4 flex flex-col gap-4 lg:mt-0 mt-4">
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-globe"></i>
+          </p-inputgroup-addon>
+          <input
+            pInputText
+            placeholder="Your website url"
+            formControlName="website"
+          />
+        </p-inputgroup>
 
-      <p-inputgroup>
-        <p-inputgroup-addon>
-          <i class="pi pi-twitter"></i>
-        </p-inputgroup-addon>
-        <p-inputGroupAddon class="sm:hidden hidden lg:block"
-          >https://x.com/</p-inputGroupAddon
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-twitter"></i>
+          </p-inputgroup-addon>
+          <p-inputGroupAddon class="sm:hidden hidden lg:block"
+            >https://x.com/</p-inputGroupAddon
+          >
+          <input
+            pInputText
+            placeholder="YourUserName"
+            formControlName="twitter"
+          />
+        </p-inputgroup>
+
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-facebook"></i>
+          </p-inputgroup-addon>
+          <p-inputGroupAddon class="sm:hidden hidden lg:block"
+            >http://www.facebook.com/
+          </p-inputGroupAddon>
+          <input
+            pInputText
+            placeholder="YourUserName"
+            formControlName="facebook"
+          />
+        </p-inputgroup>
+
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-youtube"></i>
+          </p-inputgroup-addon>
+          <p-inputGroupAddon class="sm:hidden hidden lg:block"
+            >http://www.youtube.com/
+          </p-inputGroupAddon>
+          <input
+            pInputText
+            placeholder="YourUserName"
+            formControlName="youtube"
+          />
+        </p-inputgroup>
+
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-linkedin"></i>
+          </p-inputgroup-addon>
+          <p-inputGroupAddon class="sm:hidden hidden lg:block"
+            >http://www.linkedin.com/
+          </p-inputGroupAddon>
+          <input
+            pInputText
+            placeholder="YourUserName"
+            formControlName="linkedin"
+          />
+        </p-inputgroup>
+
+        <p-button
+          [style]="{ width: '100%' }"
+          [disabled]="form.pristine"
+          type="submit"
+          >Save</p-button
         >
-        <input
-          pInputText
-          placeholder="YourUserName"
-          formControlName="twitter"
-        />
-      </p-inputgroup>
-
-      <p-inputgroup>
-        <p-inputgroup-addon>
-          <i class="pi pi-facebook"></i>
-        </p-inputgroup-addon>
-        <p-inputGroupAddon class="sm:hidden hidden lg:block"
-          >http://www.facebook.com/
-        </p-inputGroupAddon>
-        <input
-          pInputText
-          placeholder="YourUserName"
-          formControlName="facebook"
-        />
-      </p-inputgroup>
-
-      <p-inputgroup>
-        <p-inputgroup-addon>
-          <i class="pi pi-youtube"></i>
-        </p-inputgroup-addon>
-        <p-inputGroupAddon class="sm:hidden hidden lg:block"
-          >http://www.youtube.com/
-        </p-inputGroupAddon>
-        <input
-          pInputText
-          placeholder="YourUserName"
-          formControlName="youtube"
-        />
-      </p-inputgroup>
-
-      <p-inputgroup>
-        <p-inputgroup-addon>
-          <i class="pi pi-linkedin"></i>
-        </p-inputgroup-addon>
-        <p-inputGroupAddon class="sm:hidden hidden lg:block"
-          >http://www.linkedin.com/
-        </p-inputGroupAddon>
-        <input
-          pInputText
-          placeholder="YourUserName"
-          formControlName="linkedin"
-        />
-      </p-inputgroup>
-
-      <p-button
-        [style]="{ width: '100%' }"
-        [disabled]="form.pristine"
-        type="submit"
-        >Save</p-button
-      >
+      </div>
     </div>
+  </form>
+  <div class="my-10 w-full flex flex-row-reverse">
+    <p-button (click)="goToPreview()">Preview</p-button>
   </div>
-</form>
+</div>
