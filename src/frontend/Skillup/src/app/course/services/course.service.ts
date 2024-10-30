@@ -18,6 +18,7 @@ export class CoursesService {
     private coursesSubject = new BehaviorSubject<Course[]>([]);
     private courses$: Observable<Course[]> = this.coursesSubject.asObservable();
     public courses = signal<CourseListItem[]>([]);
+    
     private items = this.financeService.items;
 
     constructor(){
