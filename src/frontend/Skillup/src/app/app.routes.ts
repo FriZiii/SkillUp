@@ -10,6 +10,7 @@ import { EditUserProfileComponent } from './user/components/edit-user/edit-user-
 import { EditUserPictureComponent } from './user/components/edit-user/edit-user-picture/edit-user-picture.component';
 import { EditUserPrivacySettingsComponent } from './user/components/edit-user/edit-user-privacy-settings/edit-user-privacy-settings.component';
 import { CoursesCarouselsComponent } from './course/components/courses-carousels/courses-carousels.component';
+import { CourseDetailComponent } from './course/components/course-detail/course-detail.component';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { AccessDeniedComponent } from './core/components/access-denied/access-denied.component';
 import { UserRole } from './user/models/user-role.model';
@@ -42,6 +43,10 @@ export const routes: Routes = [
   {
     path: 'courses-list/:category/:subcategory',
     component: CoursesListComponent,
+  },
+  {
+    path: 'course-detail/:courseId',
+    component: CourseDetailComponent,
   },
   {
     path: 'account-activation',

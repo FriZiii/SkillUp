@@ -1,9 +1,10 @@
-import { Component, Input, input, OnInit } from '@angular/core';
+import { Component, inject, Input, input, OnInit } from '@angular/core';
 import { Course, CourseListItem } from '../../models/course.model';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
 import { TruncatePipe } from "../../../utils/pipes/truncate.pipe";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-item',
@@ -14,4 +15,9 @@ import { TruncatePipe } from "../../../utils/pipes/truncate.pipe";
 })
 export class CourseItemComponent{
   @Input() course!: CourseListItem;
+  router = inject(Router);
+
+  onClick(){
+    this.router.navigate(['/course-detail', this.course.id])
+  }
 }
