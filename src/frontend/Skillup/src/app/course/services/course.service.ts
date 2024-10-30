@@ -70,9 +70,6 @@ export class CoursesService {
         return this.httpClient
         .get<any>(environment.apiUrl + '/Courses/' + courseId)
         .pipe(
-            tap((courses) => {
-                //this.coursesSubject.next(courses)
-            }),
             catchError(error => {
                 this.toastService.showError("Coud not fetch course");
                 return throwError(() => error)
