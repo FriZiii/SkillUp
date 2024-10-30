@@ -7,6 +7,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { UserService } from '../../../services/user.service';
 import { User, UserDetail } from '../../../models/user.model';
 import { ToastHandlerService } from '../../../../core/services/toasthandler.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-user-profile',
@@ -30,6 +31,7 @@ export class EditUserProfileComponent implements OnInit {
   //Variables
   userDetail = signal<UserDetail | null>(null);
   destroyRef = inject(DestroyRef);
+  router = inject(Router);
 
   //Form
   form: FormGroup = new FormGroup({
@@ -56,8 +58,8 @@ export class EditUserProfileComponent implements OnInit {
           website: data?.socialMediaLinks.website,
           twitter: data?.socialMediaLinks.twitter,
           facebook: data?.socialMediaLinks.facebook,
-          youtube: data?.socialMediaLinks.youtube,
-          linkedin: data?.socialMediaLinks.linkedin,
+          youtube: data?.socialMediaLinks.youTube,
+          linkedin: data?.socialMediaLinks.linkedIn,
         });
       },
     });
@@ -88,5 +90,9 @@ export class EditUserProfileComponent implements OnInit {
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe;
     });
+  }
+
+  goToPreview(){
+    this.router.navigate(['/user', this.userDetail()?.id]);
   }
 }

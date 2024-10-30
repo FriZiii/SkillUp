@@ -14,6 +14,7 @@ import { NotFoundComponent } from './core/components/not-found/not-found.compone
 import { AccessDeniedComponent } from './core/components/access-denied/access-denied.component';
 import { UserRole } from './user/models/user-role.model';
 import { hasRole } from './core/guards/auth.guard';
+import { OtherUserProfileComponent } from './user/components/other-user-profile/other-user-profile.component';
 
 export const routes: Routes = [
   {
@@ -45,6 +46,10 @@ export const routes: Routes = [
   {
     path: 'account-activation',
     component: AccountActivationComponent,
+  },
+  {
+    path: 'user/:userId',
+    component: OtherUserProfileComponent,
   },
   {
     path: 'user/edit',

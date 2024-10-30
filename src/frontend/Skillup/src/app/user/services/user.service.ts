@@ -27,7 +27,7 @@ export class UserService {
     return this.user.pipe(
       filter((user): user is User => user !== null),
       switchMap((user) =>
-        this.getData(user.id, true).pipe(
+        this.getData(user.id , true).pipe(
           map((response: any) => {
             const userDetail = new UserDetail(user.id);
             userDetail.firstName = response.firstName;
@@ -39,11 +39,11 @@ export class UserService {
             userDetail.socialMediaLinks.website = response.socialMediaLinks.website;
             userDetail.socialMediaLinks.twitter = response.socialMediaLinks.twitter;
             userDetail.socialMediaLinks.facebook = response.socialMediaLinks.facebook;
-            userDetail.socialMediaLinks.linkedin = response.socialMediaLinks.linkedin;
-            userDetail.socialMediaLinks.youtube = response.socialMediaLinks.youtube;
+            userDetail.socialMediaLinks.linkedIn = response.socialMediaLinks.linkedIn;
+            userDetail.socialMediaLinks.youTube = response.socialMediaLinks.youTube;
             userDetail.privacySettings.isAccountPublicForLoggedInUsers = response.privacySettings.isAccountPublicForLoggedInUsers;
             userDetail.privacySettings.showCoursesOnUserProfile = response.privacySettings.showCoursesOnUserProfile;
-            return userDetail;  // Tutaj zwracamy skonstruowany obiekt userDetail
+            return userDetail;
           })
         )
       )
@@ -75,6 +75,12 @@ export class UserService {
   private getData(userId: string, details: boolean) {
     return this.httpClient.get(
       `${environment.apiUrl}/courses/users/${userId}?details=${details}`
+    );
+  }
+
+  getUser(userId: string){
+    return this.httpClient.get<UserDetail>(
+      `${environment.apiUrl}/courses/users/${userId}?details=${true}`
     );
   }
 
