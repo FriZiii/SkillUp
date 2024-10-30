@@ -10,6 +10,8 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { AuthService } from '../../services/auth.service';
+import { RouterModule } from '@angular/router';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @Component({
   selector: 'app-sign-in',
@@ -20,6 +22,8 @@ import { AuthService } from '../../services/auth.service';
     PasswordModule,
     ButtonModule,
     ReactiveFormsModule,
+    RouterModule,
+    CheckboxModule 
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css',
@@ -28,12 +32,23 @@ export class SignInComponent {
   authService = inject(AuthService);
 
   signInForm = new FormGroup({
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern('^(?=.*[A-Z]).*$')]),
+    remember: new FormControl(false)
   });
 
-  subbmitSignIn() {
+  submitSignIn() {
     const formValue = this.signInForm.value;
     this.authService.signIn(formValue.email!, formValue.password!).subscribe();
+  }
+
+  get emailIsInvalid(){
+    return this.signInForm.controls.email.dirty && this.signInForm.controls.email.invalid
+  }
+  get passwordIsInvalid(){
+    return this.signInForm.controls.password.dirty && this.signInForm.controls.password.invalid
+  }
+  get formIsInvalid(){
+    return this.signInForm.pristine || this.signInForm.controls.email.dirty && this.signInForm.controls.email.invalid || this.signInForm.controls.password.dirty && this.signInForm.controls.password.invalid
   }
 }

@@ -1,14 +1,10 @@
 <div class="w-full min-h-screen">
-  <div class="grid gap-6 grid-cols-12 py-24">
-    <div class="col-start-2 col-span-6">
+  <div class="lg:grid gap-6 lg:grid-cols-11 py-24">
+    <div class="col-start-2 col-span-6 hidden lg:block xl:block">
       <img src="assets/svg/undraw_sign_up.svg" />
     </div>
-    <div class="col-start-8 col-span-4 flex flex-col items-center">
-      <h1
-        class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl"
-      >
-        Sign up now to begin your educational adventure
-      </h1>
+    <div class="col-start-8 col-span-3 flex flex-col items-center prose">
+      <h1 class="text-5xl">Sign up now to begin your educational adventure</h1>
       <form
         class="w-full flex-col flex gap-4"
         [formGroup]="signUpForm"
@@ -26,7 +22,7 @@
           </p-floatLabel>
 
           <div class="flex flex-wrap w-full">
-            <p-floatlabel class="w-2/4">
+            <p-floatlabel class="w-2/4 pr-1">
               <p-password
                 id="password"
                 [feedback]="false"
@@ -37,7 +33,7 @@
               <label for="password">Password</label>
             </p-floatlabel>
 
-            <p-floatlabel class="w-2/4">
+            <p-floatlabel class="w-2/4 pl-1">
               <p-password
                 [feedback]="false"
                 [style]="{ width: '100%' }"
@@ -50,16 +46,47 @@
           </div>
         </div>
 
+        <div class="prose-sm text-red-500">
+          @if(emailIsInvalid) {
+          <p class="m-0">Email address is invalid!</p>
+          } @else if(passwordIsInvalid) {
+          <p class="m-0">
+            Password must be at least 6 characters long and contain big letter!
+          </p>
+          } @else if (!passwordsAreEqual) {
+          <p class="m-0">Password must be equal!</p>
+          }
+        </div>
+
+        <div class="flex items-center gap-1">
+          <p-checkbox
+            formControlName="marketing"
+            [value]="false"
+            inputId="marketing"
+            class="flex items-center"
+            [binary]="true"
+          />
+          <label for="marketing" class="ml-2"
+            >Do you want to receive marketing emails?</label
+          >
+        </div>
+
         <div class="w-full">
           <p-button
             type="submit"
             [style]="{ width: '100%' }"
-            label="Sign in"
+            label="Sign up"
             icon="pi pi-sign-in"
             iconPos="right"
+            [disabled]="formIsInvalid"
           />
         </div>
       </form>
+
+      <p class="mt-10">
+        Already have an account?
+        <p-button [link]="true" routerLink="/sign-in">Sign In</p-button>
+      </p>
     </div>
   </div>
 </div>

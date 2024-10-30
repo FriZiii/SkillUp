@@ -11,6 +11,10 @@ export class User {
     this.id = id;
     this.role = role;
   }
+
+  public isInRole(role: UserRole){
+    return this.role === role;
+  }
 }
 
 export class UserDetail {
@@ -27,9 +31,9 @@ export class UserDetail {
     website: string | null;
     twitter: string | null;
     facebook: string | null;
-    linkedin: string | null;
-    youtube: string | null;
-  } = {website: null, twitter: null, facebook: null, linkedin: null, youtube: null};
+    linkedIn: string | null;
+    youTube: string | null;
+  } = {website: null, twitter: null, facebook: null, linkedIn: null, youTube: null};
   privacySettings: {
   isAccountPublicForLoggedInUsers: boolean;
   showCoursesOnUserProfile: boolean;

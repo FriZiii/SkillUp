@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { Category } from '../models/category.model';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { ToastHandlerService } from '../../core/services/ToastHandlerService';
-import { Item, ItemType } from '../models/finance.model';
+import { environment } from '../../environments/environment';
+import { ToastHandlerService } from '../core/services/toasthandler.service';
+import { Item } from './finance.model';
 
 @Injectable({ providedIn: 'root' })
 export class FinanceService {
@@ -31,7 +30,7 @@ export class FinanceService {
           this.itemSubject.next(items);
         }),
         catchError((error) => {
-          this.toastService.showErrorToast("Coud not fetch prices")
+          this.toastService.showError("Coud not fetch prices")
           return throwError(() => error);
         })
       )
