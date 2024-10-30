@@ -15,6 +15,7 @@ import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { UserRole } from '../models/user-role.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { ToastHandlerService } from '../../core/services/toasthandler.service';
 
 interface CustomJwtPayload extends JwtPayload {
   'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'?: string;
@@ -24,6 +25,7 @@ interface CustomJwtPayload extends JwtPayload {
   providedIn: 'root',
 })
 export class UserService {
+  toastService = inject(ToastHandlerService)
   httpClient = inject(HttpClient);
   private userSubject = new BehaviorSubject<User | null>(null);
 
@@ -35,7 +37,7 @@ export class UserService {
     return this.user.pipe(
       filter((user): user is User => user !== null),
       switchMap((user) =>
-        this.getData(user.id, true).pipe(
+        this.getData(user.id , true).pipe(
           map((response: any) => {
             const userDetail = new UserDetail(user.id);
             userDetail.firstName = response.firstName;
@@ -50,9 +52,9 @@ export class UserService {
               response.socialMediaLinks.twitter;
             userDetail.socialMediaLinks.facebook =
               response.socialMediaLinks.facebook;
-            userDetail.socialMediaLinks.linkedin =
+            userDetail.socialMediaLinks.linkedIn =
               response.socialMediaLinks.linkedin;
-            userDetail.socialMediaLinks.youtube =
+            userDetail.socialMediaLinks.youTube =
               response.socialMediaLinks.youtube;
             userDetail.privacySettings.isAccountPublicForLoggedInUsers =
               response.privacySettings.isAccountPublicForLoggedInUsers;
@@ -114,13 +116,26 @@ export class UserService {
     );
   }
 
-  editUser(userId: string, userData: EditUser) {
-    return this.httpClient
-      .put<any>(`${environment.apiUrl}/courses/users/${userId}`, userData)
-      .pipe(
-        catchError((error) => {
-          return throwError(() => error);
-        })
-      );
+  getUser(userId: string){
+    return this.httpClient.get<UserDetail>(
+      `${environment.apiUrl}/courses/users/${userId}?details=${true}`
+    );
+  }
+
+  editUser(userId: string, userData:EditUser){
+    return this.httpClient.put<any>(`${environment.apiUrl}/courses/users/${userId}`, userData)
+    .pipe(
+      catchError(error => { return throwError(() => error)}),
+    );
+  }
+
+  editUserPrivacySettings(userId: string, publicAccount: boolean, visibleCourses: boolean){
+    return this.httpClient.put<any>(`${environment.apiUrl}/courses/users/${userId}/Privacy-Settings`, {
+      isAccountPublicForLoggedInUsers: publicAccount,
+      showCoursesOnUserProfile: visibleCourses
+    })
+    .pipe(
+      catchError(error => { return throwError(() => error)}),
+    );
   }
 }

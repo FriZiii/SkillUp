@@ -11,6 +11,11 @@ import { EditUserPictureComponent } from './user/components/edit-user/edit-user-
 import { EditUserPrivacySettingsComponent } from './user/components/edit-user/edit-user-privacy-settings/edit-user-privacy-settings.component';
 import { CoursesCarouselsComponent } from './course/components/courses-carousels/courses-carousels.component';
 import { CourseDetailComponent } from './course/components/course-detail/course-detail.component';
+import { NotFoundComponent } from './core/components/not-found/not-found.component';
+import { AccessDeniedComponent } from './core/components/access-denied/access-denied.component';
+import { UserRole } from './user/models/user-role.model';
+import { hasRole } from './core/guards/auth.guard';
+import { OtherUserProfileComponent } from './user/components/other-user-profile/other-user-profile.component';
 
 export const routes: Routes = [
   {
@@ -28,6 +33,8 @@ export const routes: Routes = [
   {
     path: 'course/new',
     component: AddCourseComponent,
+    canMatch: [hasRole],
+    data: {requiredRole: UserRole.Instructor}
   },
   {
     path: 'course-carousels',
@@ -46,6 +53,10 @@ export const routes: Routes = [
     component: AccountActivationComponent,
   },
   {
+    path: 'user/:userId',
+    component: OtherUserProfileComponent,
+  },
+  {
     path: 'user/edit',
     component: EditUserComponent,
     children: [
@@ -54,4 +65,12 @@ export const routes: Routes = [
       { path: 'privacy-settings', component: EditUserPrivacySettingsComponent },
     ],
   },
+  {
+    path: 'access-denied',
+    component: AccessDeniedComponent,
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+  }
 ];

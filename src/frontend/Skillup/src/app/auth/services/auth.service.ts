@@ -5,7 +5,7 @@ import { map, tap } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { UserService } from '../../user/services/user.service';
 import { Router } from '@angular/router';
-import { ToastHandlerService } from '../../core/services/ToastHandlerService';
+import { ToastHandlerService } from '../../core/services/toasthandler.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -29,7 +29,7 @@ export class AuthService {
       .pipe(
         map((response: HttpResponse<{ token: string }>) => {
           if (response.status >= 200 && response.status < 300) {
-            this.toastService.showSuccessToast('Signed in successful');
+            this.toastService.showSuccess('Signed in successful');
             const token = response.body?.token;
             if (token) {
               this.handleAuthentication(token);
@@ -41,20 +41,21 @@ export class AuthService {
       );
   }
 
-  signUp(email: string, password: string) {
+  signUp(email: string, password: string, allowEmails: boolean) {
     return this.httpClient
       .post(
         environment.apiUrl + '/auth/account/sign-up',
         {
           email: email,
           password: password,
+          allowMarketingEmails: allowEmails
         },
         { observe: 'response' }
       )
       .pipe(
         tap((response: any) => {
           if (response.status >= 200 && response.status < 300) {
-            this.toastService.showSuccessToast('Signed up successful');
+            this.toastService.showSuccess('Signed up successful');
           }
         })
       );
@@ -74,7 +75,7 @@ export class AuthService {
       .pipe(
         tap((response: any) => {
           if (response.status >= 200 && response.status < 300) {
-            this.toastService.showSuccessToast('Account has been activated');
+            this.toastService.showSuccess('Account has been activated');
           }
         })
       );

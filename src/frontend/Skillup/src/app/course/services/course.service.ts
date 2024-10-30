@@ -3,7 +3,7 @@ import { inject, Injectable, signal } from "@angular/core";
 import { AddCourse, CourseDetail, Course } from "../models/course.model";
 import { environment } from "../../../environments/environment";
 import { BehaviorSubject, catchError, Observable, tap, throwError } from "rxjs";
-import { ToastHandlerService } from "../../core/services/ToastHandlerService";
+import { ToastHandlerService } from "../../core/services/toasthandler.service";
 
 
 @Injectable({ providedIn: 'root' })
@@ -60,7 +60,7 @@ export class CoursesService {
                 this.coursesSubject.next(courses)
             }),
             catchError(error => {
-                this.toastService.showErrorToast("Coud not fetch courses");
+                this.toastService.showError("Coud not fetch courses");
                 return throwError(() => error)
             }))
             .subscribe();

@@ -1,7 +1,7 @@
 import { Component, computed, inject, input} from '@angular/core';
 import { CourseItemComponent } from "../course-item/course-item.component";
 import { CoursesService } from '../../services/course.service';
-import { FinanceService } from '../../services/finance.service';
+import { FinanceService } from '../../../finance/finance.service';
 
 @Component({
   selector: 'app-courses',
