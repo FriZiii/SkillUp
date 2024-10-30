@@ -1,23 +1,30 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
-import { AddCourse, CourseDetail, Course } from "../models/course.model";
+import { AddCourse, CourseDetail, Course, CourseListItem } from "../models/course.model";
 import { environment } from "../../../environments/environment";
 import { BehaviorSubject, catchError, Observable, tap, throwError } from "rxjs";
 import { ToastHandlerService } from "../../core/services/toasthandler.service";
+import { FinanceService } from "../../finance/finance.service";
 
 
 @Injectable({ providedIn: 'root' })
 export class CoursesService {
-    private httpClient = inject(HttpClient);
+    //Services
+    financeService = inject(FinanceService)
     toastService = inject(ToastHandlerService);
+
+    //Variables
+    private httpClient = inject(HttpClient);
     private coursesSubject = new BehaviorSubject<Course[]>([]);
     courses$: Observable<Course[]> = this.coursesSubject.asObservable();
     public courses = signal<Course[]>([]);
+    public coursesListItem = signal<CourseListItem[]>([]);
 
     constructor(){
         this.fetchCourses();
         this.courses$.subscribe((data) => {
             this.courses.set(data);
+            this.coursesListItem.set(data.map(course => this.mapCourseToCourseItem(course)));
         });
     }
 
@@ -76,4 +83,24 @@ export class CoursesService {
             }))
     }
 
+    mapCourseToCourseItem(course: Course): CourseListItem { 
+        const items = this.financeService.items;
+        const item = items().find(item => item.id === course.id);
+        return {
+          ...course,
+          price: {
+            amount: item?.price.amount ?? 0,
+          },
+        };
+      }
+
+    getCouresByCategoryId(categoryId: string) : CourseListItem[]{
+        return this.courses().filter(course => course.category.id === categoryId).map(course => this.mapCourseToCourseItem(course));
+    }
+
+    getCoursesBySlug(category: string, subcategory: string): CourseListItem[]{
+        return this.courses()
+        .filter(course => course.category.slug === category && (subcategory.toLowerCase() === 'all' || course.category.subcategory.slug === subcategory))
+        .map(course => this.mapCourseToCourseItem(course));
+    }
 }

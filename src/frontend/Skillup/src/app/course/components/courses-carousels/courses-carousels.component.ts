@@ -19,28 +19,13 @@ export class CoursesCarouselsComponent{
   //Services
   courseService = inject(CoursesService);
   categoryService = inject(CategoryService);
-  financeService = inject(FinanceService);
 
   //Variables
-  courses = this.courseService.courses;
   categories = this.categoryService.categories;
-  items = this.financeService.items;
-  num = 0;
   categoriesWithCourses = computed(() => {
     const categories = this.categories();
     return categories.map(category => {
-      const coursesForCategory = this.courses().filter(course => course.category.id === category.id);
-      const coursesWithPrices = coursesForCategory.map(course => {
-        const item = this.items().find(item => item.id === course.id);
-        return {
-          ...course,
-          price: {
-            amount: item?.price.amount ?? 0,
-          },
-        };
-      });
-
-      return { category, courses: coursesWithPrices };
+      return { category, courses: this.courseService.getCouresByCategoryId(category.id) };
     });
   });
 }
