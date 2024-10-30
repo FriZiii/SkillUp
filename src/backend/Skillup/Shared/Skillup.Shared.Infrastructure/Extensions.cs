@@ -13,11 +13,14 @@ using Skillup.Shared.Infrastructure.Exceptions;
 using Skillup.Shared.Infrastructure.Modules;
 using Skillup.Shared.Infrastructure.Postgres;
 using Skillup.Shared.Infrastructure.RabbitMQ;
+using Skillup.Shared.Infrastructure.S3;
 using Skillup.Shared.Infrastructure.Seeder;
 using Skillup.Shared.Infrastructure.Services;
 using Skillup.Shared.Infrastructure.Storage;
 using Skillup.Shared.Infrastructure.Swagger;
 using Skillup.Shared.Infrastructure.Time;
+using SkillupCorsExtensions = Skillup.Shared.Infrastructure.Cors.Extensions;
+
 
 namespace Skillup.Shared.Infrastructure
 {
@@ -49,18 +52,11 @@ namespace Skillup.Shared.Infrastructure
 
             services.AddPostgres();
             services.AddRabbitMQ();
+            services.AddAwsS3();
             services.AddMemoryCache();
             services.AddAuth();
             services.AddClient();
-
-            services.AddCors(options =>
-            {
-                options.AddPolicy("cors",
-                    builder => builder.WithOrigins("http://localhost:4200")
-                                      .AllowAnyMethod()
-                                      .AllowCredentials()
-                                      .AllowAnyHeader());
-            });
+            SkillupCorsExtensions.AddCors(services);
 
             services.AddSingleton<IMemoryStorage, MemoryStorage>();
             services.AddSingleton<IClock, UtcClock>();
@@ -102,7 +98,7 @@ namespace Skillup.Shared.Infrastructure
             {
                 ForwardedHeaders = ForwardedHeaders.All
             });
-            app.UseCors("cors");
+            SkillupCorsExtensions.UseCors(app);
             app.UseHttpsRedirection();
             app.UseErrorHandling();
             app.UseRouting();

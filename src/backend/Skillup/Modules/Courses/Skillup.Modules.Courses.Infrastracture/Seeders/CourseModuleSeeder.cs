@@ -1,4 +1,5 @@
-﻿using Skillup.Shared.Abstractions.Seeder;
+﻿using Skillup.Shared.Abstractions.S3;
+using Skillup.Shared.Abstractions.Seeder;
 using Skillup.Shared.Abstractions.Time;
 
 namespace Skillup.Modules.Courses.Infrastracture.Seeders
@@ -8,10 +9,13 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
 
         private readonly CoursesDbContext _context;
         private readonly IClock _clock;
-        public CourseModuleSeeder(CoursesDbContext context, IClock clock)
+        private readonly IAmazonS3Service _s3Service;
+
+        public CourseModuleSeeder(CoursesDbContext context, IClock clock, IAmazonS3Service s3Service)
         {
             _context = context;
             _clock = clock;
+            _s3Service = s3Service;
         }
 
         public async Task Seed()
@@ -19,7 +23,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
             var _categoriesSeeder = new CategorySeeder(_context);
             await _categoriesSeeder.Seed();
 
-            var _userSeeder = new CourseUserSeeder(_context);
+            var _userSeeder = new CourseUserSeeder(_context, _s3Service);
             await _userSeeder.Seed();
 
             var _courseSeeder = new CourseSeeder(_context, _clock);

@@ -1,6 +1,16 @@
-import { BehaviorSubject, catchError, filter, map, Observable, switchMap, tap, throwError } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import {
+  BehaviorSubject,
+  catchError,
+  filter,
+  map,
+  Observable,
+  switchMap,
+  take,
+  tap,
+  throwError,
+} from 'rxjs';
 import { EditUser, User, UserDetail } from '../models/user.model';
-import { inject, Injectable, signal } from '@angular/core';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { UserRole } from '../models/user-role.model';
 import { HttpClient } from '@angular/common/http';
@@ -36,13 +46,20 @@ export class UserService {
             userDetail.email = response.email;
             userDetail.details.title = response.details.title;
             userDetail.details.biography = response.details.biography;
-            userDetail.socialMediaLinks.website = response.socialMediaLinks.website;
-            userDetail.socialMediaLinks.twitter = response.socialMediaLinks.twitter;
-            userDetail.socialMediaLinks.facebook = response.socialMediaLinks.facebook;
-            userDetail.socialMediaLinks.linkedIn = response.socialMediaLinks.linkedIn;
-            userDetail.socialMediaLinks.youTube = response.socialMediaLinks.youTube;
-            userDetail.privacySettings.isAccountPublicForLoggedInUsers = response.privacySettings.isAccountPublicForLoggedInUsers;
-            userDetail.privacySettings.showCoursesOnUserProfile = response.privacySettings.showCoursesOnUserProfile;
+            userDetail.socialMediaLinks.website =
+              response.socialMediaLinks.website;
+            userDetail.socialMediaLinks.twitter =
+              response.socialMediaLinks.twitter;
+            userDetail.socialMediaLinks.facebook =
+              response.socialMediaLinks.facebook;
+            userDetail.socialMediaLinks.linkedin =
+              response.socialMediaLinks.linkedin;
+            userDetail.socialMediaLinks.youtube =
+              response.socialMediaLinks.youtube;
+            userDetail.privacySettings.isAccountPublicForLoggedInUsers =
+              response.privacySettings.isAccountPublicForLoggedInUsers;
+            userDetail.privacySettings.showCoursesOnUserProfile =
+              response.privacySettings.showCoursesOnUserProfile;
             return userDetail;
           })
         )
@@ -70,6 +87,27 @@ export class UserService {
 
   clearUser(): void {
     this.userSubject.next(null);
+  }
+
+  editProfilePicture(userId: string, file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.httpClient
+      .put<any>(
+        `${environment.apiUrl}/courses/users/${userId}/profile-picture`,
+        formData
+      )
+      .pipe(
+        tap((result: any) => {
+          this.userSubject.pipe(take(1)).subscribe((user) => {
+            if (user) {
+              user.profilePicture = result.profilePicture;
+              this.userSubject.next(user);
+            }
+          });
+        })
+      );
   }
 
   private getData(userId: string, details: boolean) {
@@ -100,5 +138,4 @@ export class UserService {
       catchError(error => { return throwError(() => error)}),
     );
   }
-
 }

@@ -402,3 +402,6 @@ FodyWeavers.xsd
 
 # Local Netlify folder
 .netlify
+
+#Volumes
+/src/backend/skillup/volume

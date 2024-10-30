@@ -2,7 +2,7 @@
 using Skillup.Modules.Courses.Core.Entities.UserEntities;
 using System.Text.Json.Serialization;
 
-namespace Skillup.Modules.Courses.Core.Requests.Commands
+namespace Skillup.Modules.Courses.Core.Requests.Commands.Users
 {
     public record EditUserRequest : IRequest
     {

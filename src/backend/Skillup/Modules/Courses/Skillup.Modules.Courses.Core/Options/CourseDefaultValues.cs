@@ -2,7 +2,7 @@
 {
     public class CourseDefaultValues
     {
-        public Uri DefaultUserProfilePicture { get; set; }
+        public string DefaultUserProfilePictureKey { get; set; } = Guid.NewGuid().ToString();
         public Uri DefaultTubnailPicture { get; set; }
     }
 }
