@@ -7,12 +7,12 @@ import { Item } from './finance.model';
 
 @Injectable({ providedIn: 'root' })
 export class FinanceService {
-  toastService = inject(ToastHandlerService);
+  private toastService = inject(ToastHandlerService);
   private httpClient = inject(HttpClient);
   public items = signal<Item[]>([]);
 
   private itemSubject = new BehaviorSubject<Item[]>([]);
-  public items$: Observable<Item[]> =
+  private items$: Observable<Item[]> =
     this.itemSubject.asObservable();
 
   constructor() {
