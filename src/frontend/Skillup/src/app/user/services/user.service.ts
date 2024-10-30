@@ -52,9 +52,9 @@ export class UserService {
               response.socialMediaLinks.twitter;
             userDetail.socialMediaLinks.facebook =
               response.socialMediaLinks.facebook;
-            userDetail.socialMediaLinks.linkedin =
+            userDetail.socialMediaLinks.linkedIn =
               response.socialMediaLinks.linkedin;
-            userDetail.socialMediaLinks.youtube =
+            userDetail.socialMediaLinks.youTube =
               response.socialMediaLinks.youtube;
             userDetail.privacySettings.isAccountPublicForLoggedInUsers =
               response.privacySettings.isAccountPublicForLoggedInUsers;
