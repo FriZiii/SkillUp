@@ -10,6 +10,7 @@ import { EditUserProfileComponent } from './user/components/edit-user/edit-user-
 import { EditUserPictureComponent } from './user/components/edit-user/edit-user-picture/edit-user-picture.component';
 import { EditUserPrivacySettingsComponent } from './user/components/edit-user/edit-user-privacy-settings/edit-user-privacy-settings.component';
 import { CoursesCarouselsComponent } from './course/components/courses-carousels/courses-carousels.component';
+import { CourseDetailComponent } from './course/components/course-detail/course-detail.component';
 
 export const routes: Routes = [
   {
@@ -35,6 +36,10 @@ export const routes: Routes = [
   {
     path: 'courses-list/:category/:subcategory',
     component: CoursesListComponent,
+  },
+  {
+    path: 'course-detail/:courseId',
+    component: CourseDetailComponent,
   },
   {
     path: 'account-activation',

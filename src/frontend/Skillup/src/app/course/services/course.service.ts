@@ -53,7 +53,6 @@ export class CoursesService {
     }
 
     private fetchCourses(){
-        console.log('fetch courses');
         this.httpClient
         .get<any>(environment.apiUrl + '/Courses')
         .pipe(
@@ -65,6 +64,19 @@ export class CoursesService {
                 return throwError(() => error)
             }))
             .subscribe();
+    }
+
+    fetchCourseById(courseId: string){
+        return this.httpClient
+        .get<any>(environment.apiUrl + '/Courses/' + courseId)
+        .pipe(
+            tap((courses) => {
+                //this.coursesSubject.next(courses)
+            }),
+            catchError(error => {
+                this.toastService.showErrorToast("Coud not fetch course");
+                return throwError(() => error)
+            }))
     }
 
 }
