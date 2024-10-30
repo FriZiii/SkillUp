@@ -111,7 +111,8 @@ services:
       - .env
     volumes:
       - ./nginx/nginx.production.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/certs:/etc/ssl/certs
+      - /etc/letsencrypt/live/api.skillup.ovh/fullchain.pem:/etc/ssl/certs/fullchain.pem:ro
+      - /etc/letsencrypt/live/api.skillup.ovh/privkey.pem:/etc/ssl/certs/privkey.pem:ro
     depends_on:
       - skillup.bootstrapper   
     ports:
