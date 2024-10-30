@@ -33,7 +33,7 @@ export const routes: Routes = [
     path: 'course/new',
     component: AddCourseComponent,
     canMatch: [hasRole],
-    data: {requiredRole: UserRole.Instructor}
+    data: { requiredRole: UserRole.Instructor },
   },
   {
     path: 'course-carousels',
@@ -42,10 +42,6 @@ export const routes: Routes = [
   {
     path: 'courses-list/:category/:subcategory',
     component: CoursesListComponent,
-  },
-  {
-    path: 'account-activation',
-    component: AccountActivationComponent,
   },
   {
     path: 'user/:userId',
@@ -67,5 +63,5 @@ export const routes: Routes = [
   {
     path: '**',
     component: NotFoundComponent,
-  }
+  },
 ];
