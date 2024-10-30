@@ -25,10 +25,7 @@ export class HeroComponent implements OnInit {
   userId: string | null = null;
   activationToken: string | null = null;
 
-  categories = this.cetegoriesService.categories;
-
-
-  selectedCategories = computed(() => this.categories().sort(() => 0.5 - Math.random()).slice(0, 3));
+  selectedCategories = computed(() => this.cetegoriesService.categories().sort(() => 0.5 - Math.random()).slice(0, 3));
 
   courseCaruseles = computed(() => {
     return this.selectedCategories().map(category => {
