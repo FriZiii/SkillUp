@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { SignUpComponent } from './auth/components/sign-up/sign-up.component';
 import { SignInComponent } from './auth/components/sign-in/sign-in.component';
-import { AccountActivationComponent } from './auth/components/account-activation/account-activation.component';
 import { AddCourseComponent } from './course/components/add-course/add-course.component';
 import { HeroComponent } from './core/components/hero/hero.component';
 import { CoursesListComponent } from './course/components/courses-list/courses-list.component';
