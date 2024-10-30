@@ -7,12 +7,12 @@ import { ToastHandlerService } from '../../core/services/toasthandler.service';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService {
-  toastService = inject(ToastHandlerService);
+  private toastService = inject(ToastHandlerService);
   private httpClient = inject(HttpClient);
   public categories = signal<Category[]>([]);
 
   private categoriesSubject = new BehaviorSubject<Category[]>([]);
-  public categories$: Observable<Category[]> =
+  private categories$: Observable<Category[]> =
     this.categoriesSubject.asObservable();
 
   constructor() {
