@@ -25,31 +25,23 @@ export class HeroComponent implements OnInit {
   userId: string | null = null;
   activationToken: string | null = null;
 
-  selectedCategories = signal<Category[]>([]);
+  categories = this.cetegoriesService.categories;
+
+
+  selectedCategories = computed(() => this.categories().sort(() => 0.5 - Math.random()).slice(0, 3));
 
   courseCaruseles = computed(() => {
-    console.log(this.selectedCategories());
-
-    return this.selectedCategories().map((x) =>
-      this.coursesService.getCouresByCategoryId(x.id)
-    );
+    return this.selectedCategories().map(category => {
+      const courses = this.coursesService.getCouresByCategoryId(category.id);
+      return { category, courses };
+    });
   });
+
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.queryParamMap.get('userId');
     this.activationToken =
       this.route.snapshot.queryParamMap.get('activationToken');
-
-    const categories = this.cetegoriesService.categories();
-
-    this.selectedCategories.set([
-      ...new Set(
-        Array.from(
-          { length: 3 },
-          () => categories[Math.floor(Math.random() * categories.length)]
-        )
-      ),
-    ]);
 
     this.activateAccount();
   }

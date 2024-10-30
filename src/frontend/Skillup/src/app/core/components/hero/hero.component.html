@@ -26,9 +26,15 @@
       <img src="assets/svg/undraw_rocket.svg" />
     </div>
   </div>
-  <app-course-carousel [courses]="courseCaruseles()[0]"></app-course-carousel>
+  <app-course-carousel
+    [courses]="courseCaruseles()[0].courses"
+  ></app-course-carousel>
 
-  <app-course-carousel [courses]="courseCaruseles()[1]"></app-course-carousel>
+  <app-course-carousel
+    [courses]="courseCaruseles()[1].courses"
+  ></app-course-carousel>
 
-  <app-course-carousel [courses]="courseCaruseles()[2]"></app-course-carousel>
+  <app-course-carousel
+    [courses]="courseCaruseles()[2].courses"
+  ></app-course-carousel>
 </div>
