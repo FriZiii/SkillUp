@@ -15,7 +15,7 @@ import {
   tap,
   throwError,
 } from 'rxjs';
-import { ToastHandlerService } from '../../core/services/toasthandler.service';
+import { ToastHandlerService } from '../../core/services/toast-handler.service';
 import { FinanceService } from '../../finance/finance.service';
 
 @Injectable({ providedIn: 'root' })

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { UserService } from '../../../services/user.service';
 import { UserDetail } from '../../../models/user.model';
-import { ToastHandlerService } from '../../../../core/services/toasthandler.service';
+import { ToastHandlerService } from '../../../../core/services/toast-handler.service';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
@@ -11,7 +11,7 @@ import { ButtonModule } from 'primeng/button';
   standalone: true,
   imports: [SelectButtonModule, ReactiveFormsModule, ButtonModule],
   templateUrl: './edit-user-privacy-settings.component.html',
-  styleUrl: './edit-user-privacy-settings.component.css'
+  styleUrl: './edit-user-privacy-settings.component.css',
 })
 export class EditUserPrivacySettingsComponent implements OnInit {
   //Services
@@ -21,21 +21,20 @@ export class EditUserPrivacySettingsComponent implements OnInit {
   //Variables
   userDetail = signal<UserDetail | null>(null);
   destroyRef = inject(DestroyRef);
-  
+
   //Button Options
   stateOptions: any[] = [
     { label: 'Off', value: false },
-    { label: 'On', value: true }
+    { label: 'On', value: true },
   ];
 
   //Form
   form: FormGroup = new FormGroup({
     publicProfile: new FormControl('off'),
-    publicCourses: new FormControl( 'off')
+    publicCourses: new FormControl('off'),
   });
 
-    
-  ngOnInit(){
+  ngOnInit() {
     this.userService.userDeatil.subscribe({
       next: (data) => {
         this.userDetail.set(data);
@@ -45,17 +44,21 @@ export class EditUserPrivacySettingsComponent implements OnInit {
         });
       },
     });
-    
   }
 
-  onSubmit(){
-    const subscription = this.userService.editUserPrivacySettings(this.userDetail()!.id, this.form.value.publicProfile, this.form.value.publicCourses)
-    .subscribe({
-      next: (res) => {
-        this.toastService.showSuccess('Profile editted successfully')
-      }
-      })
-        
+  onSubmit() {
+    const subscription = this.userService
+      .editUserPrivacySettings(
+        this.userDetail()!.id,
+        this.form.value.publicProfile,
+        this.form.value.publicCourses
+      )
+      .subscribe({
+        next: (res) => {
+          this.toastService.showSuccess('Profile editted successfully');
+        },
+      });
+
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe;
     });

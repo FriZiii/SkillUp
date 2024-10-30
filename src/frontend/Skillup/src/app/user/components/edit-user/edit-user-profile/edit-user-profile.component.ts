@@ -1,12 +1,25 @@
-import { Component, DestroyRef, effect, inject, OnInit, signal } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  Component,
+  DestroyRef,
+  effect,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { UserService } from '../../../services/user.service';
 import { User, UserDetail } from '../../../models/user.model';
-import { ToastHandlerService } from '../../../../core/services/toasthandler.service';
+import { ToastHandlerService } from '../../../../core/services/toast-handler.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,7 +31,7 @@ import { Router } from '@angular/router';
     InputGroupAddonModule,
     InputTextModule,
     ButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './edit-user-profile.component.html',
   styleUrl: './edit-user-profile.component.css',
@@ -35,18 +48,18 @@ export class EditUserProfileComponent implements OnInit {
 
   //Form
   form: FormGroup = new FormGroup({
-    name: new FormControl('', {validators: [Validators.required],}),
-    surname: new FormControl( '', {validators: [Validators.required],}),
-    title: new FormControl('', {validators: [Validators.required],}),
-    biography: new FormControl('', {validators: [Validators.required],}),
-    website: new FormControl( ''),
+    name: new FormControl('', { validators: [Validators.required] }),
+    surname: new FormControl('', { validators: [Validators.required] }),
+    title: new FormControl('', { validators: [Validators.required] }),
+    biography: new FormControl('', { validators: [Validators.required] }),
+    website: new FormControl(''),
     twitter: new FormControl(''),
     facebook: new FormControl(''),
     youtube: new FormControl(''),
     linkedin: new FormControl(''),
   });
 
-  ngOnInit(){
+  ngOnInit() {
     this.userService.userDeatil.subscribe({
       next: (data) => {
         this.userDetail.set(data);
@@ -63,36 +76,36 @@ export class EditUserProfileComponent implements OnInit {
         });
       },
     });
-    
   }
 
-  onSubmit(){
-    const subscription = this.userService.editUser(this.userDetail()!.id, {
-      firstName: this.form.value.name,
-      lastName: this.form.value.surname,
-      email: this.userDetail()!.email,
-      title: this.form.value.title,
-      biography: this.form.value.biography,
-      socialMediaLinks: {
-        twitter: this.form.value.twitter,
-        facebook: this.form.value.facebook,
-        website: this.form.value.website,
-        linkedin: this.form.value.linkedin,
-        youtube: this.form.value.youtube,
-        }
+  onSubmit() {
+    const subscription = this.userService
+      .editUser(this.userDetail()!.id, {
+        firstName: this.form.value.name,
+        lastName: this.form.value.surname,
+        email: this.userDetail()!.email,
+        title: this.form.value.title,
+        biography: this.form.value.biography,
+        socialMediaLinks: {
+          twitter: this.form.value.twitter,
+          facebook: this.form.value.facebook,
+          website: this.form.value.website,
+          linkedin: this.form.value.linkedin,
+          youtube: this.form.value.youtube,
+        },
       })
-    .subscribe({
-      next: (res) => {
-        this.toastService.showSuccess('Profile editted successfully')
-      }
-      })
-        
+      .subscribe({
+        next: (res) => {
+          this.toastService.showSuccess('Profile editted successfully');
+        },
+      });
+
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe;
     });
   }
 
-  goToPreview(){
+  goToPreview() {
     this.router.navigate(['/user', this.userDetail()?.id]);
   }
 }

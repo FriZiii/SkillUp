@@ -5,7 +5,7 @@ import { map, tap } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { UserService } from '../../user/services/user.service';
 import { Router } from '@angular/router';
-import { ToastHandlerService } from '../../core/services/toasthandler.service';
+import { ToastHandlerService } from '../../core/services/toast-handler.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -48,7 +48,7 @@ export class AuthService {
         {
           email: email,
           password: password,
-          allowMarketingEmails: allowEmails
+          allowMarketingEmails: allowEmails,
         },
         { observe: 'response' }
       )
