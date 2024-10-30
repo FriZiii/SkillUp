@@ -74,7 +74,7 @@ export class CoursesService {
                 //this.coursesSubject.next(courses)
             }),
             catchError(error => {
-                this.toastService.showErrorToast("Coud not fetch course");
+                this.toastService.showError("Coud not fetch course");
                 return throwError(() => error)
             }))
     }
