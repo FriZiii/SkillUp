@@ -5,8 +5,10 @@
     margin: '0.5rem',
     height: '26rem'
   }"
-  class="prose"
+  class="prose cursor-pointer"
+  (click)="onClick()"
 >
+
   <ng-template pTemplate="header">
     <img
       alt="{{ course.title }}"

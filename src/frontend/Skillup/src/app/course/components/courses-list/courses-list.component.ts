@@ -17,25 +17,8 @@ export class CoursesListComponent {
 
   //Services
   courseService = inject(CoursesService);
-  financeService = inject(FinanceService);
 
-  //Variables
-  courses = this.courseService.courses;
-  items = this.financeService.items;
-
-  coursesForCategory = computed(() =>  this.courses().filter(course => 
-    course.category.slug === this.category() && 
-    (this.subcategory().toLowerCase() === 'all' || 
-     course.category.subcategory.slug === this.subcategory())
-  )
-  .map(course => {
-    const item = this.items().find(item => item.id === course.id);
-      return {
-        ...course,
-        price:{
-          amount:  item?.price.amount ?? 0,
-        }
-      };
-  })
-);
+  coursesForCategory = computed(() =>  {
+    return this.courseService.getCoursesBySlug(this.category(), this.subcategory())
+});
 }

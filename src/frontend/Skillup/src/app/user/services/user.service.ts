@@ -53,9 +53,9 @@ export class UserService {
             userDetail.socialMediaLinks.facebook =
               response.socialMediaLinks.facebook;
             userDetail.socialMediaLinks.linkedIn =
-              response.socialMediaLinks.linkedin;
+              response.socialMediaLinks.linkedIn;
             userDetail.socialMediaLinks.youTube =
-              response.socialMediaLinks.youtube;
+              response.socialMediaLinks.youTube;
             userDetail.privacySettings.isAccountPublicForLoggedInUsers =
               response.privacySettings.isAccountPublicForLoggedInUsers;
             userDetail.privacySettings.showCoursesOnUserProfile =

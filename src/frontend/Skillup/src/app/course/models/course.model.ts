@@ -63,6 +63,9 @@ export interface CourseDetail{
     intendedFor: string[];
     mustKnowBefore: string[];
     sections: Section[];
+    price: {
+        amount: number;
+    };
 }
 
 export interface Section{
