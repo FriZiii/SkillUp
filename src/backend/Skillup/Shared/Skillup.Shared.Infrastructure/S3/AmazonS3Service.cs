@@ -74,8 +74,7 @@ namespace Skillup.Shared.Infrastructure.S3
             }
             else
             {
-                //TODO: Add public url from S3
-                return "";
+                return $"https://{_options.BucketName}.s3.{_options.Region}.amazonaws.com/{key}?timestamp={_clock.CurrentDate()}";
             }
         }
         public async Task<DeleteObjectResponse?> Delete(string key)
