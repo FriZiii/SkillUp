@@ -21,9 +21,9 @@ export class CoursesCarouselsComponent{
   categoryService = inject(CategoryService);
 
   //Variables
-  categories = this.categoryService.categories();
+  categories = this.categoryService.categories;
   categoriesWithCourses = computed(() => {
-    return this.categories.map(category => {
+    return this.categories().map(category => {
       return { category, courses: this.courseService.getCouresByCategoryId(category.id) };
     });
   });
