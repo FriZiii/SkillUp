@@ -1,41 +1,41 @@
 <div class="w-full p-24">
-    <div class="grid grid-cols-2 w-full">
-        <div class="col-start-1 col-span-1 flex justify-center items-center">
-            <img
-            class="p-1 w-96 h-96 object-contain col-start-1 col-span-1"
-            [src]="course()?.thumbnailUrl"
-            />
-        </div>
-    <div  class="col-start-2 col-span-1 prose">
-        <h1 class="4xl">{{course()?.title}}</h1>
-        <h2>{{course()?.subtitle}}</h2>
-        <p>{{course()?.description}}</p>
-        
-        <h3>Level: {{course()?.level}}</h3>
-        <p>Category: {{course()?.category?.name}}</p>
-        <p>Subcategory: {{course()?.category?.subcategory?.name}}</p>
+  <div class="grid grid-cols-2 w-full">
+    <div class="col-start-1 col-span-1 flex justify-center items-center">
+      <img
+        class="p-1 w-96 h-96 object-contain col-start-1 col-span-1"
+        [src]="course()?.thumbnailUrl"
+      />
     </div>
+    <div class="col-start-2 col-span-1 prose">
+      <h1 class="4xl">{{ course()?.title }}</h1>
+      <h2>{{ course()?.subtitle }}</h2>
+      <h3>$ {{ courseItem().price.amount }}</h3>
+      <p>{{ course()?.description }}</p>
 
+      <h3>Level: {{ course()?.level }}</h3>
+      <p>Category: {{ course()?.category?.name }}</p>
+      <p>Subcategory: {{ course()?.category?.subcategory?.name }}</p>
     </div>
+  </div>
 
-    <div class="grid grid-cols-2 w-full mt-10">
-        <div class="prose col-start-1 col-span-1 ">
-            <h3>Intended for:</h3>
-            @for (item of course()?.intendedFor; track item) {
-                <p>{{item}}</p>
-            }
-        </div>
-        <div class="prose col-start-2 col-span-1 ">
-            <h3>Must know before:</h3>
-            @for (item of course()?.mustKnowBefore; track item) {
-                <p>{{item}}</p>
-            }
-        </div>
-        <div class="prose col-start-3 col-span-1 ">
-            <h3>What will you learn:</h3>
-            @for (item of course()?.objectivesSummary; track item) {
-                <p>{{item}}</p>
-            }
-        </div>
-        </div>
+  <div class="grid grid-cols-2 w-full mt-10">
+    <div class="prose col-start-1 col-span-1">
+      <h3>Intended for:</h3>
+      @for (item of course()?.intendedFor; track item) {
+      <p>{{ item }}</p>
+      }
+    </div>
+    <div class="prose col-start-2 col-span-1">
+      <h3>Must know before:</h3>
+      @for (item of course()?.mustKnowBefore; track item) {
+      <p>{{ item }}</p>
+      }
+    </div>
+    <div class="prose col-start-3 col-span-1">
+      <h3>What will you learn:</h3>
+      @for (item of course()?.objectivesSummary; track item) {
+      <p>{{ item }}</p>
+      }
+    </div>
+  </div>
 </div>
