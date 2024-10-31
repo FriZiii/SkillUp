@@ -5,9 +5,9 @@ namespace Skillup.Shared.Abstractions
 {
     public class SmtpOptions : IOption
     {
-        public string SenderEmail { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string SenderEmail { get; set; } = default!;
+        public string Username { get; set; } = default!;
+        public string Password { get; set; } = default!;
 
         [EnvironmentVariable("SMTP_HOST")]
         public string Host { get; set; } = default!;

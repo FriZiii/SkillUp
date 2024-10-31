@@ -16,6 +16,7 @@ using Skillup.Shared.Infrastructure.RabbitMQ;
 using Skillup.Shared.Infrastructure.S3;
 using Skillup.Shared.Infrastructure.Seeder;
 using Skillup.Shared.Infrastructure.Services;
+using Skillup.Shared.Infrastructure.SMTP;
 using Skillup.Shared.Infrastructure.Storage;
 using Skillup.Shared.Infrastructure.Swagger;
 using Skillup.Shared.Infrastructure.Time;
@@ -56,6 +57,7 @@ namespace Skillup.Shared.Infrastructure
             services.AddMemoryCache();
             services.AddAuth();
             services.AddClient();
+            services.AddSmpt();
             SkillupCorsExtensions.AddCors(services);
 
             services.AddSingleton<IMemoryStorage, MemoryStorage>();
