@@ -2,6 +2,7 @@
 {
     public static class S3FolderPaths
     {
-        public const string UserProfilePicture = "Users/ProfilePictures/";
+        public const string Public = "public/";
+        public const string UserProfilePicture = "public/users/profile-pictures/";
     }
 }

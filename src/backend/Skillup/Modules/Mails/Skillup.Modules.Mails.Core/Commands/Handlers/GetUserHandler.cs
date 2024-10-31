@@ -18,6 +18,7 @@ namespace Skillup.Modules.Mails.Core.Commands.Handlers
         {
             _userRepository = userRepository;
         }
+
         public async Task<UserDto> Handle(GetUserRequest request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.Get(request.UserId) ?? throw new UserNotFoundException(request.UserId);

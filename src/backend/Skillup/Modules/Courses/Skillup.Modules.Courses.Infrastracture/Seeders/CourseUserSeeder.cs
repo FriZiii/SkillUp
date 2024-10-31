@@ -32,7 +32,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                     ContentType = "image/png"
                 };
 
-                await _amazonS3Service.Upload(file, S3FolderPaths.UserProfilePicture + CourseModuleOptions.DefaultValues.DefaultUserProfilePictureKey, true);
+                await _amazonS3Service.Upload(file, S3FolderPaths.UserProfilePicture + CourseModuleOptions.DefaultValues.DefaultUserProfilePictureKey);
 
                 await _users.AddRangeAsync(CreateUsers());
                 await _context.SaveChangesAsync();

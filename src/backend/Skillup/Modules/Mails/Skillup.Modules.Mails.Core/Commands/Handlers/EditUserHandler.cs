@@ -17,6 +17,7 @@ namespace Skillup.Modules.Mails.Core.Commands.Handlers
         {
             _userRepository = userRepository;
         }
+
         public async Task Handle(EditUserRequest request, CancellationToken cancellationToken)
         {
             var user = new User()

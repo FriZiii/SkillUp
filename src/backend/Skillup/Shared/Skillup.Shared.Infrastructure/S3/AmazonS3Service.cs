@@ -3,19 +3,21 @@ using Amazon.S3.Model;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Skillup.Shared.Abstractions.S3;
 using Skillup.Shared.Abstractions.Time;
 
 namespace Skillup.Shared.Infrastructure.S3
 {
-    public class AmazonS3Service(IAmazonS3 client, AmazonS3Options options, IWebHostEnvironment environment, IClock clock) : IAmazonS3Service
+    public class AmazonS3Service(IAmazonS3 client, AmazonS3Options options, IWebHostEnvironment environment, IClock clock, ILogger<AmazonS3Service> logger) : IAmazonS3Service
     {
         private readonly IAmazonS3 _client = client;
         private readonly AmazonS3Options _options = options;
         private readonly IWebHostEnvironment _environment = environment;
         private readonly IClock _clock = clock;
+        private readonly ILogger<AmazonS3Service> _logger = logger;
 
-        public async Task<PutObjectResponse?> Upload(IFormFile file, string key, bool isPublic = false)
+        public async Task<PutObjectResponse?> Upload(IFormFile file, string key)
         {
             var putObjectRequest = new PutObjectRequest()
             {
@@ -29,9 +31,6 @@ namespace Skillup.Shared.Infrastructure.S3
                     ["x-amz-meta-extension"] = Path.GetExtension(file.FileName)
                 }
             };
-
-            if (isPublic)
-                putObjectRequest.CannedACL = S3CannedACL.PublicRead;
 
             return await _client.PutObjectAsync(putObjectRequest);
         }
