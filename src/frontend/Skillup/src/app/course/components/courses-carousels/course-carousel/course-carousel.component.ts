@@ -2,17 +2,19 @@ import { Component, input, OnInit } from '@angular/core';
 import { CourseItemComponent } from "../../course-item/course-item.component";
 import { Course, CourseListItem } from '../../../models/course.model';
 import { CarouselModule } from 'primeng/carousel';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-course-carousel',
   standalone: true,
-  imports: [CourseItemComponent, CarouselModule],
+  imports: [CourseItemComponent, CarouselModule, SkeletonModule],
   templateUrl: './course-carousel.component.html',
   styleUrl: './course-carousel.component.css',
 })
 export class CourseCarouselComponent implements OnInit {
   
-  courses = input.required<CourseListItem[]>();
+  courses = input<CourseListItem[]>([]);
+  skeletonItems = new Array(5).fill('');
   responsiveOptions: any[] | undefined;
 
   ngOnInit(): void {
