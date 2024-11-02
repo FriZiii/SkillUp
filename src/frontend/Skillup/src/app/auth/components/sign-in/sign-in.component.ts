@@ -30,6 +30,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 })
 export class SignInComponent {
   authService = inject(AuthService);
+  loading = false;
 
   signInForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -39,7 +40,10 @@ export class SignInComponent {
 
   submitSignIn() {
     const formValue = this.signInForm.value;
-    this.authService.signIn(formValue.email!, formValue.password!).subscribe();
+    this.loading = true;
+    this.authService.signIn(formValue.email!, formValue.password!).subscribe({
+      next: () => {this.loading = false}
+    });
   }
 
   get emailIsInvalid(){
