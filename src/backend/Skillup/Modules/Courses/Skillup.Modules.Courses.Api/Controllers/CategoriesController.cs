@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Serilog;
 using Skillup.Modules.Courses.Core.Requests.Queries;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -9,10 +9,9 @@ namespace Skillup.Modules.Courses.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    internal class CategoriesController(IMediator mediator, ILogger<CategoriesController> logger) : ControllerBase
+    internal class CategoriesController(IMediator mediator) : ControllerBase
     {
         private readonly IMediator _mediator = mediator;
-        private readonly ILogger<CategoriesController> _logger = logger;
 
         [HttpGet]
         [SwaggerOperation("Get categories")]
@@ -21,8 +20,8 @@ namespace Skillup.Modules.Courses.Api.Controllers
         public async Task<IActionResult> GetAll()
         {
 
-            _logger.LogInformation("Pobieranie kategorii");
-            _logger.LogDebug("Loguje Debug");
+            Log.Logger.Information("Pobieranie kategorii");
+            Log.Logger.Debug("Loguje Debug");
             var courses = await _mediator.Send(new GetCategoriesRequest());
             return Ok(courses);
         }
