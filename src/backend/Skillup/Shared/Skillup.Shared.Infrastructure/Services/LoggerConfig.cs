@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using Serilog.Filters;
 using Skillup.Shared.Abstractions.Modules;
 
 namespace Skillup.Shared.Infrastructure.Services
@@ -14,13 +13,14 @@ namespace Skillup.Shared.Infrastructure.Services
                 .MinimumLevel.Debug()
                 .WriteTo.Console();
 
-            foreach (var module in modules)
-            {
-                loggerConfig = loggerConfig.WriteTo.Logger(lc => lc
-                    .Filter.ByIncludingOnly(Matching.FromSource($"Skillup.Modules.{module.Name}"))
-                    .WriteTo.File($"logs/{module.Name}.txt")
-                );
-            }
+            //Loging to Files
+            //foreach (var module in modules)
+            //{
+            //    loggerConfig = loggerConfig.WriteTo.Logger(lc => lc
+            //        .Filter.ByIncludingOnly(Matching.FromSource($"Skillup.Modules.{module.Name}"))
+            //        .WriteTo.File($"logs/{module.Name}.txt")
+            //    );
+            //}
             Log.Logger = loggerConfig.CreateLogger();
 
             builder.Logging.ClearProviders();
