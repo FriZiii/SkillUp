@@ -1,8 +1,4 @@
-import {
-  HTTP_INTERCEPTORS,
-  provideHttpClient,
-  withInterceptors,
-} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, ErrorHandler } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
