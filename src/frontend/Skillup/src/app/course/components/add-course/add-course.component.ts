@@ -25,6 +25,7 @@ import { SelectModule } from 'primeng/select';
 import { CoursesService } from '../../services/course.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ToastHandlerService } from '../../../core/services/toast-handler.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-course',
@@ -48,6 +49,9 @@ export class AddCourseComponent {
   toastService = inject(ToastHandlerService);
 
   //Variables
+  loading = false;
+  courseId = null;
+  router = inject(Router);
   categories = this.courseCategoryService.categories;
   categoryNames = computed(() =>
     this.categories().map((category) => ({
@@ -75,6 +79,7 @@ export class AddCourseComponent {
   });
 
   onSubmit() {
+    this.loading = true;
     const title = this.form.value.title;
     const category = this.form.value.category;
     const subcategory = this.form.value.subcategory;
@@ -86,7 +91,10 @@ export class AddCourseComponent {
       })
       .subscribe({
         next: (res) => {
+          this.courseId = res.id;
+          this.loading = false;
           this.toastService.showSuccess('Course sucessfully added');
+          this.router.navigate(['/course-detail', this.courseId]);
         },
       });
     this.destroyRef.onDestroy(() => {
