@@ -45,6 +45,7 @@ export class EditUserProfileComponent implements OnInit {
   userDetail = signal<UserDetail | null>(null);
   destroyRef = inject(DestroyRef);
   router = inject(Router);
+  loading = false;
 
   //Form
   form: FormGroup = new FormGroup({
@@ -79,6 +80,7 @@ export class EditUserProfileComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loading = true;
     const subscription = this.userService
       .editUser(this.userDetail()!.id, {
         firstName: this.form.value.name,
@@ -96,6 +98,7 @@ export class EditUserProfileComponent implements OnInit {
       })
       .subscribe({
         next: (res) => {
+          this.loading = false;
           this.toastService.showSuccess('Profile editted successfully');
         },
       });
