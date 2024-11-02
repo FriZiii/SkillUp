@@ -1,12 +1,12 @@
 import { Component, computed, inject, input} from '@angular/core';
 import { CourseItemComponent } from "../course-item/course-item.component";
 import { CoursesService } from '../../services/course.service';
-import { FinanceService } from '../../../finance/finance.service';
+import { ProgressSpinnerModule } from 'primeng/progressspinner'; 
 
 @Component({
   selector: 'app-courses',
   standalone: true,
-  imports: [CourseItemComponent],
+  imports: [CourseItemComponent, ProgressSpinnerModule],
   templateUrl: './courses-list.component.html',
   styleUrl: './courses-list.component.css'
 })

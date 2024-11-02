@@ -1,3 +1,4 @@
+@if(courses().length != 0){
 <p-carousel
   [value]="courses()"
   [numVisible]="5"
@@ -9,3 +10,16 @@
     <app-course-item [course]="course"></app-course-item>
   </ng-template>
 </p-carousel>
+} @else {
+<p-carousel
+  [value]="skeletonItems"
+  [numVisible]="5"
+  [numScroll]="1"
+  [responsiveOptions]="responsiveOptions"
+  circular="true"
+>
+  <ng-template let-item pTemplate="item">
+    <p-skeleton width="20rem" height="26rem" [style]="{ margin: '0.5rem' }" />
+  </ng-template>
+</p-carousel>
+}

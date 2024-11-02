@@ -1,6 +1,8 @@
 <div class="w-full">
   <div class="flex flex-wrap justify-evenly items-start su-section-mt">
-    @for(course of coursesForCategory(); track course.id){
+    @if(coursesForCategory().length == 0){
+    <p-progress-spinner ariaLabel="loading" class="mt-24" />
+    } @for(course of coursesForCategory(); track course.id){
     <app-course-item [course]="course"></app-course-item>
     }
   </div>

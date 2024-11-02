@@ -21,6 +21,7 @@ export class EditUserPrivacySettingsComponent implements OnInit {
   //Variables
   userDetail = signal<UserDetail | null>(null);
   destroyRef = inject(DestroyRef);
+  loading = false;
 
   //Button Options
   stateOptions: any[] = [
@@ -47,6 +48,7 @@ export class EditUserPrivacySettingsComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loading = true;
     const subscription = this.userService
       .editUserPrivacySettings(
         this.userDetail()!.id,
@@ -55,6 +57,7 @@ export class EditUserPrivacySettingsComponent implements OnInit {
       )
       .subscribe({
         next: (res) => {
+          this.loading = false;
           this.toastService.showSuccess('Profile editted successfully');
         },
       });

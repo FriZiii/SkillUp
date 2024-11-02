@@ -32,6 +32,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 })
 export class SignUpComponent {
   authService = inject(AuthService);
+  loading = false;
 
   signUpForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -42,9 +43,12 @@ export class SignUpComponent {
 
   subbmitSignUp() {
     const formValue = this.signUpForm.value;
-    this.authService.signUp(formValue.email!, formValue.password!, formValue.marketing!).subscribe();
+    this.loading = true;
+    this.authService.signUp(formValue.email!, formValue.password!, formValue.marketing!)
+    .subscribe({
+      next: () => {this.loading = false}
+    });
   }
-
   
   get emailIsInvalid(){
     return this.signUpForm.controls.email.dirty && this.signUpForm.controls.email.invalid
