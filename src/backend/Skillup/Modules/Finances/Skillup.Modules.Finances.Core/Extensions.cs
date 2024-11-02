@@ -3,8 +3,10 @@ using Skillup.Modules.Finances.Core.Consumers;
 using Skillup.Modules.Finances.Core.DAL;
 using Skillup.Modules.Finances.Core.DAL.Repositories;
 using Skillup.Modules.Finances.Core.Repositories;
+using Skillup.Modules.Finances.Core.Seeders;
 using Skillup.Shared.Infrastructure.Postgres;
 using Skillup.Shared.Infrastructure.RabbitMQ;
+using Skillup.Shared.Infrastructure.Seeder;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -22,7 +24,9 @@ namespace Skillup.Modules.Finances.Core
                 .AddScoped<IWalletRepository, WalletRepository>()
                 .AddScoped<IPurchaseHistoryRepository, PurchaseHistoryRepository>()
                 .AddConsumer<ItemAddedConsumer>()
-                .AddConsumer<SignedUpConsumer>();
+                .AddConsumer<SignedUpConsumer>()
+                .AddSeeder<FinanceSeeder>();
+
         }
     }
 }

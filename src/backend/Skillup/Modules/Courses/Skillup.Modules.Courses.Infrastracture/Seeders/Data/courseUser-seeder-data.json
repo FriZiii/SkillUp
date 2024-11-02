@@ -2,36 +2,31 @@
   {
     "firstname": "Emily ",
     "LastName": "Turner",
-    "ProfilePicture": "https://cdn.pixabay.com/photo/2016/04/01/11/11/boy-1300242_1280.png",
-    "title": "Inactive",
-    "Biography": "I am a inactive"
+    "title": "Experienced Yoga Instructor and Mindfulness Coach",
+    "Biography": "I'm Emily, a dedicated yoga instructor and mindfulness coach with over 10 years of experience guiding students on their wellness journey. I focus on helping others connect with their bodies and minds through tailored yoga flows and meditation techniques. My mission is to create a supportive space where everyone can grow, relax, and find balance in their daily lives."
   },
   {
     "firstname": "Daniel ",
     "LastName": "Foster",
-    "ProfilePicture": "https://cdn.pixabay.com/photo/2016/04/01/11/11/boy-1300242_1280.png",
     "title": "user",
     "Biography": "I am a user"
   },
   {
     "firstname": "Olivia ",
     "LastName": "Bennett",
-    "ProfilePicture": "https://cdn.pixabay.com/photo/2016/04/01/11/11/boy-1300242_1280.png",
     "title": "admin",
     "Biography": "I am a admin"
   },
   {
     "firstname": "James ",
     "LastName": "Mitchell",
-    "ProfilePicture": "https://cdn.pixabay.com/photo/2016/04/01/11/11/boy-1300242_1280.png",
     "title": "moderator",
     "Biography": "I am a moderator"
   },
   {
     "firstname": "John",
     "LastName": "Smith",
-    "ProfilePicture": "https://cdn.pixabay.com/photo/2016/04/01/11/11/boy-1300242_1280.png",
-    "title": "teacher",
-    "Biography": "I am a teacher"
+    "title": "Software Developer and IT Instructor with 15 Years of Experience",
+    "Biography": "I'm John, a passionate software developer and IT instructor with over 15 years of experience in the tech industry. I specialize in web development, database management, and software architecture. My goal is to provide hands-on learning experiences that help my students tackle real-world challenges with confidence. I believe in fostering practical skills and empowering others to grow in a fast-paced digital world."
   }
 ]

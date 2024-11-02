@@ -6,24 +6,22 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using Skillup.Modules.Mails.Core.DTO;
 using Skillup.Modules.Mails.Core.Templates;
-using Skillup.Shared.Infrastructure.EnvironmentInjector;
+using Skillup.Shared.Abstractions;
+using System.Net;
 using System.Net.Mail;
 
 namespace Skillup.Modules.Mails.Core.Services
 {
     internal class SmtpService : ISmtpService
     {
-        private readonly SmtpOptions _smtpOptions;
-
-        public SmtpService()
+        public SmtpService(SmtpOptions options)
         {
-            _smtpOptions = (SmtpOptions)new SmtpOptions().InjectEnvironment();
-
-            var sender = new SmtpSender(() => new SmtpClient(_smtpOptions.Host)
+            var sender = new SmtpSender(() => new SmtpClient(options.Host)
             {
-                EnableSsl = _smtpOptions.SslEnabled,
+                EnableSsl = options.SslEnabled,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                Port = _smtpOptions.Port,
+                Port = options.Port,
+                Credentials = new NetworkCredential(options.Username, options.Password)
             });
 
             Email.DefaultSender = sender;

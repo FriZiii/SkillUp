@@ -10,7 +10,7 @@ namespace Skillup.Modules.Courses.Core.Entities.UserEntities
         public required Email Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Uri ProfilePicture { get; set; }
+        public string ProfilePictureKey { get; set; }
         public UserDetails Details { get; set; }
         public SocialMediaLinks SocialMediaLinks { get; set; }
         public PrivacySettings PrivacySettings { get; set; }
@@ -22,7 +22,7 @@ namespace Skillup.Modules.Courses.Core.Entities.UserEntities
         {
             FirstName = string.Empty;
             LastName = string.Empty;
-            ProfilePicture = CourseModuleOptions.DefaultValues.DefaultUserProfilePicture;
+            ProfilePictureKey = CourseModuleOptions.DefaultValues.DefaultUserProfilePictureKey;
             Details = new();
             SocialMediaLinks = new();
             PrivacySettings = new PrivacySettings();

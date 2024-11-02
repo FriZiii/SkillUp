@@ -1,0 +1,33 @@
+@if(categories().length !== 0){
+<p-menubar [model]="items()" [autoDisplay]="true" (mouseleave)="hideSubMenu()">
+  <ng-template pTemplate="item" let-item>
+    <ng-container *ngIf="item.route; else noLink">
+      <a [routerLink]="item.route" class="p-menubar-item-link">
+        <span class="ml-2">{{ item.label }}</span>
+      </a>
+    </ng-container>
+    <ng-template #noLink>
+      <div class="p-menubar-item-link">
+        <span class="ml-2">{{ item.label }}</span>
+        <span class="pi pi-fw pi-angle-down ml-2"></span>
+      </div>
+    </ng-template>
+  </ng-template>
+</p-menubar>
+} @else{
+<p-menubar [model]="skeletonItems">
+  <ng-template pTemplate="item" let-item>
+    <div class="p-menubar-item-link">
+      <p-skeleton width="7rem" styleClass="mb-2" />
+    </div>
+  </ng-template>
+</p-menubar>
+}
+
+<!-- <p-menubar [model]="skeletonItems" >
+  <ng-template pTemplate="item" let-item >
+    <div class="p-menubar-item-link">
+      <p-skeleton width="7rem" styleClass="mb-2" />
+    </div>
+  </ng-template>
+</p-menubar> -->

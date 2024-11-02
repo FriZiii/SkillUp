@@ -63,12 +63,12 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                 ThumbnailUrl = new Uri(jsonModel.Details.ThumbnailUrl)
             };
 
-            return CreateCourse(jsonModel.AuthorId, jsonModel.Title, jsonModel.CategoryName, jsonModel.SubcategoryName, details);
+            return CreateCourse(jsonModel.Id, jsonModel.AuthorId, jsonModel.Title, jsonModel.CategoryName, jsonModel.SubcategoryName, details);
         }
 
-        private Course CreateCourse(Guid id, string title, string categoryName, string subcategoryName, CourseDetails details)
+        private Course CreateCourse(Guid id, Guid authorId, string title, string categoryName, string subcategoryName, CourseDetails details)
         {
-            return new Course(id, title, _categories.First(x => x.Name == categoryName).Id, _subCategories.First(x => x.Name == subcategoryName).Id, _clock.CurrentDate(), details);
+            return new Course(id, authorId, title, _categories.First(x => x.Name == categoryName).Id, _subCategories.First(x => x.Name == subcategoryName).Id, _clock.CurrentDate(), details);
         }
     }
 }

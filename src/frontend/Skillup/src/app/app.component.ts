@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 import { definePreset } from 'primeng/themes';
 import { Aura } from 'primeng/themes/aura';
@@ -9,6 +9,8 @@ import { HeaderComponent } from './core/components/header/header.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { AddCourseComponent } from './course/components/add-course/add-course.component';
 import { ToastModule } from 'primeng/toast';
+import { AuthService } from './auth/services/auth.service';
+import { FilterHeaderComponent } from './core/components/filter-header/filter-header.component';
 
 @Component({
   selector: 'app-root',
@@ -21,30 +23,62 @@ import { ToastModule } from 'primeng/toast';
     AddCourseComponent,
     ToastModule,
     FooterComponent,
+    FilterHeaderComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Skillup';
 
   MyPreset = definePreset(Aura, {
     semantic: {
       primary: {
-        50: '{yellow.0}',
-        100: '{yellow.50}',
-        200: '{yellow.100}',
-        300: '{yellow.200}',
-        400: '{yellow.300}',
-        500: '{yellow.400}',
-        600: '{yellow.500}',
-        700: '{yellow.600}',
-        800: '{yellow.700}',
-        900: '{yellow.800}',
-        950: '{yellow.900}',
+        50: '{fuchsia.0}',
+        100: '{fuchsia.50}',
+        200: '{fuchsia.100}',
+        300: '{fuchsia.200}',
+        400: '{fuchsia.300}',
+        500: '{green.600}',
+        600: '{green.700}',
+        700: '{green.800}',
+        800: '{fuchsia.700}',
+        900: '{fuchsia.800}',
+        950: '{fuchsia.900}',
+      },
+      colorScheme: {
+        surface: {
+          0: '#ffffff',
+          50: '{gray.50}',
+          100: '{gray.100}',
+          200: '{gray.200}',
+          300: '{gray.300}',
+          400: '{gray.400}',
+          500: '{gray.500}',
+          600: '{gray.600}',
+          700: '{gray.700}',
+          800: '{gray.800}',
+          900: '{gray.900}',
+          950: '{gray.950}',
+        },
+      },
+    },
+    components: {
+      popover: {
+        gutter: '10',
+        arrow: {
+          offset: '-99999999', //TODO : Change this
+        },
+      },
+      menubar: {
+        root: {
+          borderRadius: '0',
+        },
       },
     },
   });
+
+  authService = inject(AuthService);
 
   constructor(private config: PrimeNGConfig) {
     this.config.theme.set({
@@ -56,5 +90,9 @@ export class AppComponent {
         },
       },
     });
+  }
+
+  ngOnInit(): void {
+    this.authService.autoSignIn();
   }
 }

@@ -29,7 +29,14 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<int>("Index")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Slug")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -193,6 +200,10 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -218,7 +229,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("ProfilePicture")
+                    b.Property<string>("ProfilePictureKey")
                         .IsRequired()
                         .HasColumnType("text");
 

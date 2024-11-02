@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 using Skillup.Modules.Courses.Infrastracture.Seeders.Data.JsonModels;
-using Skillup.Shared.Abstractions.Seeder;
 using System.Text.Json;
 
 namespace Skillup.Modules.Courses.Infrastracture.Seeders
 {
-    internal class CategorySeeder : ISeeder
+    internal class CategorySeeder
     {
         private readonly CoursesDbContext _context;
         private DbSet<Category> _categories;
@@ -32,7 +31,6 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
 
         private async Task SeedCategories()
         {
-
             var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
 
             var jsonString = File.ReadAllText(Path.Combine(path, "category-seeder-data.json"));
@@ -48,12 +46,13 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
 
         public List<Category> CreateCategories(List<CategoryJsonModel> categoryData)
         {
-            return categoryData!.Select(CreateCategoryFromJson).ToList();
+            var result = categoryData!.Select(CreateCategoryFromJson).ToList();
+            return result;
         }
 
         private Category CreateCategoryFromJson(CategoryJsonModel jsonModel)
         {
-            return new Category() { Name = jsonModel.Name };
+            return new Category() { Name = jsonModel.Name, Index = jsonModel.Index };
         }
 
         public IEnumerable<Subcategory> CreateSubcategories(List<CategoryJsonModel> categoryData)

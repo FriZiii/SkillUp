@@ -1,5 +1,3 @@
-version: '3.4'
-
 services:
   skillup.postgres:
     container_name: ${POSTGRES_HOST}
@@ -15,15 +13,7 @@ services:
       - POSTGRES_HOST_AUTH_METHOD=${POSTGRES_HOST_AUTH_METHOD}
     ports:
       - ${POSTGRES_PORT}:5432
-
-  skillup.smtpserver:
-    container_name: ${SMTP_HOST}
-    image: changemakerstudiosus/papercut-smtp:latest
-    env_file:
-      - .env
-    ports:
-     - ${SMTP_HTTP_PORT}:80
-     - ${SMTP_PORT}:25
+    profiles: [dev, prod]
 
   skillup.rabbitmq:
     container_name: ${RABBITMQ_HOST}    
@@ -36,23 +26,98 @@ services:
         - ${RABBITMQ_HTTP_PORT}:15672
     volumes:
         - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq    
+    profiles: [dev, prod]
 
-  skillup.bootstrapper:
-    container_name: skillup-api
-    image: ${DOCKER_REGISTRY-}skillupbootstrapper
+  skillup.smtpserver:
+    container_name: ${SMTP_HOST}
+    image: changemakerstudiosus/papercut-smtp:latest
     env_file:
       - .env
     ports:
-      - ${API_HTTPS_PORT}:8081
-      - ${API_HTTP_PORT}:8080
+     - ${SMTP_HTTP_PORT}:80
+     - ${SMTP_PORT}:25
+    profiles: [dev]
+
+  skillup.localstack:
+    image: localstack/localstack
+    container_name: ${LOCALSTACK_HOST}
+    ports:
+      - ${LOCALSTACK_PORT}:4566 
+    environment:
+      - S3_SKIP_SIGNATURE_VALIDATION=0
+      - SERVICES=s3
+    volumes:
+      - "./LocalStack/init.sh:/etc/localstack/init/ready.d/init-aws.sh"
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    profiles: [dev]
+
+  skillup.bootstrapper.dev:
+    container_name: skillup-api-dev
+    image: ${DOCKER_REGISTRY-}skillupbootstrapper
+    environment:
+      - aspnetcore_environment=${environment}
+      - aspnetcore_http_ports=8080
+    ports:
+      - "8080"
+    env_file:
+      - .env
     build:
       context: .
       dockerfile: Bootstrapper/Skillup.Bootstrapper/Dockerfile
     depends_on:
       - skillup.postgres
-      - skillup.smtpserver
       - skillup.rabbitmq
+      - skillup.smtpserver
+      - skillup.localstack
+    profiles: [dev]
+
+  skillup.nginx.dev:
+    container_name: skillup-nginx-dev
+    image: nginx:alpine
+    env_file:
+      - .env
+    volumes:
+      - ./nginx/nginx.development.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - skillup.bootstrapper.dev    
+    ports:
+      - "${NGINX_PORT}:4000"
+    profiles: [dev]
+
+  skillup.bootstrapper:
+    container_name: skillup-api
+    image: ${DOCKER_REGISTRY-}skillupbootstrapper
+    environment:
+      - aspnetcore_environment=${environment}
+      - aspnetcore_http_ports=8080
+    ports:
+      - "8080"
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Bootstrapper/Skillup.Bootstrapper/Dockerfile
+    depends_on:
+      - skillup.postgres
+      - skillup.rabbitmq
+    profiles: [prod]
+
+  skillup.nginx:
+    container_name: skillup-nginx
+    image: nginx:alpine
+    env_file:
+      - .env
+    volumes:
+      - ./nginx/nginx.production.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt/live/api.skillup.ovh/fullchain.pem:/etc/ssl/certs/fullchain.pem:ro
+      - /etc/letsencrypt/live/api.skillup.ovh/privkey.pem:/etc/ssl/certs/privkey.pem:ro
+    depends_on:
+      - skillup.bootstrapper   
+    ports:
+      - "${NGINX_PORT}:4000"
+    profiles: [prod]
 
 volumes:
   postgres:

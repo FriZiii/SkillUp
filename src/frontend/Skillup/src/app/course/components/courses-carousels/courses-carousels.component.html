@@ -1,0 +1,15 @@
+<div class="w-full">
+  <div class="flex flex-col su-section-mt">
+    @for( categoryData of categoriesWithCourses(); track
+    categoryData.category.id){
+    <div class="su-section-mt">
+      <div class="prose">
+        <h2>Courses about {{ categoryData.category.name }}</h2>
+      </div>
+      <app-course-carousel
+        [courses]="categoryData.courses"
+      ></app-course-carousel>
+    </div>
+    }
+  </div>
+</div>

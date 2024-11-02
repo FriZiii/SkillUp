@@ -56,7 +56,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
 
             await _userRepository.Add(user);
 
-            await _publishEndpoint.Publish(new SignedUp(user.Id, user.Email, user.ActivationToken, user.TokenExpiration), cancellationToken);
+            await _publishEndpoint.Publish(new SignedUp(user.Id, user.Email, request.AllowMarketingEmails, user.ActivationToken, user.TokenExpiration), cancellationToken);
             //TODO : LOGS
         }
     }

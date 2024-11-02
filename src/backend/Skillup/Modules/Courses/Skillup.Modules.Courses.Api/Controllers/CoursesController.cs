@@ -18,7 +18,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
 
         [HttpPost]
         [SwaggerOperation("Add course")]
-        [Authorize(Roles = nameof(UserRole.CourseAuthor))]
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [Route("/Courses")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -36,7 +36,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         }
 
         [HttpPatch]
-        [Authorize(Roles = nameof(UserRole.CourseAuthor))]
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [SwaggerOperation("Publish course")]
         [Route("/Courses/{courseId}/Publish")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

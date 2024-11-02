@@ -1,0 +1,44 @@
+<div>
+  <p-dialog
+    header="Crop image"
+    [modal]="true"
+    [(visible)]="croperVisibility"
+    [style]="{ width: '25rem' }"
+  >
+    <div class="flex items-center justify-center">
+      @if(croperLoading){
+      <p-progress-spinner ariaLabel="loading"></p-progress-spinner>
+      }
+
+      <div
+        class="flex-col gap-1 items-center"
+        [style]="{ display: croperLoading ? 'none' : 'flex' }"
+      >
+        <div class="block w-64 h-64 su-border p-1">
+          <image-cropper
+            [imageFile]="imageFile!"
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="1 / 1"
+            [containWithinAspectRatio]="true"
+            [resizeToWidth]="256"
+            [resizeToHeight]="256"
+            [cropperMinHeight]="256"
+            [cropperMinWidth]="256"
+            [alignImage]="'center'"
+            [onlyScaleDown]="true"
+            (imageCropped)="onImageCropped($event)"
+            (imageLoaded)="omImageLoaded($event)"
+            (loadImageFailed)="onLoadImageFailed()"
+          ></image-cropper>
+        </div>
+        <p-button
+          (onClick)="cropImage()"
+          class="w-full"
+          [style]="{ width: '100%' }"
+          label="Crop image"
+        ></p-button>
+      </div>
+    </div>
+  </p-dialog>
+</div>

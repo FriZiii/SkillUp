@@ -1,0 +1,30 @@
+<div class="w-full">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="prose">
+    <h1>Public account</h1>
+    <div class="flex items-center gap-8">
+      <p-selectbutton
+        [options]="stateOptions"
+        formControlName="publicProfile"
+        optionLabel="label"
+        optionValue="value"
+      />
+      <p>Other users can see your account details</p>
+    </div>
+    <div class="flex items-center gap-8">
+      <p-selectbutton
+        [options]="stateOptions"
+        formControlName="publicCourses"
+        optionLabel="label"
+        optionValue="value"
+      />
+      <p>Other users can see your purchased courses</p>
+    </div>
+
+    <p-button
+      [style]="{ width: '100%' }"
+      [disabled]="form.pristine"
+      type="submit"
+      >Save</p-button
+    >
+  </form>
+</div>

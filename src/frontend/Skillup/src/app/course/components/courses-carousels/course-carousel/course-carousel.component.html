@@ -1,0 +1,11 @@
+<p-carousel
+  [value]="courses()"
+  [numVisible]="5"
+  [numScroll]="1"
+  [responsiveOptions]="responsiveOptions"
+  circular="true"
+>
+  <ng-template let-course pTemplate="item">
+    <app-course-item [course]="course"></app-course-item>
+  </ng-template>
+</p-carousel>

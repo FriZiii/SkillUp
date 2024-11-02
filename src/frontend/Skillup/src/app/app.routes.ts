@@ -1,10 +1,26 @@
 import { Routes } from '@angular/router';
 import { SignUpComponent } from './auth/components/sign-up/sign-up.component';
 import { SignInComponent } from './auth/components/sign-in/sign-in.component';
-import { AccountActivationComponent } from './auth/components/account-activation/account-activation.component';
 import { AddCourseComponent } from './course/components/add-course/add-course.component';
+import { HeroComponent } from './core/components/hero/hero.component';
+import { CoursesListComponent } from './course/components/courses-list/courses-list.component';
+import { EditUserComponent } from './user/components/edit-user/edit-user.component';
+import { EditUserProfileComponent } from './user/components/edit-user/edit-user-profile/edit-user-profile.component';
+import { EditUserPictureComponent } from './user/components/edit-user/edit-user-picture/edit-user-picture.component';
+import { EditUserPrivacySettingsComponent } from './user/components/edit-user/edit-user-privacy-settings/edit-user-privacy-settings.component';
+import { CoursesCarouselsComponent } from './course/components/courses-carousels/courses-carousels.component';
+import { CourseDetailComponent } from './course/components/course-detail/course-detail.component';
+import { NotFoundComponent } from './core/components/not-found/not-found.component';
+import { AccessDeniedComponent } from './core/components/access-denied/access-denied.component';
+import { UserRole } from './user/models/user-role.model';
+import { hasRole } from './core/guards/auth.guard';
+import { OtherUserProfileComponent } from './user/components/other-user-profile/other-user-profile.component';
 
 export const routes: Routes = [
+  {
+    path: '',
+    component: HeroComponent,
+  },
   {
     path: 'sign-in',
     component: SignInComponent,
@@ -14,11 +30,42 @@ export const routes: Routes = [
     component: SignUpComponent,
   },
   {
-    path: 'course/add',
+    path: 'course/new',
     component: AddCourseComponent,
+    canMatch: [hasRole],
+    data: { requiredRole: UserRole.Instructor },
   },
   {
-    path: 'account-activation',
-    component: AccountActivationComponent,
+    path: 'course-carousels',
+    component: CoursesCarouselsComponent,
+  },
+  {
+    path: 'courses-list/:category/:subcategory',
+    component: CoursesListComponent,
+  },
+  {
+    path: 'course-detail/:courseId',
+    component: CourseDetailComponent,
+  },
+  {
+    path: 'user/:userId',
+    component: OtherUserProfileComponent,
+  },
+  {
+    path: 'user/edit',
+    component: EditUserComponent,
+    children: [
+      { path: 'profile', component: EditUserProfileComponent },
+      { path: 'profile-picture', component: EditUserPictureComponent },
+      { path: 'privacy-settings', component: EditUserPrivacySettingsComponent },
+    ],
+  },
+  {
+    path: 'access-denied',
+    component: AccessDeniedComponent,
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
