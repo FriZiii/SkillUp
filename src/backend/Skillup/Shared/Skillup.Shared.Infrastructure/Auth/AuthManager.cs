@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Skillup.Shared.Abstractions.Auth;
 using Skillup.Shared.Abstractions.Time;
 using System.IdentityModel.Tokens.Jwt;
@@ -10,13 +11,15 @@ namespace Skillup.Shared.Infrastructure.Auth
     {
         private readonly AuthOptions _options;
         private readonly IClock _clock;
+        private readonly ILogger<AuthManager> _logger;
         private readonly SigningCredentials _signingCredentials;
         private readonly string _issuer;
 
-        public AuthManager(AuthOptions options, IClock clock)
+        public AuthManager(AuthOptions options, IClock clock, ILogger<AuthManager> logger)
         {
             _options = options;
             _clock = clock;
+            _logger = logger;
             _signingCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.IssuerSigningKey)),
                 SecurityAlgorithms.HmacSha256
@@ -41,13 +44,13 @@ namespace Skillup.Shared.Infrastructure.Auth
                 var principal = JwtTokenUtils.ValidateRefreshToken(_options, refreshToken);
                 if (principal == null || principal.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Sub)?.Value != userId.ToString())
                 {
-                    // TODO: LOGS Invalid token, Sub not found
+                    _logger.LogError("Invalid token, Sub not found");
                     throw new SecurityTokenException();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // TODO: LOGS ex.Message
+                _logger.LogError(ex.Message);
                 throw new SecurityTokenException();
             }
 

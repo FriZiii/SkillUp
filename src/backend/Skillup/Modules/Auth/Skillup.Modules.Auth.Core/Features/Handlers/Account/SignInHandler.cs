@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using Skillup.Modules.Auth.Core.Entities;
 using Skillup.Modules.Auth.Core.Exceptions;
 using Skillup.Modules.Auth.Core.Features.Commands.Account;
@@ -12,13 +13,15 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
     internal class SignInHandler(IUserRepository userRepository,
         IPasswordHasher<Entities.User> passwordHasher,
         IAuthManager authManager,
-        IAuthTokenStorage authTokenStorage
+        IAuthTokenStorage authTokenStorage,
+        ILogger<SignInHandler> logger
         ) : IRequestHandler<SignInRequest>
     {
         private readonly IUserRepository _userRepository = userRepository;
         private readonly IPasswordHasher<Entities.User> _passwordHasher = passwordHasher;
         private readonly IAuthManager _authManager = authManager;
         private readonly IAuthTokenStorage _authTokenStorage = authTokenStorage;
+        private readonly ILogger<SignInHandler> _logger = logger;
 
         public async Task Handle(SignInRequest request, CancellationToken cancellationToken)
         {
@@ -37,7 +40,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
 
             var tokens = _authManager.CreateTokens(user.Id, user.Role);
             _authTokenStorage.SetToken(request.Id, tokens);
-            //TODO : LOGS
+            _logger.LogInformation("User signed in");
         }
     }
 }

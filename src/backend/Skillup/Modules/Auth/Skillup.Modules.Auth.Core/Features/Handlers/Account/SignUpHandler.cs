@@ -1,6 +1,7 @@
 ﻿using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using Skillup.Modules.Auth.Core.Entities;
 using Skillup.Modules.Auth.Core.Exceptions;
 using Skillup.Modules.Auth.Core.Features.Commands.Account;
@@ -15,13 +16,15 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
         RegistrationOptions registrationOptions,
         IPublishEndpoint publishEndpoint,
         IPasswordHasher<Entities.User> passwordHasher,
-        IClock clock) : IRequestHandler<SignUpRequest>
+        IClock clock,
+        ILogger<SignUpHandler> logger) : IRequestHandler<SignUpRequest>
     {
         private readonly IUserRepository _userRepository = userRepository;
         private readonly RegistrationOptions _registrationOptions = registrationOptions;
         private readonly IPublishEndpoint _publishEndpoint = publishEndpoint;
         private readonly IPasswordHasher<Entities.User> _passwordHasher = passwordHasher;
         private readonly IClock _clock = clock;
+        private readonly ILogger<SignUpHandler> _logger = logger;
 
         public async Task Handle(SignUpRequest request, CancellationToken cancellationToken)
         {
@@ -57,7 +60,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
             await _userRepository.Add(user);
 
             await _publishEndpoint.Publish(new SignedUp(user.Id, user.Email, request.AllowMarketingEmails, user.ActivationToken, user.TokenExpiration), cancellationToken);
-            //TODO : LOGS
+            _logger.LogInformation("User signed up");
         }
     }
 }
