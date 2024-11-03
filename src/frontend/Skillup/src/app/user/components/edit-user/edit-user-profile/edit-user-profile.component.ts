@@ -3,6 +3,7 @@ import {
   DestroyRef,
   effect,
   inject,
+  input,
   OnInit,
   signal,
 } from '@angular/core';
@@ -62,7 +63,7 @@ export class EditUserProfileComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.userService.userDeatil.subscribe({
+    this.userService.userDetail.subscribe({
       next: (data) => {
         this.userDetail.set(data);
         this.form.patchValue({
@@ -77,7 +78,7 @@ export class EditUserProfileComponent implements OnInit {
           linkedin: data?.socialMediaLinks.linkedIn,
         });
       },
-    });
+    }); 
   }
 
   onSubmit() {

@@ -31,7 +31,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             request.UserId = userId;
             await _mediator.Send(request);
 
-            return Ok();
+            return Ok(await _mediator.Send(new GetUserByIdRequest(userId, true)));
         }
 
         [HttpPut("{userId}/Privacy-Settings")]
@@ -42,7 +42,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         {
             request.UserId = userId;
             await _mediator.Send(request);
-            return Ok(request);
+            return Ok(await _mediator.Send(new GetUserByIdRequest(userId, true)));
         }
 
         [HttpPut("{userId}/Profile-Picture")]
