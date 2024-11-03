@@ -1,1 +1,51 @@
 <p>course-creator works!</p>
+<p-accordion [value]="0">
+  @for (section of sections(); track section.id) {
+  <p-accordion-panel [value]="section.id">
+    <p-accordion-header>{{ section.title }}</p-accordion-header>
+    <p-accordion-content>
+      @for (element of section.elements; track element.id) {
+      <p-card>
+        <div class="flex">
+          <i class="pi pi-video" style="font-size: 2.5rem"></i>
+          <p>{{ element.title }}</p>
+        </div>
+      </p-card>
+      }
+
+      <p-button label="New Element" (click)="addElement()" />
+      <div [style.display]="addElementVisible ? 'block' : 'none'">
+        <div class="flex justify-center gap-10">
+          <p-card>
+            <div class="flex flex-col justify-center items-center">
+              <i class="pi pi-video" style="font-size: 2.5rem"></i>
+              <p>Add Video</p>
+            </div></p-card
+          >
+          <p-card>
+            <div class="flex flex-col justify-center items-center">
+              <i class="pi pi-book" style="font-size: 2.5rem"></i>
+              <p>Add Article</p>
+            </div></p-card
+          >
+          <p-card>
+            <div class="flex flex-col justify-center items-center">
+              <i class="pi pi-objects-column" style="font-size: 2.5rem"></i>
+              <p>Add Exercise</p>
+            </div></p-card
+          >
+        </div>
+      </div>
+    </p-accordion-content>
+  </p-accordion-panel>
+  }
+</p-accordion>
+<p-button label="New Section" (click)="addSection()" />
+
+<div [style.display]="addSectionVisible ? 'block' : 'none'">
+  <form [formGroup]="addSectionForm" (ngSubmit)="submitSection()">
+    <label for="title">Title</label>
+    <input pInputText id="title" class="w-full" formControlName="title" />
+    <p-button label="Save" type="submit" />
+  </form>
+</div>

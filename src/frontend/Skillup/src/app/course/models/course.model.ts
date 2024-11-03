@@ -1,3 +1,5 @@
+import { Section } from "./course-content.model";
+
 export interface AddCourse{
     title: string;
     categoryId: string;
@@ -66,9 +68,4 @@ export interface CourseDetail{
     price: {
         amount: number;
     };
-}
-
-export interface Section{
-    id: string;
-    title: string;
 }
