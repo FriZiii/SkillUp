@@ -12,6 +12,7 @@ import { PasswordModule } from 'primeng/password';
 import { AuthService } from '../../services/auth.service';
 import { RouterModule } from '@angular/router';
 import { CheckboxModule } from 'primeng/checkbox';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in',
@@ -41,9 +42,9 @@ export class SignInComponent {
   submitSignIn() {
     const formValue = this.signInForm.value;
     this.loading = true;
-    this.authService.signIn(formValue.email!, formValue.password!).subscribe({
-      next: () => {this.loading = false}
-    });
+    this.authService.signIn(formValue.email!, formValue.password!)
+    .pipe(finalize (() => this.loading = false))
+    .subscribe();
   }
 
   get emailIsInvalid(){

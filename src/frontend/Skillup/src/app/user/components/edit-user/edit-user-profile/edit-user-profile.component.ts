@@ -21,6 +21,7 @@ import { UserService } from '../../../services/user.service';
 import { User, UserDetail } from '../../../models/user.model';
 import { ToastHandlerService } from '../../../../core/services/toast-handler.service';
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-edit-user-profile',
@@ -96,9 +97,9 @@ export class EditUserProfileComponent implements OnInit {
           youtube: this.form.value.youtube,
         },
       })
+      .pipe(finalize (() => this.loading = false))
       .subscribe({
         next: (res) => {
-          this.loading = false;
           this.toastService.showSuccess('Profile editted successfully');
         },
       });

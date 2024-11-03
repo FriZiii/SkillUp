@@ -5,6 +5,7 @@ import { UserService } from '../../../services/user.service';
 import { UserDetail } from '../../../models/user.model';
 import { ToastHandlerService } from '../../../../core/services/toast-handler.service';
 import { ButtonModule } from 'primeng/button';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-edit-user-privacy-settings',
@@ -55,9 +56,9 @@ export class EditUserPrivacySettingsComponent implements OnInit {
         this.form.value.publicProfile,
         this.form.value.publicCourses
       )
+      .pipe(finalize (() => this.loading = false))
       .subscribe({
         next: (res) => {
-          this.loading = false;
           this.toastService.showSuccess('Profile editted successfully');
         },
       });

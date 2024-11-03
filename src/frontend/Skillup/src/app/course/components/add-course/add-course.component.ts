@@ -23,7 +23,7 @@ import {
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { CoursesService } from '../../services/course.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, finalize, Observable } from 'rxjs';
 import { ToastHandlerService } from '../../../core/services/toast-handler.service';
 import { Router } from '@angular/router';
 
@@ -89,10 +89,10 @@ export class AddCourseComponent {
         categoryId: category!,
         subcategoryId: subcategory!,
       })
+      .pipe(finalize (() => this.loading = false))
       .subscribe({
         next: (res) => {
           this.courseId = res.id;
-          this.loading = false;
           this.toastService.showSuccess('Course sucessfully added');
           this.router.navigate(['/course-detail', this.courseId]);
         },
