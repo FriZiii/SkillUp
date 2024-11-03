@@ -37,8 +37,8 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 
             if (userWallet.Balance < item.Price)
             {
-                _logger.LogError("User dont have enough currency");
-                throw new Exception("User dont have enough currency");
+                _logger.LogError("User doesn't have enough currency");
+                throw new Exception("User doesn't have enough currency");
             } //TODO : Custom exception
 
             await _walletRepository.SubtractBalanceFromWalletByUserId(userWallet.Id, item.Price);

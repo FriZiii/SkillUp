@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using Skillup.Modules.Mails.Core.DTO;
 using Skillup.Modules.Mails.Core.Services;
 using Skillup.Modules.Mails.Core.Templates.AccountActivation;
@@ -12,12 +13,14 @@ namespace Skillup.Modules.Mails.Core.Commands.Handlers
         private readonly ISmtpService _smtpService;
         private readonly ClientOptions _clientOptions;
         private readonly SmtpOptions _smtpOptions;
+        private readonly ILogger<AccountActivationHandler> _logger;
 
-        public AccountActivationHandler(ISmtpService smtpService, ClientOptions clientOptions, SmtpOptions smtpOptions)
+        public AccountActivationHandler(ISmtpService smtpService, ClientOptions clientOptions, SmtpOptions smtpOptions, ILogger<AccountActivationHandler> logger)
         {
             _smtpService = smtpService;
             _clientOptions = clientOptions;
             _smtpOptions = smtpOptions;
+            _logger = logger;
         }
 
         public async Task Handle(AccountActivation request, CancellationToken cancellationToken)
@@ -27,6 +30,7 @@ namespace Skillup.Modules.Mails.Core.Commands.Handlers
             var template = new AccountActivationTemplate(request.UserId, request.ActivationToken, request.TokenExpiration, _clientOptions.ClientUrl);
 
             await _smtpService.SendEmail(sender, reciver, template);
+            _logger.LogInformation("Activation email sent");
         }
     }
 }
