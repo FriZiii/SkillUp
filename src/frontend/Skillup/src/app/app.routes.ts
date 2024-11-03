@@ -15,6 +15,10 @@ import { AccessDeniedComponent } from './core/components/access-denied/access-de
 import { UserRole } from './user/models/user-role.model';
 import { hasRole } from './core/guards/auth.guard';
 import { OtherUserProfileComponent } from './user/components/other-user-profile/other-user-profile.component';
+import { EditCourseComponent } from './course/components/edit-course/edit-course.component';
+import { CourseCreatorComponent } from './course/components/edit-course/course-creator/course-creator.component';
+import { CoursePricingComponent } from './course/components/edit-course/course-pricing/course-pricing.component';
+import { CourseEssentialsComponent } from './course/components/edit-course/course-essentials/course-essentials.component';
 
 export const routes: Routes = [
   {
@@ -46,6 +50,15 @@ export const routes: Routes = [
   {
     path: 'course-detail/:courseId',
     component: CourseDetailComponent,
+  },
+  {
+    path: 'course-edit/:courseId',
+    component: EditCourseComponent,
+    children: [
+      { path: 'creator', component: CourseCreatorComponent },
+      { path: 'essentials', component: CourseEssentialsComponent },
+      { path: 'price', component: CoursePricingComponent },
+    ],
   },
   {
     path: 'user/:userId',

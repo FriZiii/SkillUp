@@ -1,0 +1,21 @@
+<div class="w-full su-section-mt">
+  <div class="grid grid-cols-4">
+    <div class="col-span-1 col-start-1 card w-48 fixed top-56 left-10 z-50">
+      <p-menu [model]="items">
+        <ng-template pTemplate="item" let-item>
+          <ng-container>
+            <a [routerLink]="item.route" class="p-menu-item-link">
+              <span [class]="item.icon"></span>
+              <span class="ml-2">{{ item.label }}</span>
+            </a>
+          </ng-container>
+        </ng-template>
+      </p-menu>
+    </div>
+
+    <!-- <button routerLink="creator">Navigate</button> -->
+    <div class="col-start-2 col-span-3">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
