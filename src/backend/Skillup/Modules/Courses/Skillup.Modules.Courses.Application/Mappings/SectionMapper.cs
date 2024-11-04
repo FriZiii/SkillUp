@@ -14,6 +14,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
             {
                 Id = section.Id,
                 Title = section.Title,
+                Index = section.Index,
                 Elements = section.Elements.Select(_elementMapper.ElementToElementDto).ToList()
             };
             return sectionDto;

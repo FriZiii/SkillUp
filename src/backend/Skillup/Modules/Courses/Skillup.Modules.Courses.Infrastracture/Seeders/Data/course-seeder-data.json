@@ -24,19 +24,24 @@
     },
     "sections": [
       {
-        "title": "Introduction to C# and .NET Framework"
+        "title": "Introduction to C# and .NET Framework",
+        "index":  1
       },
       {
-        "title": "Basic Syntax and Data Types"
+        "title": "Basic Syntax and Data Types",
+        "index": 2
       },
       {
-        "title": "Control Structures and Loops"
+        "title": "Control Structures and Loops",
+        "index": 3
       },
       {
-        "title": "Working with Classes and Objects"
+        "title": "Working with Classes and Objects",
+        "index": 4
       },
       {
-        "title": "Error Handling and Debugging"
+        "title": "Error Handling and Debugging",
+        "index": 5
       }
     ],
     "id": "3990ed33-b244-4916-99e3-9b9440ac9386"
@@ -92,19 +97,24 @@
     },
     "sections": [
       {
-        "title": "Basic Grammar and Sentence Structure"
+        "title": "Basic Grammar and Sentence Structure",
+        "index": 1
       },
       {
-        "title": "Common Vocabulary and Phrases"
+        "title": "Common Vocabulary and Phrases",
+        "index": 2
       },
       {
-        "title": "Conversational English"
+        "title": "Conversational English",
+        "index": 3
       },
       {
-        "title": "Reading and Writing in English"
+        "title": "Reading and Writing in English",
+        "index": 4
       },
       {
-        "title": "Listening and Comprehension Skills"
+        "title": "Listening and Comprehension Skills",
+        "index": 5
       }
     ],
     "id": "1aea8d31-65dc-4dce-962f-dddc98d958d7"
@@ -134,19 +144,24 @@
     },
     "sections": [
       {
-        "title": "Introduction to Web Technologies"
+        "title": "Introduction to Web Technologies",
+        "index": 1
       },
       {
-        "title": "HTML Basics and Structure"
+        "title": "HTML Basics and Structure",
+        "index": 2
       },
       {
-        "title": "CSS for Styling Web Pages"
+        "title": "CSS for Styling Web Pages",
+        "index": 3
       },
       {
-        "title": "Introduction to JavaScript"
+        "title": "Introduction to JavaScript",
+        "index": 4
       },
       {
-        "title": "Building a Simple Website"
+        "title": "Building a Simple Website",
+        "index": 5
       }
     ],
     "id": "f4112f23-ec8c-406f-8a8a-5cc3d71fd258"
@@ -358,19 +373,24 @@
     },
     "sections": [
       {
-        "title": "Introduction to Game Development and Unity"
+        "title": "Introduction to Game Development and Unity",
+        "index": 1
       },
       {
-        "title": "C# for Game Development"
+        "title": "C# for Game Development",
+        "index": 2
       },
       {
-        "title": "Game Physics and Mechanics"
+        "title": "Game Physics and Mechanics",
+        "index": 3
       },
       {
-        "title": "Basic AI and Player Input"
+        "title": "Basic AI and Player Input",
+        "index": 4
       },
       {
-        "title": "Deploying Your Game"
+        "title": "Deploying Your Game",
+        "index": 5
       }
     ],
     "id": "6112c1e6-a033-4842-9c94-5861b217a27e"
@@ -400,19 +420,24 @@
     },
     "sections": [
       {
-        "title": "Introduction to Web Development and ASP.NET"
+        "title": "Introduction to Web Development and ASP.NET",
+        "index": 1
       },
       {
-        "title": "Basic HTML, CSS, and JavaScript"
+        "title": "Basic HTML, CSS, and JavaScript",
+        "index": 2
       },
       {
-        "title": "C# for Web Development"
+        "title": "C# for Web Development",
+        "index": 3
       },
       {
-        "title": "Building Web Apps with ASP.NET MVC"
+        "title": "Building Web Apps with ASP.NET MVC",
+        "index": 4
       },
       {
-        "title": "Deploying Your Web Application"
+        "title": "Deploying Your Web Application",
+        "index": 5
       }
     ],
     "id": "abb4de22-2e10-4677-99bb-587d287ef549"
@@ -442,19 +467,24 @@
     },
     "sections": [
       {
-        "title": "Introduction to Motivation"
+        "title": "Introduction to Motivation",
+        "index": 1
       },
       {
-        "title": "Time Management Techniques"
+        "title": "Time Management Techniques",
+        "index": 2
       },
       {
-        "title": "Building Effective Habits"
+        "title": "Building Effective Habits",
+        "index": 3
       },
       {
-        "title": "Goal Setting and Achievement"
+        "title": "Goal Setting and Achievement",
+        "index": 4
       },
       {
-        "title": "Maintaining Long-term Motivation"
+        "title": "Maintaining Long-term Motivation",
+        "index": 5
       }
     ],
     "id": "4481dc8e-bb25-485e-a176-4a1858ab08a5"
@@ -484,19 +514,24 @@
     },
     "sections": [
       {
-        "title": "Introduction to Music Theory"
+        "title": "Introduction to Music Theory",
+        "index": 1
       },
       {
-        "title": "Understanding Musical Notation"
+        "title": "Understanding Musical Notation",
+        "index": 2
       },
       {
-        "title": "Scales and Keys"
+        "title": "Scales and Keys",
+        "index": 3
       },
       {
-        "title": "Chord Progressions"
+        "title": "Chord Progressions",
+        "index": 4
       },
       {
-        "title": "Rhythm and Timing"
+        "title": "Rhythm and Timing",
+        "index": 5
       }
     ],
     "id": "493aacda-10c1-4212-a521-4d4f67386967"
@@ -526,19 +561,24 @@
     },
     "sections": [
       {
-        "title": "Introduction to Online Teaching"
+        "title": "Introduction to Online Teaching",
+        "index": 1
       },
       {
-        "title": "Planning Virtual Lessons"
+        "title": "Planning Virtual Lessons",
+        "index": 2
       },
       {
-        "title": "Engaging Students in a Digital Classroom"
+        "title": "Engaging Students in a Digital Classroom",
+        "index": 3
       },
       {
-        "title": "Using Technology for Teaching"
+        "title": "Using Technology for Teaching",
+        "index": 4
       },
       {
-        "title": "Evaluating and Improving Online Lessons"
+        "title": "Evaluating and Improving Online Lessons",
+        "index": 5
       }
     ],
     "id": "eab868c2-665a-4114-a1a7-06fa6fa55726"
@@ -568,19 +608,24 @@
     },
     "sections": [
       {
-        "title": "Introduction to Microsoft Excel"
+        "title": "Introduction to Microsoft Excel",
+        "index": 1
       },
       {
-        "title": "Basic Formulas and Functions"
+        "title": "Basic Formulas and Functions",
+        "index": 2
       },
       {
-        "title": "Formatting and Organizing Data"
+        "title": "Formatting and Organizing Data",
+        "index": 3
       },
       {
-        "title": "Working with Charts and Graphs"
+        "title": "Working with Charts and Graphs",
+        "index": 4
       },
       {
-        "title": "Advanced Features: Pivot Tables and Macros"
+        "title": "Advanced Features: Pivot Tables and Macros",
+        "index": 5
       }
     ],
     "id": "0b160b43-1e9a-48f7-82e7-3a6d66aa6ffe"
@@ -610,19 +655,24 @@
     },
     "sections": [
       {
-        "title": "Introduction to Teaching Methods"
+        "title": "Introduction to Teaching Methods",
+        "index": 1
       },
       {
-        "title": "Active Learning Strategies"
+        "title": "Active Learning Strategies",
+        "index": 2
       },
       {
-        "title": "Student-centered Learning"
+        "title": "Student-centered Learning",
+        "index": 3
       },
       {
-        "title": "Creative Classroom Activities"
+        "title": "Creative Classroom Activities",
+        "index": 4
       },
       {
-        "title": "Assessing Student Progress"
+        "title": "Assessing Student Progress",
+        "index": 5
       }
     ],
     "id": "41ecb37b-6352-41ca-92cd-e90bfb848220"
@@ -652,19 +702,24 @@
     },
     "sections": [
       {
-        "title": "Introduction to Adolescent Learning"
+        "title": "Introduction to Adolescent Learning",
+        "index": 1
       },
       {
-        "title": "Engaging Teenage Students"
+        "title": "Engaging Teenage Students",
+        "index": 2
       },
       {
-        "title": "Classroom Management for Teenagers"
+        "title": "Classroom Management for Teenagers",
+        "index": 3
       },
       {
-        "title": "Creating Motivational Content"
+        "title": "Creating Motivational Content",
+        "index": 4
       },
       {
-        "title": "Evaluating Adolescent Progress"
+        "title": "Evaluating Adolescent Progress",
+        "index": 5
       }
     ],
     "id": "4435bb93-5511-4512-a07a-8883ea910745"
@@ -694,19 +749,24 @@
     },
     "sections": [
       {
-        "title": "Introduction to Adobe Photoshop"
+        "title": "Introduction to Adobe Photoshop",
+        "index": 1
       },
       {
-        "title": "Basic Editing Tools"
+        "title": "Basic Editing Tools",
+        "index": 2
       },
       {
-        "title": "Working with Layers"
+        "title": "Working with Layers",
+        "index": 3
       },
       {
-        "title": "Creating Digital Art"
+        "title": "Creating Digital Art",
+        "index": 4
       },
       {
-        "title": "Exporting and Saving Files"
+        "title": "Exporting and Saving Files",
+        "index": 5
       }
     ],
     "id": "45834abc-df41-4a8d-b0eb-7d83962ac548"
@@ -736,19 +796,24 @@
     },
     "sections": [
       {
-        "title": "Introduction to Google Workspace"
+        "title": "Introduction to Google Workspace",
+        "index": 1
       },
       {
-        "title": "Google Docs: Writing and Editing"
+        "title": "Google Docs: Writing and Editing",
+        "index": 2
       },
       {
-        "title": "Google Sheets: Data Management"
+        "title": "Google Sheets: Data Management",
+        "index": 3
       },
       {
-        "title": "Organizing Files in Google Drive"
+        "title": "Organizing Files in Google Drive",
+        "index": 4
       },
       {
-        "title": "Collaboration with Google Meet and Chat"
+        "title": "Collaboration with Google Meet and Chat",
+        "index": 5
       }
     ],
     "id": "ba933032-f263-484b-9c43-1a92e6ac44b3"

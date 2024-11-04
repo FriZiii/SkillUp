@@ -3,6 +3,9 @@
     internal class ArticleElementJsonModel
     {
         public string Title { get; set; }
+        public string Description { get; set; }
+        public string Type { get; set; }
+        public int Index { get; set; }
         public bool IsFree { get; set; }
         public bool IsPublished { get; set; }
         public string SectionTitle { get; set; }
@@ -17,6 +20,9 @@
     internal class VideoElementJsonModel
     {
         public string Title { get; set; }
+        public string Description { get; set; }
+        public string Type { get; set; }
+        public int Index { get; set; }
         public bool IsFree { get; set; }
         public bool IsPublished { get; set; }
         public string SectionTitle { get; set; }
@@ -31,6 +37,9 @@
     internal class AssignmentElementJsonModel
     {
         public string Title { get; set; }
+        public string Description { get; set; }
+        public string Type { get; set; }
+        public int Index { get; set; }
         public bool IsFree { get; set; }
         public bool IsPublished { get; set; }
         public string SectionTitle { get; set; }

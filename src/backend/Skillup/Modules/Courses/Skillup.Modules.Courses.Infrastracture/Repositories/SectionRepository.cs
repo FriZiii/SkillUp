@@ -34,6 +34,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             var sections = await _sections
                 .Include(s => s.Elements)
                 .Where(s => s.CourseId == courseId)
+                .OrderBy(x => x.Index)
                 .ToListAsync();
             return sections;
         }

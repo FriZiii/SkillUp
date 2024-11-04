@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Skillup.Modules.Courses.Core.Requests.Commands
 {
-    public record AddSectionRequest(string Title) : IRequest
+    public record AddSectionRequest(string Title, int index) : IRequest
     {
         [JsonIgnore]
         public Guid SectionId { get; set; }

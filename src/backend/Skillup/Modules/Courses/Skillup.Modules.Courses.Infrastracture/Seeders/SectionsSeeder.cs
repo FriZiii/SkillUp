@@ -49,6 +49,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                     sections.Add(new Section()
                     {
                         Title = section.Title,
+                        Index = section.Index,
                         CourseId = _courseList.First(x => x.Title == course.Title).Id
                     });
                 }

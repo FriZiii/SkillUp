@@ -18,6 +18,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
             var section = new Section()
             {
                 Title = request.Title,
+                Index = request.index,
                 CourseId = request.CourseId,
             };
             await _sectionRepository.Add(section);

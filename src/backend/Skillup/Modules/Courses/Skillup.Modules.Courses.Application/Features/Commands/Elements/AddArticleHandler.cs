@@ -20,6 +20,9 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements
             var element = new Element()
             {
                 Title = request.Title,
+                Description = request.Description,
+                Type = request.Type,
+                Index = request.Index,
                 IsFree = request.IsFree,
                 IsPublished = request.IsPublished,
                 SectionId = request.SectionId,
