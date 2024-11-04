@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { environment } from "../../../environments/environment";
-import { catchError, Observable, tap, throwError } from "rxjs";
+import { catchError, map, Observable, tap, throwError } from "rxjs";
 import { ToastHandlerService } from "../../core/services/toast-handler.service";
-import { Section } from "../models/course-content.model";
+import { ElementType, Section } from "../models/course-content.model";
 
 @Injectable({ providedIn: 'root' })
 export class CourseContentService {
@@ -18,6 +18,10 @@ export class CourseContentService {
         return this.httpClient
           .get<any>(environment.apiUrl + '/Courses/Sections/' + courseId)
           .pipe(
+            map((response) => {
+              response.elementType = response.elementType as ElementType;
+              return response;
+            }),
             catchError((error) => {
               this.toastService.showError('Coud not fetch sections');
               return throwError(() => error);

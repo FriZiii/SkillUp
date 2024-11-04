@@ -1,4 +1,6 @@
-<p>course-creator works!</p>
+<div class="prose mb-8">
+  <h1>Edit your course content!</h1>
+</div>
 <p-accordion [value]="0">
   @for (section of sections(); track section.id) {
   <p-accordion-panel [value]="section.id">
@@ -7,7 +9,7 @@
       @for (element of section.elements; track element.id) {
       <p-card>
         <div class="flex">
-          <i class="pi pi-video" style="font-size: 2.5rem"></i>
+          <i [class]="definedIcon(element.type)" style="font-size: 2.5rem"></i>
           <p>{{ element.title }}</p>
         </div>
       </p-card>
@@ -40,12 +42,30 @@
   </p-accordion-panel>
   }
 </p-accordion>
-<p-button label="New Section" (click)="addSection()" />
 
-<div [style.display]="addSectionVisible ? 'block' : 'none'">
-  <form [formGroup]="addSectionForm" (ngSubmit)="submitSection()">
-    <label for="title">Title</label>
-    <input pInputText id="title" class="w-full" formControlName="title" />
-    <p-button label="Save" type="submit" />
-  </form>
+<div class="mt-8">
+  <p-button
+    label="New Section"
+    (click)="changeAddSectionVisibility()"
+    [style.display]="addSectionVisible ? 'none' : 'block'"
+  />
+
+  <div
+    [style.display]="addSectionVisible ? 'block' : 'none'"
+    class="su-border p-8 mb-8"
+  >
+    <div class="prose">
+      <h3 class="mb-1">Title</h3>
+    </div>
+    <input pInputText class="w-full" [(ngModel)]="newSectionTitle" />
+    <div class="flex gap-8 my-4">
+      <p-button
+        label="Cancel"
+        type="button"
+        severity="secondary"
+        (click)="changeAddSectionVisibility()"
+      />
+      <p-button label="Save" type="submit" (click)="submitSection()" />
+    </div>
+  </div>
 </div>

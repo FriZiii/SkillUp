@@ -1,17 +1,18 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { AccordionModule } from 'primeng/accordion';
-import { Section } from '../../../models/course-content.model';
+import { ElementType, Section } from '../../../models/course-content.model';
 import { CourseContentService } from '../../../services/course-content-service';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-course-creator',
   standalone: true,
-  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule],
+  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule],
   templateUrl: './course-creator.component.html',
   styleUrl: './course-creator.component.css'
 })
@@ -29,32 +30,45 @@ export class CourseCreatorComponent implements OnInit {
     this.courseContentService.getSectionsByCourseId(this.courseId()).subscribe({
       next: (res) => {
         this.sections.set(res);
+        console.log(res);
       }
     })
   }
 
 
   //New Section
-  addSection(){
-    this.addSectionVisible = true;
+  changeAddSectionVisibility(){
+    if(this.addSectionVisible === false)
+      this.addSectionVisible = true;
+    else
+    this.addSectionVisible = false;
   }
 
-  addSectionForm = new FormGroup({
-    title: new FormControl('')
-  })
-
+  newSectionTitle = signal('');
   submitSection(){
-    const title = this.addSectionForm.value.title!;
-    console.log(this.addSectionForm.value.title);
-    this.courseContentService.addSection(title, this.courseId()).subscribe({
+    console.log(this.newSectionTitle());
+    /* this.courseContentService.addSection(this.newSectionTitle(), this.courseId()).subscribe({
       next: (res) => {
         console.log(res);
       }
-    })
+    }) */
   }
 
   //New Element
   addElement(){
     this.addElementVisible = true;
+  }
+
+
+  //DefineIcon
+  definedIcon(type: ElementType) : string{
+    switch (type){
+      case ElementType.Article:
+        return 'pi pi-book';
+        case ElementType.Video:
+        return 'pi pi-video';
+        case ElementType.Exercise:
+        return 'pi pi-objects-column';
+    }
   }
 }

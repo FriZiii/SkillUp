@@ -2,14 +2,10 @@ import {
   Component,
   computed,
   DestroyRef,
-  effect,
   inject,
-  OnInit,
   signal,
-  Signal,
 } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
-import { Category } from '../../models/category.model';
 import { StepperModule } from 'primeng/stepper';
 import { ButtonModule } from 'primeng/button';
 import { ToggleButtonModule } from 'primeng/togglebutton';
@@ -23,7 +19,6 @@ import {
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { CoursesService } from '../../services/course.service';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { ToastHandlerService } from '../../../core/services/toast-handler.service';
 import { Router } from '@angular/router';
 
