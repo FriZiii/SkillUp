@@ -4,7 +4,11 @@
 <p-accordion [value]="0" cdkDropList (cdkDropListDropped)="dropSection($event)">
   @for (section of sections(); track section) {
   <p-accordion-panel [value]="section.id">
-    <p-accordion-header cdkDrag>{{ section.title }}</p-accordion-header>
+    <p-accordion-header cdkDrag class="!bg-white"
+      >{{ section.title }}
+
+      <div *cdkDragPlaceholder class="h-12 w-full bg-neutral-200"></div>
+    </p-accordion-header>
     <p-accordion-content>
       <div
         cdkDropList

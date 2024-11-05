@@ -1,4 +1,5 @@
-<div class="su-border-y p-2 my-2 bg-white">
+<div *cdkDragPlaceholder class="h-4 w-full bg-neutral-200 my-4"></div>
+<div class="su-border-y p-2 my-2 bg-white element-item">
   <div
     class="flex w-full"
     [ngClass]="{ 'items-center': !editing, 'items-start': editing }"
@@ -32,7 +33,7 @@
     }
 
     <div
-      class="flex justify-end w-full gap-2 px-2"
+      class="flex justify-end w-full gap-2 px-2 button-container"
       [ngClass]="{ hidden: editing }"
     >
       <p-button

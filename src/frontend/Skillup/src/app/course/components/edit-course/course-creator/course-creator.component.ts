@@ -54,7 +54,8 @@ export class CourseCreatorComponent implements OnInit {
     console.log(event.container.data.elements);
   } 
 
-    dropSection(event: CdkDragDrop<string[]>) {
+    dropSection(event: CdkDragDrop<Section[]>) {
+      console.log(event);
       moveItemInArray(this.sections(), event.previousIndex, event.currentIndex);
       console.log(this.sections())
     }
