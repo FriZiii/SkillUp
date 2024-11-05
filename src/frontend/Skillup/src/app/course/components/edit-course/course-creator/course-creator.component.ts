@@ -8,11 +8,13 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { FormsModule } from '@angular/forms';
+import { HiddenFormWrapperComponent } from '../../../../core/components/hidden-form-wrapper/hidden-form-wrapper.component';
+import { ElementItemComponent } from "./element-item/element-item.component";
 
 @Component({
   selector: 'app-course-creator',
   standalone: true,
-  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule],
+  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule, HiddenFormWrapperComponent, ElementItemComponent],
   templateUrl: './course-creator.component.html',
   styleUrl: './course-creator.component.css'
 })
@@ -20,8 +22,6 @@ export class CourseCreatorComponent implements OnInit {
   //Variables
   courseId = input.required<string>();
   sections = signal<Section[]>([]);
-  addSectionVisible = false;
-  addElementVisible = false;
 
   //Services
   courseContentService = inject(CourseContentService);
@@ -37,13 +37,6 @@ export class CourseCreatorComponent implements OnInit {
 
 
   //New Section
-  changeAddSectionVisibility(){
-    if(this.addSectionVisible === false)
-      this.addSectionVisible = true;
-    else
-    this.addSectionVisible = false;
-  }
-
   newSectionTitle = signal('');
   submitSection(){
     console.log(this.newSectionTitle());
@@ -55,20 +48,10 @@ export class CourseCreatorComponent implements OnInit {
   }
 
   //New Element
-  addElement(){
-    this.addElementVisible = true;
+  newElementTitle = signal('');
+  submitElement(){
+    console.log(this.newElementTitle());
   }
 
 
-  //DefineIcon
-  definedIcon(type: ElementType) : string{
-    switch (type){
-      case ElementType.Article:
-        return 'pi pi-book';
-        case ElementType.Video:
-        return 'pi pi-video';
-        case ElementType.Exercise:
-        return 'pi pi-objects-column';
-    }
-  }
 }

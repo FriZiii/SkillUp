@@ -7,16 +7,13 @@
     <p-accordion-header>{{ section.title }}</p-accordion-header>
     <p-accordion-content>
       @for (element of section.elements; track element.id) {
-      <p-card>
-        <div class="flex">
-          <i [class]="definedIcon(element.type)" style="font-size: 2.5rem"></i>
-          <p>{{ element.title }}</p>
-        </div>
-      </p-card>
+      <app-element-item [element]="element"></app-element-item>
       }
-
-      <p-button label="New Element" (click)="addElement()" />
-      <div [style.display]="addElementVisible ? 'block' : 'none'">
+      <app-hidden-form-wrapper (submit)="submitElement()">
+        <div class="prose">
+          <h3 class="mb-1">Title</h3>
+        </div>
+        <input pInputText class="w-full" [(ngModel)]="newElementTitle" />
         <div class="flex justify-center gap-10">
           <p-card>
             <div class="flex flex-col justify-center items-center">
@@ -37,35 +34,15 @@
             </div></p-card
           >
         </div>
-      </div>
+      </app-hidden-form-wrapper>
     </p-accordion-content>
   </p-accordion-panel>
   }
 </p-accordion>
 
-<div class="mt-8">
-  <p-button
-    label="New Section"
-    (click)="changeAddSectionVisibility()"
-    [style.display]="addSectionVisible ? 'none' : 'block'"
-  />
-
-  <div
-    [style.display]="addSectionVisible ? 'block' : 'none'"
-    class="su-border p-8 mb-8"
-  >
-    <div class="prose">
-      <h3 class="mb-1">Title</h3>
-    </div>
-    <input pInputText class="w-full" [(ngModel)]="newSectionTitle" />
-    <div class="flex gap-8 my-4">
-      <p-button
-        label="Cancel"
-        type="button"
-        severity="secondary"
-        (click)="changeAddSectionVisibility()"
-      />
-      <p-button label="Save" type="submit" (click)="submitSection()" />
-    </div>
+<app-hidden-form-wrapper (submit)="submitSection()">
+  <div class="prose">
+    <h3 class="mb-1">Title</h3>
   </div>
-</div>
+  <input pInputText class="w-full" [(ngModel)]="newSectionTitle" />
+</app-hidden-form-wrapper>

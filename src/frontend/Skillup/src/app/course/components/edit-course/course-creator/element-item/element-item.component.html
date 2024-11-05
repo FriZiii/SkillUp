@@ -1,0 +1,19 @@
+<div class="su-border">
+    <div class=" flex w-full">
+
+      <i [class]="definedIcon(element().type)" style="font-size: 2.5rem"></i>
+      <p>{{ element().title }}</p>
+
+      <div class="self-end">
+        <p-button  icon="pi pi-file-edit" severity="secondary" (onClick)="changeEditVisibility()"></p-button>
+        <p-button icon="pi pi-trash" severity="danger" ></p-button>
+      </div>
+    </div>
+    <div [style.display]="editVisible ? 'block' : 'none'">
+        <div class="prose">
+            <h3 class="mb-1">Title</h3>
+          </div>
+          <input pInputText class="w-full" [(ngModel)]="elementTitle" />
+    </div>
+</div>
+

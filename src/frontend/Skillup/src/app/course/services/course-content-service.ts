@@ -20,6 +20,7 @@ export class CourseContentService {
           .pipe(
             map((response) => {
               response.elementType = response.elementType as ElementType;
+              console.log(response);
               return response;
             }),
             catchError((error) => {
