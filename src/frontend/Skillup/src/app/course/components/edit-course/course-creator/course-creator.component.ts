@@ -12,11 +12,12 @@ import { HiddenFormWrapperComponent } from '../../../../core/components/hidden-f
 import { ElementItemComponent } from "./element-item/element-item.component";
 import { AddNewElementComponent } from "../add-new-element/add-new-element.component";
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, DragDropModule} from '@angular/cdk/drag-drop';
+import { SectionItemComponent } from "./section-item/section-item.component";
 
 @Component({
   selector: 'app-course-creator',
   standalone: true,
-  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule, HiddenFormWrapperComponent, ElementItemComponent, AddNewElementComponent, DragDropModule],
+  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule, HiddenFormWrapperComponent, ElementItemComponent, AddNewElementComponent, DragDropModule, SectionItemComponent],
   templateUrl: './course-creator.component.html',
   styleUrl: './course-creator.component.css'
 })
