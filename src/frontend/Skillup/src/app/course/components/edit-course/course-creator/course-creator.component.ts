@@ -11,11 +11,12 @@ import { FormsModule } from '@angular/forms';
 import { HiddenFormWrapperComponent } from '../../../../core/components/hidden-form-wrapper/hidden-form-wrapper.component';
 import { ElementItemComponent } from "./element-item/element-item.component";
 import { AddNewElementComponent } from "../add-new-element/add-new-element.component";
+import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, DragDropModule} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-course-creator',
   standalone: true,
-  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule, HiddenFormWrapperComponent, ElementItemComponent, AddNewElementComponent],
+  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule, HiddenFormWrapperComponent, ElementItemComponent, AddNewElementComponent, DragDropModule],
   templateUrl: './course-creator.component.html',
   styleUrl: './course-creator.component.css'
 })
@@ -48,7 +49,13 @@ export class CourseCreatorComponent implements OnInit {
     }) */
   }
 
-  /* drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
-  } */
+  dropElement(event: CdkDragDrop<Section>) {
+    moveItemInArray(event.container.data.elements, event.previousIndex, event.currentIndex);
+    console.log(event.container.data.elements);
+  } 
+
+    dropSection(event: CdkDragDrop<string[]>) {
+      moveItemInArray(this.sections(), event.previousIndex, event.currentIndex);
+      console.log(this.sections())
+    }
 }

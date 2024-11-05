@@ -1,14 +1,22 @@
 <div class="prose mb-8">
   <h1>Edit your course content!</h1>
 </div>
-<p-accordion [value]="0">
-  @for (section of sections(); track section.id) {
+<p-accordion [value]="0" cdkDropList (cdkDropListDropped)="dropSection($event)">
+  @for (section of sections(); track section) {
   <p-accordion-panel [value]="section.id">
-    <p-accordion-header>{{ section.title }}</p-accordion-header>
+    <p-accordion-header cdkDrag>{{ section.title }}</p-accordion-header>
     <p-accordion-content>
-      <div>
+      <div
+        cdkDropList
+        [cdkDropListData]="section"
+        (cdkDropListDropped)="dropElement($event)"
+      >
         @for (element of section.elements; track element) {
-        <app-element-item [element]="element"></app-element-item>
+        <app-element-item
+          [element]="element"
+          cdkDrag
+          [cdkDragData]="element"
+        ></app-element-item>
         }
       </div>
       <app-add-new-element></app-add-new-element>
