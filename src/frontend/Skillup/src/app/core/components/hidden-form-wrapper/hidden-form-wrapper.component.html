@@ -1,24 +1,20 @@
-<div class="mt-8">
-    <p-button
-      label="New Section"
-      (click)="changeVisibility()"
-      [style.display]="visible ? 'none' : 'block'"
-    />
-  
-    <div
-      [style.display]="visible ? 'block' : 'none'"
-      class="su-border p-8 mb-8"
-    >
-      
-      <ng-content/>
-      <div class="flex gap-8 my-4">
-        <p-button
-          label="Cancel"
-          type="button"
-          severity="secondary"
-          (click)="changeVisibility()"
-        />
-        <p-button label="Save" type="submit" (click)="onSubmit()" />
-      </div>
+<div>
+  <p-button
+    label="New Section"
+    (click)="changeVisibility()"
+    [style.display]="visible ? 'none' : 'block'"
+  />
+
+  <div [style.display]="visible ? 'block' : 'none'" class="py-2 px-8">
+    <ng-content />
+    <div class="flex gap-4 mt-4 pb-2 w-full justify-end">
+      <p-button
+        label="Cancel"
+        type="button"
+        severity="secondary"
+        (click)="changeVisibility()"
+      />
+      <p-button label="Save" type="submit" (click)="onSubmit()" />
     </div>
   </div>
+</div>

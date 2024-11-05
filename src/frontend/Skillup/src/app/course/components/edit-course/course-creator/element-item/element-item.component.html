@@ -1,19 +1,62 @@
-<div class="su-border">
-    <div class=" flex w-full">
-
-      <i [class]="definedIcon(element().type)" style="font-size: 2.5rem"></i>
-      <p>{{ element().title }}</p>
-
-      <div class="self-end">
-        <p-button  icon="pi pi-file-edit" severity="secondary" (onClick)="changeEditVisibility()"></p-button>
-        <p-button icon="pi pi-trash" severity="danger" ></p-button>
-      </div>
+<div class="su-border-y p-2 my-2">
+  <div
+    class="flex w-full"
+    [ngClass]="{ 'items-center': !editing, 'items-start': editing }"
+  >
+    <i [class]="definedIcon(element().type)" style="font-size: 2rem"></i>
+    @if(!editing){
+    <div class="w-full px-4 prose">
+      <h4 class="b-0">{{ element().title }}</h4>
+      <p>{{ element().description }}</p>
     </div>
-    <div [style.display]="editVisible ? 'block' : 'none'">
-        <div class="prose">
-            <h3 class="mb-1">Title</h3>
-          </div>
-          <input pInputText class="w-full" [(ngModel)]="elementTitle" />
+    } @else{
+    <div class="w-full px-4">
+      <input pInputText class="w-full mb-2" [(ngModel)]="elementTitle" />
+      <textarea
+        class="custom-textarea w-full"
+        rows="2"
+        [(ngModel)]="elementDescription"
+      ></textarea>
+
+      <!-- <p-floatlabel>
+        <textarea
+          class="w-full custom-textarea"
+          pTextarea
+          id="over_label"
+          rows="2"
+          [(ngModel)]="elementDescription"
+        ></textarea>
+        <label for="over_label">Over Label</label>
+      </p-floatlabel> -->
     </div>
+    }
+
+    <div
+      class="flex justify-end w-full gap-2 px-2"
+      [ngClass]="{ hidden: editing }"
+    >
+      <p-button
+        icon="pi pi-file-edit"
+        severity="secondary"
+        (onClick)="changeEditVisibility()"
+      ></p-button>
+      <p-button
+        icon="pi pi-trash"
+        severity="danger"
+        (onClick)="removeElement()"
+      ></p-button>
+    </div>
+    <div class="flex justify-end gap-2 px-2" [ngClass]="{ hidden: !editing }">
+      <p-button
+        icon="pi pi-save"
+        severity="success"
+        (onClick)="saveElement()"
+      ></p-button>
+      <p-button
+        icon="pi pi-times"
+        severity="secondary"
+        (onClick)="changeEditVisibility()"
+      ></p-button>
+    </div>
+  </div>
 </div>
-

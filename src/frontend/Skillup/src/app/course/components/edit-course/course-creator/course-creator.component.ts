@@ -10,11 +10,12 @@ import { CardModule } from 'primeng/card';
 import { FormsModule } from '@angular/forms';
 import { HiddenFormWrapperComponent } from '../../../../core/components/hidden-form-wrapper/hidden-form-wrapper.component';
 import { ElementItemComponent } from "./element-item/element-item.component";
+import { AddNewElementComponent } from "../add-new-element/add-new-element.component";
 
 @Component({
   selector: 'app-course-creator',
   standalone: true,
-  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule, HiddenFormWrapperComponent, ElementItemComponent],
+  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule, HiddenFormWrapperComponent, ElementItemComponent, AddNewElementComponent],
   templateUrl: './course-creator.component.html',
   styleUrl: './course-creator.component.css'
 })
@@ -47,11 +48,7 @@ export class CourseCreatorComponent implements OnInit {
     }) */
   }
 
-  //New Element
-  newElementTitle = signal('');
-  submitElement(){
-    console.log(this.newElementTitle());
-  }
-
-
+  /* drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+  } */
 }

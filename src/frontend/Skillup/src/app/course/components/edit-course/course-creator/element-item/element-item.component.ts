@@ -1,21 +1,30 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, OnInit, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { ElementType, Element } from '../../../../models/course-content.model';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { NgClass } from '@angular/common';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-element-item',
   standalone: true,
-  imports: [CardModule, ButtonModule, FormsModule, InputTextModule],
+  imports: [CardModule, ButtonModule, FormsModule, InputTextModule, NgClass, InputTextareaModule, FloatLabelModule],
   templateUrl: './element-item.component.html',
   styleUrl: './element-item.component.css'
 })
-export class ElementItemComponent {
+export class ElementItemComponent implements OnInit {
   element = input.required<Element>();
-  editVisible = false;
+  editing = false;
   elementTitle = signal('');
+  elementDescription = signal('');
+
+  ngOnInit(): void {
+    this.elementTitle.set(this.element().title);
+    this.elementDescription.set(this.element().description);
+  }
 
   definedIcon(type: ElementType) : string{
     switch (type){
@@ -29,9 +38,17 @@ export class ElementItemComponent {
   }
 
   changeEditVisibility(){
-    if(this.editVisible)
-      this.editVisible=false;
+    if(this.editing)
+      this.editing=false;
     else
-      this.editVisible=true;
+      this.editing=true;
+  }
+
+  saveElement(){
+    console.log('saving element')
+  }
+
+  removeElement(){
+    console.log('deleting element')
   }
 }
