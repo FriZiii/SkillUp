@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { HiddenFormWrapperComponent } from "../../../../core/components/hidden-form-wrapper/hidden-form-wrapper.component";
+import { HiddenFormWrapperComponent } from "../../../../../../core/components/hidden-form-wrapper/hidden-form-wrapper.component";
 import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';

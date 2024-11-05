@@ -1,4 +1,4 @@
-import { Component, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './hidden-form-wrapper.component.css'
 })
 export class HiddenFormWrapperComponent {
+  btnText = input.required<string>();
   submit = output();
   visible = false;
   changeVisibility(){

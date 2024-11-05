@@ -10,7 +10,7 @@ import { CardModule } from 'primeng/card';
 import { FormsModule } from '@angular/forms';
 import { HiddenFormWrapperComponent } from '../../../../core/components/hidden-form-wrapper/hidden-form-wrapper.component';
 import { ElementItemComponent } from "./element-item/element-item.component";
-import { AddNewElementComponent } from "../add-new-element/add-new-element.component";
+import { AddNewElementComponent } from "./element-item/add-new-element/add-new-element.component";
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, DragDropModule} from '@angular/cdk/drag-drop';
 import { SectionItemComponent } from "./section-item/section-item.component";
 

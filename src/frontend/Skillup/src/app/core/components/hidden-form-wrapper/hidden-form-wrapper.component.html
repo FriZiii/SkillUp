@@ -1,6 +1,6 @@
 <div>
   <p-button
-    label="New Section"
+    label="{{ btnText() }}"
     (click)="changeVisibility()"
     [style.display]="visible ? 'none' : 'block'"
   />
