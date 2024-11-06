@@ -58,5 +58,15 @@ namespace Skillup.Modules.Courses.Api.Controllers
             await _mediator.Send(request);
             return Ok();
         }
+
+        [HttpDelete("{sectionId}")]
+        [SwaggerOperation("Delete section")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> DeleteSection(Guid sectionId)
+        {
+            await _mediator.Send(new DeleteSectionRequest { SectionId = sectionId });
+            return Ok();
+        }
     }
 }

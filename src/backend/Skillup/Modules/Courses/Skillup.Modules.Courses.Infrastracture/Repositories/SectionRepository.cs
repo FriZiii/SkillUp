@@ -48,5 +48,11 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
             await _context.SaveChangesAsync();
         }
+
+        public async Task Delete(Section section)
+        {
+            _sections.Remove(section);
+            await _context.SaveChangesAsync();
+        }
     }
 }
