@@ -38,5 +38,15 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
                 .ToListAsync();
             return sections;
         }
+
+        public async Task Edit(Section section)
+        {
+            var sectionToEdit = await _sections.FirstOrDefaultAsync(s => s.Id == section.Id) ?? throw new Exception();  //TODO: Custom exception for null check in repo
+
+            sectionToEdit.Title = section.Title;
+            sectionToEdit.Index = section.Index;
+
+            await _context.SaveChangesAsync();
+        }
     }
 }

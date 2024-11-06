@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System.Text.Json.Serialization;
 
-namespace Skillup.Modules.Courses.Core.Requests.Commands
+namespace Skillup.Modules.Courses.Core.Requests.Commands.Sections
 {
     public record AddSectionRequest(string Title, int index) : IRequest
     {

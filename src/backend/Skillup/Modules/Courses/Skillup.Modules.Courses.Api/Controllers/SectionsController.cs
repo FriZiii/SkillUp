@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Skillup.Modules.Courses.Core.Requests.Commands;
+using Skillup.Modules.Courses.Core.Requests.Commands.Sections;
 using Skillup.Modules.Courses.Core.Requests.Queries;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -34,6 +34,17 @@ namespace Skillup.Modules.Courses.Api.Controllers
         public async Task<IActionResult> GetSectionsByCourseId(Guid courseId)
         {
             var sections = await _mediator.Send(new GetSectionsRequest(courseId));
+            return Ok(sections);
+        }
+
+        [HttpPut("{sectionId}")]
+        [SwaggerOperation("Change section index")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> ChangeSectionIndex(Guid sectionId, EditSectionIndexRequest request)
+        {
+            request.SectionId = sectionId;
+            var sections = await _mediator.Send(request);
             return Ok(sections);
         }
     }
