@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-add-new-element',
   standalone: true,
-  imports: [HiddenFormWrapperComponent, FormsModule, CardModule, InputTextModule, InputTextareaModule ],
+  imports: [HiddenFormWrapperComponent, FormsModule, CardModule, InputTextModule, InputTextareaModule, FloatLabelModule  ],
   templateUrl: './add-new-element.component.html',
   styleUrl: './add-new-element.component.css'
 })

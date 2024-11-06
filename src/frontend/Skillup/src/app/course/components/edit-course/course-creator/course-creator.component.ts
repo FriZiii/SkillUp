@@ -13,11 +13,12 @@ import { ElementItemComponent } from "./element-item/element-item.component";
 import { AddNewElementComponent } from "./element-item/add-new-element/add-new-element.component";
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, DragDropModule} from '@angular/cdk/drag-drop';
 import { SectionItemComponent } from "./section-item/section-item.component";
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-course-creator',
   standalone: true,
-  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule, HiddenFormWrapperComponent, ElementItemComponent, AddNewElementComponent, DragDropModule, SectionItemComponent],
+  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule, HiddenFormWrapperComponent, ElementItemComponent, AddNewElementComponent, DragDropModule, SectionItemComponent, FloatLabelModule],
   templateUrl: './course-creator.component.html',
   styleUrl: './course-creator.component.css'
 })

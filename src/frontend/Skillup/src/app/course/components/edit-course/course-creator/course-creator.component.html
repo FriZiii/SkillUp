@@ -30,9 +30,15 @@
 
 <div class="my-4">
   <app-hidden-form-wrapper btnText="Add Section" (submit)="submitSection()">
-    <div class="prose">
-      <h3 class="mb-1">Title</h3>
-    </div>
-    <input pInputText class="w-full" [(ngModel)]="newSectionTitle" />
+    <div class="mt-5"></div>
+    <p-floatlabel>
+      <input
+        id="newSectionTitle"
+        pInputText
+        class="w-full"
+        [(ngModel)]="newSectionTitle"
+      />
+      <label for="newSectionTitle">Title</label>
+    </p-floatlabel>
   </app-hidden-form-wrapper>
 </div>
