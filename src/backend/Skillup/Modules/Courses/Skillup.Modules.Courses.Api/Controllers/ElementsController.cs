@@ -26,7 +26,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [SwaggerOperation("Change element index")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> ChangeSectionIndex(Guid elementId, EditElementIndexRequest request)
+        public async Task<IActionResult> ChangeElementIndex(Guid elementId, EditElementIndexRequest request)
         {
             request.ElementId = elementId;
             var elements = await _mediator.Send(request);
