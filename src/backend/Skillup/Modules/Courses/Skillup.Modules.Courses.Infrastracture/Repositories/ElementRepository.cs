@@ -51,5 +51,11 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             var element = await _elements.FirstOrDefaultAsync(e => e.Id == elementId);
             return element;
         }
+
+        public async Task Delete(Element element)
+        {
+            _elements.Remove(element);
+            await _context.SaveChangesAsync();
+        }
     }
 }

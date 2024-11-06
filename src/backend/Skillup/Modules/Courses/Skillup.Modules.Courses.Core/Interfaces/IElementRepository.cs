@@ -9,5 +9,6 @@ namespace Skillup.Modules.Courses.Core.Interfaces
         Task<Element> GetById(Guid elementId);
         Task<List<Element>> GetElementsBySectionId(Guid sectionId);
         Task Edit(Element element);
+        Task Delete(Element element);
     }
 }

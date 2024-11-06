@@ -22,7 +22,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(request);
         }
 
-        [HttpPut("{elementId}")]
+        [HttpPut("{elementId}/Edit-Index")]
         [SwaggerOperation("Change element index")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -31,6 +31,27 @@ namespace Skillup.Modules.Courses.Api.Controllers
             request.ElementId = elementId;
             var elements = await _mediator.Send(request);
             return Ok(elements);
+        }
+
+        [HttpPut("{elementId}")]
+        [SwaggerOperation("Edit element")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> EditSection(Guid elementId, EditElementRequest request)
+        {
+            request.ElementId = elementId;
+            await _mediator.Send(request);
+            return Ok();
+        }
+
+        [HttpDelete("{elementId}")]
+        [SwaggerOperation("Delete element")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> DeleteSection(Guid elementId)
+        {
+            await _mediator.Send(new DeleteElementRequest { ElementId = elementId });
+            return Ok();
         }
     }
 }
