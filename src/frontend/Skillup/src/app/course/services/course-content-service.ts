@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
+import { inject, Injectable, signal } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { catchError, map, Observable, tap, throwError } from "rxjs";
 import { ToastHandlerService } from "../../core/services/toast-handler.service";
@@ -9,9 +9,13 @@ import { ElementType, Section } from "../models/course-content.model";
 export class CourseContentService {
     private toastService = inject(ToastHandlerService);
     private httpClient = inject(HttpClient);
+    sections = signal<Section[]>([]);
 
-    getSectionsByCourseId(courseId: string): Observable<Section[]> {
-        return this.fetchSectionsByCourseId(courseId);
+    getSectionsByCourseId(courseId: string): void {
+        this.fetchSectionsByCourseId(courseId)
+        .subscribe((res) => {
+          this.sections.set(res);
+        });
       }
 
     private fetchSectionsByCourseId(courseId: string) {
@@ -30,10 +34,21 @@ export class CourseContentService {
           );
     }
 
-    addSection(sectionTitle: string, courseId: string) {
+    addSection(courseId: string, sectionTitle: string, index: number) {
       return this.httpClient
-        .post<any>(environment.apiUrl + '/Courses/Sections/' + courseId, {title: sectionTitle})
+        .post<any>(environment.apiUrl + '/Courses/Sections/' + courseId, {title: sectionTitle, index: index})
         .pipe(
+          tap((response) => {
+            this.sections.set([
+            ...this.sections(),
+            {
+              id: response.id,
+              title: response.title,
+              index: response.index,
+              elements: []
+            }
+            ])
+          }),
           catchError((error) => {
             return throwError(() => error);
           })

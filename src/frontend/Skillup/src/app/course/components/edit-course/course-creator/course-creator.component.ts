@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, input, OnInit, signal } from '@angular/core';
 import { AccordionModule } from 'primeng/accordion';
 import { ElementType, Section } from '../../../models/course-content.model';
 import { CourseContentService } from '../../../services/course-content-service';
@@ -23,20 +23,15 @@ import { FloatLabelModule } from 'primeng/floatlabel';
   styleUrl: './course-creator.component.css'
 })
 export class CourseCreatorComponent implements OnInit {
-  //Variables
+  //FromUrl
   courseId = input.required<string>();
-  sections = signal<Section[]>([]);
-
   //Services
   courseContentService = inject(CourseContentService);
+  //Variables
+  sections = computed(() => this.courseContentService.sections());
 
   ngOnInit(): void {
-    this.courseContentService.getSectionsByCourseId(this.courseId()).subscribe({
-      next: (res) => {
-        this.sections.set(res);
-        console.log(res);
-      }
-    })
+   this.courseContentService.getSectionsByCourseId(this.courseId());
   }
 
 
@@ -44,11 +39,12 @@ export class CourseCreatorComponent implements OnInit {
   newSectionTitle = signal('');
   submitSection(){
     console.log(this.newSectionTitle());
-    /* this.courseContentService.addSection(this.newSectionTitle(), this.courseId()).subscribe({
+    console.log(this.sections().length);
+    this.courseContentService.addSection(this.courseId(), this.newSectionTitle(), this.sections().length + 1).subscribe({
       next: (res) => {
         console.log(res);
       }
-    }) */
+    })
   }
 
   dropElement(event: CdkDragDrop<Section>) {
