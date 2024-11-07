@@ -2,7 +2,7 @@
   <h1>Edit your course content!</h1>
 </div>
 <p-accordion [value]="0" cdkDropList (cdkDropListDropped)="dropSection($event)">
-  @for (section of sections(); track section) {
+  @for (section of sections(); track section.id) {
   <p-accordion-panel [value]="section.id">
     <p-accordion-header cdkDrag class="!bg-white">
       <app-section-item [section]="section" class="w-full"></app-section-item>
@@ -14,9 +14,10 @@
         [cdkDropListData]="section"
         (cdkDropListDropped)="dropElement($event)"
       >
-        @for (element of section.elements; track element) {
+        @for (element of section.elements; track element.id) {
         <app-element-item
           [element]="element"
+          [section]="section"
           cdkDrag
           [cdkDragData]="element"
         ></app-element-item>

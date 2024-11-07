@@ -33,6 +33,7 @@ export class SectionItemComponent implements OnInit {
 
   saveElement(){
     this.courseContentService.updateSection(this.section().id, this.sectionTitle()).subscribe();
+    this.changeEditVisibility();
   }
 
   removeElement(){

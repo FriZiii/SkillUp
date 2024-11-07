@@ -1,6 +1,6 @@
-import { Component, input, OnInit, signal } from '@angular/core';
+import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
-import { ElementType, Element } from '../../../../models/course-content.model';
+import { ElementType, Element, Section } from '../../../../models/course-content.model';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -8,6 +8,7 @@ import { NgClass } from '@angular/common';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, DragDropModule} from '@angular/cdk/drag-drop';
+import { CourseContentService } from '../../../../services/course-content-service';
 
 @Component({
   selector: 'app-element-item',
@@ -17,10 +18,14 @@ import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, DragDropModule} from
   styleUrl: './element-item.component.css'
 })
 export class ElementItemComponent implements OnInit {
+  section = input.required<Section>();
   element = input.required<Element>();
   editing = false;
   elementTitle = signal('');
   elementDescription = signal('');
+
+  //Services
+  courseContentService = inject(CourseContentService);
 
   ngOnInit(): void {
     this.elementTitle.set(this.element().title);
@@ -46,10 +51,11 @@ export class ElementItemComponent implements OnInit {
   }
 
   saveElement(){
-    console.log('saving element')
+    this.courseContentService.updateElement(this.section().id, this.element().id, this.elementTitle(), this.elementDescription()).subscribe();
+    this.changeEditVisibility();
   }
 
   removeElement(){
-    console.log('deleting element')
+    this.courseContentService.deleteElement(this.section().id, this.element().id).subscribe();
   }
 }

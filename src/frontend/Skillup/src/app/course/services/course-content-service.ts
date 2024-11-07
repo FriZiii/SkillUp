@@ -34,6 +34,7 @@ export class CourseContentService {
           );
     }
 
+    //Sections
     addSection(courseId: string, sectionTitle: string, index: number) {
       return this.httpClient
         .post<any>(environment.apiUrl + '/Courses/Sections/' + courseId, {title: sectionTitle, index: index})
@@ -70,13 +71,94 @@ export class CourseContentService {
     }
 
     updateSection(sectionId: string, sectionTitle: string){
-      //const prevSections = this.sections();
       return this.httpClient
         .put(environment.apiUrl + '/Courses/Sections/' + sectionId, {title: sectionTitle})
         .pipe(
           tap(() => {
             this.sections.update((prevSections) => 
             prevSections.map(section => section.id === sectionId ? {...section, title: sectionTitle} : section));
+          }),
+          catchError((error) => {
+            return throwError(() => error);
+          })
+        );
+    }
+
+    updateSectionIndex(sectionId: string, newIndex: number){
+      return this.httpClient
+        .put<Section[]>(environment.apiUrl + '/Courses/Sections/' + sectionId + '/Edit-Index', {index: newIndex})
+        .pipe(
+          tap((response: Section[]) => {
+            this.sections.set(response);
+          }),
+          catchError((error) => {
+            return throwError(() => error);
+          })
+        );
+    }
+
+
+    //Elements
+    private addElement() {
+    }
+
+    deleteElement(sectionId: string, elementId: string){
+      return this.httpClient
+        .delete(environment.apiUrl + '/Courses/Elements/' + elementId)
+        .pipe(
+          tap(() => {
+            this.sections.update((prevSections) =>
+              prevSections.map(section => {
+                if (section.id === sectionId) {
+                  const updatedElements = section.elements.filter(element => element.id !== elementId);
+                  return { ...section, elements: updatedElements };
+                  }
+                return section;
+              })
+            );
+          }),
+          catchError((error) => {
+            return throwError(() => error);
+          })
+        );
+    }
+
+    updateElement(sectionId: string, elementId: string, elementTitle: string, elementDescription: string){
+      return this.httpClient
+        .put(environment.apiUrl + '/Courses/Elements/' + elementId, {title: elementTitle, description: elementDescription})
+        .pipe(
+          tap(() => {
+            this.sections.update((prevSections) =>
+              prevSections.map(section => {
+                if (section.id === sectionId) {
+                  const updatedElements = section.elements.map(element =>
+                    element.id === elementId ? { ...element, title: elementTitle, description: elementDescription } : element
+                  );
+                  return { ...section, elements: updatedElements };
+                }
+                return section;
+              })
+            );
+          }),
+          catchError((error) => {
+            return throwError(() => error);
+          })
+        );
+    }
+
+    updateElementIndex(sectionId: string, elementId: string, newIndex: number){
+      return this.httpClient
+        .put<Section>(environment.apiUrl + '/Courses/Elements/' + elementId + '/Edit-Index', {index: newIndex})
+        .pipe(
+          tap((response: Section) => {
+            this.sections.update((prevSections) =>
+              prevSections.map(section => {
+                if (section.id === sectionId) {
+                  return response;
+                  }
+                return section;
+              })
+            );
           }),
           catchError((error) => {
             return throwError(() => error);

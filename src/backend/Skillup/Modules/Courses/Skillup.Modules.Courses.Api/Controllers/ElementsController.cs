@@ -29,15 +29,15 @@ namespace Skillup.Modules.Courses.Api.Controllers
         public async Task<IActionResult> ChangeElementIndex(Guid elementId, EditElementIndexRequest request)
         {
             request.ElementId = elementId;
-            var elements = await _mediator.Send(request);
-            return Ok(elements);
+            var section = await _mediator.Send(request);
+            return Ok(section);
         }
 
         [HttpPut("{elementId}")]
         [SwaggerOperation("Edit element")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> EditSection(Guid elementId, EditElementRequest request)
+        public async Task<IActionResult> EditElement(Guid elementId, EditElementRequest request)
         {
             request.ElementId = elementId;
             await _mediator.Send(request);
@@ -48,7 +48,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [SwaggerOperation("Delete element")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> DeleteSection(Guid elementId)
+        public async Task<IActionResult> DeleteElement(Guid elementId)
         {
             await _mediator.Send(new DeleteElementRequest { ElementId = elementId });
             return Ok();
