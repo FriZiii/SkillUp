@@ -28,7 +28,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Sections
             await _sectionRepository.Edit(section);
             if (oldIndex < request.index)
             {
-                for (int i = oldIndex; i < request.index; i++)
+                for (int i = oldIndex + 1; i <= request.index; i++)
                 {
                     sections[i].Index -= 1;
                     await _sectionRepository.Edit(sections[i]);
@@ -36,7 +36,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Sections
             }
             else if (oldIndex > request.index)
             {
-                for (int i = request.index - 1; i < oldIndex - 1; i++)
+                for (int i = request.index; i < oldIndex; i++)
                 {
                     sections[i].Index += 1;
                     await _sectionRepository.Edit(sections[i]);

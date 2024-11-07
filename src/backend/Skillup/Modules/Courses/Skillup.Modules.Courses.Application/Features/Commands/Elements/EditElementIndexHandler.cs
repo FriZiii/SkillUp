@@ -29,7 +29,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements
             await _elementRepository.Edit(element);
             if (oldIndex < request.index)
             {
-                for (int i = oldIndex; i < request.index; i++)
+                for (int i = oldIndex + 1; i <= request.index; i++)
                 {
                     elements[i].Index -= 1;
                     await _elementRepository.Edit(elements[i]);
@@ -37,7 +37,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements
             }
             else if (oldIndex > request.index)
             {
-                for (int i = request.index - 1; i < oldIndex - 1; i++)
+                for (int i = request.index; i < oldIndex; i++)
                 {
                     elements[i].Index += 1;
                     await _elementRepository.Edit(elements[i]);

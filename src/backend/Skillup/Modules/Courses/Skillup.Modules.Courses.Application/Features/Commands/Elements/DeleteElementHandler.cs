@@ -20,6 +20,13 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements
             var element = await _elementRepository.GetById(request.ElementId);
             await _elementRepository.Delete(element);
             _logger.LogInformation("Element deleted");
+
+            var elements = await _elementRepository.GetElementsBySectionId(element.SectionId);
+            for (int i = 0; i < elements.Count(); i++)
+            {
+                elements[i].Index = i;
+                await _elementRepository.Edit(elements[i]);
+            }
         }
     }
 }

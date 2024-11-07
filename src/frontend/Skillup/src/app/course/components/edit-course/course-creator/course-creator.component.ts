@@ -49,15 +49,17 @@ export class CourseCreatorComponent implements OnInit {
 
   dropElement(event: CdkDragDrop<Section>) {
     moveItemInArray(event.container.data.elements, event.previousIndex, event.currentIndex);
-    const element = event.container.data.elements.find(e => e.index === event.previousIndex+1);
+    
+    const element = event.container.data.elements.find(e => e.index === event.previousIndex);
     const section = this.sections().find(s => s.elements.find(e => e.id === element!.id));
-    this.courseContentService.updateElementIndex(section!.id, element!.id, event.currentIndex+1).subscribe();
+    this.courseContentService.updateElementIndex(section!.id, element!.id, event.currentIndex).subscribe();
 
   } 
 
     dropSection(event: CdkDragDrop<Section[]>) {
       moveItemInArray(this.sections(), event.previousIndex, event.currentIndex);
-      const section = this.sections().find(s => s.index === event.previousIndex+1);
-      this.courseContentService.updateSectionIndex(section!.id, event.currentIndex+1).subscribe();
+      console.log(event);
+      const section = this.sections().find(s => s.index === event.previousIndex);
+      this.courseContentService.updateSectionIndex(section!.id, event.currentIndex).subscribe();
     }
 }

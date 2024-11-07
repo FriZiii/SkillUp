@@ -20,6 +20,13 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Sections
             var section = await _sectionRepository.GetById(request.SectionId);
             await _sectionRepository.Delete(section);
             _logger.LogInformation("Section deleted");
+
+            var sections = await _sectionRepository.GetSectionsByCourseId(section.CourseId);
+            for (int i = 0; i < sections.Count(); i++)
+            {
+                sections[i].Index = i;
+                await _sectionRepository.Edit(sections[i]);
+            }
         }
     }
 }
