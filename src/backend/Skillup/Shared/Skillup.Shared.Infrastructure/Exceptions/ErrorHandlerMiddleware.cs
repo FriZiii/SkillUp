@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using System.Net;
 
 namespace Skillup.Shared.Infrastructure.Exceptions
@@ -6,10 +7,12 @@ namespace Skillup.Shared.Infrastructure.Exceptions
     internal sealed class ErrorHandlerMiddleware : IMiddleware
     {
         private readonly IExceptionCompositionRoot _exceptionCompositionRoot;
+        private readonly ILogger<ErrorHandlerMiddleware> _logger;
 
-        public ErrorHandlerMiddleware(IExceptionCompositionRoot exceptionCompositionRoot)
+        public ErrorHandlerMiddleware(IExceptionCompositionRoot exceptionCompositionRoot, ILogger<ErrorHandlerMiddleware> logger)
         {
             _exceptionCompositionRoot = exceptionCompositionRoot;
+            _logger = logger;
         }
 
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
@@ -20,7 +23,7 @@ namespace Skillup.Shared.Infrastructure.Exceptions
             }
             catch (Exception exception)
             {
-                // TODO : LOGS
+                _logger.LogError(exception.Message);
                 await HandleErrorAsync(context, exception);
             }
         }

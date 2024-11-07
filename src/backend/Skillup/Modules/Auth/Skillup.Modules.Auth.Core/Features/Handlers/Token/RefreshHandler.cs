@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using Skillup.Modules.Auth.Core.Entities;
 using Skillup.Modules.Auth.Core.Exceptions;
 using Skillup.Modules.Auth.Core.Features.Commands.Token;
@@ -13,12 +14,14 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Token
         private readonly IAuthManager _authManager;
         private readonly IUserRepository _userRepository;
         private readonly IAuthTokenStorage _authTokenStorage;
+        private readonly ILogger<RefreshHandler> _logger;
 
-        public RefreshHandler(IAuthManager authManager, IUserRepository userRepository, IAuthTokenStorage authTokenStorage)
+        public RefreshHandler(IAuthManager authManager, IUserRepository userRepository, IAuthTokenStorage authTokenStorage, ILogger<RefreshHandler> logger)
         {
             _authManager = authManager;
             _userRepository = userRepository;
             _authTokenStorage = authTokenStorage;
+            _logger = logger;
         }
 
         public async Task Handle(RefreshRequest request, CancellationToken cancellationToken)
@@ -29,6 +32,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Token
 
             if (user.State == UserState.Locked)
             {
+                _logger.LogError("User is in locked state");
                 throw new Exception(); //TODO: Custom Exception
             }
 
@@ -36,11 +40,11 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Token
             {
                 var tokens = _authManager.RefreshAccessToken(request.RefreshToken, user.Id, user.Role);
                 _authTokenStorage.SetToken(request.Id, tokens);
-                //TODO : LOGS
+                _logger.LogInformation("Token refreshed");
             }
             catch (Exception ex)
             {
-                //TODO : LOGS
+                _logger.LogError(ex.Message);
                 throw new TokenValidationFailed();
             }
         }

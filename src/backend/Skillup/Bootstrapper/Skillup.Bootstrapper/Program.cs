@@ -1,4 +1,5 @@
 using Skillup.Shared.Infrastructure;
+using Skillup.Shared.Infrastructure.Logging;
 using Skillup.Shared.Infrastructure.Modules;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,8 @@ var modules = ModuleLoader.LoadModules(assemblies);
 // Add modular infrastructure
 builder.Services.AddModularInfrastructure(modules);
 modules.ForEach(module => module.Register(builder.Services));
+
+builder.AddLogger();
 
 var app = builder.Build();
 

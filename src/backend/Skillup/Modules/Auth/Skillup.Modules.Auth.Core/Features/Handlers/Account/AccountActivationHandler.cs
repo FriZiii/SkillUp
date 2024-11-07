@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using Skillup.Modules.Auth.Core.Exceptions;
 using Skillup.Modules.Auth.Core.Features.Commands.Account;
 using Skillup.Modules.Auth.Core.Repositories;
@@ -7,10 +8,11 @@ using Skillup.Shared.Abstractions.Time;
 
 namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
 {
-    internal class AccountActivationHandler(IUserRepository userRepository, IClock clock) : IRequestHandler<AccountActivationRequest>
+    internal class AccountActivationHandler(IUserRepository userRepository, IClock clock, ILogger<AccountActivationHandler> logger) : IRequestHandler<AccountActivationRequest>
     {
         private readonly IUserRepository _userRepository = userRepository;
         private readonly IClock _clock = clock;
+        private readonly ILogger<AccountActivationHandler> _logger = logger;
 
         public async Task Handle(AccountActivationRequest request, CancellationToken cancellationToken)
         {
@@ -23,6 +25,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
                 throw new InvalidActivationCodeException();
 
             await _userRepository.ChangeState(request.UserId, Entities.UserState.Active);
+            _logger.LogInformation("User activated");
         }
     }
 }

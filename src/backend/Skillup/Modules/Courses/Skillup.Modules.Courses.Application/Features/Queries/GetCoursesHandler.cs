@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using Skillup.Modules.Courses.Application.Mappings;
 using Skillup.Modules.Courses.Application.Operations;
 using Skillup.Modules.Courses.Core.Interfaces;
