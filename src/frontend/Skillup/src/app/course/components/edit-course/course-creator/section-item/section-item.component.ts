@@ -32,7 +32,7 @@ export class SectionItemComponent implements OnInit {
   }
 
   saveElement(){
-    console.log('saving section')
+    this.courseContentService.updateSection(this.section().id, this.sectionTitle()).subscribe();
   }
 
   removeElement(){

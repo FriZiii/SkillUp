@@ -68,4 +68,19 @@ export class CourseContentService {
           })
         );
     }
+
+    updateSection(sectionId: string, sectionTitle: string){
+      //const prevSections = this.sections();
+      return this.httpClient
+        .put(environment.apiUrl + '/Courses/Sections/' + sectionId, {title: sectionTitle})
+        .pipe(
+          tap(() => {
+            this.sections.update((prevSections) => 
+            prevSections.map(section => section.id === sectionId ? {...section, title: sectionTitle} : section));
+          }),
+          catchError((error) => {
+            return throwError(() => error);
+          })
+        );
+    }
 }
