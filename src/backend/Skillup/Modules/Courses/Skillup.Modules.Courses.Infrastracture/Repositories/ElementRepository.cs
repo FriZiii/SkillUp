@@ -48,7 +48,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task<Element> GetById(Guid elementId)
         {
-            var element = await _elements.FirstOrDefaultAsync(e => e.Id == elementId);
+            var element = await _elements.FirstOrDefaultAsync(e => e.Id == elementId) ?? throw new Exception();  //TODO: Custom exception for null check in repo
             return element;
         }
 

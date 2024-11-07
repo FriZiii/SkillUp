@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using Skillup.Modules.Courses.Application.Mappings;
 using Skillup.Modules.Courses.Core.DTO;
 using Skillup.Modules.Courses.Core.Interfaces;
@@ -9,10 +10,12 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements
     internal class EditElementIndexHandler : IRequestHandler<EditElementIndexRequest, List<ElementDto>>
     {
         private readonly IElementRepository _elementRepository;
+        private readonly ILogger<EditElementIndexHandler> _logger;
 
-        public EditElementIndexHandler(IElementRepository elementRepository)
+        public EditElementIndexHandler(IElementRepository elementRepository, ILogger<EditElementIndexHandler> logger)
         {
             _elementRepository = elementRepository;
+            _logger = logger;
         }
         public async Task<List<ElementDto>> Handle(EditElementIndexRequest request, CancellationToken cancellationToken)
         {
@@ -42,6 +45,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements
             var elementMapper = new ElementMapper();
             var newElements = await _elementRepository.GetElementsBySectionId(element.SectionId);
             var elementDtos = newElements.Select(elementMapper.ElementToElementDto).ToList();
+            _logger.LogInformation("Element index edited");
             return elementDtos;
         }
     }

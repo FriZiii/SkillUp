@@ -25,7 +25,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         {
             var section = await _sections
                 .Include(s => s.Elements)
-                .FirstOrDefaultAsync(s => s.Id == sectionId);
+                .FirstOrDefaultAsync(s => s.Id == sectionId) ?? throw new Exception();  //TODO: Custom exception for null check in repo
             return section;
         }
 
