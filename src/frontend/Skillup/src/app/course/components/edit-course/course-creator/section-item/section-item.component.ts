@@ -1,9 +1,10 @@
-import { Component, input, NgModule, OnInit, signal } from '@angular/core';
+import { Component, inject, input, NgModule, OnInit, signal } from '@angular/core';
 import { Section } from '../../../../models/course-content.model';
 import { ButtonModule } from 'primeng/button';
 import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { CourseContentService } from '../../../../services/course-content-service';
 
 @Component({
   selector: 'app-section-item',
@@ -17,6 +18,8 @@ export class SectionItemComponent implements OnInit {
   sectionTitle = signal('');
   editing = false;
 
+  //Services
+  courseContentService = inject(CourseContentService);
   
   ngOnInit(): void {
     this.sectionTitle.set(this.section().title);
@@ -29,10 +32,10 @@ export class SectionItemComponent implements OnInit {
   }
 
   saveElement(){
-    console.log('saving element')
+    console.log('saving section')
   }
 
   removeElement(){
-    console.log('deleting element')
+    this.courseContentService.deleteSection(this.section().id).subscribe();
   }
 }

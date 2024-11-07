@@ -22,5 +22,6 @@ export class HiddenFormWrapperComponent {
   onSubmit(){
     console.log('submituje')
     this.submit.emit();
+    this.changeVisibility();
   }
 }

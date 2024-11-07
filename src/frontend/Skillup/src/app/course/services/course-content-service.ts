@@ -54,4 +54,18 @@ export class CourseContentService {
           })
         );
     }
+
+    deleteSection(sectionId: string){
+      const prevSections = this.sections();
+      return this.httpClient
+        .delete(environment.apiUrl + '/Courses/Sections/' + sectionId)
+        .pipe(
+          tap(() => {
+            this.sections.set(prevSections.filter(p => p.id !== sectionId));
+          }),
+          catchError((error) => {
+            return throwError(() => error);
+          })
+        );
+    }
 }
