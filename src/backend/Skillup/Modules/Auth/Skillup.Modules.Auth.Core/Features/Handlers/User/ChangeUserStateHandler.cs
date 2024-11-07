@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using Skillup.Modules.Auth.Core.Features.Requests.User;
 using Skillup.Modules.Auth.Core.Repositories;
 using Skillup.Shared.Abstractions.Auth;
@@ -8,10 +9,12 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.User
     internal class ChangeUserStateHandler : IRequestHandler<ChangeUserStateRequest>
     {
         private readonly IUserRepository _userRepository;
+        private readonly ILogger<ChangeUserStateHandler> _logger;
 
-        public ChangeUserStateHandler(IUserRepository userRepository)
+        public ChangeUserStateHandler(IUserRepository userRepository, ILogger<ChangeUserStateHandler> logger)
         {
             _userRepository = userRepository;
+            _logger = logger;
         }
 
         public async Task Handle(ChangeUserStateRequest request, CancellationToken cancellationToken)
@@ -27,7 +30,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.User
             }
 
             await _userRepository.ChangeState(request.UserId, request.State);
-            // TODO: Add logging here
+            _logger.LogInformation("User state changed");
         }
 
         private async Task<bool> UserHasPermission(Guid requestingUserId)

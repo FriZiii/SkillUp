@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Options;
 using Skillup.Modules.Courses.Core.Requests.Commands.Users;
@@ -12,11 +13,13 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Users
     {
         private readonly IUserRepository _userRepository;
         private readonly IAmazonS3Service _s3Service;
+        private readonly ILogger<EditUserProfilePictureHandler> _logger;
 
-        public EditUserProfilePictureHandler(IUserRepository userRepository, IAmazonS3Service s3Service)
+        public EditUserProfilePictureHandler(IUserRepository userRepository, IAmazonS3Service s3Service, ILogger<EditUserProfilePictureHandler> logger)
         {
             _userRepository = userRepository;
             _s3Service = s3Service;
+            _logger = logger;
         }
 
         public async Task Handle(EditUserProfilePictureRequest request, CancellationToken cancellationToken)
@@ -34,6 +37,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Users
             {
                 user.ProfilePictureKey = key;
                 await _userRepository.Edit(user);
+                _logger.LogInformation("User profile picture edited");
             }
         }
     }

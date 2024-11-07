@@ -1,5 +1,6 @@
 ﻿using MassTransit;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Requests.Commands;
@@ -15,14 +16,16 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
         private readonly ISubcategoryRepository _subcategoryRepository;
         private readonly IClock _clock;
         private readonly IPublishEndpoint _publishEndpoint;
+        private readonly ILogger<AddCourseHandler> _looger;
 
-        public AddCourseHandler(ICourseRepository courseRepository, ICategoryRepository categoryRepository, ISubcategoryRepository subcategoryRepository, IClock clock, IPublishEndpoint publishEndpoint)
+        public AddCourseHandler(ICourseRepository courseRepository, ICategoryRepository categoryRepository, ISubcategoryRepository subcategoryRepository, IClock clock, IPublishEndpoint publishEndpoint, ILogger<AddCourseHandler> looger)
         {
             _courseRepository = courseRepository;
             _categoryRepository = categoryRepository;
             _subcategoryRepository = subcategoryRepository;
             _clock = clock;
             _publishEndpoint = publishEndpoint;
+            _looger = looger;
         }
 
         public async Task Handle(AddCourseRequest request, CancellationToken cancellationToken)
@@ -34,6 +37,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
             request.CourseID = course.Id;
 
             await _publishEndpoint.Publish(new CourseAdded(course.Id, request.AuthorId));
+            _looger.LogInformation("Course added");
         }
     }
 }

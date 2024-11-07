@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using Skillup.Modules.Auth.Core.Features.Requests.User;
 using Skillup.Modules.Auth.Core.Repositories;
 using Skillup.Shared.Abstractions.Auth;
@@ -8,10 +9,12 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.User
     internal class ChangeUserRoleHandler : IRequestHandler<ChangeUserRoleRequest>
     {
         private readonly IUserRepository _userRepository;
+        private readonly ILogger<ChangeUserRoleHandler> _logger;
 
-        public ChangeUserRoleHandler(IUserRepository userRepository)
+        public ChangeUserRoleHandler(IUserRepository userRepository, ILogger<ChangeUserRoleHandler> logger)
         {
             _userRepository = userRepository;
+            _logger = logger;
         }
 
         public async Task Handle(ChangeUserRoleRequest request, CancellationToken cancellationToken)
@@ -39,7 +42,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.User
         private async Task ChangeRoleAndLog(Guid userId, UserRole newRole)
         {
             await _userRepository.ChangeRole(userId, newRole);
-            // TODO: Add logging here
+            _logger.LogInformation("User role changed");
         }
 
         private void ValidateRoleChangeAuthorization(UserRole requestingUserRole, UserRole newRole, UserRole targetUserRole)
