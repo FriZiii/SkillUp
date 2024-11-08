@@ -14,11 +14,13 @@ import { AddNewElementComponent } from "./element-item/add-new-element/add-new-e
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, DragDropModule} from '@angular/cdk/drag-drop';
 import { SectionItemComponent } from "./section-item/section-item.component";
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationDialogHandlerService } from '../../../../core/services/confirmation-handler.service';
 
 @Component({
   selector: 'app-course-creator',
   standalone: true,
-  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule, HiddenFormWrapperComponent, ElementItemComponent, AddNewElementComponent, DragDropModule, SectionItemComponent, FloatLabelModule],
+  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule, HiddenFormWrapperComponent, ElementItemComponent, AddNewElementComponent, DragDropModule, SectionItemComponent, FloatLabelModule, ConfirmDialogModule],
   templateUrl: './course-creator.component.html',
   styleUrl: './course-creator.component.css'
 })
@@ -27,6 +29,7 @@ export class CourseCreatorComponent implements OnInit {
   courseId = input.required<string>();
   //Services
   courseContentService = inject(CourseContentService);
+  confirmationDialogService = inject(ConfirmationDialogHandlerService);
   //Variables
   sections = computed(() => this.courseContentService.sections());
 
@@ -37,13 +40,13 @@ export class CourseCreatorComponent implements OnInit {
 
   //New Section
   newSectionTitle = signal('');
-  submitSection(){
-    console.log(this.newSectionTitle());
-    console.log(this.sections().length);
-    this.courseContentService.addSection(this.courseId(), this.newSectionTitle(), this.sections().length + 1).subscribe({
-      next: (res) => {
-        console.log(res);
-      }
+  submitSection(event: Event){
+    this.confirmationDialogService.confirmSave(event, () => {
+      this.courseContentService.addSection(this.courseId(), this.newSectionTitle(), this.sections().length + 1).subscribe({
+        next: (res) => {
+          console.log(res);
+        }
+      })
     })
   }
 

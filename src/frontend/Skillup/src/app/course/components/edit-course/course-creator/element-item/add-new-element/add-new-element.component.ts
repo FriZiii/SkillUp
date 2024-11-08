@@ -16,7 +16,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 export class AddNewElementComponent {
   newElementTitle = signal('');
   newElementDescription = signal('');
-  submitElement(){
+  submitElement(event: Event){
     console.log(this.newElementTitle());
   }
 

@@ -9,6 +9,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, DragDropModule} from '@angular/cdk/drag-drop';
 import { CourseContentService } from '../../../../services/course-content-service';
+import { ConfirmationDialogHandlerService } from '../../../../../core/services/confirmation-handler.service';
 
 @Component({
   selector: 'app-element-item',
@@ -27,6 +28,7 @@ export class ElementItemComponent implements OnInit {
 
   //Services
   courseContentService = inject(CourseContentService);
+  confirmDialogService = inject(ConfirmationDialogHandlerService);
 
   ngOnInit(): void {
     this.elementTitle.set(this.element().title);
@@ -60,7 +62,9 @@ export class ElementItemComponent implements OnInit {
     this.changeEditVisibility();
   }
 
-  removeElement(){
-    this.courseContentService.deleteElement(this.section().id, this.element().id).subscribe();
+  removeElement(event: Event){
+    this.confirmDialogService.confirmDelete(event, () => {
+      this.courseContentService.deleteElement(this.section().id, this.element().id).subscribe();
+    })
   }
 }

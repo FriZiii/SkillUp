@@ -40,7 +40,10 @@
 </p-accordion>
 
 <div class="my-4">
-  <app-hidden-form-wrapper btnText="Add Section" (submit)="submitSection()">
+  <app-hidden-form-wrapper
+    btnText="Add Section"
+    (submit)="submitSection($event)"
+  >
     <div class="mt-5"></div>
     <p-floatlabel>
       <input
@@ -53,3 +56,5 @@
     </p-floatlabel>
   </app-hidden-form-wrapper>
 </div>
+
+<p-confirmdialog />

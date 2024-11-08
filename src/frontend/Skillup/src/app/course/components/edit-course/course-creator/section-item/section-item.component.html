@@ -20,7 +20,7 @@
     <p-button
       icon="pi pi-trash"
       severity="danger"
-      (onClick)="removeElement()"
+      (onClick)="removeElement($event)"
     ></p-button>
   </div>
   <div class="flex justify-end gap-2 px-2" [ngClass]="{ hidden: !editing }">

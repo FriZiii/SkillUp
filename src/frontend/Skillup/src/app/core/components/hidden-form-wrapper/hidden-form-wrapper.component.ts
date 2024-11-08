@@ -10,7 +10,7 @@ import { ButtonModule } from 'primeng/button';
 })
 export class HiddenFormWrapperComponent {
   btnText = input.required<string>();
-  submit = output();
+  submit = output<Event>();
   visible = false;
   changeVisibility(){
     if(this.visible === false)
@@ -19,9 +19,9 @@ export class HiddenFormWrapperComponent {
     this.visible = false;
   }
 
-  onSubmit(){
+  onSubmit(event: Event){
     console.log('submituje')
-    this.submit.emit();
+    this.submit.emit(event);
     this.changeVisibility();
   }
 }

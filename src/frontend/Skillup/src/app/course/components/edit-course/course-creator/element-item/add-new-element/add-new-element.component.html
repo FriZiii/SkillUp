@@ -1,4 +1,4 @@
-<app-hidden-form-wrapper btnText="Add Element" (submit)="submitElement()">
+<app-hidden-form-wrapper btnText="Add Element" (submit)="submitElement($event)">
   <div class="pl-10">
     <div class="mt-5"></div>
 
@@ -27,7 +27,7 @@
         <div class="flex flex-col justify-center items-center">
           <i class="pi pi-video" style="font-size: 3.5rem"></i>
           <div class="prose mt-1">
-            <h3>Add Video</h3>
+            <p>Add Video</p>
           </div>
         </div>
       </p-card>
@@ -35,7 +35,7 @@
         <div class="flex flex-col justify-center items-center">
           <i class="pi pi-book" style="font-size: 3.5rem"></i>
           <div class="prose mt-1">
-            <h3>Add Article</h3>
+            <p>Add Article</p>
           </div>
         </div></p-card
       >
@@ -43,7 +43,7 @@
         <div class="flex flex-col justify-center items-center">
           <i class="pi pi-objects-column" style="font-size: 3.5rem"></i>
           <div class="prose mt-1">
-            <h3>Add Exercise</h3>
+            <p>Add Exercise</p>
           </div>
         </div></p-card
       >

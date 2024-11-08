@@ -5,6 +5,7 @@ import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { CourseContentService } from '../../../../services/course-content-service';
+import { ConfirmationDialogHandlerService } from '../../../../../core/services/confirmation-handler.service';
 
 @Component({
   selector: 'app-section-item',
@@ -21,6 +22,7 @@ export class SectionItemComponent implements OnInit {
 
   //Services
   courseContentService = inject(CourseContentService);
+  confirmationDialogService = inject(ConfirmationDialogHandlerService);
   
   ngOnInit(): void {
     this.sectionTitle.set(this.section().title);
@@ -42,7 +44,9 @@ export class SectionItemComponent implements OnInit {
     this.changeEditVisibility();
   }
 
-  removeElement(){
-    this.courseContentService.deleteSection(this.section().id).subscribe();
+  removeElement(event: Event){
+    this.confirmationDialogService.confirmDelete(event, () => {
+      this.courseContentService.deleteSection(this.section().id).subscribe();
+    })
   }
 }

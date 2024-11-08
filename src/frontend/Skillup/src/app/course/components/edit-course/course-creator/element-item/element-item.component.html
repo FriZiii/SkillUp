@@ -19,17 +19,6 @@
         rows="2"
         [(ngModel)]="elementDescription"
       ></textarea>
-
-      <!-- <p-floatlabel>
-        <textarea
-          class="w-full custom-textarea"
-          pTextarea
-          id="over_label"
-          rows="2"
-          [(ngModel)]="elementDescription"
-        ></textarea>
-        <label for="over_label">Over Label</label>
-      </p-floatlabel> -->
     </div>
     }
 
@@ -45,7 +34,7 @@
       <p-button
         icon="pi pi-trash"
         severity="danger"
-        (onClick)="removeElement()"
+        (onClick)="removeElement($event)"
       ></p-button>
     </div>
     <div class="flex justify-end gap-2 px-2" [ngClass]="{ hidden: !editing }">
