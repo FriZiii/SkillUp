@@ -62,4 +62,15 @@ export class CourseCreatorComponent implements OnInit {
       const section = this.sections().find(s => s.index === event.previousIndex);
       this.courseContentService.updateSectionIndex(section!.id, event.currentIndex).subscribe();
     }
+
+    sectionEdit = false;
+    changeSectionEditMode(event: boolean){
+      this.sectionEdit = event;
+    }
+
+    
+    elementEdit = false;
+    changeElementEditMode(event: boolean){
+      this.elementEdit = event;
+    }
 }

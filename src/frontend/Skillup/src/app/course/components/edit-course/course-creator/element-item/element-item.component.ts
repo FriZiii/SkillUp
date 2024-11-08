@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { Component, inject, input, OnInit, output, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { ElementType, Element, Section } from '../../../../models/course-content.model';
 import { ButtonModule } from 'primeng/button';
@@ -23,6 +23,7 @@ export class ElementItemComponent implements OnInit {
   editing = false;
   elementTitle = signal('');
   elementDescription = signal('');
+  onEditChange = output<boolean>();
 
   //Services
   courseContentService = inject(CourseContentService);
@@ -44,10 +45,14 @@ export class ElementItemComponent implements OnInit {
   }
 
   changeEditVisibility(){
-    if(this.editing)
+    if(this.editing){
       this.editing=false;
-    else
+      this.onEditChange.emit(false);
+    }
+    else {
       this.editing=true;
+      this.onEditChange.emit(true);
+    }
   }
 
   saveElement(){

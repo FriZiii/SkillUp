@@ -1,4 +1,4 @@
-import { Component, inject, input, NgModule, OnInit, signal } from '@angular/core';
+import { Component, inject, input, NgModule, OnInit, output, signal } from '@angular/core';
 import { Section } from '../../../../models/course-content.model';
 import { ButtonModule } from 'primeng/button';
 import { NgClass } from '@angular/common';
@@ -16,6 +16,7 @@ import { CourseContentService } from '../../../../services/course-content-servic
 export class SectionItemComponent implements OnInit {
   section = input.required<Section>();
   sectionTitle = signal('');
+  onEditChange = output<boolean>();
   editing = false;
 
   //Services
@@ -26,9 +27,14 @@ export class SectionItemComponent implements OnInit {
   }
   changeEditVisibility(){
     if(this.editing)
+    {
       this.editing=false;
-    else
+      this.onEditChange.emit(false);
+    }
+    else{
       this.editing=true;
+      this.onEditChange.emit(true);
+    }
   }
 
   saveElement(){

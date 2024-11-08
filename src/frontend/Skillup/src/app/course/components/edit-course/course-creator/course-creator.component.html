@@ -4,8 +4,16 @@
 <p-accordion [value]="0" cdkDropList (cdkDropListDropped)="dropSection($event)">
   @for (section of sections(); track section.id) {
   <p-accordion-panel [value]="section.id">
-    <p-accordion-header cdkDrag class="!bg-white">
-      <app-section-item [section]="section" class="w-full"></app-section-item>
+    <p-accordion-header
+      cdkDrag
+      [cdkDragDisabled]="sectionEdit"
+      class="!bg-white"
+    >
+      <app-section-item
+        [section]="section"
+        (onEditChange)="changeSectionEditMode($event)"
+        class="w-full"
+      ></app-section-item>
       <div *cdkDragPlaceholder class="h-12 w-full bg-neutral-200"></div>
     </p-accordion-header>
     <p-accordion-content>
@@ -18,8 +26,10 @@
         <app-element-item
           [element]="element"
           [section]="section"
+          (onEditChange)="changeElementEditMode($event)"
           cdkDrag
           [cdkDragData]="element"
+          [cdkDragDisabled]="elementEdit"
         ></app-element-item>
         }
       </div>
