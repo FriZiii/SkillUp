@@ -20,14 +20,14 @@
     <p-button
       icon="pi pi-trash"
       severity="danger"
-      (onClick)="removeElement($event)"
+      (onClick)="removeSection($event)"
     ></p-button>
   </div>
   <div class="flex justify-end gap-2 px-2" [ngClass]="{ hidden: !editing }">
     <p-button
       icon="pi pi-save"
       severity="success"
-      (onClick)="saveElement()"
+      (onClick)="saveSection()"
     ></p-button>
     <p-button
       icon="pi pi-times"

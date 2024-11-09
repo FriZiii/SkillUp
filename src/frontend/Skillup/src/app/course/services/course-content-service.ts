@@ -62,7 +62,9 @@ export class CourseContentService {
         .delete(environment.apiUrl + '/Courses/Sections/' + sectionId)
         .pipe(
           tap(() => {
-            this.sections.set(prevSections.filter(p => p.id !== sectionId));
+            this.sections.set(prevSections
+              .filter(p => p.id !== sectionId)
+              .map((section, index) => ({ ...section, index })));
           }),
           catchError((error) => {
             return throwError(() => error);
@@ -110,7 +112,9 @@ export class CourseContentService {
             this.sections.update((prevSections) =>
               prevSections.map(section => {
                 if (section.id === sectionId) {
-                  const updatedElements = section.elements.filter(element => element.id !== elementId);
+                  const updatedElements = section.elements
+                  .filter(element => element.id !== elementId)
+                  .map((element, index) => ({ ...element, index }));
                   return { ...section, elements: updatedElements };
                   }
                 return section;

@@ -39,12 +39,12 @@ export class SectionItemComponent implements OnInit {
     }
   }
 
-  saveElement(){
+  saveSection(){
     this.courseContentService.updateSection(this.section().id, this.sectionTitle()).subscribe();
     this.changeEditVisibility();
   }
 
-  removeElement(event: Event){
+  removeSection(event: Event){
     this.confirmationDialogService.confirmDelete(event, () => {
       this.courseContentService.deleteSection(this.section().id).subscribe();
     })

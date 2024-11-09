@@ -42,7 +42,7 @@ export class CourseCreatorComponent implements OnInit {
   newSectionTitle = signal('');
   submitSection(event: Event){
     this.confirmationDialogService.confirmSave(event, () => {
-      this.courseContentService.addSection(this.courseId(), this.newSectionTitle(), this.sections().length + 1).subscribe({
+      this.courseContentService.addSection(this.courseId(), this.newSectionTitle(), this.sections().length).subscribe({
         next: (res) => {
           console.log(res);
         }
