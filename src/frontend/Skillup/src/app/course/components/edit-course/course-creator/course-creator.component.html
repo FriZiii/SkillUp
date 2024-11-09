@@ -1,38 +1,28 @@
 <div class="prose mb-8">
   <h1>Edit your course content!</h1>
 </div>
-<p-accordion [value]="0" cdkDropList (cdkDropListDropped)="dropSection($event)">
+<p-accordion
+  [value]="0"
+  cdkDropList
+  (cdkDropListDropped)="dropSection($event)"
+  class="drag-list"
+>
   @for (section of sections(); track section.id) {
   <p-accordion-panel [value]="section.id">
     <p-accordion-header
       cdkDrag
       [cdkDragDisabled]="sectionEdit"
-      class="!bg-white"
+      class="drag-box"
     >
       <app-section-item
         [section]="section"
         (onEditChange)="changeSectionEditMode($event)"
         class="w-full"
       ></app-section-item>
-      <div *cdkDragPlaceholder class="h-12 w-full bg-neutral-200"></div>
+      <div *cdkDragPlaceholder class="drag-placeholder"></div>
     </p-accordion-header>
     <p-accordion-content>
-      <div
-        cdkDropList
-        [cdkDropListData]="section"
-        (cdkDropListDropped)="dropElement($event)"
-      >
-        @for (element of section.elements; track element.id) {
-        <app-element-item
-          [element]="element"
-          [section]="section"
-          (onEditChange)="changeElementEditMode($event)"
-          cdkDrag
-          [cdkDragData]="element"
-          [cdkDragDisabled]="elementEdit"
-        ></app-element-item>
-        }
-      </div>
+      <app-element-list [section]="section"></app-element-list>
       <app-add-new-element></app-add-new-element>
     </p-accordion-content>
   </p-accordion-panel>

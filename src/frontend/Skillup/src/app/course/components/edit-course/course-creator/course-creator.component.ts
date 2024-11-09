@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject, input, OnInit, signal } from '@angular/core';
 import { AccordionModule } from 'primeng/accordion';
 import { ElementType, Section } from '../../../models/course-content.model';
 import { CourseContentService } from '../../../services/course-content-service';
@@ -11,16 +11,18 @@ import { FormsModule } from '@angular/forms';
 import { HiddenFormWrapperComponent } from '../../../../core/components/hidden-form-wrapper/hidden-form-wrapper.component';
 import { ElementItemComponent } from "./element-item/element-item.component";
 import { AddNewElementComponent } from "./element-item/add-new-element/add-new-element.component";
-import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, DragDropModule} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, DragDropModule, CdkDragEnter, CdkDragExit} from '@angular/cdk/drag-drop';
 import { SectionItemComponent } from "./section-item/section-item.component";
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationDialogHandlerService } from '../../../../core/services/confirmation-handler.service';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ElementListComponent } from "./element-list/element-list.component";
 
 @Component({
   selector: 'app-course-creator',
   standalone: true,
-  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule, HiddenFormWrapperComponent, ElementItemComponent, AddNewElementComponent, DragDropModule, SectionItemComponent, FloatLabelModule, ConfirmDialogModule],
+  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule, HiddenFormWrapperComponent, AddNewElementComponent, DragDropModule, SectionItemComponent, FloatLabelModule, ConfirmDialogModule, ElementListComponent],
   templateUrl: './course-creator.component.html',
   styleUrl: './course-creator.component.css'
 })
@@ -32,6 +34,7 @@ export class CourseCreatorComponent implements OnInit {
   confirmationDialogService = inject(ConfirmationDialogHandlerService);
   //Variables
   sections = computed(() => this.courseContentService.sections());
+  changeDetectorRef = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
    this.courseContentService.getSectionsByCourseId(this.courseId());
@@ -75,5 +78,14 @@ export class CourseCreatorComponent implements OnInit {
     elementEdit = false;
     changeElementEditMode(event: boolean){
       this.elementEdit = event;
+    }
+
+    onListEntered(event: CdkDragEnter) {
+      // Możesz dodać tutaj logikę lub po prostu wymusić detekcję zmian.
+      this.changeDetectorRef.detectChanges();
+    }
+    
+    onListExited(event: CdkDragExit) {
+      this.changeDetectorRef.detectChanges();
     }
 }
