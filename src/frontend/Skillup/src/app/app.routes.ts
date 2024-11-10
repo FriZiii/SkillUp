@@ -15,11 +15,12 @@ import { AccessDeniedComponent } from './core/components/access-denied/access-de
 import { UserRole } from './user/models/user-role.model';
 import { hasRole } from './core/guards/auth.guard';
 import { OtherUserProfileComponent } from './user/components/other-user-profile/other-user-profile.component';
+import { FillTheGapComponent } from './excercises/components/fill-the-gap/fill-the-gap.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: HeroComponent,
+    component: FillTheGapComponent,
   },
   {
     path: 'sign-in',

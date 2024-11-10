@@ -1,0 +1,8 @@
+.placeholder{
+    @apply border-2 border-dotted box-border border-stone-600 w-16 h-6
+}
+
+
+  .word{
+    @apply text-center cursor-pointer select-none
+  }
