@@ -50,3 +50,7 @@ footer{
 .su-section-mt{
   @apply mt-8 mx-4
 }
+
+.p-fileupload-basic {
+  display: block !important;
+}
