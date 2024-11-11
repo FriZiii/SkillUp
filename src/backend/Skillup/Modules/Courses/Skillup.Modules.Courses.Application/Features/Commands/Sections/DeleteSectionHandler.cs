@@ -17,16 +17,8 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Sections
         }
         public async Task Handle(DeleteSectionRequest request, CancellationToken cancellationToken)
         {
-            var section = await _sectionRepository.GetById(request.SectionId);
             await _sectionRepository.Delete(request.SectionId);
             _logger.LogInformation("Section deleted");
-
-            var sections = await _sectionRepository.GetSectionsByCourseId(section.CourseId);
-            for (int i = 0; i < sections.Count(); i++)
-            {
-                sections[i].Index = i;
-            }
-            await _sectionRepository.EditIndexes(sections);
         }
     }
 }

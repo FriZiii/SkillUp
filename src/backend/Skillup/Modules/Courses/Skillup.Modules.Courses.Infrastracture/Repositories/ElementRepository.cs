@@ -56,6 +56,16 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         {
             var element = _elements.FirstOrDefault(e => e.Id == elementId) ?? throw new Exception();
             _elements.Remove(element);
+            var elementsToChange = await _elements.Where(e => e.SectionId == element.SectionId && e.Id != element.Id).OrderBy(x => x.Index)
+                .ToListAsync();
+            for (int i = 0; i < elementsToChange.Count(); i++)
+            {
+                elementsToChange[i].Index = i;
+            }
+            foreach (var tempElement in _elements.Where(s => elementsToChange.Select(se => se.Id).Contains(s.Id)))
+            {
+                tempElement.Index = elementsToChange.First(el => el.Id == tempElement.Id).Index;
+            }
             await _context.SaveChangesAsync();
         }
 

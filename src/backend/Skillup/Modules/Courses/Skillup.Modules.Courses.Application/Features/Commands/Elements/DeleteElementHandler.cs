@@ -17,16 +17,8 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements
         }
         public async Task Handle(DeleteElementRequest request, CancellationToken cancellationToken)
         {
-            var element = await _elementRepository.GetById(request.ElementId);
             await _elementRepository.Delete(request.ElementId);
             _logger.LogInformation("Element deleted");
-
-            var elements = await _elementRepository.GetElementsBySectionId(element.SectionId);
-            for (int i = 0; i < elements.Count(); i++)
-            {
-                elements[i].Index = i;
-            }
-            await _elementRepository.EditIndexes(elements);
         }
     }
 }
