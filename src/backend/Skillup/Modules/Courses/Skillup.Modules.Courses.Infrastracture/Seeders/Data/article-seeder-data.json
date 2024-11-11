@@ -1,6 +1,9 @@
 [
   {
     "Title": "What is .NET?",
+    "Description": "An overview of the .NET framework and its role in software development.",
+    "Type": "Article",
+    "Index": 0,
     "IsFree": true,
     "IsPublished": true,
     "SectionTitle": "Introduction to C# and .NET Framework",
@@ -10,47 +13,122 @@
   },
   {
     "Title": "Variables and Constants in C#",
+    "Description": "Understand the differences between variables and constants in C#.",
+    "Type": "Article",
+    "Index": 1,
     "IsFree": true,
     "IsPublished": true,
-    "SectionTitle": "Introduction to C# and .NET Framework",
+    "SectionTitle": "Basic Syntax and Data Types",
     "Article": {
       "HTMLContent": "Variables...."
     }
   },
   {
     "Title": "Data Types (int, string, double, etc.)",
+    "Description": "Explore the main data types in C#, including int, string, and double.",
+    "Type": "Article",
+    "Index": 2,
     "IsFree": true,
     "IsPublished": true,
-    "SectionTitle": "Introduction to C# and .NET Framework",
+    "SectionTitle": "Basic Syntax and Data Types",
     "Article": {
       "HTMLContent": "Data Types...."
     }
   },
   {
     "Title": "If-Else Statements",
+    "Description": "Learn how to make decisions in your code using if-else statements.",
+    "Type": "Article",
+    "Index": 0,
     "IsFree": true,
     "IsPublished": true,
-    "SectionTitle": "Introduction to C# and .NET Framework",
+    "SectionTitle": "Control Structures and Loops",
     "Article": {
       "HTMLContent": "...."
     }
   },
   {
     "Title": "For / While loop",
+    "Description": "A look at how to use for and while loops to iterate over code blocks.",
+    "Type": "Article",
+    "Index": 1,
     "IsFree": true,
     "IsPublished": true,
-    "SectionTitle": "Introduction to C# and .NET Framework",
+    "SectionTitle": "Control Structures and Loops",
     "Article": {
       "HTMLContent": "...."
     }
   },
   {
     "Title": "Nouns and Pronouns",
+    "Description": "An introduction to using nouns and pronouns in English sentences.",
+    "Type": "Article",
+    "Index": 0,
     "IsFree": true,
     "IsPublished": true,
     "SectionTitle": "Basic Grammar and Sentence Structure",
     "Article": {
       "HTMLContent": "...."
+    }
+  },
+  {
+    "Title": "kolejny1",
+    "Description": "Explore the main data types in C#, including int, string, and double.",
+    "Type": "Article",
+    "Index": 3,
+    "IsFree": true,
+    "IsPublished": true,
+    "SectionTitle": "Basic Syntax and Data Types",
+    "Article": {
+      "HTMLContent": "Data Types...."
+    }
+  },
+  {
+    "Title": "kolejny2",
+    "Description": "Explore the main data types in C#, including int, string, and double.",
+    "Type": "Article",
+    "Index": 4,
+    "IsFree": true,
+    "IsPublished": true,
+    "SectionTitle": "Basic Syntax and Data Types",
+    "Article": {
+      "HTMLContent": "Data Types...."
+    }
+  },
+  {
+    "Title": "kolejny3",
+    "Description": "Explore the main data types in C#, including int, string, and double.",
+    "Type": "Article",
+    "Index": 5,
+    "IsFree": true,
+    "IsPublished": true,
+    "SectionTitle": "Basic Syntax and Data Types",
+    "Article": {
+      "HTMLContent": "Data Types...."
+    }
+  },
+  {
+    "Title": "kolejny4",
+    "Description": "Explore the main data types in C#, including int, string, and double.",
+    "Type": "Article",
+    "Index": 6,
+    "IsFree": true,
+    "IsPublished": true,
+    "SectionTitle": "Basic Syntax and Data Types",
+    "Article": {
+      "HTMLContent": "Data Types...."
+    }
+  },
+  {
+    "Title": "kolejny5",
+    "Description": "Explore the main data types in C#, including int, string, and double.",
+    "Type": "Article",
+    "Index": 7,
+    "IsFree": true,
+    "IsPublished": true,
+    "SectionTitle": "Basic Syntax and Data Types",
+    "Article": {
+      "HTMLContent": "Data Types...."
     }
   }
 ]

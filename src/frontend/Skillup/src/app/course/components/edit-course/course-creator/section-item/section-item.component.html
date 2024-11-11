@@ -1,0 +1,38 @@
+<div class="flex w-full section-item">
+  @if(!editing){
+  <div class="w-full px-4 prose">
+    <p>{{ section().title }}</p>
+  </div>
+  } @else {
+  <div class="w-full px-4">
+    <input pInputText class="w-full mb-2" [(ngModel)]="sectionTitle" />
+  </div>
+  }
+  <div
+    class="flex justify-end w-full gap-2 px-2 button-container"
+    [ngClass]="{ hidden: editing }"
+  >
+    <p-button
+      icon="pi pi-file-edit"
+      severity="secondary"
+      (onClick)="changeEditVisibility()"
+    ></p-button>
+    <p-button
+      icon="pi pi-trash"
+      severity="danger"
+      (onClick)="removeSection($event)"
+    ></p-button>
+  </div>
+  <div class="flex justify-end gap-2 px-2" [ngClass]="{ hidden: !editing }">
+    <p-button
+      icon="pi pi-save"
+      severity="success"
+      (onClick)="saveSection()"
+    ></p-button>
+    <p-button
+      icon="pi pi-times"
+      severity="secondary"
+      (onClick)="changeEditVisibility()"
+    ></p-button>
+  </div>
+</div>

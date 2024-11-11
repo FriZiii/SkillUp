@@ -47,6 +47,12 @@ footer{
   @apply border-[1px] border-surface-300 rounded-md shadow-[0px_0px_#0000,0px_0px_#0000,0px_1px_2px_0px_rgba(18,18,23,0.05)] 
 }
 
+.su-border-y{
+  @apply border-y-[1px] border-surface-300
+}
+
 .su-section-mt{
   @apply mt-8 mx-4
 }
+
+

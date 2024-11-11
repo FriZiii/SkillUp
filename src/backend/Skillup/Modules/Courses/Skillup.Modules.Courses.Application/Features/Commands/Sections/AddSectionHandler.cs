@@ -2,9 +2,9 @@
 using Microsoft.Extensions.Logging;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
 using Skillup.Modules.Courses.Core.Interfaces;
-using Skillup.Modules.Courses.Core.Requests.Commands;
+using Skillup.Modules.Courses.Core.Requests.Commands.Sections;
 
-namespace Skillup.Modules.Courses.Application.Features.Commands
+namespace Skillup.Modules.Courses.Application.Features.Commands.Sections
 {
     public class AddSectionHandler : IRequestHandler<AddSectionRequest>
     {
@@ -21,6 +21,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
             var section = new Section()
             {
                 Title = request.Title,
+                Index = request.index,
                 CourseId = request.CourseId,
             };
             await _sectionRepository.Add(section);
