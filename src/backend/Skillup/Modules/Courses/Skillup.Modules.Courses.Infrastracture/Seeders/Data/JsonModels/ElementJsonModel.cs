@@ -7,7 +7,6 @@
         public string Type { get; set; }
         public int Index { get; set; }
         public bool IsFree { get; set; }
-        public bool IsPublished { get; set; }
         public string SectionTitle { get; set; }
         public ArticleJsonModel Article { get; set; }
     }
@@ -24,7 +23,6 @@
         public string Type { get; set; }
         public int Index { get; set; }
         public bool IsFree { get; set; }
-        public bool IsPublished { get; set; }
         public string SectionTitle { get; set; }
         public VideoJsonModel Video { get; set; }
     }
@@ -41,7 +39,6 @@
         public string Type { get; set; }
         public int Index { get; set; }
         public bool IsFree { get; set; }
-        public bool IsPublished { get; set; }
         public string SectionTitle { get; set; }
         public AssignmentJsonModel Assignment { get; set; }
     }

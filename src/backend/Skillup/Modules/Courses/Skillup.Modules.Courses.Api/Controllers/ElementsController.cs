@@ -22,6 +22,17 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(request);
         }
 
+        [HttpPost]
+        [SwaggerOperation("Add element")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AddElement(Guid sectionId, AddElementRequest request)
+        {
+            request.SectionId = sectionId;
+            await _mediator.Send(request);
+            return Ok(request);
+        }
+
         [HttpPut("{elementId}/Edit-Index")]
         [SwaggerOperation("Change element index")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

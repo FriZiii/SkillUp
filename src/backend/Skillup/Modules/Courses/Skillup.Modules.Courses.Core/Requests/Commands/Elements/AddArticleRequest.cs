@@ -6,10 +6,9 @@ namespace Skillup.Modules.Courses.Core.Requests.Commands.Elements
     public record AddArticleRequest(
         string Title,
         string Description,
-        ElementType Type,
+        AssetType Type,
         int Index,
         bool IsFree,
-        bool IsPublished,
         Guid SectionId,
         string HTMLContent) : IRequest;
 }

@@ -82,10 +82,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
             {
                 Title = jsonModel.Title,
                 Description = jsonModel.Description,
-                Type = Enum.Parse<ElementType>(jsonModel.Type),
+                Type = Enum.Parse<AssetType>(jsonModel.Type),
                 Index = jsonModel.Index,
                 IsFree = jsonModel.IsFree,
-                IsPublished = jsonModel.IsPublished,
                 SectionId = _sectionsList.First(x => x.Title == jsonModel.SectionTitle).Id,
                 Asset = new Article()
                 {
@@ -100,10 +99,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
             {
                 Title = jsonModel.Title,
                 Description = jsonModel.Description,
-                Type = Enum.Parse<ElementType>(jsonModel.Type),
+                Type = Enum.Parse<AssetType>(jsonModel.Type),
                 Index = jsonModel.Index,
                 IsFree = jsonModel.IsFree,
-                IsPublished = jsonModel.IsPublished,
                 SectionId = _sectionsList.First(x => x.Title == jsonModel.SectionTitle).Id,
                 Asset = new Video()
                 {
@@ -118,10 +116,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
             {
                 Title = jsonModel.Title,
                 Description = jsonModel.Description,
-                Type = Enum.Parse<ElementType>(jsonModel.Type),
+                Type = Enum.Parse<AssetType>(jsonModel.Type),
                 Index = jsonModel.Index,
                 IsFree = jsonModel.IsFree,
-                IsPublished = jsonModel.IsPublished,
                 SectionId = _sectionsList.First(x => x.Title == jsonModel.SectionTitle).Id,
                 Asset = new Assignment()
                 {

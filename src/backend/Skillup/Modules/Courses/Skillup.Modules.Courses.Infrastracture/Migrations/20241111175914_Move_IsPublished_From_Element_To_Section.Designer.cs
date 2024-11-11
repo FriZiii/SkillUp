@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Skillup.Modules.Courses.Infrastracture;
@@ -11,9 +12,11 @@ using Skillup.Modules.Courses.Infrastracture;
 namespace Skillup.Modules.Courses.Infrastracture.Migrations
 {
     [DbContext(typeof(CoursesDbContext))]
-    partial class CoursesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241111175914_Move_IsPublished_From_Element_To_Section")]
+    partial class Move_IsPublished_From_Element_To_Section
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,7 +144,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("AssetId")
+                    b.Property<Guid>("AssetId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Description")
@@ -437,7 +440,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                 {
                     b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Asset", "Asset")
                         .WithOne("Element")
-                        .HasForeignKey("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element", "AssetId");
+                        .HasForeignKey("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element", "AssetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Section", "Section")
                         .WithMany("Elements")
