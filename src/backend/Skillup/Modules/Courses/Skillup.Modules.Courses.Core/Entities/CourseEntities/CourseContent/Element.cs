@@ -15,6 +15,6 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent
         public Guid SectionId { get; set; }
         public Section Section { get; set; }
         public Guid? AssetId { get; set; }
-        public Asset? Asset { get; set; }      //asset meaning movie, article or exercise
+        public Asset? Asset { get; set; }
     }
 }
