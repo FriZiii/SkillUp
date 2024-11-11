@@ -14,7 +14,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             _context = context;
             _elements = context.Elements;
         }
-        public async Task AddElement(Element element)
+        public async Task Add(Element element)
         {
             _elements.Add(element);
             await _context.SaveChangesAsync();

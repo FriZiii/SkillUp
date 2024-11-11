@@ -7,15 +7,14 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public ElementType Type { get; set; }
+        public AssetType Type { get; set; }
         public int Index { get; set; }
-        //public bool IsCompleted { get; set; } // movies/lectures finished when clicked
 
         public bool IsFree { get; set; }  // is this section visible before buying the course?
 
         public Guid SectionId { get; set; }
         public Section Section { get; set; }
-        public Guid AssetId { get; set; }
-        public Asset Asset { get; set; }      //asset meaning movie, article or exercise
+        public Guid? AssetId { get; set; }
+        public Asset? Asset { get; set; }      //asset meaning movie, article or exercise
     }
 }

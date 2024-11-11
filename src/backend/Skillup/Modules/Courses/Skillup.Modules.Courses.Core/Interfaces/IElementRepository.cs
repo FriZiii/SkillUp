@@ -4,7 +4,7 @@ namespace Skillup.Modules.Courses.Core.Interfaces
 {
     public interface IElementRepository
     {
-        Task AddElement(Element element);
+        Task Add(Element element);
         Task AddAssignment(Element element);
         Task<Element> GetById(Guid elementId);
         Task<List<Element>> GetElementsBySectionId(Guid sectionId);
