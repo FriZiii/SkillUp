@@ -4,5 +4,7 @@
     {
         public const string Public = "public/";
         public const string UserProfilePicture = "public/users/profile-pictures/";
+        public const string CourseAssetVideo = "courses/assets/videos/";
+        public const string CourseAssetArticle = "courses/assets/article/";
     }
 }
