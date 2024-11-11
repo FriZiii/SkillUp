@@ -70,5 +70,65 @@
     "Article": {
       "HTMLContent": "...."
     }
+  },
+  {
+    "Title": "kolejny1",
+    "Description": "Explore the main data types in C#, including int, string, and double.",
+    "Type": "Article",
+    "Index": 3,
+    "IsFree": true,
+    "IsPublished": true,
+    "SectionTitle": "Basic Syntax and Data Types",
+    "Article": {
+      "HTMLContent": "Data Types...."
+    }
+  },
+  {
+    "Title": "kolejny2",
+    "Description": "Explore the main data types in C#, including int, string, and double.",
+    "Type": "Article",
+    "Index": 4,
+    "IsFree": true,
+    "IsPublished": true,
+    "SectionTitle": "Basic Syntax and Data Types",
+    "Article": {
+      "HTMLContent": "Data Types...."
+    }
+  },
+  {
+    "Title": "kolejny3",
+    "Description": "Explore the main data types in C#, including int, string, and double.",
+    "Type": "Article",
+    "Index": 5,
+    "IsFree": true,
+    "IsPublished": true,
+    "SectionTitle": "Basic Syntax and Data Types",
+    "Article": {
+      "HTMLContent": "Data Types...."
+    }
+  },
+  {
+    "Title": "kolejny4",
+    "Description": "Explore the main data types in C#, including int, string, and double.",
+    "Type": "Article",
+    "Index": 6,
+    "IsFree": true,
+    "IsPublished": true,
+    "SectionTitle": "Basic Syntax and Data Types",
+    "Article": {
+      "HTMLContent": "Data Types...."
+    }
+  },
+  {
+    "Title": "kolejny5",
+    "Description": "Explore the main data types in C#, including int, string, and double.",
+    "Type": "Article",
+    "Index": 7,
+    "IsFree": true,
+    "IsPublished": true,
+    "SectionTitle": "Basic Syntax and Data Types",
+    "Article": {
+      "HTMLContent": "Data Types...."
+    }
   }
 ]

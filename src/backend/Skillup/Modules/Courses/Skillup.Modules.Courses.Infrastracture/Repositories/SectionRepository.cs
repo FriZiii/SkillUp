@@ -49,22 +49,19 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task EditMultiple(IEnumerable<Section> sections)
+        public async Task Delete(Guid sectionId)
         {
-            using (var transaction = _context.Database.BeginTransaction())
-            {
-                foreach (var section in sections)
-                {
-                    _sections.Update(section);
-                }
-                await _context.SaveChangesAsync();
-                await transaction.CommitAsync();
-            }
+            var section = _sections.FirstOrDefault(e => e.Id == sectionId) ?? throw new Exception();
+            _sections.Remove(section);
+            await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(Section section)
+        public async Task EditIndexes(IEnumerable<Section> sections)
         {
-            _sections.Remove(section);
+            foreach (var section in _sections.Where(s => sections.Select(se => se.Id).Contains(s.Id)))
+            {
+                section.Index = sections.First(el => el.Id == section.Id).Index;
+            }
             await _context.SaveChangesAsync();
         }
     }

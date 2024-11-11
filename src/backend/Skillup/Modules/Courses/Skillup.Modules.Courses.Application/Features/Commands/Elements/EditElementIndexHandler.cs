@@ -33,7 +33,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements
                 {
                     elements[i].Index -= 1;
                 }
-                await _elementRepository.EditMultiple(elements);
+                await _elementRepository.EditIndexes(elements);
             }
             else if (oldIndex > request.index)
             {
@@ -41,9 +41,8 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements
                 {
                     elements[i].Index += 1;
                 }
-                await _elementRepository.EditMultiple(elements);
+                await _elementRepository.EditIndexes(elements);
             }
-
 
             var sectionMapper = new SectionMapper();
             var newSection = await _sectionRepository.GetById(element.SectionId);

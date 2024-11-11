@@ -52,23 +52,20 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             return element;
         }
 
-        public async Task Delete(Element element)
+        public async Task Delete(Guid elementId)
         {
+            var element = _elements.FirstOrDefault(e => e.Id == elementId) ?? throw new Exception();
             _elements.Remove(element);
             await _context.SaveChangesAsync();
         }
 
-        public async Task EditMultiple(IEnumerable<Element> elements)
+        public async Task EditIndexes(IEnumerable<Element> elements)
         {
-            using (var transaction = _context.Database.BeginTransaction())
+            foreach (var element in _elements.Where(e => elements.Select(el => el.Id).Contains(e.Id)))
             {
-                foreach (var element in elements)
-                {
-                    _elements.Update(element);
-                }
-                await _context.SaveChangesAsync();
-                await transaction.CommitAsync();
+                element.Index = elements.First(el => el.Id == element.Id).Index;
             }
+            await _context.SaveChangesAsync();
         }
     }
 }
