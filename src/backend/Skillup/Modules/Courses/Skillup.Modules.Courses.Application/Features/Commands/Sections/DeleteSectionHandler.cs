@@ -25,8 +25,8 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Sections
             for (int i = 0; i < sections.Count(); i++)
             {
                 sections[i].Index = i;
-                await _sectionRepository.Edit(sections[i]);
             }
+            await _sectionRepository.EditMultiple(sections);
         }
     }
 }

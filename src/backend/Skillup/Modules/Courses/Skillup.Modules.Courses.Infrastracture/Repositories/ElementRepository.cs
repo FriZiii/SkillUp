@@ -57,5 +57,18 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             _elements.Remove(element);
             await _context.SaveChangesAsync();
         }
+
+        public async Task EditMultiple(IEnumerable<Element> elements)
+        {
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                foreach (var element in elements)
+                {
+                    _elements.Update(element);
+                }
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+            }
+        }
     }
 }

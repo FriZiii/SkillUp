@@ -25,8 +25,8 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements
             for (int i = 0; i < elements.Count(); i++)
             {
                 elements[i].Index = i;
-                await _elementRepository.Edit(elements[i]);
             }
+            await _elementRepository.EditMultiple(elements);
         }
     }
 }

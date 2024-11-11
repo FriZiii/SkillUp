@@ -31,16 +31,16 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Sections
                 for (int i = oldIndex + 1; i <= request.index; i++)
                 {
                     sections[i].Index -= 1;
-                    await _sectionRepository.Edit(sections[i]);
                 }
+                await _sectionRepository.EditMultiple(sections);
             }
             else if (oldIndex > request.index)
             {
                 for (int i = request.index; i < oldIndex; i++)
                 {
                     sections[i].Index += 1;
-                    await _sectionRepository.Edit(sections[i]);
                 }
+                await _sectionRepository.EditMultiple(sections);
             }
 
             var sectionMapper = new SectionMapper();

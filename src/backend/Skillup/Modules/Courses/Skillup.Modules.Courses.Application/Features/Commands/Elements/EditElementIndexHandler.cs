@@ -32,16 +32,16 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements
                 for (int i = oldIndex + 1; i <= request.index; i++)
                 {
                     elements[i].Index -= 1;
-                    await _elementRepository.Edit(elements[i]);
                 }
+                await _elementRepository.EditMultiple(elements);
             }
             else if (oldIndex > request.index)
             {
                 for (int i = request.index; i < oldIndex; i++)
                 {
                     elements[i].Index += 1;
-                    await _elementRepository.Edit(elements[i]);
                 }
+                await _elementRepository.EditMultiple(elements);
             }
 
 
