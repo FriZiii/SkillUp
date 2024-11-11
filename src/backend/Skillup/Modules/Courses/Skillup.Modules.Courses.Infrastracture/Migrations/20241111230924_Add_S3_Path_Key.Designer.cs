@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Skillup.Modules.Courses.Infrastracture;
@@ -11,9 +12,11 @@ using Skillup.Modules.Courses.Infrastracture;
 namespace Skillup.Modules.Courses.Infrastracture.Migrations
 {
     [DbContext(typeof(CoursesDbContext))]
-    partial class CoursesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241111230924_Add_S3_Path_Key")]
+    partial class Add_S3_Path_Key
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -144,6 +147,13 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.Property<Guid>("AssetId")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Index")
+                        .HasColumnType("integer");
+
                     b.Property<bool>("IsFree")
                         .HasColumnType("boolean");
 
@@ -156,6 +166,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -175,6 +188,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
 
                     b.Property<Guid>("CourseId")
                         .HasColumnType("uuid");
+
+                    b.Property<int>("Index")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Title")
                         .IsRequired()
