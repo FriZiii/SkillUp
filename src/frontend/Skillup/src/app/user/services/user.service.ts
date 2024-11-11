@@ -26,12 +26,23 @@ interface CustomJwtPayload extends JwtPayload {
 export class UserService {
   private httpClient = inject(HttpClient);
   private userSubject = new BehaviorSubject<User | null>(null);
+  private userDetailSubject = new BehaviorSubject<UserDetail | null>(null);
 
   get user(): Observable<User | null> {
     return this.userSubject.asObservable();
   }
 
-  get userDeatil(): Observable<UserDetail | null> {
+  get userDetail(): Observable<UserDetail | null> {
+    return this.userDetailSubject.asObservable();
+  }
+
+  setUserDetail(){
+    this.getUserDetail().subscribe((res) => {
+      this.userDetailSubject.next(res);
+    })
+  }
+
+  getUserDetail(): Observable<UserDetail | null> {
     return this.user.pipe(
       filter((user): user is User => user !== null),
       switchMap((user) =>
@@ -124,7 +135,11 @@ export class UserService {
     return this.httpClient.put<any>(`${environment.apiUrl}/courses/users/${userId}`, userData)
     .pipe(
       catchError(error => { return throwError(() => error)}),
-    );
+      tap((result: any) => {
+        this.userDetailSubject.next(result);
+      })
+    )
+    
   }
 
   editUserPrivacySettings(userId: string, publicAccount: boolean, visibleCourses: boolean){
@@ -134,6 +149,9 @@ export class UserService {
     })
     .pipe(
       catchError(error => { return throwError(() => error)}),
+      tap((result: any) => {
+        this.userDetailSubject.next(result);
+      })
     );
   }
 }

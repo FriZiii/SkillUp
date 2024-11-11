@@ -14,6 +14,7 @@ import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { RouterModule } from '@angular/router';
 import { CheckboxModule } from 'primeng/checkbox';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -45,9 +46,9 @@ export class SignUpComponent {
     const formValue = this.signUpForm.value;
     this.loading = true;
     this.authService.signUp(formValue.email!, formValue.password!, formValue.marketing!)
-    .subscribe({
-      next: () => {this.loading = false}
-    });
+    .pipe(finalize (() => this.loading = false))
+    .subscribe();
+    this.signUpForm.reset()
   }
   
   get emailIsInvalid(){
