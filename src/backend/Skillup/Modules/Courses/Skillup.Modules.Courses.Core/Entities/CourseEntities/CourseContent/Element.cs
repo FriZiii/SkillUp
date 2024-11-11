@@ -12,7 +12,6 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent
         //public bool IsCompleted { get; set; } // movies/lectures finished when clicked
 
         public bool IsFree { get; set; }  // is this section visible before buying the course?
-        public bool IsPublished { get; set; } // only when published the section is visible for students
 
         public Guid SectionId { get; set; }
         public Section Section { get; set; }

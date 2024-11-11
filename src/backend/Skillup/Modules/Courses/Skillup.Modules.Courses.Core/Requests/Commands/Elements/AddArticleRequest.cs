@@ -9,7 +9,6 @@ namespace Skillup.Modules.Courses.Core.Requests.Commands.Elements
         ElementType Type,
         int Index,
         bool IsFree,
-        bool IsPublished,
         Guid SectionId,
         string HTMLContent) : IRequest;
 }

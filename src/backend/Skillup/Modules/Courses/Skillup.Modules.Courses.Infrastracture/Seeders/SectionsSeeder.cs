@@ -50,6 +50,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                     {
                         Title = section.Title,
                         Index = section.Index,
+                        IsPublished = true,
                         CourseId = _courseList.First(x => x.Title == course.Title).Id
                     });
                 }

@@ -24,7 +24,6 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements
                 Type = request.Type,
                 Index = request.Index,
                 IsFree = request.IsFree,
-                IsPublished = request.IsPublished,
                 SectionId = request.SectionId,
                 Asset = new Article()
                 {

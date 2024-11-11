@@ -5,7 +5,6 @@
     "Type": "Article",
     "Index": 0,
     "IsFree": true,
-    "IsPublished": true,
     "SectionTitle": "Introduction to C# and .NET Framework",
     "Article": {
       "HTMLContent": ".NET is...."
@@ -17,7 +16,6 @@
     "Type": "Article",
     "Index": 1,
     "IsFree": true,
-    "IsPublished": true,
     "SectionTitle": "Basic Syntax and Data Types",
     "Article": {
       "HTMLContent": "Variables...."
@@ -29,7 +27,6 @@
     "Type": "Article",
     "Index": 2,
     "IsFree": true,
-    "IsPublished": true,
     "SectionTitle": "Basic Syntax and Data Types",
     "Article": {
       "HTMLContent": "Data Types...."
@@ -41,7 +38,6 @@
     "Type": "Article",
     "Index": 0,
     "IsFree": true,
-    "IsPublished": true,
     "SectionTitle": "Control Structures and Loops",
     "Article": {
       "HTMLContent": "...."
@@ -53,7 +49,6 @@
     "Type": "Article",
     "Index": 1,
     "IsFree": true,
-    "IsPublished": true,
     "SectionTitle": "Control Structures and Loops",
     "Article": {
       "HTMLContent": "...."
@@ -65,7 +60,6 @@
     "Type": "Article",
     "Index": 0,
     "IsFree": true,
-    "IsPublished": true,
     "SectionTitle": "Basic Grammar and Sentence Structure",
     "Article": {
       "HTMLContent": "...."
@@ -77,7 +71,6 @@
     "Type": "Article",
     "Index": 3,
     "IsFree": true,
-    "IsPublished": true,
     "SectionTitle": "Basic Syntax and Data Types",
     "Article": {
       "HTMLContent": "Data Types...."
@@ -89,7 +82,6 @@
     "Type": "Article",
     "Index": 4,
     "IsFree": true,
-    "IsPublished": true,
     "SectionTitle": "Basic Syntax and Data Types",
     "Article": {
       "HTMLContent": "Data Types...."
@@ -101,7 +93,6 @@
     "Type": "Article",
     "Index": 5,
     "IsFree": true,
-    "IsPublished": true,
     "SectionTitle": "Basic Syntax and Data Types",
     "Article": {
       "HTMLContent": "Data Types...."
@@ -113,7 +104,6 @@
     "Type": "Article",
     "Index": 6,
     "IsFree": true,
-    "IsPublished": true,
     "SectionTitle": "Basic Syntax and Data Types",
     "Article": {
       "HTMLContent": "Data Types...."
@@ -125,7 +115,6 @@
     "Type": "Article",
     "Index": 7,
     "IsFree": true,
-    "IsPublished": true,
     "SectionTitle": "Basic Syntax and Data Types",
     "Article": {
       "HTMLContent": "Data Types...."
