@@ -25,7 +25,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         {
             var section = await _sections
                 .Include(s => s.Elements)
-                .FirstOrDefaultAsync(s => s.Id == sectionId);
+                .FirstOrDefaultAsync(s => s.Id == sectionId) ?? throw new Exception();  //TODO: Custom exception for null check in repo
             return section;
         }
 
@@ -34,8 +34,41 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             var sections = await _sections
                 .Include(s => s.Elements)
                 .Where(s => s.CourseId == courseId)
+                .OrderBy(x => x.Index)
                 .ToListAsync();
             return sections;
+        }
+
+        public async Task Edit(Section section)
+        {
+            var sectionToEdit = await _sections.FirstOrDefaultAsync(s => s.Id == section.Id) ?? throw new Exception();  //TODO: Custom exception for null check in repo
+
+            sectionToEdit.Title = section.Title;
+            sectionToEdit.Index = section.Index;
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task Delete(Guid sectionId)
+        {
+            var section = _sections.FirstOrDefault(e => e.Id == sectionId) ?? throw new Exception();
+            _sections.Remove(section);
+
+            var sectionsToChange = _sections.Where(s => s.CourseId == section.CourseId && s.Id != section.Id).OrderBy(x => x.Index);
+            for (int i = 0; i < sectionsToChange.Count(); i++)
+            {
+                sectionsToChange.ElementAt(i).Index = i;
+            }
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task EditIndexes(IEnumerable<Section> sections)
+        {
+            foreach (var section in _sections.Where(s => sections.Select(se => se.Id).Contains(s.Id)))
+            {
+                section.Index = sections.First(el => el.Id == section.Id).Index;
+            }
+            await _context.SaveChangesAsync();
         }
     }
 }

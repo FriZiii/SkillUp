@@ -2,14 +2,10 @@ import {
   Component,
   computed,
   DestroyRef,
-  effect,
   inject,
-  OnInit,
   signal,
-  Signal,
 } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
-import { Category } from '../../models/category.model';
 import { StepperModule } from 'primeng/stepper';
 import { ButtonModule } from 'primeng/button';
 import { ToggleButtonModule } from 'primeng/togglebutton';

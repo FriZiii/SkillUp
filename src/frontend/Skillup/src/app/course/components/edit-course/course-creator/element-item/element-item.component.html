@@ -1,0 +1,53 @@
+<div class="su-border-y p-2 ml-14 my-2 bg-white element-item w-full">
+  <div class="flex w-full items-start">
+    <i
+      [class]="definedIcon(element().type)"
+      style="font-size: 1rem"
+      [ngClass]="{ 'mt-1': !editing, 'mt-3': editing }"
+    ></i>
+    @if(!editing){
+    <div class="w-full px-4 prose">
+      <h4 class="b-0">{{ element().title }}</h4>
+      <p>{{ element().description }}</p>
+    </div>
+    } @else{
+    <div class="w-full px-4">
+      <input pInputText class="w-full mb-2" [(ngModel)]="elementTitle" />
+      <textarea
+        class="custom-textarea w-full"
+        rows="2"
+        [(ngModel)]="elementDescription"
+      ></textarea>
+    </div>
+    }
+
+    <div
+      class="flex justify-end w-full gap-2 px-2 button-container"
+      [ngClass]="{ hidden: editing }"
+    >
+      <p-button
+        icon="pi pi-file-edit"
+        severity="secondary"
+        (onClick)="changeEditVisibility()"
+      ></p-button>
+      <p-button
+        icon="pi pi-trash"
+        severity="danger"
+        (onClick)="removeElement($event)"
+      ></p-button>
+    </div>
+    <div class="flex justify-end gap-2 px-2" [ngClass]="{ hidden: !editing }">
+      <p-button
+        icon="pi pi-save"
+        severity="success"
+        (onClick)="saveElement()"
+      ></p-button>
+      <p-button
+        icon="pi pi-times"
+        severity="secondary"
+        (onClick)="changeEditVisibility()"
+      ></p-button>
+    </div>
+  </div>
+</div>
+<ng-content />

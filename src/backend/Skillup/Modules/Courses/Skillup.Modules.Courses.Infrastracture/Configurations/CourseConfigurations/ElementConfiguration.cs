@@ -10,7 +10,8 @@ namespace Skillup.Modules.Courses.Infrastracture.Configurations.CourseConfigurat
         {
             builder.HasOne(e => e.Asset)
                 .WithOne(a => a.Element)
-                .HasForeignKey<Element>(e => e.AssetId);
+                .HasForeignKey<Element>(e => e.AssetId)
+                .IsRequired(false);
         }
     }
 }

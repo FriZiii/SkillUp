@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Skillup.Modules.Courses.Core.DTO
+﻿namespace Skillup.Modules.Courses.Core.DTO
 {
     public class SectionDto
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
+        public int Index { get; set; }
+        public bool IsPublished { get; set; }
         public List<ElementDto> Elements { get; set; }
     }
 }

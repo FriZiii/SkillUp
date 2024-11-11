@@ -13,8 +13,10 @@ namespace Skillup.Modules.Courses.Application.Mappings
             {
                 Id = element.Id,
                 Title = element.Title,
+                Description = element.Description,
+                Type = element.Type,
+                Index = element.Index,
                 IsFree = element.IsFree,
-                IsPublished = element.IsPublished,
                 //Asset
             };
             return elementeDto;

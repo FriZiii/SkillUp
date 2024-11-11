@@ -12,14 +12,47 @@ namespace Skillup.Modules.Courses.Api.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
-        [HttpPost("article")]
-        [SwaggerOperation("Add article")]
+        [HttpPost]
+        [SwaggerOperation("Add element")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddArticle(AddArticleRequest request)
+        public async Task<IActionResult> AddElement(Guid sectionId, AddElementRequest request)
         {
+            request.SectionId = sectionId;
             await _mediator.Send(request);
             return Ok(request);
+        }
+
+        [HttpPut("{elementId}/Edit-Index")]
+        [SwaggerOperation("Change element index")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> ChangeElementIndex(Guid elementId, EditElementIndexRequest request)
+        {
+            request.ElementId = elementId;
+            var section = await _mediator.Send(request);
+            return Ok(section);
+        }
+
+        [HttpPut("{elementId}")]
+        [SwaggerOperation("Edit element")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> EditElement(Guid elementId, EditElementRequest request)
+        {
+            request.ElementId = elementId;
+            await _mediator.Send(request);
+            return Ok();
+        }
+
+        [HttpDelete("{elementId}")]
+        [SwaggerOperation("Delete element")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> DeleteElement(Guid elementId)
+        {
+            await _mediator.Send(new DeleteElementRequest { ElementId = elementId });
+            return Ok();
         }
     }
 }

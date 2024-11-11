@@ -1,0 +1,20 @@
+<div>
+  <p-button
+    label="{{ btnText() }}"
+    (click)="changeVisibility()"
+    [style.display]="visible ? 'none' : 'block'"
+  />
+
+  <div [style.display]="visible ? 'block' : 'none'" class="py-2 px-8">
+    <ng-content />
+    <div class="flex gap-4 mt-4 pb-2 w-full justify-end">
+      <p-button
+        label="Cancel"
+        type="button"
+        severity="secondary"
+        (click)="changeVisibility()"
+      />
+      <p-button label="Save" type="submit" (click)="onSubmit($event)" />
+    </div>
+  </div>
+</div>

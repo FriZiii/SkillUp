@@ -1,0 +1,50 @@
+<div class="prose mb-8">
+  <h1>Edit your course content!</h1>
+</div>
+<p-accordion
+  [value]="0"
+  cdkDropList
+  (cdkDropListDropped)="dropSection($event)"
+  class="drag-list"
+>
+  @for (section of sections(); track section.id) {
+  <p-accordion-panel [value]="section.id">
+    <p-accordion-header
+      cdkDrag
+      [cdkDragDisabled]="sectionEdit"
+      class="drag-box"
+    >
+      <app-section-item
+        [section]="section"
+        (onEditChange)="changeSectionEditMode($event)"
+        class="w-full"
+      ></app-section-item>
+      <div *cdkDragPlaceholder class="drag-placeholder"></div>
+    </p-accordion-header>
+    <p-accordion-content>
+      <app-element-list [section]="section"></app-element-list>
+      <app-add-new-element></app-add-new-element>
+    </p-accordion-content>
+  </p-accordion-panel>
+  }
+</p-accordion>
+
+<div class="my-4">
+  <app-hidden-form-wrapper
+    btnText="Add Section"
+    (submit)="submitSection($event)"
+  >
+    <div class="mt-5"></div>
+    <p-floatlabel>
+      <input
+        id="newSectionTitle"
+        pInputText
+        class="w-full"
+        [(ngModel)]="newSectionTitle"
+      />
+      <label for="newSectionTitle">Title</label>
+    </p-floatlabel>
+  </app-hidden-form-wrapper>
+</div>
+
+<p-confirmdialog />

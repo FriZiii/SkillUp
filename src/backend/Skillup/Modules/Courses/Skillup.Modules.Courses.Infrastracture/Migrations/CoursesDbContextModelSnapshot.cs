@@ -141,13 +141,17 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("AssetId")
+                    b.Property<Guid?>("AssetId")
                         .HasColumnType("uuid");
 
-                    b.Property<bool>("IsFree")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<bool>("IsPublished")
+                    b.Property<int>("Index")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsFree")
                         .HasColumnType("boolean");
 
                     b.Property<Guid>("SectionId")
@@ -156,6 +160,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -175,6 +182,12 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
 
                     b.Property<Guid>("CourseId")
                         .HasColumnType("uuid");
+
+                    b.Property<int>("Index")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -422,9 +435,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                 {
                     b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Asset", "Asset")
                         .WithOne("Element")
-                        .HasForeignKey("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element", "AssetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element", "AssetId");
 
                     b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Section", "Section")
                         .WithMany("Elements")

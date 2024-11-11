@@ -4,7 +4,8 @@
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
-        //public bool IsCompleted { get; set; } //section is finished when all elemnets of the section are finished
+        public int Index { get; set; }
+        public bool IsPublished { get; set; } // only when published the section is visible for students
 
         public Guid CourseId { get; set; }
         public Course Course { get; set; }
