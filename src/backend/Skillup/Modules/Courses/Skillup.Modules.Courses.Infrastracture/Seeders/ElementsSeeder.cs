@@ -86,10 +86,10 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                 Index = jsonModel.Index,
                 IsFree = jsonModel.IsFree,
                 SectionId = _sectionsList.First(x => x.Title == jsonModel.SectionTitle).Id,
-                Asset = new Article()
-                {
-                    HTMLContent = jsonModel.Article.HTMLContent
-                }
+                //Asset = new Article()
+                //{
+                //    HTMLContent = jsonModel.Article.HTMLContent
+                //}
             };
         }
 
@@ -103,10 +103,10 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                 Index = jsonModel.Index,
                 IsFree = jsonModel.IsFree,
                 SectionId = _sectionsList.First(x => x.Title == jsonModel.SectionTitle).Id,
-                Asset = new Video()
-                {
-                    Url = jsonModel.Video.Url
-                }
+                //Asset = new Video()
+                //{
+                //    Url = jsonModel.Video.Url
+                //}
             };
         }
 
