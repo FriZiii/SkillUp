@@ -20,6 +20,7 @@ using Skillup.Shared.Infrastructure.SMTP;
 using Skillup.Shared.Infrastructure.Storage;
 using Skillup.Shared.Infrastructure.Swagger;
 using Skillup.Shared.Infrastructure.Time;
+using System.Text.Json.Serialization;
 using SkillupCorsExtensions = Skillup.Shared.Infrastructure.Cors.Extensions;
 
 
@@ -72,6 +73,10 @@ namespace Skillup.Shared.Infrastructure
             {
                 options.Conventions.Add(new ControllerModelConvention());
 
+            })
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             })
             .ConfigureApplicationPartManager(manager =>
             {

@@ -19,7 +19,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements
             {
                 Title = request.Title,
                 Description = request.Description,
-                Type = request.Type,
+                AssetType = request.AssetType,
                 Index = request.Index,
                 SectionId = request.SectionId,
             };

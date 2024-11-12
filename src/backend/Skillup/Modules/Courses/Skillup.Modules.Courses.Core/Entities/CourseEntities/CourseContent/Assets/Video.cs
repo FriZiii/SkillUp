@@ -2,6 +2,6 @@
 {
     public class Video : Asset
     {
-        public Uri Url { get; set; }
+        public Guid Key { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
                 Id = element.Id,
                 Title = element.Title,
                 Description = element.Description,
-                Type = element.Type,
+                Type = element.AssetType,
                 Index = element.Index,
                 IsFree = element.IsFree,
                 //Asset

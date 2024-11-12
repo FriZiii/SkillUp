@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Skillup.Modules.Courses.Infrastracture;
@@ -11,9 +12,11 @@ using Skillup.Modules.Courses.Infrastracture;
 namespace Skillup.Modules.Courses.Infrastracture.Migrations
 {
     [DbContext(typeof(CoursesDbContext))]
-    partial class CoursesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241111230924_Add_S3_Path_Key")]
+    partial class Add_S3_Path_Key
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,13 +90,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("ElementId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ElementId")
-                        .IsUnique();
 
                     b.ToTable((string)null);
 
@@ -147,8 +144,8 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<int>("AssetType")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("AssetId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -160,6 +157,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.Property<bool>("IsFree")
                         .HasColumnType("boolean");
 
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("boolean");
+
                     b.Property<Guid>("SectionId")
                         .HasColumnType("uuid");
 
@@ -167,7 +167,13 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("AssetId")
+                        .IsUnique();
 
                     b.HasIndex("SectionId");
 
@@ -185,9 +191,6 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
 
                     b.Property<int>("Index")
                         .HasColumnType("integer");
-
-                    b.Property<bool>("IsPublished")
-                        .HasColumnType("boolean");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -409,17 +412,6 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.Navigation("Subcategory");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Asset", b =>
-                {
-                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element", "Element")
-                        .WithOne("Asset")
-                        .HasForeignKey("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Asset", "ElementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Element");
-                });
-
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Exercises.Exercise", b =>
                 {
                     b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Assignment", "Assignment")
@@ -444,11 +436,19 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
 
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element", b =>
                 {
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Asset", "Asset")
+                        .WithOne("Element")
+                        .HasForeignKey("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element", "AssetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Section", "Section")
                         .WithMany("Elements")
                         .HasForeignKey("SectionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Asset");
 
                     b.Navigation("Section");
                 });
@@ -591,9 +591,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.Navigation("Sections");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Asset", b =>
                 {
-                    b.Navigation("Asset")
+                    b.Navigation("Element")
                         .IsRequired();
                 });
 

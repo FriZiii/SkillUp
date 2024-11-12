@@ -9,6 +9,10 @@ namespace Skillup.Modules.Courses.Infrastracture.Configurations.CourseConfigurat
         public void Configure(EntityTypeBuilder<Asset> builder)
         {
             builder.UseTpcMappingStrategy();
+
+            builder.HasOne(a => a.Element)
+                .WithOne(e => e.Asset)
+                .HasForeignKey<Asset>(a => a.ElementId);
         }
     }
 }
