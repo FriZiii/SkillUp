@@ -1,6 +1,6 @@
 import { Component, inject, input, OnInit, output, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
-import { ElementType, Element, Section } from '../../../../models/course-content.model';
+import { Element, Section, AssetType } from '../../../../models/course-content.model';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -35,13 +35,13 @@ export class ElementItemComponent implements OnInit {
     this.elementDescription.set(this.element().description);
   }
 
-  definedIcon(type: ElementType) : string{
+  definedIcon(type: AssetType) : string{
     switch (type){
-      case ElementType.Article:
+      case AssetType.Article:
         return 'pi pi-book';
-        case ElementType.Video:
+        case AssetType.Video:
         return 'pi pi-video';
-        case ElementType.Exercise:
+        case AssetType.Exercise:
         return 'pi pi-objects-column';
     }
   }

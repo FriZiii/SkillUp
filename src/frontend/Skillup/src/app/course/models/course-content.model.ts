@@ -3,6 +3,7 @@ export interface Section{
     id: string;
     title: string;
     index: number;
+    isPublished: boolean;
     elements: Element[];
 }
 
@@ -10,14 +11,14 @@ export interface Element{
     id: string;
     title: string;
     description: string;
-    type: ElementType;
+    type: AssetType;
     index: number;
     isFree: boolean;
-    isPublished: boolean;
+    hasAsset: boolean;
 }
 
-export enum ElementType{
-    Article = 0,
-    Video = 1,
-    Exercise = 2
+export enum AssetType{
+    Article = "Article",
+    Video = "Video",
+    Exercise = "Exercise"
 }

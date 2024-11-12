@@ -3,7 +3,7 @@ import { inject, Injectable, signal } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { catchError, map, Observable, tap, throwError } from "rxjs";
 import { ToastHandlerService } from "../../core/services/toast-handler.service";
-import { ElementType, Section } from "../models/course-content.model";
+import { AssetType, Section } from "../models/course-content.model";
 
 @Injectable({ providedIn: 'root' })
 export class CourseContentService {
@@ -23,7 +23,7 @@ export class CourseContentService {
           .get<any>(environment.apiUrl + '/Courses/Sections/' + courseId)
           .pipe(
             map((response) => {
-              response.elementType = response.elementType as ElementType;
+              response.type = response.type as AssetType;
               console.log(response);
               return response;
             }),
@@ -46,6 +46,7 @@ export class CourseContentService {
               id: response.id,
               title: response.title,
               index: response.index,
+              isPublished: response.isPublished,
               elements: []
             }
             ])
@@ -101,7 +102,37 @@ export class CourseContentService {
 
 
     //Elements
-    private addElement() {
+    addElement(sectionId: string, assetType: AssetType, elementTitle: string, elementDescription: string) {
+      return this.httpClient
+        .post<any>(environment.apiUrl + '/Courses/Elements/' + assetType + '/' + sectionId, {title: elementTitle, description: elementDescription})
+        .pipe(
+          tap((response) => {
+            const updatedSections = this.sections().map(section => {
+              if (section.id === sectionId) {
+                return {
+                  ...section,
+                  elements: [
+                    ...section.elements,
+                    {
+                      id: response.id,
+                      title: response.title,
+                      description: response.description,
+                      type: response.type,
+                      index: response.index,
+                      isFree: response.isFree,
+                      hasAsset: response.hasAsset
+                    }
+                  ]
+                };
+              }
+              return section;
+            });
+              this.sections.set(updatedSections);
+          }),
+          catchError((error) => {
+            return throwError(() => error);
+          })
+        );
     }
 
     deleteElement(sectionId: string, elementId: string){

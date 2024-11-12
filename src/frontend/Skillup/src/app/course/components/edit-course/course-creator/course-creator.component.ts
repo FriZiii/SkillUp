@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, computed, inject, input, OnInit, signal } from '@angular/core';
 import { AccordionModule } from 'primeng/accordion';
-import { ElementType, Section } from '../../../models/course-content.model';
+import { Section } from '../../../models/course-content.model';
 import { CourseContentService } from '../../../services/course-content-service';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
