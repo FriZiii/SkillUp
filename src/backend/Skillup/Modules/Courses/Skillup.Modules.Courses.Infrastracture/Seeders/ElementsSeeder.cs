@@ -82,7 +82,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
             {
                 Title = jsonModel.Title,
                 Description = jsonModel.Description,
-                Type = Enum.Parse<AssetType>(jsonModel.Type),
+                AssetType = Enum.Parse<AssetType>(jsonModel.Type),
                 Index = jsonModel.Index,
                 IsFree = jsonModel.IsFree,
                 SectionId = _sectionsList.First(x => x.Title == jsonModel.SectionTitle).Id,
@@ -99,7 +99,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
             {
                 Title = jsonModel.Title,
                 Description = jsonModel.Description,
-                Type = Enum.Parse<AssetType>(jsonModel.Type),
+                AssetType = Enum.Parse<AssetType>(jsonModel.Type),
                 Index = jsonModel.Index,
                 IsFree = jsonModel.IsFree,
                 SectionId = _sectionsList.First(x => x.Title == jsonModel.SectionTitle).Id,
@@ -116,7 +116,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
             {
                 Title = jsonModel.Title,
                 Description = jsonModel.Description,
-                Type = Enum.Parse<AssetType>(jsonModel.Type),
+                AssetType = Enum.Parse<AssetType>(jsonModel.Type),
                 Index = jsonModel.Index,
                 IsFree = jsonModel.IsFree,
                 SectionId = _sectionsList.First(x => x.Title == jsonModel.SectionTitle).Id,

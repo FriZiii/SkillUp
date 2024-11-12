@@ -9,7 +9,7 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsFree { get; set; }
-        public AssetType Type { get; set; }
+        public AssetType AssetType { get; set; }
 
         public Guid SectionId { get; set; }
         public Section Section { get; set; }
