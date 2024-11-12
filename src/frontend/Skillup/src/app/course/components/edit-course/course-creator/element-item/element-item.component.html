@@ -92,8 +92,12 @@
   </div>
   } @else{
   <div class="prose"><h2>Twój Asset</h2></div>
-
-  }
+  @if(this.element().type === AssetType.Video ){ @if(fileLink()){
+  <video width="320" height="240" controls>
+    <source [src]="fileLink()" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  } } }
 
   <div class="flex justify-end gap-2">
     <p-button

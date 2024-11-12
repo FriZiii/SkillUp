@@ -14,6 +14,7 @@ import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
+import { AssetService } from '../../../../services/asset.service';
 
 @Component({
   selector: 'app-element-item',
@@ -29,10 +30,12 @@ export class ElementItemComponent implements OnInit {
   elementTitle = signal('');
   elementDescription = signal('');
   onEditChange = output<boolean>();
+  AssetType = AssetType;
 
   //Services
   courseContentService = inject(CourseContentService);
   confirmDialogService = inject(ConfirmationDialogHandlerService);
+  assetService = inject(AssetService);
 
   ngOnInit(): void {
     this.elementTitle.set(this.element().title);
@@ -94,6 +97,7 @@ items: MenuItem[] = [
                 icon: 'pi pi-link',
                 command: () => {
                     this.changecontentDialogVisibility();
+                    this.getFileLink();
                 }
             },
             {
@@ -127,9 +131,30 @@ onSelectImage(event: FileSelectEvent) {
 
 upload() {
   //send this selectedFile to endpoint
+  
+  switch (this.element().type){
+    case AssetType.Article:
+      this.assetService.addArticle(this.element().id, this.selectedFile!).subscribe();
+      break;
+    case AssetType.Video:
+      this.assetService.addVideo(this.element().id, this.selectedFile!).subscribe();
+      break;
+  }
 }
 
 cancel() {
   this.selectedFile = undefined;
 }
+
+fileLink = signal('');
+getFileLink(){
+  this.assetService.getAsset(this.element().id, this.element().type).subscribe((response) => {
+    this.fileLink.set(response.url);
+});
+
+setTimeout(() => {}, 3000)
+}
+
+
+
 }
