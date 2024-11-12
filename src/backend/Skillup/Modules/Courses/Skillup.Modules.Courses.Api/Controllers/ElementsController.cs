@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
 using Skillup.Modules.Courses.Core.Requests.Commands.Elements;
+using Skillup.Modules.Courses.Core.Requests.Queries;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Courses.Api.Controllers
@@ -22,15 +23,19 @@ namespace Skillup.Modules.Courses.Api.Controllers
             request.SectionId = sectionId;
             request.AssetType = assetType;
             await _mediator.Send(request);
-            return Ok(request);
+
+            var element = await _mediator.Send(new GetElementByIdRequest(request.ElementId));
+
+            return Ok(element);
         }
 
-        [HttpPut("{elementId}/Edit-Index")]
+        [HttpPut("{elementId}/{newIndex}")]
         [SwaggerOperation("Change element index")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> ChangeElementIndex(Guid elementId, EditElementIndexRequest request)
+        public async Task<IActionResult> ChangeElementIndex(Guid elementId, int newIndex)
         {
+            var request = new EditElementIndexRequest(newIndex);
             request.ElementId = elementId;
             var section = await _mediator.Send(request);
             return Ok(section);
