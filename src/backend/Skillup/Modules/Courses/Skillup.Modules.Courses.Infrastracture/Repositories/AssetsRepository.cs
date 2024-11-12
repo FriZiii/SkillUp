@@ -55,12 +55,14 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Asset?> Get(Guid id, AssetType type)
+        public async Task<Asset?> GetByElementId(Guid elementId)
         {
-            return type switch
+            var element = await _context.Elements.FirstOrDefaultAsync(x => x.Id == elementId) ?? throw new Exception(); // TODO: custome ex
+
+            return element.AssetType switch
             {
-                AssetType.Article => await _articles.FirstOrDefaultAsync(x => x.Id == id),
-                AssetType.Video => await _videos.FirstOrDefaultAsync(x => x.Id == id),
+                AssetType.Article => await _articles.FirstOrDefaultAsync(x => x.ElementId == element.Id),
+                AssetType.Video => await _videos.FirstOrDefaultAsync(x => x.ElementId == element.Id),
                 AssetType.Exercise => null,
                 _ => null,
             };

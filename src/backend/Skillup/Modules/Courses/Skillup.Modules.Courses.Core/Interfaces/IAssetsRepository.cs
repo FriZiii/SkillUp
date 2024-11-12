@@ -8,6 +8,6 @@ namespace Skillup.Modules.Courses.Core.Interfaces
         Task AddArticle(Article article);
         Task AddVideo(Video video);
         Task Delete(Guid id, AssetType type);
-        Task<Asset?> Get(Guid id, AssetType type);
+        Task<Asset?> GetByElementId(Guid elementId);
     }
 }

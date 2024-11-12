@@ -7,16 +7,19 @@ using Skillup.Shared.Abstractions.S3;
 
 namespace Skillup.Modules.Courses.Application.Features.Commands.Assets
 {
-    internal class DeleteAssetHandler(IAmazonS3Service amazonS3Service, IAssetsRepository assetsRepository) : IRequestHandler<DeleteAssetRequest>
+    internal class DeleteAssetHandler(IAmazonS3Service amazonS3Service, IAssetsRepository assetsRepository, IElementRepository elementRepository) : IRequestHandler<DeleteAssetRequest>
     {
         private readonly IAmazonS3Service _amazonS3Service = amazonS3Service;
         private readonly IAssetsRepository _assetsRepository = assetsRepository;
+        private readonly IElementRepository _elementRepository = elementRepository;
 
         public async Task Handle(DeleteAssetRequest request, CancellationToken cancellationToken)
         {
-            var asset = await _assetsRepository.Get(request.AssetId, request.AssetType) ?? throw new Exception();  // Asset with id no exist
+            var element = await _elementRepository.GetById(request.ElementId) ?? throw new Exception();  // Element with id no exist
 
-            switch (request.AssetType)
+            var asset = await _assetsRepository.GetByElementId(request.ElementId) ?? throw new Exception();  // Asset with id no exist
+
+            switch (element.AssetType)
             {
                 case AssetType.Article:
                     if (asset is Article article)
@@ -39,7 +42,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Assets
                     throw new Exception();  // Wrong asset type
             }
 
-            await _assetsRepository.Delete(request.AssetId, request.AssetType);
+            await _assetsRepository.Delete(asset.Id, element.AssetType);
         }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
 using Skillup.Modules.Courses.Core.Requests.Commands.Assets;
+using Skillup.Modules.Courses.Core.Requests.Queries;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Courses.Api.Controllers
@@ -33,14 +34,29 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok();
         }
 
-        [HttpDelete("{assetType}/{assetId}")]
-        [SwaggerOperation("Delete asset")]
+        [HttpDelete("{elementId}")]
+        [SwaggerOperation("Delete asset by elementId")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> DeleteAsset(Guid assetId, [FromRoute] AssetType assetType)
+        public async Task<IActionResult> DeleteAsset(Guid elementId)
         {
-            await _mediator.Send(new DeleteAssetRequest(assetId, assetType));
+            await _mediator.Send(new DeleteAssetRequest(elementId));
             return Ok();
+        }
+
+        [HttpGet("{assetType}/{elementId}")]
+        [SwaggerOperation("Get asset by elementId")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetAssetByElementId(Guid elementId, [FromRoute] AssetType assetType)
+        {
+            return assetType switch
+            {
+                AssetType.Article => Ok(await _mediator.Send(new GetArticleAssetRequest(elementId))),
+                AssetType.Video => Ok(await _mediator.Send(new GetVideoAssetRequest(elementId))),
+                AssetType.Exercise => NotFound(),
+                _ => BadRequest(),
+            };
         }
     }
 }
