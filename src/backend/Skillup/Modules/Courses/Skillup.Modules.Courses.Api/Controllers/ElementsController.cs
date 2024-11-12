@@ -35,9 +35,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> ChangeElementIndex(Guid elementId, int newIndex)
         {
-            var request = new EditElementIndexRequest(newIndex);
-            request.ElementId = elementId;
-            var section = await _mediator.Send(request);
+            var section = await _mediator.Send(new EditElementIndexRequest(elementId, newIndex));
             return Ok(section);
         }
 
