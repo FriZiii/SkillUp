@@ -13,7 +13,7 @@ namespace Skillup.Modules.Mails.Api.Controllers
         private readonly IMediator _mediator = mediator;
 
         [HttpGet("{userId}")]
-        [SwaggerOperation("Get mailUser by id")]
+        [SwaggerOperation("Get mail information by user id")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetUserById(Guid userId)
@@ -22,7 +22,7 @@ namespace Skillup.Modules.Mails.Api.Controllers
         }
 
         [HttpPut("{userId}")]
-        [SwaggerOperation("Edit mailUser")]
+        [SwaggerOperation("Edit mail information by user id")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> EditUser(Guid userId, EditUserRequest request)

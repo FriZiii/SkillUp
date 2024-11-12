@@ -29,6 +29,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         public async Task<List<Element>> GetElementsBySectionId(Guid sectionId)
         {
             var elements = await _elements
+                .Include(e => e.Asset)
                 .Where(e => e.SectionId == sectionId)
                 .OrderBy(x => x.Index)
                 .ToListAsync();

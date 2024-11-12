@@ -37,14 +37,13 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(sections);
         }
 
-        [HttpPut("{sectionId}/Edit-Index")]
+        [HttpPut("{sectionId}/{newIndex}")]
         [SwaggerOperation("Change section index")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> ChangeSectionIndex(Guid sectionId, EditSectionIndexRequest request)
+        public async Task<IActionResult> ChangeSectionIndex(Guid sectionId, int newIndex)
         {
-            request.SectionId = sectionId;
-            var sections = await _mediator.Send(request);
+            var sections = await _mediator.Send(new EditSectionIndexRequest(sectionId, newIndex));
             return Ok(sections);
         }
 

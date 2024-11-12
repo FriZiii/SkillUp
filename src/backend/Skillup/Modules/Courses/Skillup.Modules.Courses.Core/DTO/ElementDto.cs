@@ -10,5 +10,6 @@ namespace Skillup.Modules.Courses.Core.DTO
         public AssetType Type { get; set; }
         public int Index { get; set; }
         public bool IsFree { get; set; }
+        public bool HasAsset { get; set; }
     }
 }
