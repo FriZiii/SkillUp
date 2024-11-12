@@ -6,3 +6,11 @@
 .element-item:hover .button-container{
     opacity: 1;
 }
+
+:host ::ng-deep .p-fileupload-basic {
+  display: block !important;
+}
+
+:host ::ng-deep .filelabel {
+  display: none !important;
+}

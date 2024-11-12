@@ -21,15 +21,17 @@
     </div>
     }
 
+    <!-- Button Container -->
     <div
       class="flex justify-end w-full gap-2 px-2 button-container"
       [ngClass]="{ hidden: editing }"
     >
+      <p-menu #menu [model]="items" [popup]="true" />
       <p-button
-        icon="pi pi-file-edit"
+        (click)="menu.toggle($event)"
+        icon="pi pi-ellipsis-h"
         severity="secondary"
-        (onClick)="changeEditVisibility()"
-      ></p-button>
+      />
       <p-button
         icon="pi pi-trash"
         severity="danger"
@@ -50,4 +52,55 @@
     </div>
   </div>
 </div>
-<ng-content />
+
+<p-dialog
+  header="Element's Content"
+  [modal]="true"
+  [(visible)]="contentDialogVisible"
+  [style]="{ width: '25rem' }"
+>
+  @if(this.element().hasAsset === false) {
+  <div class="prose">
+    <h2>You haven't added content to this element yet!</h2>
+  </div>
+  <div class="grid grid-cols-2">
+    <p-button
+      (onClick)="upload()"
+      [disabled]="!selectedFile"
+      [style]="{ width: '100%', borderRadius: '0.5rem 0  0 0.5rem' }"
+      label="Upload"
+    ></p-button>
+
+    @if(selectedFile){
+    <p-button
+      (onClick)="cancel()"
+      severity="secondary"
+      [style]="{ width: '100%', borderRadius: '0 0.5rem 0.5rem 0' }"
+      label="Cancel"
+    ></p-button>
+    } @else {
+    <p-fileupload
+      #fu
+      mode="basic"
+      [style]="{ width: '100%', borderRadius: '0 0.5rem 0.5rem 0' }"
+      chooseLabel="Choose"
+      chooseIcon="pi pi-upload"
+      (onSelect)="onSelectImage($event)"
+    />
+    <!-- accept="image/*" -->
+    }
+  </div>
+  } @else{
+  <div class="prose"><h2>Twój Asset</h2></div>
+
+  }
+
+  <div class="flex justify-end gap-2">
+    <p-button
+      label="Cancel"
+      severity="secondary"
+      (click)="contentDialogVisible = false"
+    />
+    <p-button label="Save" (click)="contentDialogVisible = false" />
+  </div>
+</p-dialog>

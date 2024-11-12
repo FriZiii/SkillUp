@@ -7,14 +7,18 @@ import { InputTextModule } from 'primeng/inputtext';
 import { NgClass } from '@angular/common';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FloatLabelModule } from 'primeng/floatlabel';
-import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, DragDropModule} from '@angular/cdk/drag-drop';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import { CourseContentService } from '../../../../services/course-content-service';
 import { ConfirmationDialogHandlerService } from '../../../../../core/services/confirmation-handler.service';
+import { MenuModule } from 'primeng/menu';
+import { MenuItem } from 'primeng/api';
+import { DialogModule } from 'primeng/dialog';
+import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
 
 @Component({
   selector: 'app-element-item',
   standalone: true,
-  imports: [CardModule, ButtonModule, FormsModule, InputTextModule, NgClass, InputTextareaModule, FloatLabelModule, DragDropModule],
+  imports: [CardModule, ButtonModule, FormsModule, InputTextModule, NgClass, InputTextareaModule, FloatLabelModule, DragDropModule, MenuModule, DialogModule, FileUploadModule],
   templateUrl: './element-item.component.html',
   styleUrl: './element-item.component.css'
 })
@@ -67,4 +71,65 @@ export class ElementItemComponent implements OnInit {
       this.courseContentService.deleteElement(this.section().id, this.element().id).subscribe();
     })
   }
+
+
+  //MiniMenu
+  contentDialogVisible = false;
+
+  changecontentDialogVisibility(){
+    if(this.contentDialogVisible){
+      this.contentDialogVisible=false;
+    }
+    else {
+      this.contentDialogVisible=true;
+    }
+  }
+
+items: MenuItem[] = [
+    {
+        label: 'Options',
+        items: [
+            {
+                label: 'Content',
+                icon: 'pi pi-link',
+                command: () => {
+                    this.changecontentDialogVisibility();
+                }
+            },
+            {
+                label: 'Attachment',
+                icon: 'pi pi-paperclip'
+            },
+            {
+                label: 'Edit',
+                icon: 'pi pi-file-edit',
+                command: () => {
+                    this.changeEditVisibility();
+                }
+            },
+            {
+                label: 'Delete',
+                icon: 'pi pi-trash',
+                command: () => {
+                    //this.removeElement();
+                }
+            }
+        ]
+    }
+]; 
+  
+
+//Files
+selectedFile: File | undefined;
+onSelectImage(event: FileSelectEvent) {
+  this.selectedFile = event.currentFiles[0];
+}
+
+upload() {
+  //send this selectedFile to endpoint
+}
+
+cancel() {
+  this.selectedFile = undefined;
+}
 }
