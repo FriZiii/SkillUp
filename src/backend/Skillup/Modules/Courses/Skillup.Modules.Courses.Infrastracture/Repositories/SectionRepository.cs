@@ -24,7 +24,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         public async Task<Section> GetById(Guid sectionId)
         {
             var section = await _sections
-                .Include(s => s.Elements)
+                .Include(s => s.Elements).ThenInclude(e => e.Asset)
                 .FirstOrDefaultAsync(s => s.Id == sectionId) ?? throw new Exception();  //TODO: Custom exception for null check in repo
             return section;
         }
@@ -32,7 +32,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         public async Task<List<Section>> GetSectionsByCourseId(Guid courseId)
         {
             var sections = await _sections
-                .Include(s => s.Elements)
+                .Include(s => s.Elements).ThenInclude(e => e.Asset)
                 .Where(s => s.CourseId == courseId)
                 .OrderBy(x => x.Index)
                 .ToListAsync();

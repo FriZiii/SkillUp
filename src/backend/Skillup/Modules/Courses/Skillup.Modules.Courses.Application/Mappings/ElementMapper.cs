@@ -17,7 +17,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
                 Type = element.AssetType,
                 Index = element.Index,
                 IsFree = element.IsFree,
-                //Asset
+                HasAsset = element.Asset != null ? true : false,
             };
             return elementeDto;
         }
