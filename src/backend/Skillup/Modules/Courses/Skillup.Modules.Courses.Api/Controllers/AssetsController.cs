@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
 using Skillup.Modules.Courses.Core.Requests.Commands.Assets;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -32,13 +33,13 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok();
         }
 
-        [HttpDelete("{assetId}")]
+        [HttpDelete("{assetType}/{assetId}")]
         [SwaggerOperation("Delete asset")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> DeleteAsset(Guid assetId)
+        public async Task<IActionResult> DeleteAsset(Guid assetId, [FromRoute] AssetType assetType)
         {
-            await _mediator.Send(new DeleteAssetRequest(assetId));
+            await _mediator.Send(new DeleteAssetRequest(assetId, assetType));
             return Ok();
         }
     }
