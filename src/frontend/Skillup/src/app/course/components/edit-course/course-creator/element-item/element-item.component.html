@@ -59,65 +59,10 @@
   [(visible)]="contentDialogVisible"
   [style]="{ width: '70rem' }"
 >
-  @if(this.element().hasAsset === false) {
-  <div class="prose">
-    <h2>You haven't added content to this element yet!</h2>
-  </div>
-  <div class="grid grid-cols-2">
-    <p-button
-      (onClick)="upload()"
-      [disabled]="!selectedFile"
-      [style]="{ width: '100%', borderRadius: '0.5rem 0  0 0.5rem' }"
-      label="Upload"
-    ></p-button>
-
-    @if(selectedFile){
-    <p-button
-      (onClick)="cancel()"
-      severity="secondary"
-      [style]="{ width: '100%', borderRadius: '0 0.5rem 0.5rem 0' }"
-      label="Cancel"
-    ></p-button>
-    } @else {
-    <p-fileupload
-      #fu
-      mode="basic"
-      [style]="{ width: '100%', borderRadius: '0 0.5rem 0.5rem 0' }"
-      chooseLabel="Choose"
-      chooseIcon="pi pi-upload"
-      (onSelect)="onSelectImage($event)"
-    />
-    <!-- accept="image/*" -->
-    }
-  </div>
-  } @else{
-  <div class="prose"><h2>Twój Asset</h2></div>
-  @if(this.element().type === AssetType.Video ){ @if(fileLink()){
-  <video width="320" height="240" controls>
-    <source [src]="fileLink()" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-  } } @if(this.element().type === AssetType.Article ){ @if(fileLink()){
-  <!--  <ngx-extended-pdf-viewer
-    src="https://www.orimi.com/pdf-test.pdf"
-    [textLayer]="true"
-    [height]="'1000px'"
-    [textLayer]="true"
-    [showHandToolButton]="true"
-    [filenameForDownload]="'Public Domain.pdf'"
-  >
-    optional - define the filename if the user downloads the PDF
-  </ngx-extended-pdf-viewer> -->
-
-  <object data="fileLink()" type="application/pdf" width="100%" height="100%">
-    <p>
-      Your browser does not support PDFs.
-      <a href="https://example.com/test.pdf">Download the PDF</a>
-      .
-    </p>
-  </object>
-  } } }
-
+  <app-element-content-dialog
+    [element]="element()"
+    [fileLink]="fileLink()"
+  ></app-element-content-dialog>
   <div class="flex justify-end gap-2">
     <p-button
       label="Cancel"

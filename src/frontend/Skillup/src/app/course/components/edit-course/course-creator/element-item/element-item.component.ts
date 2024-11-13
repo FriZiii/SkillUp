@@ -15,14 +15,12 @@ import { MenuItem } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
 import { AssetService } from '../../../../services/asset.service';
-
-//import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
-import { BrowserModule } from '@angular/platform-browser';
+import { ElementContentDialogComponent } from "./element-content-dialog/element-content-dialog.component";
 
 @Component({
   selector: 'app-element-item',
   standalone: true,
-  imports: [CardModule, ButtonModule, FormsModule, InputTextModule, NgClass, InputTextareaModule, FloatLabelModule, DragDropModule, MenuModule, DialogModule, FileUploadModule],
+  imports: [CardModule, ButtonModule, FormsModule, InputTextModule, NgClass, InputTextareaModule, FloatLabelModule, DragDropModule, MenuModule, DialogModule, ElementContentDialogComponent],
   templateUrl: './element-item.component.html',
   styleUrl: './element-item.component.css'
 })
@@ -99,9 +97,11 @@ items: MenuItem[] = [
                 label: 'Content',
                 icon: 'pi pi-link',
                 command: () => {
+                  console.log(this.element());
                     this.changecontentDialogVisibility();
                     if(this.element().hasAsset === true){
                       this.getFileLink();
+                      console.log(this.fileLink());
                     }
                 }
             },
@@ -126,30 +126,6 @@ items: MenuItem[] = [
         ]
     }
 ]; 
-  
-
-//Files
-selectedFile: File | undefined;
-onSelectImage(event: FileSelectEvent) {
-  this.selectedFile = event.currentFiles[0];
-}
-
-upload() {
-  //send this selectedFile to endpoint
-  
-  switch (this.element().type){
-    case AssetType.Article:
-      this.assetService.addArticle(this.element().id, this.selectedFile!).subscribe();
-      break;
-    case AssetType.Video:
-      this.assetService.addVideo(this.element().id, this.selectedFile!).subscribe();
-      break;
-  }
-}
-
-cancel() {
-  this.selectedFile = undefined;
-}
 
 fileLink = signal('');
 getFileLink(){
@@ -158,7 +134,4 @@ getFileLink(){
 });
 
 }
-
-
-
 }
