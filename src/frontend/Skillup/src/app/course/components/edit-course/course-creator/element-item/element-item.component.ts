@@ -25,12 +25,12 @@ import { ElementContentDialogComponent } from "./element-content-dialog/element-
   styleUrl: './element-item.component.css'
 })
 export class ElementItemComponent implements OnInit {
+  //Variable
   section = input.required<Section>();
   element = input.required<Element>();
-  editing = false;
   elementTitle = signal('');
   elementDescription = signal('');
-  onEditChange = output<boolean>();
+  isDraggable = output<boolean>();
   AssetType = AssetType;
 
   //Services
@@ -43,6 +43,7 @@ export class ElementItemComponent implements OnInit {
     this.elementDescription.set(this.element().description);
   }
 
+  //Element Icon
   definedIcon(type: AssetType) : string{
     switch (type){
       case AssetType.Article:
@@ -54,22 +55,24 @@ export class ElementItemComponent implements OnInit {
     }
   }
 
+  //Edit
+  editing = false;
   changeEditVisibility(){
     if(this.editing){
       this.editing=false;
-      this.onEditChange.emit(false);
+      this.isDraggable.emit(false);
     }
     else {
       this.editing=true;
-      this.onEditChange.emit(true);
+      this.isDraggable.emit(true);
     }
   }
 
+  //Element actions
   saveElement(){
     this.courseContentService.updateElement(this.section().id, this.element().id, this.elementTitle(), this.elementDescription()).subscribe();
     this.changeEditVisibility();
   }
-
   removeElement(event: Event){
     this.confirmDialogService.confirmDelete(event, () => {
       this.courseContentService.deleteElement(this.section().id, this.element().id).subscribe();
@@ -77,19 +80,21 @@ export class ElementItemComponent implements OnInit {
   }
 
 
-  //MiniMenu
+  //Dialog
   contentDialogVisible = false;
-
   changecontentDialogVisibility(){
     if(this.contentDialogVisible){
       this.contentDialogVisible=false;
+      this.isDraggable.emit(false);
     }
     else {
       this.contentDialogVisible=true;
+      this.isDraggable.emit(true);
     }
   }
 
-items: MenuItem[] = [
+  //MiniMenu
+  items: MenuItem[] = [
     {
         label: 'Options',
         items: [
