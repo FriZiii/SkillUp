@@ -89,7 +89,7 @@ export class CourseContentService {
 
     updateSectionIndex(sectionId: string, newIndex: number){
       return this.httpClient
-        .put<Section[]>(environment.apiUrl + '/Courses/Sections/' + sectionId + '/Edit-Index', {index: newIndex})
+        .put<Section[]>(environment.apiUrl + '/Courses/Sections/' + sectionId + '/' + newIndex, {})
         .pipe(
           tap((response: Section[]) => {
             this.sections.set(response);
@@ -183,7 +183,7 @@ export class CourseContentService {
 
     updateElementIndex(sectionId: string, elementId: string, newIndex: number){
       return this.httpClient
-        .put<Section>(environment.apiUrl + '/Courses/Elements/' + elementId + '/Edit-Index', {index: newIndex})
+        .put<Section>(environment.apiUrl + '/Courses/Elements/' + elementId + '/' + newIndex, {})
         .pipe(
           tap((response: Section) => {
             this.sections.update((prevSections) =>
