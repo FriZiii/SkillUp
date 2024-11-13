@@ -16,6 +16,9 @@ import { DialogModule } from 'primeng/dialog';
 import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
 import { AssetService } from '../../../../services/asset.service';
 
+//import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { BrowserModule } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-element-item',
   standalone: true,
@@ -97,7 +100,9 @@ items: MenuItem[] = [
                 icon: 'pi pi-link',
                 command: () => {
                     this.changecontentDialogVisibility();
-                    this.getFileLink();
+                    if(this.element().hasAsset === true){
+                      this.getFileLink();
+                    }
                 }
             },
             {
@@ -152,7 +157,6 @@ getFileLink(){
     this.fileLink.set(response.url);
 });
 
-setTimeout(() => {}, 3000)
 }
 
 

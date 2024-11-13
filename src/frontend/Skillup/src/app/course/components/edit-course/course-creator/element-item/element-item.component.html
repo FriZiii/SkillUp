@@ -57,7 +57,7 @@
   header="Element's Content"
   [modal]="true"
   [(visible)]="contentDialogVisible"
-  [style]="{ width: '25rem' }"
+  [style]="{ width: '70rem' }"
 >
   @if(this.element().hasAsset === false) {
   <div class="prose">
@@ -97,6 +97,25 @@
     <source [src]="fileLink()" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
+  } } @if(this.element().type === AssetType.Article ){ @if(fileLink()){
+  <!--  <ngx-extended-pdf-viewer
+    src="https://www.orimi.com/pdf-test.pdf"
+    [textLayer]="true"
+    [height]="'1000px'"
+    [textLayer]="true"
+    [showHandToolButton]="true"
+    [filenameForDownload]="'Public Domain.pdf'"
+  >
+    optional - define the filename if the user downloads the PDF
+  </ngx-extended-pdf-viewer> -->
+
+  <object data="fileLink()" type="application/pdf" width="100%" height="100%">
+    <p>
+      Your browser does not support PDFs.
+      <a href="https://example.com/test.pdf">Download the PDF</a>
+      .
+    </p>
+  </object>
   } } }
 
   <div class="flex justify-end gap-2">
