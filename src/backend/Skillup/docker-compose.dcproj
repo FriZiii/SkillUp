@@ -15,6 +15,7 @@
     <None Include=".env.example" />
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="localstack\cors-config.json" />
     <None Include="LocalStack\init.sh" />
     <None Include="Nginx\nginx.development.conf" />
     <None Include="Nginx\nginx.production.conf" />
