@@ -27,7 +27,6 @@ namespace Skillup.Shared.Infrastructure.S3
                 InputStream = file.OpenReadStream(),
                 Metadata =
                 {
-                    ["x-amz-meta-orginalname"] = file.FileName,
                     ["x-amz-meta-extension"] = Path.GetExtension(file.FileName)
                 }
             };
