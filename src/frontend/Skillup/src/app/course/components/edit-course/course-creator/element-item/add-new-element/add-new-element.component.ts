@@ -10,11 +10,12 @@ import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { CourseContentService } from '../../../../../services/course-content-service';
 import { AssetType } from '../../../../../models/course-content.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-new-element',
   standalone: true,
-  imports: [StepperModule, ButtonModule, SelectButtonModule, FormsModule, CardModule, InputTextModule, InputTextareaModule, FloatLabelModule  ],
+  imports: [CommonModule, StepperModule, ButtonModule, SelectButtonModule, FormsModule, CardModule, InputTextModule, InputTextareaModule, FloatLabelModule  ],
   templateUrl: './add-new-element.component.html',
   styleUrl: './add-new-element.component.css'
 })
