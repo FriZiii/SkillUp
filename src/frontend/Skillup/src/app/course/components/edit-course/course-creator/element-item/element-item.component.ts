@@ -104,10 +104,6 @@ export class ElementItemComponent implements OnInit {
                 command: () => {
                   console.log(this.element());
                     this.changecontentDialogVisibility();
-                    if(this.element().hasAsset === true){
-                      this.getFileLink();
-                      console.log(this.fileLink());
-                    }
                 }
             },
             {
@@ -131,12 +127,4 @@ export class ElementItemComponent implements OnInit {
         ]
     }
 ]; 
-
-fileLink = signal('');
-getFileLink(){
-  this.assetService.getAsset(this.element().id, this.element().type).subscribe((response) => {
-    this.fileLink.set(response.url);
-});
-
-}
 }

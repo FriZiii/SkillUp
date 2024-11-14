@@ -59,10 +59,11 @@
   [(visible)]="contentDialogVisible"
   [style]="{ width: '80%' }"
   [draggable]="false"
+  class="cursor-default"
 >
   <app-element-content-dialog
     [element]="element()"
-    [fileLink]="fileLink()"
+    [visible]="contentDialogVisible"
   ></app-element-content-dialog>
   <div class="flex justify-end gap-2">
     <p-button
