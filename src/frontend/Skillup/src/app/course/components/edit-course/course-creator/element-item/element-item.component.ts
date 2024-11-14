@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, output, signal } from '@angular/core';
+import { Component, computed, inject, input, OnInit, output, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { Element, Section, AssetType } from '../../../../models/course-content.model';
 import { ButtonModule } from 'primeng/button';
@@ -11,7 +11,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { CourseContentService } from '../../../../services/course-content-service';
 import { ConfirmationDialogHandlerService } from '../../../../../core/services/confirmation-handler.service';
 import { MenuModule } from 'primeng/menu';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MenuItemCommandEvent } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
 import { AssetService } from '../../../../services/asset.service';
@@ -32,6 +32,9 @@ export class ElementItemComponent implements OnInit {
   elementDescription = signal('');
   isDraggable = output<boolean>();
   AssetType = AssetType;
+  contentIcon = signal('');
+    //MiniMenu
+    items: MenuItem[] = [];
 
   //Services
   courseContentService = inject(CourseContentService);
@@ -41,6 +44,52 @@ export class ElementItemComponent implements OnInit {
   ngOnInit(): void {
     this.elementTitle.set(this.element().title);
     this.elementDescription.set(this.element().description);
+
+    if(this.element().hasAsset){
+      this.contentIcon.set('pi pi-link');
+      console.log(this.contentIcon())
+    }
+    else {
+      this.contentIcon.set('pi pi-exclamation-triangle');
+      console.log(this.contentIcon())
+    }
+
+    this.items = [
+      {
+          label: 'Options',
+          items: [
+              {
+                  label: 'Content',
+                  icon: this.contentIcon(),
+                  command: () => {
+                    console.log(this.element());
+                      this.changecontentDialogVisibility();
+                  }
+              },
+              {
+                  label: 'Attachment',
+                  icon: 'pi pi-paperclip'
+              },
+              {
+                  label: 'Edit',
+                  icon: 'pi pi-file-edit',
+                  command: () => {
+                      this.changeEditVisibility();
+                  }
+              },
+              {
+                  separator: true
+              },
+              {
+                  label: 'Delete',
+                  icon: 'pi pi-trash',
+                  command: (event: MenuItemCommandEvent) => {
+                      this.removeElement(event.originalEvent!);
+                  }
+              }
+          ]
+      }
+  ]; 
   }
 
   //Element Icon
@@ -94,37 +143,7 @@ export class ElementItemComponent implements OnInit {
   }
 
   //MiniMenu
-  items: MenuItem[] = [
-    {
-        label: 'Options',
-        items: [
-            {
-                label: 'Content',
-                icon: 'pi pi-link',
-                command: () => {
-                  console.log(this.element());
-                    this.changecontentDialogVisibility();
-                }
-            },
-            {
-                label: 'Attachment',
-                icon: 'pi pi-paperclip'
-            },
-            {
-                label: 'Edit',
-                icon: 'pi pi-file-edit',
-                command: () => {
-                    this.changeEditVisibility();
-                }
-            },
-            {
-                label: 'Delete',
-                icon: 'pi pi-trash',
-                command: () => {
-                    //this.removeElement();
-                }
-            }
-        ]
-    }
-]; 
+  
+
+
 }
