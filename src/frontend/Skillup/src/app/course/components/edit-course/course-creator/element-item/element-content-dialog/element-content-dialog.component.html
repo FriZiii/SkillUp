@@ -1,20 +1,24 @@
-<div class="h-full">
+<div class="h-full mb-4">
   <!-- Choose Asset -->
   @if(this.element().hasAsset === false) {
-  <div class="flex flex-col">
-    <div class="flex flex-col items-center">
-      <i class="pi pi-exclamation-triangle" style="font-size: 7rem"></i>
-      <div class="prose">
-        <h2>You haven't added content to this element yet!</h2>
-      </div>
+  <div class="flex flex-col items-center">
+    <i class="pi pi-exclamation-triangle" style="font-size: 7rem"></i>
+    <div class="prose mb-10 mt-4">
+      <h2 class="mb-1">You haven't added content to this element yet!</h2>
+      @if(this.element().type === AssetType.Article){
+      <h2 class="text-center">Choose your article</h2>
+      } @else if (this.element().type === AssetType.Video) {
+      <h2 class="text-center">Choose your wideo</h2>
+      }
     </div>
 
-    <div class="grid grid-cols-2">
+    <div class="grid grid-cols-2 w-9/12">
       <p-button
         (onClick)="upload()"
         [disabled]="!selectedFile"
         [style]="{ width: '100%', borderRadius: '0.5rem 0  0 0.5rem' }"
         label="Upload"
+        class="mr-2"
       ></p-button>
 
       <!-- Upload File -->
@@ -24,6 +28,7 @@
         severity="secondary"
         [style]="{ width: '100%', borderRadius: '0 0.5rem 0.5rem 0' }"
         label="Cancel"
+        class="ml-2"
       ></p-button>
       } @else {
       <p-fileupload
@@ -33,6 +38,8 @@
         chooseLabel="Choose"
         chooseIcon="pi pi-upload"
         (onSelect)="onSelectImage($event)"
+        [accept]="getAccept()"
+        class="ml-2"
       />
       <!-- accept="image/*" -->
       }

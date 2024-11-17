@@ -35,6 +35,15 @@ export class ElementContentDialogComponent implements OnChanges {
     }
   }
 
+  //Accepted File
+  getAccept(){
+    if(this.element().type === AssetType.Article){
+      return '.pdf'
+    }
+    else{
+      return '.mp4'
+    }
+  }
   //Files
   selectedFile: File | undefined;
   onSelectImage(event: FileSelectEvent) {
