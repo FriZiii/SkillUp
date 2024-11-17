@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element;
 using Skillup.Modules.Courses.Infrastracture.Seeders.Data.JsonModels;
 using System.Text.Json;
 

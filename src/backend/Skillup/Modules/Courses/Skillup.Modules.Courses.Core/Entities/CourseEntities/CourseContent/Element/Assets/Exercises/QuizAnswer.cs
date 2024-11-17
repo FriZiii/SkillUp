@@ -1,4 +1,4 @@
-﻿namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Exercises
+﻿namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element.Assets.Exercises
 {
     public class QuizAnswer
     {

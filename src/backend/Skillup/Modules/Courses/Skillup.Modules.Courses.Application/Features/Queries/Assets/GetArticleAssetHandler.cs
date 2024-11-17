@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Skillup.Modules.Courses.Core.DTO.Assets;
-using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element.Assets;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Requests.Queries;
 using Skillup.Shared.Abstractions.S3;

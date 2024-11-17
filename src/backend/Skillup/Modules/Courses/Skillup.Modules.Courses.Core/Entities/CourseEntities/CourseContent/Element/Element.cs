@@ -1,6 +1,6 @@
-﻿using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets;
+﻿using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element.Assets;
 
-namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent
+namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element
 {
     public class Element
     {

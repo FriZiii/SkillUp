@@ -1,6 +1,6 @@
 ﻿using Riok.Mapperly.Abstractions;
 using Skillup.Modules.Courses.Core.DTO;
-using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element;
 
 namespace Skillup.Modules.Courses.Application.Mappings
 {
