@@ -1,0 +1,23 @@
+.su-list-item .list-item-icon {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.su-list-item:hover .list-item-icon {
+  opacity: 1;
+}
+.su-list-item .list-item-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.su-list-item .list-item-icon:hover {
+  background: #cdcdcd;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+}

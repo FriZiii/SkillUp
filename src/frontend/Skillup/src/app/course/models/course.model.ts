@@ -1,4 +1,5 @@
 import { Section } from "./course-content.model";
+import { CourseLevel } from "./course-level.model";
 
 export interface AddCourse{
     title: string;
@@ -60,7 +61,7 @@ export interface CourseDetail{
     thumbnailUrl: string;
     subtitle: string;
     description: string;
-    level: number;
+    level: CourseLevel;
     objectivesSummary: string[];
     intendedFor: string[];
     mustKnowBefore: string[];

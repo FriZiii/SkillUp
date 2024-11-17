@@ -12,6 +12,7 @@
       }
     </div>
 
+    <!-- Upload File -->
     <div class="grid grid-cols-2 w-9/12">
       <p-button
         (onClick)="upload()"
@@ -22,7 +23,6 @@
         [loading]="loadingUpload"
       ></p-button>
 
-      <!-- Upload File -->
       @if(selectedFile){
       <p-button
         (onClick)="cancel()"

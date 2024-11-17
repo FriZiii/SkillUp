@@ -1,0 +1,23 @@
+<div class="flex gap-1 w-full mt-8">
+  <p-floatlabel class="w-full">
+    <input pInputText id="newItem" class="w-full" [(ngModel)]="newItem" />
+    <label for="newItem">{{ this.inputPlaceHolder() }}</label>
+  </p-floatlabel>
+  <p-button (click)="addItem(this.newItem())">Add</p-button>
+</div>
+<div class="su-border mt-2">
+  @for (item of items(); track item){
+  <div class="grid grid-cols-2 my-1 su-list-item px-2">
+    <div class="prose">
+      <p>{{ item }}</p>
+    </div>
+
+    <div
+      class="justify-self-end mr-4 list-item-icon"
+      (click)="removeItem(item)"
+    >
+      <i class="pi pi-trash" style="font-size: 1rem"></i>
+    </div>
+  </div>
+  }
+</div>

@@ -1,57 +1,146 @@
 <div class="mt-8">
-  <form [formGroup]="courseDetailForm" (ngSubmit)="submitForm()">
-    <div class="flex flex-col prose">
-      <label for="title">Title</label>
-      <input pInputText id="title" class="w-full" formControlName="title" />
-    </div>
+  <div class="grid grid-cols-2 gap-4">
+    <div
+      class="col-start-1 col-span-1 flex flex-col items-center h-full justify-end gap-2"
+    >
+      <img [src]="this.course()?.thumbnailUrl" style="max-height: 300px" />
+      <!-- Upload File -->
+      <div class="grid grid-cols-2 w-full">
+        <p-button
+          (onClick)="upload()"
+          [disabled]="!selectedFile"
+          [style]="{ width: '100%', borderRadius: '0.5rem 0  0 0.5rem' }"
+          label="Upload"
+        ></p-button>
 
-    <div class="flex flex-col prose">
-      <label for="description">Description</label>
-      <textarea
-        id="description"
-        class="custom-textarea w-full"
-        rows="4"
-        formControlName="description"
-      ></textarea>
+        @if(selectedFile){
+        <p-button
+          (onClick)="cancel()"
+          severity="secondary"
+          [style]="{ width: '100%', borderRadius: '0 0.5rem 0.5rem 0' }"
+          label="Cancel"
+        ></p-button>
+        } @else {
+        <p-fileupload
+          #fu
+          mode="basic"
+          [style]="{ width: '100%', borderRadius: '0 0.5rem 0.5rem 0' }"
+          chooseLabel="Choose"
+          chooseIcon="pi pi-upload"
+          (onSelect)="onSelectImage($event)"
+          accept="image/*"
+        />
+        }
+      </div>
     </div>
-
-    <div class="flex flex-col prose">
-      <label>Level</label>
-      <p-select
-        [options]="levels"
-        optionLabel="name"
-        placeholder="Select a level"
-        class="w-full"
-        formControlName="courelevel"
-      />
+    <div class="col-start-2 col-span-2">
+      <div class="flex flex-col prose">
+        <label>Title</label>
+        <input pInputText class="w-full" [(ngModel)]="title" />
+      </div>
+      <div class="flex flex-col prose">
+        <label>Subtitle</label>
+        <input pInputText class="w-full" [(ngModel)]="subtitle" />
+      </div>
+      <div class="flex flex-col prose">
+        <label>Description</label>
+        <textarea
+          class="custom-textarea w-full"
+          rows="6"
+          [(ngModel)]="description"
+        ></textarea>
+      </div>
     </div>
-
+  </div>
+  <div class="grid grid-cols-2 mt-10 gap-4">
     <div>
-      <label for="description">Objectives</label>
-      <div formArrayName="objectivesSummary">
-        <div
-          *ngFor="let control of objectivesSummaryArray.controls; let i = index"
-          class="flex"
-        >
-          <input pInputText class="w-full" [formControlName]="i" />
+      <div class="prose">
+        <h2 class="my-1">Course Category</h2>
+      </div>
+      <div class="grid grid-cols-2 gap-2">
+        <p-select
+          [options]="categoryNames()"
+          optionLabel="name"
+          optionValue="id"
+          placeholder="Category"
+          class="w-full"
+          [(ngModel)]="selectedCategory"
+        />
+        <p-select
+          [options]="subcategoryNames()"
+          optionLabel="name"
+          optionValue="id"
+          placeholder="Subcategory"
+          class="w-full"
+          [(ngModel)]="selectedSubcategory"
+        />
+      </div>
+    </div>
+    <div>
+      <div class="prose">
+        <h2 class="my-1">Basic information</h2>
+      </div>
+      <div class="grid grid-cols-2 gap-2">
+        <p-select
+          [options]="categoryNames()"
+          optionLabel="name"
+          optionValue="id"
+          placeholder="Category"
+          class="w-full"
+          [(ngModel)]="selectedCategory"
+        />
+        <p-select
+          [options]="levels"
+          optionLabel="name"
+          optionValue="value"
+          placeholder="Select a level"
+          class="w-full"
+          [(ngModel)]="selectedLevel"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="mt-10">
+    <div class="prose">
+      <h2 class="my-2">Learning Objectives</h2>
+      <p>List of thing that student will learn throughout the course.</p>
+    </div>
+    <app-properties-list
+      [items]="this.objectivesList()"
+      inputPlaceHolder="Learning Objective"
+      (itemAdded)="addItem(this.objectivesList, $event)"
+      (itemRemoved)="removeFrom(this.objectivesList, $event)"
+    ></app-properties-list>
+  </div>
 
-          <p-button
-            (click)="removeObjective(i)"
-            severity="danger"
-            icon="pi pi-trash"
-          />
-        </div>
+  <div class="mt-10 grid grid-cols-2 gap-4">
+    <div class="col-start-1 col-span-1">
+      <div class="prose">
+        <h2 class="my-2">Must know Before</h2>
+        <p>
+          List of things student should already know before starting the course.
+        </p>
+      </div>
+      <app-properties-list
+        [items]="this.mustKnowBefore()"
+        inputPlaceHolder="Must know before"
+        (itemAdded)="addItem(this.mustKnowBefore, $event)"
+        (itemRemoved)="removeFrom(this.mustKnowBefore, $event)"
+      ></app-properties-list>
+    </div>
+    <div class="col-start-2 col-span-1">
+      <div class="prose">
+        <h2 class="my-2">Intended for</h2>
+        <p>For whom is this course intended for</p>
       </div>
 
-      <input
-        pInputText
-        class="w-full"
-        placeholder="New Objective"
-        [(ngModel)]="newObjective"
-      />
-      <p-button (click)="addObjective()" label="Add Objective" />
+      <app-properties-list
+        [items]="this.intendedFor()"
+        inputPlaceHolder="Intended for"
+        (itemAdded)="addItem(this.intendedFor, $event)"
+        (itemRemoved)="removeFrom(this.intendedFor, $event)"
+      ></app-properties-list>
     </div>
-
-    <p-button type="submit" label="Save" />
-  </form>
+  </div>
+  <p-button label="Save" (click)="onSubmit()" />
 </div>
