@@ -29,6 +29,9 @@
 		<Content Include="Seeders\Data\Images\default-profile-picture.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Seeders\Data\Images\default-tumbnail-picture.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Seeders\Data\question-seeder-data.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>

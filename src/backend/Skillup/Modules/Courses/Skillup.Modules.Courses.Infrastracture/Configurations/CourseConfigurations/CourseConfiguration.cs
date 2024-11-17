@@ -46,9 +46,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Configurations.CourseConfigurat
                 .HasColumnName("IntendedFor")
                 .HasConversion(converter);
 
-                d.Property(x => x.ThumbnailUrl)
-                    .HasColumnName("ThumbnailUrl")
-                     .HasConversion(v => v.ToString(), v => new Uri(v));
+                d.Property(x => x.ThumbnailKey)
+                    .HasColumnName("ThumbnailKey")
+                    .HasConversion<string>();
             });
 
             builder.HasMany(c => c.Sections)

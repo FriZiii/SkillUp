@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Requests.Commands;
+using Skillup.Modules.Courses.Core.Requests.Queries;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Courses.Api.Controllers
@@ -26,10 +27,11 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [HttpPut("/Courses/{courseId}/Details/TumbnailPicture")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> EditTumbnailPicture(Guid courseId)
+        public async Task<IActionResult> EditTumbnailPicture(Guid courseId, IFormFile file)
         {
-            //TODO : Upload profile picture
-            return Ok();
+            await _mediator.Send(new EditCourseTumbnailRequest(courseId, file));
+
+            return Ok(await _mediator.Send(new GetCourseByIdRequest(courseId)));
         }
     }
 }

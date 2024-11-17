@@ -8,7 +8,7 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
         public string Subtitle { get; set; }    //subtitle (ex. c# course with practical exercises)
         public string Description { get; set; }    // long course description (exacly what is in the course)
         // TODO : Add Language public string Language { get; set; } 
-        public Uri ThumbnailUrl { get; set; } //minature photo of course
+        public string ThumbnailKey { get; set; } //minature photo of course
         public CourseLevel Level { get; set; }
         public StringListValueObject ObjectivesSummary { get; set; }  //list of things that you will learn throughout the course (ex. you will learn how to program moblie apps)
         public StringListValueObject MustKnowBefore { get; set; }    //list of things you should already know before starting the course (ex. you should know basics of object-oriented progemming)
@@ -18,7 +18,7 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
         {
             Subtitle = string.Empty;
             Description = string.Empty;
-            ThumbnailUrl = CourseModuleOptions.DefaultValues.DefaultTubnailPicture;
+            ThumbnailKey = CourseModuleOptions.DefaultValues.DefaultTubnailPictureKey;
             Level = CourseLevel.None;
             ObjectivesSummary = new();
             MustKnowBefore = new();
