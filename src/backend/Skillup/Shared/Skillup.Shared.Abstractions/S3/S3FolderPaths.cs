@@ -6,5 +6,6 @@
         public const string UserProfilePicture = "public/users/profile-pictures/";
         public const string CourseTubnailPicture = "public/courses/tumbnail-pictures/";
         public const string CourseAsset = "courses/assets/";
+        public const string ElementsAttachments = "elements/attachments/";
     }
 }
