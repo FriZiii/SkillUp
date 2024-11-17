@@ -50,11 +50,9 @@ export class ElementItemComponent implements OnInit {
 
     if(this.element().hasAsset){
       this.contentIcon.set('pi pi-link');
-      console.log(this.contentIcon())
     }
     else {
       this.contentIcon.set('pi pi-exclamation-triangle');
-      console.log(this.contentIcon())
     }
 
     this.items = [
