@@ -11,6 +11,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { CourseContentService } from '../../../../../services/course-content-service';
 import { AssetType } from '../../../../../models/course-content.model';
 import { CommonModule } from '@angular/common';
+import { ConfirmationDialogHandlerService } from '../../../../../../core/services/confirmation-handler.service';
 
 @Component({
   selector: 'app-add-new-element',
@@ -31,6 +32,7 @@ export class AddNewElementComponent {
 
   //Services
   courseContentService = inject(CourseContentService);
+  confirmationDialogService = inject(ConfirmationDialogHandlerService);
 
 
   chooseType(type: AssetType){
@@ -39,11 +41,9 @@ export class AddNewElementComponent {
   }
 
   submitElement(event: Event){
-    console.log(this.newElementTitle());
-    console.log(this.newElementDescription());
-    console.log(this.newElementType());
-    console.log(this.newElementFree());
+    this.confirmationDialogService.confirmSave(event, () => {
     this.courseContentService.addElement(this.sectionId(), this.newElementType()!, this.newElementTitle(), this.newElementDescription(), this.newElementFree()).subscribe();
+    })
     this.changeVisibility();
   }
 

@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
 import { AssetService } from '../../../../../services/asset.service';
 import { ToastHandlerService } from '../../../../../../core/services/toast-handler.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-element-content-dialog',
@@ -19,6 +20,7 @@ export class ElementContentDialogComponent implements OnChanges {
   element = input.required<Element>();
   fileLink = signal('');
   AssetType = AssetType;
+  loadingUpload = false;
 
   //Services
   assetService = inject(AssetService);
@@ -51,12 +53,15 @@ export class ElementContentDialogComponent implements OnChanges {
   }
 
   upload() {
+    this.loadingUpload = true;
     switch (this.element().type){
       case AssetType.Article:
         this.assetService.addArticle(this.element().id, this.selectedFile!).subscribe({
           next: () => {
             this.element().hasAsset = true;
-            this.assetService.getAsset(this.element().id, this.element().type).subscribe((response) => {
+            this.assetService.getAsset(this.element().id, this.element().type)
+            .pipe(finalize (() => this.loadingUpload = false))
+            .subscribe((response) => {
               this.fileLink.set(response.url);
               });
           },
@@ -66,7 +71,9 @@ export class ElementContentDialogComponent implements OnChanges {
         });
         break;
       case AssetType.Video:
-        this.assetService.addVideo(this.element().id, this.selectedFile!).subscribe({
+        this.assetService.addVideo(this.element().id, this.selectedFile!)
+        .pipe(finalize (() => this.loadingUpload = false))
+        .subscribe({
           next: () => {
             this.element().hasAsset = true;
             this.assetService.getAsset(this.element().id, this.element().type).subscribe((response) => {

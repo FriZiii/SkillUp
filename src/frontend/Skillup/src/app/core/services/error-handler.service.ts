@@ -17,7 +17,6 @@ export class ErrorHandlerService implements ErrorHandler {
     }
     this.lastError = error.message;
     
-
     console.log(error);
     if(error.status === 502){
       if(this.lastToast === 'Api not working'){
