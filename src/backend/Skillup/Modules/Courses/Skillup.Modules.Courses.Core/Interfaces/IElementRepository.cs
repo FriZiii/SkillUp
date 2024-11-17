@@ -1,4 +1,4 @@
-﻿using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element;
+﻿using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent;
 
 namespace Skillup.Modules.Courses.Core.Interfaces
 {

@@ -1,4 +1,4 @@
-﻿namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element.Assets
+﻿namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets
 {
     public abstract class Asset
     {
