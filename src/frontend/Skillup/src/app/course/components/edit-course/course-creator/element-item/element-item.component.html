@@ -9,18 +9,18 @@
     <div class="w-full px-4 prose">
       <div class="flex items-baseline gap-2">
         <h4 class="b-0 mt-0">{{ element().title }}</h4>
-        @if(this.element().hasAsset === false){
-        <i
-          class="pi pi-exclamation-triangle"
-          style="font-size: 1rem; color: red"
-          pTooltip="This element does not have any content"
-          tooltipPosition="right"
-        ></i>
-        } @if(this.element().isFree === true){
+        @if(this.element().isFree === true){
         <i
           class="pi pi-lock-open"
           style="font-size: 1rem"
           pTooltip="This element is visible before buying"
+          tooltipPosition="right"
+        ></i>
+        } @if(this.element().hasAsset === false){
+        <i
+          class="pi pi-exclamation-triangle"
+          style="font-size: 1rem; color: red"
+          pTooltip="This element does not have any content"
           tooltipPosition="right"
         ></i>
         }
