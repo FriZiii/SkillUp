@@ -57,7 +57,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteElement(Guid elementId)
         {
-            await _mediator.Send(new DeleteElementRequest { ElementId = elementId });
+            await _mediator.Send(new DeleteElementRequest(elementId));
             return Ok();
         }
 
@@ -66,11 +66,13 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [SwaggerOperation("Add attachment")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddAttachment(Guid elementId)
+        public async Task<IActionResult> AddAttachment(Guid elementId, IFormFile file)
         {
-            await _mediator.Send(new AddAttachmentRequest() { ElementId = elementId });
+            var request = new AddAttachmentRequest(file, elementId);
 
-            return Ok();
+            await _mediator.Send(request);
+
+            return Ok(request.AttachmentId);
         }
 
         [HttpGet("Attachments/{attachmentId}")]
@@ -79,9 +81,9 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetAttachment(Guid attachmentId)
         {
-            return Ok(await _mediator.Send(new GetAttachmentRequest() { AttachmentId = attachmentId }));
+            var response = await _mediator.Send(new GetAttachmentRequest(attachmentId));
+            return File(response.FileData, response.ContentType, response.FileName);
         }
-
 
         [HttpDelete("Attachments/{attachmentId}")]
         [SwaggerOperation("Delete attachment")]
@@ -89,7 +91,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteAttachment(Guid attachmentId)
         {
-            await _mediator.Send(new DeleteAttachmentRequest() { AttachmentId = attachmentId });
+            await _mediator.Send(new DeleteAttachmentRequest(attachmentId));
             return Ok();
         }
     }

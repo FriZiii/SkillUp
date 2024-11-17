@@ -3,8 +3,5 @@ using Skillup.Modules.Courses.Core.DTO;
 
 namespace Skillup.Modules.Courses.Core.Requests.Queries
 {
-    public class GetAttachmentRequest : IRequest<AttachmentDto>
-    {
-        public Guid AttachmentId { get; set; }
-    }
+    public record GetAttachmentRequest(Guid AttachmentId) : IRequest<AttachmentDto>;
 }
