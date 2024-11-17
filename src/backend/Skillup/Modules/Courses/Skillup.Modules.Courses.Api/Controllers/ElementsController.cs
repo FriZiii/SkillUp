@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
 using Skillup.Modules.Courses.Core.Requests.Commands.Elements;
+using Skillup.Modules.Courses.Core.Requests.Commands.Elements.Attachment;
 using Skillup.Modules.Courses.Core.Requests.Queries;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -57,6 +58,38 @@ namespace Skillup.Modules.Courses.Api.Controllers
         public async Task<IActionResult> DeleteElement(Guid elementId)
         {
             await _mediator.Send(new DeleteElementRequest { ElementId = elementId });
+            return Ok();
+        }
+
+
+        [HttpPost("Attachments/{elementId}")]
+        [SwaggerOperation("Add attachment")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AddAttachment(Guid elementId)
+        {
+            await _mediator.Send(new AddAttachmentRequest() { ElementId = elementId });
+
+            return Ok();
+        }
+
+        [HttpGet("Attachments/{attachmentId}")]
+        [SwaggerOperation("Get attachment")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetAttachment(Guid attachmentId)
+        {
+            return Ok(await _mediator.Send(new GetAttachmentRequest() { AttachmentId = attachmentId }));
+        }
+
+
+        [HttpDelete("Attachments/{attachmentId}")]
+        [SwaggerOperation("Delete attachment")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> DeleteAttachment(Guid attachmentId)
+        {
+            await _mediator.Send(new DeleteAttachmentRequest() { AttachmentId = attachmentId });
             return Ok();
         }
     }
