@@ -19,7 +19,6 @@
         [disabled]="!selectedFile"
         [style]="{ width: '100%', borderRadius: '0.5rem 0  0 0.5rem' }"
         label="Upload"
-        class="mr-2"
         [loading]="loadingUpload"
       ></p-button>
 
@@ -29,7 +28,6 @@
         severity="secondary"
         [style]="{ width: '100%', borderRadius: '0 0.5rem 0.5rem 0' }"
         label="Cancel"
-        class="ml-2"
       ></p-button>
       } @else {
       <p-fileupload
@@ -40,7 +38,6 @@
         chooseIcon="pi pi-upload"
         (onSelect)="onSelectImage($event)"
         [accept]="getAccept()"
-        class="ml-2"
       />
       <!-- accept="image/*" -->
       }

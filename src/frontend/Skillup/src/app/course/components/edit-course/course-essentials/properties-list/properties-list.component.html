@@ -1,13 +1,23 @@
-<div class="flex gap-1 w-full mt-8">
+<div class="flex w-full mt-8">
   <p-floatlabel class="w-full">
-    <input pInputText id="newItem" class="w-full" [(ngModel)]="newItem" />
+    <input
+      pInputText
+      id="newItem"
+      class="w-full"
+      [(ngModel)]="newItem"
+      [style]="{ borderRadius: '0.5rem 0  0 0.5rem' }"
+    />
     <label for="newItem">{{ this.inputPlaceHolder() }}</label>
   </p-floatlabel>
-  <p-button (click)="addItem(this.newItem())">Add</p-button>
+  <p-button
+    (click)="addItem(this.newItem())"
+    [style]="{ borderRadius: '0 0.5rem 0.5rem 0' }"
+    >Add</p-button
+  >
 </div>
-<div class="su-border mt-2">
+<div class="mt-2">
   @for (item of items(); track item){
-  <div class="grid grid-cols-2 my-1 su-list-item px-2">
+  <div class="grid grid-cols-2 my-3 su-list-item px-2 su-border-b">
     <div class="prose">
       <p>{{ item }}</p>
     </div>

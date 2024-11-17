@@ -17,6 +17,7 @@ import {
 } from 'rxjs';
 import { ToastHandlerService } from '../../core/services/toast-handler.service';
 import { FinanceService } from '../../finance/finance.service';
+import { CourseLevel } from '../models/course-level.model';
 
 @Injectable({ providedIn: 'root' })
 export class CoursesService {
@@ -140,5 +141,36 @@ export class CoursesService {
         (subcategory.toLowerCase() === 'all' ||
           course.category.subcategory.slug === subcategory)
     );
+  }
+
+
+  //Edir
+  editCourse(courseId: string, title: string, categoryId: string, subcategoryId: string){
+    return this.httpClient
+    .put(environment.apiUrl + '/Courses/' + courseId, {title: title, categoryId: categoryId, subcategoryId: subcategoryId})
+    .pipe(
+      tap((res) => {
+       // this.courses.update((prevCourses) => 
+       //  prevCourses.map(course => course.id === courseId ? {...course, title: title, category} : course));
+      }),
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+  editCourseDetails(courseId: string, subtitle: string, description: string, level: CourseLevel, objectivesSummary: string[], mustKnowBefore: string[], intededFor: string[]){
+    return this.httpClient
+        .put(environment.apiUrl + '/Courses/' + courseId + '/Details', {subtitle: subtitle, description: description, level: level, objectivesSummary: objectivesSummary, mustKnowBefore: mustKnowBefore, intendedFor: intededFor})
+        .pipe(
+          tap(() => {
+            this.courses.update((prevCourses) => 
+             prevCourses.map(course => course.id === courseId ? {...course, subtitle: subtitle, description: description, level: level, objectivesSummary: objectivesSummary, mustKnowBefore: mustKnowBefore, intendedFor: intededFor} : course));
+          }),
+          catchError((error) => {
+            return throwError(() => error);
+          })
+        );
+
   }
 }

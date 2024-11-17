@@ -55,7 +55,7 @@ categories = this.courseCategoryService.categories;
   description = signal('');
   selectedCategory = signal('');
   selectedSubcategory = signal('');
-  selectedLevel = signal('');
+  selectedLevel = signal<CourseLevel | null>(null);
   
   objectivesList = signal(['']);
   mustKnowBefore = signal(['']);
@@ -98,21 +98,52 @@ categories = this.courseCategoryService.categories;
     //Lists
     addItem(list: WritableSignal<string[]>, itemToAdd: string){
       list.update((current) => [...current, itemToAdd]);
+      this.change();
+      this.editCourseDetail();
     }
 
     removeFrom(list: WritableSignal<string[]>, itemToRemove: string){
         list.update((current) => current.filter((item) => item !== itemToRemove));
+        this.change();
+        this.editCourseDetail();
     }
 
-    onSubmit(){
-      console.log(this.title());
-      console.log(this.subtitle());
-      console.log(this.description());
-      console.log(this.selectedCategory());
-      console.log(this.selectedSubcategory());
-      console.log(this.selectedLevel());
-      console.log(this.objectivesList());
-      console.log(this.mustKnowBefore());
-      console.log(this.intendedFor());
+    changed = false;
+    change(){
+      this.changed = true;
     }
+    //Requests
+    editCourseDetail(){
+      if(this.changed === true){
+        this.courseService.editCourseDetails(
+          this.courseId(), 
+          this.subtitle(), 
+          this.description(),
+          this.selectedLevel()!,
+          this.objectivesList(),
+          this.mustKnowBefore(),
+          this.intendedFor()).subscribe({
+          
+        });
+      }
+      this.changed=false;
+    }
+
+    editCourse(){
+      if(this.changed === true){
+        this.courseService.editCourse(
+          this.courseId(),
+          this.title(), 
+          this.selectedCategory(), 
+          this.selectedSubcategory()).subscribe({});
+      }
+      this.changed=false;
+    }
+
+    changeCategory(){
+      this.changed = true;
+      const subCategory = this.subcategoryNames().find(s => s.name === 'Other');
+      this.selectedSubcategory.set(subCategory!.id)
+    }
+
 }

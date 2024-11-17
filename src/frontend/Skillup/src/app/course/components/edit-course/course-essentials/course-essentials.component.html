@@ -1,4 +1,4 @@
-<div class="mt-8">
+<div class="">
   <div class="grid grid-cols-2 gap-4">
     <div
       class="col-start-1 col-span-1 flex flex-col items-center h-full justify-end gap-2"
@@ -36,11 +36,23 @@
     <div class="col-start-2 col-span-2">
       <div class="flex flex-col prose">
         <label>Title</label>
-        <input pInputText class="w-full" [(ngModel)]="title" />
+        <input
+          pInputText
+          class="w-full"
+          [(ngModel)]="title"
+          (ngModelChange)="change()"
+          (blur)="editCourse()"
+        />
       </div>
       <div class="flex flex-col prose">
         <label>Subtitle</label>
-        <input pInputText class="w-full" [(ngModel)]="subtitle" />
+        <input
+          pInputText
+          class="w-full"
+          [(ngModel)]="subtitle"
+          (ngModelChange)="change()"
+          (blur)="editCourseDetail()"
+        />
       </div>
       <div class="flex flex-col prose">
         <label>Description</label>
@@ -48,11 +60,13 @@
           class="custom-textarea w-full"
           rows="6"
           [(ngModel)]="description"
+          (ngModelChange)="change()"
+          (blur)="editCourseDetail()"
         ></textarea>
       </div>
     </div>
   </div>
-  <div class="grid grid-cols-2 mt-10 gap-4">
+  <div class="grid grid-cols-2 mt-16 gap-4">
     <div>
       <div class="prose">
         <h2 class="my-1">Course Category</h2>
@@ -65,6 +79,8 @@
           placeholder="Category"
           class="w-full"
           [(ngModel)]="selectedCategory"
+          (ngModelChange)="changeCategory()"
+          (onBlur)="editCourse()"
         />
         <p-select
           [options]="subcategoryNames()"
@@ -73,6 +89,8 @@
           placeholder="Subcategory"
           class="w-full"
           [(ngModel)]="selectedSubcategory"
+          (ngModelChange)="change()"
+          (onBlur)="editCourse()"
         />
       </div>
     </div>
@@ -85,9 +103,8 @@
           [options]="categoryNames()"
           optionLabel="name"
           optionValue="id"
-          placeholder="Category"
+          placeholder="Languages"
           class="w-full"
-          [(ngModel)]="selectedCategory"
         />
         <p-select
           [options]="levels"
@@ -96,11 +113,13 @@
           placeholder="Select a level"
           class="w-full"
           [(ngModel)]="selectedLevel"
+          (ngModelChange)="change()"
+          (onBlur)="editCourseDetail()"
         />
       </div>
     </div>
   </div>
-  <div class="mt-10">
+  <div class="mt-16">
     <div class="prose">
       <h2 class="my-2">Learning Objectives</h2>
       <p>List of thing that student will learn throughout the course.</p>
@@ -113,7 +132,7 @@
     ></app-properties-list>
   </div>
 
-  <div class="mt-10 grid grid-cols-2 gap-4">
+  <div class="mt-16 grid grid-cols-2 gap-4">
     <div class="col-start-1 col-span-1">
       <div class="prose">
         <h2 class="my-2">Must know Before</h2>
@@ -142,5 +161,4 @@
       ></app-properties-list>
     </div>
   </div>
-  <p-button label="Save" (click)="onSubmit()" />
 </div>
