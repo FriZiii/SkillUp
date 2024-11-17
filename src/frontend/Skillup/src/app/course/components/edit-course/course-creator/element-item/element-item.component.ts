@@ -16,11 +16,12 @@ import { DialogModule } from 'primeng/dialog';
 import { AssetService } from '../../../../services/asset.service';
 import { ElementContentDialogComponent } from "./element-content-dialog/element-content-dialog.component";
 import { Tooltip } from 'primeng/tooltip';
+import { SelectButton } from 'primeng/selectbutton';
 
 @Component({
   selector: 'app-element-item',
   standalone: true,
-  imports: [CardModule, ButtonModule, FormsModule, InputTextModule, NgClass, InputTextareaModule, FloatLabelModule, DragDropModule, MenuModule, DialogModule, ElementContentDialogComponent],
+  imports: [CardModule, ButtonModule, FormsModule, InputTextModule, NgClass, InputTextareaModule, FloatLabelModule, DragDropModule, MenuModule, DialogModule, ElementContentDialogComponent, SelectButton],
   templateUrl: './element-item.component.html',
   styleUrl: './element-item.component.css'
 })
@@ -30,6 +31,7 @@ export class ElementItemComponent implements OnInit {
   element = input.required<Element>();
   elementTitle = signal('');
   elementDescription = signal('');
+  elementFree = signal<boolean>(false);
   isDraggable = output<boolean>();
   AssetType = AssetType;
   contentIcon = signal('');
@@ -44,6 +46,7 @@ export class ElementItemComponent implements OnInit {
   ngOnInit(): void {
     this.elementTitle.set(this.element().title);
     this.elementDescription.set(this.element().description);
+    this.elementFree.set(this.element().isFree);
 
     if(this.element().hasAsset){
       this.contentIcon.set('pi pi-link');
@@ -117,9 +120,11 @@ export class ElementItemComponent implements OnInit {
     }
   }
 
+  freeOptions: any[] = [{ label: 'Yes', value: true },{ label: 'No', value: false }];
+
   //Element actions
   saveElement(){
-    this.courseContentService.updateElement(this.section().id, this.element().id, this.elementTitle(), this.elementDescription()).subscribe();
+    this.courseContentService.updateElement(this.section().id, this.element().id, this.elementTitle(), this.elementDescription(), this.elementFree()).subscribe();
     this.changeEditVisibility();
   }
   removeElement(event: Event){

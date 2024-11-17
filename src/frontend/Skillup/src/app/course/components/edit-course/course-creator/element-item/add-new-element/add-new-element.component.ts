@@ -43,7 +43,7 @@ export class AddNewElementComponent {
     console.log(this.newElementDescription());
     console.log(this.newElementType());
     console.log(this.newElementFree());
-    this.courseContentService.addElement(this.sectionId(), this.newElementType()!, this.newElementTitle(), this.newElementDescription()).subscribe();
+    this.courseContentService.addElement(this.sectionId(), this.newElementType()!, this.newElementTitle(), this.newElementDescription(), this.newElementFree()).subscribe();
     this.changeVisibility();
   }
 

@@ -42,6 +42,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
             elementToEdit.Title = element.Title;
             elementToEdit.Description = element.Description;
+            elementToEdit.IsFree = element.IsFree;
             elementToEdit.Index = element.Index;
 
             await _context.SaveChangesAsync();

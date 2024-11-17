@@ -147,14 +147,39 @@
           <div
             class="flex flex-col justify-center items-center prose su-section-mt justify-self-center w-full"
           >
-            <h1>IsFree?</h1>
-            <p-selectbutton
-              [options]="freeOptions"
-              optionLabel="label"
-              optionValue="value"
-              [(ngModel)]="newElementFree"
-              [allowEmpty]="false"
-            />
+            <h1 class="mb-2">Free?</h1>
+            <p class="text-center my-1">
+              If you set this element as Free, it will be visible to users
+              before purchasing this course.
+            </p>
+            <p class="text-center my-1">
+              It is a good idea to set a few elements as free, so users can get
+              a clear understanding of the course content.
+            </p>
+            <div class="flex items-center gap-4 mt-8">
+              <p-selectbutton
+                [options]="freeOptions"
+                optionLabel="label"
+                optionValue="value"
+                [(ngModel)]="newElementFree"
+                [allowEmpty]="false"
+              />
+              @if(this.newElementFree() === true){
+              <i
+                class="pi pi-lock-open"
+                style="font-size: 1rem"
+                pTooltip="This element will be visible before buying"
+                tooltipPosition="right"
+              ></i>
+              } @else {
+              <i
+                class="pi pi-lock"
+                style="font-size: 1rem"
+                pTooltip="This element will not be visible before buying"
+                tooltipPosition="right"
+              ></i>
+              }
+            </div>
           </div>
           <div class="flex pt-10 justify-between">
             <div class="flex flex-col">

@@ -20,6 +20,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements
             var element = await _elementRepository.GetById(request.ElementId);
             element.Title = request.Title;
             element.Description = request.Description;
+            element.IsFree = request.IsFree;
             await _elementRepository.Edit(element);
             _logger.LogInformation("Element edited");
         }

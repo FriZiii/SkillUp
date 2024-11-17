@@ -36,6 +36,30 @@
         rows="2"
         [(ngModel)]="elementDescription"
       ></textarea>
+      <div class="flex items-center gap-4">
+        <p-selectbutton
+          [options]="freeOptions"
+          optionLabel="label"
+          optionValue="value"
+          [(ngModel)]="elementFree"
+          [allowEmpty]="false"
+        />
+        @if(this.elementFree() === true){
+        <i
+          class="pi pi-lock-open"
+          style="font-size: 1rem"
+          pTooltip="This element will be visible before buying"
+          tooltipPosition="right"
+        ></i>
+        } @else {
+        <i
+          class="pi pi-lock"
+          style="font-size: 1rem"
+          pTooltip="This element will not be visible before buying"
+          tooltipPosition="right"
+        ></i>
+        }
+      </div>
     </div>
     }
 

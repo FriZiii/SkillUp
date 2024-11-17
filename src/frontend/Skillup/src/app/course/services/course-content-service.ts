@@ -102,9 +102,9 @@ export class CourseContentService {
 
 
     //Elements
-    addElement(sectionId: string, assetType: AssetType, elementTitle: string, elementDescription: string) {
+    addElement(sectionId: string, assetType: AssetType, elementTitle: string, elementDescription: string, elementFree: boolean) {
       return this.httpClient
-        .post<any>(environment.apiUrl + '/Courses/Elements/' + assetType + '/' + sectionId, {title: elementTitle, description: elementDescription})
+        .post<any>(environment.apiUrl + '/Courses/Elements/' + assetType + '/' + sectionId, {title: elementTitle, description: elementDescription, isFree: elementFree})
         .pipe(
           tap((response) => {
             const updatedSections = this.sections().map(section => {
@@ -158,16 +158,16 @@ export class CourseContentService {
         );
     }
 
-    updateElement(sectionId: string, elementId: string, elementTitle: string, elementDescription: string){
+    updateElement(sectionId: string, elementId: string, elementTitle: string, elementDescription: string, elementFree: boolean){
       return this.httpClient
-        .put(environment.apiUrl + '/Courses/Elements/' + elementId, {title: elementTitle, description: elementDescription})
+        .put(environment.apiUrl + '/Courses/Elements/' + elementId, {title: elementTitle, description: elementDescription, isFree:elementFree})
         .pipe(
           tap(() => {
             this.sections.update((prevSections) =>
               prevSections.map(section => {
                 if (section.id === sectionId) {
                   const updatedElements = section.elements.map(element =>
-                    element.id === elementId ? { ...element, title: elementTitle, description: elementDescription } : element
+                    element.id === elementId ? { ...element, title: elementTitle, description: elementDescription, isFree: elementFree } : element
                   );
                   return { ...section, elements: updatedElements };
                 }

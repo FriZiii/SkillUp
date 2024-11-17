@@ -23,6 +23,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements
             {
                 Title = request.Title,
                 Description = request.Description,
+                IsFree = request.isFree,
                 AssetType = request.AssetType,
                 Index = elements.Count(),
                 SectionId = request.SectionId,
