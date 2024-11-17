@@ -13,9 +13,9 @@ import { ConfirmationDialogHandlerService } from '../../../../../core/services/c
 import { MenuModule } from 'primeng/menu';
 import { MenuItem, MenuItemCommandEvent } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
-import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
 import { AssetService } from '../../../../services/asset.service';
 import { ElementContentDialogComponent } from "./element-content-dialog/element-content-dialog.component";
+import { Tooltip } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-element-item',

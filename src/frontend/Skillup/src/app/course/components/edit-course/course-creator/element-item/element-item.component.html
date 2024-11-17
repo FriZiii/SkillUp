@@ -7,8 +7,26 @@
     ></i>
     @if(!editing){
     <div class="w-full px-4 prose">
-      <h4 class="b-0">{{ element().title }}</h4>
-      <p>{{ element().description }}</p>
+      <div class="flex items-baseline gap-2">
+        <h4 class="b-0 mt-0">{{ element().title }}</h4>
+        @if(this.element().hasAsset === false){
+        <i
+          class="pi pi-exclamation-triangle"
+          style="font-size: 1rem; color: red"
+          pTooltip="This element does not have any content"
+          tooltipPosition="right"
+        ></i>
+        } @if(this.element().isFree === true){
+        <i
+          class="pi pi-lock-open"
+          style="font-size: 1rem"
+          pTooltip="This element is visible before buying"
+          tooltipPosition="right"
+        ></i>
+        }
+      </div>
+
+      <p class="mt-1">{{ element().description }}</p>
     </div>
     } @else{
     <div class="w-full px-4">
@@ -26,14 +44,6 @@
       class="flex justify-end w-full gap-2 px-2 button-container self-center"
       [ngClass]="{ hidden: editing }"
     >
-      @if(this.element().hasAsset === false){
-      <div class="flex justify-center items-center">
-        <i
-          class="pi pi-exclamation-triangle"
-          style="font-size: 1.5rem; color: red"
-        ></i>
-      </div>
-      }
       <p-menu #menu [model]="items" [popup]="true" />
       <p-button
         (click)="menu.toggle($event)"
