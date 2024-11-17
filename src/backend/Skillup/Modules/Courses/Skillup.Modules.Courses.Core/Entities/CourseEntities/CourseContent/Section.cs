@@ -1,4 +1,6 @@
-﻿namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent
+﻿using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent;
+
+namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent
 {
     public class Section
     {
