@@ -6,11 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { CourseContentService } from '../../../../services/course-content-service';
 import { ConfirmationDialogHandlerService } from '../../../../../core/services/confirmation-handler.service';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-section-item',
   standalone: true,
-  imports: [ButtonModule, NgClass, FormsModule, InputTextModule],
+  imports: [ButtonModule, NgClass, FormsModule, InputTextModule, TooltipModule],
   templateUrl: './section-item.component.html',
   styleUrl: './section-item.component.css'
 })
