@@ -28,7 +28,6 @@ export class CourseContentService {
               return response;
             }),
             catchError((error) => {
-              this.toastService.showError('Coud not fetch sections');
               return throwError(() => error);
             })
           );
