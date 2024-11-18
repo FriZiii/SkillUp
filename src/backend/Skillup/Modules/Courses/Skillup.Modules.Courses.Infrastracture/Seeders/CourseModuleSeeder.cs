@@ -26,7 +26,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
             var _userSeeder = new CourseUserSeeder(_context, _s3Service);
             await _userSeeder.Seed();
 
-            var _courseSeeder = new CourseSeeder(_context, _clock);
+            var _courseSeeder = new CourseSeeder(_context, _clock, _s3Service);
             await _courseSeeder.Seed();
 
             var _sectionsSeeder = new SectionsSeeder(_context);

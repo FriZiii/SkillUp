@@ -1,6 +1,6 @@
-﻿using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets;
+﻿using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets;
 
-namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent
+namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent
 {
     public class Element
     {
@@ -15,5 +15,6 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent
         public Section Section { get; set; }
 
         public Asset Asset { get; set; }
+        public IEnumerable<Attachment> Attachments { get; set; }
     }
 }

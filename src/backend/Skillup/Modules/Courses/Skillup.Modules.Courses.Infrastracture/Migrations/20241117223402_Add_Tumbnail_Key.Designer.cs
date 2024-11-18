@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Skillup.Modules.Courses.Infrastracture;
@@ -11,9 +12,11 @@ using Skillup.Modules.Courses.Infrastracture;
 namespace Skillup.Modules.Courses.Infrastracture.Migrations
 {
     [DbContext(typeof(CoursesDbContext))]
-    partial class CoursesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241117223402_Add_Tumbnail_Key")]
+    partial class Add_Tumbnail_Key
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,7 +84,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.ToTable("Courses", "courses");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Asset", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Asset", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -100,7 +103,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.UseTpcMappingStrategy();
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.Exercise", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Exercises.Exercise", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -118,7 +121,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.UseTpcMappingStrategy();
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.QuizAnswer", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Exercises.QuizAnswer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -141,26 +144,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.ToTable("QuizAnswer", "courses");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Attachment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ElementId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("Key")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ElementId");
-
-                    b.ToTable("ElementAttachments", "courses");
-                });
-
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Element", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -294,9 +278,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.ToTable("UsersPurchasedCourses", "courses");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Article", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Article", b =>
                 {
-                    b.HasBaseType("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Asset");
+                    b.HasBaseType("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Asset");
 
                     b.Property<Guid>("Key")
                         .HasColumnType("uuid");
@@ -304,9 +288,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.ToTable("ArticleAssets", "courses");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Assignment", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Assignment", b =>
                 {
-                    b.HasBaseType("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Asset");
+                    b.HasBaseType("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Asset");
 
                     b.Property<string>("Instruction")
                         .IsRequired()
@@ -315,9 +299,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.ToTable("AssignmentAssets", "courses");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Video", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Video", b =>
                 {
-                    b.HasBaseType("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Asset");
+                    b.HasBaseType("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Asset");
 
                     b.Property<Guid>("Key")
                         .HasColumnType("uuid");
@@ -325,9 +309,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.ToTable("VideoAssets", "courses");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.QuestionAnswer", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Exercises.QuestionAnswer", b =>
                 {
-                    b.HasBaseType("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.Exercise");
+                    b.HasBaseType("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Exercises.Exercise");
 
                     b.Property<string>("CorrectAnswer")
                         .IsRequired()
@@ -340,9 +324,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.ToTable("QuestionAnswerExercise", "courses");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.QuizQuestion", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Exercises.QuizQuestion", b =>
                 {
-                    b.HasBaseType("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.Exercise");
+                    b.HasBaseType("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Exercises.Exercise");
 
                     b.Property<string>("Question")
                         .IsRequired()
@@ -428,20 +412,20 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.Navigation("Subcategory");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Asset", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Asset", b =>
                 {
-                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Element", "Element")
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element", "Element")
                         .WithOne("Asset")
-                        .HasForeignKey("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Asset", "ElementId")
+                        .HasForeignKey("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Asset", "ElementId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Element");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.Exercise", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Exercises.Exercise", b =>
                 {
-                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Assignment", "Assignment")
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Assignment", "Assignment")
                         .WithMany("Exercises")
                         .HasForeignKey("AssignmentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -450,9 +434,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.Navigation("Assignment");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.QuizAnswer", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Exercises.QuizAnswer", b =>
                 {
-                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.QuizQuestion", "Question")
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Exercises.QuizQuestion", "Question")
                         .WithMany("Answers")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -461,18 +445,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.Navigation("Question");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Attachment", b =>
-                {
-                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Element", "Element")
-                        .WithMany("Attachments")
-                        .HasForeignKey("ElementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Element");
-                });
-
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Element", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element", b =>
                 {
                     b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Section", "Section")
                         .WithMany("Elements")
@@ -621,12 +594,10 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.Navigation("Sections");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Element", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Element", b =>
                 {
                     b.Navigation("Asset")
                         .IsRequired();
-
-                    b.Navigation("Attachments");
                 });
 
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Section", b =>
@@ -646,12 +617,12 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.Navigation("PurchasedCourses");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Assignment", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Assignment", b =>
                 {
                     b.Navigation("Exercises");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.QuizQuestion", b =>
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Exercises.QuizQuestion", b =>
                 {
                     b.Navigation("Answers");
                 });

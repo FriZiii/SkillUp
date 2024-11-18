@@ -1,6 +1,4 @@
-﻿using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets;
-
-namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Assets.Exercises
+﻿namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises
 {
     public abstract class Exercise
     {

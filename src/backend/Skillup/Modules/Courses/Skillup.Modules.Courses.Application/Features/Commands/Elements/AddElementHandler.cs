@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Requests.Commands.Elements;
 
