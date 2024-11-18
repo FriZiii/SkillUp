@@ -30,6 +30,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         {
             var elements = await _elements
                 .Include(e => e.Asset)
+                .Include(e => e.Attachments)
                 .Where(e => e.SectionId == sectionId)
                 .OrderBy(x => x.Index)
                 .ToListAsync();
@@ -50,7 +51,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task<Element> GetById(Guid elementId)
         {
-            var element = await _elements.FirstOrDefaultAsync(e => e.Id == elementId) ?? throw new Exception();  //TODO: Custom exception for null check in repo
+            var element = await _elements
+                .Include(e => e.Attachments)
+                .FirstOrDefaultAsync(e => e.Id == elementId) ?? throw new Exception();  //TODO: Custom exception for null check in repo
             return element;
         }
 

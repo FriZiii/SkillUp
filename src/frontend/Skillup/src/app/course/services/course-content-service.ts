@@ -119,7 +119,8 @@ export class CourseContentService {
                       type: response.type,
                       index: response.index,
                       isFree: response.isFree,
-                      hasAsset: response.hasAsset
+                      hasAsset: response.hasAsset,
+                      attachments: response.attachments
                     }
                   ]
                 };

@@ -11,5 +11,6 @@ namespace Skillup.Modules.Courses.Core.DTO
         public int Index { get; set; }
         public bool IsFree { get; set; }
         public bool HasAsset { get; set; }
+        public IEnumerable<Guid> Attachments { get; set; }
     }
 }

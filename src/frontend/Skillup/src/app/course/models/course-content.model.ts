@@ -15,6 +15,7 @@ export interface Element{
     index: number;
     isFree: boolean;
     hasAsset: boolean;
+    attachments: string[];
 }
 
 export enum AssetType{
