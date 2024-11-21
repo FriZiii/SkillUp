@@ -99,6 +99,7 @@
   </div>
 </div>
 
+<!-- Content Dialog -->
 <p-dialog
   header="Element's Content"
   [modal]="true"
@@ -127,6 +128,27 @@
       label="Cancel"
       severity="secondary"
       (click)="contentDialogVisible = false"
+    />
+  </div>
+</p-dialog>
+
+<!-- Attachements dialog -->
+<p-dialog
+  header="Element's Attachements"
+  [modal]="true"
+  [(visible)]="attachmentsDialogVisible"
+  [style]="{ width: '80%' }"
+  [draggable]="false"
+  class="cursor-default"
+>
+  <app-element-attachments-dialog
+    [element]="this.element()"
+  ></app-element-attachments-dialog>
+  <div class="flex gap-2 justify-end">
+    <p-button
+      label="Cancel"
+      severity="secondary"
+      (click)="attachmentsDialogVisible = false"
     />
   </div>
 </p-dialog>

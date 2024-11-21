@@ -17,11 +17,12 @@ import { AssetService } from '../../../../services/asset.service';
 import { ElementContentDialogComponent } from "./element-content-dialog/element-content-dialog.component";
 import { Tooltip } from 'primeng/tooltip';
 import { SelectButton } from 'primeng/selectbutton';
+import { ElementAttachmentsDialogComponent } from "./element-attachments-dialog/element-attachments-dialog.component";
 
 @Component({
   selector: 'app-element-item',
   standalone: true,
-  imports: [CardModule, ButtonModule, FormsModule, InputTextModule, NgClass, InputTextareaModule, FloatLabelModule, DragDropModule, MenuModule, DialogModule, ElementContentDialogComponent, SelectButton],
+  imports: [CardModule, ButtonModule, FormsModule, InputTextModule, NgClass, InputTextareaModule, FloatLabelModule, DragDropModule, MenuModule, DialogModule, ElementContentDialogComponent, SelectButton, ElementAttachmentsDialogComponent],
   templateUrl: './element-item.component.html',
   styleUrl: './element-item.component.css'
 })
@@ -69,7 +70,10 @@ export class ElementItemComponent implements OnInit {
               },
               {
                   label: 'Attachment',
-                  icon: 'pi pi-paperclip'
+                  icon: 'pi pi-paperclip',
+                  command: () => {
+                      this.changeAttachmentsDialogVisibility();
+                  }
               },
               {
                   label: 'Edit',
@@ -141,6 +145,18 @@ export class ElementItemComponent implements OnInit {
     }
     else {
       this.contentDialogVisible=true;
+      this.isDraggable.emit(true);
+    }
+  }
+
+  attachmentsDialogVisible = false;
+  changeAttachmentsDialogVisibility(){
+    if(this.attachmentsDialogVisible){
+      this.attachmentsDialogVisible=false;
+      this.isDraggable.emit(false);
+    }
+    else {
+      this.attachmentsDialogVisible=true;
       this.isDraggable.emit(true);
     }
   }
