@@ -25,6 +25,13 @@ export class ErrorHandlerService implements ErrorHandler {
       this.toastService.showError('Api not working');
       this.lastToast = 'Api not working'
     }
+    else if(error.status === 415){
+      if(this.lastToast === error.statusText){
+        return;
+      }
+      this.toastService.showError( error.statusText);
+      this.lastToast =  error.statusText
+    }
     else{
     }
     /*

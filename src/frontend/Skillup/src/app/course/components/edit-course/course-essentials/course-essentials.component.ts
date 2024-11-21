@@ -88,7 +88,11 @@ categories = this.courseCategoryService.categories;
     }
   
     upload() {
-      
+      this.courseService.editCourseThumbnailPicture(this.courseId(), this.selectedFile!).subscribe({
+        next: (res : any) => {
+          this.course()!.thumbnailUrl = res.thumbnailUrl;
+        }
+      });
     }
   
     cancel() {

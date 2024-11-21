@@ -144,7 +144,7 @@ export class CoursesService {
   }
 
 
-  //Edir
+  //Edit
   editCourse(courseId: string, title: string, categoryId: string, subcategoryId: string){
     return this.httpClient
     .put(environment.apiUrl + '/Courses/' + courseId, {title: title, categoryId: categoryId, subcategoryId: subcategoryId})
@@ -172,5 +172,22 @@ export class CoursesService {
           })
         );
 
+  }
+
+  editCourseThumbnailPicture(courseId: string, newPicture: File){
+    const formData = new FormData(); 
+    formData.append('file', newPicture);
+    return this.httpClient
+        .put<any>(environment.apiUrl + '/Courses/' + courseId + '/Details/TumbnailPicture', formData)
+        .pipe(
+          tap((res: any) => {
+            this.courses.update((prevCourses) => 
+             prevCourses.map(course => course.id === courseId ? {...course, thumbnailUrl: res.thumbnailUrl} : course));
+            console.log(this.courses().find(c => c.id === courseId))
+          }),
+          catchError((error) => {
+            return throwError(() => error);
+          })
+        );
   }
 }
