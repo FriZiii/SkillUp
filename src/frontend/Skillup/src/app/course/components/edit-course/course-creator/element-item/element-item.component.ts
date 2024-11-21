@@ -145,8 +145,15 @@ export class ElementItemComponent implements OnInit {
     }
   }
 
-  //MiniMenu
-  
 
-
+  //Delete element's content
+  deleteContent(event: Event){
+    this.confirmDialogService.confirmDelete(event, () => {
+      this.assetService.deleteAsset(this.element().id).subscribe({
+        next: () => {
+          this.element().hasAsset = false;
+        }
+      });
+    })
+  }
 }

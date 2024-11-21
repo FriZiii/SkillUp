@@ -45,6 +45,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             var sectionToEdit = await _sections.FirstOrDefaultAsync(s => s.Id == section.Id) ?? throw new Exception();  //TODO: Custom exception for null check in repo
 
             sectionToEdit.Title = section.Title;
+            sectionToEdit.IsPublished = section.IsPublished;
             sectionToEdit.Index = section.Index;
 
             await _context.SaveChangesAsync();

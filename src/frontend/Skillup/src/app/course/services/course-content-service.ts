@@ -72,13 +72,13 @@ export class CourseContentService {
         );
     }
 
-    updateSection(sectionId: string, sectionTitle: string){
+    updateSection(sectionId: string, sectionTitle: string, sectionIsPublished: boolean){
       return this.httpClient
-        .put(environment.apiUrl + '/Courses/Sections/' + sectionId, {title: sectionTitle})
+        .put(environment.apiUrl + '/Courses/Sections/' + sectionId, {title: sectionTitle, isPublished: sectionIsPublished})
         .pipe(
           tap(() => {
             this.sections.update((prevSections) => 
-            prevSections.map(section => section.id === sectionId ? {...section, title: sectionTitle} : section));
+            prevSections.map(section => section.id === sectionId ? {...section, title: sectionTitle, isPublished: sectionIsPublished} : section));
           }),
           catchError((error) => {
             return throwError(() => error);

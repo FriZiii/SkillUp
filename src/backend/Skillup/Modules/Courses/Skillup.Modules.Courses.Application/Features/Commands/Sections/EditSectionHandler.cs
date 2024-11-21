@@ -19,6 +19,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Sections
         {
             var section = await _sectionRepository.GetById(request.SectionId);
             section.Title = request.Title;
+            section.IsPublished = request.IsPublished;
             await _sectionRepository.Edit(section);
             _logger.LogInformation("Section edited");
         }

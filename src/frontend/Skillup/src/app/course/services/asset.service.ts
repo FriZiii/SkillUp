@@ -41,4 +41,14 @@ export class AssetService {
       );
       }
 
+    deleteAsset(elementId: string){
+      return this.httpClient
+        .delete(environment.apiUrl + '/Courses/Assets/' + elementId)
+        .pipe(
+          catchError((error) => {
+            return throwError(() => error);
+          })
+        );
+    }
+
 }

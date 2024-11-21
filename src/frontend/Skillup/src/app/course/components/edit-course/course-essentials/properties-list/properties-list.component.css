@@ -21,3 +21,7 @@
   width: 1.5rem;
   height: 1.5rem;
 }
+
+.minus-margin-top {
+  margin-top: -5px;
+}

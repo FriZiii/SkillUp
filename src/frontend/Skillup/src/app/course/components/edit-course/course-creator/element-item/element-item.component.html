@@ -111,7 +111,18 @@
     [element]="element()"
     [visible]="contentDialogVisible"
   ></app-element-content-dialog>
-  <div class="flex justify-end gap-2">
+  <div
+    class="flex gap-2"
+    [ngClass]="this.element().hasAsset ? 'justify-between' : 'justify-end'"
+  >
+    @if(this.element().hasAsset){
+    <p-button
+      severity="danger"
+      label="Delete content"
+      icon="pi pi-trash"
+      (onClick)="deleteContent($event)"
+    ></p-button>
+    }
     <p-button
       label="Cancel"
       severity="secondary"

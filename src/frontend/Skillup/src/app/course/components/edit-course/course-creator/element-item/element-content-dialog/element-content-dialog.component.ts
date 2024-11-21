@@ -34,6 +34,7 @@ export class ElementContentDialogComponent implements OnChanges {
           this.fileLink.set(response.url);
           });
       }
+
     }
   }
 
@@ -91,4 +92,6 @@ export class ElementContentDialogComponent implements OnChanges {
   cancel() {
     this.selectedFile = undefined;
   }
+
+  
 }
