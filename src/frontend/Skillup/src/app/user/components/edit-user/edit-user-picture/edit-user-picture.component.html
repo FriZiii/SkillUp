@@ -28,5 +28,6 @@
     [imageFile]="selectedFile!"
     [croperVisibility]="showCroper"
     (imageCroppedEvent)="onImageCropped($event)"
+    (cropperExit)="onCropperExit()"
   ></app-image-croper>
 </div>

@@ -11,11 +11,13 @@ import { CategoryService } from '../../../services/category.service';
 import { FloatLabelModule } from "primeng/floatlabel"
 import { PropertiesListComponent } from "./properties-list/properties-list.component";
 import { single } from 'rxjs';
+import { ImageCroperComponent } from "../../../../utils/components/image-croper/image-croper.component";
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-course-essentials',
   standalone: true,
-  imports: [InputTextModule, ButtonModule, FileUploadModule, SelectModule, FormsModule, FloatLabelModule, PropertiesListComponent],
+  imports: [InputTextModule, ButtonModule, FileUploadModule, SelectModule, FormsModule, FloatLabelModule, PropertiesListComponent, ImageCroperComponent],
   templateUrl: './course-essentials.component.html',
   styleUrl: './course-essentials.component.css'
 })
@@ -83,19 +85,35 @@ categories = this.courseCategoryService.categories;
 
     //Files
     selectedFile: File | undefined;
+    newImageUrl: SafeUrl | null = null;
+    newImageFile: File | null = null;
+    showCroper = false;
+
     onSelectImage(event: FileSelectEvent) {
       this.selectedFile = event.currentFiles[0];
+      this.showCroper = true;
     }
   
     upload() {
-      this.courseService.editCourseThumbnailPicture(this.courseId(), this.selectedFile!).subscribe({
+      this.courseService.editCourseThumbnailPicture(this.courseId(), this.newImageFile!).subscribe({
         next: (res : any) => {
           this.course()!.thumbnailUrl = res.thumbnailUrl;
+          this.selectedFile = undefined;
         }
       });
     }
   
     cancel() {
+      this.selectedFile = undefined;
+    }
+
+    onImageCropped(event: { file: File | null; url: SafeUrl }) {
+      this.newImageUrl = event.url;
+      this.newImageFile = event.file;
+      this.showCroper = false;
+    }
+    onCropperExit(){
+      this.showCroper = false;
       this.selectedFile = undefined;
     }
 
