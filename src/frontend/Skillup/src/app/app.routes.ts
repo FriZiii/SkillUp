@@ -58,6 +58,7 @@ export const routes: Routes = [
       { path: 'creator', component: CourseCreatorComponent },
       { path: 'essentials', component: CourseEssentialsComponent },
       { path: 'price', component: CoursePricingComponent },
+      { path: 'landing-page', component: CourseDetailComponent },
     ],
   },
   {
