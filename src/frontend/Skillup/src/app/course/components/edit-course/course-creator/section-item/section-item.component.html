@@ -30,7 +30,9 @@
     </div>
     <div class="flex flex-col">
       <div class="prose">
-        <p class="m-0">Publish</p>
+        <p class="m-0">
+          Publish? - unpublished sections are only visible to you
+        </p>
       </div>
       <div class="flex items-center gap-4">
         <p-selectbutton
@@ -41,12 +43,7 @@
           [allowEmpty]="false"
         />
         @if(this.sectionIsPublished() === true){
-        <i
-          class="pi pi-eye"
-          style="font-size: 1rem"
-          pTooltip="This element will be visible before buying"
-          tooltipPosition="right"
-        ></i>
+        <i class="pi pi-eye" style="font-size: 1rem"></i>
         } @else {
         <i
           class="pi pi-eye-slash"
