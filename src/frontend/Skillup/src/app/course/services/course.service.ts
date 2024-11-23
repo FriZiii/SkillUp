@@ -56,6 +56,7 @@ export class CoursesService {
             {
               id: response.id,
               title: response.title,
+              authorId: response.authorId,
               isPublished: response.isPublished,
               category: {
                 id: response.category.id,

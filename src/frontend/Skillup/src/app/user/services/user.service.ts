@@ -42,7 +42,7 @@ export class UserService {
     })
   }
 
-  getUserDetail(): Observable<UserDetail | null> {
+  private getUserDetail(): Observable<UserDetail | null> {
     return this.user.pipe(
       filter((user): user is User => user !== null),
       switchMap((user) =>

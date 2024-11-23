@@ -18,6 +18,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
             var courseDto = new CourseDto()
             {
                 Id = course.Id,
+                AuthorId = course.AuthorId,
                 Title = course.Title,
                 IsPublished = course.IsPublished,
                 Category = new CourseCategoryDto()
@@ -44,6 +45,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
             var courseDetailDto = new CourseDetailDto()
             {
                 Id = course.Id,
+                AuthorId = course.AuthorId,
                 Title = course.Title,
                 IsPublished = course.IsPublished,
                 Category = new CourseCategoryDto()

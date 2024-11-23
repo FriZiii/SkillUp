@@ -1,41 +1,80 @@
-<div class="w-full">
-  <div class="grid grid-cols-2 w-full su-section-mt">
-    <div class="col-start-1 col-span-1 flex justify-center items-center">
-      <img
-        class="p-1 w-96 h-96 object-contain col-start-1 col-span-1"
-        [src]="course()?.thumbnailUrl"
-      />
+<div class="w-full min-h-screen">
+  <div class="min-h-screen">
+    <div class="grid grid-cols-2 items-stretch w-full su-section-mt">
+      <div
+        class="col-start-1 col-span-1 flex justify-center items-center px-10"
+      >
+        <img
+          class="p-1 w-full h-full object-cover col-start-1 col-span-1"
+          style="border-radius: 10px"
+          [src]="course()?.thumbnailUrl"
+        />
+      </div>
+      <div #startTrigger class="col-start-2 col-span-1 flex flex-col gap-2">
+        <div class="prose shadow">
+          <div class="prose-lg">
+            <h1 class="">{{ course()?.title }}</h1>
+          </div>
+          <h2 class="my-4">{{ course()?.subtitle }}</h2>
+          <p>{{ course()?.description }}</p>
+          <p>Created by: {{ author()?.firstName }} {{ author()?.lastName }}</p>
+        </div>
+        <div class="prose shadow">
+          <h2 class="my-2">$ {{ courseItem().price.amount }}</h2>
+        </div>
+      </div>
     </div>
-    <div class="col-start-2 col-span-1 prose">
-      <h1 class="4xl">{{ course()?.title }}</h1>
-      <h2>{{ course()?.subtitle }}</h2>
-      <h3>$ {{ courseItem().price.amount }}</h3>
-      <p>{{ course()?.description }}</p>
 
-      <h3>Level: {{ course()?.level }}</h3>
-      <p>Category: {{ course()?.category?.name }}</p>
-      <p>Subcategory: {{ course()?.category?.subcategory?.name }}</p>
+    <div class="shadow w-full mt-8">
+      <div class="prose">
+        <h3>What will you learn:</h3>
+        @for (item of course()?.objectivesSummary; track item) {
+        <p>{{ item }}</p>
+        }
+      </div>
     </div>
   </div>
 
-  <div class="grid grid-cols-2 w-full mt-10">
-    <div class="prose col-start-1 col-span-1">
-      <h3>Intended for:</h3>
-      @for (item of course()?.intendedFor; track item) {
-      <p>{{ item }}</p>
-      }
+  <div class="w-full grid grid-cols-3 gap-8">
+    <div class="col-start-1 col-span-2">
+      <div class="w-full flex flex-col gap-4">
+        <div class="shadow">
+          <div class="prose">
+            <h3>Intended for:</h3>
+            <div class="f">
+              @for (item of course()?.intendedFor; track item) {
+              <p>{{ item }}</p>
+              }
+            </div>
+          </div>
+        </div>
+        <div class="shadow">
+          <div class="prose">
+            <h3>Must know before:</h3>
+            @for (item of course()?.mustKnowBefore; track item) {
+            <p>{{ item }}</p>
+            }
+          </div>
+        </div>
+        <div style="height: 200vh"></div>
+      </div>
     </div>
-    <div class="prose col-start-2 col-span-1">
-      <h3>Must know before:</h3>
-      @for (item of course()?.mustKnowBefore; track item) {
-      <p>{{ item }}</p>
-      }
-    </div>
-    <div class="prose col-start-3 col-span-1">
-      <h3>What will you learn:</h3>
-      @for (item of course()?.objectivesSummary; track item) {
-      <p>{{ item }}</p>
-      }
+    <div
+      #target
+      class="col-start-3 col-span-1 flex flex-col gap-2 target sticky not-visible"
+    >
+      <div class="prose shadow">
+        <div class="prose-lg">
+          <h1 class="">{{ course()?.title }}</h1>
+        </div>
+        <h2 class="my-4">{{ course()?.subtitle }}</h2>
+        <p>{{ course()?.description }}</p>
+        <p>Created by: {{ author()?.firstName }} {{ author()?.lastName }}</p>
+      </div>
+      <div class="prose shadow">
+        <h2 class="my-2">$ {{ courseItem().price.amount }}</h2>
+      </div>
     </div>
   </div>
 </div>
+<div #endTrigger>Koniec</div>
