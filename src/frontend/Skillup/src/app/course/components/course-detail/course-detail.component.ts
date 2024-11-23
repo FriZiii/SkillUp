@@ -1,5 +1,4 @@
-import { Component, computed, ElementRef, inject, input, OnInit, Renderer2, signal, ViewChild } from '@angular/core';
-import { CoursesCarouselsComponent } from '../courses-carousels/courses-carousels.component';
+import { Component, computed, ElementRef, inject, input, OnChanges, OnInit, Renderer2, signal, SimpleChanges, ViewChild } from '@angular/core';
 import { CoursesService } from '../../services/course.service';
 import { CourseDetail } from '../../models/course.model';
 import { FinanceService } from '../../../finance/finance.service';
@@ -9,29 +8,36 @@ import { CourseContentService } from '../../services/course-content-service';
 import { AccordionModule } from 'primeng/accordion';
 import { SectionItemComponent } from "../edit-course/course-creator/section-item/section-item.component";
 import { ViewElementItemComponent } from "./view-element-item/view-element-item.component";
+import { Router } from '@angular/router';
+import { CourseItemComponent } from "../course-item/course-item.component";
 
 @Component({
   selector: 'app-course-detail',
   standalone: true,
-  imports: [AccordionModule, SectionItemComponent, ViewElementItemComponent],
+  imports: [AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent],
   templateUrl: './course-detail.component.html',
   styleUrl: './course-detail.component.css'
 })
-export class CourseDetailComponent implements OnInit {
-  changeSectionEditMode(event: boolean){
-
-  }
+export class CourseDetailComponent implements OnChanges {
+  
   //Variables
   courseId = input.required<string>();
   course = signal<CourseDetail | null>(null);
   author = signal<UserDetail | null>(null);
   sections = computed(() => this.courseContentService.sections());
+  coursesForAuthor = computed(() =>  {
+    return this.courseService.getCoursesByAuthor(this.author()!.id).slice(0, 10)
+});
+coursesForCategory = computed(() =>  {
+  return this.courseService.getCouresByCategoryId(this.course()!.category.id).slice(0, 10)
+});
 
   //Services
   courseService = inject(CoursesService);
   financeService = inject(FinanceService);
   userService = inject(UserService);
   courseContentService = inject(CourseContentService);
+  router = inject(Router);
 
   items = this.financeService.items;
 
@@ -47,21 +53,28 @@ export class CourseDetailComponent implements OnInit {
     };
   });
 
-  ngOnInit(): void {
-    this.courseService.getCourseById(this.courseId()).subscribe({
-      next: (res) => {
-        this.course.set(res);
-        this.userService.getUser(this.course()!.authorId).subscribe({
-          next: (res) => {
-            this.author.set(res);
-          }
-        });
-      }
-    })
-    
-   this.courseContentService.getSectionsByCourseId(this.courseId());
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['courseId']) {
+      this.courseService.getCourseById(this.courseId()).subscribe({
+        next: (res) => {
+          this.course.set(res);
+          this.userService.getUser(this.course()!.authorId).subscribe({
+            next: (res) => {
+              this.author.set(res);
+            }
+          });
+        }
+      })
+      
+     this.courseContentService.getSectionsByCourseId(this.courseId());
+
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    }
   }
 
+  navigateToAuthor() {
+    this.router.navigate(['/user', this.author()?.id]);
+  }
 
   //Changing styles while scrolling
   @ViewChild('target') target!: ElementRef;

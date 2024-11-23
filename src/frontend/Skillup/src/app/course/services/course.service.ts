@@ -144,6 +144,10 @@ export class CoursesService {
     );
   }
 
+  getCoursesByAuthor(authorId: string): CourseListItem[]{
+    return this.courses().filter((course) => course.authorId === authorId);
+  }
+
 
   //Edit
   editCourse(courseId: string, title: string, categoryId: string, subcategoryId: string){
