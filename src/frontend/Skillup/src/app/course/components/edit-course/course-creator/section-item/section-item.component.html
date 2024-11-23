@@ -4,7 +4,7 @@
     <div class="prose">
       <p>{{ section().title }}</p>
     </div>
-    @if(this.section().isPublished === true){
+    @if(editable() === true){ @if(this.section().isPublished === true){
     <i
       class="pi pi-eye cursor-default"
       style="font-size: 1rem"
@@ -18,7 +18,7 @@
       pTooltip="This section is not published"
       tooltipPosition="right"
     ></i>
-    }
+    } }
   </div>
   } @else {
   <div class="flex flex-col w-full px-4">
@@ -58,7 +58,7 @@
       </div>
     </div>
   </div>
-  }
+  } @if(editable() === true){
   <div
     class="flex justify-end w-full gap-2 px-2 button-container"
     [ngClass]="{ hidden: editing }"
@@ -74,6 +74,8 @@
       (onClick)="removeSection($event)"
     ></p-button>
   </div>
+  }
+
   <div class="flex justify-end gap-2 px-2" [ngClass]="{ hidden: !editing }">
     <p-button
       icon="pi pi-save"

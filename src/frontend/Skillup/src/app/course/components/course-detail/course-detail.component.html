@@ -56,6 +56,30 @@
             }
           </div>
         </div>
+        <div>
+          <p-accordion>
+            @for (section of sections(); track section.id) {
+            @if(section.isPublished === true){
+            <p-accordion-panel [value]="section.id">
+              <p-accordion-header>
+                <app-section-item
+                  [section]="section"
+                  [editable]="false"
+                  class="w-full"
+                ></app-section-item>
+              </p-accordion-header>
+              <p-accordion-content>
+                @for(element of section.elements; track element.id){
+                @if(element.isFree === true){
+                <app-view-element-item
+                  [element]="element"
+                ></app-view-element-item>
+                } }
+              </p-accordion-content>
+            </p-accordion-panel>
+            } }
+          </p-accordion>
+        </div>
         <div style="height: 200vh"></div>
       </div>
     </div>

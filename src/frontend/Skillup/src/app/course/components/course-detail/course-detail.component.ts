@@ -5,26 +5,37 @@ import { CourseDetail } from '../../models/course.model';
 import { FinanceService } from '../../../finance/finance.service';
 import { User, UserDetail } from '../../../user/models/user.model';
 import { UserService } from '../../../user/services/user.service';
+import { CourseContentService } from '../../services/course-content-service';
+import { AccordionModule } from 'primeng/accordion';
+import { SectionItemComponent } from "../edit-course/course-creator/section-item/section-item.component";
+import { ViewElementItemComponent } from "./view-element-item/view-element-item.component";
 
 @Component({
   selector: 'app-course-detail',
   standalone: true,
-  imports: [],
+  imports: [AccordionModule, SectionItemComponent, ViewElementItemComponent],
   templateUrl: './course-detail.component.html',
   styleUrl: './course-detail.component.css'
 })
 export class CourseDetailComponent implements OnInit {
+  changeSectionEditMode(event: boolean){
+
+  }
   //Variables
   courseId = input.required<string>();
   course = signal<CourseDetail | null>(null);
   author = signal<UserDetail | null>(null);
+  sections = computed(() => this.courseContentService.sections());
 
   //Services
   courseService = inject(CoursesService);
   financeService = inject(FinanceService);
   userService = inject(UserService);
+  courseContentService = inject(CourseContentService);
 
   items = this.financeService.items;
+
+
 
   courseItem = computed(() => {
     const item = this.items().find(item => item.id === this.courseId())
@@ -47,6 +58,8 @@ export class CourseDetailComponent implements OnInit {
         });
       }
     })
+    
+   this.courseContentService.getSectionsByCourseId(this.courseId());
   }
 
 
