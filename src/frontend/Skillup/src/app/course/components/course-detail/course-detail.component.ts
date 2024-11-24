@@ -10,16 +10,17 @@ import { SectionItemComponent } from "../edit-course/course-creator/section-item
 import { ViewElementItemComponent } from "./view-element-item/view-element-item.component";
 import { Router } from '@angular/router';
 import { CourseItemComponent } from "../course-item/course-item.component";
+import { Rating, RatingModule } from 'primeng/rating';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-course-detail',
   standalone: true,
-  imports: [AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent],
+  imports: [AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent, RatingModule, FormsModule],
   templateUrl: './course-detail.component.html',
   styleUrl: './course-detail.component.css'
 })
 export class CourseDetailComponent implements OnChanges {
-  
   //Variables
   courseId = input.required<string>();
   course = signal<CourseDetail | null>(null);
@@ -31,6 +32,12 @@ export class CourseDetailComponent implements OnChanges {
 coursesForCategory = computed(() =>  {
   return this.courseService.getCouresByCategoryId(this.course()!.category.id).slice(0, 10)
 });
+  rating = 3;
+  numberOfRating = 1567;
+  numberOfParticipians = 1945;
+  totalCourseTime = 68;
+  lastUpdate = '05.07.2024';
+
 
   //Services
   courseService = inject(CoursesService);
@@ -40,9 +47,6 @@ coursesForCategory = computed(() =>  {
   router = inject(Router);
 
   items = this.financeService.items;
-
-
-
   courseItem = computed(() => {
     const item = this.items().find(item => item.id === this.courseId())
     return {
