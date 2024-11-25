@@ -1,88 +1,173 @@
-import { Component, computed, inject, input, NgModule, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, input, NgModule, OnInit, Signal, signal, WritableSignal } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
-import { FileUploadModule } from 'primeng/fileupload';
-import { FloatLabelModule } from 'primeng/floatlabel';
+import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
 import { InputTextModule } from 'primeng/inputtext';
-import { ImageCroperComponent } from '../../../../utils/components/image-croper/image-croper.component';
 import { CoursesService } from '../../../services/course.service';
 import { CourseDetail } from '../../../models/course.model';
 import { SelectModule } from 'primeng/select';
 import { CourseLevel } from '../../../models/course-level.model';
-import { NgFor } from '@angular/common';
+import { CategoryService } from '../../../services/category.service';
+import { FloatLabelModule } from "primeng/floatlabel"
+import { PropertiesListComponent } from "./properties-list/properties-list.component";
+import { single } from 'rxjs';
+import { ImageCroperComponent } from "../../../../utils/components/image-croper/image-croper.component";
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-course-essentials',
   standalone: true,
-  imports: [InputTextModule, FloatLabelModule, ReactiveFormsModule, ButtonModule, FileUploadModule, ImageCroperComponent, SelectModule, NgFor, FormsModule],
+  imports: [InputTextModule, ButtonModule, FileUploadModule, SelectModule, FormsModule, FloatLabelModule, PropertiesListComponent, ImageCroperComponent],
   templateUrl: './course-essentials.component.html',
   styleUrl: './course-essentials.component.css'
 })
 export class CourseEssentialsComponent implements OnInit {
   //Services
   courseService = inject(CoursesService)
+  courseCategoryService = inject(CategoryService);
+  
   //Variables
   courseId = input.required<string>();
   course = signal<CourseDetail | null>(null);
-  objectivesSummary = computed(() => this.course()?.objectivesSummary);
+
+  //Selects
   levels = Object.entries(CourseLevel).map(([name, value]) => ({
     name,
     value
 }));
-newObjective = signal('');
 
-  //Form
-  courseDetailForm = new FormGroup({
-    title: new FormControl(''),
-    description: new FormControl(''),
-    level: new FormControl(''),
-    objectivesSummary: new FormArray([])
+categories = this.courseCategoryService.categories;
+  categoryNames = computed(() =>
+    this.categories().map((category) => ({
+      id: category.id,
+      name: category.name,
+    }))
+  );
+  subcategoryNames = computed(() => {
+    const selectedCat = this.categories().find(
+      (category) => category.id === this.selectedCategory()
+    );
+    return selectedCat
+      ? selectedCat.subcategories.map((sub) => ({ id: sub.id, name: sub.name }))
+      : [];
   });
+
+  title = signal('');
+  subtitle = signal('');
+  description = signal('');
+  selectedCategory = signal('');
+  selectedSubcategory = signal('');
+  selectedLevel = signal<CourseLevel | null>(null);
+  
+  objectivesList = signal(['']);
+  mustKnowBefore = signal(['']);
+  intendedFor = signal(['']);
 
 
   ngOnInit(): void {
     this.courseService.getCourseById(this.courseId()).subscribe({
       next: (res) => {
         this.course.set(res);
-        this.courseDetailForm.patchValue({
-          title: res?.title,
-          description: res?.description,
-        });
-        
-      this.initializeObjectives();
+        this.title.set(res.title);
+        this.subtitle.set(res.subtitle);
+        this.description.set(res.description);
+        this.selectedCategory.set(res.category.id);
+        this.selectedSubcategory.set(res.category.subcategory.id);
+        this.selectedLevel.set(res.level);
+        this.objectivesList.set(res.objectivesSummary);
+        this.mustKnowBefore.set(res.mustKnowBefore);
+        this.intendedFor.set(res.intendedFor);
       }
     })
     console.log(this.courseId())
+    console.log(this.levels);
   }
+
+    //Files
+    selectedFile: File | undefined;
+    newImageUrl: SafeUrl | null = null;
+    newImageFile: File | null = null;
+    showCroper = false;
+
+    onSelectImage(event: FileSelectEvent) {
+      this.selectedFile = event.currentFiles[0];
+      this.showCroper = true;
+    }
   
-  initializeObjectives() {
-    const objectives = this.objectivesSummary();
-    if (objectives) {
-      objectives.forEach(obj => {
-        this.objectivesSummaryArray.push(new FormControl(obj));
+    upload() {
+      this.courseService.editCourseThumbnailPicture(this.courseId(), this.newImageFile!).subscribe({
+        next: (res : any) => {
+          this.course()!.thumbnailUrl = res.thumbnailUrl;
+          this.selectedFile = undefined;
+        }
       });
     }
-  }
+  
+    cancel() {
+      this.selectedFile = undefined;
+      this.newImageUrl = null;
+      this.newImageFile = null;
+    }
 
-  get objectivesSummaryArray(): FormArray {
-    return this.courseDetailForm.get('objectivesSummary') as FormArray;
-  }
+    onImageCropped(event: { file: File | null; url: SafeUrl }) {
+      this.newImageUrl = event.url;
+      this.newImageFile = event.file;
+      this.showCroper = false;
+    }
+    onCropperExit(){
+      this.showCroper = false;
+      this.selectedFile = undefined;
+    }
 
-  addObjective() {
-    console.log(this.newObjective());
-    this.objectivesSummaryArray.push(new FormControl(this.newObjective())); 
-    this.newObjective.set(''); 
+    //Lists
+    addItem(list: WritableSignal<string[]>, itemToAdd: string){
+      list.update((current) => [...current, itemToAdd]);
+      this.change();
+      this.editCourseDetail();
+    }
 
-  }
+    removeFrom(list: WritableSignal<string[]>, itemToRemove: string){
+        list.update((current) => current.filter((item) => item !== itemToRemove));
+        this.change();
+        this.editCourseDetail();
+    }
 
-  removeObjective(index: number) {
-    this.objectivesSummaryArray.removeAt(index);
-  }
+    changed = false;
+    change(){
+      this.changed = true;
+    }
+    //Requests
+    editCourseDetail(){
+      if(this.changed === true){
+        this.courseService.editCourseDetails(
+          this.courseId(), 
+          this.subtitle(), 
+          this.description(),
+          this.selectedLevel()!,
+          this.objectivesList(),
+          this.mustKnowBefore(),
+          this.intendedFor()).subscribe({
+          
+        });
+      }
+      this.changed=false;
+    }
 
-  submitForm(){
-    console.log(this.courseDetailForm.value.title);
-    console.log(this.courseDetailForm.value.description);
-    console.log(this.courseDetailForm.value.level);
-    console.log(this.courseDetailForm.value.objectivesSummary);
-  }
+    editCourse(){
+      if(this.changed === true){
+        this.courseService.editCourse(
+          this.courseId(),
+          this.title(), 
+          this.selectedCategory(), 
+          this.selectedSubcategory()).subscribe({});
+      }
+      this.changed=false;
+    }
+
+    changeCategory(){
+      this.changed = true;
+      const subCategory = this.subcategoryNames().find(s => s.name === 'Other');
+      this.selectedSubcategory.set(subCategory!.id)
+    }
+
 }

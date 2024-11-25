@@ -1,52 +1,211 @@
-<app-hidden-form-wrapper btnText="Add Element" (submit)="submitElement($event)">
-  <div class="pl-10">
-    <div class="mt-5"></div>
+<p-button
+  label="Add Element"
+  (click)="changeVisibility()"
+  [style.display]="visible ? 'none' : 'block'"
+/>
 
-    <div class="prose">
-      <p>Title</p>
-    </div>
-    <input
-      id="newElementTitle"
-      pInputText
-      class="w-full"
-      [(ngModel)]="newElementTitle"
-    />
-    <div class="mt-6"></div>
-    <div class="prose">
-      <p>Description</p>
-    </div>
-    <textarea
-      pTextarea
-      id="newElementDescription"
-      class="custom-textarea w-full"
-      rows="2"
-      [(ngModel)]="newElementDescription"
-    ></textarea>
-    <div class="flex justify-center gap-10 mt-2">
-      <p-card>
-        <div class="flex flex-col justify-center items-center">
-          <i class="pi pi-video" style="font-size: 3.5rem"></i>
-          <div class="prose mt-1">
-            <p>Add Video</p>
+<div [style.display]="visible ? 'block' : 'none'" class="ml-28 mr-12">
+  <p-stepper [value]="1" class="basis-[50rem]" [linear]="true">
+    <p-step-list>
+      <p-step [value]="1">Title</p-step>
+      <p-step [value]="2">Type</p-step>
+      <p-step [value]="3">Visibility</p-step>
+    </p-step-list>
+    <p-step-panels>
+      <p-step-panel [value]="1">
+        <ng-template #content let-activateCallback="activateCallback">
+          <div
+            class="flex flex-col justify-center items-center prose su-section-mt justify-self-center w-full"
+          >
+            <div class="prose">
+              <p>Title</p>
+            </div>
+            <input
+              id="newElementTitle"
+              pInputText
+              class="w-full"
+              [(ngModel)]="newElementTitle"
+            />
+            <div class="mt-6"></div>
+            <div class="prose">
+              <p>Description</p>
+            </div>
+            <textarea
+              pTextarea
+              id="newElementDescription"
+              class="custom-textarea w-full"
+              rows="2"
+              [(ngModel)]="newElementDescription"
+            ></textarea>
           </div>
-        </div>
-      </p-card>
-      <p-card>
-        <div class="flex flex-col justify-center items-center">
-          <i class="pi pi-book" style="font-size: 3.5rem"></i>
-          <div class="prose mt-1">
-            <p>Add Article</p>
+          <div class="flex pt-10 justify-between">
+            <p-button
+              label="Cancel"
+              type="button"
+              severity="secondary"
+              (click)="changeVisibility()"
+            />
+            <p-button
+              label="Next"
+              icon="pi pi-arrow-right"
+              iconPos="right"
+              (onClick)="activateCallback(2)"
+              [disabled]="
+                this.newElementTitle() === '' ||
+                this.newElementDescription() === ''
+              "
+            />
           </div>
-        </div></p-card
-      >
-      <p-card>
-        <div class="flex flex-col justify-center items-center">
-          <i class="pi pi-objects-column" style="font-size: 3.5rem"></i>
-          <div class="prose mt-1">
-            <p>Add Exercise</p>
+        </ng-template>
+      </p-step-panel>
+
+      <p-step-panel [value]="2">
+        <ng-template #content let-activateCallback="activateCallback">
+          <div
+            class="flex flex-col justify-center items-center prose su-section-mt justify-self-center w-full"
+          >
+            <div class="flex justify-center gap-10 mt-2">
+              <div
+                class="h-32 w-36 su-border flex items-center justify-center"
+                [ngClass]="{
+                  'border-primary': newElementType() === AssetType.Video
+                }"
+              >
+                <div
+                  class="flex flex-col justify-center items-center cursor-pointer"
+                  (click)="chooseType(AssetType.Video)"
+                >
+                  <i class="pi pi-video" style="font-size: 3.5rem"></i>
+                  <div class="prose mt-1">
+                    <p>Add Video</p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="h-32 w-36 su-border flex items-center justify-center"
+                [ngClass]="{
+                  'border-primary': newElementType() === AssetType.Article
+                }"
+              >
+                <div
+                  class="flex flex-col justify-center items-center cursor-pointer"
+                  (click)="chooseType(AssetType.Article)"
+                >
+                  <i class="pi pi-book" style="font-size: 3.5rem"></i>
+                  <div class="prose mt-1">
+                    <p>Add Article</p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="h-32 w-36 su-border flex items-center justify-center"
+                [ngClass]="{
+                  'border-primary': newElementType() === AssetType.Exercise
+                }"
+              >
+                <div
+                  class="flex flex-col justify-center items-center cursor-pointer"
+                  (click)="chooseType(AssetType.Exercise)"
+                >
+                  <i class="pi pi-objects-column" style="font-size: 3.5rem"></i>
+                  <div class="prose mt-1">
+                    <p>Add Exercise</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div></p-card
-      >
-    </div>
-  </div>
-</app-hidden-form-wrapper>
+          <div class="flex pt-10 justify-between">
+            <div class="flex flex-col">
+              <p-button
+                label="Back"
+                severity="secondary"
+                icon="pi pi-arrow-left"
+                (onClick)="activateCallback(1)"
+                class="mb-2"
+              />
+              <p-button
+                label="Cancel"
+                type="button"
+                severity="secondary"
+                (click)="changeVisibility()"
+              />
+            </div>
+            <p-button
+              label="Next"
+              icon="pi pi-arrow-right"
+              iconPos="right"
+              (onClick)="activateCallback(3)"
+              [disabled]="this.newElementType() === null"
+            />
+          </div>
+        </ng-template>
+      </p-step-panel>
+
+      <p-step-panel [value]="3">
+        <ng-template #content let-activateCallback="activateCallback">
+          <div
+            class="flex flex-col justify-center items-center prose su-section-mt justify-self-center w-full"
+          >
+            <h1 class="mb-2">Free?</h1>
+            <p class="text-center my-1">
+              If you set this element as Free, it will be visible to users
+              before purchasing this course.
+            </p>
+            <p class="text-center my-1">
+              It is a good idea to set a few elements as free, so users can get
+              a clear understanding of the course content.
+            </p>
+            <div class="flex items-center gap-4 mt-8">
+              <p-selectbutton
+                [options]="freeOptions"
+                optionLabel="label"
+                optionValue="value"
+                [(ngModel)]="newElementFree"
+                [allowEmpty]="false"
+              />
+              @if(this.newElementFree() === true){
+              <i
+                class="pi pi-lock-open"
+                style="font-size: 1rem"
+                pTooltip="This element will be visible before buying"
+                tooltipPosition="right"
+              ></i>
+              } @else {
+              <i
+                class="pi pi-lock"
+                style="font-size: 1rem"
+                pTooltip="This element will not be visible before buying"
+                tooltipPosition="right"
+              ></i>
+              }
+            </div>
+          </div>
+          <div class="flex pt-10 justify-between">
+            <div class="flex flex-col">
+              <p-button
+                label="Back"
+                icon="pi pi-arrow-left"
+                iconPos="right"
+                (onClick)="activateCallback(2)"
+                class="mb-2"
+              />
+              <p-button
+                label="Cancel"
+                type="button"
+                severity="secondary"
+                (click)="changeVisibility()"
+              />
+            </div>
+            <p-button
+              label="Submit"
+              icon="pi pi-arrow-right"
+              iconPos="right"
+              (onClick)="submitElement($event)"
+            />
+          </div>
+        </ng-template>
+      </p-step-panel>
+    </p-step-panels>
+  </p-stepper>
+</div>

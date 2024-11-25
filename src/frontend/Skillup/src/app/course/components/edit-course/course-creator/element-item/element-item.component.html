@@ -7,34 +7,82 @@
     ></i>
     @if(!editing){
     <div class="w-full px-4 prose">
-      <h4 class="b-0">{{ element().title }}</h4>
-      <p>{{ element().description }}</p>
+      <div class="flex items-baseline gap-2 cursor-default">
+        <h4 class="b-0 mt-0">{{ element().title }}</h4>
+        @if(this.element().isFree === true){
+        <i
+          class="pi pi-lock-open"
+          style="font-size: 1rem"
+          pTooltip="This element is visible before buying"
+          tooltipPosition="right"
+        ></i>
+        } @if(this.element().hasAsset === false){
+        <i
+          class="pi pi-exclamation-triangle"
+          style="font-size: 1rem; color: red"
+          pTooltip="This element does not have any content"
+          tooltipPosition="right"
+        ></i>
+        }
+      </div>
+
+      <p class="mt-1">{{ element().description }}</p>
     </div>
     } @else{
     <div class="w-full px-4">
+      <div class="prose">
+        <p class="m-0">Title</p>
+      </div>
       <input pInputText class="w-full mb-2" [(ngModel)]="elementTitle" />
+      <div class="prose">
+        <p class="m-0">Description</p>
+      </div>
       <textarea
         class="custom-textarea w-full"
         rows="2"
         [(ngModel)]="elementDescription"
       ></textarea>
+      <div class="prose">
+        <p class="m-0">Visible before buying</p>
+      </div>
+      <div class="flex items-center gap-4">
+        <p-selectbutton
+          [options]="freeOptions"
+          optionLabel="label"
+          optionValue="value"
+          [(ngModel)]="elementFree"
+          [allowEmpty]="false"
+        />
+        @if(this.elementFree() === true){
+        <i
+          class="pi pi-lock-open"
+          style="font-size: 1rem"
+          pTooltip="This element will be visible before buying"
+          tooltipPosition="right"
+        ></i>
+        } @else {
+        <i
+          class="pi pi-lock"
+          style="font-size: 1rem"
+          pTooltip="This element will not be visible before buying"
+          tooltipPosition="right"
+        ></i>
+        }
+      </div>
     </div>
     }
 
+    <!-- Button Container -->
     <div
-      class="flex justify-end w-full gap-2 px-2 button-container"
+      class="flex justify-end w-full gap-2 px-2 button-container self-center"
       [ngClass]="{ hidden: editing }"
     >
+      <p-menu #menu [model]="items" [popup]="true" />
       <p-button
-        icon="pi pi-file-edit"
+        (click)="menu.toggle($event)"
+        icon="pi pi-ellipsis-h"
         severity="secondary"
-        (onClick)="changeEditVisibility()"
-      ></p-button>
-      <p-button
-        icon="pi pi-trash"
-        severity="danger"
-        (onClick)="removeElement($event)"
-      ></p-button>
+      />
     </div>
     <div class="flex justify-end gap-2 px-2" [ngClass]="{ hidden: !editing }">
       <p-button
@@ -50,4 +98,57 @@
     </div>
   </div>
 </div>
-<ng-content />
+
+<!-- Content Dialog -->
+<p-dialog
+  header="Element's Content"
+  [modal]="true"
+  [(visible)]="contentDialogVisible"
+  [style]="{ width: '80%' }"
+  [draggable]="false"
+  class="cursor-default"
+>
+  <app-element-content-dialog
+    [element]="element()"
+    [visible]="contentDialogVisible"
+  ></app-element-content-dialog>
+  <div
+    class="flex gap-2"
+    [ngClass]="this.element().hasAsset ? 'justify-between' : 'justify-end'"
+  >
+    @if(this.element().hasAsset){
+    <p-button
+      severity="danger"
+      label="Delete content"
+      icon="pi pi-trash"
+      (onClick)="deleteContent($event)"
+    ></p-button>
+    }
+    <p-button
+      label="Cancel"
+      severity="secondary"
+      (click)="contentDialogVisible = false"
+    />
+  </div>
+</p-dialog>
+
+<!-- Attachements dialog -->
+<p-dialog
+  header="Element's Attachements"
+  [modal]="true"
+  [(visible)]="attachmentsDialogVisible"
+  [style]="{ width: '80%' }"
+  [draggable]="false"
+  class="cursor-default"
+>
+  <app-element-attachments-dialog
+    [element]="this.element()"
+  ></app-element-attachments-dialog>
+  <div class="flex gap-2 justify-end">
+    <p-button
+      label="Cancel"
+      severity="secondary"
+      (click)="attachmentsDialogVisible = false"
+    />
+  </div>
+</p-dialog>

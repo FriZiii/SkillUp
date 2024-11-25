@@ -18,12 +18,14 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements
         }
         public async Task Handle(AddElementRequest request, CancellationToken cancellationToken)
         {
+            var elements = await _elementRepository.GetElementsBySectionId(request.SectionId);
             var element = new Element()
             {
                 Title = request.Title,
                 Description = request.Description,
+                IsFree = request.isFree,
                 AssetType = request.AssetType,
-                Index = request.Index,
+                Index = elements.Count(),
                 SectionId = request.SectionId,
             };
             await _elementRepository.Add(element);
