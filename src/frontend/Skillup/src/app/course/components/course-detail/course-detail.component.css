@@ -17,7 +17,7 @@
 .target.sticky {
   position: sticky;
   top: 10rem;
-  z-index: 100;
+  z-index: 10;
 }
 .not-visible {
   opacity: 0;
