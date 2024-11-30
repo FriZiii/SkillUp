@@ -40,3 +40,20 @@ export const isAuthor: CanMatchFn = async (route, segments) => {
     router.navigate(['/access-denied']);
     return false;
 }
+
+export const isLoggedIn: CanMatchFn = async (route, segments) => {
+    const router = inject(Router);
+    const userService = inject(UserService)
+    const user = computed(() => userService.currentUser());
+    if(user() === null)
+    {
+        console.log('null')
+        await new Promise(resolve => setTimeout(resolve, 1000)); 
+    }
+    
+    if(user() !== null){
+        return true;
+    }
+    router.navigate(['/access-denied']);
+    return false;
+}
