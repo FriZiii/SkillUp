@@ -7,7 +7,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
     [Mapper]
     public partial class ExerciseMapper
     {
-        public QuestionAnswerDto QuestionAnswerToQuestionAnsweerDto(QuestionAnswer questionAnswer)
+        public QuestionAnswerDto ExerciseToExerciseDto(QuestionAnswer questionAnswer)
         {
             var questionAnswerDto = new QuestionAnswerDto()
             {
@@ -19,7 +19,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
             return questionAnswerDto;
         }
 
-        public QuizQuestionDto QuizToQuizDto(QuizQuestion quizQuestion)
+        public QuizQuestionDto ExerciseToExerciseDto(QuizQuestion quizQuestion)
         {
             var quizQuestionDto = new QuizQuestionDto()
             {
@@ -41,6 +41,16 @@ namespace Skillup.Modules.Courses.Application.Mappings
                 IsCorrect = quizAnswer.isCorrectAnswer,
             };
             return quizAnswerDto;
+        }
+
+        public ExerciseDto ExerciseToExerciseDto(Exercise exercise)
+        {
+            return exercise switch
+            {
+                QuestionAnswer q => ExerciseToExerciseDto(q),
+                QuizQuestion qz => ExerciseToExerciseDto(qz),
+                _ => throw new InvalidOperationException("Unsupported exercise type")  //TODO better exception
+            };
         }
     }
 }

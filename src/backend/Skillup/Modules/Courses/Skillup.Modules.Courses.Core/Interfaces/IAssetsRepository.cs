@@ -11,5 +11,6 @@ namespace Skillup.Modules.Courses.Core.Interfaces
         Task EditAssignment(Assignment assignment);
         Task Delete(Guid id, AssetType type);
         Task<Asset?> GetByElementId(Guid elementId);
+        Task<Assignment> GetAssignmentById(Guid id);
     }
 }

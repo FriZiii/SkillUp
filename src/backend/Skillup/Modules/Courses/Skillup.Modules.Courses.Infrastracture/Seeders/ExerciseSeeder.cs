@@ -30,7 +30,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                 data = JsonSerializer.Deserialize<List<QuizJsonModel>>(jsonString, _jsonSerializerOptions);
 
                 _assignmentList = await _assignments.Include(a => a.Element).ToListAsync();
-                await _context.QuestionAnswerExercises.AddRangeAsync(CreateQuestions());
+                //await _context.QuestionAnswerExercises.AddRangeAsync(CreateQuestions());
                 await _context.QuizQuestionExercises.AddRangeAsync(CreateQuizes(data!));
                 await _context.SaveChangesAsync();
                 _quizQuestionsList = await _context.QuizQuestionExercises.ToListAsync();
@@ -39,20 +39,20 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
             }
         }
 
-        private IEnumerable<QuestionAnswer> CreateQuestions()
-        {
-            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
+        //private IEnumerable<QuestionAnswer> CreateQuestions()
+        //{
+        //    var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
 
-            var jsonString = File.ReadAllText(Path.Combine(path, "question-seeder-data.json"));
-            JsonSerializerOptions options = new()
-            {
-                PropertyNameCaseInsensitive = true
-            };
+        //    var jsonString = File.ReadAllText(Path.Combine(path, "question-seeder-data.json"));
+        //    JsonSerializerOptions options = new()
+        //    {
+        //        PropertyNameCaseInsensitive = true
+        //    };
 
-            var data = JsonSerializer.Deserialize<List<QuestionJsonModel>>(jsonString, options);
+        //    var data = JsonSerializer.Deserialize<List<QuestionJsonModel>>(jsonString, options);
 
-            return data!.Select(CreateQuestionFromJson);
-        }
+        //    return data!.Select(CreateQuestionFromJson);
+        //}
 
         private QuestionAnswer CreateQuestionFromJson(QuestionJsonModel jsonModel)
         {

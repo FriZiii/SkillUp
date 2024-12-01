@@ -18,6 +18,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Assets
             var assignment = new Assignment()
             {
                 ElementId = request.ElementId,
+                ExerciseType = request.ExerciseType,
                 Instruction = request.Instruction,
             };
             await _assetsRepository.AddAssignment(assignment);

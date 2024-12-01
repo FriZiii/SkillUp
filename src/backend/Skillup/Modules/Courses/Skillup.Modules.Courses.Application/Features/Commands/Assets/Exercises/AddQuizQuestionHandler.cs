@@ -7,12 +7,18 @@ using Skillup.Modules.Courses.Core.Requests.Commands.Assets.Exercises;
 
 namespace Skillup.Modules.Courses.Application.Features.Commands.Assets.Exercises
 {
-    internal class AddQuizQuestionHandler(IExerciseRepository exerciseRepository) : IRequestHandler<AddQuizQuestionRequest, QuizQuestionDto>
+    internal class AddQuizQuestionHandler(IExerciseRepository exerciseRepository, IAssetsRepository assetsRepository) : IRequestHandler<AddQuizQuestionRequest, QuizQuestionDto>
     {
         private readonly IExerciseRepository _exerciseRepository = exerciseRepository;
+        private readonly IAssetsRepository _assetsRepository = assetsRepository;
 
         public async Task<QuizQuestionDto> Handle(AddQuizQuestionRequest request, CancellationToken cancellationToken)
         {
+            var assignment = await _assetsRepository.GetAssignmentById(request.AssignmentId);
+            if (assignment.ExerciseType != Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.ExerciseType.Quiz)
+            {
+                throw new Exception();  //TODO: wrong exercise type
+            }
             var exercise = new QuizQuestion()
             {
                 AssignmentId = request.AssignmentId,
@@ -20,7 +26,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Assets.Exercises
             };
             await _exerciseRepository.AddQuiz(exercise);
             var mapper = new ExerciseMapper();
-            return mapper.QuizToQuizDto(exercise);
+            return mapper.ExerciseToExerciseDto(exercise);
         }
     }
 }

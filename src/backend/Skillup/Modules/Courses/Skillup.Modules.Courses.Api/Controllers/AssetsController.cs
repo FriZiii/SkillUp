@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets;
 using Skillup.Modules.Courses.Core.Requests.Commands.Assets;
 using Skillup.Modules.Courses.Core.Requests.Queries.Assets;
 using Swashbuckle.AspNetCore.Annotations;
@@ -34,13 +35,13 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok();
         }
 
-        [HttpPost("assignment/{elementId}")]
+        [HttpPost("assignment/{exerciseType}/{elementId}")]
         [SwaggerOperation("Add assignment")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddAssignment(Guid elementId, string instruction)
+        public async Task<IActionResult> AddAssignment(Guid elementId, [FromRoute] ExerciseType exerciseType, string instruction)
         {
-            var assignment = await _mediator.Send(new AddAssignmentAssetRequest(elementId, instruction));
+            var assignment = await _mediator.Send(new AddAssignmentAssetRequest(elementId, exerciseType, instruction));
             return Ok(assignment);
         }
 
