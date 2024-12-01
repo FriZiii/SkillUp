@@ -7,6 +7,7 @@ import { CoursesService } from '../../../course/services/course.service';
 import { CategoryService } from '../../../course/services/category.service';
 import { CourseListItem } from '../../../course/models/course.model';
 import { Category } from '../../../course/models/category.model';
+import { UserService } from '../../../user/services/user.service';
 
 @Component({
   selector: 'app-hero',
@@ -21,9 +22,11 @@ export class HeroComponent implements OnInit {
 
   authService = inject(AuthService);
   route = inject(ActivatedRoute);
+  userService = inject(UserService);
 
   userId: string | null = null;
   activationToken: string | null = null;
+  user = this.userService.currentUser;
 
   selectedCategories = computed(() => this.cetegoriesService.categories().sort(() => 0.5 - Math.random()).slice(0, 3));
 

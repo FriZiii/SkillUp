@@ -98,6 +98,7 @@ export class UserService {
 
   clearUser(): void {
     this.userSubject.next(null);
+    this.currentUser.set(null);
   }
 
   editProfilePicture(userId: string, file: File) {
