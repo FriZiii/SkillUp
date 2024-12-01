@@ -23,6 +23,8 @@ namespace Skillup.Modules.Finances.Core
                 .AddScoped<IItemRepository, ItemRepository>()
                 .AddScoped<IWalletRepository, WalletRepository>()
                 .AddScoped<IPurchaseHistoryRepository, PurchaseHistoryRepository>()
+                .AddScoped<ICartRepository, CartRepository>()
+                .AddScoped<IDiscountCodeRepository, DiscountCodeRepository>()
                 .AddConsumer<ItemAddedConsumer>()
                 .AddConsumer<SignedUpConsumer>()
                 .AddSeeder<FinanceSeeder>();

@@ -9,6 +9,12 @@ namespace Skillup.Modules.Finances.Core.DAL
         public DbSet<Item> Items { get; set; }
         public DbSet<PurchaseHistory> PurchaseHistories { get; set; }
 
+        public DbSet<DiscountCode> DiscountCodes { get; set; }
+        public DbSet<DiscountedItem> DiscountedItems { get; set; }
+
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("finances");
