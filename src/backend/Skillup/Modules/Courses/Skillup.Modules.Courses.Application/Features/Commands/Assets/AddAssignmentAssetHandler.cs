@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using Skillup.Modules.Courses.Application.Mappings;
 using Skillup.Modules.Courses.Core.DTO.Assets;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets;
@@ -7,9 +8,10 @@ using Skillup.Modules.Courses.Core.Requests.Commands.Assets;
 
 namespace Skillup.Modules.Courses.Application.Features.Commands.Assets
 {
-    internal class AddAssignmentAssetHandler(IAssetsRepository assetsRepository) : IRequestHandler<AddAssignmentAssetRequest, AssignmentDto>
+    internal class AddAssignmentAssetHandler(IAssetsRepository assetsRepository, ILogger<AddAssignmentAssetHandler> logger) : IRequestHandler<AddAssignmentAssetRequest, AssignmentDto>
     {
         private readonly IAssetsRepository _assetsRepository = assetsRepository;
+        private readonly ILogger<AddAssignmentAssetHandler> _logger = logger;
 
         public async Task<AssignmentDto> Handle(AddAssignmentAssetRequest request, CancellationToken cancellationToken)
         {
@@ -21,6 +23,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Assets
             await _assetsRepository.AddAssignment(assignment);
 
             var mapper = new AssignmentMapper();
+            _logger.LogInformation("Assignment created");
             return mapper.AssignmentToAssignmentDto(assignment);
         }
     }

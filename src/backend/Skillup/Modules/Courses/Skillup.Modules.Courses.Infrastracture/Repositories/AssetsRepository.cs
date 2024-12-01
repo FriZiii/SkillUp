@@ -38,6 +38,14 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task EditAssignment(Assignment assignment)
+        {
+            var assignmentToEdit = await _assignemnts.FirstOrDefaultAsync(s => s.Id == assignment.Id) ?? throw new Exception();  //TODO: Custom exception for null check in repo
+
+            assignmentToEdit.Instruction = assignment.Instruction;
+
+            await _context.SaveChangesAsync();
+        }
         public async Task Delete(Guid id, AssetType type)
         {
             switch (type)
@@ -71,9 +79,10 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             {
                 AssetType.Article => await _articles.FirstOrDefaultAsync(x => x.ElementId == element.Id),
                 AssetType.Video => await _videos.FirstOrDefaultAsync(x => x.ElementId == element.Id),
-                AssetType.Exercise => null,
+                AssetType.Exercise => await _assignemnts.FirstOrDefaultAsync(x => x.ElementId == element.Id),
                 _ => null,
             };
         }
+
     }
 }

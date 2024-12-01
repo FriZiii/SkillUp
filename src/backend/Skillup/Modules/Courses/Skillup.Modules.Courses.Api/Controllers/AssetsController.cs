@@ -38,10 +38,20 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [SwaggerOperation("Add assignment")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddAssignment(Guid elementId, string assignemntInstruction)
+        public async Task<IActionResult> AddAssignment(Guid elementId, string instruction)
         {
-            var assignment = await _mediator.Send(new AddAssignmentAssetRequest(elementId, assignemntInstruction));
+            var assignment = await _mediator.Send(new AddAssignmentAssetRequest(elementId, instruction));
             return Ok(assignment);
+        }
+
+        [HttpPut("assignment/{elementId}")]
+        [SwaggerOperation("Edit assignment")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> EditAssignment(Guid elementId, string instruction)
+        {
+            await _mediator.Send(new EditAssignmentAssetRequest(elementId, instruction));
+            return Ok();
         }
 
         [HttpDelete("{elementId}")]
