@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
 using Skillup.Modules.Courses.Core.Requests.Commands.Assets;
-using Skillup.Modules.Courses.Core.Requests.Queries;
+using Skillup.Modules.Courses.Core.Requests.Queries.Assets;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Courses.Api.Controllers
@@ -74,7 +74,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             {
                 AssetType.Article => Ok(await _mediator.Send(new GetArticleAssetRequest(elementId))),
                 AssetType.Video => Ok(await _mediator.Send(new GetVideoAssetRequest(elementId))),
-                AssetType.Exercise => NotFound(),
+                AssetType.Exercise => Ok(await _mediator.Send(new GetAssignmentAssetRequest(elementId))),
                 _ => BadRequest(),
             };
         }

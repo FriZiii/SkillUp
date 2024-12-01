@@ -7,9 +7,9 @@ namespace Skillup.Modules.Courses.Application.Mappings
     [Mapper]
     public partial class AssignmentMapper
     {
-        public AssignmentDto AssignmentToAssignmentDto(Assignment assignment)
+        public AssignmentAssetDto AssignmentToAssignmentDto(Assignment assignment)
         {
-            var assignmentDto = new AssignmentDto()
+            var assignmentDto = new AssignmentAssetDto()
             {
                 AssetId = assignment.Id,
                 ElementId = assignment.ElementId,

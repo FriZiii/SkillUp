@@ -13,7 +13,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Assets
 
         public async Task Handle(EditAssignmentAssetRequest request, CancellationToken cancellationToken)
         {
-            Assignment assignment = (Assignment)await _assetsRepository.GetByElementId(request.ElementId);
+            var assignment = await _assetsRepository.GetByElementId(request.ElementId) as Assignment ?? throw new Exception(); // TODO: custom ex
             assignment.Instruction = request.Instruction;
             await _assetsRepository.EditAssignment(assignment);
             _logger.LogInformation("Assignment edited");

@@ -1,6 +1,6 @@
 ﻿namespace Skillup.Modules.Courses.Core.DTO.Assets
 {
-    public class AssignmentDto : AssetDto
+    public class AssignmentAssetDto : AssetDto
     {
         public string Instruction { get; set; }
     }

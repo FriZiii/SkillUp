@@ -8,12 +8,12 @@ using Skillup.Modules.Courses.Core.Requests.Commands.Assets;
 
 namespace Skillup.Modules.Courses.Application.Features.Commands.Assets
 {
-    internal class AddAssignmentAssetHandler(IAssetsRepository assetsRepository, ILogger<AddAssignmentAssetHandler> logger) : IRequestHandler<AddAssignmentAssetRequest, AssignmentDto>
+    internal class AddAssignmentAssetHandler(IAssetsRepository assetsRepository, ILogger<AddAssignmentAssetHandler> logger) : IRequestHandler<AddAssignmentAssetRequest, AssignmentAssetDto>
     {
         private readonly IAssetsRepository _assetsRepository = assetsRepository;
         private readonly ILogger<AddAssignmentAssetHandler> _logger = logger;
 
-        public async Task<AssignmentDto> Handle(AddAssignmentAssetRequest request, CancellationToken cancellationToken)
+        public async Task<AssignmentAssetDto> Handle(AddAssignmentAssetRequest request, CancellationToken cancellationToken)
         {
             var assignment = new Assignment()
             {

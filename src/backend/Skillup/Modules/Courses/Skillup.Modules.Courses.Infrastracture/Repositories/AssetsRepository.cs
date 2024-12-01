@@ -61,7 +61,8 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
                     break;
 
                 case AssetType.Exercise:
-                    //TODO
+                    var assignmentToRemove = await _assignemnts.FirstOrDefaultAsync(x => x.Id == id) ?? throw new Exception(); // Video doesnt exist  //TODO: Custom ex
+                    _assignemnts.Remove(assignmentToRemove);
                     break;
 
                 default:
