@@ -34,6 +34,16 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok();
         }
 
+        [HttpPost("assignment/{elementId}")]
+        [SwaggerOperation("Add assignment")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AddAssignment(Guid elementId, string assignemntInstruction)
+        {
+            var assignment = await _mediator.Send(new AddAssignmentAssetRequest(elementId, assignemntInstruction));
+            return Ok(assignment);
+        }
+
         [HttpDelete("{elementId}")]
         [SwaggerOperation("Delete asset by elementId")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

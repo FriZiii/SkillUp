@@ -10,12 +10,14 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         private readonly CoursesDbContext _context;
         private readonly DbSet<Video> _videos;
         private readonly DbSet<Article> _articles;
+        private readonly DbSet<Assignment> _assignemnts;
 
         public AssetsRepository(CoursesDbContext context)
         {
             _context = context;
             _videos = _context.Videos;
             _articles = _context.Articles;
+            _assignemnts = _context.Assignments;
         }
 
         public async Task AddVideo(Video video)
@@ -27,6 +29,12 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         public async Task AddArticle(Article article)
         {
             await _articles.AddAsync(article);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task AddAssignment(Assignment assignment)
+        {
+            await _assignemnts.AddAsync(assignment);
             await _context.SaveChangesAsync();
         }
 
