@@ -1,9 +1,16 @@
+<app-filters
+  (onFilter)="filter($event)"
+  [courses]="coursesForCategory()"
+></app-filters>
 <div class="w-full">
   <div class="flex flex-wrap justify-evenly items-start su-section-mt">
     @if(coursesForCategory().length == 0){
     <p-progress-spinner ariaLabel="loading" class="mt-24" />
-    } @for(course of coursesForCategory(); track course.id){
+    } @if(filteredCourses.length == 0 ){ @for(course of coursesForCategory();
+    track course.id){
     <app-course-item [course]="course"></app-course-item>
-    }
+    } } @else { @for(course of filteredCourses; track course.id){
+    <app-course-item [course]="course"></app-course-item>
+    } }
   </div>
 </div>
