@@ -14,6 +14,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
                 AssetId = assignment.Id,
                 ElementId = assignment.ElementId,
                 Instruction = assignment.Instruction,
+
             };
             return assignmentDto;
         }

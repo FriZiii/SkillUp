@@ -80,7 +80,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             {
                 AssetType.Article => await _articles.FirstOrDefaultAsync(x => x.ElementId == element.Id),
                 AssetType.Video => await _videos.FirstOrDefaultAsync(x => x.ElementId == element.Id),
-                AssetType.Exercise => await _assignemnts.FirstOrDefaultAsync(x => x.ElementId == element.Id),
+                AssetType.Exercise => await _assignemnts.Include(a => a.Exercises).FirstOrDefaultAsync(x => x.ElementId == element.Id),
                 _ => null,
             };
         }
