@@ -36,5 +36,19 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             _quizAnswers.Add(quizAnswer);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<QuestionAnswer>> GetQuestionAnswers(Guid assignmentId)
+        {
+            var questions = await _questions.Where(q => q.AssignmentId == assignmentId)
+                .ToListAsync();
+            return questions;
+        }
+
+        public async Task<List<QuizQuestion>> GetQuizzes(Guid assignmentId)
+        {
+            var quizzes = await _quizQuestions.Include(q => q.Answers).Where(q => q.AssignmentId == assignmentId)
+                .ToListAsync();
+            return quizzes;
+        }
     }
 }

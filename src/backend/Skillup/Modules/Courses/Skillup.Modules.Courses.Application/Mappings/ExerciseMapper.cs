@@ -42,15 +42,5 @@ namespace Skillup.Modules.Courses.Application.Mappings
             };
             return quizAnswerDto;
         }
-
-        public ExerciseDto ExerciseToExerciseDto(Exercise exercise)
-        {
-            return exercise switch
-            {
-                QuestionAnswer q => ExerciseToExerciseDto(q),
-                QuizQuestion qz => ExerciseToExerciseDto(qz),
-                _ => throw new InvalidOperationException("Unsupported exercise type")  //TODO better exception
-            };
-        }
     }
 }

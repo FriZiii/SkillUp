@@ -7,6 +7,8 @@ namespace Skillup.Modules.Courses.Core.Interfaces
         Task AddQuestionAnswer(QuestionAnswer questionAnswer);
         Task AddQuiz(QuizQuestion quizQuestion);
         Task AddQuizAnswer(QuizAnswer quizAnswer);
+        Task<List<QuizQuestion>> GetQuizzes(Guid assignmentId);
+        Task<List<QuestionAnswer>> GetQuestionAnswers(Guid assignmentId);
         //Task EditQuestionAnswer(QuestionAnswer questionAnswer);
         //Task Delete(Guid exerciseId);
     }
