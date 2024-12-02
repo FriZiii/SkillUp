@@ -1,0 +1,21 @@
+@for( quiz of quizes(); track quiz.id){
+<p>{{ $index + 1 }}</p>
+<p>{{ quiz.question }}</p>
+<app-hidden-form-wrapper
+  btnText="Add answer"
+  (submit)="addAnswer($event, quiz.id)"
+>
+  <input type="text" pInputText [(ngModel)]="newAnswer" />
+  <p-checkbox [(ngModel)]="newAnswerCorrect" [binary]="true" />
+</app-hidden-form-wrapper>
+@for( answer of quiz.answers; track answer.id){
+<div class="flex gap-4">
+  <p>{{ $index + 1 }}</p>
+  <p>{{ answer.answer }}</p>
+  <p>{{ answer.isCorrect }}</p>
+</div>
+} }
+
+<app-hidden-form-wrapper btnText="Add question" (submit)="addQuiz($event)">
+  <input type="text" pInputText [(ngModel)]="newQuestion" />
+</app-hidden-form-wrapper>

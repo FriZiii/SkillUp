@@ -14,33 +14,37 @@ namespace Skillup.Modules.Courses.Api.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
-        [HttpPost("question/{assignmentId}")]
+        [HttpPost("Question/{assignmentId}")]
         [SwaggerOperation("Add question")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddQuestion(Guid assignmentId, string question, string answer)
+        public async Task<IActionResult> AddQuestion(Guid assignmentId, AddQuestionAnswerRequest request)
         {
-            var exercise = await _mediator.Send(new AddQuestionAnswerRequest(assignmentId, question, answer));
+            request.AssignmentId = assignmentId;
+            var exercise = await _mediator.Send(request);
             return Ok(exercise);
         }
 
-        [HttpPost("quiz/{assignmentId}")]
+        [HttpPost("Quiz/{assignmentId}")]
         [SwaggerOperation("Add question")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddQuiz(Guid assignmentId, string question)
+        public async Task<IActionResult> AddQuiz(Guid assignmentId, AddQuizQuestionRequest request)
         {
-            var exercise = await _mediator.Send(new AddQuizQuestionRequest(assignmentId, question));
+            request.AssignmentId = assignmentId;
+            var exercise = await _mediator.Send(request);
             return Ok(exercise);
         }
 
-        [HttpPost("quizanswer/{quizId}")]
-        [SwaggerOperation("Add question")]
+        [HttpPost("QuizAnswer/{quizId}")]
+        [SwaggerOperation("Add answer")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddQuizAnswer(Guid quizId, string answer, bool isCorrect)
+        public async Task<IActionResult> AddQuizAnswer(Guid quizId, AddQuizAnswerRequest request)
         {
-            var newAnswer = await _mediator.Send(new AddQuizAnswerRequest(quizId, answer, isCorrect));
+
+            request.QuizId = quizId;
+            var newAnswer = await _mediator.Send(request);
             return Ok(newAnswer);
         }
 

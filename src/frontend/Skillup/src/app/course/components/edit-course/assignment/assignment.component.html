@@ -1,1 +1,8 @@
-<p>assignment works!</p>
+<h1>{{ assignment()?.exerciseType }}</h1>
+<h1>{{ assignment()?.instruction }}</h1>
+
+@if(assignment()?.exerciseType === ExerciseType.QuestionAnswer){
+<app-question-list [assignmentId]="assignment()!.assetId"></app-question-list>
+} @if(assignment()?.exerciseType === ExerciseType.Quiz) {
+<app-quiz-list [assignmentId]="assignment()!.assetId"></app-quiz-list>
+}

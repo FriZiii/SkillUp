@@ -1,0 +1,10 @@
+@for( question of questions(); track question.id){
+<p>{{ $index + 1 }}</p>
+<p>{{ question.question }}</p>
+<p>{{ question.correctAnswer }}</p>
+}
+
+<app-hidden-form-wrapper btnText="Add question" (submit)="addQuestion($event)">
+  <input type="text" pInputText [(ngModel)]="newQuestion" />
+  <input type="text" pInputText [(ngModel)]="newAnswer" />
+</app-hidden-form-wrapper>

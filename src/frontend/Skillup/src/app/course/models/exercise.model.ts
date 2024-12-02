@@ -1,5 +1,8 @@
 export interface Assignment{
-
+    elementId: string;
+    assetId: string;
+    instruction: string;
+    exerciseType: ExerciseType;
 }
 
 export enum ExerciseType{
@@ -12,7 +15,7 @@ export interface QuestionAnswer{
     id: string;
     assignmentId: string;
     question: string;
-    answer: string;
+    correctAnswer: string;
 }
 
 export interface Quiz{
