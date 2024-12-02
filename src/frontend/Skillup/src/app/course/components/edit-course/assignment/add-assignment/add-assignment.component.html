@@ -1,0 +1,13 @@
+<h1>Add Your Assignment enter instruction and type</h1>
+<input type="text" pInputText [(ngModel)]="instruction" />
+
+<p-select
+  [options]="exerciseTypes"
+  optionLabel="name"
+  optionValue="value"
+  placeholder="Select a level"
+  class="w-full"
+  [(ngModel)]="selectedType"
+/>
+
+<p-button label="Submit" (onClick)="submit()" />

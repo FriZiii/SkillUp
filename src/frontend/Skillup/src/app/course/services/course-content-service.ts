@@ -106,6 +106,7 @@ export class CourseContentService {
         .post<any>(environment.apiUrl + '/Courses/Elements/' + assetType + '/' + sectionId, {title: elementTitle, description: elementDescription, isFree: elementFree})
         .pipe(
           tap((response) => {
+            console.log(response);
             const updatedSections = this.sections().map(section => {
               if (section.id === sectionId) {
                 return {

@@ -39,9 +39,11 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [SwaggerOperation("Add assignment")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddAssignment(Guid elementId, [FromRoute] ExerciseType exerciseType, string instruction)
+        public async Task<IActionResult> AddAssignment(Guid elementId, [FromRoute] ExerciseType exerciseType, AddAssignmentAssetRequest request)
         {
-            var assignment = await _mediator.Send(new AddAssignmentAssetRequest(elementId, exerciseType, instruction));
+            request.ElementId = elementId;
+            request.ExerciseType = exerciseType;
+            var assignment = await _mediator.Send(request);
             return Ok(assignment);
         }
 

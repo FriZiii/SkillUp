@@ -18,6 +18,7 @@ import { ElementContentDialogComponent } from "./element-content-dialog/element-
 import { Tooltip } from 'primeng/tooltip';
 import { SelectButton } from 'primeng/selectbutton';
 import { ElementAttachmentsDialogComponent } from "./element-attachments-dialog/element-attachments-dialog.component";
+import { Router, RoutesRecognized } from '@angular/router';
 
 @Component({
   selector: 'app-element-item',
@@ -43,6 +44,7 @@ export class ElementItemComponent implements OnInit {
   courseContentService = inject(CourseContentService);
   confirmDialogService = inject(ConfirmationDialogHandlerService);
   assetService = inject(AssetService);
+  router = inject(Router);
 
   ngOnInit(): void {
     this.elementTitle.set(this.element().title);
@@ -65,7 +67,7 @@ export class ElementItemComponent implements OnInit {
                   icon: this.contentIcon(),
                   command: () => {
                     console.log(this.element());
-                      this.changecontentDialogVisibility();
+                    this.openContent();
                   }
               },
               {
@@ -95,6 +97,20 @@ export class ElementItemComponent implements OnInit {
           ]
       }
   ]; 
+  }
+
+  openContent(){
+    if(this.element().type === AssetType.Article || this.element().type === AssetType.Video){
+      this.changecontentDialogVisibility();
+    }
+    else{
+      if(this.element().hasAsset === false){
+        this.router.navigate(['/element-edit/', this.element().id, 'add-assignment']);
+      }
+      else{
+        this.router.navigate(['/element-edit/', this.element().id, 'assignment']);
+      }
+    }
   }
 
   //Element Icon

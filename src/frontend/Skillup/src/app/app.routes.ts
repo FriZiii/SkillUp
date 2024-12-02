@@ -19,6 +19,8 @@ import { EditCourseComponent } from './course/components/edit-course/edit-course
 import { CourseCreatorComponent } from './course/components/edit-course/course-creator/course-creator.component';
 import { CoursePricingComponent } from './course/components/edit-course/course-pricing/course-pricing.component';
 import { CourseEssentialsComponent } from './course/components/edit-course/course-essentials/course-essentials.component';
+import { AddAssignmentComponent } from './course/components/edit-course/assignment/add-assignment/add-assignment.component';
+import { AssignmentComponent } from './course/components/edit-course/assignment/assignment.component';
 
 export const routes: Routes = [
   {
@@ -59,6 +61,14 @@ export const routes: Routes = [
       { path: 'essentials', component: CourseEssentialsComponent },
       { path: 'price', component: CoursePricingComponent },
     ],
+  },
+  {
+    path: 'element-edit/:elementId/add-assignment',
+    component: AddAssignmentComponent,
+  },
+  {
+    path: 'element-edit/:elementId/assignment',
+    component: AssignmentComponent,
   },
   {
     path: 'user/:userId',
