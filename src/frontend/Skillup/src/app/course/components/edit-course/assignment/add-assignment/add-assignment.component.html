@@ -1,13 +1,34 @@
-<h1>Add Your Assignment enter instruction and type</h1>
-<input type="text" pInputText [(ngModel)]="instruction" />
+<div class="w-full su-section-mt py-8 flex flex-col items-center">
+  <div class="w-192 prose max-w-none">
+    <h1 class="text-5xl m-0 mb-8 text-center">Add Your Assignment</h1>
+    <h2 class="text-3xl m-0 mb-12 text-center">
+      Enter instruction and type for your exercise
+    </h2>
 
-<p-select
-  [options]="exerciseTypes"
-  optionLabel="name"
-  optionValue="value"
-  placeholder="Select a level"
-  class="w-full"
-  [(ngModel)]="selectedType"
-/>
+    <p-floatlabel>
+      <input
+        id="instruction"
+        type="text"
+        pInputText
+        [(ngModel)]="instruction"
+        class="w-full"
+      />
+      <label for="instruction">Instruction</label>
+    </p-floatlabel>
 
-<p-button label="Submit" (onClick)="submit()" />
+    <div class="my-8">
+      <p-select
+        [options]="exerciseTypes"
+        optionLabel="name"
+        optionValue="value"
+        placeholder="Select exercise type"
+        class="w-full"
+        [(ngModel)]="selectedType"
+      />
+    </div>
+
+    <div class="w-full flex justify-end">
+      <p-button label="Submit" (onClick)="submit()" />
+    </div>
+  </div>
+</div>

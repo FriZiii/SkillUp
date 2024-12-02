@@ -6,11 +6,12 @@ import { AssetService } from '../../../../services/asset.service';
 import { ExerciseType } from '../../../../models/exercise.model';
 import { Router } from '@angular/router';
 import { SelectModule } from 'primeng/select';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-add-assignment',
   standalone: true,
-  imports: [FormsModule, InputTextModule, ButtonModule, SelectModule],
+  imports: [FormsModule, InputTextModule, ButtonModule, SelectModule, FloatLabelModule],
   templateUrl: './add-assignment.component.html',
   styleUrl: './add-assignment.component.css'
 })

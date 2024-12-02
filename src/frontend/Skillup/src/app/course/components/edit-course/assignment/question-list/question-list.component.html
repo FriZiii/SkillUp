@@ -1,10 +1,36 @@
-@for( question of questions(); track question.id){
-<p>{{ $index + 1 }}</p>
-<p>{{ question.question }}</p>
-<p>{{ question.correctAnswer }}</p>
-}
+<div class="prose max-w-none !w-full">
+  @for( question of questions(); track question.id){
+  <div class="flex gap-4">
+    <p class="text-xl my-2">{{ $index + 1 }}</p>
+    <p class="text-xl my-2">{{ question.question }}</p>
+  </div>
+  <p class="text-xl my-2 pl-6">{{ question.correctAnswer }}</p>
+  }
+</div>
 
 <app-hidden-form-wrapper btnText="Add question" (submit)="addQuestion($event)">
-  <input type="text" pInputText [(ngModel)]="newQuestion" />
-  <input type="text" pInputText [(ngModel)]="newAnswer" />
+  <div class="my-8">
+    <p-floatlabel>
+      <input
+        id="question"
+        type="text"
+        pInputText
+        [(ngModel)]="newQuestion"
+        class="w-full"
+      />
+      <label for="question">Question</label>
+    </p-floatlabel>
+  </div>
+  <div>
+    <p-floatlabel>
+      <input
+        id="answer"
+        type="text"
+        pInputText
+        [(ngModel)]="newAnswer"
+        class="w-full"
+      />
+      <label for="answer">Answer</label>
+    </p-floatlabel>
+  </div>
 </app-hidden-form-wrapper>

@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ExerciseType, QuestionAnswer } from '../../../../models/exercise.model';
 import { ExerciseService } from '../../../../services/exercise.service';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-question-list',
   standalone: true,
-  imports: [HiddenFormWrapperComponent, FormsModule, InputTextModule ],
+  imports: [HiddenFormWrapperComponent, FormsModule, InputTextModule, FloatLabelModule ],
   templateUrl: './question-list.component.html',
   styleUrl: './question-list.component.css'
 })
@@ -35,6 +36,8 @@ export class QuestionListComponent implements OnInit {
       this.exerciseService.addQuestionAnswer(this.assignmentId(), this.newQuestion(), this.newAnswer()).subscribe(
         (res)=>{
           this.questions.update((list) => [...list, res])
+          this.newQuestion.set('');
+          this.newAnswer.set('');
         }
       );
   }
