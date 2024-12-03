@@ -29,20 +29,9 @@ export class ExerciseService {
         );
     }
 
-    addQuizQuestion(assignmentId: string, question: string){
+    addQuizQuestion(assignmentId: string, question: string, answers: string[], correct: boolean[]){
         return this.httpClient
-        .post<any>(environment.apiUrl + '/Courses/Exercises/Quiz/'+ assignmentId, {question: question})
-        .pipe(
-          catchError((error) => {
-            return throwError(() => error);
-          }),
-          tap((response) => {console.log(response)})
-        );
-    }
-
-    addQuizAnswer(quizId: string, answer: string, isCorrect: boolean){
-        return this.httpClient
-        .post<any>(environment.apiUrl + '/Courses/Exercises/QuizAnswer/'+ quizId, {answer: answer, isCorrect: isCorrect})
+        .post<any>(environment.apiUrl + '/Courses/Exercises/Quiz/'+ assignmentId, {question: question, answers: answers, correct: correct})
         .pipe(
           catchError((error) => {
             return throwError(() => error);

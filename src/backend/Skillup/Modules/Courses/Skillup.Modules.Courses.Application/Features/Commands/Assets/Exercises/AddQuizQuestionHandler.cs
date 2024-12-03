@@ -25,8 +25,20 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Assets.Exercises
                 Question = request.Question
             };
             await _exerciseRepository.AddQuiz(exercise);
+
+            for (var i = 0; i < request.Answers.Count(); i++)
+            {
+                await _exerciseRepository.AddQuizAnswer(new QuizAnswer()
+                {
+                    QuestionId = exercise.Id,
+                    Answer = request.Answers[i],
+                    isCorrectAnswer = request.Correct[i],
+                });
+            }
+
+            var quiz = (await _exerciseRepository.GetQuizzes(request.AssignmentId)).FirstOrDefault(q => q.Id == exercise.Id);
             var mapper = new ExerciseMapper();
-            return mapper.ExerciseToExerciseDto(exercise);
+            return mapper.ExerciseToExerciseDto(quiz!);
         }
     }
 }

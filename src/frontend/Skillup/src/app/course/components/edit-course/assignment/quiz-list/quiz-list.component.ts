@@ -18,8 +18,9 @@ export class QuizListComponent implements OnInit {
   //Variables
     assignmentId = input.required<string>();
     newQuestion = signal('');
-    newAnswer = signal('');
-    newAnswerCorrect = signal<boolean>(true);
+    answers = ['', '', '', ''];
+    correct = [true, true, true, true];
+  
     quizes = signal<Quiz[]>([]);
 
     //Services
@@ -35,30 +36,14 @@ export class QuizListComponent implements OnInit {
     }
 
     addQuiz(event: Event){
-      this.exerciseService.addQuizQuestion(this.assignmentId(), this.newQuestion()).subscribe(
+      console.log(this.answers)
+      console.log(this.correct)
+      this.exerciseService.addQuizQuestion(this.assignmentId(), this.newQuestion(), this.answers, this.correct).subscribe(
         (res) => {
-          this.quizes.update((list) => [res, ...list])
+          this.quizes.update((list) => [...list, res])
           this.newQuestion.set('');
-        }
-      )
-    }
-
-    addAnswer(event: Event, quizId: string){
-      console.log(quizId);
-      this.exerciseService.addQuizAnswer(quizId, this.newAnswer(), this.newAnswerCorrect()).subscribe(
-        (res) => {
-          const updatedQuizes = this.quizes().map(quiz => {
-            if(quiz.id === quizId){
-              return {
-                ...quiz,
-                answers: [
-                  ...quiz.answers, res
-                ]
-              }
-            }
-            return quiz;
-          });
-          this.quizes.set(updatedQuizes);
+          this.answers = ['', '', '', ''];
+          this.correct = [true, true, true, true];
         }
       )
     }

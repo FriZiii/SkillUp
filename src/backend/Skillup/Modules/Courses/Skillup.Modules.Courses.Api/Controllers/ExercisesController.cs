@@ -26,7 +26,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         }
 
         [HttpPost("Quiz/{assignmentId}")]
-        [SwaggerOperation("Add question")]
+        [SwaggerOperation("Add quiz")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> AddQuiz(Guid assignmentId, AddQuizQuestionRequest request)
@@ -34,18 +34,6 @@ namespace Skillup.Modules.Courses.Api.Controllers
             request.AssignmentId = assignmentId;
             var exercise = await _mediator.Send(request);
             return Ok(exercise);
-        }
-
-        [HttpPost("QuizAnswer/{quizId}")]
-        [SwaggerOperation("Add answer")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddQuizAnswer(Guid quizId, AddQuizAnswerRequest request)
-        {
-
-            request.QuizId = quizId;
-            var newAnswer = await _mediator.Send(request);
-            return Ok(newAnswer);
         }
 
         [HttpGet("{exerciseType}/{assignmentId}")]

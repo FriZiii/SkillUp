@@ -4,9 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace Skillup.Modules.Courses.Core.Requests.Commands.Assets.Exercises
 {
-    public record AddQuizQuestionRequest(string Question) : IRequest<QuizQuestionDto>
+    public record AddQuizQuestionRequest(string Question, List<string> Answers, List<bool> Correct) : IRequest<QuizQuestionDto>
     {
+
         [JsonIgnore]
         public Guid AssignmentId;
+
+
     }
 }

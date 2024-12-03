@@ -4,22 +4,6 @@
     <p class="text-lg my-2">{{ $index + 1 }}</p>
     <p class="text-lg my-2">{{ quiz.question }}</p>
   </div>
-  <app-hidden-form-wrapper
-    btnText="Add answer"
-    (submit)="addAnswer($event, quiz.id)"
-  >
-    <p-floatlabel>
-      <input
-        id="answer"
-        type="text"
-        pInputText
-        [(ngModel)]="newAnswer"
-        class="w-full"
-      />
-      <label for="answer">Question</label>
-    </p-floatlabel>
-    <p-checkbox [(ngModel)]="newAnswerCorrect" [binary]="true" />
-  </app-hidden-form-wrapper>
   <div class="grid grid-cols-2 ml-6">
     @for( answer of quiz.answers; track answer.id){
     <div class="flex gap-4">
@@ -48,5 +32,22 @@
       />
       <label for="question">Question</label>
     </p-floatlabel>
+    <div class="grid grid-cols-2 gap-8 mt-8">
+      @for(i of [0, 1, 2, 3]; track i){
+      <div class="flex w-full items-center gap-4">
+        <p-floatlabel class="w-full">
+          <input
+            id="answer"
+            type="text"
+            pInputText
+            [(ngModel)]="answers[i]"
+            class="w-full"
+          />
+          <label for="answer">Answer</label>
+        </p-floatlabel>
+        <p-checkbox [(ngModel)]="correct[i]" [binary]="true" />
+      </div>
+      }
+    </div>
   </div>
 </app-hidden-form-wrapper>
