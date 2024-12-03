@@ -21,8 +21,8 @@ namespace Skillup.Modules.Finances.Core.ValueObjects
 
                 foreach (var cartItem in cart.Items)
                 {
-                    cartItem.Price = cartItem.Item.Price * (1 - DiscountValue / 100),
-                    }
+                    cartItem.Price = cartItem.Item.Price * (1 - DiscountValue / 100);
+                }
 
                 cart.Total = cart.Items.Sum(x => x.Price);
             }
