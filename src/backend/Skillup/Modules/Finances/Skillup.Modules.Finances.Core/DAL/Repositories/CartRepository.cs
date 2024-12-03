@@ -12,13 +12,16 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
 
         public async Task AddCartItem(CartItem cartItem)
         {
-            var cart = await _carts.FirstOrDefaultAsync(x => x.Id == cartItem.CartId);
+            var cart = await _carts
+                .Include(x => x.Items)
+                .FirstOrDefaultAsync(x => x.Id == cartItem.CartId);
 
             if (cart == null)
             {
                 var newCart = new Cart
                 {
                     Id = cartItem.CartId,
+                    Total = cartItem.Item.Price,
                     Items = [cartItem]
                 };
 
@@ -26,7 +29,11 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
             }
             else
             {
-                await _cartItems.AddAsync(cartItem);
+                if (!cart.Items.Any(x => x.ItemId == cartItem.ItemId))
+                {
+                    cart.Items.Add(cartItem);
+                    cart.Total = cart.Items.Sum(x => x.Price);
+                }
             }
 
             await _context.SaveChangesAsync();
@@ -50,6 +57,21 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
             => await _carts
                 .Include(x => x.Items)
                     .ThenInclude(x => x.Item)
+                .Include(x => x.DiscountCode)
                 .FirstOrDefaultAsync(x => x.Id == id);
+
+        public async Task Update(Cart cart)
+        {
+            var cartToEdit = await _carts.Include(x => x.Items)
+                    .ThenInclude(x => x.Item)
+                .FirstAsync(x => x.Id == cart.Id);
+
+            cartToEdit.Total = cart.Total;
+            cartToEdit.DiscountCode = cart.DiscountCode;
+            cartToEdit.DiscountCodeId = cart.DiscountCodeId;
+            cartToEdit.Items = cart.Items;
+
+            await _context.SaveChangesAsync();
+        }
     }
 }

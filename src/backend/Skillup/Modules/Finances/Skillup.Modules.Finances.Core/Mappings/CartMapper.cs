@@ -9,13 +9,22 @@ namespace Skillup.Modules.Finances.Core.Mappings
     {
         public CartDto CartToDto(Cart cart)
         {
-            var itemMapper = new ItemMapper();
-            var items = cart.Items.Select(x => itemMapper.ItemToDto(x.Item));
+            var cartItemMapper = new CartItemMapper();
+            var cartItems = cart.Items.Select(cartItemMapper.CartItemToDto);
+
+            AppliedDiscountCodeDto? discountCode = null;
+            if (cart.DiscountCode is not null)
+            {
+                var discountCodeMapper = new DiscountCodeMapper();
+                discountCode = discountCodeMapper.DiscountCodeToAppliedDto(cart.DiscountCode);
+            }
+
             return new CartDto()
             {
                 Id = cart.Id,
-                Total = items.Sum(x => x.Price),
-                Items = items
+                Total = cart.Total,
+                DiscountCode = discountCode,
+                Items = cartItems
             };
         }
     }

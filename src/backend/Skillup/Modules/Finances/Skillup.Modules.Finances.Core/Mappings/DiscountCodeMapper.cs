@@ -28,6 +28,17 @@ namespace Skillup.Modules.Finances.Core.Mappings
             };
         }
 
+        public AppliedDiscountCodeDto DiscountCodeToAppliedDto(DiscountCode discountCode)
+        {
+            return new AppliedDiscountCodeDto()
+            {
+                Id = discountCode.Id,
+                DiscountValue = discountCode.DiscountValue,
+                Code = discountCode.Code,
+                Type = discountCode.Type,
+            };
+        }
+
         public DiscountCode AddDiscountCodeDtoToDiscountCode(AddDiscountCodeDto discountCode)
         {
             if (discountCode.Type == DiscountCodeType.Percentage)

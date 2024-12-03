@@ -19,6 +19,14 @@ namespace Skillup.Modules.Finances.Core.DTO
         public IEnumerable<Item>? DiscountedItems { get; set; }
     }
 
+    internal class AppliedDiscountCodeDto
+    {
+        public Guid Id { get; set; } = Guid.NewGuid();
+        public DiscountCodeType Type { get; set; }
+        public string Code { get; set; }
+        public decimal DiscountValue { get; set; }
+    }
+
     internal class AddDiscountCodeDto
     {
         [JsonIgnore]

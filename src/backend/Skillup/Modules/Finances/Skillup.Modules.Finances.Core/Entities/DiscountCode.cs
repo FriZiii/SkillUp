@@ -1,6 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using Skillup.Modules.Finances.Core.DTO;
-using Skillup.Modules.Finances.Core.ValueObjects;
 
 namespace Skillup.Modules.Finances.Core.Entities
 {
@@ -19,20 +18,21 @@ namespace Skillup.Modules.Finances.Core.Entities
         public DiscountCodeType Type { get; set; }
         public IEnumerable<DiscountedItem> DiscountedItems { get; set; }
 
-        public bool CanBeUsed()
-        {
-            return !HasUsageLimit || (UsageCount < MaxUsageLimit);
-        }
+        public ICollection<Cart> Carts { get; set; } = [];
 
-        public void IncrementUsesCount()
+        public bool CanBeUsed(Cart cart)
         {
-            if (CanBeUsed())
-            {
-                UsageCount++;
-            }
-        }
+            if (!IsActive)
+                return false;
 
-        public abstract Currency Apply(Item item);
+            if (HasUsageLimit && (UsageCount >= MaxUsageLimit))
+                return false;
+
+            if (!AppliesToEntireCart && !DiscountedItems.Any(discountedItem => cart.Items.Any(cartItem => cartItem.ItemId == discountedItem.ItemId)))
+                return false;
+
+            return true;
+        }
 
         protected DiscountCode(AddDiscountCodeDto dto)
         {

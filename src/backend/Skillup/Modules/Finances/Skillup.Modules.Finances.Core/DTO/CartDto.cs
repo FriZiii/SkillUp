@@ -4,6 +4,7 @@
     {
         public Guid Id { get; set; }
         public decimal Total { get; set; }
-        public IEnumerable<ItemDto> Items { get; set; }
+        public AppliedDiscountCodeDto? DiscountCode { get; set; }
+        public IEnumerable<CartItemDto> Items { get; set; }
     }
 }

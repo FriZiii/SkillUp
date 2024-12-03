@@ -23,7 +23,9 @@ namespace Skillup.Modules.Finances.Api.Controllers
         [SwaggerOperation("Add item to cart")]
         public async Task<IActionResult> AddCartItem(Guid? cartId, Guid itemId)
         {
-            return Ok(await _mediator.Send(new AddCartItemRequest(cartId, itemId)));
+            var request = new AddCartItemRequest(cartId, itemId);
+            await _mediator.Send(request);
+            return Ok(await _mediator.Send(new GetCartByIdRequest((Guid)request.CartId!)));
         }
 
         [HttpDelete("{cartId}/Items/{itemId}")]
@@ -35,19 +37,11 @@ namespace Skillup.Modules.Finances.Api.Controllers
         }
 
         [HttpPost("{cartId}/discount-code")]
-        [SwaggerOperation("Apply discount code for cart")]
-        public async Task<IActionResult> ApplyDiscountCode(Guid cartId, [FromQuery] string discountCode)
+        [SwaggerOperation("Toggle discount code for cart")]
+        public async Task<IActionResult> ToggleDiscountCodeForCart(Guid cartId, [FromQuery] string? discountCode)
         {
-            //await _mediator.Send(new DeleteCartItemRequest(cartItemId));
-            return Ok();
-        }
-
-        [HttpDelete("{cartId}/discount-code")]
-        [SwaggerOperation("Delete discount code from cart")]
-        public async Task<IActionResult> RemoveDiscountCode(Guid cartId)
-        {
-            //await _mediator.Send(new DeleteCartItemRequest(cartItemId));
-            return Ok();
+            await _mediator.Send(new ToggleDiscountCodeForCartRequest(cartId, discountCode));
+            return Ok(await _mediator.Send(new GetCartByIdRequest(cartId)));
         }
     }
 }

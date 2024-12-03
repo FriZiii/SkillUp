@@ -87,5 +87,11 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
 
             await context.SaveChangesAsync();
         }
+
+        public async Task<DiscountCode?> GetByCode(string code)
+            => await _discountCodes
+                .Include(x => x.DiscountedItems)
+                    .ThenInclude(x => x.Item)
+                .FirstOrDefaultAsync(x => x.Code == code);
     }
 }

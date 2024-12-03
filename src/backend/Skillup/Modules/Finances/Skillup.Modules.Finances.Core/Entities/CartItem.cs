@@ -9,6 +9,6 @@
 
         public Guid ItemId { get; set; }
         public Item Item { get; set; }
-        public Decimal Price { get; set; }
+        public decimal Price { get; set; }
     }
 }

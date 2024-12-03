@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Skillup.Modules.Finances.Core.DAL;
@@ -11,9 +12,11 @@ using Skillup.Modules.Finances.Core.DAL;
 namespace Skillup.Modules.Finances.Core.DAL.Migrations
 {
     [DbContext(typeof(FinancesDbContext))]
-    partial class FinancesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241202043717_Add_Total_To_Cart")]
+    partial class Add_Total_To_Cart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,15 +32,10 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("DiscountCodeId")
-                        .HasColumnType("uuid");
-
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DiscountCodeId");
 
                     b.ToTable("Carts", "finances");
                 });
@@ -215,16 +213,6 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                     b.HasDiscriminator().HasValue(0);
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.Cart", b =>
-                {
-                    b.HasOne("Skillup.Modules.Finances.Core.Entities.DiscountCode", "DiscountCode")
-                        .WithMany("Carts")
-                        .HasForeignKey("DiscountCodeId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("DiscountCode");
-                });
-
             modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.CartItem", b =>
                 {
                     b.HasOne("Skillup.Modules.Finances.Core.Entities.Cart", "Cart")
@@ -289,8 +277,6 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
 
             modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.DiscountCode", b =>
                 {
-                    b.Navigation("Carts");
-
                     b.Navigation("DiscountedItems");
                 });
 #pragma warning restore 612, 618

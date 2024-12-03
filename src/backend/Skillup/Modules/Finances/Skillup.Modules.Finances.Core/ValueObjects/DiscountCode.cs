@@ -13,18 +13,6 @@ namespace Skillup.Modules.Finances.Core.ValueObjects
         }
 
         private PercentageDiscountCode() { } // Only for Ef core
-
-        public override Currency Apply(Item item)
-        {
-            if (!CanBeUsed())
-            {
-                throw new InvalidOperationException("Discount code has reached its maximum usage."); //TODO: Custom EX
-            }
-
-            var discountedPrice = item.Price * (1 - DiscountValue / 100);
-            IncrementUsesCount();
-            return new Currency(discountedPrice);
-        }
     }
 
     internal class FixedAmountDiscountCode : DiscountCode
@@ -35,17 +23,5 @@ namespace Skillup.Modules.Finances.Core.ValueObjects
         }
 
         private FixedAmountDiscountCode() { } // Only for Ef core
-
-        public override Currency Apply(Item item)
-        {
-            if (!CanBeUsed())
-            {
-                throw new InvalidOperationException("Discount code has reached its maximum usage."); //TODO: Custom EX
-            }
-
-            var discountedPrice = item.Price.Subtract(DiscountValue);
-            IncrementUsesCount();
-            return new Currency(discountedPrice);
-        }
     }
 }

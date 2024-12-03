@@ -11,5 +11,6 @@ namespace Skillup.Modules.Finances.Core.Repositories
         Task Add(DiscountCode discountCode);
         Task DeleteById(Guid discountCodeId);
         Task ToggleDiscountCodeForItem(Guid discountCodeId, Guid itemId);
+        Task<DiscountCode?> GetByCode(string code);
     }
 }
