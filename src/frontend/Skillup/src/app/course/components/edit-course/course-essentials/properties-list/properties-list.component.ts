@@ -21,6 +21,7 @@ export class PropertiesListComponent {
 
   addItem(itemToAdd: string){
     this.itemAdded.emit(itemToAdd);
+    this.newItem.set('');
   }
 
   removeItem(itemToRemove: string){

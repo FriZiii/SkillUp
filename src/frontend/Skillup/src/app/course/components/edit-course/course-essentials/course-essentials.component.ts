@@ -105,6 +105,8 @@ categories = this.courseCategoryService.categories;
   
     cancel() {
       this.selectedFile = undefined;
+      this.newImageUrl = null;
+      this.newImageFile = null;
     }
 
     onImageCropped(event: { file: File | null; url: SafeUrl }) {

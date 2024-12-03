@@ -12,6 +12,7 @@
   <p-button
     (click)="addItem(this.newItem())"
     [style]="{ borderRadius: '0 0.5rem 0 0' }"
+    [disabled]="newItem() === ''"
     >Add</p-button
   >
 </div>
