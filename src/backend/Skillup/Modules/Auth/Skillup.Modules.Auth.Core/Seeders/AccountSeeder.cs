@@ -45,6 +45,9 @@ namespace Skillup.Modules.Auth.Core.Seeders
                    CreateUser(data[2].Id, data[2].Email, "Skillup123!", UserRole.Admin,UserState.Active),
                    CreateUser(data[3].Id, data[3].Email, "Skillup123!", UserRole.Moderator,UserState.Active),
                    CreateUser(data[4].Id, data[4].Email, "Skillup123!", UserRole.Instructor,UserState.Active),
+                   CreateUser(data[5].Id, data[5].Email, "Skillup123!", UserRole.Instructor,UserState.Active),
+                   CreateUser(data[6].Id, data[6].Email, "Skillup123!", UserRole.Instructor,UserState.Active),
+                   CreateUser(data[7].Id, data[7].Email, "Skillup123!", UserRole.Instructor,UserState.Active),
                 };
 
                 await _users.AddRangeAsync(users);
