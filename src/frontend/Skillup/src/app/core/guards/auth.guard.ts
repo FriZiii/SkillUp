@@ -22,7 +22,6 @@ export const hasRole: CanMatchFn = async (route, segments) => {
 }
 
 export const isAuthor: CanMatchFn = async (route, segments) => {
-    console.log('lol');
     const router = inject(Router);
     const userService = inject(UserService)
     const courseSerivce = inject(CoursesService)
@@ -47,7 +46,6 @@ export const isLoggedIn: CanMatchFn = async (route, segments) => {
     const user = computed(() => userService.currentUser());
     if(user() === null)
     {
-        console.log('null')
         await new Promise(resolve => setTimeout(resolve, 1000)); 
     }
     
