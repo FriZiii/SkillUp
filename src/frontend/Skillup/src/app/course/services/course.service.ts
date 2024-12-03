@@ -56,6 +56,7 @@ export class CoursesService {
             {
               id: response.id,
               title: response.title,
+              authorId: response.authorId,
               isPublished: response.isPublished,
               category: {
                 id: response.category.id,
@@ -141,6 +142,10 @@ export class CoursesService {
         (subcategory.toLowerCase() === 'all' ||
           course.category.subcategory.slug === subcategory)
     );
+  }
+
+  getCoursesByAuthor(authorId: string): CourseListItem[]{
+    return this.courses().filter((course) => course.authorId === authorId);
   }
 
 

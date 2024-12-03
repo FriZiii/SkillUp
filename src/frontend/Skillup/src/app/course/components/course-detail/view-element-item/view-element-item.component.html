@@ -1,0 +1,40 @@
+<div class="su-border-y p-2 ml-14 my-2 bg-white element-item w-full">
+  <div class="flex w-full items-center">
+    <i [class]="definedIcon(element().type)" style="font-size: 1rem"></i>
+    <div class="px-4 prose max-w-none !w-full mr-8">
+      <div class="flex items-baseline justify-between">
+        <h4 class="b-0 m-0">{{ element().title }}</h4>
+        @if(element().hasAsset){
+        <p
+          (click)="showContentDialog()"
+          class="cursor-pointer text-primary-500 m-0"
+        >
+          Peek content
+        </p>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Content Dialog -->
+<p-dialog
+  header="Element's Content"
+  [modal]="true"
+  [(visible)]="contentDialogVisible"
+  [style]="{ width: '80%' }"
+  [draggable]="false"
+  class="cursor-default"
+>
+  <app-element-content-dialog
+    [element]="element()"
+    [visible]="contentDialogVisible"
+  ></app-element-content-dialog>
+  <div class="flex gap-2 justify-end">
+    <p-button
+      label="Cancel"
+      severity="secondary"
+      (click)="contentDialogVisible = false"
+    />
+  </div>
+</p-dialog>

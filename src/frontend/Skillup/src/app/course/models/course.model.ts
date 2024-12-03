@@ -10,6 +10,7 @@ export interface AddCourse{
 export interface Course{
     id: string;
     title: string;
+    authorId: string;
     isPublished: boolean;
     category: {
         id: string;
@@ -27,6 +28,7 @@ export interface Course{
 export interface CourseListItem{
     id: string;
     title: string;
+    authorId: string;
     isPublished: boolean;
     category: {
         id: string;
@@ -47,6 +49,7 @@ export interface CourseListItem{
 export interface CourseDetail{
     id: string;
     title: string;
+    authorId: string;
     isPublished: boolean;
     category: {
         id: string;
