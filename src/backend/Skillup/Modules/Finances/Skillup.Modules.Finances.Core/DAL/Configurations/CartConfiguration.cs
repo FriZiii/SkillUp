@@ -20,11 +20,6 @@ namespace Skillup.Modules.Finances.Core.DAL.Configurations
                .WithOne(ci => ci.Cart)
                .HasForeignKey(ci => ci.CartId)
                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasOne(c => c.DiscountCode)
-                .WithMany(d => d.Carts)
-                .HasForeignKey(c => c.DiscountCodeId)
-                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

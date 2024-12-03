@@ -24,6 +24,7 @@ namespace Skillup.Modules.Finances.Core.Mappings
                 Id = cart.Id,
                 Total = cart.Total,
                 DiscountCode = discountCode,
+                TotalBeforeDiscount = discountCode == null ? null : cart.Items.Sum(x => x.Item.Price),
                 Items = cartItems
             };
         }

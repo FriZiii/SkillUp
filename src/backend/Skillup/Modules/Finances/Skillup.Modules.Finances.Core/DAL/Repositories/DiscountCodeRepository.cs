@@ -36,10 +36,6 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
 
             discountCodeToEdit.DiscountValue = discountCode.DiscountValue;
 
-            discountCodeToEdit.HasUsageLimit = discountCode.HasUsageLimit;
-            discountCodeToEdit.MaxUsageLimit = discountCode.MaxUsageLimit;
-            discountCodeToEdit.UsageCount = discountCode.UsageCount;
-
             discountCodeToEdit.IsActive = discountCode.IsActive;
             discountCodeToEdit.IsPublic = discountCode.IsPublic;
 

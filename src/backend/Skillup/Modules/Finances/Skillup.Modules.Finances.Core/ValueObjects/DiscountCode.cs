@@ -18,13 +18,9 @@ namespace Skillup.Modules.Finances.Core.ValueObjects
 
             if (AppliesToEntireCart)
             {
+                var totalBeforeDiscount = cart.Items.Sum(x => x.Price);
 
-                foreach (var cartItem in cart.Items)
-                {
-                    cartItem.Price = cartItem.Item.Price * (1 - DiscountValue / 100);
-                }
-
-                cart.Total = cart.Items.Sum(x => x.Price);
+                cart.Total = totalBeforeDiscount * (1 - DiscountValue / 100);
             }
             else
             {
@@ -59,11 +55,6 @@ namespace Skillup.Modules.Finances.Core.ValueObjects
             {
                 var totalBeforeDiscount = cart.Items.Sum(x => x.Item.Price);
                 cart.Total = Math.Max(0, totalBeforeDiscount - DiscountValue);
-                var discountPerItem = totalBeforeDiscount / cart.Items.Count;
-                foreach (var item in cart.Items)
-                {
-                    item.Price = item.Item.Price - discountPerItem;
-                }
             }
             else
             {

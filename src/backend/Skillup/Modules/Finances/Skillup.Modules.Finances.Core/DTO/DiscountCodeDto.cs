@@ -10,11 +10,8 @@ namespace Skillup.Modules.Finances.Core.DTO
         public string Code { get; set; }
         public decimal DiscountValue { get; set; }
         public bool AppliesToEntireCart { get; set; } = true;
-        public bool HasUsageLimit { get; set; }
         public bool IsActive { get; set; }
         public bool IsPublic { get; set; }
-        public int? MaxUsageLimit { get; set; }
-        public int UsageCount { get; set; }
 
         public IEnumerable<Item>? DiscountedItems { get; set; }
     }
@@ -38,10 +35,7 @@ namespace Skillup.Modules.Finances.Core.DTO
         public string Code { get; set; }
         public decimal DiscountValue { get; set; }
         public bool AppliesToEntireCart { get; set; } = true;
-        public bool HasUsageLimit { get; set; }
         public bool IsActive { get; set; }
         public bool IsPublic { get; set; }
-        public int? MaxUsageLimit { get; set; }
-        public int UsageCount { get; set; }
     }
 }

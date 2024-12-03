@@ -18,11 +18,8 @@ namespace Skillup.Modules.Finances.Core.Mappings
                 DiscountValue = discountCode.DiscountValue,
                 Code = discountCode.Code,
                 IsActive = discountCode.IsActive,
-                HasUsageLimit = discountCode.HasUsageLimit,
                 IsPublic = discountCode.IsPublic,
-                MaxUsageLimit = discountCode.MaxUsageLimit,
                 Type = discountCode.Type,
-                UsageCount = discountCode.UsageCount,
                 AppliesToEntireCart = discountCode.AppliesToEntireCart,
                 DiscountedItems = !discountCode.AppliesToEntireCart ? discountCode.DiscountedItems.Select(x => x.Item).ToList() : null,
             };

@@ -18,13 +18,8 @@ namespace Skillup.Modules.Finances.Core.DAL.Configurations
                    .IsRequired()
                    .HasPrecision(18, 2);
 
-            builder.Property(d => d.HasUsageLimit).IsRequired();
             builder.Property(d => d.IsActive).IsRequired();
             builder.Property(d => d.IsPublic).IsRequired();
-            builder.Property(d => d.MaxUsageLimit);
-            builder.Property(d => d.UsageCount)
-                   .IsRequired()
-                   .HasDefaultValue(0);
 
             builder.HasDiscriminator<DiscountCodeType>("Type")
                    .HasValue<PercentageDiscountCode>(DiscountCodeType.Percentage)

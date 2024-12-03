@@ -18,12 +18,9 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
                 AppliesToEntireCart = request.AppliesToEntireCart,
                 Code = request.Code,
                 DiscountValue = request.DiscountValue,
-                HasUsageLimit = request.HasUsageLimit,
                 IsActive = request.IsActive,
                 IsPublic = request.IsPublic,
-                MaxUsageLimit = request.MaxUsageLimit,
                 Type = request.Type,
-                UsageCount = request.UsageCount,
             };
 
             DiscountCodeMapper mapper = new();
