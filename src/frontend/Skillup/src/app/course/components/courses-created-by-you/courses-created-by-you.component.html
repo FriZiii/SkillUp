@@ -1,0 +1,6 @@
+<p>courses-created-by-you works!</p>
+<p>{{ authorId() }}</p>
+
+@for( course of courses(); track course.id){
+<app-course-item-short [course]="course"></app-course-item-short>
+}

@@ -40,7 +40,7 @@ export const isAuthor: CanMatchFn = async (route, segments) => {
     return false;
 }
 
-export const isLoggedIn: CanMatchFn = async (route, segments) => {
+export const isSignedIn: CanMatchFn = async (route, segments) => {
     const router = inject(Router);
     const userService = inject(UserService)
     const user = computed(() => userService.currentUser());

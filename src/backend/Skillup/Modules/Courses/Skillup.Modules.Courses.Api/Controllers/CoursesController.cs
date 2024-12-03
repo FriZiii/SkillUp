@@ -75,6 +75,17 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(course);
         }
 
+        [HttpGet]
+        [SwaggerOperation("Get course by author id")]
+        [Route("/Courses/Author/{authorId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetByAuthorId(Guid authorId)
+        {
+            var courses = await _mediator.Send(new GetCoursesByAuthorIdRequest(authorId));
+            return Ok(courses);
+        }
+
         [HttpPut]
         [SwaggerOperation("Edit course")]
         [Route("/Courses/{courseId}")]

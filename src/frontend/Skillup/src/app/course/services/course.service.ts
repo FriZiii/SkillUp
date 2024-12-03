@@ -111,6 +111,16 @@ export class CoursesService {
     );
   }
 
+  getCourseByAuthorId(authorId: string){
+    return this.httpClient
+      .get<any>(environment.apiUrl + '/Courses/Author/' + authorId)
+      .pipe(
+        catchError((error) => {
+          return throwError(() => error);
+        })
+      );
+  }
+
   private fetchCourseById(courseId: string) {
     return this.httpClient
       .get<any>(environment.apiUrl + '/Courses/' + courseId)
