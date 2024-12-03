@@ -34,6 +34,15 @@ namespace Skillup.Modules.Finances.Core.Entities
             return true;
         }
 
+        public virtual void ApplyDisountOnCart(Cart cart)
+        {
+            if (!CanBeUsed(cart))
+                throw new InvalidOperationException("The discount code cannot be applied to this cart."); // TODO: Custom Ex
+
+            cart.DiscountCode = this;
+            cart.DiscountCodeId = Id;
+        }
+
         protected DiscountCode(AddDiscountCodeDto dto)
         {
             if (dto.Code.IsNullOrEmpty())
