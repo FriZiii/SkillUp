@@ -5,11 +5,12 @@ import { InputText, InputTextModule } from 'primeng/inputtext';
 import { ExerciseType, Quiz } from '../../../../models/exercise.model';
 import { ExerciseService } from '../../../../services/exercise.service';
 import { CheckboxModule } from 'primeng/checkbox';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-quiz-list',
   standalone: true,
-  imports: [HiddenFormWrapperComponent, FormsModule, InputTextModule, CheckboxModule],
+  imports: [HiddenFormWrapperComponent, FormsModule, InputTextModule, CheckboxModule, FloatLabelModule],
   templateUrl: './quiz-list.component.html',
   styleUrl: './quiz-list.component.css'
 })
@@ -37,6 +38,7 @@ export class QuizListComponent implements OnInit {
       this.exerciseService.addQuizQuestion(this.assignmentId(), this.newQuestion()).subscribe(
         (res) => {
           this.quizes.update((list) => [res, ...list])
+          this.newQuestion.set('');
         }
       )
     }

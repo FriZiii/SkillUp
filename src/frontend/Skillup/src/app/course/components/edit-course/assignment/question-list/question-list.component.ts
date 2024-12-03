@@ -5,11 +5,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ExerciseType, QuestionAnswer } from '../../../../models/exercise.model';
 import { ExerciseService } from '../../../../services/exercise.service';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-question-list',
   standalone: true,
-  imports: [HiddenFormWrapperComponent, FormsModule, InputTextModule, FloatLabelModule ],
+  imports: [HiddenFormWrapperComponent, FormsModule, InputTextModule, FloatLabelModule, ButtonModule ],
   templateUrl: './question-list.component.html',
   styleUrl: './question-list.component.css'
 })
@@ -40,5 +41,9 @@ export class QuestionListComponent implements OnInit {
           this.newAnswer.set('');
         }
       );
+  }
+
+  removeQuestion(event: Event){
+
   }
 }
