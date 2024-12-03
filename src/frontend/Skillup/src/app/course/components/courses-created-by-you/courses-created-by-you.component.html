@@ -12,9 +12,12 @@
     <h1 class="text-5xl text-center">List of courses you are an author of</h1>
   </div>
   } }
-  <div class="cols-responsive-3">
+  <div class="cols-responsive-2 mt-8">
     @for( course of courses(); track course.id){
-    <app-course-item-short [course]="course"></app-course-item-short>
+    <app-course-item-short
+      [course]="course"
+      [editable]="true"
+    ></app-course-item-short>
     }
   </div>
 </div>
