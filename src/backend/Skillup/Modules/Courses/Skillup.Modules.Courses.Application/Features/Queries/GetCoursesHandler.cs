@@ -10,11 +10,13 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
     public class GetCoursesHandler : IRequestHandler<GetCoursesRequest, IEnumerable<CourseDto>>
     {
         private readonly ICourseRepository _courseRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IAmazonS3Service _amazonS3Service;
 
-        public GetCoursesHandler(ICourseRepository courseRepository, IAmazonS3Service amazonS3Service)
+        public GetCoursesHandler(ICourseRepository courseRepository, IUserRepository userRepository, IAmazonS3Service amazonS3Service)
         {
             _courseRepository = courseRepository;
+            _userRepository = userRepository;
             _amazonS3Service = amazonS3Service;
         }
 
@@ -23,6 +25,11 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
             var mapper = new CourseMapper(_amazonS3Service);
             var courses = await _courseRepository.GetAll();
             var coursesDtos = courses.Select(mapper.CourseToCourseDto).ToList();
+            foreach (var courseDto in coursesDtos)
+            {
+                var author = await _userRepository.GetById(courseDto.AuthorId);
+                courseDto.AuthorName = author.FirstName + " " + author.LastName;
+            }
             return coursesDtos;
         }
     }

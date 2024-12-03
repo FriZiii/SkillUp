@@ -17,7 +17,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         }
 
         public async Task<User?> GetById(Guid userId)
-            => await _users.FirstOrDefaultAsync(_ => _.Id == userId);
+            => await _users.FirstOrDefaultAsync(_ => _.Id == userId) ?? throw new UserNotFoundException(userId);
 
         public async Task Add(User user)
         {

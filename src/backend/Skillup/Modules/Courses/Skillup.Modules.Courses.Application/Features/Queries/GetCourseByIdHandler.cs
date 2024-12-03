@@ -10,11 +10,13 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
     public class GetCourseByIdHandler : IRequestHandler<GetCourseByIdRequest, CourseDetailDto>
     {
         private readonly ICourseRepository _courseRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IAmazonS3Service _amazonS3Service;
 
-        public GetCourseByIdHandler(ICourseRepository courseRepository, IAmazonS3Service amazonS3Service)
+        public GetCourseByIdHandler(ICourseRepository courseRepository, IUserRepository userRepository, IAmazonS3Service amazonS3Service)
         {
             _courseRepository = courseRepository;
+            _userRepository = userRepository;
             _amazonS3Service = amazonS3Service;
         }
 
@@ -23,9 +25,13 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
             var course = await _courseRepository.GetById(request.CourseId);
             if (course == null) throw new Exception(); //TODO: Custom exception for nullable results from repo
 
+            var user = await _userRepository.GetById(course.AuthorId);
+            var authorName = user.FirstName + " " + user.LastName;
+
             var courseMapper = new CourseMapper(_amazonS3Service);
 
             var courseDto = courseMapper.CourseToCourseDetailDto(course);
+            courseDto.AuthorName = authorName;
             return courseDto;
         }
     }
