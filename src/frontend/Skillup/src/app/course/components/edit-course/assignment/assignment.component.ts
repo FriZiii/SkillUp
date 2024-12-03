@@ -59,4 +59,12 @@ export class AssignmentComponent implements OnInit{
     this.editing = !this.editing;
   }
 
+  editAssignment(){
+    this.asssetService.editAssignment(this.elementId(), this.newInstruction()).subscribe(
+      (res) => {
+        this.assignment.update(current => ({ ...current!, instruction: this.newInstruction()}));
+        this.changeEdit();
+      }
+    )
+  }
 }

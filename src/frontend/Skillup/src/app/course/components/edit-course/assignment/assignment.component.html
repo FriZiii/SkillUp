@@ -13,14 +13,20 @@
         />
         <label for="instruction">Instruction</label>
       </p-floatlabel>
+
+      <p-button
+        icon="pi pi-save"
+        severity="success"
+        (onClick)="editAssignment()"
+      ></p-button>
       } @else{
       <h2 class="m-0">{{ assignment()?.instruction }}</h2>
-      }
       <p-button
         icon="pi pi-file-edit"
         severity="secondary"
         (onClick)="changeEdit()"
       ></p-button>
+      }
     </div>
 
     @if(assignment()?.exerciseType === ExerciseType.QuestionAnswer){

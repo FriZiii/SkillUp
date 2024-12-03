@@ -42,6 +42,17 @@ export class AssetService {
           );
       }
 
+      editAssignment(elementId: string, instruction: string) {
+        return this.httpClient
+          .put<any>(environment.apiUrl + '/Courses/Assets/assignment/' + elementId, {instruction: instruction})
+          .pipe(
+            catchError((error) => {
+              return throwError(() => error);
+            }),
+            tap((response) => {console.log(response)})
+          );
+      }
+
     getAsset(elementId: string, assetType: AssetType) {
         return this.httpClient
       .get<any>(environment.apiUrl + '/Courses/Assets/' + assetType + '/' + elementId)
