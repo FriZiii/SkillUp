@@ -16,7 +16,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
         [SwaggerOperation("Get orders by orderer id")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetItemById(Guid ordererId)
+        public async Task<IActionResult> GetOrdersByOrderer(Guid ordererId)
         {
             return Ok(await _mediator.Send(new GetOrdersByOrdererIdRequest(ordererId)));
         }
