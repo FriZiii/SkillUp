@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToggleButtonModule } from 'primeng/togglebutton';
@@ -35,6 +35,7 @@ import { ExerciseService } from '../../../services/exercise.service';
 })
 export class FillTheGapCreatorComponent {
   assignmentId = input.required<string>();
+  sentenceAdded = output<Sentence>();
   exerciseService = inject(ExerciseService);
 
   parts: Part[] = [];
@@ -110,7 +111,10 @@ export class FillTheGapCreatorComponent {
 
     console.log(this.sentence);
     this.exerciseService.addFillTheGap(this.assignmentId(), this.sentence.value, this.sentence.words).subscribe(
-      (res) => {console.log(res)}
+      (res) => {
+        this.sentenceAdded.emit(res
+        );
+      }
     );
   }
 }

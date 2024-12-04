@@ -20,34 +20,9 @@ import { single } from 'rxjs';
   styleUrls: ['./fill-the-gap.component.css'],
 })
 export class FillTheGapComponent implements OnInit {
-  /* sentence: Sentence = {
-    id: '1',
-    value: 'Bardzo lubię {0} kolorowe i te {1} piękne {2}',
-    words: [
-      { index: 0, value: 'kwiaty' },
-      { index: 1, value: 'motyle' },
-      { index: 2, value: 'latające' },
-      { index: 3, value: 'kurwy' },
-      { index: 4, value: 'dziwki' },
-    ],
-  }; */
-
   sentence = input.required<Sentence>();
+  numberInList = input<number | null>(null);
   parts: { word: Word; container: Word[] }[] = [];
-
-  /* constructor() {
-    this.parts = this.sentence().value
-      .split(/({\d+})/)
-      .filter((part) => part.trim() !== '')
-      .map((part) => {
-        const match = part.match(/^{(\d+)}$/);
-        const index = match ? Number(match[1]) : -1;
-        return {
-          word: { value: part.replace(/[{}]/g, ''), index },
-          container: [] as Word[],
-        };
-      });
-  } */
 
   ngOnInit(): void {
     this.parts = this.sentence().value
@@ -61,9 +36,6 @@ export class FillTheGapComponent implements OnInit {
           container: [] as Word[],
         };
       });
-
-      console.log(this.sentence());
-      console.log(this.parts);
   }
 
   

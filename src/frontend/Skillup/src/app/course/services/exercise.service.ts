@@ -26,7 +26,6 @@ export class ExerciseService {
           catchError((error) => {
             return throwError(() => error);
           }),
-          tap((response) => {console.log(response)})
         );
     }
 
@@ -37,7 +36,6 @@ export class ExerciseService {
           catchError((error) => {
             return throwError(() => error);
           }),
-          tap((response) => {console.log(response)})
         );
     }
 
@@ -48,7 +46,6 @@ export class ExerciseService {
           catchError((error) => {
             return throwError(() => error);
           }),
-          tap((response) => {console.log(response)})
         );
     }
 }

@@ -1,7 +1,9 @@
-<div>
+<div class="su-border mb-4">
   <div cdkDropListGroup class="flex flex-col gap-4 m-8">
     <div class="flex gap-2 items-center">
-      @for (part of parts; track $index) { @if(part.word.index !== -1) {
+      @if(numberInList() !== null){
+      <div>{{ numberInList() }} .</div>
+      } @for (part of parts; track $index) { @if(part.word.index !== -1) {
       <div
         class="w-16 h-6 box-border border-black border-b-2"
         cdkDropList
@@ -36,7 +38,7 @@
       (cdkDropListDropped)="dropInToContainer($event)"
       [cdkDropListData]="sentence().words"
       [cdkDropListOrientation]="'horizontal'"
-      class="flex gap-4 border-dashed px-4 py-2 box-border border-cyan-800 border-2"
+      class="flex gap-4 su-border px-4 py-2 box-border border-cyan-800 border-2"
     >
       @for (word of sentence().words; track $index) {
       <div class="word" cdkDrag (cdkDragEnded)="onDragEnd()">

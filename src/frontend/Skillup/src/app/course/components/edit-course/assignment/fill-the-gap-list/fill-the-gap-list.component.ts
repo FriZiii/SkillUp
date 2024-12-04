@@ -23,9 +23,12 @@ export class FillTheGapListComponent implements OnInit {
       this.exerciseService.getExercises(this.assignmentId(), ExerciseType.FillTheGap).subscribe(
         (res) => {
           this.sentences = res;
-          console.log(res);
-          console.log(this.sentences);
         }
       )
+    }
+
+    newSentendeAdded(event: Sentence){
+      console.log(event);
+      this.sentences.push(event);
     }
 }

@@ -1,7 +1,10 @@
-<p>fill-the-gap-list works!</p>
 @for(sentence of sentences; track sentence.id){
-<app-fill-the-gap [sentence]="sentence"></app-fill-the-gap>
+<app-fill-the-gap
+  [sentence]="sentence"
+  [numberInList]="$index + 1"
+></app-fill-the-gap>
 }
 <app-fill-the-gap-creator
   [assignmentId]="assignmentId()"
+  (sentenceAdded)="newSentendeAdded($event)"
 ></app-fill-the-gap-creator>
