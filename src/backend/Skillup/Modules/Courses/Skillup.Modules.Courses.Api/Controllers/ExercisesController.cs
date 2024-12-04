@@ -36,6 +36,17 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(exercise);
         }
 
+        [HttpPost("FillTheGap/{assignmentId}")]
+        [SwaggerOperation("Add fill the gap")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AddFillTheGap(Guid assignmentId, AddFillTheGapRequest request)
+        {
+            request.AssignmentId = assignmentId;
+            var exercise = await _mediator.Send(request);
+            return Ok(exercise);
+        }
+
         [HttpGet("{exerciseType}/{assignmentId}")]
         [SwaggerOperation("Get asset by elementId")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -46,7 +57,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             {
                 ExerciseType.Quiz => Ok(await _mediator.Send(new GetQuizListRequest(assignmentId))),
                 ExerciseType.QuestionAnswer => Ok(await _mediator.Send(new GetQuestionAnswerListRequest(assignmentId))),
-                ExerciseType.FillTheGap => NotFound(),
+                ExerciseType.FillTheGap => Ok(await _mediator.Send(new GetFillTheGapListRequest(assignmentId))),
                 _ => BadRequest(),
             };
         }

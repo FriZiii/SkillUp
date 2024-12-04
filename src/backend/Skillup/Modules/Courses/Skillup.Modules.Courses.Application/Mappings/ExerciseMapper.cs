@@ -42,5 +42,29 @@ namespace Skillup.Modules.Courses.Application.Mappings
             };
             return quizAnswerDto;
         }
+
+        public FillTheGapSentenceDto ExerciseToExerciseDto(FillTheGapSentence sentence)
+        {
+            var fillTheGapSentenceDto = new FillTheGapSentenceDto()
+            {
+                Id = sentence.Id,
+                AssignmentId = sentence.AssignmentId,
+                Sentence = sentence.Sentence,
+                Words = sentence.Words?.Select(WordToWordDto).ToList(),
+            };
+            return fillTheGapSentenceDto;
+        }
+
+        public FillTheGapWordDto WordToWordDto(FillTheGapWord word)
+        {
+            var fillTheGapWordDto = new FillTheGapWordDto()
+            {
+                Id = word.Id,
+                Value = word.Value,
+                Index = word.Index,
+                SentenceId = word.SentenceId,
+            };
+            return fillTheGapWordDto;
+        }
     }
 }
