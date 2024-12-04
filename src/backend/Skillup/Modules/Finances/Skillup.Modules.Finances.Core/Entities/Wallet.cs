@@ -7,10 +7,21 @@ namespace Skillup.Modules.Finances.Core.Entities
         public Guid Id { get; private set; }
         public Currency Balance { get; private set; }
 
-        public Wallet(Guid userId)
+        public Guid OwnerId { get; set; }
+        public User Owner { get; set; }
+
+        public Wallet(Wallet wallet)
         {
+            Id = wallet.Id;
+            Balance = wallet.Balance;
+        }
+
+        public Wallet(User owner)
+        {
+            Id = Guid.NewGuid();
             Balance = new(0);
-            Id = userId;
+            OwnerId = owner.Id;
+            Owner = owner;
         }
 
         public void AddToBalance(decimal amount)
@@ -23,9 +34,6 @@ namespace Skillup.Modules.Finances.Core.Entities
             Balance = Balance.Subtract(amount);
         }
 
-        public Wallet()
-        {
-
-        }
+        private Wallet() { } // Used only by EF Core
     }
 }

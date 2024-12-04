@@ -74,5 +74,16 @@ namespace Skillup.Modules.Courses.Api.Controllers
             var course = await _mediator.Send(new GetCourseByIdRequest(courseId));
             return Ok(course);
         }
+
+        [HttpGet]
+        [SwaggerOperation("Get course by id")]
+        [Route("/Courses/UserId/{userId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetByUserId(Guid userId)
+        {
+            var course = await _mediator.Send(new GetCourseByIdRequest(userId));
+            return Ok(course);
+        }
     }
 }

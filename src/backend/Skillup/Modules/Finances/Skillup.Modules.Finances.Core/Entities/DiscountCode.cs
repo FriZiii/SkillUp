@@ -12,6 +12,9 @@ namespace Skillup.Modules.Finances.Core.Entities
         public bool IsActive { get; set; }
         public bool IsPublic { get; set; }
 
+        public Guid OwnerId { get; set; }
+        public User Owner { get; set; }
+
         public DiscountCodeType Type { get; set; }
         public IEnumerable<DiscountedItem> DiscountedItems { get; set; }
 

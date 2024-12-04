@@ -16,7 +16,7 @@ namespace Skillup.Modules.Finances.Core.Consumers
 
         public async Task Consume(ConsumeContext<SignedUp> context)
         {
-            await _mediator.Send(new CreateUserWalletRequest(context.Message.UserId));
+            await _mediator.Send(new CreateUserRequest(context.Message.UserId));
         }
     }
 }

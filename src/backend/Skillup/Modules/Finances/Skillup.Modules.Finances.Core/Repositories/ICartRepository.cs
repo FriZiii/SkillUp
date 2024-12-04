@@ -8,5 +8,6 @@ namespace Skillup.Modules.Finances.Core.Repositories
         Task AddCartItem(CartItem cartItem);
         Task DeleteItemFromCart(Guid cartId, Guid itemId);
         Task Update(Cart cart);
+        Task Delete(Cart cart);
     }
 }

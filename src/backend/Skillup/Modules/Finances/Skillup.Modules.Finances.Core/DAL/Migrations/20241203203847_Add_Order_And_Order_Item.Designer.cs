@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Skillup.Modules.Finances.Core.DAL;
@@ -11,9 +12,11 @@ using Skillup.Modules.Finances.Core.DAL;
 namespace Skillup.Modules.Finances.Core.DAL.Migrations
 {
     [DbContext(typeof(FinancesDbContext))]
-    partial class FinancesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241203203847_Add_Order_And_Order_Item")]
+    partial class Add_Order_And_Order_Item
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,9 +92,6 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                     b.Property<bool>("IsPublic")
                         .HasColumnType("boolean");
 
-                    b.Property<Guid>("OwnerId")
-                        .HasColumnType("uuid");
-
                     b.Property<int>("Type")
                         .HasColumnType("integer");
 
@@ -103,8 +103,6 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                     b.HasIndex("IsActive");
 
                     b.HasIndex("IsPublic");
-
-                    b.HasIndex("OwnerId");
 
                     b.ToTable("DiscountCodes", "finances");
 
@@ -299,17 +297,6 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                     b.Navigation("Cart");
 
                     b.Navigation("Item");
-                });
-
-            modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.DiscountCode", b =>
-                {
-                    b.HasOne("Skillup.Modules.Finances.Core.Entities.User", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.DiscountedItem", b =>

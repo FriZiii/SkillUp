@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Skillup.Modules.Finances.Core.DAL;
@@ -11,9 +12,11 @@ using Skillup.Modules.Finances.Core.DAL;
 namespace Skillup.Modules.Finances.Core.DAL.Migrations
 {
     [DbContext(typeof(FinancesDbContext))]
-    partial class FinancesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241203061314_Add_Finances_User")]
+    partial class Add_Finances_User
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,17 +86,25 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("numeric(18,2)");
 
+                    b.Property<bool>("HasUsageLimit")
+                        .HasColumnType("boolean");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
                     b.Property<bool>("IsPublic")
                         .HasColumnType("boolean");
 
-                    b.Property<Guid>("OwnerId")
-                        .HasColumnType("uuid");
+                    b.Property<int?>("MaxUsageLimit")
+                        .HasColumnType("integer");
 
                     b.Property<int>("Type")
                         .HasColumnType("integer");
+
+                    b.Property<int>("UsageCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0);
 
                     b.HasKey("Id");
 
@@ -103,8 +114,6 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                     b.HasIndex("IsActive");
 
                     b.HasIndex("IsPublic");
-
-                    b.HasIndex("OwnerId");
 
                     b.ToTable("DiscountCodes", "finances");
 
@@ -154,53 +163,6 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                     b.ToTable("Items", "finances");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.Order", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("OrdererId")
-                        .HasColumnType("uuid");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrdererId")
-                        .IsUnique();
-
-                    b.ToTable("Orders", "finances");
-                });
-
-            modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.OrderItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ItemId")
-                        .HasColumnType("uuid");
-
-                    b.Property<decimal>("ItemPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderItems", "finances");
-                });
-
             modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.PurchaseHistory", b =>
                 {
                     b.Property<Guid>("Id")
@@ -248,13 +210,12 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                     b.Property<decimal>("Balance")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("OwnerId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("Wallets", "finances");
                 });
@@ -276,8 +237,9 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
             modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.Cart", b =>
                 {
                     b.HasOne("Skillup.Modules.Finances.Core.Entities.DiscountCode", "DiscountCode")
-                        .WithMany()
-                        .HasForeignKey("DiscountCodeId");
+                        .WithMany("Carts")
+                        .HasForeignKey("DiscountCodeId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("DiscountCode");
                 });
@@ -301,17 +263,6 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                     b.Navigation("Item");
                 });
 
-            modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.DiscountCode", b =>
-                {
-                    b.HasOne("Skillup.Modules.Finances.Core.Entities.User", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Owner");
-                });
-
             modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.DiscountedItem", b =>
                 {
                     b.HasOne("Skillup.Modules.Finances.Core.Entities.DiscountCode", "DiscountCode")
@@ -329,36 +280,6 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                     b.Navigation("DiscountCode");
 
                     b.Navigation("Item");
-                });
-
-            modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.Order", b =>
-                {
-                    b.HasOne("Skillup.Modules.Finances.Core.Entities.User", "Orderer")
-                        .WithOne()
-                        .HasForeignKey("Skillup.Modules.Finances.Core.Entities.Order", "OrdererId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Orderer");
-                });
-
-            modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.OrderItem", b =>
-                {
-                    b.HasOne("Skillup.Modules.Finances.Core.Entities.Item", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Skillup.Modules.Finances.Core.Entities.Order", "Order")
-                        .WithMany("Items")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Item");
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.PurchaseHistory", b =>
@@ -382,13 +303,13 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
 
             modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.Wallet", b =>
                 {
-                    b.HasOne("Skillup.Modules.Finances.Core.Entities.User", "Owner")
-                        .WithOne()
-                        .HasForeignKey("Skillup.Modules.Finances.Core.Entities.Wallet", "OwnerId")
+                    b.HasOne("Skillup.Modules.Finances.Core.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Owner");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.Cart", b =>
@@ -398,12 +319,9 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
 
             modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.DiscountCode", b =>
                 {
-                    b.Navigation("DiscountedItems");
-                });
+                    b.Navigation("Carts");
 
-            modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.Order", b =>
-                {
-                    b.Navigation("Items");
+                    b.Navigation("DiscountedItems");
                 });
 #pragma warning restore 612, 618
         }

@@ -27,6 +27,8 @@ namespace Skillup.Modules.Finances.Core.DAL.Configurations
 
             builder.HasIndex(d => d.IsActive);
             builder.HasIndex(d => d.IsPublic);
+
+            builder.HasOne(x => x.Owner).WithMany().HasForeignKey(x => x.OwnerId);
         }
     }
 }

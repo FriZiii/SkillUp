@@ -73,5 +73,14 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
 
             await _context.SaveChangesAsync();
         }
+
+        public async Task Delete(Cart cart)
+        {
+            var cartToDelete = await _carts
+                .FirstAsync(x => x.Id == cart.Id);
+
+            _carts.Remove(cartToDelete);
+            await _context.SaveChangesAsync();
+        }
     }
 }

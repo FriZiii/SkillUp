@@ -5,20 +5,20 @@ using Skillup.Modules.Finances.Core.ValueObjects;
 
 namespace Skillup.Modules.Finances.Core.DAL.Configurations
 {
-    internal class WalletConfiguration : IEntityTypeConfiguration<Wallet>
+    internal class OrderConfiguration : IEntityTypeConfiguration<Order>
     {
-        public void Configure(EntityTypeBuilder<Wallet> builder)
+        public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Balance)
+            builder.Property(x => x.TotalPrice)
                 .IsRequired()
                 .HasConversion(x => x.Amount, x => new Currency(x))
                 .HasColumnType("decimal(18,2)");
 
-            builder.HasOne(x => x.Owner)
+            builder.HasOne(x => x.Orderer)
                 .WithOne()
-                .HasForeignKey<Wallet>(x => x.OwnerId)
+                .HasForeignKey<Order>(x => x.OrdererId)
                 .IsRequired();
         }
     }

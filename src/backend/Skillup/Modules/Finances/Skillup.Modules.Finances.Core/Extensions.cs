@@ -21,10 +21,11 @@ namespace Skillup.Modules.Finances.Core
                 .AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
                 .AddPostgres<FinancesDbContext>()
                 .AddScoped<IItemRepository, ItemRepository>()
+                .AddScoped<IUserRepository, UserRepository>()
                 .AddScoped<IWalletRepository, WalletRepository>()
-                .AddScoped<IPurchaseHistoryRepository, PurchaseHistoryRepository>()
                 .AddScoped<ICartRepository, CartRepository>()
                 .AddScoped<IDiscountCodeRepository, DiscountCodeRepository>()
+                .AddScoped<IOrderRepository, OrderRepository>()
                 .AddConsumer<ItemAddedConsumer>()
                 .AddConsumer<SignedUpConsumer>()
                 .AddSeeder<FinanceSeeder>();

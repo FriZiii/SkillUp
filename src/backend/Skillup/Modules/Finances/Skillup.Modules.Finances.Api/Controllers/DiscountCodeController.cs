@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Finances.Core.Entities;
 using Skillup.Modules.Finances.Core.Features.Requests.Commannds;
 using Skillup.Modules.Finances.Core.Features.Requests.Queries;
+using Skillup.Shared.Infrastructure.Auth;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Finances.Api.Controllers
@@ -17,10 +18,15 @@ namespace Skillup.Modules.Finances.Api.Controllers
         [SwaggerOperation("Add new discount code")]
         public async Task<IActionResult> Add([FromRoute] DiscountCodeType type, AddDiscountCodeRequest request)
         {
-            request.DiscountCodeDto.Type = type;
+            var userId = User.GetUserId();
+            if (userId == null) return Unauthorized();
+
+            request.OwnerId = (Guid)userId;
+
+            request.Type = type;
             await _mediator.Send(request);
 
-            return Ok(await _mediator.Send(new GetDiscountCodeByIdRequest(request.DiscountCodeDto.Id)));
+            return Ok(await _mediator.Send(new GetDiscountCodeByIdRequest(request.Id)));
         }
 
         [HttpDelete("{discountCodeId}")]
@@ -57,10 +63,10 @@ namespace Skillup.Modules.Finances.Api.Controllers
 
 
         [HttpGet("{ownerId}")]
-        [SwaggerOperation("Get by owner id TODO")] // TODO
+        [SwaggerOperation("Get by owner id")]
         public async Task<IActionResult> GetByOwnerId(Guid ownerId)
         {
-            return Ok();
+            return Ok(await _mediator.Send(new GetDiscountCodeByOwnerIdRequest(ownerId)));
         }
 
     }

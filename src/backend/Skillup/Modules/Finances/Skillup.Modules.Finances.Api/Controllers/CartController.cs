@@ -1,5 +1,7 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Skillup.Modules.Finances.Core.Features.Requests;
 using Skillup.Modules.Finances.Core.Features.Requests.Commannds;
 using Skillup.Modules.Finances.Core.Features.Requests.Queries;
 using Swashbuckle.AspNetCore.Annotations;
@@ -42,6 +44,15 @@ namespace Skillup.Modules.Finances.Api.Controllers
         {
             await _mediator.Send(new ToggleDiscountCodeForCartRequest(cartId, discountCode));
             return Ok(await _mediator.Send(new GetCartByIdRequest(cartId)));
+        }
+
+        [Authorize]
+        [HttpPost("{cartId}/checkout")]
+        [SwaggerOperation("Checkout cart")]
+        public async Task<IActionResult> Checkout(Guid cartId, [FromQuery] Guid walletId)
+        {
+            await _mediator.Send(new CheckoutCartRequest(cartId, walletId));
+            return Ok();
         }
     }
 }

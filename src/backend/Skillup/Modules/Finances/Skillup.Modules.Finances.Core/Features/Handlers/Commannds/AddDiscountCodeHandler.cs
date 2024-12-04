@@ -6,25 +6,31 @@ using Skillup.Modules.Finances.Core.ValueObjects;
 
 namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 {
-    internal class AddDiscountCodeHandler(IDiscountCodeRepository discountCodeRepository) : IRequestHandler<AddDiscountCodeRequest>
+    internal class AddDiscountCodeHandler(IDiscountCodeRepository discountCodeRepository, IUserRepository userRepository) : IRequestHandler<AddDiscountCodeRequest>
     {
         private readonly IDiscountCodeRepository _discountCodeRepository = discountCodeRepository;
+        private readonly IUserRepository _userRepository = userRepository;
 
         public async Task Handle(AddDiscountCodeRequest request, CancellationToken cancellationToken)
         {
+            var owner = await _userRepository.Get(request.OwnerId) ?? throw new Exception();
+
             DiscountCode? discountCodeToAdd = null;
-            if (request.DiscountCodeDto.Type == DiscountCodeType.Percentage)
+            if (request.Type == DiscountCodeType.Percentage)
             {
-                discountCodeToAdd = new PercentageDiscountCode(request.DiscountCodeDto);
+                discountCodeToAdd = new PercentageDiscountCode(request);
             }
 
-            if (request.DiscountCodeDto.Type == DiscountCodeType.FixedAmount)
+            if (request.Type == DiscountCodeType.FixedAmount)
             {
-                discountCodeToAdd = new FixedAmountDiscountCode(request.DiscountCodeDto);
+                discountCodeToAdd = new FixedAmountDiscountCode(request);
             }
 
             if (discountCodeToAdd == null)
                 throw new Exception();  // TODO: CustomEx
+
+            discountCodeToAdd.Owner = owner;
+            discountCodeToAdd.OwnerId = request.OwnerId;
 
             await _discountCodeRepository.Add(discountCodeToAdd);
         }
