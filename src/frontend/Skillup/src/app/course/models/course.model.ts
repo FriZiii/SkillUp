@@ -11,6 +11,7 @@ export interface Course{
     id: string;
     title: string;
     authorId: string;
+    authorName:  string;
     isPublished: boolean;
     category: {
         id: string;
@@ -29,6 +30,7 @@ export interface CourseListItem{
     id: string;
     title: string;
     authorId: string;
+    authorName:  string;
     isPublished: boolean;
     category: {
         id: string;
@@ -50,6 +52,7 @@ export interface CourseDetail{
     id: string;
     title: string;
     authorId: string;
+    authorName:  string;
     isPublished: boolean;
     category: {
         id: string;

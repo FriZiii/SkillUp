@@ -28,5 +28,23 @@
     "LastName": "Smith",
     "title": "Software Developer and IT Instructor with 15 Years of Experience",
     "Biography": "I'm John, a passionate software developer and IT instructor with over 15 years of experience in the tech industry. I specialize in web development, database management, and software architecture. My goal is to provide hands-on learning experiences that help my students tackle real-world challenges with confidence. I believe in fostering practical skills and empowering others to grow in a fast-paced digital world."
+  },
+  {
+    "firstname": "Anne",
+    "LastName": "Connor",
+    "title": "Graphic Designer and Digital Artist with 10 Years of Experience",
+    "Biography": "I'm Anna, a creative graphic designer and digital artist with a decade of experience crafting stunning visuals for businesses and individuals. My expertise lies in branding, user interface design, and digital illustration. I strive to create impactful designs that tell stories and resonate with audiences. I believe in blending creativity with strategy to deliver designs that inspire and captivate."
+  },
+  {
+    "firstname": "Michael",
+    "LastName": "Taylor",
+    "title": "Certified Personal Trainer and Nutrition Specialist with 8 Years of Experience",
+    "Biography": "I'm Michael, a dedicated personal trainer and nutrition specialist with a mission to help people achieve their health and fitness goals. With 8 years of experience, I specialize in personalized workout plans, strength training, and dietary guidance. My philosophy revolves around building sustainable habits and motivating my clients to unlock their full potential in both fitness and life."
+  },
+  {
+    "firstname": "Emily",
+    "LastName": "Nguyen",
+    "title": "Environmental Scientist and Sustainability Advocate with 12 Years of Experience",
+    "Biography": "I'm Emily, an environmental scientist with a passion for sustainability and conservation. Over the past 12 years, I've worked on projects ranging from climate change mitigation to waste management solutions. I aim to bridge the gap between science and community action by promoting eco-friendly practices and raising awareness about environmental stewardship."
   }
 ]

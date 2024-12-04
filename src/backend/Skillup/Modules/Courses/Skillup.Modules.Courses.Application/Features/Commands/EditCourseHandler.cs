@@ -11,12 +11,14 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
     public class EditCourseHandler : IRequestHandler<EditCourseRequest, CourseDto>
     {
         private readonly ICourseRepository _courseRepository;
+        private readonly IUserRepository _userRepository;
         private readonly ILogger<EditCourseHandler> _logger;
         private readonly IAmazonS3Service _amazonS3Service;
 
-        public EditCourseHandler(ICourseRepository courseRepository, ILogger<EditCourseHandler> logger, IAmazonS3Service amazonS3Service)
+        public EditCourseHandler(ICourseRepository courseRepository, IUserRepository userRepository, ILogger<EditCourseHandler> logger, IAmazonS3Service amazonS3Service)
         {
             _courseRepository = courseRepository;
+            _userRepository = userRepository;
             _logger = logger;
             _amazonS3Service = amazonS3Service;
         }
@@ -32,7 +34,10 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
 
             var newCourse = await _courseRepository.GetById(request.CourseID);
             var courseMapper = new CourseMapper(_amazonS3Service);
-            return courseMapper.CourseToCourseDto(newCourse);
+            var courseDto = courseMapper.CourseToCourseDto(newCourse);
+            var user = await _userRepository.GetById(courseDto.AuthorId);
+            courseDto.AuthorName = user.FirstName + " " + user.LastName;
+            return courseDto;
         }
     }
 }

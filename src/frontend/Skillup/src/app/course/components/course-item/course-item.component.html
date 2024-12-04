@@ -8,7 +8,6 @@
   class="prose cursor-pointer"
   (click)="onClick()"
 >
-
   <ng-template pTemplate="header">
     <img
       alt="{{ course.title }}"
@@ -21,7 +20,7 @@
       {{ course.title | truncate }}
     </span>
   </ng-template>
-  <ng-template pTemplate="subtitle"> Card subtitle </ng-template>
+  <ng-template pTemplate="subtitle"> {{ course.authorName }} </ng-template>
 
   <div class="flex justify-between items-center">
     <div>$ {{ course.price.amount }}</div>

@@ -7,6 +7,7 @@ namespace Skillup.Modules.Courses.Application.Operations
         public Guid Id { get; set; }
         public string Title { get; set; }
         public Guid AuthorId { get; set; }
+        public string AuthorName { get; set; }
         public bool IsPublished { get; set; }
         //author
         public CourseCategoryDto Category { get; set; }
