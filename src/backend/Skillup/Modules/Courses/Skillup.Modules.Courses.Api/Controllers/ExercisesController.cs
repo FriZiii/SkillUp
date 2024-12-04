@@ -61,5 +61,16 @@ namespace Skillup.Modules.Courses.Api.Controllers
                 _ => BadRequest(),
             };
         }
+
+        [HttpDelete("{exerciseType}/{exerciseId}")]
+        [SwaggerOperation("Delete exercise")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> DeleteExercise(Guid exerciseId, [FromRoute] ExerciseType exerciseType)
+        {
+            var request = new DeleteExerciseRequest(exerciseId, exerciseType);
+            await _mediator.Send(request);
+            return Ok();
+        }
     }
 }

@@ -32,6 +32,13 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteSentence(Guid exerciseId)
+        {
+            var exxercise = _sentences.FirstOrDefault(e => e.Id == exerciseId) ?? throw new Exception();
+            _sentences.Remove(exxercise);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<FillTheGapSentence>> GetFillTheGaps(Guid assignmentId)
         {
             var sentences = await _sentences.Include(s => s.Words).Where(s => s.AssignmentId == assignmentId)

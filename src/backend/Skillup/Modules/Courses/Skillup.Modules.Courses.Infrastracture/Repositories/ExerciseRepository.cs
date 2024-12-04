@@ -37,6 +37,20 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteQuestion(Guid exerciseId)
+        {
+            var exxercise = _questions.FirstOrDefault(e => e.Id == exerciseId) ?? throw new Exception();
+            _questions.Remove(exxercise);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteQuiz(Guid exerciseId)
+        {
+            var exxercise = _quizQuestions.FirstOrDefault(e => e.Id == exerciseId) ?? throw new Exception();
+            _quizQuestions.Remove(exxercise);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<List<QuestionAnswer>> GetQuestionAnswers(Guid assignmentId)
         {
             var questions = await _questions.Where(q => q.AssignmentId == assignmentId)

@@ -7,5 +7,6 @@ namespace Skillup.Modules.Courses.Core.Interfaces
         Task AddSentence(FillTheGapSentence fillTheGapSentence);
         Task AddWords(List<FillTheGapWord> words);
         Task<IEnumerable<FillTheGapSentence>> GetFillTheGaps(Guid assignmentId);
+        Task DeleteSentence(Guid exerciseId);
     }
 }
