@@ -49,7 +49,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
             {
                 Id = sentence.Id,
                 AssignmentId = sentence.AssignmentId,
-                Sentence = sentence.Sentence,
+                Value = sentence.Sentence,
                 Words = sentence.Words?.Select(WordToWordDto).ToList(),
             };
             return fillTheGapSentenceDto;

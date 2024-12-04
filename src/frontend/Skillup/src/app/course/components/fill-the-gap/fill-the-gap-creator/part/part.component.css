@@ -1,0 +1,11 @@
+.placeholder{
+    @apply border-2 border-dotted box-border border-stone-600 w-24 h-12
+}
+
+#deleteButton {
+  display: none !important;
+}
+
+#container:has(:hover) #deleteButton {
+  display: flex  !important;
+}

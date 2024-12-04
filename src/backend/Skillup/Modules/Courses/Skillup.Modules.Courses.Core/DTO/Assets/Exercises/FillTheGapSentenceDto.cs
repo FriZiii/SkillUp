@@ -2,7 +2,7 @@
 {
     public class FillTheGapSentenceDto : ExerciseDto
     {
-        public string Sentence { get; set; }
+        public string Value { get; set; }
         public IEnumerable<FillTheGapWordDto> Words { get; set; }
     }
 }
