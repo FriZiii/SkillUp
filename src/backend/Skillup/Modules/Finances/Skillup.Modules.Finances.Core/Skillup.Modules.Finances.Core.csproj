@@ -7,11 +7,19 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Seeders\Data\financesUsers-seeder-data.json" />
       <None Remove="Seeders\Data\items-seeder-data.json" />
+      <None Remove="Seeders\Data\wallets-seeder-data.json" />
     </ItemGroup>
 
     <ItemGroup>
+      <Content Include="Seeders\Data\financesUsers-seeder-data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
       <Content Include="Seeders\Data\items-seeder-data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Seeders\Data\wallets-seeder-data.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>

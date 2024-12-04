@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Skillup.Modules.Courses.Application.Features.Queries;
 using Skillup.Modules.Courses.Core.Requests.Commands;
 using Skillup.Modules.Courses.Core.Requests.Queries;
 using Skillup.Shared.Abstractions.Auth;
@@ -86,6 +87,17 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(courses);
         }
 
+        [HttpGet]
+        [SwaggerOperation("Get course purchased by user")]
+        [Route("/Courses/UserId/{userId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetByUserId(Guid userId)
+        {
+            var course = await _mediator.Send(new GetCourseByUserIdRequest(userId));
+            return Ok(course);
+        }
+
         [HttpPut]
         [SwaggerOperation("Edit course")]
         [Route("/Courses/{courseId}")]
@@ -97,6 +109,5 @@ namespace Skillup.Modules.Courses.Api.Controllers
             var course = await _mediator.Send(request);
             return Ok(course);
         }
-
     }
 }
