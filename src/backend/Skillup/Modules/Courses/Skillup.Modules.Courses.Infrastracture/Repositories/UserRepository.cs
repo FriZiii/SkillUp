@@ -48,5 +48,10 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<User>> GetAll()
+        {
+            return await _users.ToListAsync();
+        }
     }
 }

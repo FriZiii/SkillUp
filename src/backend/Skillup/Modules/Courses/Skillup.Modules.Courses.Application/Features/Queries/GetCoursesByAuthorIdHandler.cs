@@ -18,11 +18,9 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
             var courses = (await _courseRepository.GetAll()).Where(c => c.AuthorId == request.authorID);
             var mapper = new CourseMapper(_amazonS3Service);
             var courseDtos = courses.Select(mapper.CourseToCourseDto).ToList();
-            foreach (var courseDto in courseDtos)
-            {
-                var author = await _userRepository.GetById(courseDto.AuthorId);
-                courseDto.AuthorName = author.FirstName + " " + author.LastName;
-            }
+
+            var users = await _userRepository.GetAll();
+            courseDtos.ForEach(c => c.AuthorName = users.First(u => u.Id == c.AuthorId).FirstName + " " + users.First(u => u.Id == c.AuthorId).LastName);
             return courseDtos;
         }
     }
