@@ -66,7 +66,6 @@ export class ElementItemComponent implements OnInit {
                   label: 'Content',
                   icon: this.contentIcon(),
                   command: () => {
-                    console.log(this.element());
                     this.openContent();
                   }
               },

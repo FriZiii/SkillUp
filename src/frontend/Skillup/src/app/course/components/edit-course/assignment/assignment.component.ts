@@ -9,11 +9,14 @@ import { QuestionListComponent } from "./question-list/question-list.component";
 import { QuizListComponent } from "./quiz-list/quiz-list.component";
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { FillTheGapComponent } from "../../fill-the-gap/fill-the-gap.component";
+import { FillTheGapCreatorComponent } from "../../fill-the-gap/fill-the-gap-creator/fill-the-gap-creator.component";
+import { FillTheGapListComponent } from "./fill-the-gap-list/fill-the-gap-list.component";
 
 @Component({
   selector: 'app-assignment',
   standalone: true,
-  imports: [QuestionListComponent, QuizListComponent, InputTextModule, ButtonModule, FloatLabelModule, FormsModule],
+  imports: [QuestionListComponent, QuizListComponent, InputTextModule, ButtonModule, FloatLabelModule, FormsModule, FillTheGapComponent, FillTheGapCreatorComponent, FillTheGapListComponent],
   templateUrl: './assignment.component.html',
   styleUrl: './assignment.component.css'
 })
@@ -35,7 +38,6 @@ export class AssignmentComponent implements OnInit{
   ngOnInit(): void {
     this.asssetService.getAsset(this.elementId(), AssetType.Exercise).subscribe(
       (res) => {
-        console.log(res);
         this.assignment.set(res);
         this.newInstruction.set(this.assignment()!.instruction);
       }

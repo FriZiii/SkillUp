@@ -37,7 +37,6 @@ export class AddNewElementComponent {
 
   chooseType(type: AssetType){
     this.newElementType.set(type);
-    console.log(this.newElementType());
   }
 
   submitElement(event: Event){

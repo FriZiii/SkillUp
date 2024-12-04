@@ -35,6 +35,10 @@
     ></app-question-list>
     } @if(assignment()?.exerciseType === ExerciseType.Quiz) {
     <app-quiz-list [assignmentId]="assignment()!.assetId"></app-quiz-list>
+    } @if(assignment()?.exerciseType === ExerciseType.FillTheGap){
+    <app-fill-the-gap-list
+      [assignmentId]="assignment()!.assetId"
+    ></app-fill-the-gap-list>
     }
   </div>
 </div>

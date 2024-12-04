@@ -38,7 +38,6 @@ export class AssetService {
             catchError((error) => {
               return throwError(() => error);
             }),
-            tap((response) => {console.log(response)})
           );
       }
 
