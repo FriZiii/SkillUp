@@ -18,6 +18,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
                 Index = element.Index,
                 IsFree = element.IsFree,
                 HasAsset = element.Asset != null ? true : false,
+                Attachments = element.Attachments.Select(a => a.Id)
             };
             return elementeDto;
         }

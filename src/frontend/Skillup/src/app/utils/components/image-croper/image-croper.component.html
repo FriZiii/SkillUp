@@ -3,7 +3,8 @@
     header="Crop image"
     [modal]="true"
     [(visible)]="croperVisibility"
-    [style]="{ width: '25rem' }"
+    [style]="{ width: '40rem' }"
+    [closable]="false"
   >
     <div class="flex items-center justify-center">
       @if(croperLoading){
@@ -14,12 +15,12 @@
         class="flex-col gap-1 items-center"
         [style]="{ display: croperLoading ? 'none' : 'flex' }"
       >
-        <div class="block w-64 h-64 su-border p-1">
+        <div class="block w-80 h-80 su-border p-1">
           <image-cropper
             [imageFile]="imageFile!"
             [imageChangedEvent]="imageChangedEvent"
             [maintainAspectRatio]="true"
-            [aspectRatio]="1 / 1"
+            [aspectRatio]="aspectRatio"
             [containWithinAspectRatio]="true"
             [resizeToWidth]="256"
             [resizeToHeight]="256"
@@ -32,13 +33,16 @@
             (loadImageFailed)="onLoadImageFailed()"
           ></image-cropper>
         </div>
-        <p-button
-          (onClick)="cropImage()"
-          class="w-full"
-          [style]="{ width: '100%' }"
-          label="Crop image"
-        ></p-button>
       </div>
+    </div>
+    <div class="w-full flex justify-between">
+      <p-button
+        (onClick)="onExit()"
+        label="Cancel"
+        icon="pi pi-trash"
+        severity="danger"
+      ></p-button>
+      <p-button (onClick)="cropImage()" label="Crop image"></p-button>
     </div>
   </p-dialog>
 </div>

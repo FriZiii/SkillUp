@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
 import { environment } from "../../../environments/environment";
-import { catchError, map, Observable, tap, throwError } from "rxjs";
+import { catchError, map, tap, throwError } from "rxjs";
 import { ToastHandlerService } from "../../core/services/toast-handler.service";
-import { ElementType, Section } from "../models/course-content.model";
+import { AssetType, Section } from "../models/course-content.model";
 
 @Injectable({ providedIn: 'root' })
 export class CourseContentService {
@@ -23,12 +23,11 @@ export class CourseContentService {
           .get<any>(environment.apiUrl + '/Courses/Sections/' + courseId)
           .pipe(
             map((response) => {
-              response.elementType = response.elementType as ElementType;
+              response.type = response.type as AssetType;
               console.log(response);
               return response;
             }),
             catchError((error) => {
-              this.toastService.showError('Coud not fetch sections');
               return throwError(() => error);
             })
           );
@@ -46,6 +45,7 @@ export class CourseContentService {
               id: response.id,
               title: response.title,
               index: response.index,
+              isPublished: response.isPublished,
               elements: []
             }
             ])
@@ -72,13 +72,13 @@ export class CourseContentService {
         );
     }
 
-    updateSection(sectionId: string, sectionTitle: string){
+    updateSection(sectionId: string, sectionTitle: string, sectionIsPublished: boolean){
       return this.httpClient
-        .put(environment.apiUrl + '/Courses/Sections/' + sectionId, {title: sectionTitle})
+        .put(environment.apiUrl + '/Courses/Sections/' + sectionId, {title: sectionTitle, isPublished: sectionIsPublished})
         .pipe(
           tap(() => {
             this.sections.update((prevSections) => 
-            prevSections.map(section => section.id === sectionId ? {...section, title: sectionTitle} : section));
+            prevSections.map(section => section.id === sectionId ? {...section, title: sectionTitle, isPublished: sectionIsPublished} : section));
           }),
           catchError((error) => {
             return throwError(() => error);
@@ -88,7 +88,7 @@ export class CourseContentService {
 
     updateSectionIndex(sectionId: string, newIndex: number){
       return this.httpClient
-        .put<Section[]>(environment.apiUrl + '/Courses/Sections/' + sectionId + '/Edit-Index', {index: newIndex})
+        .put<Section[]>(environment.apiUrl + '/Courses/Sections/' + sectionId + '/' + newIndex, {})
         .pipe(
           tap((response: Section[]) => {
             this.sections.set(response);
@@ -101,7 +101,38 @@ export class CourseContentService {
 
 
     //Elements
-    private addElement() {
+    addElement(sectionId: string, assetType: AssetType, elementTitle: string, elementDescription: string, elementFree: boolean) {
+      return this.httpClient
+        .post<any>(environment.apiUrl + '/Courses/Elements/' + assetType + '/' + sectionId, {title: elementTitle, description: elementDescription, isFree: elementFree})
+        .pipe(
+          tap((response) => {
+            const updatedSections = this.sections().map(section => {
+              if (section.id === sectionId) {
+                return {
+                  ...section,
+                  elements: [
+                    ...section.elements,
+                    {
+                      id: response.id,
+                      title: response.title,
+                      description: response.description,
+                      type: response.type,
+                      index: response.index,
+                      isFree: response.isFree,
+                      hasAsset: response.hasAsset,
+                      attachments: response.attachments
+                    }
+                  ]
+                };
+              }
+              return section;
+            });
+              this.sections.set(updatedSections);
+          }),
+          catchError((error) => {
+            return throwError(() => error);
+          })
+        );
     }
 
     deleteElement(sectionId: string, elementId: string){
@@ -127,16 +158,16 @@ export class CourseContentService {
         );
     }
 
-    updateElement(sectionId: string, elementId: string, elementTitle: string, elementDescription: string){
+    updateElement(sectionId: string, elementId: string, elementTitle: string, elementDescription: string, elementFree: boolean){
       return this.httpClient
-        .put(environment.apiUrl + '/Courses/Elements/' + elementId, {title: elementTitle, description: elementDescription})
+        .put(environment.apiUrl + '/Courses/Elements/' + elementId, {title: elementTitle, description: elementDescription, isFree:elementFree})
         .pipe(
           tap(() => {
             this.sections.update((prevSections) =>
               prevSections.map(section => {
                 if (section.id === sectionId) {
                   const updatedElements = section.elements.map(element =>
-                    element.id === elementId ? { ...element, title: elementTitle, description: elementDescription } : element
+                    element.id === elementId ? { ...element, title: elementTitle, description: elementDescription, isFree: elementFree } : element
                   );
                   return { ...section, elements: updatedElements };
                 }
@@ -152,7 +183,7 @@ export class CourseContentService {
 
     updateElementIndex(sectionId: string, elementId: string, newIndex: number){
       return this.httpClient
-        .put<Section>(environment.apiUrl + '/Courses/Elements/' + elementId + '/Edit-Index', {index: newIndex})
+        .put<Section>(environment.apiUrl + '/Courses/Elements/' + elementId + '/' + newIndex, {})
         .pipe(
           tap((response: Section) => {
             this.sections.update((prevSections) =>

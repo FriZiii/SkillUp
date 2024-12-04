@@ -1,0 +1,44 @@
+<div class="flex flex-col justify-center">
+  <div class="prose">
+    <h2>Add New Attachments!</h2>
+  </div>
+  <!-- File Upload -->
+
+  <div class="grid grid-cols-2 w-3/4">
+    <p-button
+      (onClick)="upload()"
+      [disabled]="!selectedFile"
+      [style]="{ width: '100%', borderRadius: '0.5rem 0  0 0.5rem' }"
+      label="Upload"
+    ></p-button>
+
+    @if(selectedFile){
+    <p-button
+      (onClick)="cancel()"
+      severity="secondary"
+      [style]="{ width: '100%', borderRadius: '0 0.5rem 0.5rem 0' }"
+      label="Cancel"
+    ></p-button>
+    } @else {
+    <p-fileupload
+      #fu
+      mode="basic"
+      [style]="{ width: '100%', borderRadius: '0 0.5rem 0.5rem 0' }"
+      chooseLabel="Choose"
+      chooseIcon="pi pi-upload"
+      (onSelect)="onSelectImage($event)"
+      accept="image/*"
+    />
+    }
+  </div>
+  @if(this.element().attachments.length === 0){
+  <p>this element does not have any attachments</p>
+  } @else{
+  <div class="prose">
+    <h2>Attachments:</h2>
+  </div>
+  @for(attachment of this.element().attachments; track attachment){
+  <p>{{ attachment }}</p>
+  <p-button label="Download attachment"></p-button>
+  } }
+</div>

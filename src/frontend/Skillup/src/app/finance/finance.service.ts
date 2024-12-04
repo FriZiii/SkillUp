@@ -29,7 +29,6 @@ export class FinanceService {
           this.itemSubject.next(items);
         }),
         catchError((error) => {
-          this.toastService.showError('Coud not fetch prices');
           return throwError(() => error);
         })
       )

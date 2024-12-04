@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import {
   BehaviorSubject,
   catchError,
@@ -27,6 +27,7 @@ export class UserService {
   private httpClient = inject(HttpClient);
   private userSubject = new BehaviorSubject<User | null>(null);
   private userDetailSubject = new BehaviorSubject<UserDetail | null>(null);
+  currentUser = signal<User | null>(null);  //used in guards so checking user info will be quicker
 
   get user(): Observable<User | null> {
     return this.userSubject.asObservable();
@@ -42,7 +43,7 @@ export class UserService {
     })
   }
 
-  getUserDetail(): Observable<UserDetail | null> {
+  private getUserDetail(): Observable<UserDetail | null> {
     return this.user.pipe(
       filter((user): user is User => user !== null),
       switchMap((user) =>
@@ -91,11 +92,13 @@ export class UserService {
       user.lastName = response.lastName;
       user.profilePicture = response.profilePicture;
       this.userSubject.next(user);
+      this.currentUser.set(user);
     });
   }
 
   clearUser(): void {
     this.userSubject.next(null);
+    this.currentUser.set(null);
   }
 
   editProfilePicture(userId: string, file: File) {

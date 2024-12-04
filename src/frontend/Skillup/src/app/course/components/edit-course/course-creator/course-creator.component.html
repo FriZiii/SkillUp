@@ -16,6 +16,7 @@
     >
       <app-section-item
         [section]="section"
+        [editable]="true"
         (onEditChange)="changeSectionEditMode($event)"
         class="w-full"
       ></app-section-item>
@@ -23,7 +24,7 @@
     </p-accordion-header>
     <p-accordion-content>
       <app-element-list [section]="section"></app-element-list>
-      <app-add-new-element></app-add-new-element>
+      <app-add-new-element [sectionId]="section.id"></app-add-new-element>
     </p-accordion-content>
   </p-accordion-panel>
   }

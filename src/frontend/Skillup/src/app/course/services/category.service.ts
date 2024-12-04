@@ -30,7 +30,6 @@ export class CategoryService {
           this.categoriesSubject.next(categories);
         }),
         catchError((error) => {
-          this.toastService.showError('Coud not fetch categories');
           return throwError(() => error);
         })
       )

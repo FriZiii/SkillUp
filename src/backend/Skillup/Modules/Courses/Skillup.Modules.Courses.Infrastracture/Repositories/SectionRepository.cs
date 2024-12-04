@@ -33,6 +33,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         {
             var sections = await _sections
                 .Include(s => s.Elements).ThenInclude(e => e.Asset)
+                .Include(s => s.Elements).ThenInclude(e => e.Attachments)
                 .Where(s => s.CourseId == courseId)
                 .OrderBy(x => x.Index)
                 .ToListAsync();
@@ -44,6 +45,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             var sectionToEdit = await _sections.FirstOrDefaultAsync(s => s.Id == section.Id) ?? throw new Exception();  //TODO: Custom exception for null check in repo
 
             sectionToEdit.Title = section.Title;
+            sectionToEdit.IsPublished = section.IsPublished;
             sectionToEdit.Index = section.Index;
 
             await _context.SaveChangesAsync();
