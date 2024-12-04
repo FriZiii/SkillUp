@@ -17,6 +17,7 @@ import {
 } from 'rxjs';
 import { ToastHandlerService } from '../../core/services/toast-handler.service';
 import { FinanceService } from '../../finance/finance.service';
+import { CourseLevel } from '../models/course-level.model';
 
 @Injectable({ providedIn: 'root' })
 export class CoursesService {
@@ -55,6 +56,7 @@ export class CoursesService {
             {
               id: response.id,
               title: response.title,
+              authorId: response.authorId,
               isPublished: response.isPublished,
               category: {
                 id: response.category.id,
@@ -88,7 +90,6 @@ export class CoursesService {
           this.coursesSubject.next(courses);
         }),
         catchError((error) => {
-          this.toastService.showError('Coud not fetch courses');
           return throwError(() => error);
         })
       )
@@ -115,7 +116,6 @@ export class CoursesService {
       .get<any>(environment.apiUrl + '/Courses/' + courseId)
       .pipe(
         catchError((error) => {
-          this.toastService.showError('Coud not fetch course');
           return throwError(() => error);
         })
       );
@@ -142,5 +142,57 @@ export class CoursesService {
         (subcategory.toLowerCase() === 'all' ||
           course.category.subcategory.slug === subcategory)
     );
+  }
+
+  getCoursesByAuthor(authorId: string): CourseListItem[]{
+    return this.courses().filter((course) => course.authorId === authorId);
+  }
+
+
+  //Edit
+  editCourse(courseId: string, title: string, categoryId: string, subcategoryId: string){
+    return this.httpClient
+    .put(environment.apiUrl + '/Courses/' + courseId, {title: title, categoryId: categoryId, subcategoryId: subcategoryId})
+    .pipe(
+      tap((res) => {
+       // this.courses.update((prevCourses) => 
+       //  prevCourses.map(course => course.id === courseId ? {...course, title: title, category} : course));
+      }),
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+  editCourseDetails(courseId: string, subtitle: string, description: string, level: CourseLevel, objectivesSummary: string[], mustKnowBefore: string[], intededFor: string[]){
+    return this.httpClient
+        .put(environment.apiUrl + '/Courses/' + courseId + '/Details', {subtitle: subtitle, description: description, level: level, objectivesSummary: objectivesSummary, mustKnowBefore: mustKnowBefore, intendedFor: intededFor})
+        .pipe(
+          tap(() => {
+            this.courses.update((prevCourses) => 
+             prevCourses.map(course => course.id === courseId ? {...course, subtitle: subtitle, description: description, level: level, objectivesSummary: objectivesSummary, mustKnowBefore: mustKnowBefore, intendedFor: intededFor} : course));
+          }),
+          catchError((error) => {
+            return throwError(() => error);
+          })
+        );
+
+  }
+
+  editCourseThumbnailPicture(courseId: string, newPicture: File){
+    const formData = new FormData(); 
+    formData.append('file', newPicture);
+    return this.httpClient
+        .put<any>(environment.apiUrl + '/Courses/' + courseId + '/Details/TumbnailPicture', formData)
+        .pipe(
+          tap((res: any) => {
+            this.courses.update((prevCourses) => 
+             prevCourses.map(course => course.id === courseId ? {...course, thumbnailUrl: res.thumbnailUrl} : course));
+            console.log(this.courses().find(c => c.id === courseId))
+          }),
+          catchError((error) => {
+            return throwError(() => error);
+          })
+        );
   }
 }

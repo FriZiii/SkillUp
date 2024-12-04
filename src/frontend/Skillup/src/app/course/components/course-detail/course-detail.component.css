@@ -1,0 +1,79 @@
+.shadow {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: inline-block;
+}
+
+:host ::ng-deep .p-rating-icon {
+  cursor: default !important;
+}
+
+.target {
+  transition: all 0.3s ease;
+  height: fit-content;
+}
+.target.sticky {
+  position: sticky;
+  top: 10rem;
+  z-index: 10;
+}
+.not-visible {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.cols-responsive-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 2rem;
+}
+.cols-responsive-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 2rem;
+}
+
+.text-right-when-big {
+  text-align: right;
+}
+@media (max-width: 1224px) {
+  .no-padding-on-small {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .cols-responsive-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .cols-responsive-2 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .text-right-when-big {
+    text-align: left;
+  }
+
+  .top-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .target {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    height: 0px;
+  }
+
+  .content-container {
+    grid-column: span 3 / span 3;
+  }
+}
+
+@media (max-width: 1000px) {
+  .cols-responsive-3 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}

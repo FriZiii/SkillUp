@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "primeicons/primeicons.css";
 
 @layer tailwind-base, primeng, tailwind-utilities;
@@ -14,18 +14,18 @@
 
 html {
   font-family: "Inter";
-} 
-
-body{
-  background-color: var(--p-surface-0)
 }
 
-header{
-  background-color: var(--p-surface-0)
+body {
+  background-color: var(--p-surface-0);
 }
 
-footer{
-  background-color: var(--p-surface-200)
+header {
+  background-color: var(--p-surface-0);
+}
+
+footer {
+  background-color: var(--p-surface-200);
 }
 
 .container {
@@ -36,23 +36,31 @@ footer{
 }
 
 .active-link {
-  @apply text-primary; 
+  @apply text-primary;
 }
 
 .custom-textarea {
   @apply su-border focus:outline-none focus:border-primary px-2;
 }
 
-.su-border{
-  @apply border-[1px] border-surface-300 rounded-md shadow-[0px_0px_#0000,0px_0px_#0000,0px_1px_2px_0px_rgba(18,18,23,0.05)] 
+.su-border {
+  @apply border-[1px] border-surface-300 rounded-md shadow-[0px_0px_#0000,0px_0px_#0000,0px_1px_2px_0px_rgba(18,18,23,0.05)];
 }
 
-.su-border-y{
-  @apply border-y-[1px] border-surface-300
+.su-border-y {
+  @apply border-y-[1px] border-surface-300;
 }
 
-.su-section-mt{
-  @apply mt-8 mx-4
+.su-border-x {
+  @apply border-x-[1px] border-surface-300;
+}
+
+.su-border-b {
+  @apply border-b-[1px] border-surface-300;
+}
+
+.su-section-mt {
+  @apply mt-8 mx-4;
 }
 
 .p-fileupload-basic {

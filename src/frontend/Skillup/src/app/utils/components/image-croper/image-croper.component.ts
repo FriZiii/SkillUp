@@ -24,6 +24,7 @@ import { ImageCroperResponse } from '../../models/image-croper-response.model';
   styleUrl: './image-croper.component.css',
 })
 export class ImageCroperComponent {
+  @Input() aspectRatio: number = 1 / 1;
   @Input() imageFile: File | null = null;
   @Input() imageChangedEvent: Event | null = null;
   @Input() croperVisibility: boolean = false;
@@ -31,6 +32,7 @@ export class ImageCroperComponent {
   croperLoading = true;
 
   @Output() imageCroppedEvent = new EventEmitter<ImageCroperResponse>();
+  @Output() cropperExit = new EventEmitter();
   croppedImageUrl: SafeUrl = '';
   croppedImageFile: File | null = null;
 
@@ -55,6 +57,10 @@ export class ImageCroperComponent {
       url: this.croppedImageUrl,
     };
     this.imageCroppedEvent.emit(response);
+  }
+
+  onExit(){
+    this.cropperExit.emit();
   }
 
   onLoadImageFailed() {

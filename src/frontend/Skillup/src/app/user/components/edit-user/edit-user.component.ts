@@ -3,12 +3,11 @@ import { TabsModule } from 'primeng/tabs';
 import { RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { UserDetail } from '../../models/user.model';
-import { EditUserProfileComponent } from "./edit-user-profile/edit-user-profile.component";
 
 @Component({
   selector: 'app-edit-user',
   standalone: true,
-  imports: [TabsModule, RouterModule, EditUserProfileComponent],
+  imports: [TabsModule, RouterModule],
   templateUrl: './edit-user.component.html',
   styleUrl: './edit-user.component.css',
 })

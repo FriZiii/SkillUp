@@ -37,7 +37,7 @@ confirmDelete(event: Event, acceptCallback: () => void) {
   this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: 'Do you want to delete this record?',
-      header: 'Danger Zone',
+      header: 'Deleting',
       icon: 'pi pi-exclamation-triangle',
       rejectLabel: 'Cancel',
       rejectButtonProps: {

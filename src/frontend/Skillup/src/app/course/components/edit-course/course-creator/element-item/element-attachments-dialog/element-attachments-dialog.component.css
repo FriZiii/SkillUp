@@ -1,0 +1,7 @@
+:host ::ng-deep .p-fileupload-basic {
+  display: block !important;
+}
+
+:host ::ng-deep .filelabel {
+  display: none !important;
+}

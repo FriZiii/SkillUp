@@ -1,20 +1,54 @@
 <div class="w-full su-section-mt">
-  <div class="grid grid-cols-4">
-    <div class="col-span-1 col-start-1 card w-48 fixed top-56 left-10 z-50">
-      <p-menu [model]="items">
-        <ng-template pTemplate="item" let-item>
-          <ng-container>
-            <a [routerLink]="item.route" class="p-menu-item-link">
-              <span [class]="item.icon"></span>
-              <span class="ml-2">{{ item.label }}</span>
-            </a>
-          </ng-container>
-        </ng-template>
-      </p-menu>
+  <div class="flex">
+    <div class="sticky top-20 self-start pr-10">
+      <div
+        class="flex flex-col su-border bg-white p-2 prose"
+        style="width: 170px"
+      >
+        <div class="flex gap-2 items-center">
+          <p class="my-0.5">Navigate</p>
+        </div>
+        <div class="flex gap-2 items-center menu-item">
+          <i class="pi pi-palette" style="font-size: 1rem"></i>
+          <p
+            class="cursor-pointer my-0.5"
+            [routerLink]="'/course-edit/' + this.courseId() + '/creator'"
+          >
+            Creator
+          </p>
+        </div>
+        <div class="flex gap-2 items-center menu-item">
+          <i class="pi pi-link" style="font-size: 1rem"></i>
+          <p
+            class="cursor-pointer my-0.5"
+            [routerLink]="'/course-edit/' + this.courseId() + '/essentials'"
+          >
+            Essentials
+          </p>
+        </div>
+        <div class="flex gap-2 items-center menu-item">
+          <i class="pi pi-dollar" style="font-size: 1rem"></i>
+          <p
+            class="cursor-pointer my-0.5"
+            [routerLink]="'/course-edit/' + this.courseId() + '/price'"
+          >
+            Price
+          </p>
+        </div>
+        <div class="flex gap-2 items-center menu-item">
+          <i class="pi pi-home" style="font-size: 1rem"></i>
+          <p
+            class="cursor-pointer my-0.5"
+            [routerLink]="'/course-edit/' + this.courseId() + '/landing-page'"
+          >
+            Landing Page
+          </p>
+        </div>
+      </div>
     </div>
 
     <!-- <button routerLink="creator">Navigate</button> -->
-    <div class="col-start-2 col-span-3">
+    <div class="w-full">
       <router-outlet></router-outlet>
     </div>
   </div>

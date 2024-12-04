@@ -41,6 +41,11 @@ export class EditUserPictureComponent implements OnInit {
     this.showCroper = false;
   }
 
+  onCropperExit(){
+    this.showCroper = false;
+    this.selectedFile = undefined;
+  }
+
   upload() {
     this.userService
       .editProfilePicture(this.user()!.id, this.newImageFile!)

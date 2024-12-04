@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Skillup.Modules.Courses.Core.Requests.Commands.Elements
 {
-    public record AddElementRequest(string Title, string Description, int Index) : IRequest
+    public record AddElementRequest(string Title, string Description, bool isFree) : IRequest
     {
         [JsonIgnore]
         public Guid ElementId { get; set; }
