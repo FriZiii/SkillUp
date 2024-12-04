@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Finances.Core.Entities;
 using Skillup.Modules.Finances.Core.Repositories;
-using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Finances.Core.DAL.Repositories
 {
+
     internal class WalletRepository : IWalletRepository
     {
         private readonly FinancesDbContext _context;
@@ -16,27 +16,25 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
             _wallets = _context.Wallets;
         }
 
-        public async Task CreateUserWallet(Wallet userWallet)
+        public async Task Add(Wallet wallet)
         {
-            await _wallets.AddAsync(userWallet);
+            await _wallets.AddAsync(wallet);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Wallet?> GetWalletByUserId(Guid userId)
-            => await _wallets.FirstOrDefaultAsync(x => x.Id.Equals(userId));
-
-        public async Task AddBalanceToWalletByUserId(Guid userId, decimal amount)
+        public async Task UpdateBalance(Wallet wallet)
         {
-            var wallet = await _wallets.FirstOrDefaultAsync(x => x.Id == userId) ?? throw new UserNotFoundException(userId);
-            wallet.AddToBalance(amount);
+            var walletToUpdate = await _wallets.FirstOrDefaultAsync(x => x.Id == wallet.Id);
+
+            walletToUpdate = new Wallet(wallet);
+
             await _context.SaveChangesAsync();
         }
 
-        public async Task SubtractBalanceFromWalletByUserId(Guid userId, decimal amount)
-        {
-            var wallet = await _wallets.FirstOrDefaultAsync(x => x.Id == userId) ?? throw new UserNotFoundException(userId);
-            wallet.SubtractFromBalance(amount);
-            await _context.SaveChangesAsync();
-        }
+        public async Task<Wallet?> GetWallet(Guid walletId)
+            => await _wallets.FirstOrDefaultAsync(x => x.Id == walletId);
+
+        public async Task<Wallet?> GetWalletByOwnerId(Guid ownerId)
+            => await _wallets.FirstOrDefaultAsync(x => x.OwnerId == ownerId);
     }
 }

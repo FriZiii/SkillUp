@@ -15,6 +15,11 @@ namespace Skillup.Modules.Finances.Core.DAL.Configurations
                 .IsRequired()
                 .HasConversion(x => x.Amount, x => new Currency(x))
                 .HasColumnType("decimal(18,2)");
+
+            builder.HasOne(x => x.Owner)
+                .WithOne()
+                .HasForeignKey<Wallet>(x => x.OwnerId)
+                .IsRequired();
         }
     }
 }
