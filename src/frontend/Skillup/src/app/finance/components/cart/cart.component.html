@@ -1,33 +1,61 @@
-@if(cart() === null){
-<h1>Nothing in cart</h1>
-}
-<div class="grid grid-cols-3 gap-8">
-  <div class="flex flex-col gap-4 col-start-1 col-span-2">
-    @for(item of cartItems(); track item.id){
-    <app-cart-item
-      [cartItem]="item"
-      (removeItem)="removeItem($event)"
-      class="w-full"
-    ></app-cart-item>
-    }
-  </div>
-  <div class="flex flex-col gap-4 col-start-3 prose max-w-none !w-full">
-    @if(cart()?.total === cart()?.totalBeforeDiscount){
-    <div>
-      <h1>{{ cart()?.total }}</h1>
+<div class="su-section-mt">
+  @if(cart() === null){
+  <h1>Nothing in cart</h1>
+  }
+  <div class="grid grid-cols-3 gap-14">
+    <div class="flex flex-col gap-4 col-start-1 col-span-2">
+      @for(item of cartItems(); track item.id){
+      <app-cart-item
+        [cartItem]="item"
+        (removeItem)="removeItem($event)"
+        class="w-full"
+      ></app-cart-item>
+      }
     </div>
-    } @else {
-    <div class="flex flex-col">
-      <h2 class="line-through">{{ cart()?.totalBeforeDiscount }}</h2>
-      <h1>{{ cart()?.total }}</h1>
+    <div class="flex flex-col col-start-3 prose max-w-none !w-full mt-5">
+      @if(cart()?.total === cart()?.totalBeforeDiscount){
+      <div>
+        <h1 class="mb-2">Total price:</h1>
+        <h1>{{ cart()?.total }}</h1>
+      </div>
+      } @else {
+      <div class="flex flex-col">
+        <h1 class="mb-2">Total price:</h1>
+        <h2 class="line-through my-0">{{ cart()?.totalBeforeDiscount }}</h2>
+        <h1 class="my-2">{{ cart()?.total }}</h1>
+      </div>
+      } @if(cart()?.discountCode){
+      <p class="my-0 text-primary-500 text-sm">
+        Applied code {{ cart()?.discountCode?.code }}
+      </p>
+      }
+      <div class="flex gap-4 items-center">
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="discountCode"
+          [value]="cart()?.discountCode?.code"
+          placeholder="Enter discount code"
+          class="my-0 w-full"
+        />
+        @if(cart()?.discountCode){
+        <p-button icon="pi pi-times" (onClick)="delCode()"></p-button>
+        } @else {
+
+        <p-button icon="pi pi-plus" (onClick)="applyCode()"></p-button>
+        }
+      </div>
+      @if(invalidCode){
+      <p class="my-0 text-red-500 text-sm pl-1">Invalid Code</p>
+      }
+      <div class="w-full mt-4 justify-center">
+        <p-button
+          icon="pi pi-shopping-cart"
+          label="Buy"
+          class="wide-btn"
+          routerLink="/order-summary"
+        ></p-button>
+      </div>
     </div>
-    } @if(cart()?.discountCode){
-    <p>Applied code {{ cart()?.discountCode?.code }}</p>
-    }
-    <input type="text" pInputText [(ngModel)]="discountCode" />
-    <p-button label="Apply Code" (onClick)="applyCode()"></p-button>
-    @if(invalidCode){
-    <p>Invalid Code</p>
-    }
   </div>
 </div>

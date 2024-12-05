@@ -22,6 +22,7 @@ import { CourseEssentialsComponent } from './course/components/edit-course/cours
 import { YourCoursesComponent } from './course/components/your-courses/your-courses.component';
 import { CoursesCreatedByYouComponent } from './course/components/courses-created-by-you/courses-created-by-you.component';
 import { CartComponent } from './finance/components/cart/cart.component';
+import { OrderSummaryComponent } from './finance/components/order-summary/order-summary.component';
 
 export const routes: Routes = [
   {
@@ -93,6 +94,10 @@ export const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
+  },
+  {
+    path: 'order-summary',
+    component: OrderSummaryComponent,
   },
   {
     path: 'access-denied',

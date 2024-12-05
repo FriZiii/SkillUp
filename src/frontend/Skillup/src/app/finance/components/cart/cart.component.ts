@@ -1,18 +1,16 @@
 import { Component, computed, inject } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { CoursesService } from '../../../course/services/course.service';
-import { CourseItemShortComponent } from "../../../course/components/course-item-short/course-item-short.component";
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
-import { catchError, pipe } from 'rxjs';
 import { CartItemComponent } from "../cart-item/cart-item.component";
-import { CategoryService } from '../../../course/services/category.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [ButtonModule, InputTextModule, FormsModule, CartItemComponent],
+  imports: [ButtonModule, InputTextModule, FormsModule, CartItemComponent, RouterModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
@@ -40,7 +38,7 @@ export class CartComponent {
       };
     }) || null;
   });
-  discountCode = '';
+  discountCode = this.cart()?.discountCode?.code ?? '';
   invalidCode = false;
 
   removeItem(itemId: string){
@@ -52,6 +50,14 @@ export class CartComponent {
     this.cartService.toggleDiscountCodeForCart(this.discountCode).subscribe({
       error: (error) => {
         this.invalidCode = true;
+      },
+    }
+    );
+  }
+
+  delCode(){
+    this.cartService.delCode().subscribe({
+      error: (error) => {
       },
     }
     );

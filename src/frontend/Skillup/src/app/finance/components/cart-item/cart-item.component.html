@@ -14,12 +14,12 @@
     </div>
     @if(cartItem().price === cartItem().orginalItem.price){
     <div>
-      <p>{{ cartItem().price }}</p>
+      <p class="mb-1 text-lg">{{ cartItem().price }}</p>
     </div>
     } @else {
     <div class="flex flex-col">
-      <p class="line-through">{{ cartItem().price }}</p>
-      <p>{{ cartItem().orginalItem.price }}</p>
+      <p class="line-through mb-1 text-base">{{ cartItem().price }}</p>
+      <p class="mb-1 text-lg">{{ cartItem().orginalItem.price }}</p>
     </div>
     }
   </div>

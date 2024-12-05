@@ -49,17 +49,18 @@ export class CartService
     deleteItemFromCart(itemId: string){
       const prevItems = this.cart()?.items;
       return this.httpClient
-        .delete(environment.apiUrl + '/Finances/Cart/' + this.cartId + '/Items/' + itemId)
+        .delete<Cart>(environment.apiUrl + '/Finances/Cart/' + this.cartId + '/Items/' + itemId)
         .pipe(
           tap((response) => {
             if(prevItems && prevItems.length > 1){
-              this.cart.update((c) => {
+              /* this.cart.update((c) => {
                 if(!c) return c;
                 return {
                   ...c,
                   items: c.items.filter(i => i.id !== itemId)
                 };
-              });
+              }); */
+              this.cart.set(response);
             }
             else{
               this.cart.set(null);
@@ -86,35 +87,22 @@ export class CartService
         );
     }
 
+    delCode(){
+      return this.httpClient
+      .post<Cart>(environment.apiUrl + '/Finances/Cart/' + this.cartId  + '/discount-code', {})
+        .pipe(
+          tap((response) => {
+            localStorage.setItem('cartId', response.id);
+            this.cartId = response.id;
+            this.cart.set(response)
+          })
+        );
+    }
+
     private getCart(cartId: string){
         return this.httpClient
         .get<any>(environment.apiUrl + '/Finances/Cart/' + cartId)
         .pipe(
         );
     }
-
-    courseService = inject(CoursesService);
-   /*  getItemsForDisplay(){
-      console.log(this.cart())
-      const courses = computed(() => this.cart()?.items.flatMap((item) => this.courseService.getCourseById(item.id)));
-
-      const cartItemsForDisplay = computed(() => {
-        const courseList = courses();
-      
-        return this.cart()?.items?.map(cartItem => {
-          const course = courseList?.find(c => c.id === cartItem.id);
-          return {
-            id: cartItem.id,
-            originalItem: cartItem.originalItem,
-            price: cartItem.price,
-            title: course?.title || 'Unknown Title',
-            authorName: course?.authorName || 'Unknown Author',
-            thumbnailUrl: course?.thumbnailUrl || '',
-          };
-        }) || null;
-      });
-      
-      this.cartItemsDisplay = computed(() => cartItemsForDisplay())
-        
-    } */
 }
