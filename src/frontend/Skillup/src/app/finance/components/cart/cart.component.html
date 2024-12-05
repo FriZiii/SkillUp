@@ -16,13 +16,13 @@
       @if(cart()?.total === cart()?.totalBeforeDiscount){
       <div>
         <h1 class="mb-2">Total price:</h1>
-        <h1>{{ cart()?.total }}</h1>
+        <h1>$ {{ cart()?.total }}</h1>
       </div>
       } @else {
       <div class="flex flex-col">
         <h1 class="mb-2">Total price:</h1>
-        <h2 class="line-through my-0">{{ cart()?.totalBeforeDiscount }}</h2>
-        <h1 class="my-2">{{ cart()?.total }}</h1>
+        <h2 class="line-through my-0">$ {{ cart()?.totalBeforeDiscount }}</h2>
+        <h1 class="my-2">$ {{ cart()?.total }}</h1>
       </div>
       } @if(cart()?.discountCode){
       <p class="my-0 text-primary-500 text-sm">
@@ -38,11 +38,11 @@
           placeholder="Enter discount code"
           class="my-0 w-full"
         />
-        @if(cart()?.discountCode){
-        <p-button icon="pi pi-times" (onClick)="delCode()"></p-button>
-        } @else {
-
+        @if(!cart()?.discountCode || (discountCode !==
+        cart()?.discountCode?.code)){
         <p-button icon="pi pi-plus" (onClick)="applyCode()"></p-button>
+        } @else {
+        <p-button icon="pi pi-times" (onClick)="delCode()"></p-button>
         }
       </div>
       @if(invalidCode){
