@@ -8,7 +8,7 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
         public Guid Id { get; set; }
         public Guid AuthorId { get; set; }
         public string Title { get; set; }
-        public CourseStatus Status { get; set; }
+        public CourseStatus Status { get; set; } = CourseStatus.Draft;
         public Guid CategoryId { get; set; }
         public Guid SubcategoryId { get; set; }
         public CourseDetails Details { get; set; }
@@ -47,6 +47,7 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
     public enum CourseStatus
     {
         Draft,
+        SubbmitedForReview,
         PendingReview,
         ChangesRequired,
         Published

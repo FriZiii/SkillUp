@@ -43,11 +43,10 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
                     .ThenInclude(s => s.Elements)
                 .FirstOrDefaultAsync(c => c.Id == id);
 
-        public async Task Publish(Guid courseId)
+        public async Task EditCourseStatus(Guid courseId, CourseStatus status)
         {
-
             var course = await _courses.FirstOrDefaultAsync(c => c.Id == courseId) ?? throw new Exception();  //TODO: Custom exception for null check in repo
-            //course.IsPublished = true;
+            course.Status = status;
             await _context.SaveChangesAsync();
         }
 

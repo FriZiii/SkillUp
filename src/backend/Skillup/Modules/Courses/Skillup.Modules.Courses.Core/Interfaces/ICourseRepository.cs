@@ -8,7 +8,7 @@ namespace Skillup.Modules.Courses.Core.Interfaces
         Task<IEnumerable<Course>> GetByStatus(CourseStatus status);
         Task EditDetails(Guid courseId, CourseDetails details);
         Task<Course?> GetById(Guid id);
-        Task Publish(Guid courseId);
+        Task EditCourseStatus(Guid courseId, CourseStatus status);
         Task Edit(Course course);
     }
 }
