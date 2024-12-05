@@ -70,9 +70,7 @@ export class CoursesService {
                 },
               },
               thumbnailUrl: response.thumbnailUrl,
-              price: {
-                amount: 0,
-              },
+              price:  0,
             },
           ]);
         })
@@ -103,9 +101,7 @@ export class CoursesService {
       map((res) => {
         const courseWithPrice = {
           ...res,
-          price: {
-            amount: item?.price.amount ?? 0,
-          },
+          price:  item?.price ?? 0,
         };
         return courseWithPrice;
       })
@@ -136,9 +132,7 @@ export class CoursesService {
     const item = this.items().find((item) => item.id === course.id);
     return {
       ...course,
-      price: {
-        amount: item?.price.amount ?? 0,
-      },
+      price:  item?.price ?? 0,
     };
   }
 

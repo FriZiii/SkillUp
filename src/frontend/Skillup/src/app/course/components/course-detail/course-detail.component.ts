@@ -51,9 +51,7 @@ coursesForCategory = computed(() =>  {
     const item = this.items().find(item => item.id === this.courseId())
     return {
       ...this.course,
-      price: {
-        amount: item?.price.amount ?? 0,
-      },
+      price:  item?.price ?? 0,
     };
   });
 

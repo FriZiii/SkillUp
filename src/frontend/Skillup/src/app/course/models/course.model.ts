@@ -43,9 +43,7 @@ export interface CourseListItem{
         };
     };
     thumbnailUrl: string;
-    price: {
-        amount: number;
-    };
+    price: number;
 }
 
 export interface CourseDetail{
@@ -72,7 +70,5 @@ export interface CourseDetail{
     intendedFor: string[];
     mustKnowBefore: string[];
     sections: Section[];
-    price: {
-        amount: number;
-    };
+    price: number;
 }

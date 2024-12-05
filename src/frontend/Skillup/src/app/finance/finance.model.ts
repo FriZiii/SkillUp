@@ -2,9 +2,7 @@ export interface Item{
     id: string;
     authorid: string;
     type: ItemType;
-    price: {
-        amount: number;
-    };
+    price:  number;
 }
 
 export enum ItemType {
