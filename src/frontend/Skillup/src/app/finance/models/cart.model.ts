@@ -11,6 +11,16 @@ export interface Cart{
 
 export interface CartItem{
     id: string;
-    originalItem: Item;
+    orginalItem: Item;
     price: number;
+}
+
+
+export interface CartItemForDisplay{
+    id: string;
+    orginalItem: Item;
+    price: number;
+    title: string;
+    authorName:  string;
+    thumbnailUrl: string;
 }

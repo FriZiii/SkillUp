@@ -1,0 +1,32 @@
+<div class="flex gap-5">
+  <div class="flex p-5 my-5 su-border gap-4 w-full">
+    <img
+      [src]="cartItem().thumbnailUrl"
+      class="h-16 cursor-pointer"
+      [routerLink]="'/course-detail/' + cartItem().id"
+    />
+    <div
+      class="prose max-w-none !w-full cursor-pointer"
+      [routerLink]="'/course-detail/' + cartItem().id"
+    >
+      <p class="mb-1 text-lg">{{ cartItem().title | truncate }}</p>
+      <p class="my-1 text-base">{{ cartItem().authorName }}</p>
+    </div>
+    @if(cartItem().price === cartItem().orginalItem.price){
+    <div>
+      <p>{{ cartItem().price }}</p>
+    </div>
+    } @else {
+    <div class="flex flex-col">
+      <p class="line-through">{{ cartItem().price }}</p>
+      <p>{{ cartItem().orginalItem.price }}</p>
+    </div>
+    }
+  </div>
+  <p-button
+    icon="pi pi-trash"
+    severity="danger"
+    (onClick)="onRemoveItem($event, cartItem().id)"
+    class="mt-5"
+  ></p-button>
+</div>

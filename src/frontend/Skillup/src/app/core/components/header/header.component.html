@@ -35,7 +35,9 @@
         <p-popover [showCloseIcon]="true" #po_cart
           ><div class="w-64 h-96 flex justify-center">
             <h1>Cart</h1>
-            @for(item of cartItems(); track item.id){
+            @if(!cart()){
+            <h1>Cart empty</h1>
+            } @for(item of cartItems(); track item.id){
             <p>{{ item.title }}</p>
             }
           </div></p-popover
