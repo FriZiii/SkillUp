@@ -102,7 +102,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
 
         [HttpDelete]
         [Authorize(Roles = nameof(UserRole.Moderator))]
-        [SwaggerOperation("Delete comment TODO")]
+        [SwaggerOperation("Delete comment")]
         [Route("Comments/{commentId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -114,7 +114,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
 
         [HttpPatch]
         [Authorize(Roles = nameof(UserRole.Instructor))]
-        [SwaggerOperation("Resolve comment TODO")]
+        [SwaggerOperation("Resolve comment")]
         [Route("Comments/{commentId}/Resolve")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
