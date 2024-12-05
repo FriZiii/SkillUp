@@ -35,7 +35,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
         public async Task<IActionResult> DeleteCartItem(Guid cartId, Guid itemId)
         {
             await _mediator.Send(new DeleteItemFromCartRequest(cartId, itemId));
-            return Ok();
+            return Ok(await _mediator.Send(new GetCartByIdRequest(cartId)));
         }
 
         [HttpPost("{cartId}/discount-code")]
