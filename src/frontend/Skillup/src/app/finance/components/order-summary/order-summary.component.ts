@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { ButtonModule } from 'primeng/button';
+import { WalletService } from '../../services/wallet.service';
 
 @Component({
   selector: 'app-order-summary',
@@ -12,7 +13,9 @@ import { ButtonModule } from 'primeng/button';
 export class OrderSummaryComponent {
   //Services
   cartService = inject(CartService);
+  walletService = inject(WalletService);
 
   //Variables
   cart = this.cartService.cart;
+  wallet = this.walletService.currentWallet;
 }

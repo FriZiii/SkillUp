@@ -3,6 +3,15 @@
     <h1>Summary</h1>
     <h2>Before discount: {{ this.cart()?.totalBeforeDiscount }}</h2>
     <h2>Total: {{ this.cart()?.total }}</h2>
+
+    @if(wallet()?.balance && cart()?.total && wallet()?.balance! <
+    cart()?.total!){
+    <h1>Your balance</h1>
+    <h1>{{ wallet()?.balance }}</h1>
+    <p-button label="Buy more currency"></p-button>
+    } @else {
+    <h1>{{ wallet()?.balance }}</h1>
     <p-button label="Buy"></p-button>
+    }
   </div>
 </div>

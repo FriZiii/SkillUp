@@ -15,6 +15,7 @@ import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { UserRole } from '../models/user-role.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { WalletService } from '../../finance/services/wallet.service';
 
 interface CustomJwtPayload extends JwtPayload {
   'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'?: string;
@@ -25,6 +26,7 @@ interface CustomJwtPayload extends JwtPayload {
 })
 export class UserService {
   private httpClient = inject(HttpClient);
+  private walletService = inject(WalletService);
   private userSubject = new BehaviorSubject<User | null>(null);
   private userDetailSubject = new BehaviorSubject<UserDetail | null>(null);
   currentUser = signal<User | null>(null);  //used in guards so checking user info will be quicker
@@ -94,6 +96,8 @@ export class UserService {
       this.userSubject.next(user);
       this.currentUser.set(user);
     });
+
+    this.walletService.getWallet(user.id);
   }
 
   clearUser(): void {
