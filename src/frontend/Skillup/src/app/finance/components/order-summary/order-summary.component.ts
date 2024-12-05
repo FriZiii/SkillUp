@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { ButtonModule } from 'primeng/button';
 import { WalletService } from '../../services/wallet.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-order-summary',
   standalone: true,
-  imports: [ButtonModule],
+  imports: [ButtonModule, RouterModule],
   templateUrl: './order-summary.component.html',
   styleUrl: './order-summary.component.css'
 })

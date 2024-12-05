@@ -13,7 +13,8 @@
       }
     </div>
     <div class="flex flex-col col-start-3 prose max-w-none !w-full mt-5">
-      @if(cart()?.total === cart()?.totalBeforeDiscount){
+      @if(cart()?.total === cart()?.totalBeforeDiscount ||
+      cart()?.totalBeforeDiscount===null){
       <div>
         <h1 class="mb-2">Total price:</h1>
         <h1>$ {{ cart()?.total }}</h1>

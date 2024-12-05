@@ -2,13 +2,15 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { computed, inject, Injectable, signal } from "@angular/core";
 import { Cart, CartItemForDisplay } from "../models/cart.model";
 import { environment } from "../../../environments/environment";
-import { tap } from "rxjs";
+import { catchError, tap } from "rxjs";
 import { CoursesService } from "../../course/services/course.service";
+import { WalletService } from "./wallet.service";
 
 @Injectable({ providedIn: 'root' })
 export class CartService
 {
     private httpClient = inject(HttpClient);
+    private walletService = inject(WalletService);
     private cartId = localStorage.getItem('cartId');
     public cart = signal<Cart | null>(null);
     public cartItemsDisplay = signal<CartItemForDisplay[] | null>(null);
@@ -68,8 +70,6 @@ export class CartService
               localStorage.removeItem('cartId');
               this.cartId = null;
             }
-            
-            
           })
         );
       }
@@ -103,6 +103,18 @@ export class CartService
         return this.httpClient
         .get<any>(environment.apiUrl + '/Finances/Cart/' + cartId)
         .pipe(
+        );
+    }
+
+    checkoutCart(){
+      return this.httpClient
+      .post<any>(environment.apiUrl + '/Finances/Cart/' + this.cartId  + '/checkout?walletId=' + this.walletService.currentWallet()?.id, {})
+        .pipe(
+          tap((response) => {
+            localStorage.setItem('cartId', response.id);
+            this.cartId = response.id;
+            this.cart.set(response)
+          })
         );
     }
 }

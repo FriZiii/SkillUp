@@ -9,6 +9,7 @@
     <h1>Your balance</h1>
     <h1>{{ wallet()?.balance }}</h1>
     <p-button label="Buy more currency"></p-button>
+    <p-button label="Back to cart" routerLink="/cart"></p-button>
     } @else {
     <h1>{{ wallet()?.balance }}</h1>
     <p-button label="Buy"></p-button>

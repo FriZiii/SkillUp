@@ -41,7 +41,11 @@ export class CartComponent {
   invalidCode = false;
 
   removeItem(itemId: string){
-    this.cartService.deleteItemFromCart(itemId).subscribe();
+    this.cartService.deleteItemFromCart(itemId).subscribe({
+      error: (error) => {
+        console.log(error)
+      },
+    });
   }
 
   applyCode(){
