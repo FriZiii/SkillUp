@@ -15,10 +15,6 @@ export class CartItemComponent {
   cartItem = input.required<CartItemForDisplay>(); 
   removeItem = output<string>();
 
-  ngOnInit(){
-    console.log(this.cartItem())
-  }
-
   onRemoveItem(event: Event, id: string){
     this.removeItem.emit(id);
   }

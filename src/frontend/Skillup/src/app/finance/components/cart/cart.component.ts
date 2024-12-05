@@ -27,7 +27,6 @@ export class CartComponent {
   
     return this.cart()?.items?.map(cartItem => {
       const course = courseList?.find(c => c.id === cartItem.id);
-      console.log(cartItem);
       return {
         id: cartItem.id,
         orginalItem: cartItem.orginalItem,
