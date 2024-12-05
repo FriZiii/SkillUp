@@ -11,6 +11,13 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
         public async Task Handle(DeleteItemFromCartRequest request, CancellationToken cancellationToken)
         {
             await _cartRepository.DeleteItemFromCart(request.CartId, request.ItemId);
+
+            var updatedCart = await _cartRepository.GetCart(request.CartId);
+            if (updatedCart != null && updatedCart.DiscountCode != null)
+            {
+                updatedCart.ApplyDiscountCode(updatedCart.DiscountCode);
+                await _cartRepository.Update(updatedCart);
+            }
         }
     }
 }
