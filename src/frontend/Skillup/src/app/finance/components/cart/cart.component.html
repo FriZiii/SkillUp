@@ -1,0 +1,13 @@
+<p>cart works!</p>
+@for(item of cartItems(); track item.id){
+<div class="flex gap-4">
+  <app-course-item-short [course]="item" class="w-full"></app-course-item-short>
+  <p-button
+    icon="pi pi-trash"
+    severity="danger"
+    (onClick)="removeItem($event)"
+    class="mt-5"
+  ></p-button>
+</div>
+
+}

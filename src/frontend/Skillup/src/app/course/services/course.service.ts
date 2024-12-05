@@ -95,7 +95,7 @@ export class CoursesService {
       .subscribe();
   }
 
-  getCourseById(courseId: string): Observable<CourseDetail> {
+  getCourseDetailById(courseId: string): Observable<CourseDetail> {
     const item = this.courses().find((item) => item.id === courseId);
     return this.fetchCourseById(courseId).pipe(
       map((res) => {
@@ -151,6 +151,10 @@ export class CoursesService {
 
   getCoursesByAuthor(authorId: string): CourseListItem[]{
     return this.courses().filter((course) => course.authorId === authorId);
+  }
+
+  getCourseById(id: string){
+    return this.courses().filter((course) => course.id === id);
   }
 
 

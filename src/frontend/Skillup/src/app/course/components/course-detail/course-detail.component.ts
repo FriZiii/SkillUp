@@ -57,7 +57,7 @@ coursesForCategory = computed(() =>  {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['courseId']) {
-      this.courseService.getCourseById(this.courseId()).subscribe({
+      this.courseService.getCourseDetailById(this.courseId()).subscribe({
         next: (res) => {
           this.course.set(res);
           this.userService.getUser(this.course()!.authorId).subscribe({

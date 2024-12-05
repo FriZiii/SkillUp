@@ -10,29 +10,44 @@ export class CartService
     private httpClient = inject(HttpClient);
     public cart = signal<Cart | null>(null);
 
+  constructor(){
+    const cartId = localStorage.getItem('cartId');
+    if(cartId){
+      this.getCart(cartId).subscribe((res) => 
+        {
+          this.cart.set(res);
+          console.log(this.cart());
+        }
+      )
+    }
+  }
+
     addToCart(itemId: string) {
         console.log('add');
       const cartId = localStorage.getItem('cartId');
       var body
       if(cartId !== null){
-        body = {
-            cartId: cartId,
-            itemId: itemId
-        }
+        body = '?cartId=' + cartId + '&itemId=' + itemId;
       }
       else{
-        body = {
-            itemId: itemId
-        }
+        body = '?itemId=' + itemId;
       }
     
       return this.httpClient
-      .post<Cart>(environment.apiUrl + '/Finances/Cart/Items/' , body)
+      .post<Cart>(environment.apiUrl + '/Finances/Cart/Items' + body, {})
         .pipe(
           tap((response) => {
             localStorage.setItem('cartId', response.id);
             this.cart.set(response)
           })
         );
+    }
+
+    private getCart(cartId: string){
+        return this.httpClient
+        .get<any>(environment.apiUrl + '/Finances/Cart/' + cartId)
+        .pipe(
+        );
+      
     }
 }
