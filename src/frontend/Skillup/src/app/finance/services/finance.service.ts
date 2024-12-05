@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { ToastHandlerService } from '../core/services/toast-handler.service';
-import { Item } from './finance.model';
+import { environment } from '../../../environments/environment';
+import { ToastHandlerService } from '../../core/services/toast-handler.service';
+import { Item } from '../models/finance.model';
 
 @Injectable({ providedIn: 'root' })
 export class FinanceService {

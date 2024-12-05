@@ -16,7 +16,7 @@ import {
   throwError,
 } from 'rxjs';
 import { ToastHandlerService } from '../../core/services/toast-handler.service';
-import { FinanceService } from '../../finance/finance.service';
+import { FinanceService } from '../../finance/services/finance.service';
 import { CourseLevel } from '../models/course-level.model';
 
 @Injectable({ providedIn: 'root' })

@@ -23,9 +23,9 @@ namespace Skillup.Modules.Finances.Api.Controllers
 
         [HttpPost("Items")]
         [SwaggerOperation("Add item to cart")]
-        public async Task<IActionResult> AddCartItem(Guid? cartId, Guid itemId)
+        public async Task<IActionResult> AddCartItem(AddCartItemRequest request)
         {
-            var request = new AddCartItemRequest(cartId, itemId);
+            //var request = new AddCartItemRequest(cartId, itemId);
             await _mediator.Send(request);
             return Ok(await _mediator.Send(new GetCartByIdRequest((Guid)request.CartId!)));
         }

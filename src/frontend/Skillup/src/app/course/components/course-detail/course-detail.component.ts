@@ -1,7 +1,7 @@
 import { Component, computed, ElementRef, inject, input, OnChanges, OnInit, Renderer2, signal, SimpleChanges, ViewChild } from '@angular/core';
 import { CoursesService } from '../../services/course.service';
 import { CourseDetail } from '../../models/course.model';
-import { FinanceService } from '../../../finance/finance.service';
+import { FinanceService } from '../../../finance/services/finance.service';
 import { User, UserDetail } from '../../../user/models/user.model';
 import { UserService } from '../../../user/services/user.service';
 import { CourseContentService } from '../../services/course-content-service';

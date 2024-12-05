@@ -5,6 +5,7 @@ import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
 import { TruncatePipe } from "../../../utils/pipes/truncate.pipe";
 import { Router } from '@angular/router';
+import { CartService } from '../../../finance/services/cart.service';
 
 @Component({
   selector: 'app-course-item',
@@ -16,8 +17,13 @@ import { Router } from '@angular/router';
 export class CourseItemComponent{
   @Input() course!: CourseListItem;
   router = inject(Router);
+  cartService = inject(CartService);
 
   onClick(){
     this.router.navigate(['/course-detail', this.course.id])
+  }
+
+  addToCart(){
+    this.cartService.addToCart(this.course.id).subscribe();
   }
 }
