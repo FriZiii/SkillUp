@@ -20,7 +20,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
                 Id = course.Id,
                 AuthorId = course.AuthorId,
                 Title = course.Title,
-                IsPublished = course.IsPublished,
+                Status = course.Status,
                 Category = new CourseCategoryDto()
                 {
                     Id = course.Category.Id,
@@ -47,7 +47,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
                 Id = course.Id,
                 AuthorId = course.AuthorId,
                 Title = course.Title,
-                IsPublished = course.IsPublished,
+                Status = course.Status,
                 Category = new CourseCategoryDto()
                 {
                     Id = course.Category.Id,
