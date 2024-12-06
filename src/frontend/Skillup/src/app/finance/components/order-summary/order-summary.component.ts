@@ -19,4 +19,10 @@ export class OrderSummaryComponent {
   //Variables
   cart = this.cartService.cart;
   wallet = this.walletService.currentWallet;
+
+  purchaseCart(event: Event){
+    console.log(this.wallet())
+    console.log(this.cart())
+//this.cartService.checkoutCart().subscribe();
+  }
 }

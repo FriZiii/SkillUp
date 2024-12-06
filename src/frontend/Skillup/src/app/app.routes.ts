@@ -23,6 +23,7 @@ import { YourCoursesComponent } from './course/components/your-courses/your-cour
 import { CoursesCreatedByYouComponent } from './course/components/courses-created-by-you/courses-created-by-you.component';
 import { CartComponent } from './finance/components/cart/cart.component';
 import { OrderSummaryComponent } from './finance/components/order-summary/order-summary.component';
+import { BuyCurrencyComponent } from './finance/components/buy-currency/buy-currency.component';
 
 export const routes: Routes = [
   {
@@ -98,6 +99,10 @@ export const routes: Routes = [
   {
     path: 'order-summary',
     component: OrderSummaryComponent,
+  },
+  {
+    path: 'buy-currency',
+    component: BuyCurrencyComponent,
   },
   {
     path: 'access-denied',

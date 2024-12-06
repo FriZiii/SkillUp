@@ -1,0 +1,23 @@
+<div class="su-section-mt">
+  <div class="flex flex-col gap-4">
+    <p-inputmask
+      mask="9999 9999 9999 9999"
+      [(ngModel)]="cardNumber"
+      placeholder="1234 5678 9012 3456"
+    />
+    <p-inputmask
+      mask="99/99"
+      [(ngModel)]="expirationDate"
+      placeholder="MM/RR"
+    />
+    <p-inputmask mask="999" [(ngModel)]="CVC" placeholder="CVC" />
+    <input
+      type="text"
+      pInputText
+      [(ngModel)]="ownerName"
+      placeholder="Name and Surname"
+    />
+
+    <p-button label="Buy" (onClick)="purchaseCurrency($event)"></p-button>
+  </div>
+</div>

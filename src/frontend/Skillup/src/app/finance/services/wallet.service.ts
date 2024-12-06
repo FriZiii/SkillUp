@@ -19,4 +19,22 @@ export class WalletService {
         })
       ).subscribe();
   }
+
+  setWallet(balance: number){
+    this.currentWallet.set({
+      id: this.currentWallet()!.id,
+      balance: balance,
+      userId: this.currentWallet()!.userId
+    })
+  }
+
+  public addBalance(balance: number){
+    return this.httpClient
+      .put<Wallet>(environment.apiUrl + '/Finances/Wallets/' + this.currentWallet()?.id + '?balance=' + balance, {})
+      .pipe(
+        tap((res) => {
+          this.currentWallet.set(res);
+        })
+      )
+  }
 }

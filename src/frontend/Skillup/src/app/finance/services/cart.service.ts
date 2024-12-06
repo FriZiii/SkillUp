@@ -111,9 +111,11 @@ export class CartService
       .post<any>(environment.apiUrl + '/Finances/Cart/' + this.cartId  + '/checkout?walletId=' + this.walletService.currentWallet()?.id, {})
         .pipe(
           tap((response) => {
-            localStorage.setItem('cartId', response.id);
-            this.cartId = response.id;
-            this.cart.set(response)
+            localStorage.removeItem('cartId');
+            this.walletService.setWallet(this.walletService.currentWallet()!.balance - this.cart()!.total);
+            this.cart.set(null);
+            this.cartId = null;
+            this.cartItemsDisplay.set(null);
           })
         );
     }

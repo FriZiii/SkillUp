@@ -4,15 +4,17 @@
     <h2>Before discount: {{ this.cart()?.totalBeforeDiscount }}</h2>
     <h2>Total: {{ this.cart()?.total }}</h2>
 
-    @if(wallet()?.balance && cart()?.total && wallet()?.balance! <
+    @if(wallet()?.balance !== null && cart()?.total && wallet()?.balance! <=
     cart()?.total!){
     <h1>Your balance</h1>
     <h1>{{ wallet()?.balance }}</h1>
-    <p-button label="Buy more currency"></p-button>
-    <p-button label="Back to cart" routerLink="/cart"></p-button>
+    <div class="flex flex-col gap-4">
+      <p-button label="Buy more currency" routerLink="/buy-currency"></p-button>
+      <p-button label="Back to cart" routerLink="/cart"></p-button>
+    </div>
     } @else {
-    <h1>{{ wallet()?.balance }}</h1>
-    <p-button label="Buy"></p-button>
+    <h1>Your balance: {{ wallet()?.balance }}</h1>
+    <p-button label="Buy" (onClick)="purchaseCart($event)"></p-button>
     }
   </div>
 </div>
