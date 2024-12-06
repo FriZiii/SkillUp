@@ -26,6 +26,11 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
                         await _cartRepository.Update(updatedCart);
                         return;
                     }
+                    else
+                    {
+                        updatedCart.ApplyDiscountCode(updatedCart.DiscountCode);
+                        await _cartRepository.Update(updatedCart);
+                    }
                 }
                 else
                 {
