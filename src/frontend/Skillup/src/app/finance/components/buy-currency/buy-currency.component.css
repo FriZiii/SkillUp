@@ -1,0 +1,28 @@
+:host ::ng-deep .p-inputtext {
+    width: 100%;
+}
+
+.cols-responsive-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 2rem;
+  }
+  @media (max-width: 1424px) {
+ 
+    .no-padding-on-small {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+      .cols-responsive-3 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+  
+      .cols-responsive-3-start{
+          grid-column-start: 1;
+      }
+  
+  }
+  
+  @media (max-width: 1000px) {
+  
+  }
