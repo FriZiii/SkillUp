@@ -55,7 +55,7 @@ export class CartComponent {
         this.invalidCode = true;
       },
     }
-    );
+    ); 
   }
 
   delCode(){

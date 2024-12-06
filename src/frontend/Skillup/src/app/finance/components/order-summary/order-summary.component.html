@@ -1,20 +1,50 @@
 <div class="su-section-mt flex justify-center">
-  <div class="prose text-center">
-    <h1>Summary</h1>
-    <h2>Before discount: {{ this.cart()?.totalBeforeDiscount }}</h2>
-    <h2>Total: {{ this.cart()?.total }}</h2>
+  <div class="prose text-center shadow py-8 px-20">
+    <h1 class="text-5xl">Summary</h1>
+    @if(cart()?.total === cart()?.totalBeforeDiscount ||
+    cart()?.totalBeforeDiscount===null){
 
+    <h1>Total: {{ this.cart()?.total }}</h1>
+    } @else {
+
+    <h1>Before discount: {{ this.cart()?.totalBeforeDiscount }}</h1>
+    <h1>Total: {{ this.cart()?.total }}</h1>
+    }
+    <hr />
     @if(wallet()?.balance !== null && cart()?.total && wallet()?.balance! <=
     cart()?.total!){
     <h1>Your balance</h1>
     <h1>{{ wallet()?.balance }}</h1>
     <div class="flex flex-col gap-4">
-      <p-button label="Buy more currency" routerLink="/buy-currency"></p-button>
-      <p-button label="Back to cart" routerLink="/cart"></p-button>
+      <p-button
+        label="Buy more currency"
+        routerLink="/buy-currency"
+        class="wide-btn"
+      ></p-button>
+      <p-button
+        label="Back to cart"
+        routerLink="/cart"
+        class="wide-btn"
+      ></p-button>
     </div>
     } @else {
     <h1>Your balance: {{ wallet()?.balance }}</h1>
-    <p-button label="Buy" (onClick)="purchaseCart($event)"></p-button>
+    <div class="flex flex-col gap-4">
+      <p-button
+        label="Buy"
+        (onClick)="purchaseCart($event)"
+        class="wide-btn"
+      ></p-button>
+
+      <p-button
+        label="Back to cart"
+        routerLink="/cart"
+        class="wide-btn"
+      ></p-button>
+    </div>
+
     }
   </div>
 </div>
+
+<p-confirmdialog />

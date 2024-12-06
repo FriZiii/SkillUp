@@ -1,8 +1,8 @@
-<div class="su-section-mt">
+<div class="su-section-mt px-12">
   @if(cart() === null){
   <h1>Nothing in cart</h1>
   }
-  <div class="grid grid-cols-3 gap-14">
+  <div class="grid grid-cols-3 gap-20">
     <div class="flex flex-col gap-4 col-start-1 col-span-2">
       @for(item of cartItems(); track item.id){
       <app-cart-item
@@ -39,8 +39,8 @@
           placeholder="Enter discount code"
           class="my-0 w-full"
         />
-        @if(!cart()?.discountCode || (discountCode !==
-        cart()?.discountCode?.code)){
+        @if((!cart()?.discountCode || (discountCode !==
+        cart()?.discountCode?.code)) && discountCode!==''){
         <p-button icon="pi pi-plus" (onClick)="applyCode()"></p-button>
         } @else {
         <p-button icon="pi pi-times" (onClick)="delCode()"></p-button>
