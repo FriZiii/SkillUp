@@ -13,6 +13,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
         {
             return new CourseAverageRatingDto()
             {
+                RatingsCount = coursesRatings.Count(),
                 AverageStars = (int)Math.Round(coursesRatings.Average(x => x.Stars)),
                 CourseId = coursesRatings.First().CourseId,
             };

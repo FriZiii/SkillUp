@@ -3,5 +3,6 @@
     public class CourseAverageRatingDto : CourseRatingDto
     {
         public int AverageStars { get; set; }
+        public int RatingsCount { get; set; }
     }
 }
