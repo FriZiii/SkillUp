@@ -29,7 +29,7 @@ export class BuyCurrencyComponent {
       validators: [Validators.minLength(16), Validators.required],
     }),
     expirationDate: new FormControl('', {
-      validators: [Validators.minLength(4), Validators.required],
+      validators: [Validators.minLength(4), Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\d{2}$/)],
     }),
     CVC: new FormControl('', {
       validators: [Validators.minLength(3), Validators.required],

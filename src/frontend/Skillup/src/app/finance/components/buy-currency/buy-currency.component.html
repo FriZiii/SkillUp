@@ -1,7 +1,8 @@
-<div class="su-section-mt">
+<div class="su-section-mt prose max-w-none !w-full">
   <div class="cols-responsive-3">
     <form [formGroup]="cardform" class="col-start-2 cols-responsive-3-start">
       <div class="flex flex-col gap-4 w-full">
+        <h1 class="my-4 text-center text-5xl">Enter your card information</h1>
         <p-inputmask
           mask="9999 9999 9999 9999"
           formControlName="cardNumber"
@@ -54,11 +55,33 @@
           }"
         />
         @if(!this.cardform.invalid){
-
-        <p-button
-          label="Buy"
-          (onClick)="purchaseCurrency($event, 100)"
-        ></p-button>
+        <h2 class="my-4 text-center text-3xl">Choose Amount</h2>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <p-button
+            label="50"
+            (onClick)="purchaseCurrency($event, 50)"
+          ></p-button>
+          <p-button
+            label="75"
+            (onClick)="purchaseCurrency($event, 75)"
+          ></p-button>
+          <p-button
+            label="100"
+            (onClick)="purchaseCurrency($event, 100)"
+          ></p-button>
+          <p-button
+            label="200"
+            (onClick)="purchaseCurrency($event, 200)"
+          ></p-button>
+          <p-button
+            label="300"
+            (onClick)="purchaseCurrency($event, 300)"
+          ></p-button
+          ><p-button
+            label="500"
+            (onClick)="purchaseCurrency($event, 500)"
+          ></p-button>
+        </div>
         }
       </div>
     </form>
