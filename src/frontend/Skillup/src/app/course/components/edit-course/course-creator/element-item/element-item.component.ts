@@ -19,6 +19,7 @@ import { Tooltip } from 'primeng/tooltip';
 import { SelectButton } from 'primeng/selectbutton';
 import { ElementAttachmentsDialogComponent } from "./element-attachments-dialog/element-attachments-dialog.component";
 import { Router, RoutesRecognized } from '@angular/router';
+import { CanEnterAddAssignment } from '../../../../../core/guards/canEnterAddAssignment.guard';
 
 @Component({
   selector: 'app-element-item',
@@ -29,6 +30,7 @@ import { Router, RoutesRecognized } from '@angular/router';
 })
 export class ElementItemComponent implements OnInit {
   //Variable
+  courseId = input.required<string>();
   section = input.required<Section>();
   element = input.required<Element>();
   elementTitle = signal('');
@@ -98,6 +100,7 @@ export class ElementItemComponent implements OnInit {
   ]; 
   }
 
+  canEnterAddAssignmentGuard = inject(CanEnterAddAssignment);
   openContent(){
     if(this.element().type === AssetType.Article || this.element().type === AssetType.Video){
       this.changecontentDialogVisibility();
@@ -105,6 +108,8 @@ export class ElementItemComponent implements OnInit {
     else{
       if(this.element().hasAsset === false){
         this.router.navigate(['/element-edit/', this.element().id, 'add-assignment']);
+        this.canEnterAddAssignmentGuard.setAllowed(true);
+        this.canEnterAddAssignmentGuard.courseId = this.courseId();
       }
       else{
         this.router.navigate(['/element-edit/', this.element().id, 'assignment']);

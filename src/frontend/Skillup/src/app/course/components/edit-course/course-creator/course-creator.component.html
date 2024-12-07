@@ -22,7 +22,10 @@
       <div *cdkDragPlaceholder class="drag-placeholder"></div>
     </p-accordion-header>
     <p-accordion-content>
-      <app-element-list [section]="section"></app-element-list>
+      <app-element-list
+        [section]="section"
+        [courseId]="courseId()"
+      ></app-element-list>
       <app-add-new-element [sectionId]="section.id"></app-add-new-element>
     </p-accordion-content>
   </p-accordion-panel>

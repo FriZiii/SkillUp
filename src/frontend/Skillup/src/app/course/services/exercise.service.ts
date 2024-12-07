@@ -48,4 +48,14 @@ export class ExerciseService {
           }),
         );
     }
+
+    deleteExercise(exerciseType: ExerciseType, exerciseId: string){
+      return this.httpClient
+        .delete(environment.apiUrl + '/Courses/Exercises/'+  exerciseType + '/' + exerciseId)
+        .pipe(
+          catchError((error) => {
+            return throwError(() => error);
+          }),
+        );
+    }
 }

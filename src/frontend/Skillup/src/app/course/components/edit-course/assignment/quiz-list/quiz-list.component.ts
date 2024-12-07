@@ -6,11 +6,14 @@ import { ExerciseType, Quiz } from '../../../../models/exercise.model';
 import { ExerciseService } from '../../../../services/exercise.service';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { ButtonModule } from 'primeng/button';
+import { ConfirmationDialogHandlerService } from '../../../../../core/services/confirmation-handler.service';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-quiz-list',
   standalone: true,
-  imports: [HiddenFormWrapperComponent, FormsModule, InputTextModule, CheckboxModule, FloatLabelModule],
+  imports: [HiddenFormWrapperComponent, FormsModule, InputTextModule, CheckboxModule, FloatLabelModule, ButtonModule, ConfirmDialogModule],
   templateUrl: './quiz-list.component.html',
   styleUrl: './quiz-list.component.css'
 })
@@ -25,6 +28,7 @@ export class QuizListComponent implements OnInit {
 
     //Services
     exerciseService = inject(ExerciseService);
+    confirmDialogService = inject(ConfirmationDialogHandlerService);
     
     ngOnInit(): void {
       this.exerciseService.getExercises(this.assignmentId(), ExerciseType.Quiz).subscribe(
@@ -46,5 +50,15 @@ export class QuizListComponent implements OnInit {
           this.correct = [true, true, true, true];
         }
       )
+    }
+
+    removeQuiz(event: Event, quizId: string){
+      this.confirmDialogService.confirmDelete(event, () => {
+        this.exerciseService.deleteExercise(ExerciseType.Quiz, quizId).subscribe(
+          (res) => {
+            this.quizes.set(this.quizes().filter(q => q.id !== quizId))
+          }
+        )
+      })
     }
 }

@@ -12,6 +12,7 @@ import { CourseContentService } from '../../../../services/course-content-servic
   styleUrl: './element-list.component.css'
 })
 export class ElementListComponent {
+  courseId = input.required<string>();
   section = input.required<Section>();
   elements = computed(() => this.section().elements);
   passSection = computed(() => this.section());

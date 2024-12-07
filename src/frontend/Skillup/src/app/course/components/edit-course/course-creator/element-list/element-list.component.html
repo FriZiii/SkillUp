@@ -3,6 +3,7 @@
 
   <app-element-item
     [section]="passSection()"
+    [courseId]="courseId()"
     [element]="element"
     (isDraggable)="changeElementEditMode($event)"
     [cdkDragDisabled]="elementEdit"

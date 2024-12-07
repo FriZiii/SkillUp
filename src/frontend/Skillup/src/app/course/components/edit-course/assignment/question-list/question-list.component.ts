@@ -6,11 +6,14 @@ import { ExerciseType, QuestionAnswer } from '../../../../models/exercise.model'
 import { ExerciseService } from '../../../../services/exercise.service';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationDialogHandlerService } from '../../../../../core/services/confirmation-handler.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-question-list',
   standalone: true,
-  imports: [HiddenFormWrapperComponent, FormsModule, InputTextModule, FloatLabelModule, ButtonModule ],
+  imports: [HiddenFormWrapperComponent, FormsModule, InputTextModule, FloatLabelModule, ButtonModule, ConfirmDialogModule ],
   templateUrl: './question-list.component.html',
   styleUrl: './question-list.component.css'
 })
@@ -23,6 +26,8 @@ export class QuestionListComponent implements OnInit {
 
   //Serivces
   exerciseService = inject(ExerciseService);
+  confirmDialogService = inject(ConfirmationDialogHandlerService);
+  
   
   ngOnInit(): void {
     this.exerciseService.getExercises(this.assignmentId(), ExerciseType.QuestionAnswer).subscribe(
@@ -43,7 +48,13 @@ export class QuestionListComponent implements OnInit {
       );
   }
 
-  removeQuestion(event: Event){
-
+  removeQuestion(event: Event, questionId: string){
+    this.confirmDialogService.confirmDelete(event, () => {
+      this.exerciseService.deleteExercise(ExerciseType.QuestionAnswer, questionId).subscribe(
+        (res) => {
+          this.questions.set(this.questions().filter(q => q.id !== questionId))
+        }
+      )
+    })
   }
 }

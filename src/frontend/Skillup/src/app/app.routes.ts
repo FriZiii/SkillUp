@@ -21,6 +21,7 @@ import { CoursePricingComponent } from './course/components/edit-course/course-p
 import { CourseEssentialsComponent } from './course/components/edit-course/course-essentials/course-essentials.component';
 import { AddAssignmentComponent } from './course/components/edit-course/assignment/add-assignment/add-assignment.component';
 import { AssignmentComponent } from './course/components/edit-course/assignment/assignment.component';
+import { CanEnterAddAssignment } from './core/guards/canEnterAddAssignment.guard';
 
 export const routes: Routes = [
   {
@@ -65,6 +66,7 @@ export const routes: Routes = [
   {
     path: 'element-edit/:elementId/add-assignment',
     component: AddAssignmentComponent,
+    canActivate: [CanEnterAddAssignment]
   },
   {
     path: 'element-edit/:elementId/assignment',
