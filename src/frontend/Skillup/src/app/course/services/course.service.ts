@@ -18,11 +18,13 @@ import {
 import { ToastHandlerService } from '../../core/services/toast-handler.service';
 import { FinanceService } from '../../finance/services/finance.service';
 import { CourseLevel } from '../models/course-level.model';
+import { PurchasedItemsService } from './purchasedItems.service';
 
 @Injectable({ providedIn: 'root' })
 export class CoursesService {
   //Services
   private financeService = inject(FinanceService);
+  private purchasedItemsService = inject(PurchasedItemsService);
   private toastService = inject(ToastHandlerService);
 
   //Variables
@@ -134,6 +136,12 @@ export class CoursesService {
       ...course,
       price:  item?.price ?? 0,
     };
+  }
+
+  mapCourseItemToCourse(courseItem: CourseListItem): Course {
+    return {
+      ...courseItem
+    }
   }
 
   getCouresByCategoryId(categoryId: string): CourseListItem[] {

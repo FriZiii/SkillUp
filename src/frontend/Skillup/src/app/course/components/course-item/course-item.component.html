@@ -26,7 +26,13 @@
     <div>$ {{ course.price }}</div>
     <span>
       <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
-      <p-button icon="pi pi-shopping-cart" class="ml-2" (onClick)="addToCart()" />
+      @if(ifCanAddToCart()){
+      <p-button
+        icon="pi pi-shopping-cart"
+        class="ml-2"
+        (onClick)="addToCart()"
+      />
+      }
     </span>
   </div>
 </p-card>

@@ -5,12 +5,15 @@ import { environment } from "../../../environments/environment";
 import { catchError, tap } from "rxjs";
 import { CoursesService } from "../../course/services/course.service";
 import { WalletService } from "./wallet.service";
+import { PurchasedItemsService } from "../../course/services/purchasedItems.service";
 
 @Injectable({ providedIn: 'root' })
 export class CartService
 {
     private httpClient = inject(HttpClient);
     private walletService = inject(WalletService);
+    private courseService = inject(CoursesService);
+    private purchasedItemsService = inject(PurchasedItemsService);
     private cartId = localStorage.getItem('cartId');
     public cart = signal<Cart | null>(null);
     public cartItemsDisplay = signal<CartItemForDisplay[] | null>(null);
@@ -113,6 +116,11 @@ export class CartService
           tap((response) => {
             localStorage.removeItem('cartId');
             this.walletService.setWallet(this.walletService.currentWallet()!.balance - this.cart()!.total);
+
+            const addedCourseItems = this.courseService.courses().filter(course => this.cart()?.items.some(item => item.id === course.id))
+            const addedCourses = addedCourseItems.map(courseItem => this.courseService.mapCourseItemToCourse(courseItem));
+            this.purchasedItemsService.purchasedCourses.update( currentItems => [...currentItems, ...addedCourses])
+
             this.cart.set(null);
             this.cartId = null;
             this.cartItemsDisplay.set(null);

@@ -11,7 +11,7 @@
     <h1>Total: {{ this.cart()?.total }}</h1>
     }
     <hr />
-    @if(wallet()?.balance !== null && cart()?.total && wallet()?.balance! <=
+    @if(wallet()?.balance !== null && cart()?.total && wallet()?.balance! <
     cart()?.total!){
     <h1>Your balance</h1>
     <h1>{{ wallet()?.balance }}</h1>
