@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Skillup.Shared.Abstractions.S3;
 using Skillup.Shared.Abstractions.Time;
+using System.Text;
 
 namespace Skillup.Shared.Infrastructure.S3
 {
@@ -27,6 +28,7 @@ namespace Skillup.Shared.Infrastructure.S3
                 InputStream = file.OpenReadStream(),
                 Metadata =
                 {
+                    ["x-amz-meta-orginalname"] = Convert.ToBase64String(Encoding.UTF8.GetBytes(file.FileName)),
                     ["x-amz-meta-extension"] = Path.GetExtension(file.FileName)
                 }
             };

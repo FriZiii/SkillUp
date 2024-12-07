@@ -3,6 +3,7 @@ using Skillup.Modules.Courses.Core.DTO;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Requests.Queries;
 using Skillup.Shared.Abstractions.S3;
+using System.Text;
 
 namespace Skillup.Modules.Courses.Application.Features.Queries
 {
@@ -28,7 +29,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
                 Id = attachment.Id,
                 ContentType = response.Headers.ContentType,
                 FileData = memoryStream.ToArray(),
-                FileName = response.Key,
+                FileName = Encoding.UTF8.GetString(Convert.FromBase64String(response.Metadata["x-amz-meta-orginalname"])),
             };
         }
     }
