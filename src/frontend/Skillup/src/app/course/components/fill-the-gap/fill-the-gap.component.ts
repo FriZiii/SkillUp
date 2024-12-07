@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { Component, inject, input, OnInit, output, signal } from '@angular/core';
 import {
   CdkDrag,
   CdkDragDrop,
@@ -12,15 +12,18 @@ import { Sentence, Word } from '../../models/fill-the-gap/fill-the-gap.models';
 import { ExerciseService } from '../../services/exercise.service';
 import { ExerciseType } from '../../models/exercise.model';
 import { single } from 'rxjs';
+import { ButtonModule } from 'primeng/button';
 @Component({
   selector: 'app-fill-the-gap',
   standalone: true,
-  imports: [DragDropModule, CommonModule, FillTheGapCreatorComponent],
+  imports: [DragDropModule, CommonModule, FillTheGapCreatorComponent, ButtonModule],
   templateUrl: './fill-the-gap.component.html',
   styleUrls: ['./fill-the-gap.component.css'],
 })
 export class FillTheGapComponent implements OnInit {
   sentence = input.required<Sentence>();
+  deletable = input<boolean>(false);
+  onRemove = output<{event: Event, id: string}>();
   numberInList = input<number | null>(null);
   parts: { word: Word; container: Word[] }[] = [];
 
@@ -72,4 +75,8 @@ export class FillTheGapComponent implements OnInit {
   ): boolean => {
     return drop.data.length <= 0;
   };
+
+  removeSentence(event: Event, senetenceId: string){
+    this.onRemove.emit({event: event, id: senetenceId});
+  }
 }
