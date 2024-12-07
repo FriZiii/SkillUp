@@ -15,17 +15,13 @@ import {
   tap,
   throwError,
 } from 'rxjs';
-import { ToastHandlerService } from '../../core/services/toast-handler.service';
 import { FinanceService } from '../../finance/services/finance.service';
 import { CourseLevel } from '../models/course-level.model';
-import { PurchasedItemsService } from './purchasedItems.service';
 
 @Injectable({ providedIn: 'root' })
 export class CoursesService {
   //Services
   private financeService = inject(FinanceService);
-  private purchasedItemsService = inject(PurchasedItemsService);
-  private toastService = inject(ToastHandlerService);
 
   //Variables
   private httpClient = inject(HttpClient);
