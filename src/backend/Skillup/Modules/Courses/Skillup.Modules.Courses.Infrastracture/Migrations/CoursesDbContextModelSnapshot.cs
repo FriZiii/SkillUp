@@ -427,7 +427,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.OwnsOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseDetails", "Details", b1 =>
+                    b.OwnsOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.Course.Details#Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseDetails", "Details", b1 =>
                         {
                             b1.Property<Guid>("CourseId")
                                 .HasColumnType("uuid");
@@ -593,7 +593,30 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
 
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.UserEntities.User", b =>
                 {
-                    b.OwnsOne("Skillup.Modules.Courses.Core.Entities.UserEntities.PrivacySettings", "PrivacySettings", b1 =>
+                    b.OwnsOne("Skillup.Modules.Courses.Core.Entities.UserEntities.User.Details#Skillup.Modules.Courses.Core.Entities.UserEntities.UserDetails", "Details", b1 =>
+                        {
+                            b1.Property<Guid>("UserId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("Biography")
+                                .IsRequired()
+                                .HasColumnType("text")
+                                .HasColumnName("Biography");
+
+                            b1.Property<string>("Title")
+                                .IsRequired()
+                                .HasColumnType("text")
+                                .HasColumnName("Title");
+
+                            b1.HasKey("UserId");
+
+                            b1.ToTable("Users", "courses");
+
+                            b1.WithOwner()
+                                .HasForeignKey("UserId");
+                        });
+
+                    b.OwnsOne("Skillup.Modules.Courses.Core.Entities.UserEntities.User.PrivacySettings#Skillup.Modules.Courses.Core.Entities.UserEntities.PrivacySettings", "PrivacySettings", b1 =>
                         {
                             b1.Property<Guid>("UserId")
                                 .HasColumnType("uuid");
@@ -614,7 +637,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                                 .HasForeignKey("UserId");
                         });
 
-                    b.OwnsOne("Skillup.Modules.Courses.Core.Entities.UserEntities.SocialMediaLinks", "SocialMediaLinks", b1 =>
+                    b.OwnsOne("Skillup.Modules.Courses.Core.Entities.UserEntities.User.SocialMediaLinks#Skillup.Modules.Courses.Core.Entities.UserEntities.SocialMediaLinks", "SocialMediaLinks", b1 =>
                         {
                             b1.Property<Guid>("UserId")
                                 .HasColumnType("uuid");
@@ -638,29 +661,6 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                             b1.Property<string>("YouTube")
                                 .HasColumnType("text")
                                 .HasColumnName("YouTube");
-
-                            b1.HasKey("UserId");
-
-                            b1.ToTable("Users", "courses");
-
-                            b1.WithOwner()
-                                .HasForeignKey("UserId");
-                        });
-
-                    b.OwnsOne("Skillup.Modules.Courses.Core.Entities.UserEntities.UserDetails", "Details", b1 =>
-                        {
-                            b1.Property<Guid>("UserId")
-                                .HasColumnType("uuid");
-
-                            b1.Property<string>("Biography")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("Biography");
-
-                            b1.Property<string>("Title")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("Title");
 
                             b1.HasKey("UserId");
 

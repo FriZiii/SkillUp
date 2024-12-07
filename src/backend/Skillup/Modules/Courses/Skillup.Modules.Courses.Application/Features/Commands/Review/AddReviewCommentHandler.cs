@@ -13,7 +13,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Review
 
         public async Task Handle(AddReviewCommentRequest request, CancellationToken cancellationToken)
         {
-            var comment = new ReviewComment()
+            var comment = new CourseReviewComment()
             {
                 CommentText = request.Comment,
                 CourseReviewId = request.ReviewId,

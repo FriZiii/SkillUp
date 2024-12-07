@@ -19,13 +19,13 @@ namespace Skillup.Modules.Courses.Api.Controllers
 
         [HttpPatch]
         [Authorize(Roles = nameof(UserRole.Instructor))]
-        [SwaggerOperation("Subbmit to review")]
-        [Route("/Courses/{courseId}/Subbmit")]
+        [SwaggerOperation("Submit to review")]
+        [Route("/Courses/{courseId}/Submit")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> SubbmitToReview(Guid courseId)
+        public async Task<IActionResult> SubmitToReview(Guid courseId)
         {
-            await _mediator.Send(new EditCourseStatusRequest(courseId, CourseStatus.SubbmitedForReview));
+            await _mediator.Send(new EditCourseStatusRequest(courseId, CourseStatus.SubmitedForReview));
 
             var course = await _mediator.Send(new GetCourseByIdRequest(courseId));
             return Ok(course);

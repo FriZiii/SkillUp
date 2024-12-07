@@ -4,9 +4,9 @@ namespace Skillup.Modules.Courses.Core.Interfaces
 {
     public interface IReviewCommentRepository
     {
-        Task Add(ReviewComment comment);
+        Task Add(CourseReviewComment comment);
         Task Delete(Guid commentId);
-        Task<ReviewComment?> Get(Guid commentId);
-        Task Update(ReviewComment comment);
+        Task<CourseReviewComment?> Get(Guid commentId);
+        Task Update(CourseReviewComment comment);
     }
 }

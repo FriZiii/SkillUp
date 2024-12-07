@@ -10,7 +10,7 @@
         public DateTime? FinalizedAt { get; set; }
         public ReviewStatus Status { get; set; }
 
-        public IEnumerable<ReviewComment> Comments { get; set; }
+        public IEnumerable<CourseReviewComment> Comments { get; set; }
     }
 
     public enum ReviewStatus

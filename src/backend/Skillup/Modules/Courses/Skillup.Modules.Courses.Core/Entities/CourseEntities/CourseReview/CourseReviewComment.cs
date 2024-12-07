@@ -2,7 +2,7 @@
 
 namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
 {
-    public class ReviewComment
+    public class CourseReviewComment
     {
         public Guid Id { get; set; }
 

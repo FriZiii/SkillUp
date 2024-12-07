@@ -47,7 +47,7 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
     public enum CourseStatus
     {
         Draft,
-        SubbmitedForReview,
+        SubmitedForReview,
         PendingReview,
         ChangesRequired,
         Published

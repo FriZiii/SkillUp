@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Skillup.Modules.Courses.Core.Entities.CourseEntities;
+using Skillup.Modules.Courses.Core.DTO.Review;
 
 namespace Skillup.Modules.Courses.Core.Requests.Queries
 {
-    public record GetLatestReviewByCourseIdRequest(Guid CourseId) : IRequest<CourseReview>;
+    public record GetLatestReviewByCourseIdRequest(Guid CourseId) : IRequest<CourseReviewDto>;
 }
