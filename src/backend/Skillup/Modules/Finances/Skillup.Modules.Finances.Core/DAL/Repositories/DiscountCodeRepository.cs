@@ -32,7 +32,13 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
 
         public async Task Update(DiscountCode discountCode)
         {
-            var discountCodeToEdit = await _discountCodes.FirstOrDefaultAsync(x => x.Id == discountCode.Id) ?? throw new Exception(); // TODO: Custom Ex
+            var discountCodeToEdit = await _discountCodes.Include(x => x.DiscountedItems)
+                .FirstOrDefaultAsync(x => x.Id == discountCode.Id) ?? throw new Exception(); // TODO: Custom Ex
+
+            if (!discountCodeToEdit.AppliesToEntireCart && discountCode.AppliesToEntireCart)
+            {
+                _discountedItems.RemoveRange(discountCodeToEdit.DiscountedItems);
+            }
 
             discountCodeToEdit.Code = discountCode.Code;
             discountCodeToEdit.DiscountValue = discountCode.DiscountValue;
