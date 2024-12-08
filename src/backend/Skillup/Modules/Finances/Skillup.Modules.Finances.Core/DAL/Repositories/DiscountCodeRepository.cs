@@ -34,13 +34,13 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
         {
             var discountCodeToEdit = await _discountCodes.FirstOrDefaultAsync(x => x.Id == discountCode.Id) ?? throw new Exception(); // TODO: Custom Ex
 
+            discountCodeToEdit.Code = discountCode.Code;
             discountCodeToEdit.DiscountValue = discountCode.DiscountValue;
 
             discountCodeToEdit.IsActive = discountCode.IsActive;
             discountCodeToEdit.IsPublic = discountCode.IsPublic;
 
             discountCodeToEdit.DiscountValue = discountCode.DiscountValue;
-            discountCodeToEdit.Type = discountCode.Type;
 
             discountCodeToEdit.AppliesToEntireCart = discountCode.AppliesToEntireCart;
 
@@ -60,9 +60,10 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
                     .ThenInclude(x => x.Item)
                 .FirstOrDefaultAsync(x => x.Id == discountCodeId);
 
-        public Task<IEnumerable<DiscountCode>> GetByOwner(Guid ownerId)
+        public async Task<IEnumerable<DiscountCode>> GetByOwner(Guid ownerId)
         {
-            throw new NotImplementedException(); // TODO:
+            var codes = await _discountCodes.Where(c => c.OwnerId == ownerId).ToListAsync();
+            return codes;
         }
 
         public async Task<IEnumerable<DiscountCode>> GetPublic()

@@ -9,15 +9,21 @@ export class DiscountCodeService {
 
   public addDiscountCode(type: DiscountCodeType, addDiscountCode: AddDiscountCode){
     return this.httpClient
-      .post<DiscountCode>(environment.apiUrl + '/Finances/DiscountCode/' + type , {addDiscountCode})
-      .pipe(
-      )
+      .post<DiscountCode>(environment.apiUrl + '/Finances/DiscountCode/' + type , {addDiscountCode});
   }
 
   public getDiscountCodesByOwner(userId: string){
     return this.httpClient
-      .get<DiscountCode[]>(environment.apiUrl + '/Finances/DiscountCode/' + userId)
-      .pipe(
-      )
+      .get<DiscountCode[]>(environment.apiUrl + '/Finances/DiscountCode/' + userId);
+  }
+
+  public editDiscountCode(codeId: string, addDiscountCode: AddDiscountCode){
+    return this.httpClient
+      .put<DiscountCode>(environment.apiUrl + '/Finances/DiscountCode/' + codeId, {addDiscountCode});
+  }
+
+  public deleteDiscountCode(codeId: string){
+    return this.httpClient
+      .delete(environment.apiUrl + '/Finances/DiscountCode/' + codeId);
   }
 }

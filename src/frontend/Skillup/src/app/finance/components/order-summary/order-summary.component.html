@@ -1,50 +1,54 @@
-<div class="su-section-mt flex justify-center">
-  <div class="prose text-center shadow py-8 px-20">
-    <h1 class="text-5xl">Summary</h1>
-    @if(cart()?.total === cart()?.totalBeforeDiscount ||
-    cart()?.totalBeforeDiscount===null){
-
-    <h1>Total: {{ this.cart()?.total }}</h1>
-    } @else {
-
-    <h1>Before discount: {{ this.cart()?.totalBeforeDiscount }}</h1>
-    <h1>Total: {{ this.cart()?.total }}</h1>
-    }
-    <hr />
-    @if(wallet()?.balance !== null && cart()?.total && wallet()?.balance! <
-    cart()?.total!){
-    <h1>Your balance</h1>
-    <h1>{{ wallet()?.balance }}</h1>
-    <div class="flex flex-col gap-4">
-      <p-button
-        label="Buy more currency"
-        routerLink="/buy-currency"
-        class="wide-btn"
-      ></p-button>
-      <p-button
-        label="Back to cart"
-        routerLink="/cart"
-        class="wide-btn"
-      ></p-button>
-    </div>
-    } @else {
-    <h1>Your balance: {{ wallet()?.balance }}</h1>
-    <div class="flex flex-col gap-4">
-      <p-button
-        label="Buy"
-        (onClick)="purchaseCart($event)"
-        class="wide-btn"
-      ></p-button>
-
-      <p-button
-        label="Back to cart"
-        routerLink="/cart"
-        class="wide-btn"
-      ></p-button>
-    </div>
-
-    }
-  </div>
-</div>
-
 <p-confirmdialog />
+
+<div class="su-section-mt px-12">
+  @if(cart() === null){
+  <h1>Nothing in cart</h1>
+  } @else{
+  <div class="grid grid-cols-3 gap-20">
+    <div class="flex flex-col gap-4 col-start-1 col-span-2">
+      @for(item of cartItems(); track item.id){
+      <app-cart-item [cartItem]="item" class="w-full"></app-cart-item>
+      }
+    </div>
+    <div class="flex flex-col col-start-3 prose max-w-none !w-full mt-5">
+      <h1 class="text-5xl text-center">Summary</h1>
+      <h1 class="text-center">Total: {{ this.cart()?.total }} $</h1>
+
+      <hr />
+      @if(wallet()?.balance !== null && cart()?.total && wallet()?.balance! <
+      cart()?.total!){
+      <h1 class="text-center">Your balance: {{ wallet()?.balance }} $</h1>
+      <div class="flex flex-col gap-4">
+        <p-button
+          label="Buy more currency"
+          routerLink="/buy-currency"
+          class="wide-btn"
+        ></p-button>
+        <p-button
+          label="Back to cart"
+          routerLink="/cart"
+          class="wide-btn"
+        ></p-button>
+      </div>
+      } @else {
+      <h1>Your balance: {{ wallet()?.balance }}</h1>
+      <div class="flex flex-col gap-4">
+        <p-button
+          label="Buy"
+          (onClick)="purchaseCart($event)"
+          class="wide-btn"
+        ></p-button>
+
+        <p-button
+          label="Back to cart"
+          routerLink="/cart"
+          class="wide-btn"
+        ></p-button>
+      </div>
+
+      }
+    </div>
+  </div>
+
+  }
+</div>

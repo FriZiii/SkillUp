@@ -25,10 +25,12 @@
     </div>
     }
   </div>
+  @if(deletable()){
   <p-button
     icon="pi pi-trash"
     severity="danger"
     (onClick)="onRemoveItem($event, cartItem().id)"
     class="mt-5"
   ></p-button>
+  }
 </div>

@@ -14,6 +14,7 @@ import { ButtonModule } from 'primeng/button';
 export class CartItemComponent {
   cartItem = input.required<CartItemForDisplay>(); 
   removeItem = output<string>();
+  deletable = input<boolean>(false);
 
   onRemoveItem(event: Event, id: string){
     this.removeItem.emit(id);
