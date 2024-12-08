@@ -69,4 +69,8 @@ export class CoursesCreatedByYouComponent implements OnInit {
       (res) => this.discountCodes.set(this.discountCodes().filter(c => c.id !== codeId))
     );
   }
+
+  addDiscountCode(code: DiscountCode){
+    this.discountCodes.update((list) => [...list, code])
+  }
 }

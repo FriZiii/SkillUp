@@ -1,9 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { DiscountCodeType } from '../../models/discountCodes.model';
+import { DiscountCode, DiscountCodeType } from '../../models/discountCodes.model';
 import { SelectModule } from 'primeng/select';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -19,6 +19,7 @@ import { DiscountCodeService } from '../../services/discountCode.service';
 })
 export class AddNewDiscountCodeComponent {
   DiscountCodeType = DiscountCodeType;
+  onAddCode = output<DiscountCode>();
 
   //Services
   disocuntCodeService = inject(DiscountCodeService);
@@ -58,6 +59,8 @@ export class AddNewDiscountCodeComponent {
     appliesToEntireCart: this.discountCodeForm.controls.appliesToEntireCart.value!,
     isActive: this.discountCodeForm.controls.isActive.value!,
     isPublic: this.discountCodeForm.controls.isPublic.value!
-    }).subscribe();
+    }).subscribe(
+      (res) => this.onAddCode.emit(res)
+    );
   }
 }
