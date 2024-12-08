@@ -81,4 +81,9 @@
       />
     </div>
   </div>
+  @if(discountCode().appliesToEntireCart === false &&
+  discountCode().discountedItems){ @for(item of discountCode().discountedItems;
+  track item.id){
+  <p>{{ item.id }}</p>
+  } }
 </div>
