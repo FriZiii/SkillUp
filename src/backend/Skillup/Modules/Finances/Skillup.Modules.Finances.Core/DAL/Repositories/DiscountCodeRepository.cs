@@ -68,7 +68,8 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
 
         public async Task<IEnumerable<DiscountCode>> GetByOwner(Guid ownerId)
         {
-            var codes = await _discountCodes.Where(c => c.OwnerId == ownerId).ToListAsync();
+            var codes = await _discountCodes.Include(x => x.DiscountedItems)
+                    .ThenInclude(x => x.Item).Where(c => c.OwnerId == ownerId).ToListAsync();
             return codes;
         }
 

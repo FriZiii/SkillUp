@@ -18,6 +18,7 @@ export class DiscountCodeItemComponent implements OnInit{
   discountCode = input.required<DiscountCode>();
   onEditCode = output<DiscountCode>();
   onDeleteCode = output<string>();
+  DiscountCodeType = DiscountCodeType;
 
   editing = false;
   code = '';

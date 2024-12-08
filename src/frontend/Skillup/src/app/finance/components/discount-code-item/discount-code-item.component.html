@@ -1,4 +1,4 @@
-<div class="su-border prose max-w-none !w-full p-8">
+<div class="su-border prose max-w-none !w-full p-8 my-4">
   @if(!editing){
   <div class="flex justify-between">
     <div class="flex gap-8">
@@ -81,4 +81,9 @@
       />
     </div>
   </div>
+  @if(discountCode().appliesToEntireCart === false &&
+  discountCode().discountedItems){ @for(item of discountCode().discountedItems;
+  track item.id){
+  <p>{{ item.id }}</p>
+  } }
 </div>
