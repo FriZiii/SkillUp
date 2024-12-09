@@ -13,31 +13,34 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
             await _cartRepository.DeleteItemFromCart(request.CartId, request.ItemId);
 
             var updatedCart = await _cartRepository.GetCart(request.CartId);
-            if (updatedCart != null && updatedCart.DiscountCode != null)
+            if (updatedCart == null) return;
+
+            if (updatedCart.DiscountCode != null)
             {
                 if (!updatedCart.DiscountCode.AppliesToEntireCart)
                 {
-                    if (!updatedCart.DiscountCode.DiscountedItems.Any(discountedItem => updatedCart.Items.Any(cartItem => cartItem.ItemId == discountedItem.ItemId)))
+                    var hasDiscountedItems = updatedCart.DiscountCode.DiscountedItems
+                        .Any(discountedItem => updatedCart.Items
+                            .Any(cartItem => cartItem.ItemId == discountedItem.ItemId));
+
+                    if (!hasDiscountedItems)
                     {
                         updatedCart.DiscountCode = null;
                         updatedCart.DiscountCodeId = null;
-                        updatedCart.Total = updatedCart.Items.Sum(x => x.Price);
-
-                        await _cartRepository.Update(updatedCart);
-                        return;
-                    }
-                    else
-                    {
-                        updatedCart.ApplyDiscountCode(updatedCart.DiscountCode);
-                        await _cartRepository.Update(updatedCart);
                     }
                 }
-                else
+
+                if (updatedCart.DiscountCode != null)
                 {
                     updatedCart.ApplyDiscountCode(updatedCart.DiscountCode);
-                    await _cartRepository.Update(updatedCart);
                 }
             }
+            else
+            {
+                updatedCart.Total = updatedCart.Items.Sum(x => x.Price);
+            }
+
+            await _cartRepository.Update(updatedCart);
         }
     }
 }
