@@ -11,6 +11,8 @@ import { DiscountCodeService } from '../../services/discountCode.service';
 import { ConfirmationDialogHandlerService } from '../../../core/services/confirmation-handler.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ItemType } from '../../models/finance.model';
+import { UserService } from '../../../user/services/user.service';
+import { ToastHandlerService } from '../../../core/services/toast-handler.service';
 
 @Component({
   selector: 'app-discount-code-item',
@@ -28,8 +30,10 @@ export class DiscountCodeItemComponent implements OnInit{
 
   //Services
   courseService = inject(CoursesService);
+  userService = inject(UserService);
   discountCodeService = inject(DiscountCodeService);
   confirmDialogService = inject(ConfirmationDialogHandlerService);
+  toastService = inject(ToastHandlerService);
 
   courses = computed(() => {
     const discountedItems = this.discountCode()?.discountedItems || [];
@@ -101,11 +105,17 @@ export class DiscountCodeItemComponent implements OnInit{
   }
   newItemId = '';
   addItem(){
-    this.discountCodeService.toggleDiscountCodeItem(this.discountCode()!.id, this.newItemId).subscribe(
-      (res) => {
-        this.newItemId = '';
-        this.discountCode.set(res);
-      }
-    )
+    const coursesByAuthor = this.courseService.getCoursesByAuthor(this.userService.currentUser()!.id);
+    if(coursesByAuthor.some(c => c.id === this.newItemId)){
+      this.discountCodeService.toggleDiscountCodeItem(this.discountCode()!.id, this.newItemId).subscribe(
+        (res) => {
+          this.newItemId = '';
+          this.discountCode.set(res);
+        }
+      )
+    }
+    else{
+      this.toastService.showWarn('This is not your course');
+    }
   }
 }
