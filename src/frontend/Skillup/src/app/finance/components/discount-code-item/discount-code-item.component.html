@@ -2,9 +2,9 @@
   @if(!editing){
   <div class="flex justify-between">
     <div class="flex gap-8">
-      <h2 class="my-0">Code: {{ discountCode().code }}</h2>
+      <h2 class="my-0">Code: {{ discountCode()!.code }}</h2>
       <h2 class="my-0">
-        Amount: {{ discountCode().discountValue + " " + getType() }}
+        Amount: {{ discountCode()!.discountValue + " " + getType() }}
       </h2>
     </div>
 
@@ -81,9 +81,21 @@
       />
     </div>
   </div>
-  @if(discountCode().appliesToEntireCart === false &&
-  discountCode().discountedItems){ @for(item of discountCode().discountedItems;
-  track item.id){
-  <p>{{ item.id }}</p>
-  } }
+  @if(discountCode()!.appliesToEntireCart === false &&
+  discountCode()!.discountedItems) { @for(course of courses(); track course.id){
+  <div class="flex gap-4 items-center">
+    <p>{{ course.title }}</p>
+    <p-button
+      icon="pi pi-trash"
+      severity="danger"
+      (onClick)="removeItem($event, course.id)"
+    ></p-button>
+  </div>
+
+  }
+  <input type="text" pInputText [(ngModel)]="newItemId" />
+  <p-button label="Add" (onClick)="addItem()"></p-button>
+  }
 </div>
+
+<p-confirmDialog />

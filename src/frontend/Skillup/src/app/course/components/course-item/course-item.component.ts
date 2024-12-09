@@ -35,26 +35,48 @@ export class CourseItemComponent{
     }
   }
 
-  onClick(){
-    this.router.navigate(['/course-detail', this.course.id])
+  navigate(whereTo: string){
+    switch (whereTo){
+      case 'detail' :
+        this.router.navigate(['/course-detail', this.course.id])
+        break;
+      case 'edit':
+        this.router.navigate(['/course-edit', this.course.id, 'creator'])
+        break;
+      case 'cart':
+        this.router.navigate(['/cart'])
+        break;
+    }
   }
 
   addToCart(){
     this.cartService.addToCart(this.course.id).subscribe();
   }
 
-  ifCanAddToCart(){
+  isInCart(){
     if(this.cartService.cart()?.items.find(i => i.id === this.course.id)){
-      return false;
-    }
-    if(this.purchasedItemsService.purchasedCourses().find(c => c.id === this.course.id)){
-      return false;
-    }
-    if(this.coursesByAuthor.length !== 0 && this.coursesByAuthor.find(c => c.id === this.course.id)){
-      return false;
+      return true;
     }
     else{
-      return true
+      return false;
+    }
+  }
+
+  isPurchased(){
+    if(this.purchasedItemsService.purchasedCourses().find(c => c.id === this.course.id)){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  isAuthor(){
+    if(this.coursesByAuthor.length !== 0 && this.coursesByAuthor.find(c => c.id === this.course.id)){
+      return true;
+    }
+    else{
+      return false
     }
   }
 }

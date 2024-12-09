@@ -29,7 +29,7 @@
 </div>
 @for(code of discountCodes(); track code.id){
 <app-discount-code-item
-  [discountCode]="code"
+  [discountCodeInput]="code"
   (onEditCode)="editCode($event)"
   (onDeleteCode)="deleteCode($event)"
 ></app-discount-code-item>

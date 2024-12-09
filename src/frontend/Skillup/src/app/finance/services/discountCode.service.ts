@@ -39,4 +39,10 @@ export class DiscountCodeService {
       environment.apiUrl + '/Finances/DiscountCode/' + codeId
     );
   }
+
+  public toggleDiscountCodeItem(codeId: string, itemId: string){
+    return this.httpClient.post<DiscountCode>(
+      environment.apiUrl + '/Finances/DiscountCode/' + codeId + '/' + itemId, {}
+    );
+  }
 }

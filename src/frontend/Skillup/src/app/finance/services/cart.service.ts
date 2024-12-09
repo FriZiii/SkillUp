@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { computed, inject, Injectable, signal } from "@angular/core";
 import { Cart, CartItemForDisplay } from "../models/cart.model";
 import { environment } from "../../../environments/environment";
-import { catchError, tap } from "rxjs";
+import { catchError, tap, throwError } from "rxjs";
 import { CoursesService } from "../../course/services/course.service";
 import { WalletService } from "./wallet.service";
 import { PurchasedItemsService } from "../../course/services/purchasedItems.service";
@@ -73,6 +73,13 @@ export class CartService
               localStorage.removeItem('cartId');
               this.cartId = null;
             }
+          }),
+           catchError((error) => {
+            this.cart.set(null);
+              this.cartItemsDisplay.set(null);
+              localStorage.removeItem('cartId');
+              this.cartId = null;
+              return throwError(() => error);
           })
         );
       }

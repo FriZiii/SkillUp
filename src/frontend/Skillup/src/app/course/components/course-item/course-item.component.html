@@ -12,7 +12,7 @@
       alt="{{ course.title }}"
       class="w-full max-h-40"
       src="{{ course.thumbnailUrl }}"
-      (click)="onClick()"
+      (click)="navigate('detail')"
     />
   </ng-template>
   <ng-template pTemplate="title">
@@ -26,9 +26,23 @@
     <div>$ {{ course.price }}</div>
     <span>
       <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
-      @if(ifCanAddToCart()){
+      @if(isAuthor()){
+      <p-button icon="pi pi-cog" class="ml-2" (onClick)="navigate('edit')" />
+      } @else if(isInCart()){
       <p-button
         icon="pi pi-shopping-cart"
+        class="ml-2"
+        (onClick)="navigate('cart')"
+      />
+      }@else if(isPurchased()){
+      <p-button
+        icon="pi pi-external-link"
+        class="ml-2"
+        (onClick)="navigate('detail')"
+      />
+      } @else{
+      <p-button
+        icon="pi pi-cart-arrow-down"
         class="ml-2"
         (onClick)="addToCart()"
       />
