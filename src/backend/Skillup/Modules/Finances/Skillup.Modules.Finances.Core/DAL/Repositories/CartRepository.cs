@@ -57,7 +57,7 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
             => await _carts
                 .Include(x => x.Items)
                     .ThenInclude(x => x.Item)
-                .Include(x => x.DiscountCode)
+                .Include(x => x.DiscountCode).ThenInclude(c => c.DiscountedItems)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task Update(Cart cart)

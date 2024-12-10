@@ -12,7 +12,6 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 
         public async Task Handle(ToggleDiscountCodeForCartRequest request, CancellationToken cancellationToken)
         {
-            var discountCode = await _discountCodeRepository.GetByCode(request.DiscountCode!) ?? throw new Exception(); // TODO: Custom Ex
 
             var cart = await _cartRepository.GetCart(request.CartId) ?? throw new Exception(); // TODO: Custom Ex
 
@@ -25,6 +24,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
             }
             else
             {
+                var discountCode = await _discountCodeRepository.GetByCode(request.DiscountCode!) ?? throw new Exception(); // TODO: Custom Ex
                 cart.ApplyDiscountCode(discountCode);
             }
 

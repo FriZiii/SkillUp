@@ -1,7 +1,7 @@
 import { Component, computed, ElementRef, inject, input, OnChanges, OnInit, Renderer2, signal, SimpleChanges, ViewChild } from '@angular/core';
 import { CoursesService } from '../../services/course.service';
 import { CourseDetail } from '../../models/course.model';
-import { FinanceService } from '../../../finance/finance.service';
+import { FinanceService } from '../../../finance/services/finance.service';
 import { User, UserDetail } from '../../../user/models/user.model';
 import { UserService } from '../../../user/services/user.service';
 import { CourseContentService } from '../../services/course-content-service';
@@ -51,15 +51,13 @@ coursesForCategory = computed(() =>  {
     const item = this.items().find(item => item.id === this.courseId())
     return {
       ...this.course,
-      price: {
-        amount: item?.price.amount ?? 0,
-      },
+      price:  item?.price ?? 0,
     };
   });
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['courseId']) {
-      this.courseService.getCourseById(this.courseId()).subscribe({
+      this.courseService.getCourseDetailById(this.courseId()).subscribe({
         next: (res) => {
           this.course.set(res);
           this.userService.getUser(this.course()!.authorId).subscribe({
