@@ -15,7 +15,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
 
         public async Task<List<CourseDto>> Handle(GetCoursesByAuthorIdRequest request, CancellationToken cancellationToken)
         {
-            var courses = (await _courseRepository.GetAll()).Where(c => c.AuthorId == request.authorID);
+            var courses = (await _courseRepository.GetByStatus(request.Status)).Where(c => c.AuthorId == request.AuthorId);
             var mapper = new CourseMapper(_amazonS3Service);
             var courseDtos = courses.Select(mapper.CourseToCourseDto).ToList();
 

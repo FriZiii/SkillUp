@@ -28,28 +28,25 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Course>> GetAll()
+        public async Task<IEnumerable<Course>> GetByStatus(CourseStatus status)
         => await _courses
+                .Where(c => c.Status == status)
                 .Include(c => c.Category)
                 .Include(c => c.Subcategory)
                 .ToListAsync();
 
-        public async Task<Course> GetById(Guid id)
-        {
-            var course = await _courses
+        public async Task<Course?> GetById(Guid id)
+            => await _courses
                 .Include(c => c.Category)
                 .Include(c => c.Subcategory)
                 .Include(c => c.Sections)
                     .ThenInclude(s => s.Elements)
-                .FirstOrDefaultAsync(c => c.Id == id) ?? throw new Exception();
+                .FirstOrDefaultAsync(c => c.Id == id);
 
-            return course;
-        }
-
-        public async Task Publish(Guid courseId)
+        public async Task EditCourseStatus(Guid courseId, CourseStatus status)
         {
             var course = await _courses.FirstOrDefaultAsync(c => c.Id == courseId) ?? throw new Exception();  //TODO: Custom exception for null check in repo
-            course.IsPublished = true;
+            course.Status = status;
             await _context.SaveChangesAsync();
         }
 

@@ -1,4 +1,5 @@
 ﻿using Skillup.Modules.Courses.Core.DTO;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 
 namespace Skillup.Modules.Courses.Application.Operations
 {
@@ -8,7 +9,7 @@ namespace Skillup.Modules.Courses.Application.Operations
         public string Title { get; set; }
         public Guid AuthorId { get; set; }
         public string AuthorName { get; set; }
-        public bool IsPublished { get; set; }
+        public CourseStatus Status { get; set; }
         //author
         public CourseCategoryDto Category { get; set; }
         public Uri? ThumbnailUrl { get; set; }
