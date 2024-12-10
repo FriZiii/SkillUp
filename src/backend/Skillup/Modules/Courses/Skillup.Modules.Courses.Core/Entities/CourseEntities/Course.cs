@@ -8,7 +8,7 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
         public Guid Id { get; set; }
         public Guid AuthorId { get; set; }
         public string Title { get; set; }
-        public bool IsPublished { get; set; }
+        public CourseStatus Status { get; set; } = CourseStatus.Draft;
         public Guid CategoryId { get; set; }
         public Guid SubcategoryId { get; set; }
         public CourseDetails Details { get; set; }
@@ -18,7 +18,7 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
         public User Author { get; set; }
         public Category Category { get; set; }
         public Subcategory Subcategory { get; set; }
-        public List<Section>? Sections { get; set; }
+        public List<Section> Sections { get; set; } = new List<Section>();
 
         public Course(Guid authorId, string title, Guid categoryId, Guid subcategoryId, DateTime now)
         {
@@ -42,5 +42,14 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
         }
 
         private Course() { } // For ef core
+    }
+
+    public enum CourseStatus
+    {
+        Draft,
+        SubmitedForReview,
+        PendingReview,
+        ChangesRequired,
+        Published
     }
 }

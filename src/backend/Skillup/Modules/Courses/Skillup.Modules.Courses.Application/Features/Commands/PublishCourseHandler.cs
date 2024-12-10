@@ -5,19 +5,17 @@ using Skillup.Modules.Courses.Core.Requests.Commands;
 
 namespace Skillup.Modules.Courses.Application.Features.Commands
 {
-    public class PublishCourseHandler : IRequestHandler<PublishCourseRequest>
+    public class PublishCourseHandler(ICourseRepository courseRepository, ILogger<PublishCourseHandler> logger) : IRequestHandler<EditCourseStatusRequest>
     {
-        private readonly ICourseRepository _courseRepository;
-        private readonly ILogger<PublishCourseHandler> _logger;
+        private readonly ICourseRepository _courseRepository = courseRepository;
+        private readonly ILogger<PublishCourseHandler> _logger = logger;
 
-        public PublishCourseHandler(ICourseRepository courseRepository, ILogger<PublishCourseHandler> logger)
+        public async Task Handle(EditCourseStatusRequest request, CancellationToken cancellationToken)
         {
-            _courseRepository = courseRepository;
-            _logger = logger;
-        }
-        public async Task Handle(PublishCourseRequest request, CancellationToken cancellationToken)
-        {
-            await _courseRepository.Publish(request.CourseId);
+            await _courseRepository.EditCourseStatus(request.CourseId, request.Status);
+
+            //TODO: Send notification about course status change
+
             _logger.LogInformation("Course published");
         }
     }

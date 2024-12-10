@@ -23,7 +23,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
         public async Task<IEnumerable<CourseDto>> Handle(GetCoursesRequest request, CancellationToken cancellationToken)
         {
             var mapper = new CourseMapper(_amazonS3Service);
-            var courses = await _courseRepository.GetAll();
+            var courses = await _courseRepository.GetByStatus(request.Status);
             var coursesDtos = courses.Select(mapper.CourseToCourseDto).ToList();
             var users = await _userRepository.GetAll();
             coursesDtos.ForEach(c => c.AuthorName = users.First(u => u.Id == c.AuthorId).FirstName + " " + users.First(u => u.Id == c.AuthorId).LastName);
