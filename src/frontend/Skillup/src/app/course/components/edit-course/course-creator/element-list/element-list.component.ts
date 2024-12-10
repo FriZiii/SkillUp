@@ -2,7 +2,7 @@ import { CdkDrag, CdkDragDrop, CdkDragPlaceholder, CdkDropList, moveItemInArray 
 import { Component, computed, inject, input } from '@angular/core';
 import { Section } from '../../../../models/course-content.model';
 import { ElementItemComponent } from "../element-item/element-item.component";
-import { CourseContentService } from '../../../../services/course-content-service';
+import { CourseContentService } from '../../../../services/course-content.service';
 
 @Component({
   selector: 'app-element-list',

@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, computed, inject, input, OnInit, signal } from '@angular/core';
 import { AccordionModule } from 'primeng/accordion';
 import { Section } from '../../../models/course-content.model';
-import { CourseContentService } from '../../../services/course-content-service';
+import { CourseContentService } from '../../../services/course-content.service';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
@@ -18,6 +18,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationDialogHandlerService } from '../../../../core/services/confirmation-handler.service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ElementListComponent } from "./element-list/element-list.component";
+import { CourseReviewService } from '../../../services/course-review.service';
 
 @Component({
   selector: 'app-course-creator',
@@ -29,9 +30,12 @@ import { ElementListComponent } from "./element-list/element-list.component";
 export class CourseCreatorComponent implements OnInit {
   //FromUrl
   courseId = input.required<string>();
+
   //Services
   courseContentService = inject(CourseContentService);
   confirmationDialogService = inject(ConfirmationDialogHandlerService);
+  reviewService = inject(CourseReviewService);
+  
   //Variables
   sections = computed(() => this.courseContentService.sections());
   changeDetectorRef = inject(ChangeDetectorRef);
@@ -87,5 +91,11 @@ export class CourseCreatorComponent implements OnInit {
     
     onListExited(event: CdkDragExit) {
       this.changeDetectorRef.detectChanges();
+    }
+
+    submitForReview(event: Event){
+      this.confirmationDialogService.confirmSave(event, () => {
+        this.reviewService.submitToReview(this.courseId()).subscribe();
+      })
     }
 }

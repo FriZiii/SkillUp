@@ -8,7 +8,7 @@ import { NgClass } from '@angular/common';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import {DragDropModule} from '@angular/cdk/drag-drop';
-import { CourseContentService } from '../../../../services/course-content-service';
+import { CourseContentService } from '../../../../services/course-content.service';
 import { ConfirmationDialogHandlerService } from '../../../../../core/services/confirmation-handler.service';
 import { MenuModule } from 'primeng/menu';
 import { MenuItem, MenuItemCommandEvent } from 'primeng/api';

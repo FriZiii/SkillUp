@@ -56,7 +56,7 @@ export class CoursesService {
               title: response.title,
               authorId: response.authorId,
               authorName:  response.authorName,
-              isPublished: response.isPublished,
+              status: response.status,
               category: {
                 id: response.category.id,
                 name: response.category.name,
@@ -165,11 +165,20 @@ export class CoursesService {
   //Edit
   editCourse(courseId: string, title: string, categoryId: string, subcategoryId: string){
     return this.httpClient
-    .put(environment.apiUrl + '/Courses/' + courseId, {title: title, categoryId: categoryId, subcategoryId: subcategoryId})
+    .put<Course>(environment.apiUrl + '/Courses/' + courseId, {title: title, categoryId: categoryId, subcategoryId: subcategoryId})
     .pipe(
-      tap((res) => {
-       // this.courses.update((prevCourses) => 
-       //  prevCourses.map(course => course.id === courseId ? {...course, title: title, category} : course));
+      tap((response) => {
+        this.courses.update((prevCourses) => 
+        prevCourses.map((course) => course.id === courseId ? {...course, title: title, category: {
+          id: response.category.id,
+          name: response.category.name,
+          slug: response.category.slug,
+                subcategory: {
+                  id: response.category.subcategory.id,
+                  name: response.category.subcategory.name,
+                  slug: response.category.subcategory.slug,
+                },
+        }} : course));
       }),
       catchError((error) => {
         return throwError(() => error);

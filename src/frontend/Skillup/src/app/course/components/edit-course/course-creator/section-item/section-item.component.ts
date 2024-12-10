@@ -4,7 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
-import { CourseContentService } from '../../../../services/course-content-service';
+import { CourseContentService } from '../../../../services/course-content.service';
 import { ConfirmationDialogHandlerService } from '../../../../../core/services/confirmation-handler.service';
 import { TooltipModule } from 'primeng/tooltip';
 import { SelectButtonModule } from 'primeng/selectbutton';

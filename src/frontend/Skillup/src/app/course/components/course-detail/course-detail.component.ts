@@ -4,7 +4,7 @@ import { CourseDetail } from '../../models/course.model';
 import { FinanceService } from '../../../finance/services/finance.service';
 import { User, UserDetail } from '../../../user/models/user.model';
 import { UserService } from '../../../user/services/user.service';
-import { CourseContentService } from '../../services/course-content-service';
+import { CourseContentService } from '../../services/course-content.service';
 import { AccordionModule } from 'primeng/accordion';
 import { SectionItemComponent } from "../edit-course/course-creator/section-item/section-item.component";
 import { ViewElementItemComponent } from "./view-element-item/view-element-item.component";
