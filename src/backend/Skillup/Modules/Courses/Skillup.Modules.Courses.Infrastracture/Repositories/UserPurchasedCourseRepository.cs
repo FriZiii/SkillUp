@@ -20,5 +20,8 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             await _userPurchasedCourses.AddAsync(userPurchasedCourse);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<UserPurchasedCourse>> GetByUserId(Guid userId)
+            => await _userPurchasedCourses.Where(x => x.UserId == userId).ToListAsync();
     }
 }

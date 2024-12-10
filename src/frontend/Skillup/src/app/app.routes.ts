@@ -13,7 +13,7 @@ import { CourseDetailComponent } from './course/components/course-detail/course-
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { AccessDeniedComponent } from './core/components/access-denied/access-denied.component';
 import { UserRole } from './user/models/user-role.model';
-import { hasRole } from './core/guards/auth.guard';
+import { hasRole, isAuthor, isSignedIn } from './core/guards/auth.guard';
 import { OtherUserProfileComponent } from './user/components/other-user-profile/other-user-profile.component';
 import { EditCourseComponent } from './course/components/edit-course/edit-course.component';
 import { CourseCreatorComponent } from './course/components/edit-course/course-creator/course-creator.component';
@@ -22,6 +22,8 @@ import { CourseEssentialsComponent } from './course/components/edit-course/cours
 import { AddAssignmentComponent } from './course/components/edit-course/assignment/add-assignment/add-assignment.component';
 import { AssignmentComponent } from './course/components/edit-course/assignment/assignment.component';
 import { CanEnterAddAssignment } from './core/guards/canEnterAddAssignment.guard';
+import { YourCoursesComponent } from './course/components/your-courses/your-courses.component';
+import { CoursesCreatedByYouComponent } from './course/components/courses-created-by-you/courses-created-by-you.component';
 
 export const routes: Routes = [
   {
@@ -57,10 +59,12 @@ export const routes: Routes = [
   {
     path: 'course-edit/:courseId',
     component: EditCourseComponent,
+    canMatch: [isAuthor],
     children: [
       { path: 'creator', component: CourseCreatorComponent },
       { path: 'essentials', component: CourseEssentialsComponent },
       { path: 'price', component: CoursePricingComponent },
+      { path: 'landing-page', component: CourseDetailComponent },
     ],
   },
   {
@@ -79,11 +83,23 @@ export const routes: Routes = [
   {
     path: 'user/edit',
     component: EditUserComponent,
+    canMatch: [isSignedIn],
     children: [
       { path: 'profile', component: EditUserProfileComponent },
       { path: 'profile-picture', component: EditUserPictureComponent },
       { path: 'privacy-settings', component: EditUserPrivacySettingsComponent },
     ],
+  },
+  {
+    path: 'user/:userId/courses',
+    component: YourCoursesComponent,
+    canMatch: [isSignedIn],
+  },
+  {
+    path: 'author/:authorId/courses',
+    component: CoursesCreatedByYouComponent,
+    canMatch: [hasRole],
+    data: { requiredRole: UserRole.Instructor },
   },
   {
     path: 'access-denied',

@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
 import { environment } from "../../../environments/environment";
-import { catchError, map, Observable, tap, throwError } from "rxjs";
+import { catchError, map, tap, throwError } from "rxjs";
 import { ToastHandlerService } from "../../core/services/toast-handler.service";
 import { AssetType, Section } from "../models/course-content.model";
 

@@ -17,7 +17,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         }
 
         public async Task<User?> GetById(Guid userId)
-            => await _users.FirstOrDefaultAsync(_ => _.Id == userId);
+            => await _users.FirstOrDefaultAsync(_ => _.Id == userId) ?? throw new UserNotFoundException(userId);
 
         public async Task Add(User user)
         {
@@ -47,6 +47,11 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             userToEdit.PrivacySettings = privacySettings;
 
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<User>> GetAll()
+        {
+            return await _users.ToListAsync();
         }
     }
 }

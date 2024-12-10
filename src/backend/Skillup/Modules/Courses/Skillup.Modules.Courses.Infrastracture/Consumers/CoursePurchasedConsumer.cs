@@ -1,5 +1,6 @@
 ﻿using MassTransit;
 using MediatR;
+using Skillup.Modules.Courses.Core.Requests.Commands.Users;
 using Skillup.Shared.Abstractions.Events.Finances;
 
 namespace Skillup.Modules.Courses.Infrastracture.Consumers
@@ -13,9 +14,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Consumers
             _mediator = mediator;
         }
 
-        public Task Consume(ConsumeContext<CoursePurchased> context)
+        public async Task Consume(ConsumeContext<CoursePurchased> context)
         {
-            throw new NotImplementedException();
+            await _mediator.Send(new AddUserPurchasedCourseRequest(context.Message.CourseId, context.Message.UserId));
         }
     }
 }

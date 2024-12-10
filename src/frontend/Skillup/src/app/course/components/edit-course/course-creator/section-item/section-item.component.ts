@@ -18,6 +18,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 })
 export class SectionItemComponent implements OnInit {
   section = input.required<Section>();
+  editable = input.required<boolean>();
   sectionTitle = signal('');
   sectionIsPublished = signal(false);
   onEditChange = output<boolean>();

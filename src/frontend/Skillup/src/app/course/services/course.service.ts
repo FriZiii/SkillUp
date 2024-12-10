@@ -56,6 +56,8 @@ export class CoursesService {
             {
               id: response.id,
               title: response.title,
+              authorId: response.authorId,
+              authorName:  response.authorName,
               isPublished: response.isPublished,
               category: {
                 id: response.category.id,
@@ -110,6 +112,16 @@ export class CoursesService {
     );
   }
 
+  getCourseByAuthorId(authorId: string){
+    return this.httpClient
+      .get<any>(environment.apiUrl + '/Courses/Author/' + authorId)
+      .pipe(
+        catchError((error) => {
+          return throwError(() => error);
+        })
+      );
+  }
+
   private fetchCourseById(courseId: string) {
     return this.httpClient
       .get<any>(environment.apiUrl + '/Courses/' + courseId)
@@ -141,6 +153,10 @@ export class CoursesService {
         (subcategory.toLowerCase() === 'all' ||
           course.category.subcategory.slug === subcategory)
     );
+  }
+
+  getCoursesByAuthor(authorId: string): CourseListItem[]{
+    return this.courses().filter((course) => course.authorId === authorId);
   }
 
 

@@ -7,6 +7,7 @@ namespace Skillup.Modules.Courses.Core.Interfaces
         Task Add(User user);
         Task Edit(User user);
         Task<User?> GetById(Guid userId);
+        Task<IEnumerable<User>> GetAll();
         Task EditUserPrivacySettings(Guid userId, PrivacySettings privacySettings);
     }
 }

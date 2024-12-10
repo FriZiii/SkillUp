@@ -102,6 +102,8 @@
                     <li>
                       <a
                         pRipple
+                        routerLinkActive="active-link"
+                        [routerLink]="'user/' + user()?.id + '/courses'"
                         class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
                       >
                         <i class="pi pi-graduation-cap mr-2"></i>
@@ -241,10 +243,12 @@
                     <li>
                       <a
                         pRipple
+                        routerLinkActive="active-link"
+                        [routerLink]="'author/' + user()?.id + '/courses'"
                         class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
                       >
                         <i class="pi pi-folder mr-2"></i>
-                        <span class="font-medium">Projects</span>
+                        <span class="font-medium">Courses created by you</span>
                       </a>
                     </li>
                     <li>

@@ -5,5 +5,6 @@ namespace Skillup.Modules.Courses.Core.Interfaces
     public interface IUserPurchasedCourseRepository
     {
         Task Add(UserPurchasedCourse userPurchasedCourse);
+        Task<IEnumerable<UserPurchasedCourse>> GetByUserId(Guid userId);
     }
 }

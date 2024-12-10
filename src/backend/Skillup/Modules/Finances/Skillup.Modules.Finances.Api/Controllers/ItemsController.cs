@@ -1,5 +1,4 @@
-﻿using MassTransit;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,16 +13,9 @@ namespace Skillup.Modules.Finances.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    internal class ItemsController : ControllerBase
+    internal class ItemsController(IMediator mediator) : ControllerBase
     {
-        private readonly IMediator _mediator;
-        private readonly IPublishEndpoint _publishEndpoint;
-
-        public ItemsController(IMediator mediator, IPublishEndpoint publishEndpoint)
-        {
-            _mediator = mediator;
-            _publishEndpoint = publishEndpoint;
-        }
+        private readonly IMediator _mediator = mediator;
 
         [HttpGet("{itemId}")]
         [SwaggerOperation("Get item by id")]

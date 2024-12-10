@@ -1,7 +1,10 @@
 <div class="w-full su-section-mt">
-  <div class="grid grid-cols-14 h-full">
-    <div class="col-span-2 col-start-1 sticky top-20 self-start">
-      <div class="flex flex-col su-border bg-white p-2 prose">
+  <div class="flex">
+    <div class="sticky top-20 self-start pr-10">
+      <div
+        class="flex flex-col su-border bg-white p-2 prose"
+        style="width: 170px"
+      >
         <div class="flex gap-2 items-center">
           <p class="my-0.5">Navigate</p>
         </div>
@@ -36,7 +39,7 @@
           <i class="pi pi-home" style="font-size: 1rem"></i>
           <p
             class="cursor-pointer my-0.5"
-            [routerLink]="'/course-edit/' + this.courseId() + '/price'"
+            [routerLink]="'/course-edit/' + this.courseId() + '/landing-page'"
           >
             Landing Page
           </p>
@@ -45,7 +48,7 @@
     </div>
 
     <!-- <button routerLink="creator">Navigate</button> -->
-    <div class="col-start-4 col-span-10">
+    <div class="w-full">
       <router-outlet></router-outlet>
     </div>
   </div>
