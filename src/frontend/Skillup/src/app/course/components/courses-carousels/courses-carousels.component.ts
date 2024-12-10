@@ -4,7 +4,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { CoursesService } from '../../services/course.service';
 import { CategoryService } from '../../services/category.service';
 import { CourseCarouselComponent } from './course-carousel/course-carousel.component';
-import { FinanceService } from '../../../finance/finance.service';
+import { FinanceService } from '../../../finance/services/finance.service';
 import { Category } from '../../models/category.model';
 import { CourseListItem } from '../../models/course.model';
 

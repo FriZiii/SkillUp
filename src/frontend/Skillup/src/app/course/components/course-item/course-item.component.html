@@ -6,13 +6,13 @@
     height: '26rem'
   }"
   class="prose cursor-pointer"
-  (click)="onClick()"
 >
   <ng-template pTemplate="header">
     <img
       alt="{{ course.title }}"
       class="w-full max-h-40"
       src="{{ course.thumbnailUrl }}"
+      (click)="navigate('detail')"
     />
   </ng-template>
   <ng-template pTemplate="title">
@@ -23,10 +23,30 @@
   <ng-template pTemplate="subtitle"> {{ course.authorName }} </ng-template>
 
   <div class="flex justify-between items-center">
-    <div>$ {{ course.price.amount }}</div>
+    <div>$ {{ course.price }}</div>
     <span>
       <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
-      <p-button icon="pi pi-shopping-cart" class="ml-2" />
+      @if(isAuthor()){
+      <p-button icon="pi pi-cog" class="ml-2" (onClick)="navigate('edit')" />
+      } @else if(isInCart()){
+      <p-button
+        icon="pi pi-shopping-cart"
+        class="ml-2"
+        (onClick)="navigate('cart')"
+      />
+      }@else if(isPurchased()){
+      <p-button
+        icon="pi pi-external-link"
+        class="ml-2"
+        (onClick)="navigate('detail')"
+      />
+      } @else{
+      <p-button
+        icon="pi pi-cart-arrow-down"
+        class="ml-2"
+        (onClick)="addToCart()"
+      />
+      }
     </span>
   </div>
 </p-card>

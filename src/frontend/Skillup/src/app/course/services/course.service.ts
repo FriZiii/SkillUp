@@ -15,15 +15,13 @@ import {
   tap,
   throwError,
 } from 'rxjs';
-import { ToastHandlerService } from '../../core/services/toast-handler.service';
-import { FinanceService } from '../../finance/finance.service';
+import { FinanceService } from '../../finance/services/finance.service';
 import { CourseLevel } from '../models/course-level.model';
 
 @Injectable({ providedIn: 'root' })
 export class CoursesService {
   //Services
   private financeService = inject(FinanceService);
-  private toastService = inject(ToastHandlerService);
 
   //Variables
   private httpClient = inject(HttpClient);
@@ -70,9 +68,7 @@ export class CoursesService {
                 },
               },
               thumbnailUrl: response.thumbnailUrl,
-              price: {
-                amount: 0,
-              },
+              price:  0,
             },
           ]);
         })
@@ -97,15 +93,13 @@ export class CoursesService {
       .subscribe();
   }
 
-  getCourseById(courseId: string): Observable<CourseDetail> {
+  getCourseDetailById(courseId: string): Observable<CourseDetail> {
     const item = this.courses().find((item) => item.id === courseId);
     return this.fetchCourseById(courseId).pipe(
       map((res) => {
         const courseWithPrice = {
           ...res,
-          price: {
-            amount: item?.price.amount ?? 0,
-          },
+          price:  item?.price ?? 0,
         };
         return courseWithPrice;
       })
@@ -136,10 +130,14 @@ export class CoursesService {
     const item = this.items().find((item) => item.id === course.id);
     return {
       ...course,
-      price: {
-        amount: item?.price.amount ?? 0,
-      },
+      price:  item?.price ?? 0,
     };
+  }
+
+  mapCourseItemToCourse(courseItem: CourseListItem): Course {
+    return {
+      ...courseItem
+    }
   }
 
   getCouresByCategoryId(categoryId: string): CourseListItem[] {
@@ -157,6 +155,10 @@ export class CoursesService {
 
   getCoursesByAuthor(authorId: string): CourseListItem[]{
     return this.courses().filter((course) => course.authorId === authorId);
+  }
+
+  getCourseById(id: string){
+    return this.courses().filter((course) => course.id === id);
   }
 
 

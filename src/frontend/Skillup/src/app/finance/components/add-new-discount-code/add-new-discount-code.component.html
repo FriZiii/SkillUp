@@ -1,0 +1,51 @@
+<div class="prose max-w-none !w-full">
+  <h1>Add new discount code</h1>
+  <form [formGroup]="discountCodeForm">
+    <div class="flex flex-col gap-4 w-128">
+      <p-select
+        [options]="types"
+        optionLabel="name"
+        optionValue="value"
+        placeholder="Select a type"
+        class="w-full"
+        formControlName="codeType"
+      />
+      <input
+        type="text"
+        pInputText
+        formControlName="code"
+        [ngClass]="{
+          'ng-invalid':
+            discountCodeForm.get('code')?.invalid &&
+            discountCodeForm.get('code')?.dirty
+        }"
+      />
+      <p-inputNumber
+        formControlName="discountValue"
+        [ngClass]="{
+          'ng-invalid':
+            discountCodeForm.get('discountValue')?.invalid &&
+            discountCodeForm.get('discountValue')?.dirty
+        }"
+      />
+      <div class="flex gap-4">
+        <p class="my-1">Applies to entire cart?</p>
+        <p-checkbox [binary]="true" formControlName="appliesToEntireCart" />
+      </div>
+      <div class="flex gap-4">
+        <p class="my-1">Is active?</p>
+        <p-checkbox [binary]="true" formControlName="isActive" />
+      </div>
+      <div class="flex gap-4">
+        <p class="my-1">Is public?</p>
+        <p-checkbox [binary]="true" formControlName="isPublic" />
+      </div>
+
+      <p-button
+        label="Add new code"
+        (onClick)="addNewDiscountCode($event)"
+        [disabled]="this.discountCodeForm.invalid"
+      ></p-button>
+    </div>
+  </form>
+</div>

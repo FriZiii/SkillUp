@@ -21,6 +21,9 @@ import { CoursePricingComponent } from './course/components/edit-course/course-p
 import { CourseEssentialsComponent } from './course/components/edit-course/course-essentials/course-essentials.component';
 import { YourCoursesComponent } from './course/components/your-courses/your-courses.component';
 import { CoursesCreatedByYouComponent } from './course/components/courses-created-by-you/courses-created-by-you.component';
+import { CartComponent } from './finance/components/cart/cart.component';
+import { OrderSummaryComponent } from './finance/components/order-summary/order-summary.component';
+import { BuyCurrencyComponent } from './finance/components/buy-currency/buy-currency.component';
 
 export const routes: Routes = [
   {
@@ -88,6 +91,18 @@ export const routes: Routes = [
     component: CoursesCreatedByYouComponent,
     canMatch: [hasRole],
     data: { requiredRole: UserRole.Instructor },
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+  },
+  {
+    path: 'order-summary',
+    component: OrderSummaryComponent,
+  },
+  {
+    path: 'buy-currency',
+    component: BuyCurrencyComponent,
   },
   {
     path: 'access-denied',

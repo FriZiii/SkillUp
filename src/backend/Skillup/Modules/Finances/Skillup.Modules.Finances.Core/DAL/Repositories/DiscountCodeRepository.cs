@@ -32,15 +32,21 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
 
         public async Task Update(DiscountCode discountCode)
         {
-            var discountCodeToEdit = await _discountCodes.FirstOrDefaultAsync(x => x.Id == discountCode.Id) ?? throw new Exception(); // TODO: Custom Ex
+            var discountCodeToEdit = await _discountCodes.Include(x => x.DiscountedItems)
+                .FirstOrDefaultAsync(x => x.Id == discountCode.Id) ?? throw new Exception(); // TODO: Custom Ex
 
+            if (!discountCodeToEdit.AppliesToEntireCart && discountCode.AppliesToEntireCart)
+            {
+                _discountedItems.RemoveRange(discountCodeToEdit.DiscountedItems);
+            }
+
+            discountCodeToEdit.Code = discountCode.Code;
             discountCodeToEdit.DiscountValue = discountCode.DiscountValue;
 
             discountCodeToEdit.IsActive = discountCode.IsActive;
             discountCodeToEdit.IsPublic = discountCode.IsPublic;
 
             discountCodeToEdit.DiscountValue = discountCode.DiscountValue;
-            discountCodeToEdit.Type = discountCode.Type;
 
             discountCodeToEdit.AppliesToEntireCart = discountCode.AppliesToEntireCart;
 
@@ -60,9 +66,11 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
                     .ThenInclude(x => x.Item)
                 .FirstOrDefaultAsync(x => x.Id == discountCodeId);
 
-        public Task<IEnumerable<DiscountCode>> GetByOwner(Guid ownerId)
+        public async Task<IEnumerable<DiscountCode>> GetByOwner(Guid ownerId)
         {
-            throw new NotImplementedException(); // TODO:
+            var codes = await _discountCodes.Include(x => x.DiscountedItems)
+                    .ThenInclude(x => x.Item).Where(c => c.OwnerId == ownerId).ToListAsync();
+            return codes;
         }
 
         public async Task<IEnumerable<DiscountCode>> GetPublic()
