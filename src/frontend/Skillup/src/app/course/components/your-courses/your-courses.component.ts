@@ -1,8 +1,8 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { Course } from '../../models/course.model';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { CourseItemShortComponent } from "../course-item-short/course-item-short.component";
 import { PurchasedItemsService } from '../../services/purchasedItems.service';
+import { CourseItemShortComponent } from '../displays/course-item-short/course-item-short.component';
 
 @Component({
   selector: 'app-your-courses',

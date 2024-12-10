@@ -1,14 +1,13 @@
 import { Component, computed, input } from '@angular/core';
-import { AssetType, Element } from '../../../models/course-content.model';
 import { DialogModule } from 'primeng/dialog';
-import { NgClass } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
-import { ElementContentDialogComponent } from "../../edit-course/course-creator/element-item/element-content-dialog/element-content-dialog.component";
+import { ElementContentDialogComponent } from '../../../edit-course/course-creator/element-item/element-content-dialog/element-content-dialog.component';
+import { AssetType, Element } from '../../../../models/course-content.model';
 
 @Component({
   selector: 'app-view-element-item',
   standalone: true,
-  imports: [DialogModule, NgClass, ButtonModule, ElementContentDialogComponent],
+  imports: [DialogModule, ButtonModule, ElementContentDialogComponent],
   templateUrl: './view-element-item.component.html',
   styleUrl: './view-element-item.component.css'
 })

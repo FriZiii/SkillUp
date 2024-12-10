@@ -3,13 +3,10 @@ import { SignUpComponent } from './auth/components/sign-up/sign-up.component';
 import { SignInComponent } from './auth/components/sign-in/sign-in.component';
 import { AddCourseComponent } from './course/components/add-course/add-course.component';
 import { HeroComponent } from './core/components/hero/hero.component';
-import { CoursesListComponent } from './course/components/courses-list/courses-list.component';
 import { EditUserComponent } from './user/components/edit-user/edit-user.component';
 import { EditUserProfileComponent } from './user/components/edit-user/edit-user-profile/edit-user-profile.component';
 import { EditUserPictureComponent } from './user/components/edit-user/edit-user-picture/edit-user-picture.component';
 import { EditUserPrivacySettingsComponent } from './user/components/edit-user/edit-user-privacy-settings/edit-user-privacy-settings.component';
-import { CoursesCarouselsComponent } from './course/components/courses-carousels/courses-carousels.component';
-import { CourseDetailComponent } from './course/components/course-detail/course-detail.component';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { AccessDeniedComponent } from './core/components/access-denied/access-denied.component';
 import { UserRole } from './user/models/user-role.model';
@@ -24,6 +21,10 @@ import { CoursesCreatedByYouComponent } from './course/components/courses-create
 import { CartComponent } from './finance/components/cart/cart.component';
 import { OrderSummaryComponent } from './finance/components/order-summary/order-summary.component';
 import { BuyCurrencyComponent } from './finance/components/buy-currency/buy-currency.component';
+import { CourseReviewsComponent } from './course/components/reviews/course-reviews/course-reviews.component';
+import { CoursesCarouselsComponent } from './course/components/displays/courses-carousels/courses-carousels.component';
+import { CoursesListComponent } from './course/components/displays/courses-list/courses-list.component';
+import { CourseDetailComponent } from './course/components/displays/course-detail/course-detail.component';
 
 export const routes: Routes = [
   {
@@ -103,6 +104,12 @@ export const routes: Routes = [
   {
     path: 'buy-currency',
     component: BuyCurrencyComponent,
+  },
+  {
+    path: 'reviews',
+    component: CourseReviewsComponent,
+    canMatch: [hasRole],
+    data: { requiredRole: UserRole.Moderator },
   },
   {
     path: 'access-denied',

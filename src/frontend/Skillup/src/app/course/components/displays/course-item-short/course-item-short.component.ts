@@ -1,8 +1,9 @@
 import { Component, input } from '@angular/core';
-import { Course } from '../../models/course.model';
+
 import { ButtonModule } from 'primeng/button';
 import { RouterLink } from '@angular/router';
-import { TruncatePipe } from "../../../utils/pipes/truncate.pipe";
+import { Course } from '../../../models/course.model';
+import { TruncatePipe } from '../../../../utils/pipes/truncate.pipe';
 
 @Component({
   selector: 'app-course-item-short',

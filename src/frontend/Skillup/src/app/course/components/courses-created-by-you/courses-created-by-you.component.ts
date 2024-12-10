@@ -1,13 +1,12 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { CoursesService } from '../../services/course.service';
 import { Course } from '../../models/course.model';
-import { CourseItemShortComponent } from "../course-item-short/course-item-short.component";
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { AddNewDiscountCodeComponent } from "../../../finance/components/add-new-discount-code/add-new-discount-code.component";
 import { DiscountCodeService } from '../../../finance/services/discountCode.service';
 import { DiscountCode } from '../../../finance/models/discountCodes.model';
 import { DiscountCodeItemComponent } from '../../../finance/components/discount-code-item/discount-code-item.component';
-import { subscribeOn } from 'rxjs';
+import { CourseItemShortComponent } from '../displays/course-item-short/course-item-short.component';
 
 @Component({
   selector: 'app-courses-created-by-you',

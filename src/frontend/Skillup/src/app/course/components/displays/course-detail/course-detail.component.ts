@@ -1,17 +1,18 @@
 import { Component, computed, ElementRef, inject, input, OnChanges, OnInit, Renderer2, signal, SimpleChanges, ViewChild } from '@angular/core';
-import { CoursesService } from '../../services/course.service';
-import { CourseDetail } from '../../models/course.model';
-import { FinanceService } from '../../../finance/services/finance.service';
-import { User, UserDetail } from '../../../user/models/user.model';
-import { UserService } from '../../../user/services/user.service';
-import { CourseContentService } from '../../services/course-content.service';
-import { AccordionModule } from 'primeng/accordion';
-import { SectionItemComponent } from "../edit-course/course-creator/section-item/section-item.component";
+
 import { ViewElementItemComponent } from "./view-element-item/view-element-item.component";
 import { Router } from '@angular/router';
 import { CourseItemComponent } from "../course-item/course-item.component";
 import { Rating, RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
+import { CourseDetail } from '../../../models/course.model';
+import { SectionItemComponent } from '../../edit-course/course-creator/section-item/section-item.component';
+import { AccordionModule } from 'primeng/accordion';
+import { UserDetail } from '../../../../user/models/user.model';
+import { CoursesService } from '../../../services/course.service';
+import { FinanceService } from '../../../../finance/services/finance.service';
+import { UserService } from '../../../../user/services/user.service';
+import { CourseContentService } from '../../../services/course-content.service';
 
 @Component({
   selector: 'app-course-detail',

@@ -1,15 +1,15 @@
 import { Component, inject, Input, input, OnInit } from '@angular/core';
-import { Course, CourseListItem } from '../../models/course.model';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
-import { TruncatePipe } from "../../../utils/pipes/truncate.pipe";
+import { TruncatePipe } from '../../../../utils/pipes/truncate.pipe';
+import { CourseListItem } from '../../../models/course.model';
 import { Router } from '@angular/router';
-import { CartService } from '../../../finance/services/cart.service';
-import { CoursesService } from '../../services/course.service';
-import { PurchasedItemsService } from '../../services/purchasedItems.service';
-import { UserService } from '../../../user/services/user.service';
-import { UserRole } from '../../../user/models/user-role.model';
+import { CartService } from '../../../../finance/services/cart.service';
+import { CoursesService } from '../../../services/course.service';
+import { PurchasedItemsService } from '../../../services/purchasedItems.service';
+import { UserService } from '../../../../user/services/user.service';
+import { UserRole } from '../../../../user/models/user-role.model';
 
 @Component({
   selector: 'app-course-item',
