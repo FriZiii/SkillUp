@@ -32,6 +32,13 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
                     Price = item.Price
                 }
              );
+
+            var updatedCart = await _cartRepository.GetCart((Guid)request.CartId);
+            if (updatedCart != null && updatedCart.DiscountCode != null)
+            {
+                updatedCart.ApplyDiscountCode(updatedCart.DiscountCode);
+                await _cartRepository.Update(updatedCart);
+            }
         }
     }
 }
