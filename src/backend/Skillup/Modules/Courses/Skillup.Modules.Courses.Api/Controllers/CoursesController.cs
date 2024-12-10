@@ -42,7 +42,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [SwaggerOperation("Get courses")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetAll([FromQuery] CourseStatus status)
+        public async Task<IActionResult> GetAll([FromQuery] CourseStatus? status)
         {
             var courses = await _mediator.Send(new GetCoursesRequest(status));
             return Ok(courses);

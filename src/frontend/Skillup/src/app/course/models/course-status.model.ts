@@ -1,7 +1,7 @@
 export enum CourseStatus{
-    Draft,
-    SubmitedForReview,
-    PendingReview,
-    ChangesRequired,
-    Published
+    Draft = 'Draft',
+    SubmitedForReview = 'SubmitedForReview',
+    PendingReview = 'PendingReview',
+    ChangesRequired = 'ChangesRequired',
+    Published = 'Published'
 }

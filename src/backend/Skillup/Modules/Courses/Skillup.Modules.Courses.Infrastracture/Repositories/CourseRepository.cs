@@ -28,12 +28,25 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Course>> GetByStatus(CourseStatus status)
-        => await _courses
-                .Where(c => c.Status == status)
+        public async Task<IEnumerable<Course>> GetByStatus(CourseStatus? status)
+        {
+            if (status == null)
+            {
+                return await _courses
                 .Include(c => c.Category)
                 .Include(c => c.Subcategory)
                 .ToListAsync();
+            }
+            else
+            {
+                return await _courses
+                    .Where(c => c.Status == status)
+                    .Include(c => c.Category)
+                    .Include(c => c.Subcategory)
+                    .ToListAsync();
+            }
+        }
+
 
         public async Task<Course?> GetById(Guid id)
             => await _courses

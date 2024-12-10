@@ -25,6 +25,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Review
             };
             await _courseReviewRepository.Add(review);
 
+
             await _mediator.Send(new EditCourseStatusRequest(request.CourseId, CourseStatus.PendingReview));
             return review;
         }
