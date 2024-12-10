@@ -22,7 +22,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
         }
         public async Task Seed()
         {
-            if (!await _context.QuestionAnswerExercises.AnyAsync() && !await _context.QuizQuestionExercises.AnyAsync() && !await _context.QuizAnswer.AnyAsync())
+            if (!await _context.QuestionAnswerExercises.AnyAsync() && !await _context.QuizQuestionExercises.AnyAsync() && !await _context.QuizAnswers.AnyAsync())
             {
                 var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
 
@@ -30,38 +30,12 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                 data = JsonSerializer.Deserialize<List<QuizJsonModel>>(jsonString, _jsonSerializerOptions);
 
                 _assignmentList = await _assignments.Include(a => a.Element).ToListAsync();
-                //await _context.QuestionAnswerExercises.AddRangeAsync(CreateQuestions());
                 await _context.QuizQuestionExercises.AddRangeAsync(CreateQuizes(data!));
                 await _context.SaveChangesAsync();
                 _quizQuestionsList = await _context.QuizQuestionExercises.ToListAsync();
-                await _context.QuizAnswer.AddRangeAsync(CreateQuizAnswers(data!));
+                await _context.QuizAnswers.AddRangeAsync(CreateQuizAnswers(data!));
                 await _context.SaveChangesAsync();
             }
-        }
-
-        //private IEnumerable<QuestionAnswer> CreateQuestions()
-        //{
-        //    var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
-
-        //    var jsonString = File.ReadAllText(Path.Combine(path, "question-seeder-data.json"));
-        //    JsonSerializerOptions options = new()
-        //    {
-        //        PropertyNameCaseInsensitive = true
-        //    };
-
-        //    var data = JsonSerializer.Deserialize<List<QuestionJsonModel>>(jsonString, options);
-
-        //    return data!.Select(CreateQuestionFromJson);
-        //}
-
-        private QuestionAnswer CreateQuestionFromJson(QuestionJsonModel jsonModel)
-        {
-            return new QuestionAnswer()
-            {
-                AssignmentId = _assignmentList.First(a => a.Element.Title == jsonModel.ElementTitle).Id,
-                Question = jsonModel.Question,
-                CorrectAnswer = jsonModel.CorrectAnswer
-            };
         }
 
         private IEnumerable<QuizQuestion> CreateQuizes(List<QuizJsonModel> data)
@@ -89,7 +63,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                     answers.Add(new QuizAnswer()
                     {
                         Answer = answer.Answer,
-                        isCorrectAnswer = answer.IsCorrect,
+                        IsCorrectAnswer = answer.IsCorrect,
                         QuestionId = _quizQuestionsList.First(x => x.Question == question.Question).Id,
                     });
                 }

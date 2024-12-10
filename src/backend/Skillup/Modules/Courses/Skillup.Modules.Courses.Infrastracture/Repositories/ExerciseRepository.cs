@@ -17,7 +17,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             _context = context;
             _questions = context.QuestionAnswerExercises;
             _quizQuestions = context.QuizQuestionExercises;
-            _quizAnswers = context.QuizAnswer;
+            _quizAnswers = context.QuizAnswers;
         }
         public async Task AddQuestionAnswer(QuestionAnswer questionAnswer)
         {
@@ -28,12 +28,6 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         public async Task AddQuiz(QuizQuestion quizQuestion)
         {
             _quizQuestions.Add(quizQuestion);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task AddQuizAnswer(QuizAnswer quizAnswer)
-        {
-            _quizAnswers.Add(quizAnswer);
             await _context.SaveChangesAsync();
         }
 

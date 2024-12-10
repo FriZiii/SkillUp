@@ -16,8 +16,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries.Assets
             var assignment = await _assetsRepository.GetByElementId(request.ElementId) as Assignment ?? throw new Exception(); // TODO: custom ex
             var mapper = new AssignmentMapper();
 
-            var nowa = mapper.AssignmentToAssignmentDto(assignment);
-            return nowa;
+            return mapper.AssignmentToAssignmentDto(assignment);
         }
     }
 }

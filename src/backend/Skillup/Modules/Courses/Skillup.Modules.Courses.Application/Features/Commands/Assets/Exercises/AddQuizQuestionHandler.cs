@@ -22,19 +22,14 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Assets.Exercises
             var exercise = new QuizQuestion()
             {
                 AssignmentId = request.AssignmentId,
-                Question = request.Question
+                Question = request.Question,
+                Answers = request.Answers.Select((answer, index) => new QuizAnswer
+                {
+                    Answer = answer,
+                    IsCorrectAnswer = request.Correct[index],
+                }).ToList()
             };
             await _exerciseRepository.AddQuiz(exercise);
-
-            for (var i = 0; i < request.Answers.Count(); i++)
-            {
-                await _exerciseRepository.AddQuizAnswer(new QuizAnswer()
-                {
-                    QuestionId = exercise.Id,
-                    Answer = request.Answers[i],
-                    isCorrectAnswer = request.Correct[i],
-                });
-            }
 
             var quiz = (await _exerciseRepository.GetQuizzes(request.AssignmentId)).FirstOrDefault(q => q.Id == exercise.Id);
             var mapper = new ExerciseMapper();

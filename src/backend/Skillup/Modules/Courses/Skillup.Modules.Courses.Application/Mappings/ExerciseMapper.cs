@@ -38,7 +38,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
                 Id = quizAnswer.Id,
                 QuizId = quizAnswer.QuestionId,
                 Answer = quizAnswer.Answer,
-                IsCorrect = quizAnswer.isCorrectAnswer,
+                IsCorrect = quizAnswer.IsCorrectAnswer,
             };
             return quizAnswerDto;
         }
