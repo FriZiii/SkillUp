@@ -16,7 +16,7 @@
       <app-element-item-display
         [element]="element"
         [moderator]="true"
-        (onComment)="addComment($event)"
+        [courseId]="courseId()"
       ></app-element-item-display>
       }
     </p-accordion-content>

@@ -5,22 +5,24 @@ import { CourseReviewService } from '../../../services/course-review.service';
 import { SectionItemComponent } from "../../edit-course/course-creator/section-item/section-item.component";
 import { AccordionModule } from 'primeng/accordion';
 import { CourseContentService } from '../../../services/course-content.service';
-import { ElementListComponent } from "../../edit-course/course-creator/element-list/element-list.component";
 import { ElementItemDisplayComponent } from "../../element-item-display/element-item-display.component";
-import { Review } from '../../../models/review.model';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-course-review',
   standalone: true,
-  imports: [SectionItemComponent, AccordionModule, ElementItemDisplayComponent],
+  imports: [SectionItemComponent, AccordionModule, ElementItemDisplayComponent, DialogModule, ButtonModule],
   templateUrl: './course-review.component.html',
   styleUrl: './course-review.component.css'
 })
 export class CourseReviewComponent implements OnInit {
+  //Variables
   courseId = input.required<string>();
   course = signal<CourseDetail | null>(null);
   sections = computed(() => this.courseContentService.sections());
-  review = signal<Review | null>(null);
+  commentDialogVisible=false;
+  currentElementId = '';
 
   //Services
   courseService = inject(CoursesService);
@@ -34,13 +36,14 @@ export class CourseReviewComponent implements OnInit {
         this.course.set(res);
       }
     )
+    this.reviewService.getReviewsByCourse(this.courseId()).subscribe(
+      (res) => {
+        this.reviewService.allReviewsForCourse.set(res);
+      }
+    );
     this.reviewService.getLatestReviewByCourse(this.courseId()).subscribe(
-      (res) => this.review.set(res)
-    )
-  }
-
-  addComment(elementId: string){
-    console.log(elementId);
-    this.reviewService.addComment(this.review()!.id, elementId, 'Komentarz').subscribe();
+      (res) => {
+        this.reviewService.latestReviewForCourse.set(res);
+      });
   }
 }

@@ -9,7 +9,8 @@ export interface Review{
 
 export interface ReviewComment{
     id: string;
-    elementId: string;
+    courseElementId: string;
+    comment: string;
     isResolved: boolean;
     createdAt: Date;
 }

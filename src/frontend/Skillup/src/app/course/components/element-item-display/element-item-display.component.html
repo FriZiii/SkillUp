@@ -90,3 +90,26 @@
     />
   </div>
 </p-dialog>
+
+<!-- Comment Dialog -->
+<p-dialog
+  header="Comments"
+  [modal]="true"
+  [(visible)]="commentDialogVisible"
+  [style]="{ width: '80%' }"
+  [draggable]="false"
+  class="cursor-default"
+>
+  <app-review-comments
+    [elementId]="element().id"
+    [courseId]="courseId()"
+  ></app-review-comments>
+
+  <div class="flex gap-2 justify-end">
+    <p-button
+      label="Cancel"
+      severity="secondary"
+      (click)="commentDialogVisible = false"
+    />
+  </div>
+</p-dialog>

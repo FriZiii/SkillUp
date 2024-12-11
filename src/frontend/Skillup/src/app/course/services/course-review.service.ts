@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
+import { inject, Injectable, signal } from "@angular/core";
 import { CourseDetail } from "../models/course.model";
 import { environment } from "../../../environments/environment";
 import { tap } from "rxjs";
@@ -11,6 +11,8 @@ import { Review, ReviewStatus } from "../models/review.model";
 export class CourseReviewService {
     private httpClient = inject(HttpClient);
     private courseService = inject(CoursesService);
+    public allReviewsForCourse = signal<Review[] | null>(null);
+    public latestReviewForCourse = signal<Review | null>(null);
 
     public submitToReview(courseId: string){
         return this.httpClient.patch<CourseDetail>(
@@ -41,5 +43,9 @@ export class CourseReviewService {
 
     public addComment(reviewId: string, elementId: string, comment: string){
         return this.httpClient.post<Review>(environment.apiUrl + '/Courses/Review/' + reviewId + '/Comments?elementId=' + elementId + '&comment=' + comment, {});
+    }
+
+    public deleteComment(commentId: string){
+        return this.httpClient.delete(environment.apiUrl + '/Courses/Review/Comments/' + commentId);
     }
 }

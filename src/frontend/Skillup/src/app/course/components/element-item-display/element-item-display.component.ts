@@ -1,4 +1,4 @@
-import { Component, input, OnInit, output, signal } from '@angular/core';
+import { Component, inject, input, OnInit, output, signal } from '@angular/core';
 import { AssetType, Element } from '../../models/course-content.model';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
@@ -6,23 +6,24 @@ import { MenuItem } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { ElementContentDialogComponent } from "../edit-course/course-creator/element-item/element-content-dialog/element-content-dialog.component";
 import { ElementAttachmentsDialogComponent } from "../edit-course/course-creator/element-item/element-attachments-dialog/element-attachments-dialog.component";
+import { ReviewCommentsComponent } from "../reviews/course-review/review-comments/review-comments.component";
+import { CourseReviewService } from '../../services/course-review.service';
+import { Review } from '../../models/review.model';
 
 @Component({
   selector: 'app-element-item-display',
   standalone: true,
-  imports: [ButtonModule, MenuModule, DialogModule, ElementContentDialogComponent, ElementAttachmentsDialogComponent],
+  imports: [ButtonModule, MenuModule, DialogModule, ElementContentDialogComponent, ElementAttachmentsDialogComponent, ReviewCommentsComponent],
   templateUrl: './element-item-display.component.html',
   styleUrl: './element-item-display.component.css'
 })
 export class ElementItemDisplayComponent implements OnInit {
+  courseId = input.required<string>();
   element = input.required<Element>();
   moderator = input<boolean>(false);
-  onComment = output<string>();
 
   items: MenuItem[] = [];
   contentIcon = signal('');
-
-
 
   ngOnInit(): void {
     if(this.element().hasAsset){
@@ -89,7 +90,9 @@ export class ElementItemDisplayComponent implements OnInit {
       }
     }
 
+    
+  commentDialogVisible=false;
     addComment(){
-      this.onComment.emit(this.element().id);
+      this.commentDialogVisible=true;
     }
 }
