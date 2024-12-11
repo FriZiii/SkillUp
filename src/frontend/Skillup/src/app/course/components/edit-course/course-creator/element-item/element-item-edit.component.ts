@@ -20,13 +20,13 @@ import { SelectButton } from 'primeng/selectbutton';
 import { ElementAttachmentsDialogComponent } from "./element-attachments-dialog/element-attachments-dialog.component";
 
 @Component({
-  selector: 'app-element-item',
+  selector: 'app-element-item-edit',
   standalone: true,
   imports: [CardModule, ButtonModule, FormsModule, InputTextModule, NgClass, InputTextareaModule, FloatLabelModule, DragDropModule, MenuModule, DialogModule, ElementContentDialogComponent, SelectButton, ElementAttachmentsDialogComponent],
-  templateUrl: './element-item.component.html',
-  styleUrl: './element-item.component.css'
+  templateUrl: './element-item-edit.component.html',
+  styleUrl: './element-item-edit.component.css'
 })
-export class ElementItemComponent implements OnInit {
+export class ElementItemEditComponent implements OnInit {
   //Variable
   section = input.required<Section>();
   element = input.required<Element>();

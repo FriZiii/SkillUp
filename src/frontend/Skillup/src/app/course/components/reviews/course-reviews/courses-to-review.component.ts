@@ -4,29 +4,38 @@ import { CourseStatus } from '../../../models/course-status.model';
 import { CourseItemShortComponent } from "../../displays/course-item-short/course-item-short.component";
 import { ButtonModule } from 'primeng/button';
 import { CourseReviewService } from '../../../services/course-review.service';
+import { TabsModule } from 'primeng/tabs';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-course-reviews',
+  selector: 'app-courses-to-review',
   standalone: true,
-  imports: [CourseItemShortComponent, ButtonModule],
-  templateUrl: './course-reviews.component.html',
-  styleUrl: './course-reviews.component.css'
+  imports: [CourseItemShortComponent, ButtonModule, TabsModule],
+  templateUrl: './courses-to-review.component.html',
+  styleUrl: './courses-to-review.component.css'
 })
-export class CourseReviewsComponent {
+export class CoursesToReviewComponent {
   //Services
   courseService = inject(CoursesService);
   courseReviewService = inject(CourseReviewService)
+  router = inject(Router);
 
   coursesWaitingForReview = computed(() => this.courseService.courses().filter(c => c.status === CourseStatus.SubmitedForReview)
   .map((course) => this.courseService.mapCourseItemToCourse(course)));
 
-  click(){
-    console.log(this.courseService.courses().find(c => c.id === '06ab3291-5b7c-4894-916d-e00d259fd0d4'));
-    console.log(this.courseService.courses().find(c => c.id === '0818c1a5-d6da-4072-9108-8773d25f2c61'));
-    console.log(this.courseService.courses());
-  }
+  coursesWithStartedReviews = computed(() => this.courseService.courses().filter(c => c.status === CourseStatus.PendingReview)
+  .map((course) => this.courseService.mapCourseItemToCourse(course)));
+
 
   startReview(courseId: string){
-    this.courseReviewService.startReview(courseId).subscribe();
+    this.courseReviewService.startReview(courseId).subscribe(
+      (res) => {
+        this.toReview(courseId);
+      }
+    );
+  }
+
+  toReview(courseId: string){
+    this.router.navigate(['/course/', courseId, 'review']);
   }
 }

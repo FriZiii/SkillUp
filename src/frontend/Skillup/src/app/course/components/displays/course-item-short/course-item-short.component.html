@@ -18,5 +18,11 @@
     [routerLink]="'/course-edit/' + course().id + '/essentials'"
     class="-mt-5 -mr-5 cursor-pointer"
   ></p-button>
+  } @if(moderator()){
+  <p-button
+    icon="pi pi-arrow-right"
+    class="cursor-pointer"
+    (onClick)="review(course().id)"
+  ></p-button>
   }
 </div>

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 import { ButtonModule } from 'primeng/button';
 import { RouterLink } from '@angular/router';
@@ -15,4 +15,10 @@ import { TruncatePipe } from '../../../../utils/pipes/truncate.pipe';
 export class CourseItemShortComponent {
   course = input.required<Course>();
   editable = input<boolean>(false);
+  moderator = input<boolean>(false);
+  onReview = output<string>();
+
+  review(courseId: string){
+    this.onReview.emit(courseId);
+  }
 }

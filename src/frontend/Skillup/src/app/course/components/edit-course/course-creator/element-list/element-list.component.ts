@@ -1,13 +1,13 @@
 import { CdkDrag, CdkDragDrop, CdkDragPlaceholder, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, computed, inject, input } from '@angular/core';
 import { Section } from '../../../../models/course-content.model';
-import { ElementItemComponent } from "../element-item/element-item.component";
+import { ElementItemEditComponent } from "../element-item/element-item-edit.component";
 import { CourseContentService } from '../../../../services/course-content.service';
 
 @Component({
   selector: 'app-element-list',
   standalone: true,
-  imports: [CdkDropList, CdkDrag, CdkDragPlaceholder, ElementItemComponent],
+  imports: [CdkDropList, CdkDrag, CdkDragPlaceholder, ElementItemEditComponent],
   templateUrl: './element-list.component.html',
   styleUrl: './element-list.component.css'
 })

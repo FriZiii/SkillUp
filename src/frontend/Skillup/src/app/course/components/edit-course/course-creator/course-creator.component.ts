@@ -9,14 +9,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { FormsModule } from '@angular/forms';
 import { HiddenFormWrapperComponent } from '../../../../core/components/hidden-form-wrapper/hidden-form-wrapper.component';
-import { ElementItemComponent } from "./element-item/element-item.component";
 import { AddNewElementComponent } from "./element-item/add-new-element/add-new-element.component";
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, DragDropModule, CdkDragEnter, CdkDragExit} from '@angular/cdk/drag-drop';
 import { SectionItemComponent } from "./section-item/section-item.component";
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationDialogHandlerService } from '../../../../core/services/confirmation-handler.service';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ElementListComponent } from "./element-list/element-list.component";
 import { CourseReviewService } from '../../../services/course-review.service';
 

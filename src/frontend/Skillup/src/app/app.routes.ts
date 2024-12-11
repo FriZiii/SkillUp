@@ -21,10 +21,11 @@ import { CoursesCreatedByYouComponent } from './course/components/courses-create
 import { CartComponent } from './finance/components/cart/cart.component';
 import { OrderSummaryComponent } from './finance/components/order-summary/order-summary.component';
 import { BuyCurrencyComponent } from './finance/components/buy-currency/buy-currency.component';
-import { CourseReviewsComponent } from './course/components/reviews/course-reviews/course-reviews.component';
+import { CoursesToReviewComponent } from './course/components/reviews/course-reviews/courses-to-review.component';
 import { CoursesCarouselsComponent } from './course/components/displays/courses-carousels/courses-carousels.component';
 import { CoursesListComponent } from './course/components/displays/courses-list/courses-list.component';
 import { CourseDetailComponent } from './course/components/displays/course-detail/course-detail.component';
+import { CourseReviewComponent } from './course/components/reviews/course-review/course-review.component';
 
 export const routes: Routes = [
   {
@@ -107,7 +108,13 @@ export const routes: Routes = [
   },
   {
     path: 'reviews',
-    component: CourseReviewsComponent,
+    component: CoursesToReviewComponent,
+    canMatch: [hasRole],
+    data: { requiredRole: UserRole.Moderator },
+  },
+  {
+    path: 'course/:courseId/review',
+    component: CourseReviewComponent,
     canMatch: [hasRole],
     data: { requiredRole: UserRole.Moderator },
   },

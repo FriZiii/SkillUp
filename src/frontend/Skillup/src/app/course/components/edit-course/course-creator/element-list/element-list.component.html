@@ -1,7 +1,7 @@
 <div cdkDropList class="drag-list" (cdkDropListDropped)="dropElement($event)">
   @for (element of elements(); track element.id) {
 
-  <app-element-item
+  <app-element-item-edit
     [section]="passSection()"
     [element]="element"
     (isDraggable)="changeElementEditMode($event)"
@@ -9,7 +9,7 @@
     class="drag-box"
     cdkDrag
     ><div class="drag-placeholder" *cdkDragPlaceholder></div
-  ></app-element-item>
+  ></app-element-item-edit>
 
   }
 </div>

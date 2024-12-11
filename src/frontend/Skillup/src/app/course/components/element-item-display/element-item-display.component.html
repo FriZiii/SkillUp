@@ -1,0 +1,92 @@
+<div class="su-border-y p-2 ml-14 my-2 bg-white element-item">
+  <div class="flex w-full items-start">
+    <i
+      [class]="definedIcon(element().type)"
+      style="font-size: 1rem"
+      class="mt-1"
+    ></i>
+
+    <div class="w-full px-4 prose">
+      <div class="flex items-baseline gap-2 cursor-default">
+        <h4 class="b-0 mt-0">{{ element().title }}</h4>
+        @if(this.element().isFree === true){
+        <i
+          class="pi pi-lock-open"
+          style="font-size: 1rem"
+          pTooltip="This element is visible before buying"
+          tooltipPosition="right"
+        ></i>
+        } @if(this.element().hasAsset === false){
+        <i
+          class="pi pi-exclamation-triangle"
+          style="font-size: 1rem; color: red"
+          pTooltip="This element does not have any content"
+          tooltipPosition="right"
+        ></i>
+        }
+      </div>
+
+      <p class="mt-1">{{ element().description }}</p>
+    </div>
+
+    <!-- Button Container -->
+    <div
+      class="flex justify-end w-full gap-2 px-2 button-container self-center"
+    >
+      <p-menu #menu [model]="items" [popup]="true" />
+      <p-button
+        (click)="menu.toggle($event)"
+        icon="pi pi-ellipsis-h"
+        severity="secondary"
+      />
+      @if(moderator()){
+      <p-button (click)="addComment()" icon="pi pi-plus" />
+      }
+    </div>
+  </div>
+</div>
+
+<!-- Content Dialog -->
+<p-dialog
+  header="Element's Content"
+  [modal]="true"
+  [(visible)]="contentDialogVisible"
+  [style]="{ width: '80%' }"
+  [draggable]="false"
+  class="cursor-default"
+>
+  <app-element-content-dialog
+    [element]="element()"
+    [visible]="contentDialogVisible"
+  ></app-element-content-dialog>
+  <div class="flex gap-2">
+    <!-- [ngClass]="this.element().hasAsset ? 'justify-between' : 'justify-end'" -->
+
+    <p-button
+      label="Cancel"
+      severity="secondary"
+      (click)="contentDialogVisible = false"
+    />
+  </div>
+</p-dialog>
+
+<!-- Attachements dialog -->
+<p-dialog
+  header="Element's Attachements"
+  [modal]="true"
+  [(visible)]="attachmentsDialogVisible"
+  [style]="{ width: '80%' }"
+  [draggable]="false"
+  class="cursor-default"
+>
+  <app-element-attachments-dialog
+    [element]="this.element()"
+  ></app-element-attachments-dialog>
+  <div class="flex gap-2 justify-end">
+    <p-button
+      label="Cancel"
+      severity="secondary"
+      (click)="attachmentsDialogVisible = false"
+    />
+  </div>
+</p-dialog>

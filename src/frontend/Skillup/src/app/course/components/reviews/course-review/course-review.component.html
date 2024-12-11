@@ -1,0 +1,25 @@
+<div class="prose max-w-none !w-full su-section-mt mb-8">
+  <h1>{{ course()?.title }}</h1>
+</div>
+<p-accordion [value]="0">
+  @for (section of sections(); track section.id) {
+  <p-accordion-panel [value]="section.id">
+    <p-accordion-header>
+      <app-section-item
+        [section]="section"
+        [editable]="false"
+        class="w-full"
+      ></app-section-item>
+    </p-accordion-header>
+    <p-accordion-content>
+      @for(element of section.elements; track element.id){
+      <app-element-item-display
+        [element]="element"
+        [moderator]="true"
+        (onComment)="addComment($event)"
+      ></app-element-item-display>
+      }
+    </p-accordion-content>
+  </p-accordion-panel>
+  }
+</p-accordion>

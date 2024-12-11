@@ -30,4 +30,16 @@ export class CourseReviewService {
     public startReview(courseId: string){
         return this.httpClient.post<Review>(environment.apiUrl + '/Courses/' + courseId + '/Reviews', {});
     }
+
+    public getReviewsByCourse(courseId: string){
+        return this.httpClient.get<Review[]>(environment.apiUrl + '/Courses/' + courseId + '/Reviews');
+    }
+
+    public getLatestReviewByCourse(courseId: string){
+        return this.httpClient.get<Review>(environment.apiUrl + '/Courses/' + courseId + '/Reviews/Latest');
+    }
+
+    public addComment(reviewId: string, elementId: string, comment: string){
+        return this.httpClient.post<Review>(environment.apiUrl + '/Courses/Review/' + reviewId + '/Comments?elementId=' + elementId + '&comment=' + comment, {});
+    }
 }
