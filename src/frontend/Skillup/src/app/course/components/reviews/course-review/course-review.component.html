@@ -75,26 +75,35 @@
       </div>
     </div>
   </div>
+  <p-accordion [value]="0">
+    @for (section of sections(); track section.id) {
+    <p-accordion-panel [value]="section.id">
+      <p-accordion-header>
+        <app-section-item
+          [section]="section"
+          [editable]="false"
+          class="w-full"
+        ></app-section-item>
+      </p-accordion-header>
+      <p-accordion-content>
+        @for(element of section.elements; track element.id){
+        <app-element-item-display
+          [element]="element"
+          [moderator]="true"
+          [courseId]="courseId()"
+        ></app-element-item-display>
+        }
+      </p-accordion-content>
+    </p-accordion-panel>
+    }
+  </p-accordion>
+
+  <p-button
+    label="Request changes"
+    (onClick)="finalizeReview(ReviewStatus.FinalizedWithRequiredChanges)"
+  />
+  <p-button
+    label="Approve and submit"
+    (onClick)="finalizeReview(ReviewStatus.Finalized)"
+  />
 </div>
-<p-accordion [value]="0">
-  @for (section of sections(); track section.id) {
-  <p-accordion-panel [value]="section.id">
-    <p-accordion-header>
-      <app-section-item
-        [section]="section"
-        [editable]="false"
-        class="w-full"
-      ></app-section-item>
-    </p-accordion-header>
-    <p-accordion-content>
-      @for(element of section.elements; track element.id){
-      <app-element-item-display
-        [element]="element"
-        [moderator]="true"
-        [courseId]="courseId()"
-      ></app-element-item-display>
-      }
-    </p-accordion-content>
-  </p-accordion-panel>
-  }
-</p-accordion>

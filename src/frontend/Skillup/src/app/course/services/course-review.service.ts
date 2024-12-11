@@ -48,4 +48,26 @@ export class CourseReviewService {
     public deleteComment(commentId: string){
         return this.httpClient.delete(environment.apiUrl + '/Courses/Review/Comments/' + commentId);
     }
+
+    public finalizeReview(reviewId: string, status: ReviewStatus, courseId: string){
+        return this.httpClient.patch(
+            environment.apiUrl + '/Courses/Review/' + reviewId + '?reviewStatus=' + status, {}).pipe(
+                tap((response) => 
+                {
+                    if(status === ReviewStatus.FinalizedWithRequiredChanges){
+                        this.courseService.courses.update((courses) => 
+                            courses.map((course) => 
+                            course.id === courseId ? {...course, status: CourseStatus.ChangesRequired } : course
+                    ) )
+                }
+                    if(status === ReviewStatus.Finalized){
+                        this.courseService.courses.update((courses) => 
+                            courses.map((course) => 
+                            course.id === courseId ? {...course, status: CourseStatus.Published } : course
+                    ) )
+                    }
+
+                })
+            );
+    }
 }

@@ -8,6 +8,7 @@ import { CourseContentService } from '../../../services/course-content.service';
 import { ElementItemDisplayComponent } from "../../element-item-display/element-item-display.component";
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
+import { ReviewStatus } from '../../../models/review.model';
 
 @Component({
   selector: 'app-course-review',
@@ -23,6 +24,7 @@ export class CourseReviewComponent implements OnInit {
   sections = computed(() => this.courseContentService.sections());
   commentDialogVisible=false;
   currentElementId = '';
+  ReviewStatus = ReviewStatus;
   
   //Services
   courseService = inject(CoursesService);
@@ -47,5 +49,9 @@ export class CourseReviewComponent implements OnInit {
       (res) => {
         this.reviewService.latestReviewForCourse.set(res);
       });
+  }
+
+  finalizeReview(status: ReviewStatus){
+    this.reviewService.finalizeReview(this.reviewService.latestReviewForCourse()!.id, status, this.courseId() ).subscribe();
   }
 }
