@@ -23,12 +23,14 @@ export class CourseReviewComponent implements OnInit {
   sections = computed(() => this.courseContentService.sections());
   commentDialogVisible=false;
   currentElementId = '';
-
+  
   //Services
   courseService = inject(CoursesService);
   courseContentService = inject(CourseContentService);
   reviewService = inject(CourseReviewService);
 
+  courseListItem = computed(() => this.courseService.courses().find(c => c.id === this.courseId()) || null);
+  
   ngOnInit(): void {
     this.courseContentService.getSectionsByCourseId(this.courseId());
     this.courseService.getCourseDetailById(this.courseId()).subscribe(

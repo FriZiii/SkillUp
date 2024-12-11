@@ -3,8 +3,17 @@
   <p>{{ comment.comment }}</p>
   } } @if(latestComment() === null){
   <h1>Add new comment</h1>
-  <input type="text" pInputText [(ngModel)]="newComment" />
-  <p-button label="Add Comment" (onClick)="addComment()"></p-button>
+  <input
+    type="text"
+    pInputText
+    [(ngModel)]="newComment"
+    [style]="{ borderRadius: '0.5rem 0 0 0.5rem' }"
+  />
+  <p-button
+    label="Add Comment"
+    (onClick)="addComment()"
+    [style]="{ borderRadius: '0 0.5rem 0.5rem 0' }"
+  ></p-button>
   } @else{
   <div class="flex gap-2 items-center">
     <p>{{ latestComment()!.comment }}</p>
