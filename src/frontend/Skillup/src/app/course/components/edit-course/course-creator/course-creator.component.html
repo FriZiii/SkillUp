@@ -48,9 +48,17 @@
   </app-hidden-form-wrapper>
 </div>
 
+@if(course()?.status === CourseStatus.Draft || course()?.status ===
+CourseStatus.ChangesRequired ){
 <div class="prose my-4">
   <h3>Submit your course for review</h3>
   <p-button label="Submit" (onClick)="submitForReview($event)"></p-button>
 </div>
+} @if(course()?.status === CourseStatus.SubmitedForReview || course()?.status
+=== CourseStatus.PendingReview ){
+<div class="prose my-4">
+  <h3>Your course is waiting for review</h3>
+</div>
+}
 
 <p-confirmdialog />

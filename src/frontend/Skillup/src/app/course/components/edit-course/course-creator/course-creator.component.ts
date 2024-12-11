@@ -17,6 +17,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationDialogHandlerService } from '../../../../core/services/confirmation-handler.service';
 import { ElementListComponent } from "./element-list/element-list.component";
 import { CourseReviewService } from '../../../services/course-review.service';
+import { CoursesService } from '../../../services/course.service';
+import { CourseStatus } from '../../../models/course-status.model';
 
 @Component({
   selector: 'app-course-creator',
@@ -33,10 +35,13 @@ export class CourseCreatorComponent implements OnInit {
   courseContentService = inject(CourseContentService);
   confirmationDialogService = inject(ConfirmationDialogHandlerService);
   reviewService = inject(CourseReviewService);
+  courseService = inject(CoursesService);
   
   //Variables
   sections = computed(() => this.courseContentService.sections());
   changeDetectorRef = inject(ChangeDetectorRef);
+  course = computed(() => this.courseService.courses().find(c => c.id === this.courseId()));
+  CourseStatus = CourseStatus;
 
   ngOnInit(): void {
    this.courseContentService.getSectionsByCourseId(this.courseId());
