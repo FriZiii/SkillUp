@@ -9,6 +9,7 @@ import { ElementItemDisplayComponent } from "../../element-item-display/element-
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { ReviewStatus } from '../../../models/review.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-review',
@@ -30,6 +31,7 @@ export class CourseReviewComponent implements OnInit {
   courseService = inject(CoursesService);
   courseContentService = inject(CourseContentService);
   reviewService = inject(CourseReviewService);
+  router = inject(Router);
 
   courseListItem = computed(() => this.courseService.courses().find(c => c.id === this.courseId()) || null);
   
@@ -52,6 +54,11 @@ export class CourseReviewComponent implements OnInit {
   }
 
   finalizeReview(status: ReviewStatus){
-    this.reviewService.finalizeReview(this.reviewService.latestReviewForCourse()!.id, status, this.courseId() ).subscribe();
+    this.reviewService.finalizeReview(this.reviewService.latestReviewForCourse()!.id, status, this.courseId() ).subscribe(
+      (res) => {
+        
+    this.router.navigate(['/reviews']);
+      }
+    );
   }
 }

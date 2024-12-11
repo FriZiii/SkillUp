@@ -19,10 +19,10 @@ export class ReviewCommentsComponent {
   reviewService = inject(CourseReviewService);
   
   //Variables
-  allReviews = computed(() => this.reviewService.allReviewsForCourse());
   latestReview = computed(() => this.reviewService.latestReviewForCourse());
+  allReviews = computed(() => this.reviewService.allReviewsForCourse()?.filter(r => r.id != this.latestReview()?.id));
   latestComment = computed(() => this.latestReview()?.comments.find(comment => comment.courseElementId === this.elementId()) || null)
-  comments = computed(() => this.allReviews()?.flatMap(review => review.comments).filter(comment => comment.courseElementId === this.elementId() && comment.id !== this.latestComment()?.id) || null)
+  comments = computed(() => this.allReviews()?.flatMap(review => review.comments).filter(comment => comment.courseElementId === this.elementId()) || null)
   newComment = '';
   //latestComment = signal<ReviewComment | null>(null);
   //comments = signal<ReviewComment[] | null>(null)
@@ -31,12 +31,16 @@ export class ReviewCommentsComponent {
     this.reviewService.addComment(this.latestReview()!.id, this.elementId(), this.newComment).subscribe(
       (res) => {
       this.reviewService.latestReviewForCourse.set(res);
+      this.newComment = '';
     });
   }
 
   deleteComment(commentId: string){
     this.reviewService.deleteComment(commentId).subscribe(
       (res) => {
+        this.reviewService.getLatestReviewByCourse(this.courseId()).subscribe((res) => {
+          this.reviewService.latestReviewForCourse.set(res);
+        })
       });
   }
 }
