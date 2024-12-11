@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import {
   AddCourse,
   CourseDetail,
@@ -17,6 +17,7 @@ import {
 } from 'rxjs';
 import { FinanceService } from '../../finance/services/finance.service';
 import { CourseLevel } from '../models/course-level.model';
+import { CourseStatus } from '../models/course-status.model';
 
 @Injectable({ providedIn: 'root' })
 export class CoursesService {
@@ -27,7 +28,8 @@ export class CoursesService {
   private httpClient = inject(HttpClient);
   private coursesSubject = new BehaviorSubject<Course[]>([]);
   private courses$: Observable<Course[]> = this.coursesSubject.asObservable();
-  public courses = signal<CourseListItem[]>([]);
+  public courses = signal<CourseListItem[]>([]);    
+  public publishedCourses = computed(() => this.courses().filter(c => c.status === CourseStatus.Published)); 
 
   private items = this.financeService.items;
 
@@ -141,11 +143,11 @@ export class CoursesService {
   }
 
   getCouresByCategoryId(categoryId: string): CourseListItem[] {
-    return this.courses().filter((course) => course.category.id === categoryId);
+    return this.publishedCourses().filter((course) => course.category.id === categoryId);
   }
 
   getCoursesBySlug(category: string, subcategory: string): CourseListItem[] {
-    return this.courses().filter(
+    return this.publishedCourses().filter(
       (course) =>
         course.category.slug === category &&
         (subcategory.toLowerCase() === 'all' ||
