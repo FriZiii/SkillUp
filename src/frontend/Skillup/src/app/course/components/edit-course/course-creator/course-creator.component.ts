@@ -42,6 +42,7 @@ export class CourseCreatorComponent implements OnInit {
   changeDetectorRef = inject(ChangeDetectorRef);
   course = computed(() => this.courseService.courses().find(c => c.id === this.courseId()));
   CourseStatus = CourseStatus;
+  ifResolved = computed(() => this.reviewService.latestReviewForCourse()?.comments.every(c => c.isResolved === true));
 
   ngOnInit(): void {
    this.courseContentService.getSectionsByCourseId(this.courseId());

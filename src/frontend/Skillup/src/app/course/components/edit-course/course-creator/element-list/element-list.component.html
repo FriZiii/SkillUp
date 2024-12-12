@@ -4,6 +4,7 @@
   <app-element-item-edit
     [section]="passSection()"
     [element]="element"
+    [course]="course()"
     (isDraggable)="changeElementEditMode($event)"
     [cdkDragDisabled]="elementEdit"
     class="drag-box"

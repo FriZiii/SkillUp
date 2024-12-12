@@ -12,6 +12,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Review
         {
             var comment = await _reviewCommentRepository.Get(request.CommentId) ?? throw new Exception(); //TODO: Custom ex
             comment.IsResolved = true;
+            request.ReviewId = comment.CourseReviewId;
             await _reviewCommentRepository.Update(comment);
         }
     }

@@ -70,4 +70,8 @@ export class CourseReviewService {
                 })
             );
     }
+
+    public resolveComment(commentId: string){
+        return this.httpClient.patch<Review>(environment.apiUrl + '/Courses/Review/Comments/' + commentId + '/Resolve', {});
+    }
 }

@@ -19,6 +19,8 @@ import { Tooltip } from 'primeng/tooltip';
 import { SelectButton } from 'primeng/selectbutton';
 import { ElementAttachmentsDialogComponent } from "./element-attachments-dialog/element-attachments-dialog.component";
 import { CourseReviewService } from '../../../../services/course-review.service';
+import { CourseListItem } from '../../../../models/course.model';
+import { CourseStatus } from '../../../../models/course-status.model';
 
 @Component({
   selector: 'app-element-item-edit',
@@ -31,6 +33,7 @@ export class ElementItemEditComponent implements OnInit {
   //Variable
   section = input.required<Section>();
   element = input.required<Element>();
+  course = input.required<CourseListItem>();
   elementTitle = signal('');
   elementDescription = signal('');
   elementFree = signal<boolean>(false);
@@ -39,6 +42,7 @@ export class ElementItemEditComponent implements OnInit {
   contentIcon = signal('');
     //MiniMenu
     items: MenuItem[] = [];
+    CourseStatus = CourseStatus;
 
   //Services
   courseContentService = inject(CourseContentService);
@@ -187,7 +191,9 @@ export class ElementItemEditComponent implements OnInit {
     this.commentDialogVisible = true;
   }
 
-  resolveComment(){
-
+  resolveComment(commentId: string){
+    this.reviewService.resolveComment(commentId).subscribe(
+      (res) => this.reviewService.latestReviewForCourse.set(res)
+    );
   }
 }

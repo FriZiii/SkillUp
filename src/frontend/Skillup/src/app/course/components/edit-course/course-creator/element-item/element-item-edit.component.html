@@ -83,10 +83,14 @@
         icon="pi pi-ellipsis-h"
         severity="secondary"
       />
-      @if(latestComment() !== null || comments()?.length!==0){
-      @if(latestComment() !== null){
-      <p-button (click)="openComments()" icon="pi pi-comment" severity="warn" />
+
+      @if((this.course().status === CourseStatus.ChangesRequired) &&
+      (latestComment() !== null || comments()?.length!==0)){ @if(latestComment()
+      !== null){ @if(latestComment()?.isResolved === true){
+      <p-button (click)="openComments()" icon="pi pi-comment" severity="info" />
       } @else {
+      <p-button (click)="openComments()" icon="pi pi-comment" severity="warn" />
+      } } @else {
       <p-button (click)="openComments()" icon="pi pi-comment" />
       } }
     </div>
@@ -176,11 +180,16 @@
     } } @if(latestComment() !== null){
     <h3>Latest comment</h3>
     <div class="flex gap-2">
+      @if(latestComment()!.isResolved === false){
       <p>{{ latestComment()!.comment }}</p>
       <p-button
         label="Mark this issue as resolved"
-        (onClick)="resolveComment()"
+        (onClick)="resolveComment(latestComment()!.id)"
       />
+      } @else {
+      <p>{{ latestComment()!.comment }}</p>
+      <p>RESOLVED</p>
+      }
     </div>
     }
   </div>

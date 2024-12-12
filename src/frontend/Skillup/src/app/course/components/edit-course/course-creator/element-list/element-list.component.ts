@@ -3,6 +3,7 @@ import { Component, computed, inject, input } from '@angular/core';
 import { Section } from '../../../../models/course-content.model';
 import { ElementItemEditComponent } from "../element-item/element-item-edit.component";
 import { CourseContentService } from '../../../../services/course-content.service';
+import { CourseListItem } from '../../../../models/course.model';
 
 @Component({
   selector: 'app-element-list',
@@ -13,6 +14,7 @@ import { CourseContentService } from '../../../../services/course-content.servic
 })
 export class ElementListComponent {
   section = input.required<Section>();
+  course = input.required<CourseListItem>();
   elements = computed(() => this.section().elements);
   passSection = computed(() => this.section());
   courseContentService = inject(CourseContentService);
