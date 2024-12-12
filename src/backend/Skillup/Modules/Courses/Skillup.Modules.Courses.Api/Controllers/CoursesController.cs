@@ -64,7 +64,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [Route("/Courses/Author/{authorId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetByAuthorId(Guid authorId, [FromQuery] CourseStatus status)
+        public async Task<IActionResult> GetByAuthorId(Guid authorId, [FromQuery] CourseStatus? status)
         {
             var courses = await _mediator.Send(new GetCoursesByAuthorIdRequest(authorId, status));
             return Ok(courses);
