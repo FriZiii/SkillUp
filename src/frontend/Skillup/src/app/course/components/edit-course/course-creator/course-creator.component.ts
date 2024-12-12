@@ -45,6 +45,15 @@ export class CourseCreatorComponent implements OnInit {
 
   ngOnInit(): void {
    this.courseContentService.getSectionsByCourseId(this.courseId());
+   this.reviewService.getReviewsByCourse(this.courseId()).subscribe(
+    (res) => {
+      this.reviewService.allReviewsForCourse.set(res);
+    }
+  );
+  this.reviewService.getLatestReviewByCourse(this.courseId()).subscribe(
+    (res) => {
+      this.reviewService.latestReviewForCourse.set(res);
+    });
   }
 
 

@@ -1,7 +1,7 @@
 <div class="prose max-w-none !w-full">
   @if(comments() !== null){ @for(comment of comments(); track comment.id){
   <p>{{ comment.comment }}</p>
-  } } @if(latestComment() === null){
+  } } @if(latestComment() === null && moderator()){
   <h1>Add new comment</h1>
   <input
     type="text"

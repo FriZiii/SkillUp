@@ -18,6 +18,7 @@ import { ElementContentDialogComponent } from "./element-content-dialog/element-
 import { Tooltip } from 'primeng/tooltip';
 import { SelectButton } from 'primeng/selectbutton';
 import { ElementAttachmentsDialogComponent } from "./element-attachments-dialog/element-attachments-dialog.component";
+import { CourseReviewService } from '../../../../services/course-review.service';
 
 @Component({
   selector: 'app-element-item-edit',
@@ -43,6 +44,13 @@ export class ElementItemEditComponent implements OnInit {
   courseContentService = inject(CourseContentService);
   confirmDialogService = inject(ConfirmationDialogHandlerService);
   assetService = inject(AssetService);
+  reviewService = inject(CourseReviewService);
+
+  //Comments
+  latestReview = computed(() => this.reviewService.latestReviewForCourse());
+  allReviews = computed(() => this.reviewService.allReviewsForCourse()?.filter(r => r.id != this.latestReview()?.id));
+  latestComment = computed(() => this.latestReview()?.comments.find(comment => comment.courseElementId === this.element().id) || null)
+  comments = computed(() => this.allReviews()?.flatMap(review => review.comments).filter(comment => comment.courseElementId === this.element().id) || null)
 
   ngOnInit(): void {
     this.elementTitle.set(this.element().title);
@@ -161,6 +169,8 @@ export class ElementItemEditComponent implements OnInit {
     }
   }
 
+  commentDialogVisible = false;
+
 
   //Delete element's content
   deleteContent(event: Event){
@@ -171,5 +181,13 @@ export class ElementItemEditComponent implements OnInit {
         }
       });
     })
+  }
+
+  openComments(){
+    this.commentDialogVisible = true;
+  }
+
+  resolveComment(){
+
   }
 }

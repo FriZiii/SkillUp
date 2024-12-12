@@ -48,8 +48,7 @@
   </app-hidden-form-wrapper>
 </div>
 
-@if(course()?.status === CourseStatus.Draft || course()?.status ===
-CourseStatus.ChangesRequired ){
+@if(course()?.status === CourseStatus.Draft){
 <div class="prose my-4">
   <h3>Submit your course for review</h3>
   <p-button label="Submit" (onClick)="submitForReview($event)"></p-button>
@@ -58,6 +57,10 @@ CourseStatus.ChangesRequired ){
 === CourseStatus.PendingReview ){
 <div class="prose my-4">
   <h3>Your course is waiting for review</h3>
+</div>
+} @if(course()?.status === CourseStatus.ChangesRequired){
+<div class="prose my-4">
+  <h3>Your course requires changes</h3>
 </div>
 }
 

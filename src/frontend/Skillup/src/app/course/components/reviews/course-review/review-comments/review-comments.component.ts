@@ -14,7 +14,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class ReviewCommentsComponent {
   elementId = input.required<string>();
-  courseId = input.required<string>();
+  courseId = input<string>();
+  moderator = input<boolean>(false);
   
   reviewService = inject(CourseReviewService);
   
@@ -24,8 +25,6 @@ export class ReviewCommentsComponent {
   latestComment = computed(() => this.latestReview()?.comments.find(comment => comment.courseElementId === this.elementId()) || null)
   comments = computed(() => this.allReviews()?.flatMap(review => review.comments).filter(comment => comment.courseElementId === this.elementId()) || null)
   newComment = '';
-  //latestComment = signal<ReviewComment | null>(null);
-  //comments = signal<ReviewComment[] | null>(null)
 
   addComment(){
     this.reviewService.addComment(this.latestReview()!.id, this.elementId(), this.newComment).subscribe(
@@ -38,7 +37,7 @@ export class ReviewCommentsComponent {
   deleteComment(commentId: string){
     this.reviewService.deleteComment(commentId).subscribe(
       (res) => {
-        this.reviewService.getLatestReviewByCourse(this.courseId()).subscribe((res) => {
+        this.reviewService.getLatestReviewByCourse(this.courseId()!).subscribe((res) => {
           this.reviewService.latestReviewForCourse.set(res);
         })
       });
