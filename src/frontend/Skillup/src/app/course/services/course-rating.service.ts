@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
-import { AverageRating, UserRating } from "../models/rating.model";
+import { AverageRating, CourseDetailRating, UserRating } from "../models/rating.model";
 import { environment } from "../../../environments/environment";
 import { BehaviorSubject, Observable, tap } from "rxjs";
 
@@ -46,7 +46,7 @@ export class CourseRatingService {
         return this.httpClient.delete(environment.apiUrl + '/Courses/Ratings/' + ratingId);
     }
 
-    public getAverageRatings(){
-        return this.httpClient.get<AverageRating[]>(environment.apiUrl + '/Courses/Ratings');
+    public getCourseDetailRating(courseId: string, numOfRatings: number){
+        return this.httpClient.get<CourseDetailRating>(environment.apiUrl + '/Courses/'+ courseId + '/Ratings?itemType=' + numOfRatings);
     }
 }

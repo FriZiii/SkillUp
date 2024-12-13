@@ -6,6 +6,35 @@
   display: inline-block;
 }
 
+.image-wrapper {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  border: 5px solid white;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.item {
+  width: 450px;
+  min-height: 200px;
+  padding-top: 80px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #fff;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+:host ::ng-deep .p-carousel-item {
+  margin-top: 40px;
+}
+
 :host ::ng-deep .p-rating-icon {
   cursor: default !important;
 }

@@ -13,11 +13,14 @@ import { CoursesService } from '../../../services/course.service';
 import { FinanceService } from '../../../../finance/services/finance.service';
 import { UserService } from '../../../../user/services/user.service';
 import { CourseContentService } from '../../../services/course-content.service';
+import { CourseRatingService } from '../../../services/course-rating.service';
+import { CourseDetailRating } from '../../../models/rating.model';
+import { CarouselModule } from 'primeng/carousel';
 
 @Component({
   selector: 'app-course-detail',
   standalone: true,
-  imports: [AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent, RatingModule, FormsModule],
+  imports: [AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent, RatingModule, FormsModule, CarouselModule],
   templateUrl: './course-detail.component.html',
   styleUrl: './course-detail.component.css'
 })
@@ -33,7 +36,8 @@ export class CourseDetailComponent implements OnChanges {
 coursesForCategory = computed(() =>  {
   return this.courseService.getCouresByCategoryId(this.course()!.category.id).slice(0, 10)
 });
-  rating = 3;
+courseRating: CourseDetailRating | undefined = undefined
+  rating = 0;
   numberOfRating = 1567;
   numberOfParticipians = 1945;
   totalCourseTime = 68;
@@ -45,6 +49,7 @@ coursesForCategory = computed(() =>  {
   financeService = inject(FinanceService);
   userService = inject(UserService);
   courseContentService = inject(CourseContentService);
+  ratingService = inject(CourseRatingService);
   router = inject(Router);
 
   items = this.financeService.items;
@@ -70,6 +75,11 @@ coursesForCategory = computed(() =>  {
       })
       
      this.courseContentService.getSectionsByCourseId(this.courseId());
+
+     this.ratingService.getCourseDetailRating(this.courseId(), 10).subscribe((res) => {
+      this.courseRating = res;
+      this.rating = this.courseRating.rating.averageStars;
+     })
 
     window.scrollTo({ top: 0, behavior: 'instant' });
     }
