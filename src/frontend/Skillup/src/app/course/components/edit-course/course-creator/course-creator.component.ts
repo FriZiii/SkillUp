@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, computed, inject, input, OnInit, signal } from '@angular/core';
 import { AccordionModule } from 'primeng/accordion';
 import { Section } from '../../../models/course-content.model';
-import { CourseContentService } from '../../../services/course-content-service';
+import { CourseContentService } from '../../../services/course-content.service';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
@@ -9,15 +9,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { FormsModule } from '@angular/forms';
 import { HiddenFormWrapperComponent } from '../../../../core/components/hidden-form-wrapper/hidden-form-wrapper.component';
-import { ElementItemComponent } from "./element-item/element-item.component";
 import { AddNewElementComponent } from "./element-item/add-new-element/add-new-element.component";
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, DragDropModule, CdkDragEnter, CdkDragExit} from '@angular/cdk/drag-drop';
 import { SectionItemComponent } from "./section-item/section-item.component";
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationDialogHandlerService } from '../../../../core/services/confirmation-handler.service';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ElementListComponent } from "./element-list/element-list.component";
+import { CourseReviewService } from '../../../services/course-review.service';
+import { CoursesService } from '../../../services/course.service';
+import { CourseStatus } from '../../../models/course-status.model';
 
 @Component({
   selector: 'app-course-creator',
@@ -29,15 +30,31 @@ import { ElementListComponent } from "./element-list/element-list.component";
 export class CourseCreatorComponent implements OnInit {
   //FromUrl
   courseId = input.required<string>();
+
   //Services
   courseContentService = inject(CourseContentService);
   confirmationDialogService = inject(ConfirmationDialogHandlerService);
+  reviewService = inject(CourseReviewService);
+  courseService = inject(CoursesService);
+  
   //Variables
   sections = computed(() => this.courseContentService.sections());
   changeDetectorRef = inject(ChangeDetectorRef);
+  course = computed(() => this.courseService.courses().find(c => c.id === this.courseId()));
+  CourseStatus = CourseStatus;
+  ifResolved = computed(() => this.reviewService.latestReviewForCourse()?.comments.every(c => c.isResolved === true));
 
   ngOnInit(): void {
    this.courseContentService.getSectionsByCourseId(this.courseId());
+   this.reviewService.getReviewsByCourse(this.courseId()).subscribe(
+    (res) => {
+      this.reviewService.allReviewsForCourse.set(res);
+    }
+  );
+  this.reviewService.getLatestReviewByCourse(this.courseId()).subscribe(
+    (res) => {
+      this.reviewService.latestReviewForCourse.set(res);
+    });
   }
 
 
@@ -87,5 +104,11 @@ export class CourseCreatorComponent implements OnInit {
     
     onListExited(event: CdkDragExit) {
       this.changeDetectorRef.detectChanges();
+    }
+
+    submitForReview(event: Event){
+      this.confirmationDialogService.confirmSave(event, () => {
+        this.reviewService.submitToReview(this.courseId()).subscribe();
+      })
     }
 }

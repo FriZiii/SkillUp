@@ -39,9 +39,8 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> StarReview(Guid courseId)
         {
-            var request = new StartReviewRequest(courseId);
-            await _mediator.Send(new StartReviewRequest(courseId));
-            return Ok(await _mediator.Send(new GetReviewByIdRequest(request.ReviewId)));
+            var review = await _mediator.Send(new StartReviewRequest(courseId));
+            return Ok(await _mediator.Send(new GetReviewByIdRequest(review.Id)));
         }
 
         [HttpPatch]

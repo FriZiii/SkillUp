@@ -1,7 +1,7 @@
 import { Component, computed, inject, input} from '@angular/core';
 import { CourseItemComponent } from "../course-item/course-item.component";
-import { CoursesService } from '../../services/course.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner'; 
+import { CoursesService } from '../../../services/course.service';
 
 @Component({
   selector: 'app-courses',

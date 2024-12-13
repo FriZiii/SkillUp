@@ -12,14 +12,45 @@
     <h1 class="text-5xl text-center">List of courses you are an author of</h1>
   </div>
   } }
-  <div class="cols-responsive-2 mt-8">
-    @for( course of courses(); track course.id){
-    <app-course-item-short
-      [course]="course"
-      [editable]="true"
-    ></app-course-item-short>
-    }
-  </div>
+  <p-tabs value="0">
+    <p-tablist>
+      <p-tab value="0">Published Courses</p-tab>
+      <p-tab value="1">Drafts</p-tab>
+      <p-tab value="2">During Review</p-tab>
+    </p-tablist>
+    <p-tabpanels>
+      <p-tabpanel value="0">
+        <div class="cols-responsive-2 mt-8">
+          @for( course of publishedCourses(); track course.id){
+          <app-course-item-short
+            [course]="course"
+            [editable]="true"
+          ></app-course-item-short>
+          }
+        </div>
+      </p-tabpanel>
+      <p-tabpanel value="1">
+        <div class="cols-responsive-2 mt-8">
+          @for( course of draftCourses(); track course.id){
+          <app-course-item-short
+            [course]="course"
+            [editable]="true"
+          ></app-course-item-short>
+          }
+        </div>
+      </p-tabpanel>
+      <p-tabpanel value="2">
+        <div class="cols-responsive-2 mt-8">
+          @for( course of reviewCourses(); track course.id){
+          <app-course-item-short
+            [course]="course"
+            [editable]="true"
+          ></app-course-item-short>
+          }
+        </div>
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
 </div>
 
 <div class="prose max-w-none !w-full">

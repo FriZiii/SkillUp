@@ -1,13 +1,11 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { CourseCarouselComponent } from '../../../course/components/courses-carousels/course-carousel/course-carousel.component';
 import { AuthService } from '../../../auth/services/auth.service';
 import { CoursesService } from '../../../course/services/course.service';
 import { CategoryService } from '../../../course/services/category.service';
-import { CourseListItem } from '../../../course/models/course.model';
-import { Category } from '../../../course/models/category.model';
 import { UserService } from '../../../user/services/user.service';
+import { CourseCarouselComponent } from '../../../course/components/displays/courses-carousels/course-carousel/course-carousel.component';
 
 @Component({
   selector: 'app-hero',

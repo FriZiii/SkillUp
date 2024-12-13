@@ -15,6 +15,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
                 CreatedAt = courseReviewComment.CreatedAt,
                 Id = courseReviewComment.Id,
                 IsResolved = courseReviewComment.IsResolved,
+                Comment = courseReviewComment.CommentText,
             };
         }
     }
