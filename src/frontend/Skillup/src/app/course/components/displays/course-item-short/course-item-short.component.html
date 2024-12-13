@@ -24,5 +24,11 @@
     class="cursor-pointer"
     (onClick)="review(course().id)"
   ></p-button>
+  } @if(rating()){
+  <p-button
+    icon="pi pi-star"
+    class="cursor-pointer"
+    (onClick)="addRating(course().id)"
+  ></p-button>
   }
 </div>

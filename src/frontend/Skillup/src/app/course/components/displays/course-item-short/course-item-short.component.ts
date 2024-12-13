@@ -15,10 +15,17 @@ import { TruncatePipe } from '../../../../utils/pipes/truncate.pipe';
 export class CourseItemShortComponent {
   course = input.required<Course>();
   editable = input<boolean>(false);
+  rating = input<boolean>(false);
   moderator = input<boolean>(false);
   onReview = output<string>();
+  onRating = output<string>();
+
 
   review(courseId: string){
     this.onReview.emit(courseId);
+  }
+
+  addRating(courseId: string){
+    this.onRating.emit(courseId);
   }
 }
