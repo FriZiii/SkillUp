@@ -18,11 +18,13 @@ import {
 import { FinanceService } from '../../finance/services/finance.service';
 import { CourseLevel } from '../models/course-level.model';
 import { CourseStatus } from '../models/course-status.model';
+import { CourseRatingService } from './course-rating.service';
 
 @Injectable({ providedIn: 'root' })
 export class CoursesService {
   //Services
   private financeService = inject(FinanceService);
+  private ratingService = inject(CourseRatingService);
 
   //Variables
   private httpClient = inject(HttpClient);
@@ -32,6 +34,7 @@ export class CoursesService {
   public publishedCourses = computed(() => this.courses().filter(c => c.status === CourseStatus.Published)); 
 
   private items = this.financeService.items;
+  private ratings = this.ratingService.ratings;
 
   constructor() {
     this.fetchCourses();
@@ -71,6 +74,8 @@ export class CoursesService {
               },
               thumbnailUrl: response.thumbnailUrl,
               price:  0,
+              averageRating: 0,
+              ratingsCount: 0
             },
           ]);
         })
@@ -130,9 +135,12 @@ export class CoursesService {
 
   private mapCourseToCourseItem(course: Course): CourseListItem {
     const item = this.items().find((item) => item.id === course.id);
+    const rating = this.ratings().find((rating) => rating.courseId === course.id);
     return {
       ...course,
       price:  item?.price ?? 0,
+      averageRating: rating?.averageStars ?? 0,
+      ratingsCount: rating?.ratingsCount ?? 0
     };
   }
 

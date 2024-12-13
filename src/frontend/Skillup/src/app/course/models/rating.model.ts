@@ -9,6 +9,6 @@ export interface UserRating{
 
 export interface AverageRating{
     courseId: string;
-    AverageStars: number;
+    averageStars: number;
     ratingsCount: number;
 }

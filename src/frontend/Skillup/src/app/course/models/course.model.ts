@@ -45,6 +45,8 @@ export interface CourseListItem{
     };
     thumbnailUrl: string;
     price: number;
+    averageRating: number;
+    ratingsCount: number;
 }
 
 export interface CourseDetail{
