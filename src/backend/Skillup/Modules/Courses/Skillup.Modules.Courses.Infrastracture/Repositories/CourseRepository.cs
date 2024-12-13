@@ -29,11 +29,15 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         }
 
         public async Task<IEnumerable<Course>> GetByStatus(CourseStatus status)
-        => await _courses
-                .Where(c => c.Status == status)
-                .Include(c => c.Category)
-                .Include(c => c.Subcategory)
-                .ToListAsync();
+        {
+            return await _courses
+                   .Where(c => c.Status == status)
+                   .Include(c => c.Category)
+                   .Include(c => c.Subcategory)
+                   .ToListAsync();
+
+        }
+
 
         public async Task<Course?> GetById(Guid id)
             => await _courses
@@ -70,5 +74,12 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
             return course.Sections.Sum(section => section.Elements.Count);
         }
+        public async Task<IEnumerable<Course>> GetAll()
+        {
+            return await _courses
+                 .Include(c => c.Category)
+                 .Include(c => c.Subcategory)
+                 .ToListAsync();
+        }
+
     }
-}

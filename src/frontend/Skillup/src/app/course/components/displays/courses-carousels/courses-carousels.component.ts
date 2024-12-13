@@ -1,12 +1,9 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
-import { CoursesService } from '../../services/course.service';
-import { CategoryService } from '../../services/category.service';
 import { CourseCarouselComponent } from './course-carousel/course-carousel.component';
-import { FinanceService } from '../../../finance/services/finance.service';
-import { Category } from '../../models/category.model';
-import { CourseListItem } from '../../models/course.model';
+import { CoursesService } from '../../../services/course.service';
+import { CategoryService } from '../../../services/category.service';
 
 @Component({
   selector: 'app-courses-carousels',

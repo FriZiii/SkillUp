@@ -8,7 +8,7 @@ import { NgClass } from '@angular/common';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import {DragDropModule} from '@angular/cdk/drag-drop';
-import { CourseContentService } from '../../../../services/course-content-service';
+import { CourseContentService } from '../../../../services/course-content.service';
 import { ConfirmationDialogHandlerService } from '../../../../../core/services/confirmation-handler.service';
 import { MenuModule } from 'primeng/menu';
 import { MenuItem, MenuItemCommandEvent } from 'primeng/api';
@@ -18,18 +18,22 @@ import { ElementContentDialogComponent } from "./element-content-dialog/element-
 import { Tooltip } from 'primeng/tooltip';
 import { SelectButton } from 'primeng/selectbutton';
 import { ElementAttachmentsDialogComponent } from "./element-attachments-dialog/element-attachments-dialog.component";
+import { CourseReviewService } from '../../../../services/course-review.service';
+import { CourseListItem } from '../../../../models/course.model';
+import { CourseStatus } from '../../../../models/course-status.model';
 
 @Component({
-  selector: 'app-element-item',
+  selector: 'app-element-item-edit',
   standalone: true,
   imports: [CardModule, ButtonModule, FormsModule, InputTextModule, NgClass, InputTextareaModule, FloatLabelModule, DragDropModule, MenuModule, DialogModule, ElementContentDialogComponent, SelectButton, ElementAttachmentsDialogComponent],
-  templateUrl: './element-item.component.html',
-  styleUrl: './element-item.component.css'
+  templateUrl: './element-item-edit.component.html',
+  styleUrl: './element-item-edit.component.css'
 })
-export class ElementItemComponent implements OnInit {
+export class ElementItemEditComponent implements OnInit {
   //Variable
   section = input.required<Section>();
   element = input.required<Element>();
+  course = input.required<CourseListItem>();
   elementTitle = signal('');
   elementDescription = signal('');
   elementFree = signal<boolean>(false);
@@ -38,11 +42,19 @@ export class ElementItemComponent implements OnInit {
   contentIcon = signal('');
     //MiniMenu
     items: MenuItem[] = [];
+    CourseStatus = CourseStatus;
 
   //Services
   courseContentService = inject(CourseContentService);
   confirmDialogService = inject(ConfirmationDialogHandlerService);
   assetService = inject(AssetService);
+  reviewService = inject(CourseReviewService);
+
+  //Comments
+  latestReview = computed(() => this.reviewService.latestReviewForCourse());
+  allReviews = computed(() => this.reviewService.allReviewsForCourse()?.filter(r => r.id != this.latestReview()?.id));
+  latestComment = computed(() => this.latestReview()?.comments.find(comment => comment.courseElementId === this.element().id) || null)
+  comments = computed(() => this.allReviews()?.flatMap(review => review.comments).filter(comment => comment.courseElementId === this.element().id) || null)
 
   ngOnInit(): void {
     this.elementTitle.set(this.element().title);
@@ -161,6 +173,8 @@ export class ElementItemComponent implements OnInit {
     }
   }
 
+  commentDialogVisible = false;
+
 
   //Delete element's content
   deleteContent(event: Event){
@@ -171,5 +185,15 @@ export class ElementItemComponent implements OnInit {
         }
       });
     })
+  }
+
+  openComments(){
+    this.commentDialogVisible = true;
+  }
+
+  resolveComment(commentId: string){
+    this.reviewService.resolveComment(commentId).subscribe(
+      (res) => this.reviewService.latestReviewForCourse.set(res)
+    );
   }
 }

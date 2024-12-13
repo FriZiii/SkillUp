@@ -31,8 +31,9 @@ import { User } from '../../../user/models/user.model';
 import { AuthService } from '../../../auth/services/auth.service';
 import { CartService } from '../../../finance/services/cart.service';
 import { Cart } from '../../../finance/models/cart.model';
-import { CourseItemShortComponent } from "../../../course/components/course-item-short/course-item-short.component";
+import { CourseItemShortComponent } from '../../../course/components/displays/course-item-short/course-item-short.component';
 import { CoursesService } from '../../../course/services/course.service';
+import { UserRole } from '../../../user/models/user-role.model';
 
 @Component({
   selector: 'app-header',
@@ -65,6 +66,7 @@ export class HeaderComponent implements OnInit {
   authService = inject(AuthService);
   cartService = inject(CartService);
   courseService = inject(CoursesService);
+  UserRole = UserRole;
 
   visible: boolean = false;
   user = signal<User | null>(null);

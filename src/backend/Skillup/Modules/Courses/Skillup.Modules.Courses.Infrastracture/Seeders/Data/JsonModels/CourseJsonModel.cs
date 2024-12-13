@@ -6,6 +6,7 @@
         public string Title { get; set; }
         public string CategoryName { get; set; }
         public string SubcategoryName { get; set; }
+        public string Status { get; set; }
         public CourseDetailsJsonModel Details { get; set; }
         public List<SectionJsonModel>? Sections { get; set; }
         public Guid Id { get; set; }

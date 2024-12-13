@@ -1,8 +1,8 @@
 import { Component, input, OnInit } from '@angular/core';
 import { CourseItemComponent } from "../../course-item/course-item.component";
-import { Course, CourseListItem } from '../../../models/course.model';
 import { CarouselModule } from 'primeng/carousel';
 import { SkeletonModule } from 'primeng/skeleton';
+import { CourseListItem } from '../../../../models/course.model';
 
 @Component({
   selector: 'app-course-carousel',
