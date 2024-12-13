@@ -10,5 +10,6 @@ namespace Skillup.Modules.Courses.Core.Interfaces
         Task<Course?> GetById(Guid id);
         Task EditCourseStatus(Guid courseId, CourseStatus status);
         Task Edit(Course course);
+        Task<int> GetElementsCount(Guid courseId);
     }
 }
