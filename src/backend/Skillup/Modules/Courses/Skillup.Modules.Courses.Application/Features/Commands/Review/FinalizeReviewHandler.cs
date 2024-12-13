@@ -18,7 +18,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Review
             if (request.Status == ReviewStatus.InProgress)
                 return;
 
-            var review = await _courseReviewRepository.Get(request.ReviewId) ?? throw new Exception(); //TODO: Custom ex
+            var review = await _courseReviewRepository.Get(request.ReviewId) ?? throw new Exception(); //TODO: Custom ex: review with id doesnt exist
 
             review.Status = request.Status;
             review.FinalizedAt = _clock.CurrentDate();

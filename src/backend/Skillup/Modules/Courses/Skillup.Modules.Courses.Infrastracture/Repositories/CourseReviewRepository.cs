@@ -37,7 +37,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task Update(CourseReview review)
         {
-            var reviewToEdit = await _courseReviews.FirstOrDefaultAsync(x => x.Id == review.Id) ?? throw new Exception(); // TODO: Custom ex;
+            var reviewToEdit = await _courseReviews.FirstOrDefaultAsync(x => x.Id == review.Id) ?? throw new Exception(); // TODO: Custom ex: review with id doesnt exist
             reviewToEdit.FinalizedAt = review.FinalizedAt;
             review.Status = review.Status;
             await _context.SaveChangesAsync();

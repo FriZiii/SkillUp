@@ -10,7 +10,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Review
 
         public async Task Handle(ResolveCommentRequest request, CancellationToken cancellationToken)
         {
-            var comment = await _reviewCommentRepository.Get(request.CommentId) ?? throw new Exception(); //TODO: Custom ex
+            var comment = await _reviewCommentRepository.Get(request.CommentId) ?? throw new Exception(); //TODO: Custom ex: comment with id doesnt exist
             comment.IsResolved = true;
             await _reviewCommentRepository.Update(comment);
         }

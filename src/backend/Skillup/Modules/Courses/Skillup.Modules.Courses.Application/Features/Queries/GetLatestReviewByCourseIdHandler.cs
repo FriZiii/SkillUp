@@ -13,7 +13,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
         public async Task<CourseReviewDto> Handle(GetLatestReviewByCourseIdRequest request, CancellationToken cancellationToken)
         {
             var mapper = new CourseReviewMapper();
-            var latestReview = await _courseReviewRepository.GetLatestByCourse(request.CourseId) ?? throw new Exception(); // TODO: Custom ex
+            var latestReview = await _courseReviewRepository.GetLatestByCourse(request.CourseId) ?? throw new Exception(); // TODO: Custom ex: review for course with id doesnt exist 
             return mapper.CourseReviewToDto(latestReview);
         }
     }

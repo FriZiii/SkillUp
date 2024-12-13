@@ -22,7 +22,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task Delete(Guid commentId)
         {
-            var commentToDelete = await _reviewComments.FirstOrDefaultAsync(x => x.Id == commentId) ?? throw new Exception(); //TODO: Custom ex
+            var commentToDelete = await _reviewComments.FirstOrDefaultAsync(x => x.Id == commentId) ?? throw new Exception(); //TODO: Custom ex: comment with id doesnt exist 
             _reviewComments.Remove(commentToDelete);
             await _context.SaveChangesAsync();
         }
@@ -32,7 +32,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task Update(CourseReviewComment comment)
         {
-            var commentToEdit = await _reviewComments.FirstOrDefaultAsync(x => x.Id == comment.Id) ?? throw new Exception(); // TODO: Custom ex
+            var commentToEdit = await _reviewComments.FirstOrDefaultAsync(x => x.Id == comment.Id) ?? throw new Exception(); // TODO: Custom ex: comment with id doesnt exist
             comment.IsResolved = comment.IsResolved;
             await _context.SaveChangesAsync();
         }

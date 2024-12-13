@@ -23,7 +23,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task Update(CourseRating courseRating)
         {
-            var ratingToEdit = await _ratings.FirstOrDefaultAsync(x => x.Id == courseRating.Id) ?? throw new Exception(); // TODO: Custom ex
+            var ratingToEdit = await _ratings.FirstOrDefaultAsync(x => x.Id == courseRating.Id) ?? throw new Exception(); // TODO: Custom ex: rating with id doesnt exist
             ratingToEdit.Stars = courseRating.Stars;
             ratingToEdit.Feedback = courseRating.Feedback;
             ratingToEdit.Timestamp = courseRating.Timestamp;
@@ -44,7 +44,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task Delete(Guid id)
         {
-            var ratingToDelete = await _ratings.FirstOrDefaultAsync(x => x.Id == id) ?? throw new Exception(); // TODO: Custom ex
+            var ratingToDelete = await _ratings.FirstOrDefaultAsync(x => x.Id == id) ?? throw new Exception(); // TODO: Custom ex: rating with id doesnt exist
             _ratings.Remove(ratingToDelete);
             await _context.SaveChangesAsync();
         }

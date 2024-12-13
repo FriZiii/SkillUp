@@ -23,7 +23,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
             }
             else
             {
-                var discountCode = await _discountCodeRepository.GetByCode(request.DiscountCode!) ?? throw new Exception(); // TODO: Custom Ex
+                var discountCode = await _discountCodeRepository.GetByCode(request.DiscountCode!) ?? throw new Exception(); // TODO: Custom Ex: discount code dosnt exist 
                 cart.ApplyDiscountCode(discountCode);
             }
 

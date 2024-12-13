@@ -12,7 +12,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Ratings
 
         public async Task Handle(EditCourseRatingRequest request, CancellationToken cancellationToken)
         {
-            var rating = await _courseRatingRepository.GetById(request.RatingId) ?? throw new Exception(); //TODO: Custom ex
+            var rating = await _courseRatingRepository.GetById(request.RatingId) ?? throw new Exception(); //TODO: Custom ex: rating with id doesnt exist
             rating.Stars = request.Stars;
             rating.Feedback = request.Feedback;
             rating.Timestamp = _clock.CurrentDate();
