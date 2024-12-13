@@ -24,8 +24,6 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Password
             //
             //user.Password = _passwordHasher.HashPassword(user, request.NewPassword); ;
             //await _userRepository.Update(user);
-
-            //TODO : LOGS
         }
     }
 }

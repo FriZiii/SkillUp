@@ -23,7 +23,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task EditDetails(Guid courseId, CourseDetails details)
         {
-            var course = await _courses.FirstOrDefaultAsync(c => c.Id == courseId) ?? throw new Exception();  //TODO: Custom exception for null check in repo
+            var course = await _courses.FirstOrDefaultAsync(c => c.Id == courseId) ?? throw new Exception();  //TODO: course with id doesnt exist
             course.Details = details;
             await _context.SaveChangesAsync();
         }

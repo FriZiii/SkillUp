@@ -45,11 +45,11 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
                     break;
 
                 case AssetType.Exercise:
-                    //TODO
+                    //TODO: Delete excersise asset
                     break;
 
                 default:
-                    throw new Exception(); // Wrong asset type  //TODO: Custom ex
+                    throw new Exception(); //TODO: Custom ex: wrong asset type
             }
 
             await _context.SaveChangesAsync();
@@ -57,7 +57,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task<Asset?> GetByElementId(Guid elementId)
         {
-            var element = await _context.Elements.FirstOrDefaultAsync(x => x.Id == elementId) ?? throw new Exception(); // TODO: custome ex
+            var element = await _context.Elements.FirstOrDefaultAsync(x => x.Id == elementId) ?? throw new Exception(); // TODO: Custome ex: element with id doesnt exist
 
             return element.AssetType switch
             {

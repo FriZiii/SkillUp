@@ -12,7 +12,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements.Attachm
 
         public async Task Handle(DeleteAttachmentRequest request, CancellationToken cancellationToken)
         {
-            var attachment = await _elementAttachmentRepository.Get(request.AttachmentId) ?? throw new Exception(); // TODO: Custom ex
+            var attachment = await _elementAttachmentRepository.Get(request.AttachmentId) ?? throw new Exception(); // TODO: Custom ex: attachment with id doesnt exist
 
             await _amazonS3Service.Delete(S3FolderPaths.ElementsAttachments + attachment.Key);
             await _elementAttachmentRepository.Delete(attachment.Id);

@@ -24,8 +24,8 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 
         public async Task Handle(CheckoutCartRequest request, CancellationToken cancellationToken)
         {
-            var wallet = await _walletRepository.GetWallet(request.WalletId) ?? throw new Exception(); // TODO: Custom Ex
-            var cart = await _cartRepository.GetCart(request.CartId) ?? throw new Exception(); // TODO: Custom Ex
+            var wallet = await _walletRepository.GetWallet(request.WalletId) ?? throw new Exception(); // TODO: Custom Ex: wallet with id doesnt exist
+            var cart = await _cartRepository.GetCart(request.CartId) ?? throw new Exception(); // TODO: Custom Ex: cart with id doesnt exist
 
             var orderMapper = new OrderMapper();
 

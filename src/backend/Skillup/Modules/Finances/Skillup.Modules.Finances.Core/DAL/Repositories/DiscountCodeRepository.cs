@@ -23,7 +23,7 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
                 {
                     if (exception.SqlState == Npgsql.PostgresErrorCodes.UniqueViolation)
                     {
-                        throw new Exception("This code already exist, is not unique"); // TODO: Custom ex "This code already exist, is not unique"
+                        throw new Exception("This code already exist, is not unique"); // TODO: Custom ex This code already exist, is not unique
                     }
                 }
                 throw new Exception(); // smth went wrong
@@ -33,7 +33,7 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
         public async Task Update(DiscountCode discountCode)
         {
             var discountCodeToEdit = await _discountCodes.Include(x => x.DiscountedItems)
-                .FirstOrDefaultAsync(x => x.Id == discountCode.Id) ?? throw new Exception(); // TODO: Custom Ex
+                .FirstOrDefaultAsync(x => x.Id == discountCode.Id) ?? throw new Exception(); // TODO: Custom Ex: discount code with id doesnt exist
 
             if (!discountCodeToEdit.AppliesToEntireCart && discountCode.AppliesToEntireCart)
             {

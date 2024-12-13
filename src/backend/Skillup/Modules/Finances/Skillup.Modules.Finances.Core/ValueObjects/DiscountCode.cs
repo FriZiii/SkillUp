@@ -9,7 +9,7 @@ namespace Skillup.Modules.Finances.Core.ValueObjects
             : base(dto)
         {
             if (dto.DiscountValue <= 0 || dto.DiscountValue > 100)
-                throw new Exception(); //TODO: Custom ex;
+                throw new Exception(); //TODO: Custom ex: Wrong disocunt value, percentage cnt be less then 0 and grather ten 100
         }
 
         public override void ApplyDisountOnCart(Cart cart)

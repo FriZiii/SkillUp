@@ -22,7 +22,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
 
         public async Task<CourseDetailDto> Handle(GetCourseByIdRequest request, CancellationToken cancellationToken)
         {
-            var course = await _courseRepository.GetById(request.CourseId) ?? throw new Exception(); // TODO: Custom ex
+            var course = await _courseRepository.GetById(request.CourseId) ?? throw new Exception(); //TODO: Custom ex: course with id doesnt exist
 
             var user = await _userRepository.GetById(course.AuthorId) ?? throw new Exception();
             var authorName = user.FirstName + " " + user.LastName;
