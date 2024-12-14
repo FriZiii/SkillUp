@@ -17,6 +17,7 @@
         (mouseenter)="po_my_courses.show($event)"
         (mouseleave)="po_my_courses.hide()"
         size="small"
+        [routerLink]="'user/' + user()?.id + '/courses'"
       >
         <p-popover [showCloseIcon]="true" #po_my_courses
           ><div class="w-64 h-96 flex justify-center">
@@ -31,6 +32,7 @@
         (mouseenter)="po_cart.show($event)"
         (mouseleave)="po_cart.hide()"
         size="large"
+        [routerLink]="'cart'"
       >
         <p-popover [showCloseIcon]="true" #po_cart
           ><div class="w-64 h-96 flex justify-center">
