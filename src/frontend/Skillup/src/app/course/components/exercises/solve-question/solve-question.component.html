@@ -1,1 +1,31 @@
-<p>solve-question works!</p>
+<div class="su-section-mt prose max-w-none !w-full flex flex-col items-center">
+  <div class="flex flex-col">
+    <h1>Instruction</h1>
+
+    @for(question of questions; track question.id){
+    <p class="text-xl mb-2">{{ question.question }}</p>
+
+    @if(wrongAnswers.includes(question.id)){
+    <input
+      type="text"
+      pInputText
+      [(ngModel)]="answers[$index]"
+      class="ng-invalid ng-dirty"
+      [disabled]="submitted"
+    />
+    <p class="my-1">{{ question.correctAnswer }}</p>
+    } @else {
+    <input
+      type="text"
+      pInputText
+      [(ngModel)]="answers[$index]"
+      [disabled]="submitted"
+    />
+    } }
+
+    <div class="flex gap-4 my-8">
+      <p-button label="Submit" (onClick)="submitAnswer()"></p-button>
+      <p-button label="Try Again" (onClick)="tryAgain()"></p-button>
+    </div>
+  </div>
+</div>
