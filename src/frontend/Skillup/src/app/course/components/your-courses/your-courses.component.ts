@@ -12,6 +12,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { UserService } from '../../../user/services/user.service';
 import { UserRating } from '../../models/rating.model';
 import { UserRole } from '../../../user/models/user-role.model';
+import { UserProgressService } from '../../services/user-progress-service';
+import { CoursePercentage } from '../../models/user-progress.model';
 
 @Component({
   selector: 'app-your-courses',
@@ -28,6 +30,7 @@ export class YourCoursesComponent implements OnInit {
    courseService = inject(PurchasedItemsService);
    ratingService = inject(CourseRatingService);
    userService = inject(UserService);
+   userProgressService = inject(UserProgressService);
   
   //Variables
   loading = true;
@@ -38,6 +41,7 @@ export class YourCoursesComponent implements OnInit {
   newRating = 1;
   newFeedback = '';
   currentCourseId = '';
+  coursePercentages = signal<CoursePercentage[]>([]);
 
   ngOnInit(): void {
     this.loading = false;
@@ -45,6 +49,11 @@ export class YourCoursesComponent implements OnInit {
     this.ratingService.getUserRatings(this.userService.currentUser()!.id).subscribe(
       (res) => this.courseRatings = res
     );
+
+    this.userProgressService.getPercentage().subscribe((res) => {
+      this.coursePercentages.set(res);
+      console.log(res)
+    })
   }
 
   addRating(courseId: string){
@@ -87,5 +96,10 @@ export class YourCoursesComponent implements OnInit {
         this.currentRating = undefined;
       }
     );
+  }
+
+  getPercentage(courseId: string){
+    console.log( this.coursePercentages())
+    return this.coursePercentages().find(p => p.courseId === courseId);
   }
 }

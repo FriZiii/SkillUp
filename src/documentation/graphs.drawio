@@ -239,11 +239,11 @@
     </mxGraphModel>
   </diagram>
   <diagram id="jJPzOF1Ar5Ijz1JFrUd8" name="Application-Dev">
-    <mxGraphModel dx="1350" dy="1598" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1593" dy="1749" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="YHFHDH8k9fAFt5fq1yZ0-39" value="" style="points=[[0.35,0,0],[0.98,0.51,0],[1,0.71,0],[0.67,1,0],[0,0.795,0],[0,0.65,0]];verticalLabelPosition=bottom;sketch=0;html=1;verticalAlign=top;aspect=fixed;align=center;pointerEvents=1;shape=mxgraph.cisco19.user;fillColor=#005073;strokeColor=none;" parent="1" vertex="1">
+        <mxCell id="YHFHDH8k9fAFt5fq1yZ0-39" value="Aplikacja kliencka" style="points=[[0.35,0,0],[0.98,0.51,0],[1,0.71,0],[0.67,1,0],[0,0.795,0],[0,0.65,0]];verticalLabelPosition=bottom;sketch=0;html=1;verticalAlign=top;aspect=fixed;align=center;pointerEvents=1;shape=mxgraph.cisco19.user;fillColor=#005073;strokeColor=none;" parent="1" vertex="1">
           <mxGeometry x="44" y="-665" width="70" height="70" as="geometry" />
         </mxCell>
         <mxCell id="YHFHDH8k9fAFt5fq1yZ0-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1.004;exitY=0.813;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="YHFHDH8k9fAFt5fq1yZ0-39" target="YHFHDH8k9fAFt5fq1yZ0-7" edge="1">
@@ -254,7 +254,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="jScPO3evfKmyhUpbxN7N-1" value="Request" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="YHFHDH8k9fAFt5fq1yZ0-41">
+        <mxCell id="jScPO3evfKmyhUpbxN7N-1" value="Request" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="YHFHDH8k9fAFt5fq1yZ0-41" vertex="1" connectable="0">
           <mxGeometry x="-0.7038" y="4" relative="1" as="geometry">
             <mxPoint x="-17" y="3" as="offset" />
           </mxGeometry>
@@ -268,7 +268,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="jScPO3evfKmyhUpbxN7N-2" value="Response" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="YHFHDH8k9fAFt5fq1yZ0-42">
+        <mxCell id="jScPO3evfKmyhUpbxN7N-2" value="Response" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="YHFHDH8k9fAFt5fq1yZ0-42" vertex="1" connectable="0">
           <mxGeometry x="0.21" y="-3" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
