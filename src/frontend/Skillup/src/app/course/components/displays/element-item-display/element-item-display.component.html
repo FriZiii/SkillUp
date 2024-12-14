@@ -41,7 +41,13 @@
       />
       @if(moderator()){
       <p-button (click)="addComment()" icon="pi pi-comment" />
-      } @else { }
+      } @else{
+      <p-checkbox
+        [(ngModel)]="checked"
+        [binary]="true"
+        (onChange)="changeElementComplete()"
+      />
+      }
     </div>
   </div>
 </div>

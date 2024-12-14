@@ -28,5 +28,9 @@ export class CourseWalkThroughComponent implements OnInit{
   ngOnInit(): void {
     this.coureContentService.getSectionsByCourseId(this.courseId());
 
+    this.userProgressService.getAcomplishedElementsForCourse(this.courseId()).subscribe(
+      (res) => {
+        this.userProgressService.accomplishedElements.set(res);
+    })
   }
 }

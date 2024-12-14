@@ -7,11 +7,14 @@ import { ElementContentDialogComponent } from '../../edit-course/course-creator/
 import { ElementAttachmentsDialogComponent } from '../../edit-course/course-creator/element-item/element-attachments-dialog/element-attachments-dialog.component';
 import { ReviewCommentsComponent } from '../../reviews/course-review/review-comments/review-comments.component';
 import { AssetType, Element } from '../../../models/course-content.model';
+import { CheckboxModule } from 'primeng/checkbox';
+import { FormsModule } from '@angular/forms';
+import { UserProgressService } from '../../../services/user-progress-service';
 
 @Component({
   selector: 'app-element-item-display',
   standalone: true,
-  imports: [ButtonModule, MenuModule, DialogModule, ElementContentDialogComponent, ElementAttachmentsDialogComponent, ReviewCommentsComponent, ElementContentDialogComponent],
+  imports: [ButtonModule, MenuModule, DialogModule, CheckboxModule, FormsModule, ElementContentDialogComponent, ElementAttachmentsDialogComponent, ReviewCommentsComponent, ElementContentDialogComponent],
   templateUrl: './element-item-display.component.html',
   styleUrl: './element-item-display.component.css'
 })
@@ -19,9 +22,14 @@ export class ElementItemDisplayComponent implements OnInit {
   courseId = input.required<string>();
   element = input.required<Element>();
   moderator = input<boolean>(false);
+  
+  //Services
+  userProgressService = inject(UserProgressService); 
 
+  //Variables
   items: MenuItem[] = [];
   contentIcon = signal('');
+  checked = true;
 
   ngOnInit(): void {
     if(this.element().hasAsset){
@@ -30,6 +38,8 @@ export class ElementItemDisplayComponent implements OnInit {
     else {
       this.contentIcon.set('pi pi-exclamation-triangle');
     }
+
+    this.checked = this.userProgressService.accomplishedElements().includes(this.element().id)
     
     this.items = [
       {
@@ -92,5 +102,14 @@ export class ElementItemDisplayComponent implements OnInit {
   commentDialogVisible=false;
     addComment(){
       this.commentDialogVisible=true;
+  }
+
+  changeElementComplete(){
+    if(this.checked){
+      this.userProgressService.deleteProgress(this.courseId(), this.element().id).subscribe();
     }
+    else{
+      this.userProgressService.addProgress(this.courseId(), this.element().id).subscribe();
+    }
+  }
 }
