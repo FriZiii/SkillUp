@@ -5,12 +5,12 @@
     margin: '0.5rem',
     height: '26rem'
   }"
-  class="prose cursor-pointer"
+  class="prose"
 >
   <ng-template pTemplate="header">
     <img
       alt="{{ course.title }}"
-      class="w-full max-h-40"
+      class="w-full max-h-40 cursor-pointer"
       src="{{ course.thumbnailUrl }}"
       (click)="navigate('detail')"
     />
@@ -24,6 +24,7 @@
 
   <div class="flex justify-between items-center">
     <div>$ {{ course.price }}</div>
+    <p-rating [(ngModel)]="course.averageRating" [readonly]="true" />
     <span>
       <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
       @if(isAuthor()){

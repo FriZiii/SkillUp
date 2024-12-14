@@ -10,11 +10,13 @@ import { CoursesService } from '../../../services/course.service';
 import { PurchasedItemsService } from '../../../services/purchasedItems.service';
 import { UserService } from '../../../../user/services/user.service';
 import { UserRole } from '../../../../user/models/user-role.model';
+import { RatingModule } from 'primeng/rating';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-course-item',
   standalone: true,
-  imports: [ButtonModule, CardModule, TruncatePipe, TooltipModule],
+  imports: [ButtonModule, CardModule, TruncatePipe, TooltipModule, RatingModule, FormsModule],
   templateUrl: './course-item.component.html',
   styleUrl: './course-item.component.css',
 })

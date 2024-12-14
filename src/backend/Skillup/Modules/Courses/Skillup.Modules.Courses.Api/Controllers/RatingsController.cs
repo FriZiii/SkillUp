@@ -1,10 +1,8 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Requests.Commands.Ratings;
 using Skillup.Modules.Courses.Core.Requests.Queries;
-using Skillup.Shared.Abstractions.Auth;
 using Skillup.Shared.Infrastructure.Auth;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -19,7 +17,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [HttpPost]
         [Route("/Courses/{courseId}/Ratings")]
         [SwaggerOperation("Add rating")]
-        [Authorize(Roles = nameof(UserRole.User))]
+        //[Authorize(Roles = nameof(UserRole.User))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> AddRating(AddCourseRatingRequest request, Guid courseId)
@@ -37,7 +35,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
 
         [HttpPatch("{ratingId}")]
         [SwaggerOperation("Edit rating")]
-        [Authorize(Roles = nameof(UserRole.User))]
+        //[Authorize(Roles = nameof(UserRole.User))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> EditRating(Guid ratingId, EditCourseRatingRequest request)
@@ -50,8 +48,8 @@ namespace Skillup.Modules.Courses.Api.Controllers
 
 
         [HttpDelete("{ratingId}")]
-        [SwaggerOperation("Edit rating")]
-        [Authorize(Roles = nameof(UserRole.User))]
+        [SwaggerOperation("Delete rating")]
+        //[Authorize(Roles = nameof(UserRole.User))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteRating(Guid ratingId)

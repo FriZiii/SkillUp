@@ -16,8 +16,11 @@ import { CoursePercentage } from '../../../models/user-progress.model';
 export class CourseItemShortComponent {
   course = input.required<Course>();
   editable = input<boolean>(false);
+  rating = input<boolean>(false);
   moderator = input<boolean>(false);
   onReview = output<string>();
+  onRating = output<string>();
+
   percentages = input<CoursePercentage[]>([])
 
   bought = input<boolean>(false);
@@ -26,5 +29,9 @@ export class CourseItemShortComponent {
 
   review(courseId: string){
     this.onReview.emit(courseId);
+  }
+
+  addRating(courseId: string){
+    this.onRating.emit(courseId);
   }
 }

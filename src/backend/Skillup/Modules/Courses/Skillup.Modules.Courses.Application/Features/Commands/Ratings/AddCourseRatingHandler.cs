@@ -16,7 +16,6 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Ratings
             var courseRatings = new CourseRating()
             {
                 RatedById = request.UserId,
-                Id = request.RatingId,
                 Stars = request.Stars,
                 Feedback = request.Feedback,
                 CourseId = request.CourseId,
@@ -24,6 +23,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Ratings
             };
 
             await _courseRatingRepository.Add(courseRatings);
+            request.RatingId = courseRatings.Id;
         }
     }
 }

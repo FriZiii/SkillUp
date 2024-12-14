@@ -34,7 +34,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             => await _ratings.ToListAsync();
 
         public async Task<IEnumerable<CourseRating>> GetByCourseId(Guid courseId)
-            => await _ratings.Where(x => x.CourseId == courseId).ToListAsync();
+            => await _ratings.Include(r => r.RatedBy).Where(x => x.CourseId == courseId).ToListAsync();
 
         public async Task<IEnumerable<CourseRating>> GetByUserId(Guid userId)
             => await _ratings.Where(x => x.RatedById == userId).ToListAsync();
