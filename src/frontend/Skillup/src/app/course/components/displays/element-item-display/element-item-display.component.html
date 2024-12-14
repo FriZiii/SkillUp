@@ -30,25 +30,28 @@
     </div>
 
     <!-- Button Container -->
-    <div
-      class="flex justify-end w-full gap-2 px-2 button-container self-center"
-    >
-      <p-menu #menu [model]="items" [popup]="true" />
-      <p-button
-        (click)="menu.toggle($event)"
-        icon="pi pi-ellipsis-h"
-        severity="secondary"
-      />
-      @if(moderator()){
-      <p-button (click)="addComment()" icon="pi pi-comment" />
-      } @else{
+    <div class="flex justify-end w-full gap-2 px-2 self-center">
+      <div class="flex gap-2 px-2 button-container self-center">
+        <p-menu #menu [model]="items" [popup]="true" />
+        <p-button
+          (click)="menu.toggle($event)"
+          icon="pi pi-ellipsis-h"
+          severity="secondary"
+        />
+        @if(moderator()){
+        <p-button (click)="addComment()" icon="pi pi-comment" />
+        }
+      </div>
+      @if(!moderator()){
       <p-checkbox
         [(ngModel)]="checked"
+        [value]="check()"
         [binary]="true"
         (onChange)="changeElementComplete()"
       />
       }
     </div>
+    <div></div>
   </div>
 </div>
 

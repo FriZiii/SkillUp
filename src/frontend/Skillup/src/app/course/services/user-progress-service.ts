@@ -9,26 +9,11 @@ export class UserProgressService {
   public accomplishedElements = signal<string[]>([]);
 
   public addProgress(courseId: string, elementId: string) {
-    return this.httpClient.post(
-      environment.apiUrl +
-        '/Courses/' +
-        courseId +
-        '/Elements/' +
-        elementId +
-        '/Progress',
-      {}
-    );
+    return this.httpClient.post(environment.apiUrl + '/Courses/' + courseId + '/Elements/' + elementId + '/Progress', {});
   }
 
   public deleteProgress(courseId: string, elementId: string) {
-    return this.httpClient.delete(
-      environment.apiUrl +
-        '/Courses/' +
-        courseId +
-        '/Elements/' +
-        elementId +
-        '/Progress'
-    );
+    return this.httpClient.delete(environment.apiUrl + '/Courses/' + courseId + '/Elements/' + elementId + '/Progress');
   }
 
   public getPercentage() {

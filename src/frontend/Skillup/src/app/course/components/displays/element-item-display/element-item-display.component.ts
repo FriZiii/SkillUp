@@ -1,5 +1,7 @@
 import {
   Component,
+  computed,
+  effect,
   inject,
   input,
   OnInit,
@@ -46,7 +48,11 @@ export class ElementItemDisplayComponent implements OnInit {
   //Variables
   items: MenuItem[] = [];
   contentIcon = signal('');
-  checked = true;
+  check = computed(() => {
+    this.userProgressService.accomplishedElements().includes(this.element().id);
+    this.checked = this.userProgressService.accomplishedElements().includes(this.element().id);
+});
+  checked = false;
 
   ngOnInit(): void {
     if (this.element().hasAsset) {
@@ -54,10 +60,6 @@ export class ElementItemDisplayComponent implements OnInit {
     } else {
       this.contentIcon.set('pi pi-exclamation-triangle');
     }
-
-    this.checked = this.userProgressService
-      .accomplishedElements()
-      .includes(this.element().id);
 
     this.items = [
       {
