@@ -5,6 +5,7 @@ using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
 using Skillup.Modules.Courses.Core.Requests.Commands.Elements;
 using Skillup.Modules.Courses.Core.Requests.Commands.Elements.Attachment;
 using Skillup.Modules.Courses.Core.Requests.Queries;
+using Skillup.Modules.Courses.Core.Requests.Queries.Assets;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Courses.Api.Controllers

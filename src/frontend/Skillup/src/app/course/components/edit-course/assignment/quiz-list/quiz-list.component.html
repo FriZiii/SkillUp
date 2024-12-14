@@ -1,0 +1,63 @@
+@for( quiz of quizes(); track quiz.id){
+<div class="su-border my-2 px-4 py-2">
+  <div class="flex justify-between">
+    <div class="flex gap-4">
+      <p class="text-lg my-2">{{ $index + 1 }}</p>
+      <p class="text-lg my-2">{{ quiz.question }}</p>
+    </div>
+    <p-button
+      icon="pi pi-trash"
+      severity="danger"
+      (onClick)="removeQuiz($event, quiz.id)"
+      class="my-2"
+    ></p-button>
+  </div>
+  <div class="grid grid-cols-2 ml-6">
+    @for( answer of quiz.answers; track answer.id){
+    <div class="flex gap-4">
+      <p class="text-lg my-2">{{ $index + 1 }}</p>
+      <p class="text-lg my-2">{{ answer.answer }}</p>
+      <p-checkbox
+        [(ngModel)]="answer.isCorrect"
+        [binary]="true"
+        [readonly]="true"
+      />
+    </div>
+    }
+  </div>
+</div>
+}
+
+<app-hidden-form-wrapper btnText="Add question" (submit)="addQuiz($event)">
+  <div class="my-8">
+    <p-floatlabel>
+      <input
+        id="question"
+        type="text"
+        pInputText
+        [(ngModel)]="newQuestion"
+        class="w-full"
+      />
+      <label for="question">Question</label>
+    </p-floatlabel>
+    <div class="grid grid-cols-2 gap-8 mt-8">
+      @for(i of [0, 1, 2, 3]; track i){
+      <div class="flex w-full items-center gap-4">
+        <p-floatlabel class="w-full">
+          <input
+            id="answer"
+            type="text"
+            pInputText
+            [(ngModel)]="answers[i]"
+            class="w-full"
+          />
+          <label for="answer">Answer</label>
+        </p-floatlabel>
+        <p-checkbox [(ngModel)]="correct[i]" [binary]="true" />
+      </div>
+      }
+    </div>
+  </div>
+</app-hidden-form-wrapper>
+
+<p-confirmDialog />

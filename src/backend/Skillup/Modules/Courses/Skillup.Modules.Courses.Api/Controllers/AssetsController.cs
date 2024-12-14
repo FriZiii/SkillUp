@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets;
 using Skillup.Modules.Courses.Core.Requests.Commands.Assets;
-using Skillup.Modules.Courses.Core.Requests.Queries;
+using Skillup.Modules.Courses.Core.Requests.Queries.Assets;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Courses.Api.Controllers
@@ -34,6 +35,29 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok();
         }
 
+        [HttpPost("assignment/{exerciseType}/{elementId}")]
+        [SwaggerOperation("Add assignment")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AddAssignment(Guid elementId, [FromRoute] ExerciseType exerciseType, AddAssignmentAssetRequest request)
+        {
+            request.ElementId = elementId;
+            request.ExerciseType = exerciseType;
+            var assignment = await _mediator.Send(request);
+            return Ok(assignment);
+        }
+
+        [HttpPut("assignment/{elementId}")]
+        [SwaggerOperation("Edit assignment")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> EditAssignment(Guid elementId, EditAssignmentAssetRequest request)
+        {
+            request.ElementId = elementId;
+            await _mediator.Send(request);
+            return Ok();
+        }
+
         [HttpDelete("{elementId}")]
         [SwaggerOperation("Delete asset by elementId")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -54,7 +78,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             {
                 AssetType.Article => Ok(await _mediator.Send(new GetArticleAssetRequest(elementId))),
                 AssetType.Video => Ok(await _mediator.Send(new GetVideoAssetRequest(elementId))),
-                AssetType.Exercise => NotFound(),
+                AssetType.Exercise => Ok(await _mediator.Send(new GetAssignmentAssetRequest(elementId))),
                 _ => BadRequest(),
             };
         }

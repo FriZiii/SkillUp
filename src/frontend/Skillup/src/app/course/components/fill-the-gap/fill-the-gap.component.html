@@ -1,0 +1,60 @@
+<div class="su-border mb-4">
+  <div cdkDropListGroup class="flex flex-col gap-4 m-8">
+    <div class="flex justify-between">
+      <div class="flex gap-2 items-center">
+        @if(numberInList() !== null){
+        <div>{{ numberInList() }} .</div>
+        } @for (part of parts; track $index) { @if(part.word.index !== -1) {
+        <div
+          class="w-16 h-6 box-border border-black border-b-2"
+          cdkDropList
+          [cdkDropListData]="part.container"
+          [cdkDropListEnterPredicate]="todoPredicate"
+          (cdkDropListDropped)="dropInToSentence($event)"
+        >
+          @if(part.container.length > 0) {
+          <div
+            cdkDrag
+            (cdkDragEnded)="onDragEnd()"
+            class="word"
+            [ngClass]="{
+            'text-green-500':
+              part.container[0].index === part.word.index ,
+            'text-red-500':
+              part.container[0].index !== part.word.index ,
+          }"
+          >
+            <div class="placeholder" *cdkDragPlaceholder></div>
+            {{ part.container[0].value }}
+          </div>
+          }
+        </div>
+        } @else {
+        <div>{{ part.word.value }}</div>
+        } }
+      </div>
+      @if(deletable()){
+      <p-button
+        icon="pi pi-trash"
+        severity="danger"
+        (onClick)="removeSentence($event, sentence().id)"
+        class="my-2"
+      ></p-button>
+      }
+    </div>
+    <div
+      cdkDropList
+      (cdkDropListDropped)="dropInToContainer($event)"
+      [cdkDropListData]="sentence().words"
+      [cdkDropListOrientation]="'horizontal'"
+      class="flex gap-4 su-border px-4 py-2 box-border border-cyan-800 border-2"
+    >
+      @for (word of sentence().words; track $index) {
+      <div class="word" cdkDrag (cdkDragEnded)="onDragEnd()">
+        <div class="placeholder" *cdkDragPlaceholder></div>
+        {{ word.value }}
+      </div>
+      }
+    </div>
+  </div>
+</div>

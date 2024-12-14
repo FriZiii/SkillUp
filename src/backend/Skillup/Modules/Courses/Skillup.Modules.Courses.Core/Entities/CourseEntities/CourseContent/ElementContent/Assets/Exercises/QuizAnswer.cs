@@ -4,7 +4,7 @@
     {
         public Guid Id { get; set; }
         public string Answer { get; set; }
-        public bool isCorrectAnswer { get; set; } = false;
+        public bool IsCorrectAnswer { get; set; }
 
         public Guid QuestionId { get; set; }
         public QuizQuestion Question { get; set; }

@@ -13,6 +13,7 @@ import { CourseListItem } from '../../../../models/course.model';
   styleUrl: './element-list.component.css'
 })
 export class ElementListComponent {
+  courseId = input.required<string>();
   section = input.required<Section>();
   course = input.required<CourseListItem>();
   elements = computed(() => this.section().elements);

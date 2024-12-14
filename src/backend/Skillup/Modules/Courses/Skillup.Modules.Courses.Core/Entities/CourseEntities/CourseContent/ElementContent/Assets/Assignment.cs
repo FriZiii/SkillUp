@@ -5,6 +5,7 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Ele
     public class Assignment : Asset
     {
         public string Instruction { get; set; }
+        public ExerciseType ExerciseType { get; set; }
         public List<Exercise> Exercises { get; set; }
     }
 }

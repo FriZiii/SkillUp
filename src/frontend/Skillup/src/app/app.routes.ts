@@ -16,6 +16,9 @@ import { EditCourseComponent } from './course/components/edit-course/edit-course
 import { CourseCreatorComponent } from './course/components/edit-course/course-creator/course-creator.component';
 import { CoursePricingComponent } from './course/components/edit-course/course-pricing/course-pricing.component';
 import { CourseEssentialsComponent } from './course/components/edit-course/course-essentials/course-essentials.component';
+import { AddAssignmentComponent } from './course/components/edit-course/assignment/add-assignment/add-assignment.component';
+import { AssignmentComponent } from './course/components/edit-course/assignment/assignment.component';
+import { CanEnterAddAssignment } from './core/guards/canEnterAddAssignment.guard';
 import { YourCoursesComponent } from './course/components/your-courses/your-courses.component';
 import { CoursesCreatedByYouComponent } from './course/components/courses-created-by-you/courses-created-by-you.component';
 import { CartComponent } from './finance/components/cart/cart.component';
@@ -69,6 +72,15 @@ export const routes: Routes = [
       { path: 'price', component: CoursePricingComponent },
       { path: 'landing-page', component: CourseDetailComponent },
     ],
+  },
+  {
+    path: 'element-edit/:elementId/add-assignment',
+    component: AddAssignmentComponent,
+    canActivate: [CanEnterAddAssignment]
+  },
+  {
+    path: 'element-edit/:elementId/assignment',
+    component: AssignmentComponent,
   },
   {
     path: 'user/:userId',

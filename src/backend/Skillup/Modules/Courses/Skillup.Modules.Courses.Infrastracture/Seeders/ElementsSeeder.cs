@@ -123,7 +123,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Seeders
                 SectionId = _sectionsList.First(x => x.Title == jsonModel.SectionTitle).Id,
                 Asset = new Assignment()
                 {
-                    Instruction = jsonModel.Assignment.Instruction
+                    Instruction = jsonModel.Assignment.Instruction,
                 }
             };
         }

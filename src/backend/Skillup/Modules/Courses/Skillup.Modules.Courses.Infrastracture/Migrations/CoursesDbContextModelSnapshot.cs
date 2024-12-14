@@ -118,6 +118,29 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.UseTpcMappingStrategy();
                 });
 
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.FillTheGapWord", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Index")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("SentenceId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SentenceId");
+
+                    b.ToTable("FillTheGapWords", "courses");
+                });
+
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.QuizAnswer", b =>
                 {
                     b.Property<Guid>("Id")
@@ -128,17 +151,17 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsCorrectAnswer")
+                        .HasColumnType("boolean");
+
                     b.Property<Guid>("QuestionId")
                         .HasColumnType("uuid");
-
-                    b.Property<bool>("isCorrectAnswer")
-                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 
                     b.HasIndex("QuestionId");
 
-                    b.ToTable("QuizAnswer", "courses");
+                    b.ToTable("QuizAnswers", "courses");
                 });
 
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Attachment", b =>
@@ -421,6 +444,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                 {
                     b.HasBaseType("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Asset");
 
+                    b.Property<int>("ExerciseType")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Instruction")
                         .IsRequired()
                         .HasColumnType("text");
@@ -438,6 +464,17 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.ToTable("VideoAssets", "courses");
                 });
 
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.FillTheGapSentence", b =>
+                {
+                    b.HasBaseType("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.Exercise");
+
+                    b.Property<string>("Sentence")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.ToTable("FillTheGapSentence", "courses");
+                });
+
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.QuestionAnswer", b =>
                 {
                     b.HasBaseType("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.Exercise");
@@ -450,7 +487,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.ToTable("QuestionAnswerExercise", "courses");
+                    b.ToTable("QuestionAnswerExercises", "courses");
                 });
 
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.QuizQuestion", b =>
@@ -461,7 +498,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.ToTable("QuizQuestionExercise", "courses");
+                    b.ToTable("QuizQuestionExercises", "courses");
                 });
 
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.Course", b =>
@@ -561,6 +598,17 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         .IsRequired();
 
                     b.Navigation("Assignment");
+                });
+
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.FillTheGapWord", b =>
+                {
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.FillTheGapSentence", "Sentence")
+                        .WithMany("Words")
+                        .HasForeignKey("SentenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sentence");
                 });
 
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.QuizAnswer", b =>
@@ -843,6 +891,11 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Assignment", b =>
                 {
                     b.Navigation("Exercises");
+                });
+
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.FillTheGapSentence", b =>
+                {
+                    b.Navigation("Words");
                 });
 
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises.QuizQuestion", b =>

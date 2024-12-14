@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Skillup.Modules.Courses.Core.DTO;
 using Skillup.Modules.Courses.Core.Interfaces;
-using Skillup.Modules.Courses.Core.Requests.Queries;
+using Skillup.Modules.Courses.Core.Requests.Queries.Assets;
 using Skillup.Shared.Abstractions.S3;
 using System.Text;
 

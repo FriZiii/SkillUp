@@ -26,7 +26,10 @@ namespace Skillup.Modules.Courses.Infrastracture
 
         public DbSet<QuestionAnswer> QuestionAnswerExercises { get; set; }
         public DbSet<QuizQuestion> QuizQuestionExercises { get; set; }
-        public DbSet<QuizAnswer> QuizAnswer { get; set; }
+        public DbSet<QuizAnswer> QuizAnswers { get; set; }
+
+        public DbSet<FillTheGapSentence> FillTheGapSentences { get; set; }
+        public DbSet<FillTheGapWord> FillTheGapWords { get; set; }
 
 
         public DbSet<User> Users { get; set; }

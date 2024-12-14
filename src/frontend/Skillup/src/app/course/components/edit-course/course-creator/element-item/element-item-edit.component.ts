@@ -18,6 +18,8 @@ import { ElementContentDialogComponent } from "./element-content-dialog/element-
 import { Tooltip } from 'primeng/tooltip';
 import { SelectButton } from 'primeng/selectbutton';
 import { ElementAttachmentsDialogComponent } from "./element-attachments-dialog/element-attachments-dialog.component";
+import { Router, RoutesRecognized } from '@angular/router';
+import { CanEnterAddAssignment } from '../../../../../core/guards/canEnterAddAssignment.guard';
 import { CourseReviewService } from '../../../../services/course-review.service';
 import { CourseListItem } from '../../../../models/course.model';
 import { CourseStatus } from '../../../../models/course-status.model';
@@ -31,6 +33,7 @@ import { CourseStatus } from '../../../../models/course-status.model';
 })
 export class ElementItemEditComponent implements OnInit {
   //Variable
+  courseId = input.required<string>();
   section = input.required<Section>();
   element = input.required<Element>();
   course = input.required<CourseListItem>();
@@ -48,6 +51,7 @@ export class ElementItemEditComponent implements OnInit {
   courseContentService = inject(CourseContentService);
   confirmDialogService = inject(ConfirmationDialogHandlerService);
   assetService = inject(AssetService);
+  router = inject(Router);
   reviewService = inject(CourseReviewService);
 
   //Comments
@@ -76,8 +80,7 @@ export class ElementItemEditComponent implements OnInit {
                   label: 'Content',
                   icon: this.contentIcon(),
                   command: () => {
-                    console.log(this.element());
-                      this.changecontentDialogVisibility();
+                    this.openContent();
                   }
               },
               {
@@ -107,6 +110,23 @@ export class ElementItemEditComponent implements OnInit {
           ]
       }
   ]; 
+  }
+
+  canEnterAddAssignmentGuard = inject(CanEnterAddAssignment);
+  openContent(){
+    if(this.element().type === AssetType.Article || this.element().type === AssetType.Video){
+      this.changecontentDialogVisibility();
+    }
+    else{
+      if(this.element().hasAsset === false){
+        this.router.navigate(['/element-edit/', this.element().id, 'add-assignment']);
+        this.canEnterAddAssignmentGuard.setAllowed(true);
+        this.canEnterAddAssignmentGuard.courseId = this.courseId();
+      }
+      else{
+        this.router.navigate(['/element-edit/', this.element().id, 'assignment']);
+      }
+    }
   }
 
   //Element Icon

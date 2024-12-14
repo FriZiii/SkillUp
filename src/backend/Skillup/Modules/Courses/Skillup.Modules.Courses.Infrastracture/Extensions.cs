@@ -42,6 +42,8 @@ namespace Skillup.Modules.Courses.Infrastracture
                 .AddScoped<ICourseReviewRepository, CourseReviewRepository>()
                 .AddScoped<IReviewCommentRepository, ReviewCommentRepository>()
                 .AddScoped<IElementAttachmentRepository, ElementAttachmentRepository>()
+                .AddScoped<IExerciseRepository, ExerciseRepository>()
+                .AddScoped<IFillTheGapRepository, FillTheGapRepository>()
                 .AddScoped<ICourseUserProgressRepository, CourseUserProgressRepository>()
                 .AddScoped<IUserPurchasedCourseRepository, UserPurchasedCourseRepository>();
         }

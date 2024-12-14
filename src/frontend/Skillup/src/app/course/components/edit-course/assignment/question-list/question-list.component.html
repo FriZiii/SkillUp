@@ -1,0 +1,49 @@
+<div class="prose max-w-none !w-full">
+  @for( question of questions(); track question.id){
+  <div class="su-border my-2 px-4">
+    <div class="flex w-full justify-between">
+      <div class="flex gap-4">
+        <p class="text-lg my-2">{{ $index + 1 }}</p>
+        <p class="text-lg my-2">{{ question.question }}</p>
+      </div>
+
+      <p-button
+        icon="pi pi-trash"
+        severity="danger"
+        (onClick)="removeQuestion($event, question.id)"
+        class="my-2"
+      ></p-button>
+    </div>
+    <p class="text-lg my-2 pl-6">{{ question.correctAnswer }}</p>
+  </div>
+  }
+</div>
+
+<app-hidden-form-wrapper btnText="Add question" (submit)="addQuestion($event)">
+  <div class="my-8">
+    <p-floatlabel>
+      <input
+        id="question"
+        type="text"
+        pInputText
+        [(ngModel)]="newQuestion"
+        class="w-full"
+      />
+      <label for="question">Question</label>
+    </p-floatlabel>
+  </div>
+  <div>
+    <p-floatlabel>
+      <input
+        id="answer"
+        type="text"
+        pInputText
+        [(ngModel)]="newAnswer"
+        class="w-full"
+      />
+      <label for="answer">Answer</label>
+    </p-floatlabel>
+  </div>
+</app-hidden-form-wrapper>
+
+<p-confirmdialog />

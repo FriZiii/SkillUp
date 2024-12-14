@@ -7,7 +7,10 @@ namespace Skillup.Modules.Courses.Core.Interfaces
     {
         Task AddArticle(Article article);
         Task AddVideo(Video video);
+        Task AddAssignment(Assignment assignment);
+        Task EditAssignment(Assignment assignment);
         Task Delete(Guid id, AssetType type);
         Task<Asset?> GetByElementId(Guid elementId);
+        Task<Assignment> GetAssignmentById(Guid id);
     }
 }

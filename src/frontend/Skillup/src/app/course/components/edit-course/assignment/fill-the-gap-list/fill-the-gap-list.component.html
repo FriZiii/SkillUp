@@ -1,0 +1,14 @@
+@for(sentence of sentences; track sentence.id){
+<app-fill-the-gap
+  [sentence]="sentence"
+  [numberInList]="$index + 1"
+  [deletable]="true"
+  (onRemove)="removeSentence($event)"
+></app-fill-the-gap>
+}
+<app-fill-the-gap-creator
+  [assignmentId]="assignmentId()"
+  (sentenceAdded)="newSentendeAdded($event)"
+></app-fill-the-gap-creator>
+
+<p-confirmDialog />

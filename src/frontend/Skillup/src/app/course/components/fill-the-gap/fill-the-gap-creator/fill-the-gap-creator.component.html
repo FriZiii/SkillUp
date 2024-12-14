@@ -1,0 +1,62 @@
+<div class="flex gap-2 flex-col">
+  <div
+    cdkDropList
+    (cdkDropListDropped)="drop($event)"
+    [cdkDropListOrientation]="'horizontal'"
+    [cdkDropListData]="parts"
+    class="flex flex-wrap min-h-20 border-2 su-border border-gray-600 p-2"
+  >
+    @for (part of parts; track part) {
+    <app-part
+      [isDragged]="dragged"
+      (draggedChange)="onDraggedChange($event)"
+      (inputChange)="onPartValueChanged($index, $event)"
+      (cancel)="onDelete($index)"
+      [type]="part.type"
+    ></app-part>
+    }
+  </div>
+
+  <div class="flex gap-2">
+    <p-button (onClick)="addWord()" label="Add part of sentence"></p-button>
+    <p-button
+      severity="contrast"
+      (onClick)="addSentence()"
+      label="Add gap word"
+    ></p-button>
+  </div>
+
+  <div class="flex flex-col">
+    <div class="flex">
+      <input
+        size="small"
+        type="text"
+        [(ngModel)]="fakeWord"
+        pInputText
+        class="!border-r-0 !rounded-r-none"
+      />
+      <p-button
+        (onClick)="addFakeWord()"
+        severity="contrast"
+        styleClass="!border-r-0 !rounded-l-none !h-full"
+        icon="pi pi-plus"
+      ></p-button>
+    </div>
+
+    <p-table [value]="fakeWords" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Value</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+        <tr>
+          <td>{{ product.value }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <p-button (onClick)="onSave()" label="Save"></p-button>
+</div>

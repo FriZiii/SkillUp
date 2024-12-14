@@ -8,7 +8,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Configurations.CourseConfigurat
     {
         public void Configure(EntityTypeBuilder<QuizQuestion> builder)
         {
-            builder.ToTable("QuizQuestionExercise")
+            builder.ToTable("QuizQuestionExercises")
                .HasBaseType<Exercise>();
 
             builder.HasMany(q => q.Answers)
