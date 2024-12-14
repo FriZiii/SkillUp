@@ -17,8 +17,8 @@ namespace Skillup.Modules.Finances.Core.DAL.Configurations
                 .HasColumnType("decimal(18,2)");
 
             builder.HasOne(x => x.Orderer)
-                .WithOne()
-                .HasForeignKey<Order>(x => x.OrdererId)
+                .WithMany()
+                .HasForeignKey(x => x.OrdererId)
                 .IsRequired();
         }
     }

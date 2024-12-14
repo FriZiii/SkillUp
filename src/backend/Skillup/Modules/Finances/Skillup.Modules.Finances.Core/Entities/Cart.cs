@@ -13,7 +13,7 @@ namespace Skillup.Modules.Finances.Core.Entities
         public void ApplyDiscountCode(DiscountCode discountCode)
         {
             if (!discountCode.CanBeUsed(this))
-                throw new InvalidOperationException("The discount code cannot be applied to this cart."); // TODO: Custom Ex
+                throw new InvalidOperationException("The discount code cannot be applied to this cart."); // TODO: Custom Ex: The discount code cannot be applied to this cart.
 
             DiscountCode = discountCode;
             DiscountCodeId = discountCode.Id;

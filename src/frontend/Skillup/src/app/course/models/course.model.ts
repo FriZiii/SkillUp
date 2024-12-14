@@ -1,5 +1,6 @@
 import { Section } from "./course-content.model";
 import { CourseLevel } from "./course-level.model";
+import { CourseStatus } from "./course-status.model";
 
 export interface AddCourse{
     title: string;
@@ -12,7 +13,7 @@ export interface Course{
     title: string;
     authorId: string;
     authorName:  string;
-    isPublished: boolean;
+    status: CourseStatus;
     category: {
         id: string;
         name: string;
@@ -31,7 +32,7 @@ export interface CourseListItem{
     title: string;
     authorId: string;
     authorName:  string;
-    isPublished: boolean;
+    status: CourseStatus;
     category: {
         id: string;
         name: string;
@@ -43,9 +44,9 @@ export interface CourseListItem{
         };
     };
     thumbnailUrl: string;
-    price: {
-        amount: number;
-    };
+    price: number;
+    averageRating: number;
+    ratingsCount: number;
 }
 
 export interface CourseDetail{
@@ -53,7 +54,7 @@ export interface CourseDetail{
     title: string;
     authorId: string;
     authorName:  string;
-    isPublished: boolean;
+    status: CourseStatus;
     category: {
         id: string;
         name: string;
@@ -72,7 +73,5 @@ export interface CourseDetail{
     intendedFor: string[];
     mustKnowBefore: string[];
     sections: Section[];
-    price: {
-        amount: number;
-    };
+    price: number;
 }

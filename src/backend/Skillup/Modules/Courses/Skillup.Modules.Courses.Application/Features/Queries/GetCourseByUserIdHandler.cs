@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Skillup.Modules.Courses.Application.Mappings;
 using Skillup.Modules.Courses.Application.Operations;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Shared.Abstractions.S3;
 
@@ -16,7 +17,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
         {
             var purchasedCourse = await _userPurchasedCourseRepository.GetByUserId(request.UserId);
             var mapper = new CourseMapper(_amazonS3Service);
-            var allCourses = await _courseRepository.GetAll();
+            var allCourses = await _courseRepository.GetByStatus(CourseStatus.Published);
             var userPurshedCourses = allCourses.Where(x => purchasedCourse.Any(y => y.CourseId == x.Id));
 
             return userPurshedCourses.Select(mapper.CourseToCourseDto).ToList();

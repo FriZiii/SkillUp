@@ -58,7 +58,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
         public async Task<IActionResult> ToggleDiscountCodeForItem(Guid discountCodeId, Guid itemId)
         {
             await _mediator.Send(new ToggleDiscountCodeForItemRequest(discountCodeId, itemId));
-            return Ok();
+            return Ok(await _mediator.Send(new GetDiscountCodeByIdRequest(discountCodeId)));
         }
 
 

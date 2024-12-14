@@ -14,9 +14,9 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
 
         public async Task<AttachmentDto> Handle(GetAttachmentRequest request, CancellationToken cancellationToken)
         {
-            var attachment = await _elementAttachmentRepository.Get(request.AttachmentId) ?? throw new Exception(); // TODO: Custom ex
+            var attachment = await _elementAttachmentRepository.Get(request.AttachmentId) ?? throw new Exception(); // TODO: Custom ex: attachment with id doesnt exist
 
-            var response = await _amazonS3Service.Download(S3FolderPaths.ElementsAttachments + attachment.Key) ?? throw new Exception(); // TODO: Custom ex;
+            var response = await _amazonS3Service.Download(S3FolderPaths.ElementsAttachments + attachment.Key) ?? throw new Exception(); // TODO: Custom ex: attachment file with key doesnt exist
 
             using var responseStream = response.ResponseStream;
 

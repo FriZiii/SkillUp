@@ -24,7 +24,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
 
         public async Task Handle(EditCourseTumbnailRequest request, CancellationToken cancellationToken)
         {
-            var course = await _courseRepository.GetById(request.CourseId) ?? throw new Exception(); // TODO: Custom ex
+            var course = await _courseRepository.GetById(request.CourseId) ?? throw new Exception(); // TODO: Custom ex: Course with id doesnt exist
 
             var key = course.Details.ThumbnailKey;
 

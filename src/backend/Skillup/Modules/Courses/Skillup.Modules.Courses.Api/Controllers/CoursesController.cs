@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Application.Features.Queries;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 using Skillup.Modules.Courses.Core.Requests.Commands;
 using Skillup.Modules.Courses.Core.Requests.Queries;
 using Skillup.Shared.Abstractions.Auth;
@@ -36,32 +37,14 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(course);
         }
 
-        [HttpPatch]
-        [Authorize(Roles = nameof(UserRole.Instructor))]
-        [SwaggerOperation("Publish course")]
-        [Route("/Courses/{courseId}/Publish")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Publish(Guid courseId)
-        {
-            var userId = User.GetUserId();
-            if (userId == null) return Unauthorized();
-
-            await _mediator.Send(new PublishCourseRequest(courseId));
-
-            var course = await _mediator.Send(new GetCourseByIdRequest(courseId));
-            //TODO: add possibility to unpublish a course
-            return Ok(course);
-        }
-
         [HttpGet]
         [Route("/Courses")]
         [SwaggerOperation("Get courses")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] CourseStatus? status)
         {
-            var courses = await _mediator.Send(new GetCoursesRequest());
+            var courses = await _mediator.Send(new GetCoursesRequest(status));
             return Ok(courses);
         }
 
@@ -81,9 +64,9 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [Route("/Courses/Author/{authorId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetByAuthorId(Guid authorId)
+        public async Task<IActionResult> GetByAuthorId(Guid authorId, [FromQuery] CourseStatus? status)
         {
-            var courses = await _mediator.Send(new GetCoursesByAuthorIdRequest(authorId));
+            var courses = await _mediator.Send(new GetCoursesByAuthorIdRequest(authorId, status));
             return Ok(courses);
         }
 

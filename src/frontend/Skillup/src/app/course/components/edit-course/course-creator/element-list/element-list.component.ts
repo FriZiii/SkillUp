@@ -1,19 +1,21 @@
 import { CdkDrag, CdkDragDrop, CdkDragPlaceholder, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, computed, inject, input } from '@angular/core';
 import { Section } from '../../../../models/course-content.model';
-import { ElementItemComponent } from "../element-item/element-item.component";
-import { CourseContentService } from '../../../../services/course-content-service';
+import { ElementItemEditComponent } from "../element-item/element-item-edit.component";
+import { CourseContentService } from '../../../../services/course-content.service';
+import { CourseListItem } from '../../../../models/course.model';
 
 @Component({
   selector: 'app-element-list',
   standalone: true,
-  imports: [CdkDropList, CdkDrag, CdkDragPlaceholder, ElementItemComponent],
+  imports: [CdkDropList, CdkDrag, CdkDragPlaceholder, ElementItemEditComponent],
   templateUrl: './element-list.component.html',
   styleUrl: './element-list.component.css'
 })
 export class ElementListComponent {
   courseId = input.required<string>();
   section = input.required<Section>();
+  course = input.required<CourseListItem>();
   elements = computed(() => this.section().elements);
   passSection = computed(() => this.section());
   courseContentService = inject(CourseContentService);

@@ -9,12 +9,45 @@
   </div>
   } @else {
   <div class="prose max-w-none !w-full">
-    <h1 class="text-5xl text-center">List of courses you habe bought</h1>
+    <h1 class="text-5xl text-center">List of courses you have bought</h1>
   </div>
   } }
   <div class="cols-responsive-2 mt-8">
     @for( course of courses(); track course.id){
-    <app-course-item-short [course]="course"></app-course-item-short>
+    <app-course-item-short
+      [course]="course"
+      [rating]="true"
+      (onRating)="addRating($event)"
+      [bought]="true"
+      [percentages]="coursePercentages()"
+    ></app-course-item-short>
     }
   </div>
 </div>
+
+<!-- Add Rating dialog -->
+<p-dialog
+  header="Add your rating"
+  [modal]="true"
+  [(visible)]="addRatingDialogVisible"
+  [style]="{ width: '80%' }"
+  [draggable]="false"
+  class="cursor-default"
+>
+  <p-rating [(ngModel)]="newRating" />
+  <input type="text" pInputText [(ngModel)]="newFeedback" />
+  <div class="flex gap-2 justify-between">
+    @if(currentRating){
+    <p-button label="Edit" (click)="editRating()" />
+    <p-button icon="pi pi-trash" severity="danger" (click)="deleteRating()" />
+    } @else {
+    <p-button label="Submit" (click)="postNewRating()" />
+    }
+
+    <p-button
+      label="Cancel"
+      severity="secondary"
+      (click)="addRatingDialogVisible = false"
+    />
+  </div>
+</p-dialog>

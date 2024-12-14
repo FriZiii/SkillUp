@@ -33,7 +33,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Token
             if (user.State == UserState.Locked)
             {
                 _logger.LogError("User is in locked state");
-                throw new Exception(); //TODO: Custom Exception
+                throw new Exception(); //TODO: Custom Ex: User is in locked
             }
 
             try

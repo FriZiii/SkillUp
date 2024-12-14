@@ -8,7 +8,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { StepperModule } from 'primeng/stepper';
 import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { CourseContentService } from '../../../../../services/course-content-service';
+import { CourseContentService } from '../../../../../services/course-content.service';
 import { AssetType } from '../../../../../models/course-content.model';
 import { CommonModule } from '@angular/common';
 import { ConfirmationDialogHandlerService } from '../../../../../../core/services/confirmation-handler.service';

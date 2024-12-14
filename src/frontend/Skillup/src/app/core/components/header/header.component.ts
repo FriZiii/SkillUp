@@ -1,5 +1,6 @@
 import {
   Component,
+  computed,
   inject,
   OnInit,
   signal,
@@ -28,6 +29,11 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
 import { UserService } from '../../../user/services/user.service';
 import { User } from '../../../user/models/user.model';
 import { AuthService } from '../../../auth/services/auth.service';
+import { CartService } from '../../../finance/services/cart.service';
+import { Cart } from '../../../finance/models/cart.model';
+import { CourseItemShortComponent } from '../../../course/components/displays/course-item-short/course-item-short.component';
+import { CoursesService } from '../../../course/services/course.service';
+import { UserRole } from '../../../user/models/user-role.model';
 
 @Component({
   selector: 'app-header',
@@ -48,8 +54,8 @@ import { AuthService } from '../../../auth/services/auth.service';
     ButtonModule,
     RippleModule,
     AvatarModule,
-    StyleClassModule,
-  ],
+    StyleClassModule
+],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
@@ -58,9 +64,14 @@ export class HeaderComponent implements OnInit {
   router = inject(Router);
   userService = inject(UserService);
   authService = inject(AuthService);
+  cartService = inject(CartService);
+  courseService = inject(CoursesService);
+  UserRole = UserRole;
 
   visible: boolean = false;
   user = signal<User | null>(null);
+  cart = this.cartService.cart;
+  cartItems = computed(() => this.cart()?.items.flatMap((item) => this.courseService.getCourseById(item.id)))
 
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
@@ -82,4 +93,6 @@ export class HeaderComponent implements OnInit {
     this.authService.signOut().subscribe();
     this.visible = false;
   }
+
+  
 }

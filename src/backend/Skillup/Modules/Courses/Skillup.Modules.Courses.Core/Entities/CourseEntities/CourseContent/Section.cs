@@ -12,6 +12,6 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent
         public Guid CourseId { get; set; }
         public Course Course { get; set; }
 
-        public List<Element> Elements { get; set; }  //element ex. one movie clip
+        public List<Element> Elements { get; set; } = new List<Element>();  //element ex. one movie clip
     }
 }

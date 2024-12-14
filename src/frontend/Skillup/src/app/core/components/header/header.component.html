@@ -35,6 +35,11 @@
         <p-popover [showCloseIcon]="true" #po_cart
           ><div class="w-64 h-96 flex justify-center">
             <h1>Cart</h1>
+            @if(!cart()){
+            <h1>Cart empty</h1>
+            } @for(item of cartItems(); track item.id){
+            <p>{{ item.title }}</p>
+            }
           </div></p-popover
         >
       </p-button>
@@ -205,6 +210,18 @@
                     <li>
                       <a
                         pRipple
+                        routerLinkActive="active-link"
+                        [routerLink]="'cart'"
+                        class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                      >
+                        <i class="pi pi-shopping-cart mr-2"></i>
+                        <span class="font-medium">My cart</span>
+                      </a>
+                    </li>
+
+                    <li>
+                      <a
+                        pRipple
                         class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
                       >
                         <i class="pi pi-cog mr-2"></i>
@@ -215,6 +232,7 @@
                 </li>
               </ul>
 
+              @if(userService.currentUser()?.role === UserRole.Instructor){
               <ul class="list-none p-4 m-0">
                 <li>
                   <div
@@ -247,8 +265,20 @@
                         [routerLink]="'author/' + user()?.id + '/courses'"
                         class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
                       >
-                        <i class="pi pi-folder mr-2"></i>
+                        <i class="pi pi-list mr-2"></i>
                         <span class="font-medium">Courses created by you</span>
+                      </a>
+                    </li>
+
+                    <li>
+                      <a
+                        pRipple
+                        routerLinkActive="active-link"
+                        [routerLink]="'course/new'"
+                        class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                      >
+                        <i class="pi pi-plus mr-2"></i>
+                        <span class="font-medium">Create new course</span>
                       </a>
                     </li>
                     <li>
@@ -272,6 +302,37 @@
                   </ul>
                 </li>
               </ul>
+              } @if(userService.currentUser()?.role === UserRole.Moderator){
+              <ul class="list-none p-4 m-0">
+                <li>
+                  <div
+                    pRipple
+                    pStyleClass="@next"
+                    enterFromClass="hidden"
+                    enterActiveClass="animate-slidedown"
+                    leaveToClass="hidden"
+                    leaveActiveClass="animate-slideup"
+                    class="p-4 flex items-center justify-between text-surface-600 dark:text-surface-200 cursor-pointer p-ripple"
+                  >
+                    <span class="font-medium">MODERATOR</span>
+                    <i class="pi pi-chevron-down"></i>
+                  </div>
+                  <ul class="list-none p-0 m-0 overflow-hidden">
+                    <li>
+                      <a
+                        pRipple
+                        routerLinkActive="active-link"
+                        [routerLink]="'reviews'"
+                        class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                      >
+                        <i class="pi pi-folder mr-2"></i>
+                        <span class="font-medium">Reviews</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              }
             </div>
 
             <!-- User -->

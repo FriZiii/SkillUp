@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Skillup.Modules.Courses.Application.Mappings;
 using Skillup.Modules.Courses.Application.Operations;
+using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Requests.Queries;
 using Skillup.Shared.Abstractions.S3;
@@ -15,7 +16,16 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
 
         public async Task<List<CourseDto>> Handle(GetCoursesByAuthorIdRequest request, CancellationToken cancellationToken)
         {
-            var courses = (await _courseRepository.GetAll()).Where(c => c.AuthorId == request.authorID);
+            IEnumerable<Course?> courses;
+            if (request.Status == null)
+            {
+                courses = await _courseRepository.GetAll();
+            }
+            else
+            {
+                courses = await _courseRepository.GetByStatus((CourseStatus)request.Status);
+            }
+            courses = courses.Where(c => c.AuthorId == request.AuthorId);
             var mapper = new CourseMapper(_amazonS3Service);
             var courseDtos = courses.Select(mapper.CourseToCourseDto).ToList();
 

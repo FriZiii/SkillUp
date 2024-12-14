@@ -23,12 +23,12 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task Delete(Guid id)
         {
-            var attachmentToDelete = await _attachments.FirstOrDefaultAsync(x => x.Id == id) ?? throw new Exception(); // TODO: Custom ex
+            var attachmentToDelete = await _attachments.FirstOrDefaultAsync(x => x.Id == id) ?? throw new Exception(); // TODO: Custom ex: attachment with id doesnt exist
             _attachments.Remove(attachmentToDelete);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Attachment> Get(Guid id)
-            => await _attachments.FirstOrDefaultAsync(x => x.Id == id) ?? throw new Exception(); // TODO: Custom ex
+        public async Task<Attachment?> Get(Guid id)
+            => await _attachments.FirstOrDefaultAsync(x => x.Id == id);
     }
 }

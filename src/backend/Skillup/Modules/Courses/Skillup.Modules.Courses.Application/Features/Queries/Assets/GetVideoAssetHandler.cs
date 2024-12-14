@@ -14,7 +14,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries.Assets
 
         public async Task<VideoAssetDto> Handle(GetVideoAssetRequest request, CancellationToken cancellationToken)
         {
-            var video = await _assetsRepository.GetByElementId(request.ElementId) as Video ?? throw new Exception(); // TODO: custom ex
+            var video = await _assetsRepository.GetByElementId(request.ElementId) as Video ?? throw new Exception(); // TODO: Custom ex: Video for element with id doesnt exist
 
             var videoUrl = await _amazonS3Service.GetPresignedUrl(S3FolderPaths.CourseAsset + video.Key); // TODO: Change timeToLive of presignedURL
 

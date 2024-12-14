@@ -90,7 +90,7 @@ export class AddCourseComponent {
         next: (res) => {
           this.courseId = res.id;
           this.toastService.showSuccess('Course sucessfully added');
-          this.router.navigate(['/course-detail', this.courseId]);
+          this.router.navigate(['/course-edit', this.courseId, 'essentials']);
         },
       });
     this.destroyRef.onDestroy(() => {

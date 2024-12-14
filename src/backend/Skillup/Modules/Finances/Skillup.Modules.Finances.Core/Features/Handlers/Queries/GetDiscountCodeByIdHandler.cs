@@ -14,7 +14,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Queries
         {
             DiscountCodeMapper mapper = new();
 
-            var discountCode = await _discountCodeRepository.GetById(request.DiscountCodeId) ?? throw new Exception(); //TODO: Custom Ex
+            var discountCode = await _discountCodeRepository.GetById(request.DiscountCodeId) ?? throw new Exception(); //TODO: Custom Ex: discount code with id doesnt exist
 
             var dto = mapper.DiscountCodeToDto(discountCode);
             return dto;

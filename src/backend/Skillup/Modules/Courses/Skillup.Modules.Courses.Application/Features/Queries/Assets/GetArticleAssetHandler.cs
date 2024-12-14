@@ -14,7 +14,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries.Assets
 
         public async Task<ArticleAssetDto> Handle(GetArticleAssetRequest request, CancellationToken cancellationToken)
         {
-            var article = await _assetsRepository.GetByElementId(request.ElementId) as Article ?? throw new Exception(); // TODO: custom ex
+            var article = await _assetsRepository.GetByElementId(request.ElementId) as Article ?? throw new Exception(); // TODO: Custom ex: Article with for element with id doesnt extist
 
             var articleUrl = await _amazonS3Service.GetPresignedUrl(S3FolderPaths.CourseAsset + article.Key); // TODO: Change timeToLive of presignedURL
 

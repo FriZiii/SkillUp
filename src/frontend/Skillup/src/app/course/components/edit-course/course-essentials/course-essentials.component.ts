@@ -65,7 +65,7 @@ categories = this.courseCategoryService.categories;
 
 
   ngOnInit(): void {
-    this.courseService.getCourseById(this.courseId()).subscribe({
+    this.courseService.getCourseDetailById(this.courseId()).subscribe({
       next: (res) => {
         this.course.set(res);
         this.title.set(res.title);

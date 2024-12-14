@@ -13,7 +13,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Queries
         public async Task<WalletDto> Handle(GetUserWalletByIdRequest request, CancellationToken cancellationToken)
         {
             var mapper = new WalletMapper();
-            var wallet = await _walletRepository.GetWallet(request.WalletId) ?? throw new Exception(); // TODO: Custom Ex;
+            var wallet = await _walletRepository.GetWallet(request.WalletId) ?? throw new Exception(); // TODO: Custom Ex: Wallet with id doesnt exist
             return mapper.WalletToDto(wallet);
         }
     }

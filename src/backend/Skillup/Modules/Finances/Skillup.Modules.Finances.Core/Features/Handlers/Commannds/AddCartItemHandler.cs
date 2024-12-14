@@ -14,14 +14,14 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
         {
             if (request.CartId is not null)
             {
-                var cart = await _cartRepository.GetCart((Guid)request.CartId) ?? throw new Exception(); // TODO: Custom ex
+                var cart = await _cartRepository.GetCart((Guid)request.CartId) ?? throw new Exception(); // TODO: Custom ex: cart with id doesnt exist
             }
             else
             {
                 request.CartId = Guid.NewGuid();
             }
 
-            var item = await _itemRepository.GetById(request.ItemId) ?? throw new Exception(); // TODO: Custom ex
+            var item = await _itemRepository.GetById(request.ItemId) ?? throw new Exception(); // TODO: Custom ex: item with id doesnt exist
 
             await _cartRepository.AddCartItem(
                 new CartItem()

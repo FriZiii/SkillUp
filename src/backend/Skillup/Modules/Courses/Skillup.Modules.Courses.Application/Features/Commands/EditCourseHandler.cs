@@ -24,7 +24,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
         }
         public async Task<CourseDto> Handle(EditCourseRequest request, CancellationToken cancellationToken)
         {
-            var course = await _courseRepository.GetById(request.CourseID);
+            var course = await _courseRepository.GetById(request.CourseID) ?? throw new Exception(); // TODO: Custom ex: course with id doesnt exist
             course.Title = request.Title;
             course.CategoryId = request.CategoryId;
             course.SubcategoryId = request.SubcategoryId;
@@ -32,10 +32,10 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
             await _courseRepository.Edit(course);
             _logger.LogInformation("Element edited");
 
-            var newCourse = await _courseRepository.GetById(request.CourseID);
+            var newCourse = await _courseRepository.GetById(request.CourseID) ?? throw new Exception(); // TODO: Custom ex: course with id doesnt exist
             var courseMapper = new CourseMapper(_amazonS3Service);
             var courseDto = courseMapper.CourseToCourseDto(newCourse);
-            var user = await _userRepository.GetById(courseDto.AuthorId);
+            var user = await _userRepository.GetById(courseDto.AuthorId) ?? throw new Exception(); // TODO: Custom ex: author with id doesnt exist
             courseDto.AuthorName = user.FirstName + " " + user.LastName;
             return courseDto;
         }

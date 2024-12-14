@@ -22,12 +22,12 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Assets
         {
             if (request.File == null)
             {
-                throw new ArgumentException("No file provided"); //TODO: Custom ex
+                throw new ArgumentException("No file provided"); //TODO: Custom ex: No video file provided
             }
 
             if (!IsVideoFile(request.File))
             {
-                throw new ArgumentException("Provided file is not a valid video format"); //TODO: Custom ex
+                throw new ArgumentException("Provided file is not a valid video format"); //TODO: Custom ex: Provided file is not a valid video format
             }
 
             await _amazonS3Service.Upload(request.File, S3FolderPaths.CourseAsset + request.Key);

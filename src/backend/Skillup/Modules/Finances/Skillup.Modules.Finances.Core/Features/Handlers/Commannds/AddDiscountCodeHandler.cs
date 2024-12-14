@@ -27,7 +27,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
             }
 
             if (discountCodeToAdd == null)
-                throw new Exception();  // TODO: CustomEx
+                throw new Exception();  // TODO: Custom Ex: an error occured while creating discount code
 
             discountCodeToAdd.Owner = owner;
             discountCodeToAdd.OwnerId = request.OwnerId;

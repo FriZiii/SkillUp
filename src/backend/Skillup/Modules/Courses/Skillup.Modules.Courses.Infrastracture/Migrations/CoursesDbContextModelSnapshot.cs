@@ -60,8 +60,8 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<bool>("IsPublished")
-                        .HasColumnType("boolean");
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
 
                     b.Property<Guid>("SubcategoryId")
                         .HasColumnType("uuid");
@@ -240,6 +240,119 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("Sections", "courses");
+                });
+
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseRating", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Feedback")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("RatedById")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Stars")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("RatedById");
+
+                    b.ToTable("CourseRatings", "courses");
+                });
+
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseReview", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("FinalizedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("CourseReviews", "courses");
+                });
+
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseReviewComment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("CommentText")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("CourseElementId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CourseReviewId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsResolved")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseElementId");
+
+                    b.HasIndex("CourseReviewId");
+
+                    b.ToTable("ReviewComments", "courses");
+                });
+
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseUserProgess", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ElementId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("ElementId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CourseUserProgess", "courses");
                 });
 
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.Subcategory", b =>
@@ -542,6 +655,82 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.Navigation("Course");
                 });
 
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseRating", b =>
+                {
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.UserEntities.User", "RatedBy")
+                        .WithMany()
+                        .HasForeignKey("RatedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("RatedBy");
+                });
+
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseReview", b =>
+                {
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseReviewComment", b =>
+                {
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Element", "CourseElement")
+                        .WithMany()
+                        .HasForeignKey("CourseElementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseReview", "CourseReview")
+                        .WithMany("Comments")
+                        .HasForeignKey("CourseReviewId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CourseElement");
+
+                    b.Navigation("CourseReview");
+                });
+
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseUserProgess", b =>
+                {
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Element", "Element")
+                        .WithMany()
+                        .HasForeignKey("ElementId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.UserEntities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Element");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.Subcategory", b =>
                 {
                     b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.Category", "Category")
@@ -680,6 +869,11 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Section", b =>
                 {
                     b.Navigation("Elements");
+                });
+
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseReview", b =>
+                {
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.Subcategory", b =>

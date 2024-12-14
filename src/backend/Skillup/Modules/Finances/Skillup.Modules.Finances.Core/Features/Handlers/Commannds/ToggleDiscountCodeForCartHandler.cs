@@ -12,9 +12,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 
         public async Task Handle(ToggleDiscountCodeForCartRequest request, CancellationToken cancellationToken)
         {
-            var discountCode = await _discountCodeRepository.GetByCode(request.DiscountCode!) ?? throw new Exception(); // TODO: Custom Ex
-
-            var cart = await _cartRepository.GetCart(request.CartId) ?? throw new Exception(); // TODO: Custom Ex
+            var cart = await _cartRepository.GetCart(request.CartId) ?? throw new Exception(); // TODO: Custom Ex: cart  with id doesnt exist
 
             if (request.DiscountCode.IsNullOrEmpty())
             {
@@ -25,6 +23,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
             }
             else
             {
+                var discountCode = await _discountCodeRepository.GetByCode(request.DiscountCode!) ?? throw new Exception(); // TODO: Custom Ex: discount code dosnt exist 
                 cart.ApplyDiscountCode(discountCode);
             }
 

@@ -18,7 +18,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 
         public async Task Handle(AddBalanceToWalletRequest request, CancellationToken cancellationToken)
         {
-            var wallet = await _walletRepository.GetWallet(request.WalletId) ?? throw new Exception(); // TODO: Custom ex
+            var wallet = await _walletRepository.GetWallet(request.WalletId) ?? throw new Exception(); // TODO: Custom ex: wallet with id doesnt exist
             wallet.AddToBalance(request.Balance);
             await _walletRepository.UpdateBalance(wallet);
             _logger.LogInformation($"{request.Balance} added to balance");

@@ -42,8 +42,9 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
         public async Task DeleteItemFromCart(Guid cartId, Guid itemId)
         {
             var cart = await _carts.Include(x => x.Items)
-                .FirstOrDefaultAsync(x => x.Id == cartId) ?? throw new Exception(); // TODO: custom ex
-            var cartItemToDelete = await _cartItems.Include(x => x.Cart).FirstOrDefaultAsync(x => x.CartId == cartId && x.ItemId == itemId) ?? throw new Exception(); // TODO: custom ex
+                .FirstOrDefaultAsync(x => x.Id == cartId) ?? throw new Exception(); // TODO: custom ex: cart with id doesnt exist
+
+            var cartItemToDelete = await _cartItems.Include(x => x.Cart).FirstOrDefaultAsync(x => x.CartId == cartId && x.ItemId == itemId) ?? throw new Exception(); // TODO: custom ex:cart item with id doesnt exist
 
             _cartItems.Remove(cartItemToDelete);
 
@@ -57,7 +58,7 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
             => await _carts
                 .Include(x => x.Items)
                     .ThenInclude(x => x.Item)
-                .Include(x => x.DiscountCode)
+                .Include(x => x.DiscountCode).ThenInclude(c => c.DiscountedItems)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task Update(Cart cart)

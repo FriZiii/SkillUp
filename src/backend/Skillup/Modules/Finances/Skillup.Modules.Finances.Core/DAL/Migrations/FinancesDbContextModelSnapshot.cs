@@ -171,8 +171,7 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrdererId")
-                        .IsUnique();
+                    b.HasIndex("OrdererId");
 
                     b.ToTable("Orders", "finances");
                 });
@@ -307,8 +306,8 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
             modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.Order", b =>
                 {
                     b.HasOne("Skillup.Modules.Finances.Core.Entities.User", "Orderer")
-                        .WithOne()
-                        .HasForeignKey("Skillup.Modules.Finances.Core.Entities.Order", "OrdererId")
+                        .WithMany()
+                        .HasForeignKey("OrdererId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
