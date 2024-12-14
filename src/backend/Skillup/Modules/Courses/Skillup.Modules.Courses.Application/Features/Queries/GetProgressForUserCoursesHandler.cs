@@ -6,12 +6,12 @@ using Skillup.Modules.Courses.Core.Requests.Queries;
 
 namespace Skillup.Modules.Courses.Application.Features.Queries
 {
-    internal class GetProgressForUserCoursesHandler(ICourseUserProgressRepository courseUserProgressRepository, ICourseRepository courseRepository) : IRequestHandler<GetProgressForUserCoursesRequest, IEnumerable<CoursePercetageProgressDto>>
+    internal class GetProgressForUserCoursesHandler(ICourseUserProgressRepository courseUserProgressRepository, ICourseRepository courseRepository) : IRequestHandler<GetProgressForUserCoursesRequest, IEnumerable<CoursePercentageProgressDto>>
     {
         private readonly ICourseUserProgressRepository _courseUserProgressRepository = courseUserProgressRepository;
         private readonly ICourseRepository _courseRepository = courseRepository;
 
-        public async Task<IEnumerable<CoursePercetageProgressDto>> Handle(GetProgressForUserCoursesRequest request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<CoursePercentageProgressDto>> Handle(GetProgressForUserCoursesRequest request, CancellationToken cancellationToken)
         {
             var progress = await _courseUserProgressRepository.GetByUserId(request.UserId);
 

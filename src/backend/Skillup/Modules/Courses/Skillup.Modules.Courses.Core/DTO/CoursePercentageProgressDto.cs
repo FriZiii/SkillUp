@@ -1,6 +1,6 @@
 ﻿namespace Skillup.Modules.Courses.Core.DTO
 {
-    public class CoursePercetageProgressDto
+    public class CoursePercentageProgressDto
     {
         public double Percentage { get; set; }
         public Guid CourseId { get; set; }
