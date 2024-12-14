@@ -49,14 +49,14 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task EditCourseStatus(Guid courseId, CourseStatus status)
         {
-            var course = await _courses.FirstOrDefaultAsync(c => c.Id == courseId) ?? throw new Exception();  //TODO: Custom exception for null check in repo
+            var course = await _courses.FirstOrDefaultAsync(c => c.Id == courseId) ?? throw new Exception();  //TODO: course with id doesnt exist 
             course.Status = status;
             await _context.SaveChangesAsync();
         }
 
         public async Task Edit(Course course)
         {
-            var courseToEdit = await _courses.FirstOrDefaultAsync(s => s.Id == course.Id) ?? throw new Exception();  //TODO: Custom exception for null check in repo
+            var courseToEdit = await _courses.FirstOrDefaultAsync(s => s.Id == course.Id) ?? throw new Exception();  //TODO: course with id doesnt exist 
 
             courseToEdit.Title = course.Title;
             courseToEdit.CategoryId = course.CategoryId;
@@ -65,6 +65,15 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<int> GetElementsCount(Guid courseId)
+        {
+            var course = await _courses
+                .Include(c => c.Sections)
+                .ThenInclude(s => s.Elements)
+                .FirstOrDefaultAsync(c => c.Id == courseId) ?? throw new Exception("Course with the given ID does not exist.");
+
+            return course.Sections.Sum(section => section.Elements.Count);
+        }
         public async Task<IEnumerable<Course>> GetAll()
         {
             return await _courses
@@ -72,5 +81,6 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
                  .Include(c => c.Subcategory)
                  .ToListAsync();
         }
+
     }
 }

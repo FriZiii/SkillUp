@@ -14,7 +14,11 @@
   } }
   <div class="cols-responsive-2 mt-8">
     @for( course of courses(); track course.id){
-    <app-course-item-short [course]="course"></app-course-item-short>
+    <app-course-item-short
+      [course]="course"
+      [bought]="true"
+      [percentages]="coursePercentages()"
+    ></app-course-item-short>
     }
   </div>
 </div>

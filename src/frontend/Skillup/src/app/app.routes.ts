@@ -26,6 +26,7 @@ import { CoursesCarouselsComponent } from './course/components/displays/courses-
 import { CoursesListComponent } from './course/components/displays/courses-list/courses-list.component';
 import { CourseDetailComponent } from './course/components/displays/course-detail/course-detail.component';
 import { CourseReviewComponent } from './course/components/reviews/course-review/course-review.component';
+import { CourseWalkThroughComponent } from './course/components/course-walk-through/course-walk-through.component';
 
 export const routes: Routes = [
   {
@@ -117,6 +118,10 @@ export const routes: Routes = [
     component: CourseReviewComponent,
     canMatch: [hasRole],
     data: { requiredRole: UserRole.Moderator },
+  },
+  {
+    path: 'course/:courseId/walk-through',
+    component: CourseWalkThroughComponent,
   },
   {
     path: 'access-denied',

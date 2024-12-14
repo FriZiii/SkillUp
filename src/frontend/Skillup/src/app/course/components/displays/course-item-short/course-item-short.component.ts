@@ -1,9 +1,10 @@
-import { Component, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 
 import { ButtonModule } from 'primeng/button';
 import { RouterLink } from '@angular/router';
 import { Course } from '../../../models/course.model';
 import { TruncatePipe } from '../../../../utils/pipes/truncate.pipe';
+import { CoursePercentage } from '../../../models/user-progress.model';
 
 @Component({
   selector: 'app-course-item-short',
@@ -17,6 +18,11 @@ export class CourseItemShortComponent {
   editable = input<boolean>(false);
   moderator = input<boolean>(false);
   onReview = output<string>();
+  percentages = input<CoursePercentage[]>([])
+
+  bought = input<boolean>(false);
+
+  percentage = computed(() => this.percentages().find(x => x.courseId===this.course().id))
 
   review(courseId: string){
     this.onReview.emit(courseId);

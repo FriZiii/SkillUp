@@ -5,11 +5,11 @@ import { CourseReviewService } from '../../../services/course-review.service';
 import { SectionItemComponent } from "../../edit-course/course-creator/section-item/section-item.component";
 import { AccordionModule } from 'primeng/accordion';
 import { CourseContentService } from '../../../services/course-content.service';
-import { ElementItemDisplayComponent } from "../../element-item-display/element-item-display.component";
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { ReviewStatus } from '../../../models/review.model';
 import { Router } from '@angular/router';
+import { ElementItemDisplayComponent } from '../../displays/element-item-display/element-item-display.component';
 
 @Component({
   selector: 'app-course-review',

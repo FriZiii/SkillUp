@@ -37,6 +37,8 @@ namespace Skillup.Modules.Courses.Infrastracture
 
         public DbSet<CourseRating> CourseRatings { get; set; }
 
+        public DbSet<CourseUserProgess> CourseUserProgess { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("courses");
