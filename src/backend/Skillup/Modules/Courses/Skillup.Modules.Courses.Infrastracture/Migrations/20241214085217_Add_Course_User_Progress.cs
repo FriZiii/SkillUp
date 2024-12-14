@@ -29,22 +29,19 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                         column: x => x.CourseId,
                         principalSchema: "courses",
                         principalTable: "Courses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_CourseUserProgess_Elements_ElementId",
                         column: x => x.ElementId,
                         principalSchema: "courses",
                         principalTable: "Elements",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_CourseUserProgess_Users_UserId",
                         column: x => x.UserId,
                         principalSchema: "courses",
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(

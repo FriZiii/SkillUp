@@ -16,6 +16,15 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         }
         public async Task Add(CourseUserProgess userProgess)
         {
+            if (!await _context.Elements.AnyAsync(e => e.Id == userProgess.ElementId))
+                throw new Exception("Invalid ElementId.");
+
+            if (!await _context.Courses.AnyAsync(c => c.Id == userProgess.CourseId))
+                throw new Exception("Invalid CourseId.");
+
+            if (!await _context.Users.AnyAsync(u => u.Id == userProgess.UserId))
+                throw new Exception("Invalid UserId.");
+
             await _coursUserProgress.AddAsync(userProgess);
             await _context.SaveChangesAsync();
         }

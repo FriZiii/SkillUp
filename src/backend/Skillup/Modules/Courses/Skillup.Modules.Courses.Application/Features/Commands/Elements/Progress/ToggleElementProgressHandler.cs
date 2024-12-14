@@ -15,7 +15,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements.Progres
 
             if (progress is null)
             {
-                await _courseUserProgressRepository.Add(new CourseUserProgess() { CourseId = request.CourseId, ElementId = request.ElementId, UserId = request.ElementId });
+                await _courseUserProgressRepository.Add(new CourseUserProgess() { CourseId = request.CourseId, ElementId = request.ElementId, UserId = request.UserId });
             }
             else
             {

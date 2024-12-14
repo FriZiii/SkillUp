@@ -12,7 +12,7 @@ using Skillup.Modules.Courses.Infrastracture;
 namespace Skillup.Modules.Courses.Infrastracture.Migrations
 {
     [DbContext(typeof(CoursesDbContext))]
-    [Migration("20241213083951_Add_Course_User_Progress")]
+    [Migration("20241214085217_Add_Course_User_Progress")]
     partial class Add_Course_User_Progress
     {
         /// <inheritdoc />
@@ -664,19 +664,19 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.Course", "Course")
                         .WithMany()
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Element", "Element")
                         .WithMany()
                         .HasForeignKey("ElementId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Skillup.Modules.Courses.Core.Entities.UserEntities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Course");

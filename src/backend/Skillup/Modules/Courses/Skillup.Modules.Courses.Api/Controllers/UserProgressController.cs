@@ -44,7 +44,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpGet]
         //[Authorize(Roles = nameof(UserRole.User))]
         [SwaggerOperation("Get progress as percetage for courses by signed in user id")]
         [Route("/Courses/Progress")]
@@ -58,7 +58,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(await _mediator.Send(new GetProgressForUserCoursesRequest((Guid)userId)));
         }
 
-        [HttpPost]
+        [HttpGet]
         //[Authorize(Roles = nameof(UserRole.User))]
         [SwaggerOperation("Get completed elements for course")]
         [Route("/Courses/{courseId}/Progress")]
