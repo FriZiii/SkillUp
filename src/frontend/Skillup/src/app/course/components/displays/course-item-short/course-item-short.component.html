@@ -33,5 +33,9 @@
     class="cursor-pointer"
     (onClick)="review(course().id)"
   ></p-button>
+  } @if(percentage()){
+  <div class="prose">
+    <h3 class="text-nowrap">{{ percentage()?.percentage }} %</h3>
+  </div>
   }
 </div>

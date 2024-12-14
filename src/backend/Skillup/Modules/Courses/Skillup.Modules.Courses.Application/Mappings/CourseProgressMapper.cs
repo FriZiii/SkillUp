@@ -16,7 +16,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
             return new CoursePercetageProgressDto()
             {
                 CourseId = courseProgesses.First().CourseId,
-                Percentage = (progressCount / elementsCount) * 100
+                Percentage = Math.Round(((double)progressCount / (double)elementsCount) * 100, 0)
             };
         }
     }

@@ -1,4 +1,4 @@
 export interface CoursePercentage{
-    peercentage: number;
+    percentage: number;
     courseId: string;
 }
