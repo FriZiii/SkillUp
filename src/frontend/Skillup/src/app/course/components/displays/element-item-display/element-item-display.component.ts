@@ -1,19 +1,17 @@
 import { Component, inject, input, OnInit, output, signal } from '@angular/core';
-import { AssetType, Element } from '../../models/course-content.model';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
-import { ElementContentDialogComponent } from "../edit-course/course-creator/element-item/element-content-dialog/element-content-dialog.component";
-import { ElementAttachmentsDialogComponent } from "../edit-course/course-creator/element-item/element-attachments-dialog/element-attachments-dialog.component";
-import { ReviewCommentsComponent } from "../reviews/course-review/review-comments/review-comments.component";
-import { CourseReviewService } from '../../services/course-review.service';
-import { Review } from '../../models/review.model';
+import { ElementContentDialogComponent } from '../../edit-course/course-creator/element-item/element-content-dialog/element-content-dialog.component';
+import { ElementAttachmentsDialogComponent } from '../../edit-course/course-creator/element-item/element-attachments-dialog/element-attachments-dialog.component';
+import { ReviewCommentsComponent } from '../../reviews/course-review/review-comments/review-comments.component';
+import { AssetType, Element } from '../../../models/course-content.model';
 
 @Component({
   selector: 'app-element-item-display',
   standalone: true,
-  imports: [ButtonModule, MenuModule, DialogModule, ElementContentDialogComponent, ElementAttachmentsDialogComponent, ReviewCommentsComponent],
+  imports: [ButtonModule, MenuModule, DialogModule, ElementContentDialogComponent, ElementAttachmentsDialogComponent, ReviewCommentsComponent, ElementContentDialogComponent],
   templateUrl: './element-item-display.component.html',
   styleUrl: './element-item-display.component.css'
 })

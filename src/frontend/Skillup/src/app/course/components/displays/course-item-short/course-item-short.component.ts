@@ -18,6 +18,8 @@ export class CourseItemShortComponent {
   moderator = input<boolean>(false);
   onReview = output<string>();
 
+  bought = input<boolean>(false);
+
   review(courseId: string){
     this.onReview.emit(courseId);
   }

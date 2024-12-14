@@ -1,0 +1,23 @@
+<p>course-walk-through works!</p>
+<p-accordion [value]="0">
+  @for (section of sections(); track section.id) {
+  <p-accordion-panel [value]="section.id">
+    <p-accordion-header>
+      <app-section-item
+        [section]="section"
+        [editable]="false"
+        class="w-full"
+      ></app-section-item>
+    </p-accordion-header>
+    <p-accordion-content>
+      @for(element of section.elements; track element.id){
+      <app-element-item-display
+        [element]="element"
+        [courseId]="courseId()"
+        [moderator]="false"
+      ></app-element-item-display>
+      }
+    </p-accordion-content>
+  </p-accordion-panel>
+  }
+</p-accordion>
