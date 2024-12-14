@@ -200,4 +200,21 @@ export class CourseContentService {
           })
         );
     }
+
+    addAttachment(elementId: string, articleFile: File) {
+      const formData = new FormData();
+      formData.append('file', articleFile);
+      return this.httpClient.post<any>(environment.apiUrl + '/Courses/Elements/Attachments/' + elementId, formData);
+  }
+
+  getAttachment(attachmentId: string) {
+    return this.httpClient.get(environment.apiUrl + '/Courses/Elements/Attachments/' + attachmentId, {
+      responseType: 'blob'
+    });
+    /* observe: 'response', */
+}
+
+  deleteAttachment(attachmentId: string) {
+    return this.httpClient.delete(environment.apiUrl + '/Courses/Elements/Attachments/' + attachmentId);
+  }
 }
