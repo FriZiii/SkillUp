@@ -1,18 +1,21 @@
-<div class="su-section-mt prose max-w-none w-full">
+<div class="su-section-mt prose max-w-none w-full mb-24">
   <div class="flex">
     <div [style]="'width: 80%'">
       @if(currentElement && currentElement.hasAsset){
       <h1>{{ currentElement.title }}</h1>
       @if(currentElement.type === AssetType.Video){
-      <app-videojs [videoLink]="fileLink()"></app-videojs>
+      <app-videojs *ngIf="hasLink" [videoLink]="fileLink()"></app-videojs>
 
       } @if(currentElement.type === AssetType.Article){
-      <pdf-viewer
-        [src]="fileLink()"
-        [render-text]="true"
-        [original-size]="false"
-        style="width: 50vw; height: 70vh"
-      ></pdf-viewer>
+      <div class="w-full flex justify-center">
+        <pdf-viewer
+          [src]="fileLink()"
+          [render-text]="true"
+          [original-size]="false"
+          style="width: 50vw; height: 80vh"
+        ></pdf-viewer>
+      </div>
+
       } }
     </div>
     <div [style]="'width: 20%'">

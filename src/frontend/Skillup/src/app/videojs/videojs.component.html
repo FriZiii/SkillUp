@@ -6,10 +6,9 @@
   playsinline
   preload="none"
   style="object-fit: cover"
-  width="774px"
-  height="400.75px"
+  [style]="'width: 100%; height: 80vh'"
 >
-  <source [src]="videoLink" type="video/mp4" />
+  <source [src]="videoLink()" type="video/mp4" />
 </video>
 
 <!--  <video id="video-player" preload="metadata" class="video-js vjs-default-skin"></video> -->

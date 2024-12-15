@@ -1,5 +1,5 @@
 // videojs.ts component
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from 
+import { AfterViewInit, Component, ElementRef, input, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from 
   '@angular/core';
   import videojs from 'video.js';
 
@@ -14,7 +14,8 @@ import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChi
   export class VjsPlayerComponent implements AfterViewInit, OnDestroy {
     @ViewChild('target', {static: true}) target!: ElementRef;
 
-@Input() videoLink!: string;
+    videoLink = input.required<string>();
+//@Input() videoLink!: string;
 
 options = {
 
@@ -51,10 +52,10 @@ ngAfterViewInit(): void {
 readyVideojsPlayer() {
 
     this.player = videojs(this.target.nativeElement, this.options, function () { });
-
+    console.log(this.videoLink());
     this.player.src({
 
-       src: this.videoLink,
+       src: this.videoLink(),
 
       type: 'video/mp4'
 
