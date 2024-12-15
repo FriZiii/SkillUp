@@ -1,4 +1,7 @@
-<div class="su-border-y p-2 ml-14 my-2 bg-white element-item">
+<div
+  class="su-border-y p-2 ml-14 my-2 bg-white element-item"
+  (click)="elementClicked()"
+>
   <div class="flex w-full items-start">
     <i
       [class]="definedIcon(element().type)"

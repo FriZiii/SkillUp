@@ -1,22 +1,42 @@
-<p-accordion [value]="0">
-  @for (section of sections(); track section.id) {
-  <p-accordion-panel [value]="section.id">
-    <p-accordion-header>
-      <app-section-item
-        [section]="section"
-        [editable]="false"
-        class="w-full"
-      ></app-section-item>
-    </p-accordion-header>
-    <p-accordion-content>
-      @for(element of section.elements; track element.id){
-      <app-element-item-display
-        [element]="element"
-        [courseId]="courseId()"
-        [moderator]="false"
-      ></app-element-item-display>
-      }
-    </p-accordion-content>
-  </p-accordion-panel>
-  }
-</p-accordion>
+<div class="su-section-mt prose max-w-none w-full">
+  <div class="flex">
+    <div [style]="'width: 80%'">
+      @if(currentElement && currentElement.hasAsset){
+      <h1>{{ currentElement.title }}</h1>
+      @if(currentElement.type === AssetType.Video){ } @if(currentElement.type
+      === AssetType.Article){
+      <pdf-viewer
+        [src]="fileLink()"
+        [render-text]="true"
+        [original-size]="false"
+        style="width: 50vw; height: 70vh"
+      ></pdf-viewer>
+      } }
+    </div>
+    <div [style]="'width: 20%'">
+      <p-accordion [value]="0">
+        @for (section of sections(); track section.id) {
+        <p-accordion-panel [value]="section.id">
+          <p-accordion-header>
+            <app-section-item
+              [section]="section"
+              [editable]="false"
+              class="w-full"
+            ></app-section-item>
+          </p-accordion-header>
+          <p-accordion-content>
+            @for(element of section.elements; track element.id){
+            <app-element-item-display
+              [element]="element"
+              [courseId]="courseId()"
+              [moderator]="false"
+              (onClick)="onElementClicked($event)"
+            ></app-element-item-display>
+            }
+          </p-accordion-content>
+        </p-accordion-panel>
+        }
+      </p-accordion>
+    </div>
+  </div>
+</div>

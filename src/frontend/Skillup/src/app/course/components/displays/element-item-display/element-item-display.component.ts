@@ -41,6 +41,7 @@ export class ElementItemDisplayComponent implements OnInit {
   courseId = input.required<string>();
   element = input.required<Element>();
   moderator = input<boolean>(false);
+  onClick = output<Element>();
 
   //Services
   userProgressService = inject(UserProgressService);
@@ -131,5 +132,9 @@ export class ElementItemDisplayComponent implements OnInit {
         .addProgress(this.courseId(), this.element().id)
         .subscribe();
     }
+  }
+
+  elementClicked(){
+    this.onClick.emit(this.element());
   }
 }
