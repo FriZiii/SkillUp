@@ -11,11 +11,17 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { AssetService } from '../../services/asset.service';
 import { VjsPlayerComponent } from '../../../videojs/videojs.component';
 import { CommonModule } from '@angular/common';
+import { Assignment, ExerciseType, QuestionAnswer, Quiz } from '../../models/exercise.model';
+import { ExerciseService } from '../../services/exercise.service';
+import { SolveQuizComponent } from "../exercises/solve-quiz/solve-quiz.component";
+import { SolveQuestionComponent } from "../exercises/solve-question/solve-question.component";
+import { Sentence } from '../../models/fill-the-gap/fill-the-gap.models';
+import { SolveFillTheGapComponent } from "../exercises/solve-fill-the-gap/solve-fill-the-gap.component";
 
 @Component({
   selector: 'app-course-walk-through',
   standalone: true,
-  imports: [AccordionModule, SectionItemComponent, ElementItemDisplayComponent, PdfViewerModule, VjsPlayerComponent, CommonModule],
+  imports: [AccordionModule, SectionItemComponent, ElementItemDisplayComponent, PdfViewerModule, VjsPlayerComponent, CommonModule, SolveQuizComponent, SolveQuestionComponent, SolveFillTheGapComponent],
   templateUrl: './course-walk-through.component.html',
   styleUrl: './course-walk-through.component.css'
 })
@@ -28,13 +34,19 @@ export class CourseWalkThroughComponent implements OnInit{
   userProgressService = inject(UserProgressService);
   assetService = inject(AssetService);
   cdr = inject(ChangeDetectorRef);
+  exerciseService = inject(ExerciseService);
 
   //Variables
   AssetType = AssetType;
+  ExerciseType = ExerciseType;
   sections = computed(() => this.coureContentService.sections());
   private _currentElement: Element | null = null
   fileLink = signal('');
   hasLink = false;
+  currentAssignment: null | Assignment = null;
+  currentQuiz:  Quiz[] = [];
+  currentQuestion:  QuestionAnswer[] = [];
+  currentFillTheGap:Sentence[] = [];
 
   ngOnInit(): void {
     this.coureContentService.getSectionsByCourseId(this.courseId());
@@ -59,10 +71,27 @@ export class CourseWalkThroughComponent implements OnInit{
     this._currentElement = value;
     if(value.hasAsset){
       this.assetService.getAsset(value.id, value.type).subscribe((response) => {
-        this.fileLink.set(response.url);
-        this.hasLink = true; // Zapamiętujemy poprzedni link
-        this.cdr.detectChanges(); // Wymusza detekcję zmian
-        console.log(this.fileLink());
+        if(value.type === AssetType.Video || value.type === AssetType.Article){
+          this.fileLink.set(response.url);
+          this.hasLink = true; // Zapamiętujemy poprzedni link
+          this.cdr.detectChanges(); // Wymusza detekcję zmian
+          console.log(this.fileLink());
+        }
+        else{
+          this.currentAssignment = response;
+          this.exerciseService.getExercises(this.currentAssignment!.assetId, this.currentAssignment!.exerciseType).subscribe((res) => {
+            if(this.currentAssignment!.exerciseType === ExerciseType.Quiz){
+              this.currentQuiz = res;
+            }
+            if(this.currentAssignment!.exerciseType === ExerciseType.QuestionAnswer){
+              this.currentQuestion = res;
+            }
+            if(this.currentAssignment!.exerciseType === ExerciseType.FillTheGap){
+              this.currentFillTheGap = res;
+            }
+          });
+        }
+        
         });
     }
 }

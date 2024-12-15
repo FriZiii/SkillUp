@@ -32,6 +32,7 @@ import { CourseReviewComponent } from './course/components/reviews/course-review
 import { CourseWalkThroughComponent } from './course/components/course-walk-through/course-walk-through.component';
 import { SolveQuizComponent } from './course/components/exercises/solve-quiz/solve-quiz.component';
 import { SolveQuestionComponent } from './course/components/exercises/solve-question/solve-question.component';
+import { SolveFillTheGapComponent } from './course/components/exercises/solve-fill-the-gap/solve-fill-the-gap.component';
 
 export const routes: Routes = [
   {
@@ -142,8 +143,8 @@ export const routes: Routes = [
     component: SolveQuizComponent,
   },
   {
-    path: 'question',
-    component: SolveQuestionComponent,
+    path: 'fillgap',
+    component: SolveFillTheGapComponent,
   },
   {
     path: 'access-denied',

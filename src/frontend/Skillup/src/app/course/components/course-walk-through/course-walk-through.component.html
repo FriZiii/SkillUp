@@ -15,8 +15,25 @@
           style="width: 50vw; height: 80vh"
         ></pdf-viewer>
       </div>
-
-      } }
+      } @if(currentElement.type === AssetType.Exercise){ @if(currentAssignment
+      && currentAssignment.exerciseType===ExerciseType.Quiz){
+      <app-solve-quiz
+        [quizes]="currentQuiz"
+        [instruction]="currentAssignment.instruction"
+      ></app-solve-quiz>
+      } @if(currentAssignment &&
+      currentAssignment.exerciseType===ExerciseType.QuestionAnswer){
+      <app-solve-question
+        [questions]="currentQuestion"
+        [instruction]="currentAssignment.instruction"
+      ></app-solve-question>
+      } @if(currentAssignment &&
+      currentAssignment.exerciseType===ExerciseType.FillTheGap){
+      <app-solve-fill-the-gap
+        [sentences]="currentFillTheGap"
+        [instruction]="currentAssignment.instruction"
+      ></app-solve-fill-the-gap>
+      } } }
     </div>
     <div [style]="'width: 20%'">
       <p-accordion [value]="0">

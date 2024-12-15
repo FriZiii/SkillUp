@@ -1,8 +1,8 @@
 <div class="su-section-mt prose max-w-none !w-full flex flex-col items-center">
   <div class="flex flex-col">
-    <h1>Instruction</h1>
+    <h1>{{ instruction() }}</h1>
 
-    @for(question of questions; track question.id){
+    @for(question of questions(); track question.id){
     <p class="text-xl mb-2">{{ question.question }}</p>
 
     @if(wrongAnswers.includes(question.id)){
@@ -21,7 +21,15 @@
       [(ngModel)]="answers[$index]"
       [disabled]="submitted"
     />
-    } }
+    } } @if(submitted && wrongAnswers.length === 0){
+    <div>
+      <h2>You have mastered this topic, all your answers are correct</h2>
+    </div>
+    } @if(submitted && wrongAnswers.length !== 0){
+    <div>
+      <h2>You should work more on your answers</h2>
+    </div>
+    }
 
     <div class="flex gap-4 my-8">
       <p-button label="Submit" (onClick)="submitAnswer()"></p-button>
