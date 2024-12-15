@@ -3,8 +3,10 @@
     <div [style]="'width: 80%'">
       @if(currentElement && currentElement.hasAsset){
       <h1>{{ currentElement.title }}</h1>
-      @if(currentElement.type === AssetType.Video){ } @if(currentElement.type
-      === AssetType.Article){
+      @if(currentElement.type === AssetType.Video){
+      <app-videojs [videoLink]="fileLink()"></app-videojs>
+
+      } @if(currentElement.type === AssetType.Article){
       <pdf-viewer
         [src]="fileLink()"
         [render-text]="true"

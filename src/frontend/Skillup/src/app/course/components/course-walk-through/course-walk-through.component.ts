@@ -9,11 +9,12 @@ import { ElementItemDisplayComponent } from '../displays/element-item-display/el
 import { AssetType, Element } from '../../models/course-content.model';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { AssetService } from '../../services/asset.service';
+import { VjsPlayerComponent } from '../../../videojs/videojs.component';
 
 @Component({
   selector: 'app-course-walk-through',
   standalone: true,
-  imports: [AccordionModule, SectionItemComponent, ElementItemDisplayComponent, PdfViewerModule],
+  imports: [AccordionModule, SectionItemComponent, ElementItemDisplayComponent, PdfViewerModule, VjsPlayerComponent],
   templateUrl: './course-walk-through.component.html',
   styleUrl: './course-walk-through.component.css'
 })
@@ -56,6 +57,7 @@ export class CourseWalkThroughComponent implements OnInit{
     if(value.hasAsset){
       this.assetService.getAsset(value.id, value.type).subscribe((response) => {
         this.fileLink.set(response.url);
+        console.log(this.fileLink());
         });
     }
 }
