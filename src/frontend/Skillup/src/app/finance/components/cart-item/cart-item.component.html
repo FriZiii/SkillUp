@@ -2,6 +2,7 @@
   <img
     [src]="cartItem().thumbnailUrl"
     class="h-24 cursor-pointer my-4"
+    [ngClass]="{ 'h-24': !styleForSummary(), 'h-20': styleForSummary() }"
     [routerLink]="'/course-detail/' + cartItem().id"
   />
   <div
@@ -9,14 +10,21 @@
     [routerLink]="'/course-detail/' + cartItem().id"
   >
     <h1 class="mb-1 text-2xl">{{ cartItem().title | truncate }}</h1>
+    @if(styleForSummary()){
+    <p class="my-0 text-2xl text-nowrap font-medium">
+      {{ cartItem().price | number : "1.2-2" }} $
+    </p>
+    } @else {
     <p class="my-1 text-base">Author: {{ cartItem().authorName }}</p>
 
     <div class="flex gap-4">
       <p-rating [(ngModel)]="cartItem().averageRating" [readonly]="true" />
       <p class="my-1 text-base">({{ cartItem().ratingsCount }})</p>
     </div>
+    }
   </div>
-  @if(cartItem().price === cartItem().orginalItem.price){
+  @if(!styleForSummary()){ @if(cartItem().price ===
+  cartItem().orginalItem.price){
   <div class="flex items-center gap-4 ml-4">
     <p class="my-0 text-2xl text-nowrap font-medium">
       {{ cartItem().price | number : "1.2-2" }} $
@@ -47,6 +55,6 @@
       }
     </div>
   </div>
-  }
+  }}
 </div>
 <hr class="my-0" />

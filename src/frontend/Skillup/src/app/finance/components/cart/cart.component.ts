@@ -7,11 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { CartItemComponent } from "../cart-item/cart-item.component";
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { CartEmptyComponent } from "../cart-empty/cart-empty.component";
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [ButtonModule, InputTextModule, FormsModule, CartItemComponent, RouterModule, CommonModule],
+  imports: [ButtonModule, InputTextModule, FormsModule, CartItemComponent, RouterModule, CommonModule, CartEmptyComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })

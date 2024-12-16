@@ -1,22 +1,60 @@
 <p-confirmdialog />
 
-<div class="su-section-mt px-12">
+<div class="su-section-mt px-12 prose max-w-none !w-full mb-8">
   @if(cart() === null){
-  <div class="prose max-w-none !w-full">
-    <h1 class="text-center text-6xl">Nothing in cart</h1>
-  </div>
+  <app-cart-empty />
   } @else{
+  <h1 class="my-1 text-5xl">Cart</h1>
+  <p class="my-1">{{ numberOfCartItems() }} items in cart</p>
   <div class="grid grid-cols-3 gap-20">
-    <div class="flex flex-col gap-4 col-start-1 col-span-2">
+    <div class="flex flex-col col-start-1 col-span-2">
+      <hr class="my-1" />
       @for(item of cartItems(); track item.id){
-      <app-cart-item [cartItem]="item" class="w-full"></app-cart-item>
+      <app-cart-item
+        [cartItem]="item"
+        class="w-full"
+        [styleForSummary]="true"
+      ></app-cart-item>
       }
     </div>
     <div class="flex flex-col col-start-3 prose max-w-none !w-full mt-5">
-      <h1 class="text-5xl text-center">Summary</h1>
-      <h1 class="text-center">Total: {{ this.cart()?.total }} $</h1>
+      <div class="flex justify-between">
+        <h1 class="text-center font-normal text-2xl my-1">Original price:</h1>
+        @if(cart()?.discountCode){
+        <h1 class="text-center font-semibold text-2xl my-1">
+          {{ this.cart()?.totalBeforeDiscount }} $
+        </h1>
+        } @else{
+        <h1 class="text-center font-semibold text-2xl my-1">
+          {{ this.cart()?.total }} $
+        </h1>
+        }
+      </div>
+      <div class="flex justify-between">
+        <h1 class="text-center font-normal text-2xl my-1">Discount:</h1>
+        @if(cart()?.discountCode){
+        <h1 class="text-center font-semibold text-2xl my-1">
+          {{ discount() }} $
+        </h1>
+        } @else{
+        <h1 class="text-center font-semibold text-2xl my-1">0 $</h1>
+        }
+      </div>
 
-      <hr />
+      <hr class="my-2" />
+      <div class="flex justify-between">
+        <h1 class="text-center font-normal text-2xl my-1">Total:</h1>
+        <h1 class="text-center font-semibold text-2xl my-1">
+          {{ this.cart()?.total }} $
+        </h1>
+      </div>
+
+      <p-button
+        label="Checkout"
+        class="wide-btn"
+        routerLink="/order-summary"
+        styleClass="!rounded-none mt-4"
+      ></p-button>
       @if(wallet()?.balance !== null && cart()?.total && wallet()?.balance! <
       cart()?.total!){
       <h1 class="text-center">Your balance: {{ wallet()?.balance }} $</h1>

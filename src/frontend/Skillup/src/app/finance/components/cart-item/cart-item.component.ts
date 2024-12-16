@@ -18,6 +18,7 @@ export class CartItemComponent {
   cartItem = input.required<CartItemForDisplay>(); 
   removeItem = output<string>();
   deletable = input<boolean>(false);
+  styleForSummary = input<boolean>(false);
 
   onRemoveItem(event: Event, id: string){
     this.removeItem.emit(id);

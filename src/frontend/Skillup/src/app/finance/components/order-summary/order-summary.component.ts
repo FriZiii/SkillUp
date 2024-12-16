@@ -7,11 +7,12 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationDialogHandlerService } from '../../../core/services/confirmation-handler.service';
 import { CoursesService } from '../../../course/services/course.service';
 import { CartItemComponent } from '../cart-item/cart-item.component';
+import { CartEmptyComponent } from "../cart-empty/cart-empty.component";
 
 @Component({
   selector: 'app-order-summary',
   standalone: true,
-  imports: [ButtonModule, RouterModule, ConfirmDialogModule, CartItemComponent],
+  imports: [ButtonModule, RouterModule, ConfirmDialogModule, CartItemComponent, CartEmptyComponent],
   templateUrl: './order-summary.component.html',
   styleUrl: './order-summary.component.css'
 })
@@ -39,9 +40,21 @@ export class OrderSummaryComponent {
         title: course?.title || 'Unknown Title',
         authorName: course?.authorName || 'Unknown Author',
         thumbnailUrl: course?.thumbnailUrl || '',
+        averageRating: course?.averageRating || 0,
+        ratingsCount: course?.ratingsCount || 0,
       };
     }) || null;
   });
+  
+  numberOfCartItems = computed(() => this.cart()?.items.length ?? 0);
+  discount = computed(() => {
+    if(this.cart()?.totalBeforeDiscount !== this.cart()?.total){
+      return this.cart()?.total! - this.cart()?.totalBeforeDiscount!
+    }
+    else{
+      return 0
+    }
+  })
 
   purchaseCart(event: Event){
     this.confirmationDialogService.confirmSave(event, () => {
