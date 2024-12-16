@@ -1,36 +1,52 @@
-<div class="flex gap-5">
-  <div class="flex p-5 my-5 su-border gap-4 w-full">
-    <img
-      [src]="cartItem().thumbnailUrl"
-      class="h-16 cursor-pointer"
-      [routerLink]="'/course-detail/' + cartItem().id"
-    />
-    <div
-      class="prose max-w-none !w-full cursor-pointer"
-      [routerLink]="'/course-detail/' + cartItem().id"
-    >
-      <p class="mb-1 text-lg">{{ cartItem().title | truncate }}</p>
-      <p class="my-1 text-base">{{ cartItem().authorName }}</p>
+<div class="flex w-full items-center px-4">
+  <img
+    [src]="cartItem().thumbnailUrl"
+    class="h-24 cursor-pointer my-4"
+    [routerLink]="'/course-detail/' + cartItem().id"
+  />
+  <div
+    class="prose max-w-none !w-full cursor-pointer ml-4"
+    [routerLink]="'/course-detail/' + cartItem().id"
+  >
+    <h1 class="mb-1 text-2xl">{{ cartItem().title | truncate }}</h1>
+    <p class="my-1 text-base">Author: {{ cartItem().authorName }}</p>
+
+    <div class="flex gap-4">
+      <p-rating [(ngModel)]="cartItem().averageRating" [readonly]="true" />
+      <p class="my-1 text-base">({{ cartItem().ratingsCount }})</p>
     </div>
-    @if(cartItem().price === cartItem().orginalItem.price){
-    <div class="flex">
-      <p class="mb-1 text-lg text-nowrap">$ {{ cartItem().price }}</p>
-    </div>
-    } @else {
-    <div class="flex flex-col items-end">
-      <p class="line-through mb-1 text-sm text-nowrap">
-        $ {{ cartItem().orginalItem.price }}
-      </p>
-      <p class="mb-1 text-lg text-nowrap">$ {{ cartItem().price }}</p>
-    </div>
+  </div>
+  @if(cartItem().price === cartItem().orginalItem.price){
+  <div class="flex items-center gap-4 ml-4">
+    <p class="my-0 text-2xl text-nowrap font-medium">
+      {{ cartItem().price | number : "1.2-2" }} $
+    </p>
+    @if(deletable()){
+    <i
+      class="pi pi-trash cursor-pointer"
+      style="font-size: 1.5rem"
+      (click)="onRemoveItem($event, cartItem().id)"
+    ></i>
     }
   </div>
-  @if(deletable()){
-  <p-button
-    icon="pi pi-trash"
-    severity="danger"
-    (onClick)="onRemoveItem($event, cartItem().id)"
-    class="mt-5"
-  ></p-button>
+  } @else {
+  <div class="mt-[-25px]">
+    <p
+      class="line-through mb-1 text-base text-nowrap font-light text-center relative m-0 ml-9"
+    >
+      {{ cartItem().orginalItem.price | number : "1.2-2" }} $
+    </p>
+    <div class="flex items-center gap-4 ml-4">
+      <p class="my-0 text-2xl text-nowrap font-medium">
+        {{ cartItem().price | number : "1.2-2" }} $
+      </p>
+      @if(deletable()){
+      <div (click)="onRemoveItem($event, cartItem().id)">
+        <i class="pi pi-trash" style="font-size: 1.5rem"></i>
+      </div>
+      }
+    </div>
+  </div>
   }
 </div>
+<hr class="my-0" />
