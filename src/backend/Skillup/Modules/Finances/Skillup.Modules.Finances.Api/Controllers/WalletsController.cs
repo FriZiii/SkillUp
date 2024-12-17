@@ -1,7 +1,9 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Finances.Core.Features.Requests.Commannds;
 using Skillup.Modules.Finances.Core.Features.Requests.Queries;
+using Skillup.Shared.Infrastructure.Auth;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Finances.Api.Controllers
@@ -11,15 +13,6 @@ namespace Skillup.Modules.Finances.Api.Controllers
     internal class WalletsController(IMediator mediator) : ControllerBase
     {
         private readonly IMediator _mediator = mediator;
-        internal enum AllowedBalance
-        {
-            Fifty = 50,
-            SeventyFive = 75,
-            OneHundred = 100,
-            TwoHundred = 200,
-            ThreeHundred = 300,
-            FiveHundred = 500
-        }
 
         [SwaggerOperation("Get user wallet by user id")]
         [HttpGet("{userId}")]
@@ -29,13 +22,17 @@ namespace Skillup.Modules.Finances.Api.Controllers
             return Ok(wallet);
         }
 
+        [Authorize]
         [SwaggerOperation("Add balance to user wallet")]
         [HttpPut("{walletId}")]
-        public async Task<IActionResult> AddBalanceToWallet(Guid walletId, [FromQuery] AllowedBalance balance)
+        public async Task<IActionResult> AddBalanceToWallet(Guid walletId, int balance)
         {
-            await _mediator.Send(new AddBalanceToWalletRequest(walletId, (int)balance));
+            var userId = User.GetUserId();
+            if (userId == null) return Unauthorized();
 
-            var wallet = await _mediator.Send(new GetUserWalletByIdRequest(walletId));
+            await _mediator.Send(new AddBalanceToWalletRequest(walletId, balance));
+
+            var wallet = await _mediator.Send(new GetUserWalletByOwnerIdRequest((Guid)userId));
             return Ok(wallet);
         }
     }
