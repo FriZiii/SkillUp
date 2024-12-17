@@ -7,12 +7,12 @@ using System.Text;
 
 namespace Skillup.Modules.Courses.Application.Features.Queries
 {
-    internal class GetAttachmentHandler(IElementAttachmentRepository elementAttachmentRepository, IAmazonS3Service amazonS3Service) : IRequestHandler<GetAttachmentRequest, AttachmentDto>
+    internal class GetAttachmentHandler(IElementAttachmentRepository elementAttachmentRepository, IAmazonS3Service amazonS3Service) : IRequestHandler<GetAttachmentRequest, AttachmentFileDto>
     {
         private readonly IElementAttachmentRepository _elementAttachmentRepository = elementAttachmentRepository;
         private readonly IAmazonS3Service _amazonS3Service = amazonS3Service;
 
-        public async Task<AttachmentDto> Handle(GetAttachmentRequest request, CancellationToken cancellationToken)
+        public async Task<AttachmentFileDto> Handle(GetAttachmentRequest request, CancellationToken cancellationToken)
         {
             var attachment = await _elementAttachmentRepository.Get(request.AttachmentId) ?? throw new Exception(); // TODO: Custom ex: attachment with id doesnt exist
 
@@ -24,7 +24,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
             await responseStream.CopyToAsync(memoryStream, cancellationToken);
             memoryStream.Position = 0;
 
-            return new AttachmentDto()
+            return new AttachmentFileDto()
             {
                 Id = attachment.Id,
                 ContentType = response.Headers.ContentType,
