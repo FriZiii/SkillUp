@@ -133,7 +133,7 @@ export class CoursesService {
       );
   }
 
-  private mapCourseToCourseItem(course: Course): CourseListItem {
+  mapCourseToCourseItem(course: Course): CourseListItem {
     const item = this.items().find((item) => item.id === course.id);
     const rating = this.ratings().find((rating) => rating.courseId === course.id);
     return {

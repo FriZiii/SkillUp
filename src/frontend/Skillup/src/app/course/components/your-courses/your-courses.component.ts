@@ -14,11 +14,12 @@ import { UserRating } from '../../models/rating.model';
 import { UserRole } from '../../../user/models/user-role.model';
 import { UserProgressService } from '../../services/user-progress-service';
 import { CoursePercentage } from '../../models/user-progress.model';
+import { StudentCourseItemComponent } from "../displays/student-course-item/student-course-item.component";
 
 @Component({
   selector: 'app-your-courses',
   standalone: true,
-  imports: [ProgressSpinnerModule, CourseItemShortComponent, DialogModule, ButtonModule, RatingModule, FormsModule, InputTextModule],
+  imports: [ProgressSpinnerModule, CourseItemShortComponent, DialogModule, ButtonModule, RatingModule, FormsModule, InputTextModule, StudentCourseItemComponent],
   templateUrl: './your-courses.component.html',
   styleUrl: './your-courses.component.css'
 })

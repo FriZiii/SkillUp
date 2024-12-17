@@ -28,7 +28,7 @@ export class OrderSummaryComponent {
   //Variables
   cart = this.cartService.cart;
   wallet = this.walletService.currentWallet;
-  dialogVisible = true;
+  dialogVisible = false;
   
   courses = computed(() => this.cart()?.items.flatMap((item) => this.courseService.getCourseById(item.id)));
   cartItems = computed(() => {

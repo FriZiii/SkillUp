@@ -52,6 +52,7 @@ export class BalanceComponent {
       this.walletService.addBalance(balance!).pipe(
         tap((res) => {
           this.toastService.showSuccess('Successfully added: ' + balance + ' $');
+          this.addBalanceDialogVisible = false;
         })).subscribe();
     })
   }
