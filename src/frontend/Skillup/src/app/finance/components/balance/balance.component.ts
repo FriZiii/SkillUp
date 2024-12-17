@@ -46,9 +46,6 @@ export class BalanceComponent {
     })
   });
 
-  lol(){
-    console.log(this.wallet())
-  }
   purchaseCurrency(event: Event){
     const balance = this.cardform.controls.value.value;
     this.confirmationDialogService.confirmSave(event, () => {
