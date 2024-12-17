@@ -7,5 +7,6 @@ namespace Skillup.Modules.Courses.Core.Interfaces
         Task<Attachment?> Get(Guid id);
         Task Delete(Guid id);
         Task Add(Attachment attachment);
+        Task<IEnumerable<Attachment>> GetByElementId(Guid elementId);
     }
 }

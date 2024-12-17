@@ -86,6 +86,15 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return File(response.FileData, response.ContentType, response.FileName);
         }
 
+        [HttpGet("{elementId}/Attachments")]
+        [SwaggerOperation("Get attachments")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetAttachmentByElementId(Guid elementId)
+        {
+            return Ok(await _mediator.Send(new GetAttachmentsByElementIdRequest(elementId)));
+        }
+
         [HttpDelete("Attachments/{attachmentId}")]
         [SwaggerOperation("Delete attachment")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
