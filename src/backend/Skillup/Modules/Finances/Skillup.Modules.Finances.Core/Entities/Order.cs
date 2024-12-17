@@ -9,6 +9,8 @@ namespace Skillup.Modules.Finances.Core.Entities
         public Currency TotalPrice { get; set; }
         public Guid OrdererId { get; set; }
         public User Orderer { get; set; }
+        public Guid BalanceHistoryId { get; set; }
+        public BalanceHistory BalanceHistory { get; set; }
         public ICollection<OrderItem> Items { get; set; }
     }
 }

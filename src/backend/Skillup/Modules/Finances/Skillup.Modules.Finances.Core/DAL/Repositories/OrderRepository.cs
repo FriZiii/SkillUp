@@ -15,6 +15,9 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<Order?> GetByBalanceHistoryId(Guid balanceHistoryId)
+            => await _orders.FirstOrDefaultAsync(x => x.BalanceHistoryId == balanceHistoryId);
+
         public async Task<IEnumerable<Order>> GetByOrderer(Guid ordererId)
             => await _orders.Where(x => x.OrdererId == ordererId).ToListAsync();
     }

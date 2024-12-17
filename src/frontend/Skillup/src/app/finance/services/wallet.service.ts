@@ -1,18 +1,19 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
-import { Wallet } from "../models/wallet.model";
+import { Wallet, WalletWithBalanceHistory } from "../models/wallet.model";
 import { environment } from "../../../environments/environment";
 import { tap } from "rxjs";
+import { UserService } from "../../user/services/user.service";
 
 @Injectable({ providedIn: 'root' })
 export class WalletService {
     
   private httpClient = inject(HttpClient);
-  currentWallet = signal<Wallet | null>(null);
+  currentWallet = signal<WalletWithBalanceHistory | null>(null);
 
   public getWallet(userId: string) {
     this.httpClient
-      .get<Wallet>(environment.apiUrl + '/Finances/Wallets/' + userId, {})
+      .get<WalletWithBalanceHistory>(environment.apiUrl + '/Finances/Wallets/' + userId, {})
       .pipe(
         tap((res) => {
           this.currentWallet.set(res);
@@ -24,16 +25,18 @@ export class WalletService {
     this.currentWallet.set({
       id: this.currentWallet()!.id,
       balance: balance,
-      userId: this.currentWallet()!.userId
+      userId: this.currentWallet()!.userId,
+      balanceHistory: this.currentWallet()!.balanceHistory
     })
   }
 
   public addBalance(balance: number){
     return this.httpClient
-      .put<Wallet>(environment.apiUrl + '/Finances/Wallets/' + this.currentWallet()?.id + '?balance=' + balance, {})
+      .put<WalletWithBalanceHistory>(environment.apiUrl + '/Finances/Wallets/' + this.currentWallet()?.id + '?balance=' + balance, {})
       .pipe(
         tap((res) => {
           this.currentWallet.set(res);
+          //this.getWallet(this.userService.currentUser()!.id);
         })
       )
   }
