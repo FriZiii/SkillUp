@@ -30,6 +30,8 @@ import { CoursesListComponent } from './course/components/displays/courses-list/
 import { CourseDetailComponent } from './course/components/displays/course-detail/course-detail.component';
 import { CourseReviewComponent } from './course/components/reviews/course-review/course-review.component';
 import { CourseWalkThroughComponent } from './course/components/course-walk-through/course-walk-through.component';
+import { SolveQuizComponent } from './course/components/exercises/solve-quiz/solve-quiz.component';
+import { SolveQuestionComponent } from './course/components/exercises/solve-question/solve-question.component';
 
 export const routes: Routes = [
   {
@@ -134,6 +136,14 @@ export const routes: Routes = [
   {
     path: 'course/:courseId/walk-through',
     component: CourseWalkThroughComponent,
+  },
+  {
+    path: 'quiz',
+    component: SolveQuizComponent,
+  },
+  {
+    path: 'question',
+    component: SolveQuestionComponent,
   },
   {
     path: 'access-denied',

@@ -13,7 +13,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         public UserRepository(CoursesDbContext context)
         {
             _context = context;
-            _users = _context.Users;
+            _users = context.Users;
         }
 
         public async Task<User?> GetById(Guid userId)

@@ -1,0 +1,26 @@
+<div class="su-section-mt prose max-w-none !w-full flex flex-col items-center">
+  @if(isComplete){
+  <h1>
+    You finished the quiz with total score of: {{ score }} /
+    {{ quizLength }} points
+  </h1>
+  } @else {
+  <h1>Instruction</h1>
+
+  <h1>{{ currentQuestion.question }}</h1>
+  <div class="grid grid-cols-2 gap-10">
+    @for(answer of currentQuestion.answers; track answer.id){
+    <div
+      (click)="onAnswer(answer)"
+      class="cursor-pointer w-52 h-24 shadow flex justify-center items-center"
+    >
+      <p>{{ answer.answer }}</p>
+    </div>
+    }
+  </div>
+  <div class="flex gap-8">
+    <p>Current Question</p>
+    <p>{{ iterator + 1 }} / {{ quizLength }}</p>
+  </div>
+  }
+</div>
