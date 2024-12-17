@@ -27,7 +27,8 @@ namespace Skillup.Modules.Courses.Core.Entities.UserEntities
             SocialMediaLinks = new();
             PrivacySettings = new PrivacySettings();
 
-            PurchasedCourses = Enumerable.Empty<UserPurchasedCourse>();
+            PurchasedCourses = new List<UserPurchasedCourse>();
+            CreatedCoures = new List<Course>();
         }
     }
 }
