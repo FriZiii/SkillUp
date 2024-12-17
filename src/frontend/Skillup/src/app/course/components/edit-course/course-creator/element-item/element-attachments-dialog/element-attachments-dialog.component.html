@@ -27,19 +27,18 @@
       chooseLabel="Choose"
       chooseIcon="pi pi-upload"
       (onSelect)="onSelectImage($event)"
-      accept="image/*"
     />
     }
   </div>
-  @if(element().attachments.length === 0){
+  @if(attachments.length === 0){
   <p>this element does not have any attachments</p>
   } @else{
   <div class="prose">
     <h2>Attachments:</h2>
   </div>
-  @for(attachment of element().attachments; track attachment){
+  @for(attachment of attachments; track attachment.id){
   <div class="flex gap-4">
-    <p>{{ attachment }}</p>
+    <p>{{ attachment.name }}{{ attachment.type }}</p>
     <div class="flex gap-2 self-end">
       <p-button
         icon="pi pi-download"
@@ -48,7 +47,7 @@
       <p-button
         icon="pi pi-trash"
         severity="danger"
-        (onClick)="deleteAttachment(attachment)"
+        (onClick)="deleteAttachment(attachment.id)"
       ></p-button>
     </div>
   </div>

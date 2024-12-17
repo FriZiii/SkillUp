@@ -1,5 +1,5 @@
-import { Component, computed, inject, input } from '@angular/core';
-import { Element } from '../../../../../models/course-content.model';
+import { Component, computed, inject, input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Attachment, Element } from '../../../../../models/course-content.model';
 import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
 import { ButtonModule } from 'primeng/button';
 import { CourseContentService } from '../../../../../services/course-content.service';
@@ -11,21 +11,30 @@ import { CourseContentService } from '../../../../../services/course-content.ser
   templateUrl: './element-attachments-dialog.component.html',
   styleUrl: './element-attachments-dialog.component.css'
 })
-export class ElementAttachmentsDialogComponent {
+export class ElementAttachmentsDialogComponent implements OnChanges {
   element = input.required<Element>();
+  visible = input.required<boolean>();
 
+  attachments: Attachment[] = []
 //Files
   selectedFile: File | undefined;
   onSelectImage(event: FileSelectEvent) {
     this.selectedFile = event.currentFiles[0];
   }
-
   //Services
   courseContentService = inject(CourseContentService);
 
+  ngOnChanges(changes: SimpleChanges): void {
+      if(changes['visible'] && changes['visible'].currentValue){
+        this.courseContentService.getAttachmentsByElementId(this.element().id).subscribe((res) => {
+          this.attachments = res;
+        })
+      }
+  }
+
   upload() {
     this.courseContentService.addAttachment(this.element().id, this.selectedFile!).subscribe((res) => {
-      this.element().attachments.push(res);
+      this.attachments.push(res);
       this.selectedFile = undefined;
     });
   }
@@ -34,42 +43,20 @@ export class ElementAttachmentsDialogComponent {
     this.selectedFile = undefined;
   }
 
-  downloadAttachment(attachmentId: string){
-    this.courseContentService.getAttachment(attachmentId).subscribe((blob) => {
+  downloadAttachment(attachment: Attachment){
+    this.courseContentService.getAttachment(attachment.id).subscribe((blob) => {
       const a = document.createElement('a');
       const objectUrl = URL.createObjectURL(blob);
       a.href = objectUrl;
-      a.download = attachmentId;
+      a.download = attachment.name;
       a.click();
       URL.revokeObjectURL(objectUrl);
     });
   }
 
-  /* .subscribe((response) => {
-    const blob = response.body!;
-    const contentDisposition = response.headers.get('content-disposition');
-    const filename = this.extractFileName(contentDisposition);
-
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-
-    // Jeśli nazwa pliku jest w nagłówku, użyj jej, jeśli nie, użyj domyślnej nazwy
-    a.setAttribute('download', filename || 'attachment');
-    a.click();
-
-    window.URL.revokeObjectURL(url); // Zwolnij zasoby
-  }); */
-
-  private extractFileName(contentDisposition: string | null): string | undefined {
-    if (!contentDisposition) return undefined;
-    const matches = contentDisposition.match(/filename="?([^"]+)"?/);
-    return matches?.[1];
-  }
-
   deleteAttachment(attachmentId: string){
     this.courseContentService.deleteAttachment(attachmentId).subscribe((res) => {
-      this.element().attachments = this.element().attachments.filter(a => a != attachmentId);
+      this.attachments = this.attachments.filter(a => a.id != attachmentId);
     });
   }
 }

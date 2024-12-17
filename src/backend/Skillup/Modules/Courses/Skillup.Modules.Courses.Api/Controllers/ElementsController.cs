@@ -71,9 +71,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         {
             var request = new AddAttachmentRequest(file, elementId);
 
-            await _mediator.Send(request);
-
-            return Ok(request.AttachmentId);
+            return Ok(await _mediator.Send(request));
         }
 
         [HttpGet("Attachments/{attachmentId}")]

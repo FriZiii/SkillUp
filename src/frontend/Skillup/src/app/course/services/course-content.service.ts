@@ -3,7 +3,7 @@ import { inject, Injectable, signal } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { catchError, map, tap, throwError } from "rxjs";
 import { ToastHandlerService } from "../../core/services/toast-handler.service";
-import { AssetType, Section } from "../models/course-content.model";
+import { AssetType, Attachment, Section } from "../models/course-content.model";
 
 @Injectable({ providedIn: 'root' })
 export class CourseContentService {
@@ -216,5 +216,9 @@ export class CourseContentService {
 
   deleteAttachment(attachmentId: string) {
     return this.httpClient.delete(environment.apiUrl + '/Courses/Elements/Attachments/' + attachmentId);
+  }
+
+  getAttachmentsByElementId(elementId: string){
+    return this.httpClient.get<Attachment[]>(environment.apiUrl + '/Courses/Elements/' + elementId + '/Attachments');
   }
 }

@@ -15,11 +15,16 @@ export interface Element{
     index: number;
     isFree: boolean;
     hasAsset: boolean;
-    attachments: string[];
 }
 
 export enum AssetType{
     Article = "Article",
     Video = "Video",
     Exercise = "Exercise"
+}
+
+export interface Attachment{
+    id: string;
+    name: string;
+    type: string;
 }
