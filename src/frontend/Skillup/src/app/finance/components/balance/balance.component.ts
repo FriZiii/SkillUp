@@ -30,7 +30,7 @@ export class BalanceComponent {
   wallet = computed(() => this.walletService.currentWallet());
   cardform = new FormGroup({
     value: new FormControl(0, {
-      validators: [Validators.required],
+      validators: [Validators.required, Validators.min(10), Validators.max(1000)],
     }),
     cardNumber: new FormControl('', {
       validators: [Validators.minLength(16), Validators.required],

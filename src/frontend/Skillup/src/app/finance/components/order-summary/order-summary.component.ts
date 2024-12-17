@@ -8,11 +8,13 @@ import { ConfirmationDialogHandlerService } from '../../../core/services/confirm
 import { CoursesService } from '../../../course/services/course.service';
 import { CartItemComponent } from '../cart-item/cart-item.component';
 import { CartEmptyComponent } from "../cart-empty/cart-empty.component";
+import { DialogModule } from 'primeng/dialog';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-order-summary',
   standalone: true,
-  imports: [ButtonModule, RouterModule, ConfirmDialogModule, CartItemComponent, CartEmptyComponent],
+  imports: [ButtonModule, RouterModule, ConfirmDialogModule, CartItemComponent, CartEmptyComponent, DialogModule, CommonModule],
   templateUrl: './order-summary.component.html',
   styleUrl: './order-summary.component.css'
 })
@@ -26,6 +28,7 @@ export class OrderSummaryComponent {
   //Variables
   cart = this.cartService.cart;
   wallet = this.walletService.currentWallet;
+  dialogVisible = true;
   
   courses = computed(() => this.cart()?.items.flatMap((item) => this.courseService.getCourseById(item.id)));
   cartItems = computed(() => {
