@@ -24,27 +24,14 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Guid> UpdateBalance(Wallet wallet)
+        public async Task UpdateWalletBalance(Wallet wallet, BalanceHistory balanceHistory)
         {
             var walletToUpdate = await _wallets.FirstOrDefaultAsync(x => x.Id == wallet.Id) ?? throw new Exception(); //TODO: Custom ex: Wallet doesnt exist
-
-            var history = new BalanceHistory(wallet.Id, wallet.Balance);
-
-            if (wallet.Balance < walletToUpdate.Balance) //Subtract
-            {
-                history.Type = "Subtract";
-            }
-            else // Add
-            {
-                history.Type = "Add";
-            }
-            _balanceHistories.Add(history);
-
             walletToUpdate = new Wallet(wallet);
 
-            await _context.SaveChangesAsync();
+            _balanceHistories.Add(balanceHistory);
 
-            return history.Id;
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Wallet?> GetWallet(Guid walletId)

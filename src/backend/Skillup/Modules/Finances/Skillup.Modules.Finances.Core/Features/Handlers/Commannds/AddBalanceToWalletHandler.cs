@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using Skillup.Modules.Finances.Core.Entities;
 using Skillup.Modules.Finances.Core.Features.Requests.Commannds;
 using Skillup.Modules.Finances.Core.Repositories;
 
@@ -20,7 +21,8 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
         {
             var wallet = await _walletRepository.GetWallet(request.WalletId) ?? throw new Exception(); // TODO: Custom ex: wallet with id doesnt exist
             wallet.AddToBalance(request.Balance);
-            await _walletRepository.UpdateBalance(wallet);
+            var history = new BalanceHistory(wallet.Id, wallet.Balance, "Money transfer", "Add");
+            await _walletRepository.UpdateWalletBalance(wallet, history);
             _logger.LogInformation($"{request.Balance} added to balance");
         }
     }
