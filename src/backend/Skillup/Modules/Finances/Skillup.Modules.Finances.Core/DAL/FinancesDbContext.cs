@@ -6,7 +6,10 @@ namespace Skillup.Modules.Finances.Core.DAL
     internal class FinancesDbContext(DbContextOptions<FinancesDbContext> options) : DbContext(options)
     {
         public DbSet<User> Users { get; set; }
+
         public DbSet<Wallet> Wallets { get; set; }
+        public DbSet<BalanceHistory> BalanceHistories { get; set; }
+
         public DbSet<Item> Items { get; set; }
 
         public DbSet<DiscountCode> DiscountCodes { get; set; }

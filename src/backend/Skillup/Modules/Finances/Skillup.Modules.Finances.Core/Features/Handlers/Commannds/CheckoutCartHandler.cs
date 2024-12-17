@@ -30,7 +30,8 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
             var orderMapper = new OrderMapper();
 
             wallet.SubtractFromBalance(cart.Total);
-            await _walletRepository.UpdateBalance(wallet);
+            var historyId = await _walletRepository.UpdateBalance(wallet);
+
             await _cartRepository.Delete(cart);
 
             var order = new Order()
@@ -39,6 +40,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
                 OrdererId = wallet.OwnerId,
                 Created = _clock.CurrentDate(),
                 TotalPrice = cart.Total,
+                BalanceHistoryId = historyId,
             };
 
             var orderItems = cart.Items.Select(x => new OrderItem() { ItemId = x.ItemId, ItemPrice = x.Price, OrderId = order.Id }).ToList();

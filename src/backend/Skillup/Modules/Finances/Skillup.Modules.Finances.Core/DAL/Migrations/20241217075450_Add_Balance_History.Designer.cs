@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Skillup.Modules.Finances.Core.DAL;
@@ -11,9 +12,11 @@ using Skillup.Modules.Finances.Core.DAL;
 namespace Skillup.Modules.Finances.Core.DAL.Migrations
 {
     [DbContext(typeof(FinancesDbContext))]
-    partial class FinancesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241217075450_Add_Balance_History")]
+    partial class Add_Balance_History
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,10 +35,10 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("numeric");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("ChangeDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Type")
+                    b.Property<string>("ChangeType")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -186,9 +189,6 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("BalanceHistoryId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
 
@@ -199,8 +199,6 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BalanceHistoryId");
 
                     b.HasIndex("OrdererId");
 
@@ -347,19 +345,11 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
 
             modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.Order", b =>
                 {
-                    b.HasOne("Skillup.Modules.Finances.Core.Entities.BalanceHistory", "BalanceHistory")
-                        .WithMany()
-                        .HasForeignKey("BalanceHistoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Skillup.Modules.Finances.Core.Entities.User", "Orderer")
                         .WithMany()
                         .HasForeignKey("OrdererId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("BalanceHistory");
 
                     b.Navigation("Orderer");
                 });
