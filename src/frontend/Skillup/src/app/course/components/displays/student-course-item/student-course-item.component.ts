@@ -5,11 +5,12 @@ import { CoursePercentage } from '../../../models/user-progress.model';
 import { RatingModule } from 'primeng/rating';
 import { CoursesService } from '../../../services/course.service';
 import { FormsModule } from '@angular/forms';
+import { CircleProgressComponent } from "../../../../utils/components/circle-progress/circle-progress.component";
 
 @Component({
   selector: 'app-student-course-item',
   standalone: true,
-  imports: [RatingModule, FormsModule],
+  imports: [RatingModule, FormsModule, CircleProgressComponent],
   templateUrl: './student-course-item.component.html',
   styleUrl: './student-course-item.component.css'
 })

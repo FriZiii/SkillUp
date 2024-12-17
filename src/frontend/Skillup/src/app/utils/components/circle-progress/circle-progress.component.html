@@ -1,0 +1,17 @@
+<div class="wrapper">
+  <div class="ring">
+    <svg>
+      <circle cx="35" cy="35" r="35"></circle>
+      <circle
+        cx="35"
+        cy="35"
+        r="35"
+        [ngStyle]="{ 'stroke-dashoffset': calculateDashOffset() }"
+        [style.stroke]="color"
+      ></circle>
+    </svg>
+    <div class="percent">
+      <h2>{{ percent() }}<span>%</span></h2>
+    </div>
+  </div>
+</div>
