@@ -18,15 +18,17 @@
 
     internal class BalanceHistoryDto
     {
-        public BalanceHistoryDto(decimal amount, DateTime date, string type)
+        public BalanceHistoryDto(decimal amount, DateTime date, string title, string type)
         {
             Amount = amount;
             Date = date;
+            Title = title;
             Type = type;
         }
 
         public decimal Amount { get; private set; }
         public DateTime Date { get; private set; }
+        public string Title { get; private set; }
         public string Type { get; private set; }
     }
 }

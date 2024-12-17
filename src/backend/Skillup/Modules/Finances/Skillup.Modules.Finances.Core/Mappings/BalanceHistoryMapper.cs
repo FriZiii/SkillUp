@@ -9,7 +9,7 @@ namespace Skillup.Modules.Finances.Core.Mappings
     {
         public BalanceHistoryDto BalanceHistoryToDto(BalanceHistory balanceHistory)
         {
-            return new BalanceHistoryDto(balanceHistory.Amount, balanceHistory.Date, balanceHistory.Type);
+            return new BalanceHistoryDto(balanceHistory.Amount, balanceHistory.Date, balanceHistory.Title, balanceHistory.Type);
         }
     }
 }
