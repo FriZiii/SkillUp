@@ -1,7 +1,9 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Finances.Core.Features.Requests.Commannds;
 using Skillup.Modules.Finances.Core.Features.Requests.Queries;
+using Skillup.Shared.Infrastructure.Auth;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Finances.Api.Controllers
@@ -20,13 +22,17 @@ namespace Skillup.Modules.Finances.Api.Controllers
             return Ok(wallet);
         }
 
+        [Authorize]
         [SwaggerOperation("Add balance to user wallet")]
         [HttpPut("{walletId}")]
         public async Task<IActionResult> AddBalanceToWallet(Guid walletId, int balance)
         {
+            var userId = User.GetUserId();
+            if (userId == null) return Unauthorized();
+
             await _mediator.Send(new AddBalanceToWalletRequest(walletId, balance));
 
-            var wallet = await _mediator.Send(new GetUserWalletByIdRequest(walletId));
+            var wallet = await _mediator.Send(new GetUserWalletByOwnerIdRequest((Guid)userId));
             return Ok(wallet);
         }
     }

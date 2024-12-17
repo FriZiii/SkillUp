@@ -1,0 +1,119 @@
+<p-dialog
+  [modal]="true"
+  [(visible)]="addBalanceDialogVisible"
+  [style]="{ width: '50%' }"
+  [draggable]="false"
+  class="cursor-default"
+>
+  <form
+    [formGroup]="cardform"
+    class="col-start-2 cols-responsive-3-start prose max-w-none"
+  >
+    <div class="flex flex-col gap-4 w-full">
+      <h1 class="my-4 text-center text-5xl">Transfer money</h1>
+      <p-inputnumber inputId="integeronly" formControlName="value" />
+      <input
+        type="text"
+        pInputText
+        formControlName="ownerName"
+        placeholder="Name and Surname"
+        [ngClass]="{
+          'ng-invalid':
+            cardform.get('ownerName')?.invalid &&
+            cardform.get('ownerName')?.dirty
+        }"
+      />
+      <p-inputmask
+        mask="9999 9999 9999 9999"
+        formControlName="cardNumber"
+        placeholder="1234 5678 9012 3456"
+        class="w-full"
+        [unmask]="true"
+        autoClear="false"
+        [ngClass]="{
+          'ng-invalid':
+            cardform.get('cardNumber')?.invalid &&
+            cardform.get('cardNumber')?.dirty
+        }"
+      />
+      <div class="flex gap-4">
+        <p-inputmask
+          mask="99/99"
+          formControlName="expirationDate"
+          placeholder="MM/RR"
+          class="w-full"
+          [unmask]="true"
+          autoClear="false"
+          [ngClass]="{
+            'ng-invalid':
+              cardform.get('expirationDate')?.invalid &&
+              cardform.get('expirationDate')?.dirty
+          }"
+        />
+        <p-inputmask
+          mask="999"
+          formControlName="CVC"
+          placeholder="CVC"
+          class="w-full"
+          [unmask]="true"
+          autoClear="false"
+          [ngClass]="{
+            'ng-invalid':
+              cardform.get('CVC')?.invalid && cardform.get('CVC')?.dirty
+          }"
+        />
+      </div>
+
+      <div class="flex gap-4 w-full">
+        <p-button
+          label="Transfer"
+          (onClick)="purchaseCurrency($event)"
+          [disabled]="cardform.invalid"
+        />
+        <p-button
+          label="Cancel"
+          severity="secondary"
+          (onClick)="addBalanceDialogVisible = false"
+        />
+      </div>
+    </div>
+  </form>
+</p-dialog>
+<div class="su-section-mt prose max-w-none !w-full px-12">
+  <hr class="my-0" />
+  <h1 class="my-3 font-semibold text-3xl">SkillUp Balance</h1>
+  <h1 class="text-5xl font-semibold my-2">$ {{ wallet()?.balance }}</h1>
+  <p class="my-1 text-lg">Available</p>
+  <p-button
+    label="Transfer Money"
+    (onClick)="addBalanceDialogVisible = true"
+    styleClass="!rounded-none"
+  />
+
+  <hr class="mt-8 mb-1" />
+  <h2 class="my-1 text-3xl font-semibold">Balance history</h2>
+  @for(item of wallet()?.balanceHistory; track $index){
+  <div class="flex justify-between">
+    <div class="flex gap-4 my-2">
+      <p class="my-0 text-slate-400">
+        {{ item.date | date : "yyyy-MM-dd HH:mm" }}
+      </p>
+      <p class="font-medium my-0 text-slate-600">{{ item.title }}</p>
+    </div>
+    @if(item.type === 'Add'){
+    <div class="flex gap-2 items-center">
+      <h4 class="text-green-500 my-0">$ {{ item.amount }}</h4>
+      <i class="pi pi-arrow-up my-0" style="color: green"></i>
+    </div>
+    } @else {
+    <div class="flex gap-2 items-center">
+      <h4 class="text-red-500 my-0">$ {{ item.amount }}</h4>
+      <i class="pi pi-arrow-down my-0" style="color: red"></i>
+    </div>
+    }
+  </div>
+  }
+</div>
+
+<p-button label="Transfer Money" (onClick)="lol()" />
+<p-confirmdialog />
