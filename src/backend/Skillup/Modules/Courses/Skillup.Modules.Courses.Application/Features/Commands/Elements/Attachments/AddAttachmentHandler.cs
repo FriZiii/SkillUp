@@ -18,6 +18,8 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements.Attachm
             await _elementAttachmentRepository.Add(new Attachment()
             {
                 Id = request.AttachmentId,
+                Name = request.File.Name,
+                Type = Path.GetExtension(request.File.FileName),
                 ElementId = request.ElementId,
                 Key = key,
             });
