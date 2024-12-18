@@ -34,6 +34,7 @@ import { Cart } from '../../../finance/models/cart.model';
 import { CourseItemShortComponent } from '../../../course/components/displays/course-item-short/course-item-short.component';
 import { CoursesService } from '../../../course/services/course.service';
 import { UserRole } from '../../../user/models/user-role.model';
+import { MiniCartComponent } from "./mini-cart/mini-cart.component";
 
 @Component({
   selector: 'app-header',
@@ -54,7 +55,8 @@ import { UserRole } from '../../../user/models/user-role.model';
     ButtonModule,
     RippleModule,
     AvatarModule,
-    StyleClassModule
+    StyleClassModule,
+    MiniCartComponent
 ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
@@ -70,8 +72,7 @@ export class HeaderComponent implements OnInit {
 
   visible: boolean = false;
   user = signal<User | null>(null);
-  cart = this.cartService.cart;
-  cartItems = computed(() => this.cart()?.items.flatMap((item) => this.courseService.getCourseById(item.id)))
+
 
   ngOnInit(): void {
     this.router.events.subscribe((event) => {

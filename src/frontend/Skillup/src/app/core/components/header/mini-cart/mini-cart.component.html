@@ -1,0 +1,37 @@
+<div class="flex flex-col">
+  @if(cart() && cartItems() && cartItems()?.length !== 0){ @for(item of
+  cartItems(); track item.id){
+  <div class="flex gap-2 items-center">
+    <img
+      [src]="item.thumbnailUrl"
+      class="h-14 w-24 cursor-pointer my-4"
+      [routerLink]="'/course-detail/' + item.id"
+    />
+    <div>
+      <h1 class="mb-0 text-base font-semibold">
+        {{ item.title | truncate }}
+      </h1>
+
+      <p class="my-0 text-sm">{{ item.authorName }}</p>
+    </div>
+    <div class="flex items-center">
+      <p class="my-0 text-base text-nowrap font-bold">
+        {{ item.price | number : "1.2-2" }} $
+      </p>
+    </div>
+  </div>
+  <hr class="my-1" />
+  }
+  <div class="flex justify-between mt-2">
+    <h1 class="font-semibold text-lg">Total:</h1>
+    <h1 class="font-semibold text-lg">
+      {{ cart()?.total | number : "1.2-2" }} $
+    </h1>
+  </div>
+  <div class="bg-primary-500 flex justify-center items-center py-3 mt-3">
+    <p class="text-white font-semibold text-base">Go to cart</p>
+  </div>
+  } @else {
+  <h1 class="font-semibold text-lg">Your cart is empty.</h1>
+  }
+</div>

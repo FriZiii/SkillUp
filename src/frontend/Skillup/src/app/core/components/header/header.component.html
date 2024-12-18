@@ -41,18 +41,9 @@
         [routerLink]="'cart'"
       >
         <p-popover [showCloseIcon]="true" #po_cart
-          ><div
-            class="w-64 h-96 flex justify-center"
-            (mouseleave)="po_cart.hide()"
-          >
-            <h1>Cart</h1>
-            @if(!cart()){
-            <h1>Cart empty</h1>
-            } @for(item of cartItems(); track item.id){
-            <p>{{ item.title }}</p>
-            }
-          </div></p-popover
-        >
+          ><div class="w-96 flex justify-center" (mouseleave)="po_cart.hide()">
+            <app-mini-cart></app-mini-cart></div
+        ></p-popover>
       </p-button>
 
       <p-button
@@ -387,18 +378,9 @@
         [routerLink]="'cart'"
       >
         <p-popover [showCloseIcon]="true" #po_cart
-          ><div
-            class="w-64 h-96 flex justify-center"
-            (mouseleave)="po_cart.hide()"
-          >
-            <h1>Cart</h1>
-            @if(!cart()){
-            <h1>Cart empty</h1>
-            } @for(item of cartItems(); track item.id){
-            <p>{{ item.title }}</p>
-            }
-          </div></p-popover
-        >
+          ><div class="w-96 flex justify-center" (mouseleave)="po_cart.hide()">
+            <app-mini-cart></app-mini-cart></div
+        ></p-popover>
       </p-button>
 
       <p-button
