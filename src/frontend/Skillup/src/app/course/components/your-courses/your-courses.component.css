@@ -1,0 +1,17 @@
+:host ::ng-deep .p-dialog-header {
+  padding: 0;
+}
+
+:host ::ng-deep .p-rating-icon {
+  width: 40px;
+  height: 40px;
+  border: none;
+}
+
+
+:host ::ng-deep .big-btn .p-button{
+  width: 270px;
+  height: 70px;
+  font-size: 25px;
+  margin-top: 32px;
+}

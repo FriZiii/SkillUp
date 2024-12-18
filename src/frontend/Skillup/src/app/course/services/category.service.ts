@@ -7,7 +7,6 @@ import { ToastHandlerService } from '../../core/services/toast-handler.service';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService {
-  private toastService = inject(ToastHandlerService);
   private httpClient = inject(HttpClient);
   public categories = signal<Category[]>([]);
 

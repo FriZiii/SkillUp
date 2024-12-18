@@ -10,366 +10,395 @@
 
   <div class="flex gap-4 items-center">
     <div class="flex gap-2 items-center">
+      @if (user() !== null) {
       <p-button
         label="My Courses"
         [text]="true"
         class="whitespace-nowrap"
         (mouseenter)="po_my_courses.show($event)"
-        (mouseleave)="po_my_courses.hide()"
+        (mouseenter)="po_cart.hide()"
+        (mouseenter)="po_notifications.hide()"
         size="small"
         [routerLink]="'user/' + user()?.id + '/courses'"
       >
         <p-popover [showCloseIcon]="true" #po_my_courses
-          ><div class="w-64 h-96 flex justify-center">
-            <h1>My Courses</h1>
-          </div></p-popover
-        >
+          ><div
+            class="w-80 flex justify-center"
+            (mouseleave)="po_my_courses.hide()"
+          >
+            <app-mini-courses></app-mini-courses></div
+        ></p-popover>
       </p-button>
 
       <p-button
         icon="pi pi-shopping-cart"
         [text]="true"
         (mouseenter)="po_cart.show($event)"
-        (mouseleave)="po_cart.hide()"
+        (mouseenter)="po_my_courses.hide()"
+        (mouseenter)="po_notifications.hide()"
         size="large"
         [routerLink]="'cart'"
       >
         <p-popover [showCloseIcon]="true" #po_cart
-          ><div class="w-64 h-96 flex justify-center">
-            <h1>Cart</h1>
-            @if(!cart()){
-            <h1>Cart empty</h1>
-            } @for(item of cartItems(); track item.id){
-            <p>{{ item.title }}</p>
-            }
+          ><div class="w-96 flex justify-center" (mouseleave)="po_cart.hide()">
+            <app-mini-cart></app-mini-cart></div
+        ></p-popover>
+      </p-button>
+
+      <p-button
+        icon="pi pi-bell"
+        [text]="true"
+        size="large"
+        (mouseenter)="po_my_courses.hide()"
+        (mouseenter)="po_cart.hide()"
+        (mouseenter)="po_notifications.show($event)"
+      >
+        <p-popover [showCloseIcon]="true" #po_notifications
+          ><div
+            class="w-64 h-96 flex justify-center"
+            (mouseleave)="po_notifications.hide()"
+          >
+            <h1>Notifications</h1>
           </div></p-popover
         >
       </p-button>
-    </div>
 
-    @if (user() !== null) {
-    <p-button icon="pi pi-bell" [text]="true" size="large"></p-button>
+      <div>
+        <p-avatar
+          class="cursor-pointer"
+          (click)="visible = true"
+          [image]="user()!.profilePicture!"
+          shape="circle"
+        />
+        <p-drawer #drawerRef [(visible)]="visible" position="right">
+          <ng-template pTemplate="headless">
+            <div class="flex flex-col h-full">
+              <!-- Logo -->
+              <div class="flex items-center justify-between px-6 pt-4 shrink-0">
+                <span class="inline-flex items-center gap-2">
+                  <app-logo [size]="'medium'" />
+                </span>
+                <span>
+                  <p-button
+                    type="button"
+                    (click)="closeCallback($event)"
+                    icon="pi pi-times"
+                    rounded="true"
+                    outlined="true"
+                    styleClass="h-8 w-8"
+                  ></p-button>
+                </span>
+              </div>
 
-    <div>
-      <p-avatar
-        class="cursor-pointer"
-        (click)="visible = true"
-        [image]="user()!.profilePicture!"
-        shape="circle"
-      />
-      <p-drawer #drawerRef [(visible)]="visible" position="right">
-        <ng-template pTemplate="headless">
-          <div class="flex flex-col h-full">
-            <!-- Logo -->
-            <div class="flex items-center justify-between px-6 pt-4 shrink-0">
-              <span class="inline-flex items-center gap-2">
-                <app-logo [size]="'medium'" />
-              </span>
-              <span>
-                <p-button
-                  type="button"
-                  (click)="closeCallback($event)"
-                  icon="pi pi-times"
-                  rounded="true"
-                  outlined="true"
-                  styleClass="h-8 w-8"
-                ></p-button>
-              </span>
-            </div>
-
-            <!-- Content -->
-            <div class="overflow-y-auto">
-              <ul class="list-none p-4 m-0">
-                <li>
-                  <div
-                    pRipple
-                    pStyleClass="@next"
-                    enterFromClass="hidden"
-                    enterActiveClass="animate-slidedown"
-                    leaveToClass="hidden"
-                    leaveActiveClass="animate-slideup"
-                    class="p-4 flex items-center justify-between text-surface-600 dark:text-surface-200 cursor-pointer p-ripple"
-                  >
-                    <span class="font-medium">USER</span>
-                    <i class="pi pi-chevron-down"></i>
-                  </div>
-                  <ul class="list-none p-0 m-0 overflow-hidden">
-                    <li>
-                      <a
-                        pRipple
-                        routerLinkActive="active-link"
-                        routerLink="/user/edit/profile"
-                        class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                      >
-                        <i class="pi pi-user mr-2"></i>
-                        <span class="font-medium">Profile</span>
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        pRipple
-                        routerLinkActive="active-link"
-                        [routerLink]="'user/' + user()?.id + '/courses'"
-                        class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                      >
-                        <i class="pi pi-graduation-cap mr-2"></i>
-                        <span class="font-medium">My Courses</span>
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        pRipple
-                        class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                      >
-                        <i class="pi pi-bell mr-2"></i>
-                        <span class="font-medium">Notifications</span>
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        pRipple
-                        pStyleClass="@next"
-                        enterFromClass="hidden"
-                        enterActiveClass="animate-slidedown"
-                        leaveToClass="hidden"
-                        leaveActiveClass="animate-slideup"
-                        class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                      >
-                        <i class="pi pi-wallet mr-2"></i>
-                        <span class="font-medium">Reports</span>
-                        <i class="pi pi-chevron-down ml-auto"></i>
-                      </a>
-                      <ul
-                        class="list-none py-0 pl-4 pr-0 m-0 hidden overflow-y-hidden transition-all duration-[400ms] ease-in-out"
-                      >
-                        <li>
-                          <a
-                            pRipple
-                            pStyleClass="@next"
-                            enterFromClass="hidden"
-                            enterActiveClass="animate-slidedown"
-                            leaveToClass="hidden"
-                            leaveActiveClass="animate-slideup"
-                            class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                          >
-                            <i class="pi pi-chart-line mr-2"></i>
-                            <span class="font-medium">Revenue</span>
-                            <i class="pi pi-chevron-down ml-auto"></i>
-                          </a>
-                          <ul
-                            class="list-none py-0 pl-4 pr-0 m-0 hidden overflow-y-hidden transition-all duration-[400ms] ease-in-out"
-                          >
-                            <li>
-                              <a
-                                pRipple
-                                class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                              >
-                                <i class="pi pi-table mr-2"></i>
-                                <span class="font-medium">View</span>
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                pRipple
-                                class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                              >
-                                <i class="pi pi-search mr-2"></i>
-                                <span class="font-medium">Search</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                          <a
-                            pRipple
-                            class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                          >
-                            <i class="pi pi-chart-line mr-2"></i>
-                            <span class="font-medium">Expenses</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-
-                    <li>
-                      <a
-                        pRipple
-                        class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                      >
-                        <i class="pi pi-comments mr-2"></i>
-                        <span class="font-medium">Messages</span>
-                        <span
-                          class="inline-flex items-center justify-center ml-auto bg-primary text-primary-contrast rounded-full"
-                          style="min-width: 1.5rem; height: 1.5rem"
-                          >3</span
+              <!-- Content -->
+              <div class="overflow-y-auto">
+                <ul class="list-none p-4 m-0">
+                  <li>
+                    <div
+                      pRipple
+                      pStyleClass="@next"
+                      enterFromClass="hidden"
+                      enterActiveClass="animate-slidedown"
+                      leaveToClass="hidden"
+                      leaveActiveClass="animate-slideup"
+                      class="p-4 flex items-center justify-between text-surface-600 dark:text-surface-200 cursor-pointer p-ripple"
+                    >
+                      <span class="font-medium">USER</span>
+                      <i class="pi pi-chevron-down"></i>
+                    </div>
+                    <ul class="list-none p-0 m-0 overflow-hidden">
+                      <li>
+                        <a
+                          pRipple
+                          routerLinkActive="active-link"
+                          routerLink="/user/edit/profile"
+                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
                         >
-                      </a>
-                    </li>
+                          <i class="pi pi-user mr-2"></i>
+                          <span class="font-medium">Profile</span>
+                        </a>
+                      </li>
 
-                    <li>
-                      <a
-                        pRipple
-                        routerLinkActive="active-link"
-                        [routerLink]="'cart'"
-                        class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                      >
-                        <i class="pi pi-shopping-cart mr-2"></i>
-                        <span class="font-medium">My cart</span>
-                      </a>
-                    </li>
+                      <li>
+                        <a
+                          pRipple
+                          routerLinkActive="active-link"
+                          [routerLink]="'user/' + user()?.id + '/courses'"
+                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                        >
+                          <i class="pi pi-graduation-cap mr-2"></i>
+                          <span class="font-medium">My Courses</span>
+                        </a>
+                      </li>
 
-                    <li>
-                      <a
-                        pRipple
-                        class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                      >
-                        <i class="pi pi-cog mr-2"></i>
-                        <span class="font-medium">Settings</span>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
+                      <li>
+                        <a
+                          pRipple
+                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                        >
+                          <i class="pi pi-bell mr-2"></i>
+                          <span class="font-medium">Notifications</span>
+                        </a>
+                      </li>
 
-              @if(userService.currentUser()?.role === UserRole.Instructor){
-              <ul class="list-none p-4 m-0">
-                <li>
-                  <div
-                    pRipple
-                    pStyleClass="@next"
-                    enterFromClass="hidden"
-                    enterActiveClass="animate-slidedown"
-                    leaveToClass="hidden"
-                    leaveActiveClass="animate-slideup"
-                    class="p-4 flex items-center justify-between text-surface-600 dark:text-surface-200 cursor-pointer p-ripple"
-                  >
-                    <span class="font-medium">INSTUCTOR</span>
-                    <i class="pi pi-chevron-down"></i>
-                  </div>
-                  <ul class="list-none p-0 m-0 overflow-hidden">
-                    <li>
-                      <a
-                        pRipple
-                        class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                      >
-                        <i class="pi pi-home mr-2"></i>
-                        <span class="font-medium">Dashboard</span>
-                      </a>
-                    </li>
+                      <li>
+                        <a
+                          pRipple
+                          pStyleClass="@next"
+                          enterFromClass="hidden"
+                          enterActiveClass="animate-slidedown"
+                          leaveToClass="hidden"
+                          leaveActiveClass="animate-slideup"
+                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                        >
+                          <i class="pi pi-wallet mr-2"></i>
+                          <span class="font-medium">Reports</span>
+                          <i class="pi pi-chevron-down ml-auto"></i>
+                        </a>
+                        <ul
+                          class="list-none py-0 pl-4 pr-0 m-0 hidden overflow-y-hidden transition-all duration-[400ms] ease-in-out"
+                        >
+                          <li>
+                            <a
+                              pRipple
+                              pStyleClass="@next"
+                              enterFromClass="hidden"
+                              enterActiveClass="animate-slidedown"
+                              leaveToClass="hidden"
+                              leaveActiveClass="animate-slideup"
+                              class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                            >
+                              <i class="pi pi-chart-line mr-2"></i>
+                              <span class="font-medium">Revenue</span>
+                              <i class="pi pi-chevron-down ml-auto"></i>
+                            </a>
+                            <ul
+                              class="list-none py-0 pl-4 pr-0 m-0 hidden overflow-y-hidden transition-all duration-[400ms] ease-in-out"
+                            >
+                              <li>
+                                <a
+                                  pRipple
+                                  class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                                >
+                                  <i class="pi pi-table mr-2"></i>
+                                  <span class="font-medium">View</span>
+                                </a>
+                              </li>
+                              <li>
+                                <a
+                                  pRipple
+                                  class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                                >
+                                  <i class="pi pi-search mr-2"></i>
+                                  <span class="font-medium">Search</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            <a
+                              pRipple
+                              class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                            >
+                              <i class="pi pi-chart-line mr-2"></i>
+                              <span class="font-medium">Expenses</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
 
-                    <li>
-                      <a
-                        pRipple
-                        routerLinkActive="active-link"
-                        [routerLink]="'author/' + user()?.id + '/courses'"
-                        class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                      >
-                        <i class="pi pi-list mr-2"></i>
-                        <span class="font-medium">Courses created by you</span>
-                      </a>
-                    </li>
+                      <li>
+                        <a
+                          pRipple
+                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                        >
+                          <i class="pi pi-comments mr-2"></i>
+                          <span class="font-medium">Messages</span>
+                          <span
+                            class="inline-flex items-center justify-center ml-auto bg-primary text-primary-contrast rounded-full"
+                            style="min-width: 1.5rem; height: 1.5rem"
+                            >3</span
+                          >
+                        </a>
+                      </li>
 
-                    <li>
-                      <a
-                        pRipple
-                        routerLinkActive="active-link"
-                        [routerLink]="'course/new'"
-                        class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                      >
-                        <i class="pi pi-plus mr-2"></i>
-                        <span class="font-medium">Create new course</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        pRipple
-                        class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                      >
-                        <i class="pi pi-chart-bar mr-2"></i>
-                        <span class="font-medium">Performance</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        pRipple
-                        class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                      >
-                        <i class="pi pi-cog mr-2"></i>
-                        <span class="font-medium">Settings</span>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-              } @if(userService.currentUser()?.role === UserRole.Moderator){
-              <ul class="list-none p-4 m-0">
-                <li>
-                  <div
-                    pRipple
-                    pStyleClass="@next"
-                    enterFromClass="hidden"
-                    enterActiveClass="animate-slidedown"
-                    leaveToClass="hidden"
-                    leaveActiveClass="animate-slideup"
-                    class="p-4 flex items-center justify-between text-surface-600 dark:text-surface-200 cursor-pointer p-ripple"
-                  >
-                    <span class="font-medium">MODERATOR</span>
-                    <i class="pi pi-chevron-down"></i>
-                  </div>
-                  <ul class="list-none p-0 m-0 overflow-hidden">
-                    <li>
-                      <a
-                        pRipple
-                        routerLinkActive="active-link"
-                        [routerLink]="'reviews'"
-                        class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                      >
-                        <i class="pi pi-folder mr-2"></i>
-                        <span class="font-medium">Reviews</span>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-              }
+                      <li>
+                        <a
+                          pRipple
+                          routerLinkActive="active-link"
+                          [routerLink]="'cart'"
+                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                        >
+                          <i class="pi pi-shopping-cart mr-2"></i>
+                          <span class="font-medium">My cart</span>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a
+                          pRipple
+                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                        >
+                          <i class="pi pi-cog mr-2"></i>
+                          <span class="font-medium">Settings</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+
+                @if(userService.currentUser()?.role === UserRole.Instructor){
+                <ul class="list-none p-4 m-0">
+                  <li>
+                    <div
+                      pRipple
+                      pStyleClass="@next"
+                      enterFromClass="hidden"
+                      enterActiveClass="animate-slidedown"
+                      leaveToClass="hidden"
+                      leaveActiveClass="animate-slideup"
+                      class="p-4 flex items-center justify-between text-surface-600 dark:text-surface-200 cursor-pointer p-ripple"
+                    >
+                      <span class="font-medium">INSTUCTOR</span>
+                      <i class="pi pi-chevron-down"></i>
+                    </div>
+                    <ul class="list-none p-0 m-0 overflow-hidden">
+                      <li>
+                        <a
+                          pRipple
+                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                        >
+                          <i class="pi pi-home mr-2"></i>
+                          <span class="font-medium">Dashboard</span>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a
+                          pRipple
+                          routerLinkActive="active-link"
+                          [routerLink]="'author/' + user()?.id + '/courses'"
+                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                        >
+                          <i class="pi pi-list mr-2"></i>
+                          <span class="font-medium"
+                            >Courses created by you</span
+                          >
+                        </a>
+                      </li>
+
+                      <li>
+                        <a
+                          pRipple
+                          routerLinkActive="active-link"
+                          [routerLink]="'course/new'"
+                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                        >
+                          <i class="pi pi-plus mr-2"></i>
+                          <span class="font-medium">Create new course</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          pRipple
+                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                        >
+                          <i class="pi pi-chart-bar mr-2"></i>
+                          <span class="font-medium">Performance</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          pRipple
+                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                        >
+                          <i class="pi pi-cog mr-2"></i>
+                          <span class="font-medium">Settings</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                } @if(userService.currentUser()?.role === UserRole.Moderator){
+                <ul class="list-none p-4 m-0">
+                  <li>
+                    <div
+                      pRipple
+                      pStyleClass="@next"
+                      enterFromClass="hidden"
+                      enterActiveClass="animate-slidedown"
+                      leaveToClass="hidden"
+                      leaveActiveClass="animate-slideup"
+                      class="p-4 flex items-center justify-between text-surface-600 dark:text-surface-200 cursor-pointer p-ripple"
+                    >
+                      <span class="font-medium">MODERATOR</span>
+                      <i class="pi pi-chevron-down"></i>
+                    </div>
+                    <ul class="list-none p-0 m-0 overflow-hidden">
+                      <li>
+                        <a
+                          pRipple
+                          routerLinkActive="active-link"
+                          [routerLink]="'reviews'"
+                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                        >
+                          <i class="pi pi-folder mr-2"></i>
+                          <span class="font-medium">Reviews</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                }
+              </div>
+
+              <!-- User -->
+              <div class="mt-auto">
+                <hr class="mb-4 mx-4 border-t border-0 border-surface" />
+                <a
+                  (click)="signOut()"
+                  pRipple
+                  class="m-4 flex items-center cursor-pointer p-4 gap-2 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                >
+                  <i class="pi pi-sign-out mr-2"></i>
+                  <span class="font-medium">Sign Out</span>
+                </a>
+              </div>
             </div>
+          </ng-template>
+        </p-drawer>
+      </div>
+      } @else {
+      <p-button
+        icon="pi pi-shopping-cart"
+        [text]="true"
+        (mouseenter)="po_cart.show($event)"
+        size="large"
+        [routerLink]="'cart'"
+      >
+        <p-popover [showCloseIcon]="true" #po_cart
+          ><div class="w-96 flex justify-center" (mouseleave)="po_cart.hide()">
+            <app-mini-cart></app-mini-cart></div
+        ></p-popover>
+      </p-button>
 
-            <!-- User -->
-            <div class="mt-auto">
-              <hr class="mb-4 mx-4 border-t border-0 border-surface" />
-              <a
-                (click)="signOut()"
-                pRipple
-                class="m-4 flex items-center cursor-pointer p-4 gap-2 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-              >
-                <i class="pi pi-sign-out mr-2"></i>
-                <span class="font-medium">Sign Out</span>
-              </a>
-            </div>
-          </div>
-        </ng-template>
-      </p-drawer>
+      <p-button
+        size="small"
+        iconPos="right"
+        icon="pi pi-sign-in"
+        class="whitespace-nowrap"
+        routerLink="sign-in"
+        label="Sign In"
+        severity="secondary"
+      ></p-button>
+      <p-button
+        [style]="{ minWidth: '6rem' }"
+        size="small"
+        class="whitespace-nowrap"
+        routerLink="sign-up"
+        label="Sign Up"
+      ></p-button>
+      }
     </div>
-    } @else {
-    <p-button
-      size="small"
-      iconPos="right"
-      icon="pi pi-sign-in"
-      class="whitespace-nowrap"
-      routerLink="sign-in"
-      label="Sign In"
-      severity="secondary"
-    ></p-button>
-    <p-button
-      [style]="{ minWidth: '6rem' }"
-      size="small"
-      class="whitespace-nowrap"
-      routerLink="sign-up"
-      label="Sign Up"
-    ></p-button>
-    }
   </div>
 </header>

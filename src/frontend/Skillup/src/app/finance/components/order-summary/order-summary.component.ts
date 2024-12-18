@@ -7,11 +7,14 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationDialogHandlerService } from '../../../core/services/confirmation-handler.service';
 import { CoursesService } from '../../../course/services/course.service';
 import { CartItemComponent } from '../cart-item/cart-item.component';
+import { CartEmptyComponent } from "../cart-empty/cart-empty.component";
+import { DialogModule } from 'primeng/dialog';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-order-summary',
   standalone: true,
-  imports: [ButtonModule, RouterModule, ConfirmDialogModule, CartItemComponent],
+  imports: [ButtonModule, RouterModule, ConfirmDialogModule, CartItemComponent, CartEmptyComponent, DialogModule, CommonModule],
   templateUrl: './order-summary.component.html',
   styleUrl: './order-summary.component.css'
 })
@@ -25,6 +28,7 @@ export class OrderSummaryComponent {
   //Variables
   cart = this.cartService.cart;
   wallet = this.walletService.currentWallet;
+  dialogVisible = false;
   
   courses = computed(() => this.cart()?.items.flatMap((item) => this.courseService.getCourseById(item.id)));
   cartItems = computed(() => {
@@ -39,9 +43,21 @@ export class OrderSummaryComponent {
         title: course?.title || 'Unknown Title',
         authorName: course?.authorName || 'Unknown Author',
         thumbnailUrl: course?.thumbnailUrl || '',
+        averageRating: course?.averageRating || 0,
+        ratingsCount: course?.ratingsCount || 0,
       };
     }) || null;
   });
+  
+  numberOfCartItems = computed(() => this.cart()?.items.length ?? 0);
+  discount = computed(() => {
+    if(this.cart()?.totalBeforeDiscount !== this.cart()?.total){
+      return this.cart()?.total! - this.cart()?.totalBeforeDiscount!
+    }
+    else{
+      return 0
+    }
+  })
 
   purchaseCart(event: Event){
     this.confirmationDialogService.confirmSave(event, () => {

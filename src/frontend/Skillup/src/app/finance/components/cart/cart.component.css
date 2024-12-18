@@ -3,3 +3,20 @@
     display: flex;
     width: 100%;
 }
+
+:host ::ng-deep .big-btn .p-button{
+    width: 270px;
+    height: 70px;
+    font-size: 25px;
+}
+
+:host ::ng-deep .input-btn .p-button{
+    min-width: 46px;
+    height: 46px;
+}
+
+.p-inputtext:disabled {
+    background-color: white;
+  }
+  
+
