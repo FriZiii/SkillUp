@@ -15,11 +15,13 @@ import { UserRole } from '../../../user/models/user-role.model';
 import { UserProgressService } from '../../services/user-progress-service';
 import { CoursePercentage } from '../../models/user-progress.model';
 import { StudentCourseItemComponent } from "../displays/student-course-item/student-course-item.component";
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-your-courses',
   standalone: true,
-  imports: [ProgressSpinnerModule, CourseItemShortComponent, DialogModule, ButtonModule, RatingModule, FormsModule, InputTextModule, StudentCourseItemComponent],
+  imports: [ProgressSpinnerModule, DialogModule, ButtonModule, RatingModule, FormsModule, InputTextModule, StudentCourseItemComponent, InputTextareaModule, FloatLabelModule],
   templateUrl: './your-courses.component.html',
   styleUrl: './your-courses.component.css'
 })
@@ -39,7 +41,7 @@ export class YourCoursesComponent implements OnInit {
   courseRatings: UserRating[] = []
   currentRating: UserRating | undefined = undefined;
   addRatingDialogVisible = false;
-  newRating = 1;
+  newRating = 0;
   newFeedback = '';
   currentCourseId = '';
   coursePercentages = signal<CoursePercentage[]>([]);
@@ -76,6 +78,7 @@ export class YourCoursesComponent implements OnInit {
       (res) => {
         this.newRating = res.stars;
         this.newFeedback = res.feedback;
+        this.addRatingDialogVisible = false;
       }
     );
   }
@@ -85,6 +88,7 @@ export class YourCoursesComponent implements OnInit {
       (res) => {
         this.newRating = res.stars;
         this.newFeedback = res.feedback;
+        this.addRatingDialogVisible = false;
       }
     );
   }

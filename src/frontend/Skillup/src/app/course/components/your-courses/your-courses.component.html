@@ -19,40 +19,55 @@
       (onRating)="addRating($event)"
       [percentages]="coursePercentages()"
     />
-    <!-- <app-course-item-short
-      [course]="course"
-      [rating]="true"
-      (onRating)="addRating($event)"
-      [bought]="true"
-      [percentages]="coursePercentages()"
-    ></app-course-item-short> -->
     }
   </div>
 </div>
 
 <!-- Add Rating dialog -->
 <p-dialog
-  header="Add your rating"
   [modal]="true"
   [(visible)]="addRatingDialogVisible"
   [style]="{ width: '80%' }"
   [draggable]="false"
   class="cursor-default"
+  [focusOnShow]="false"
 >
-  <p-rating [(ngModel)]="newRating" />
-  <input type="text" pInputText [(ngModel)]="newFeedback" />
-  <div class="flex gap-2 justify-between">
-    @if(currentRating){
-    <p-button label="Edit" (click)="editRating()" />
-    <p-button icon="pi pi-trash" severity="danger" (click)="deleteRating()" />
-    } @else {
-    <p-button label="Submit" (click)="postNewRating()" />
+  <div class="prose max-w-none flex flex-col items-center mt-4">
+    <h1 class="font-semibold my-2">How do you want to rate this course?</h1>
+    @if(newRating == 1){
+    <p class="my-2 text-2xl">Very poor, not worth it.</p>
+    } @if(newRating == 2){
+    <p class="my-2 text-2xl">Below average, needs improvement.</p>
+    } @if(newRating == 3){
+    <p class="my-2 text-2xl">Average, could be better.</p>
+    } @if(newRating == 4){
+    <p class="my-2 text-2xl">Good course, worth the time.</p>
+    } @if(newRating == 5){
+    <p class="my-2 text-2xl">Excellent! Highly recommend it.</p>
     }
-
-    <p-button
-      label="Cancel"
-      severity="secondary"
-      (click)="addRatingDialogVisible = false"
-    />
+    <p-rating [(ngModel)]="newRating" />
+    @if(newRating !== 0){
+    <textarea
+      class="custom-textarea mt-4"
+      rows="5"
+      cols="40"
+      [(ngModel)]="newFeedback"
+      placeholder="Tell us more about what you think about this course."
+    ></textarea>
+    }
+    <div class="flex flex-row-reverse gap-4 w-full mt-4">
+      @if(currentRating){ @if(newRating !== 0){
+      <p-button label="Edit" (click)="editRating()" />
+      }
+      <p-button
+        icon="pi pi-trash"
+        severity="danger"
+        (click)="deleteRating()"
+        class="trash-btn"
+      />
+      } @else { @if(newRating !== 0){
+      <p-button label="Save" (click)="postNewRating()" />
+      } }
+    </div>
   </div>
 </p-dialog>
