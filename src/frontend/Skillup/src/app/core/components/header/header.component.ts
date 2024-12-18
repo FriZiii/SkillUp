@@ -35,6 +35,7 @@ import { CourseItemShortComponent } from '../../../course/components/displays/co
 import { CoursesService } from '../../../course/services/course.service';
 import { UserRole } from '../../../user/models/user-role.model';
 import { MiniCartComponent } from "./mini-cart/mini-cart.component";
+import { MiniCoursesComponent } from "./mini-courses/mini-courses.component";
 
 @Component({
   selector: 'app-header',
@@ -56,7 +57,8 @@ import { MiniCartComponent } from "./mini-cart/mini-cart.component";
     RippleModule,
     AvatarModule,
     StyleClassModule,
-    MiniCartComponent
+    MiniCartComponent,
+    MiniCoursesComponent
 ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',

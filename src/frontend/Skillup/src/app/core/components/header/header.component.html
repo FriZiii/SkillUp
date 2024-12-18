@@ -23,12 +23,11 @@
       >
         <p-popover [showCloseIcon]="true" #po_my_courses
           ><div
-            class="w-80 h-96 flex justify-center"
+            class="w-80 flex justify-center"
             (mouseleave)="po_my_courses.hide()"
           >
-            <h1>My Courses</h1>
-          </div></p-popover
-        >
+            <app-mini-courses></app-mini-courses></div
+        ></p-popover>
       </p-button>
 
       <p-button

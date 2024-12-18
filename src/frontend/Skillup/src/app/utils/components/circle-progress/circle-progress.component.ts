@@ -10,6 +10,7 @@ import { Component, input } from '@angular/core';
 })
 export class CircleProgressComponent {
   percent = input.required<number>();
+  isWhite = input<boolean>(false);
   color = '#4AA764';
 
   calculateDashOffset(): string {

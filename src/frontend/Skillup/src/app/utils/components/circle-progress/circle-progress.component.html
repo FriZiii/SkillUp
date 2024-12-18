@@ -11,7 +11,9 @@
       ></circle>
     </svg>
     <div class="percent">
-      <h2>{{ percent() }}<span>%</span></h2>
+      <h2 [ngStyle]="{ color: isWhite() ? 'white' : 'black' }">
+        {{ percent() }}<span>%</span>
+      </h2>
     </div>
   </div>
 </div>

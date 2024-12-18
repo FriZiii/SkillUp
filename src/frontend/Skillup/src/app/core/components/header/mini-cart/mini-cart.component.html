@@ -1,12 +1,11 @@
 <div class="flex flex-col">
   @if(cart() && cartItems() && cartItems()?.length !== 0){ @for(item of
   cartItems(); track item.id){
-  <div class="flex gap-2 items-center">
-    <img
-      [src]="item.thumbnailUrl"
-      class="h-14 w-24 cursor-pointer my-4"
-      [routerLink]="'/course-detail/' + item.id"
-    />
+  <div
+    class="flex gap-2 items-center cursor-pointer"
+    [routerLink]="'/course-detail/' + item.id"
+  >
+    <img [src]="item.thumbnailUrl" class="h-14 w-24 my-4" />
     <div>
       <h1 class="mb-0 text-base font-semibold">
         {{ item.title | truncate }}
@@ -28,7 +27,10 @@
       {{ cart()?.total | number : "1.2-2" }} $
     </h1>
   </div>
-  <div class="bg-primary-500 flex justify-center items-center py-3 mt-3">
+  <div
+    class="bg-primary-500 flex justify-center items-center py-3 mt-3 cursor-pointer"
+    [routerLink]="'cart'"
+  >
     <p class="text-white font-semibold text-base">Go to cart</p>
   </div>
   } @else {
