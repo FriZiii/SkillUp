@@ -12,20 +12,20 @@
     <h1 class="text-5xl text-center">List of courses you have bought</h1>
   </div>
   } }
-  <div class="cols-responsive-2 mt-8">
+  <div class="flex flex-wrap gap-20 justify-center mt-8">
     @for( course of courses(); track course.id){
     <app-student-course-item
       [course]="course"
       (onRating)="addRating($event)"
       [percentages]="coursePercentages()"
     />
-    <app-course-item-short
+    <!-- <app-course-item-short
       [course]="course"
       [rating]="true"
       (onRating)="addRating($event)"
       [bought]="true"
       [percentages]="coursePercentages()"
-    ></app-course-item-short>
+    ></app-course-item-short> -->
     }
   </div>
 </div>

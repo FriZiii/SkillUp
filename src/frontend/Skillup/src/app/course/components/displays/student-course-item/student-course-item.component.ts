@@ -6,11 +6,12 @@ import { RatingModule } from 'primeng/rating';
 import { CoursesService } from '../../../services/course.service';
 import { FormsModule } from '@angular/forms';
 import { CircleProgressComponent } from "../../../../utils/components/circle-progress/circle-progress.component";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-student-course-item',
   standalone: true,
-  imports: [RatingModule, FormsModule, CircleProgressComponent],
+  imports: [RatingModule, FormsModule, CircleProgressComponent, RouterModule],
   templateUrl: './student-course-item.component.html',
   styleUrl: './student-course-item.component.css'
 })

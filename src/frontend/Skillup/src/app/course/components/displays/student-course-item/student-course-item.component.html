@@ -1,12 +1,17 @@
-<div class="w-64">
-  <img [src]="course().thumbnailUrl" class="h-36 w-64 cursor-pointer" />
+<div class="w-80 relative">
+  <img
+    [src]="course().thumbnailUrl"
+    class="h-44 w-80 cursor-pointer"
+    [routerLink]="'/course/' + course().id + '/walk-through'"
+  />
   <app-circle-progress
     [percent]="percentage()?.percentage ?? 0"
-    class="relative top-[-160px] left-24"
+    class="absolute top-[-12px] right-2"
   />
   <h1 class="text-lg font-bold my-0 text-wrap">{{ course().title }}</h1>
   <p class="my-0 text-slate-500">{{ course().authorName }}</p>
-  <h2 class="my-0">{{ percentage()?.percentage }}</h2>
 
-  <p-rating [(ngModel)]="courseListItem().averageRating" [readonly]="true" />
+  <div (click)="addRating(course().id)" class="w-min">
+    <p-rating [(ngModel)]="courseListItem().averageRating" [readonly]="true" />
+  </div>
 </div>

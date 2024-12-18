@@ -2,27 +2,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 15vh;
+  height: 11.25vh;
 }
 
 .wrapper {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border: none;
 }
 
 .ring {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   box-shadow: none;
 }
 
 .ring svg {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   transform: rotate(-90deg);
 }
 
@@ -31,20 +31,19 @@
   height: 100%;
   fill: none;
   stroke-width: 5;
-  stroke-dasharray: 220; /* wartość dla obwodu */
-  stroke-dashoffset: 220; /* początkowe przesunięcie */
+  stroke-dasharray: 165;
+  stroke-dashoffset: 165;
   stroke-linecap: round;
   transform: translate(5px, 5px);
 }
 
 .ring circle:nth-child(1) {
-  /* stroke: #e6e6e6; /* Kolor tła */
-  stroke: black; /* Kolor tła */
+  stroke: black;
 }
 
 .ring circle:nth-child(2) {
-  stroke: #4AA764; /* Domyślny kolor postępu */
-  stroke-dasharray: 220; /* Maksymalny obwód */
+  stroke: #4aa764;
+  stroke-dasharray: 165;
 }
 
 .percent {

@@ -13,8 +13,8 @@ export class CircleProgressComponent {
   color = '#4AA764';
 
   calculateDashOffset(): string {
-    const radius = 35; // Promień koła
-    const circumference = 2 * Math.PI * radius; // Obwód koła
+    const radius = 26.25;
+    const circumference = 2 * Math.PI * radius;
     const offset = circumference - (this.percent() / 100) * circumference;
     return offset.toString();
   }
