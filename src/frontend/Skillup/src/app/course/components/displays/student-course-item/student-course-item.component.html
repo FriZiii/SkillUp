@@ -11,7 +11,7 @@
   <h1 class="text-lg font-bold my-0 text-wrap">{{ course().title }}</h1>
   <p class="my-0 text-slate-500">{{ course().authorName }}</p>
 
-  <div (click)="addRating(course().id)" class="w-min">
+  <div (click)="addRating(course().id)" class="w-min mt-1">
     <p-rating [(ngModel)]="userRating()!.stars" [readonly]="true" />
   </div>
 </div>

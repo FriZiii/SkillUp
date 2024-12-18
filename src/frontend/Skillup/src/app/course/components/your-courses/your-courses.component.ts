@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject, input, OnInit, signal } from '@angular/core';
 import { Course } from '../../models/course.model';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { PurchasedItemsService } from '../../services/purchasedItems.service';
@@ -17,12 +17,12 @@ import { CoursePercentage } from '../../models/user-progress.model';
 import { StudentCourseItemComponent } from "../displays/student-course-item/student-course-item.component";
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FloatLabelModule } from 'primeng/floatlabel';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-your-courses',
   standalone: true,
-  imports: [ProgressSpinnerModule, DialogModule, ButtonModule, RatingModule, FormsModule, InputTextModule, StudentCourseItemComponent, InputTextareaModule, FloatLabelModule],
+  imports: [ProgressSpinnerModule, DialogModule, ButtonModule, RatingModule, FormsModule, InputTextModule, StudentCourseItemComponent, InputTextareaModule, FloatLabelModule, RouterModule],
   templateUrl: './your-courses.component.html',
   styleUrl: './your-courses.component.css'
 })
@@ -47,6 +47,7 @@ export class YourCoursesComponent implements OnInit {
   newFeedback = '';
   currentCourseId = '';
   coursePercentages = signal<CoursePercentage[]>([]);
+  numberOfCourses = computed(() => this.courses().length);
 
   ngOnInit(): void {
     this.loading = false;

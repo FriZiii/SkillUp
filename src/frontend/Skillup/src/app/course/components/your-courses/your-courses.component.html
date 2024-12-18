@@ -5,11 +5,29 @@
   </div>
   } @else { @if(courses().length === 0){
   <div class="prose max-w-none !w-full">
-    <h1 class="text-5xl text-center">You did not buy any courses yet</h1>
+    <h1 class="my-1 text-5xl">Courses</h1>
+    <p class="my-1">{{ numberOfCourses() }} courses collected</p>
+    <hr class="my-1" />
+    <div class="flex flex-col items-center mt-20">
+      <h1 class="text-5xl text-center my-3 font-bold">
+        You don't have any courses
+      </h1>
+      <p class="my-2 text-2xl">Go find a course that meets your expectations</p>
+      <p-button
+        label="Search for courses"
+        class="big-btn"
+        styleClass="!rounded-none"
+        [routerLink]="''"
+      ></p-button>
+    </div>
   </div>
   } @else {
   <div class="prose max-w-none !w-full">
-    <h1 class="text-5xl text-center">List of courses you have bought</h1>
+    <div>
+      <h1 class="my-1 text-5xl">Courses</h1>
+      <p class="my-1">{{ numberOfCourses() }} courses collected</p>
+      <hr class="my-1" />
+    </div>
   </div>
   } }
   <div class="flex flex-wrap gap-20 justify-center mt-8">
@@ -28,7 +46,7 @@
 <p-dialog
   [modal]="true"
   [(visible)]="addRatingDialogVisible"
-  [style]="{ width: '80%' }"
+  [style]="{ width: 'auto', padding: '10px' }"
   [draggable]="false"
   class="cursor-default"
   [focusOnShow]="false"
@@ -51,21 +69,16 @@
     <textarea
       class="custom-textarea mt-4"
       rows="5"
-      cols="40"
+      cols="50"
       [(ngModel)]="newFeedback"
       placeholder="Tell us more about what you think about this course."
     ></textarea>
     }
     <div class="flex flex-row-reverse gap-4 w-full mt-4">
       @if(currentRating){ @if(newRating !== 0){
-      <p-button label="Edit" (click)="editRating()" />
+      <p-button label="Edit review" (click)="editRating()" />
       }
-      <p-button
-        icon="pi pi-trash"
-        severity="danger"
-        (click)="deleteRating()"
-        class="trash-btn"
-      />
+      <p-button label="Delete" severity="secondary" (click)="deleteRating()" />
       } @else { @if(newRating !== 0){
       <p-button label="Save" (click)="postNewRating()" />
       } }

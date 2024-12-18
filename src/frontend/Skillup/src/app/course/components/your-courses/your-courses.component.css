@@ -8,7 +8,10 @@
   border: none;
 }
 
-:host ::ng-deep .trash-btn .p-button {
-  width: 46px;
-  height: 46px;
+
+:host ::ng-deep .big-btn .p-button{
+  width: 270px;
+  height: 70px;
+  font-size: 25px;
+  margin-top: 32px;
 }
