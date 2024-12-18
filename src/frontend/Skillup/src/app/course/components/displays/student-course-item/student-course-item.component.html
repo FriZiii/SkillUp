@@ -12,6 +12,6 @@
   <p class="my-0 text-slate-500">{{ course().authorName }}</p>
 
   <div (click)="addRating(course().id)" class="w-min">
-    <p-rating [(ngModel)]="courseListItem().averageRating" [readonly]="true" />
+    <p-rating [(ngModel)]="userRating()!.stars" [readonly]="true" />
   </div>
 </div>

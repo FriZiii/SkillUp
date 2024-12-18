@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, input, OnInit, signal } from '@angular/core';
 import { Course } from '../../models/course.model';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { PurchasedItemsService } from '../../services/purchasedItems.service';
@@ -17,6 +17,7 @@ import { CoursePercentage } from '../../models/user-progress.model';
 import { StudentCourseItemComponent } from "../displays/student-course-item/student-course-item.component";
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-your-courses',
@@ -30,15 +31,16 @@ export class YourCoursesComponent implements OnInit {
    userId = input.required<string>();
 
    //Services
-   courseService = inject(PurchasedItemsService);
+   purchasedItemsService = inject(PurchasedItemsService);
    ratingService = inject(CourseRatingService);
    userService = inject(UserService);
    userProgressService = inject(UserProgressService);
+   router = inject(Router);
   
   //Variables
   loading = true;
-  courses = this.courseService.purchasedCourses;
-  courseRatings: UserRating[] = []
+  courses = this.purchasedItemsService.purchasedCourses;
+  courseRatings = signal<UserRating[]>([]);
   currentRating: UserRating | undefined = undefined;
   addRatingDialogVisible = false;
   newRating = 0;
@@ -50,7 +52,7 @@ export class YourCoursesComponent implements OnInit {
     this.loading = false;
 
     this.ratingService.getUserRatings(this.userService.currentUser()!.id).subscribe(
-      (res) => this.courseRatings = res
+      (res) => this.courseRatings.set(res)
     );
 
     this.userProgressService.getPercentage().subscribe((res) => {
@@ -62,7 +64,7 @@ export class YourCoursesComponent implements OnInit {
   addRating(courseId: string){
     this.addRatingDialogVisible = true;
     this.currentCourseId = courseId;
-    this.currentRating = this.courseRatings.find(r => r.courseId === courseId);
+    this.currentRating = this.courseRatings().find(r => r.courseId === courseId);
     if(this.currentRating){
       this.newRating = this.currentRating.stars;
       this.newFeedback = this.currentRating.feedback;
@@ -79,6 +81,7 @@ export class YourCoursesComponent implements OnInit {
         this.newRating = res.stars;
         this.newFeedback = res.feedback;
         this.addRatingDialogVisible = false;
+        this.reloadComponent();
       }
     );
   }
@@ -89,6 +92,7 @@ export class YourCoursesComponent implements OnInit {
         this.newRating = res.stars;
         this.newFeedback = res.feedback;
         this.addRatingDialogVisible = false;
+        this.reloadComponent();
       }
     );
   }
@@ -99,6 +103,7 @@ export class YourCoursesComponent implements OnInit {
         this.newRating = 0;
         this.newFeedback = '';
         this.currentRating = undefined;
+        this.reloadComponent();
       }
     );
   }
@@ -106,5 +111,13 @@ export class YourCoursesComponent implements OnInit {
   getPercentage(courseId: string){
     console.log( this.coursePercentages())
     return this.coursePercentages().find(p => p.courseId === courseId);
+  }
+
+
+  //TODO try to refactor this
+  reloadComponent() {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/user', this.userId(), 'courses']);
+    });
   }
 }
