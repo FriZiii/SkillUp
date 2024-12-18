@@ -6,9 +6,13 @@
         <RootNamespace>Skillup.Modules.Notifications.Core</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
+      <None Remove="Seeders\Data\notification-seeder-data.json" />
       <None Remove="Seeders\Data\notification-users-seeder-data.json" />
     </ItemGroup>
     <ItemGroup>
+      <Content Include="Seeders\Data\notification-seeder-data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
       <Content Include="Seeders\Data\notification-users-seeder-data.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>

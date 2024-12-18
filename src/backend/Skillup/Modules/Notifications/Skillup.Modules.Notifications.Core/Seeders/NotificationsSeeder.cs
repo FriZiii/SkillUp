@@ -2,7 +2,9 @@
 using Skillup.Modules.Notifications.Core.DAL;
 using Skillup.Modules.Notifications.Core.Entitites;
 using Skillup.Modules.Notifications.Core.Seeders.Data;
+using Skillup.Shared.Abstractions.Events.Notifications;
 using Skillup.Shared.Abstractions.Seeder;
+using Skillup.Shared.Abstractions.Time;
 using System.Text.Json;
 
 namespace Skillup.Modules.Notifications.Core.Seeders
@@ -10,12 +12,14 @@ namespace Skillup.Modules.Notifications.Core.Seeders
     internal class NotificationsSeeder : ISeeder
     {
         private readonly NotificationsDbContext _context;
+        private readonly IClock _clock;
         private readonly DbSet<User> _users;
         private DbSet<Notification> _notifications;
 
-        public NotificationsSeeder(NotificationsDbContext context)
+        public NotificationsSeeder(NotificationsDbContext context, IClock clock)
         {
             _context = context;
+            _clock = clock;
             _users = _context.Users;
             _notifications = _context.Notifications;
         }
@@ -29,7 +33,8 @@ namespace Skillup.Modules.Notifications.Core.Seeders
 
             if (!await _notifications.AnyAsync())
             {
-                // TODO: Seed notifications
+                await _notifications.AddRangeAsync(CreateNotifications());
+                await _context.SaveChangesAsync();
             }
         }
 
@@ -37,7 +42,7 @@ namespace Skillup.Modules.Notifications.Core.Seeders
         {
             var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
 
-            var jsonString = File.ReadAllText(Path.Combine(path, "notification-users-seeder-data"));
+            var jsonString = File.ReadAllText(Path.Combine(path, "notification-users-seeder-data.json"));
             JsonSerializerOptions options = new()
             {
                 PropertyNameCaseInsensitive = true
@@ -53,6 +58,35 @@ namespace Skillup.Modules.Notifications.Core.Seeders
             var user = new User() { Id = jsonModel.Id };
 
             return user;
+        }
+
+        private IEnumerable<Notification> CreateNotifications()
+        {
+            var path = Path.Combine(AppContext.BaseDirectory, "Seeders", "Data");
+
+            var jsonString = File.ReadAllText(Path.Combine(path, "notification-seeder-data.json"));
+            JsonSerializerOptions options = new()
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            var data = JsonSerializer.Deserialize<List<NotificationJsonModel>>(jsonString, options);
+
+            return data!.Select(CreateNotificationFromJson);
+        }
+
+        private Notification CreateNotificationFromJson(NotificationJsonModel jsonModel)
+        {
+            var Notification = new Notification()
+            {
+                UserId = jsonModel.UserId,
+                CreatedAt = _clock.CurrentDate(),
+                Type = Enum.Parse<NotifitationType>(jsonModel.Type),
+                Message = jsonModel.Message,
+                Seen = jsonModel.Seen,
+            };
+
+            return Notification;
         }
     }
 }

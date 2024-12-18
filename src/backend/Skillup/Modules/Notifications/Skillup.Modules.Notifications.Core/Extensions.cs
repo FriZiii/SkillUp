@@ -3,8 +3,10 @@ using Skillup.Modules.Notifications.Core.Consumers;
 using Skillup.Modules.Notifications.Core.DAL;
 using Skillup.Modules.Notifications.Core.DAL.Repositories;
 using Skillup.Modules.Notifications.Core.Repositories;
+using Skillup.Modules.Notifications.Core.Seeders;
 using Skillup.Shared.Infrastructure.Postgres;
 using Skillup.Shared.Infrastructure.RabbitMQ;
+using Skillup.Shared.Infrastructure.Seeder;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -20,6 +22,7 @@ namespace Skillup.Modules.Notifications.Core
                 .AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
                 .AddConsumer<NotificationPublishedConsumer>()
                 .AddConsumer<SignedUpConsumer>()
+                .AddSeeder<NotificationsSeeder>()
                 .AddScoped<IUserRepository, UserRepository>()
                 .AddScoped<INotificationRepository, NotificationRepository>();
         }

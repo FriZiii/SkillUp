@@ -1,0 +1,43 @@
+@if(notifications().length === 0){
+<h1 class="font-semibold text-lg">You don't have any notifications.</h1>
+} @else { @if(user()?.role === UserRole.User){ @for(notification of
+notifications(); track notification.id){
+<app-notification-item
+  [notification]="notification"
+  [isMini]="true"
+></app-notification-item>
+} } @else {
+<p-tabs value="0">
+  <p-tablist>
+    <p-tab value="0" class="!p-2">Instructor</p-tab>
+    <p-tab value="1" class="!p-2">User</p-tab>
+  </p-tablist>
+  <p-tabpanels class="!mt-2">
+    <p-tabpanel value="0">
+      @for(notification of instructorNotifications(); track notification.id){
+
+      <app-notification-item
+        [notification]="notification"
+        [isMini]="true"
+      ></app-notification-item>
+      }
+    </p-tabpanel>
+    <p-tabpanel value="1">
+      @for(notification of userNotifications(); track notification.id){
+
+      <app-notification-item
+        [notification]="notification"
+        [isMini]="true"
+      ></app-notification-item>
+      }
+    </p-tabpanel>
+  </p-tabpanels>
+</p-tabs>
+}
+<div
+  class="bg-primary-500 flex justify-center items-center py-3 mt-3 cursor-pointer"
+  [routerLink]="'user/' + user()?.id + '/courses'"
+>
+  <p class="text-white font-semibold text-base">All Notifications</p>
+</div>
+}

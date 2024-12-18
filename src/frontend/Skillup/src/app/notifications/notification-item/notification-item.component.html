@@ -1,0 +1,17 @@
+<div
+  class="prose max-w-none flex justify-between cursor-pointer px-2 items-center"
+  (click)="notificationClick()"
+>
+  <div>
+    <h1 class="my-0" [ngClass]="isMini() ? 'font-semibold text-base' : ''">
+      {{ notification().message }}
+    </h1>
+    <p class="my-0" [ngClass]="isMini() ? 'font-light text-sm' : ''">
+      {{ notification().createdAt | date : "yyyy-MM-dd HH:mm" }}
+    </p>
+  </div>
+  @if(!notification().seen){
+  <p-badge [value]="''" severity="success" />
+  }
+</div>
+<hr class="my-1" />
