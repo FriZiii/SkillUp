@@ -3,10 +3,18 @@
   (click)="notificationClick()"
 >
   <div>
-    <h1 class="my-0" [ngClass]="isMini() ? 'font-semibold text-base' : ''">
+    <h1
+      class="my-0"
+      [ngClass]="
+        isMini() ? 'font-semibold text-base' : 'font-semibold text-2xl'
+      "
+    >
       {{ notification().message }}
     </h1>
-    <p class="my-0" [ngClass]="isMini() ? 'font-light text-sm' : ''">
+    <p
+      class="my-0"
+      [ngClass]="isMini() ? 'font-light text-sm' : 'font-light text-base'"
+    >
       {{ notification().createdAt | date : "yyyy-MM-dd HH:mm" }}
     </p>
   </div>

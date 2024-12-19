@@ -1,0 +1,17 @@
+.badge{
+    padding: 4px 24px;
+    border-radius: 28px;
+    border-width: 1px;
+border-color: #d1d5db;
+border-style: solid;
+}
+
+.badge-clicked{
+    padding: 4px 24px;
+    border-radius: 28px;
+    background-color: var(--p-primary-500);
+}
+
+.badge-clicked p{
+    color: white;
+}
