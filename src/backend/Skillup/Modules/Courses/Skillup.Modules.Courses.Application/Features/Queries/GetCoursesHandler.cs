@@ -26,27 +26,29 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
         public async Task<IEnumerable<CourseDto>> Handle(GetCoursesRequest request, CancellationToken cancellationToken)
         {
             var mapper = new CourseMapper(_amazonS3Service);
-            IEnumerable<Course?> courses;
-            if (request.Status == null)
-            {
-                courses = await _courseRepository.GetAll();
-            }
-            else
-            {
-                courses = await _courseRepository.GetByStatus((CourseStatus)request.Status);
-            }
+
+            IEnumerable<Course?> courses = request.Status == null
+                ? await _courseRepository.GetAll()
+                : await _courseRepository.GetByStatus((CourseStatus)request.Status);
 
             var purchasedCourses = await _userPurchasedCourseRepository.Get();
-            var purchasedCoursesByCourse = purchasedCourses.GroupBy(x => x.CourseId);
+            var purchasedCoursesByCourse = purchasedCourses
+                .GroupBy(x => x.CourseId)
+                .ToDictionary(g => g.Key, g => g.Count());
+
+            var users = await _userRepository.GetAll();
+            var userLookup = users.ToDictionary(u => u.Id, u => $"{u.FirstName} {u.LastName}");
 
             var coursesDtos = courses.Select(mapper.CourseToCourseDto).ToList();
 
-            var users = await _userRepository.GetAll();
-
             foreach (var courseDto in coursesDtos)
             {
-                courseDto.UsersCout = purchasedCoursesByCourse.Select(x => x.Where(x => x.CourseId == courseDto.Id)).Count();
-                courseDto.AuthorName = users.First(u => u.Id == courseDto.AuthorId).FirstName + " " + users.First(u => u.Id == courseDto.AuthorId).LastName;
+                purchasedCoursesByCourse.TryGetValue(courseDto.Id, out var userCount);
+                courseDto.UsersCout = userCount;
+
+                courseDto.AuthorName = userLookup.TryGetValue(courseDto.AuthorId, out var authorName)
+                    ? authorName
+                    : "";
             }
 
             return coursesDtos;
