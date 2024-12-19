@@ -1,0 +1,16 @@
+<div>
+  <input
+    type="text"
+    pInputText
+    [(ngModel)]="title"
+    (ngModelChange)="applyFilters()"
+    placeholder="Search..."
+  />
+  <input
+    type="text"
+    pInputText
+    [(ngModel)]="authorName"
+    (ngModelChange)="applyFilters()"
+    placeholder="Author Name"
+  />
+</div>
