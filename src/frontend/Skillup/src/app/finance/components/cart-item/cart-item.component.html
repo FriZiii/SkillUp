@@ -16,7 +16,7 @@
     <p class="my-0 text-2xl text-nowrap font-medium">
       {{ cartItem().price | number : "1.2-2" }} $
     </p>
-    } @else {
+    } @else if (styleForOrder()) {} @else {
     <p class="my-1 text-base">Author: {{ cartItem().authorName }}</p>
 
     <div class="flex gap-4">
@@ -25,7 +25,7 @@
     </div>
     }
   </div>
-  @if(!styleForSummary()){ @if(cartItem().price ===
+  @if(!styleForSummary() || !styleForOrder()){ @if(cartItem().price ===
   cartItem().orginalItem.price){
   <div class="flex items-center gap-4 ml-4">
     <p class="my-0 text-2xl text-nowrap font-medium">

@@ -11,6 +11,8 @@ import { ConfirmationDialogHandlerService } from '../../../core/services/confirm
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { InputNumber, InputNumberModule } from 'primeng/inputnumber';
+import { BalanceHistory } from '../../models/wallet.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-balance',
@@ -24,6 +26,7 @@ export class BalanceComponent {
   walletService = inject(WalletService);
   toastService = inject(ToastHandlerService);
   confirmationDialogService = inject(ConfirmationDialogHandlerService);
+  router = inject(Router);
 
   //Variables
   addBalanceDialogVisible = false;
@@ -55,5 +58,11 @@ export class BalanceComponent {
           this.addBalanceDialogVisible = false;
         })).subscribe();
     })
+  }
+
+  itemClick(item: BalanceHistory){
+    if(item.type === "Substract"){
+      this.router.navigate(['/order', item.id])
+    }
   }
 }

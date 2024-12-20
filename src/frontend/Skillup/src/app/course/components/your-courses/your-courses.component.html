@@ -1,4 +1,4 @@
-<div class="su-section-mt">
+<div class="su-section-mt px-24 mb-8">
   @if(loading){
   <div class="w-full flex justify-center">
     <p-progress-spinner ariaLabel="loading" class="mt-24" />
@@ -30,9 +30,10 @@
     </div>
   </div>
   } }
-  <div class="flex flex-wrap gap-20 justify-center mt-8">
+  <div class="cols-responsive-4 gap-12 mx-12 mt-8">
     @for( course of courses(); track course.id){
     <app-student-course-item
+      class="w-80"
       [course]="course"
       (onRating)="addRating($event)"
       [percentages]="coursePercentages()"
