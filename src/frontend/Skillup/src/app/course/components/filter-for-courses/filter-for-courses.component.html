@@ -13,4 +13,25 @@
     (ngModelChange)="applyFilters()"
     placeholder="Author Name"
   />
+  @if(defaultCategory() === ''){
+  <p-select
+    [options]="categoryNames()"
+    optionLabel="name"
+    optionValue="id"
+    placeholder="Category"
+    class="w-full"
+    [(ngModel)]="selectedCategory"
+    (ngModelChange)="applyFilters()"
+  />
+  } @if(defaultSubcategory() === 'all'){
+  <p-select
+    [options]="subcategoryNames()"
+    optionLabel="name"
+    optionValue="id"
+    placeholder="Subcategory"
+    class="w-full"
+    [(ngModel)]="selectedSubcategory"
+    (ngModelChange)="applyFilters()"
+  />
+  }
 </div>

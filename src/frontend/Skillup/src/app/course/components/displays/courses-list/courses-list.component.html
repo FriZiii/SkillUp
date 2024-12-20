@@ -2,6 +2,8 @@
   <app-filter-for-courses
     [courses]="allCoursesForCategory()"
     (filteredCourses)="onFilteredCourses($event)"
+    [defaultCategory]="category()"
+    [defaultSubcategory]="subcategory()"
   ></app-filter-for-courses>
   <div class="flex flex-wrap justify-evenly items-start su-section-mt">
     @if(allCoursesForCategory().length == 0){
