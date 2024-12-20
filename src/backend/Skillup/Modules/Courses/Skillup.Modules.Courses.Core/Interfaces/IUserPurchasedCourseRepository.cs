@@ -6,5 +6,6 @@ namespace Skillup.Modules.Courses.Core.Interfaces
     {
         Task Add(UserPurchasedCourse userPurchasedCourse);
         Task<IEnumerable<UserPurchasedCourse>> GetByUserId(Guid userId);
+        Task<IEnumerable<UserPurchasedCourse>> Get();
     }
 }
