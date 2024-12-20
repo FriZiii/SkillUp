@@ -15,10 +15,11 @@ import { DialogModule } from 'primeng/dialog';
 import { ElementContentDialogComponent } from '../../edit-course/course-creator/element-item/element-content-dialog/element-content-dialog.component';
 import { ElementAttachmentsDialogComponent } from '../../edit-course/course-creator/element-item/element-attachments-dialog/element-attachments-dialog.component';
 import { ReviewCommentsComponent } from '../../reviews/course-review/review-comments/review-comments.component';
-import { AssetType, Element } from '../../../models/course-content.model';
+import { AssetType, Attachment, Element } from '../../../models/course-content.model';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { UserProgressService } from '../../../services/user-progress-service';
+import { CourseContentService } from '../../../services/course-content.service';
 
 @Component({
   selector: 'app-element-item-display',
@@ -45,6 +46,7 @@ export class ElementItemDisplayComponent implements OnInit {
 
   //Services
   userProgressService = inject(UserProgressService);
+  courseContentService = inject(CourseContentService);
 
   //Variables
   items: MenuItem[] = [];
@@ -54,6 +56,7 @@ export class ElementItemDisplayComponent implements OnInit {
     this.checked = this.userProgressService.accomplishedElements().includes(this.element().id);
 });
   checked = false;
+  attachments: Attachment[] =[];
 
   ngOnInit(): void {
     if (this.element().hasAsset) {
@@ -61,6 +64,10 @@ export class ElementItemDisplayComponent implements OnInit {
     } else {
       this.contentIcon.set('pi pi-exclamation-triangle');
     }
+
+    this.courseContentService.getAttachmentsByElementId(this.element().id).subscribe((res) => {
+      this.attachments = res;
+    })
 
     this.items = [
       {

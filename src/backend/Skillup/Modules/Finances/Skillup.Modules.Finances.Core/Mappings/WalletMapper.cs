@@ -16,5 +16,17 @@ namespace Skillup.Modules.Finances.Core.Mappings
                 UserId = wallet.OwnerId,
             };
         }
+
+        public WalletWithBalanceHistoryDto WalletToWalletWithBalanceHistoryDto(Wallet wallet, IEnumerable<BalanceHistory> balanceHistories)
+        {
+            var balanceHistoryMapper = new BalanceHistoryMapper();
+            return new WalletWithBalanceHistoryDto()
+            {
+                Id = wallet.Id,
+                Balance = wallet.Balance,
+                UserId = wallet.OwnerId,
+                BalanceHistory = balanceHistories.Select(balanceHistoryMapper.BalanceHistoryToDto)
+            };
+        }
     }
 }

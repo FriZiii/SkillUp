@@ -7,6 +7,7 @@ namespace Skillup.Modules.Finances.Core.Repositories
         Task Add(Wallet wallet);
         Task<Wallet?> GetWallet(Guid walletId);
         Task<Wallet?> GetWalletByOwnerId(Guid ownerId);
-        Task UpdateBalance(Wallet wallet);
+        Task UpdateWalletBalance(Wallet wallet, BalanceHistory balanceHistory);
+        Task<IEnumerable<BalanceHistory>> GetBalanceHistoryByWalletId(Guid walletId);
     }
 }

@@ -176,6 +176,14 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.Property<Guid>("Key")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ElementId");

@@ -6,6 +6,7 @@ import { catchError, tap, throwError } from "rxjs";
 import { CoursesService } from "../../course/services/course.service";
 import { WalletService } from "./wallet.service";
 import { PurchasedItemsService } from "../../course/services/purchasedItems.service";
+import { UserService } from "../../user/services/user.service";
 
 @Injectable({ providedIn: 'root' })
 export class CartService
@@ -14,6 +15,7 @@ export class CartService
     private walletService = inject(WalletService);
     private courseService = inject(CoursesService);
     private purchasedItemsService = inject(PurchasedItemsService);
+    private userService = inject(UserService);
     private cartId = localStorage.getItem('cartId');
     public cart = signal<Cart | null>(null);
     public cartItemsDisplay = signal<CartItemForDisplay[] | null>(null);
@@ -122,7 +124,8 @@ export class CartService
         .pipe(
           tap((response) => {
             localStorage.removeItem('cartId');
-            this.walletService.setWallet(this.walletService.currentWallet()!.balance - this.cart()!.total);
+            //this.walletService.setWallet(this.walletService.currentWallet()!.balance - this.cart()!.total);
+            this.walletService.getWallet(this.userService.currentUser()!.id);
 
             const addedCourseItems = this.courseService.courses().filter(course => this.cart()?.items.some(item => item.id === course.id))
             const addedCourses = addedCourseItems.map(courseItem => this.courseService.mapCourseItemToCourse(courseItem));

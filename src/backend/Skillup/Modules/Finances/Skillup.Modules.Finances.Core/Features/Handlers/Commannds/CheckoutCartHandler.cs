@@ -2,7 +2,6 @@
 using MediatR;
 using Skillup.Modules.Finances.Core.Entities;
 using Skillup.Modules.Finances.Core.Features.Requests;
-using Skillup.Modules.Finances.Core.Mappings;
 using Skillup.Modules.Finances.Core.Repositories;
 using Skillup.Shared.Abstractions.Events.Finances;
 using Skillup.Shared.Abstractions.Time;
@@ -27,18 +26,21 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
             var wallet = await _walletRepository.GetWallet(request.WalletId) ?? throw new Exception(); // TODO: Custom Ex: wallet with id doesnt exist
             var cart = await _cartRepository.GetCart(request.CartId) ?? throw new Exception(); // TODO: Custom Ex: cart with id doesnt exist
 
-            var orderMapper = new OrderMapper();
-
+            var orderId = Guid.NewGuid();
             wallet.SubtractFromBalance(cart.Total);
-            await _walletRepository.UpdateBalance(wallet);
+            var history = new BalanceHistory(wallet.Id, wallet.Balance, $"Order number SU-{orderId.ToString("N")[..8]}", "Substract");
+
+            await _walletRepository.UpdateWalletBalance(wallet, history);
+
             await _cartRepository.Delete(cart);
 
             var order = new Order()
             {
-                Id = Guid.NewGuid(),
+                Id = orderId,
                 OrdererId = wallet.OwnerId,
                 Created = _clock.CurrentDate(),
                 TotalPrice = cart.Total,
+                BalanceHistoryId = history.Id,
             };
 
             var orderItems = cart.Items.Select(x => new OrderItem() { ItemId = x.ItemId, ItemPrice = x.Price, OrderId = order.Id }).ToList();

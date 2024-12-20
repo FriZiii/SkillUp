@@ -20,5 +20,14 @@ namespace Skillup.Modules.Finances.Api.Controllers
         {
             return Ok(await _mediator.Send(new GetOrdersByOrdererIdRequest(ordererId)));
         }
+
+        [HttpGet]
+        [SwaggerOperation("Get order by balance history id")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetOrderByBalanceHistoryId([FromQuery] Guid balanceHistoryId)
+        {
+            return Ok(await _mediator.Send(new GetOrdersByBalanceHistoryIdRequest(balanceHistoryId)));
+        }
     }
 }

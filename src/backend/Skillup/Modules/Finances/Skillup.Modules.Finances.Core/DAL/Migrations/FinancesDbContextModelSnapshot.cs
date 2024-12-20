@@ -23,6 +23,36 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.BalanceHistory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("numeric");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("WalletId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WalletId");
+
+                    b.ToTable("BalanceHistories", "finances");
+                });
+
             modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.Cart", b =>
                 {
                     b.Property<Guid>("Id")
@@ -160,6 +190,9 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("BalanceHistoryId")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
 
@@ -170,6 +203,8 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BalanceHistoryId");
 
                     b.HasIndex("OrdererId");
 
@@ -245,6 +280,17 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
                     b.HasDiscriminator().HasValue(0);
                 });
 
+            modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.BalanceHistory", b =>
+                {
+                    b.HasOne("Skillup.Modules.Finances.Core.Entities.Wallet", "Wallet")
+                        .WithMany()
+                        .HasForeignKey("WalletId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Wallet");
+                });
+
             modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.Cart", b =>
                 {
                     b.HasOne("Skillup.Modules.Finances.Core.Entities.DiscountCode", "DiscountCode")
@@ -305,11 +351,19 @@ namespace Skillup.Modules.Finances.Core.DAL.Migrations
 
             modelBuilder.Entity("Skillup.Modules.Finances.Core.Entities.Order", b =>
                 {
+                    b.HasOne("Skillup.Modules.Finances.Core.Entities.BalanceHistory", "BalanceHistory")
+                        .WithMany()
+                        .HasForeignKey("BalanceHistoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Skillup.Modules.Finances.Core.Entities.User", "Orderer")
                         .WithMany()
                         .HasForeignKey("OrdererId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("BalanceHistory");
 
                     b.Navigation("Orderer");
                 });
