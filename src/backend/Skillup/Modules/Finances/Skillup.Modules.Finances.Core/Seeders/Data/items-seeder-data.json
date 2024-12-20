@@ -7,61 +7,61 @@
   },
   {
     "id": "ea9cce4b-e4e1-4bfc-83b2-8b6beea8c64d",
-    "authorId": "843c0b70-df1c-4cab-b539-574a5da7a731",
+    "authorId": "b07b5e19-cf8a-4402-b188-9c83d3a141dd",
     "itemType": "Course",
     "price": 80
   },
   {
     "id": "1aea8d31-65dc-4dce-962f-dddc98d958d7",
-    "authorId": "843c0b70-df1c-4cab-b539-574a5da7a731",
+    "authorId": "b07b5e19-cf8a-4402-b188-9c83d3a141dd",
     "itemType": "Course",
     "price": 60
   },
   {
     "id": "f4112f23-ec8c-406f-8a8a-5cc3d71fd258",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "954f0f5b-28a1-470c-966a-a7c194f01651",
     "itemType": "Course",
     "price": 120
   },
   {
     "id": "123a6024-0e84-4685-84d1-00b76ed57932",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "954f0f5b-28a1-470c-966a-a7c194f01651",
     "itemType": "Course",
     "price": 60
   },
   {
     "id": "b9b8d3fd-04fe-43b5-995f-3c0fa5e58fbe",
-    "authorId": "843c0b70-df1c-4cab-b539-574a5da7a731",
+    "authorId": "954f0f5b-28a1-470c-966a-a7c194f01651",
     "itemType": "Course",
     "price": 110
   },
   {
     "id": "ee5d947b-3997-432d-9721-b00118eecab5",
-    "authorId": "b0958f3f-d007-493f-9915-8a57c3f8fec0",
+    "authorId": "40505b38-1a69-4b52-846f-d0a96f8f0d3d",
     "itemType": "Course",
     "price": 100
   },
   {
     "id": "7b0f3880-e203-475c-ba3b-5bb66d60f687",
-    "authorId": "b0958f3f-d007-493f-9915-8a57c3f8fec0",
+    "authorId": "40505b38-1a69-4b52-846f-d0a96f8f0d3d",
     "itemType": "Course",
     "price": 60
   },
   {
     "id": "59cc56c3-cde6-4092-96c1-c63b15d8854f",
-    "authorId": "b0958f3f-d007-493f-9915-8a57c3f8fec0",
+    "authorId": "dd17d962-0cd0-46e0-871e-ff28a41d46f0",
     "itemType": "Course",
     "price": 100
   },
   {
     "id": "34e3ba5a-c6a9-440f-8914-6c36c91a85bf",
-    "authorId": "b0958f3f-d007-493f-9915-8a57c3f8fec0",
+    "authorId": "dd17d962-0cd0-46e0-871e-ff28a41d46f0",
     "itemType": "Course",
     "price": 90
   },
   {
     "id": "5e310de3-48ce-4c09-a8bb-a9a491b9ced9",
-    "authorId": "b0958f3f-d007-493f-9915-8a57c3f8fec0",
+    "authorId": "dd17d962-0cd0-46e0-871e-ff28a41d46f0",
     "itemType": "Course",
     "price": 80
   },
@@ -79,7 +79,7 @@
   },
   {
     "id": "4481dc8e-bb25-485e-a176-4a1858ab08a5",
-    "authorId": "843c0b70-df1c-4cab-b539-574a5da7a731",
+    "authorId": "40505b38-1a69-4b52-846f-d0a96f8f0d3d",
     "itemType": "Course",
     "price": 110
   },
@@ -103,55 +103,55 @@
   },
   {
     "id": "41ecb37b-6352-41ca-92cd-e90bfb848220",
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "10949253-ce39-485c-85f0-c7ec2c7a94b8",
     "itemType": "Course",
     "price": 50
   },
   {
     "id": "4435bb93-5511-4512-a07a-8883ea910745",
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "10949253-ce39-485c-85f0-c7ec2c7a94b8",
     "itemType": "Course",
     "price": 50
   },
   {
     "id": "45834abc-df41-4a8d-b0eb-7d83962ac548",
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "b9981c06-5e2a-48a1-85c6-c677beb0437b",
     "itemType": "Course",
     "price": 120
   },
   {
     "id": "ba933032-f263-484b-9c43-1a92e6ac44b3",
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "b9981c06-5e2a-48a1-85c6-c677beb0437b",
     "itemType": "Course",
     "price": 120
   },
   {
     "id": "afa2392c-ec53-4932-bbb6-f20c7e9467c0",
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "b9981c06-5e2a-48a1-85c6-c677beb0437b",
     "itemType": "Course",
     "price": 90
   },
   {
     "id": "7d1e3812-0a8e-45de-bd09-d80464e09a2a",
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "fc1da420-804d-446a-bcfe-213f687d836a",
     "itemType": "Course",
     "price": 60
   },
   {
     "id": "001ad0d5-9230-4bd1-be76-2ffcb72507ba",
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "fc1da420-804d-446a-bcfe-213f687d836a",
     "itemType": "Course",
     "price": 50
   },
   {
     "id": "f3f419fc-5177-4cee-bd24-716b151907b8",
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "fc1da420-804d-446a-bcfe-213f687d836a",
     "itemType": "Course",
     "price": 50
   },
   {
     "id": "118b2d49-e15c-44e1-b419-c5dd74ee9fd1",
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "45ec3836-a02a-41f6-a845-44a72a5991bf",
     "itemType": "Course",
     "price": 70
   },
@@ -163,13 +163,13 @@
   },
   {
     "id": "a19c436a-4821-4e7f-9883-e173eb0a3c47",
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "45ec3836-a02a-41f6-a845-44a72a5991bf",
     "itemType": "Course",
     "price": 100
   },
   {
     "id": "f0942fe5-20a8-4109-8a5a-df62618773a8",
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "45ec3836-a02a-41f6-a845-44a72a5991bf",
     "itemType": "Course",
     "price": 50
   },
@@ -193,19 +193,19 @@
   },
   {
     "id": "daf8685e-c1e8-40a3-895f-277d3da5509c",
-    "authorId": "477170d7-69a8-4c33-98d5-86c2a8808d11",
+    "authorId": "1577a802-6ce4-4aad-a40c-fc3761372be2",
     "itemType": "Course",
     "price": 90
   },
   {
     "id": "f051d050-6a1c-4eca-b3d2-808be9d687f5",
-    "authorId": "477170d7-69a8-4c33-98d5-86c2a8808d11",
+    "authorId": "1577a802-6ce4-4aad-a40c-fc3761372be2",
     "itemType": "Course",
     "price": 70
   },
   {
     "id": "c67b50ea-1ac2-46df-9a7d-e6523a7ab113",
-    "authorId": "477170d7-69a8-4c33-98d5-86c2a8808d11",
+    "authorId": "1577a802-6ce4-4aad-a40c-fc3761372be2",
     "itemType": "Course",
     "price": 110
   },
@@ -235,7 +235,7 @@
   },
   {
     "id": "01075dd4-a061-4067-83ba-18c7f8565b69",
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "5a2e9ff2-ef7b-43cf-86d8-af02edacdc22",
     "itemType": "Course",
     "price": 110
   },
@@ -277,19 +277,19 @@
   },
   {
     "id": "4f2660e9-e837-47a0-b380-07279d7b30d5",
-    "authorId": "d20f4ec3-1f41-4ea1-84ab-eaeba1f585ad",
+    "authorId": "d1da3543-fb2a-4487-875e-91621cd31ef4",
     "itemType": "Course",
     "price": 80
   },
   {
     "id": "48616aed-8a0e-4781-a991-b2f211477f87",
-    "authorId": "d20f4ec3-1f41-4ea1-84ab-eaeba1f585ad",
+    "authorId": "d1da3543-fb2a-4487-875e-91621cd31ef4",
     "itemType": "Course",
     "price": 60
   },
   {
     "id": "4dbaeea1-958e-4d01-b33f-8893425fe690",
-    "authorId": "d20f4ec3-1f41-4ea1-84ab-eaeba1f585ad",
+    "authorId": "d1da3543-fb2a-4487-875e-91621cd31ef4",
     "itemType": "Course",
     "price": 120
   },
@@ -313,7 +313,7 @@
   },
   {
     "id": "1e655ffe-4dfa-4a78-ad80-0fe19da8e76d",
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "5a2e9ff2-ef7b-43cf-86d8-af02edacdc22",
     "itemType": "Course",
     "price": 50
   },
@@ -325,25 +325,25 @@
   },
   {
     "id": "b0ecd08b-9b55-431b-9eed-dfe53d179cad",
-    "authorId": "16068127-c7af-4215-aa8f-e72e69297aff",
+    "authorId": "1329643d-67c7-4cc5-82a8-91bf618acd68",
     "itemType": "Course",
     "price": 120
   },
   {
     "id": "f14a24d1-e8fa-4e84-9e63-b371559bb47a",
-    "authorId": "16068127-c7af-4215-aa8f-e72e69297aff",
+    "authorId": "1329643d-67c7-4cc5-82a8-91bf618acd68",
     "itemType": "Course",
     "price": 50
   },
   {
     "id": "22066cdf-fd8e-4956-8f07-55e74aafd762",
-    "authorId": "16068127-c7af-4215-aa8f-e72e69297aff",
+    "authorId": "1329643d-67c7-4cc5-82a8-91bf618acd68",
     "itemType": "Course",
     "price": 80
   },
   {
     "id": "bb5b49f9-e714-4ede-8206-7d25138e3186",
-    "authorId": "16068127-c7af-4215-aa8f-e72e69297aff",
+    "authorId": "1329643d-67c7-4cc5-82a8-91bf618acd68",
     "itemType": "Course",
     "price": 60
   },
@@ -409,13 +409,13 @@
   },
   {
     "id": "f9829f97-7040-400f-9077-fb3a0f5ceaf0",
-    "authorId": "5a73b6f0-6c4c-4f79-9925-2426c5f2bc01",
+    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
     "itemType": "Course",
     "price": 120
   },
   {
     "id": "068178d9-a0f1-4c05-8bbc-5dc0bf09172f",
-    "authorId": "5a73b6f0-6c4c-4f79-9925-2426c5f2bc01",
+    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
     "itemType": "Course",
     "price": 50
   },
@@ -595,19 +595,19 @@
   },
   {
     "id": "54643fd0-6f4e-440e-970f-4fbf6b0c5629",
-    "authorId": "9ce8a11b-d7e5-402c-a765-f58c89b3549f",
+    "authorId": "c9851236-38fa-46e3-a16a-cbbc25f4fd2b",
     "itemType": "Course",
     "price": 60
   },
   {
     "id": "16dba370-e61c-4249-aec8-81ef5c41f015",
-    "authorId": "9ce8a11b-d7e5-402c-a765-f58c89b3549f",
+    "authorId": "c9851236-38fa-46e3-a16a-cbbc25f4fd2b",
     "itemType": "Course",
     "price": 110
   },
   {
     "id": "0cb3446a-3e6d-4d58-a648-db4d4759fbb5",
-    "authorId": "9ce8a11b-d7e5-402c-a765-f58c89b3549f",
+    "authorId": "c9851236-38fa-46e3-a16a-cbbc25f4fd2b",
     "itemType": "Course",
     "price": 110
   },
@@ -643,19 +643,19 @@
   },
   {
     "id": "e098117e-f8fb-46d3-8865-ace2ceb028bc",
-    "authorId": "854632f8-04f1-4d6e-a937-73a0b53e2cc0",
+    "authorId": "35837dff-090f-4f3d-9466-d0e333396ebd",
     "itemType": "Course",
     "price": 60
   },
   {
     "id": "90e76ec2-8eb7-41c9-9bd4-86e3cc3f8e6f",
-    "authorId": "854632f8-04f1-4d6e-a937-73a0b53e2cc0",
+    "authorId": "35837dff-090f-4f3d-9466-d0e333396ebd",
     "itemType": "Course",
     "price": 70
   },
   {
     "id": "0a78d9e6-bed1-49d1-b4cf-2ed4e6029469",
-    "authorId": "854632f8-04f1-4d6e-a937-73a0b53e2cc0",
+    "authorId": "35837dff-090f-4f3d-9466-d0e333396ebd",
     "itemType": "Course",
     "price": 120
   },
@@ -685,19 +685,19 @@
   },
   {
     "id": "62310f59-b4ce-462a-a339-94af9b1c65e5",
-    "authorId": "03b23b0c-383a-4e7b-9714-35eb69e4918d",
+    "authorId": "a19c129e-d173-4552-92a2-06343925c461",
     "itemType": "Course",
     "price": 60
   },
   {
     "id": "5518068d-a652-4231-ac34-5179d718a853",
-    "authorId": "03b23b0c-383a-4e7b-9714-35eb69e4918d",
+    "authorId": "a19c129e-d173-4552-92a2-06343925c461",
     "itemType": "Course",
     "price": 80
   },
   {
     "id": "20cafab3-b7dd-4fd1-9a06-fe9974ec3222",
-    "authorId": "03b23b0c-383a-4e7b-9714-35eb69e4918d",
+    "authorId": "a19c129e-d173-4552-92a2-06343925c461",
     "itemType": "Course",
     "price": 80
   },
@@ -775,19 +775,19 @@
   },
   {
     "id": "4d945021-6402-4e13-ae37-bd09a350a1c2",
-    "authorId": "988f4fd7-17c3-41dd-8256-63f8c1a7f6c0",
+    "authorId": "5b616f1b-fbda-4bed-8251-a9d5e859c22e",
     "itemType": "Course",
     "price": 50
   },
   {
     "id": "42142c62-26b5-4465-bb7f-f7e5a54ee772",
-    "authorId": "988f4fd7-17c3-41dd-8256-63f8c1a7f6c0",
+    "authorId": "5b616f1b-fbda-4bed-8251-a9d5e859c22e",
     "itemType": "Course",
     "price": 80
   },
   {
     "id": "3416e793-1a8d-4b62-97cc-43290a854c48",
-    "authorId": "988f4fd7-17c3-41dd-8256-63f8c1a7f6c0",
+    "authorId": "5b616f1b-fbda-4bed-8251-a9d5e859c22e",
     "itemType": "Course",
     "price": 110
   },
@@ -817,25 +817,25 @@
   },
   {
     "id": "5a59cdf1-bdae-4042-9152-f0ff7f857e63",
-    "authorId": "dc3f5538-b6d1-4fed-9ea8-7203c5eeb94f",
+    "authorId": "3e14584f-0f0e-4686-a386-845d3d98e2ac",
     "itemType": "Course",
     "price": 70
   },
   {
     "id": "e880c731-900e-4fd9-90d9-a72b20d0a331",
-    "authorId": "dc3f5538-b6d1-4fed-9ea8-7203c5eeb94f",
+    "authorId": "3e14584f-0f0e-4686-a386-845d3d98e2ac",
     "itemType": "Course",
     "price": 80
   },
   {
     "id": "8ae1a236-0201-4fc5-bead-c6e77bc6c22b",
-    "authorId": "dc3f5538-b6d1-4fed-9ea8-7203c5eeb94f",
+    "authorId": "3e14584f-0f0e-4686-a386-845d3d98e2ac",
     "itemType": "Course",
     "price": 70
   },
   {
     "id": "1abe9c2e-3fbe-476c-89bb-56d731eeb01c",
-    "authorId": "dc3f5538-b6d1-4fed-9ea8-7203c5eeb94f",
+    "authorId": "3e14584f-0f0e-4686-a386-845d3d98e2ac",
     "itemType": "Course",
     "price": 80
   },
@@ -865,19 +865,19 @@
   },
   {
     "id": "9a2047aa-5747-4a39-805b-06e8063cd146",
-    "authorId": "95dc0338-7eaf-42a5-be88-5021e8413744",
+    "authorId": "c12ffa1a-b4a7-4db0-987a-7784762f6d9e",
     "itemType": "Course",
     "price": 100
   },
   {
     "id": "4fd9ba86-c8ae-42a5-855b-0f8e77235fab",
-    "authorId": "95dc0338-7eaf-42a5-be88-5021e8413744",
+    "authorId": "c12ffa1a-b4a7-4db0-987a-7784762f6d9e",
     "itemType": "Course",
     "price": 50
   },
   {
     "id": "49f42627-03c5-4816-afae-6778029939ab",
-    "authorId": "95dc0338-7eaf-42a5-be88-5021e8413744",
+    "authorId": "c12ffa1a-b4a7-4db0-987a-7784762f6d9e",
     "itemType": "Course",
     "price": 50
   },
@@ -907,19 +907,19 @@
   },
   {
     "id": "3831e345-0255-4a2f-8f50-2de0a6873579",
-    "authorId": "6230e604-efe3-4fe3-b8b2-ebcee9cc088d",
+    "authorId": "fb909251-568b-4441-80f5-f0ce0b34620f",
     "itemType": "Course",
     "price": 120
   },
   {
     "id": "1091e13a-7a22-4428-ab74-fe643845d32e",
-    "authorId": "6230e604-efe3-4fe3-b8b2-ebcee9cc088d",
+    "authorId": "fb909251-568b-4441-80f5-f0ce0b34620f",
     "itemType": "Course",
     "price": 100
   },
   {
     "id": "97a0aa37-6a1a-4af9-90c4-5613a59d52bc",
-    "authorId": "6230e604-efe3-4fe3-b8b2-ebcee9cc088d",
+    "authorId": "fb909251-568b-4441-80f5-f0ce0b34620f",
     "itemType": "Course",
     "price": 80
   },
@@ -949,25 +949,25 @@
   },
   {
     "id": "e14ca8f8-d7bb-431d-a177-15897a3968f7",
-    "authorId": "92fdce8e-1fc6-4b71-9f4d-cbceccc95329",
+    "authorId": "f880fc98-86ca-4dcc-9273-5afc17b64a4b",
     "itemType": "Course",
     "price": 120
   },
   {
     "id": "263e36b8-4038-4622-b1fa-02412ab554be",
-    "authorId": "92fdce8e-1fc6-4b71-9f4d-cbceccc95329",
+    "authorId": "f880fc98-86ca-4dcc-9273-5afc17b64a4b",
     "itemType": "Course",
     "price": 90
   },
   {
     "id": "d231edd0-7c12-4a25-9bda-50d2772a844e",
-    "authorId": "92fdce8e-1fc6-4b71-9f4d-cbceccc95329",
+    "authorId": "f880fc98-86ca-4dcc-9273-5afc17b64a4b",
     "itemType": "Course",
     "price": 50
   },
   {
     "id": "13394731-f688-4bd1-a440-942bf5ae9262",
-    "authorId": "92fdce8e-1fc6-4b71-9f4d-cbceccc95329",
+    "authorId": "f880fc98-86ca-4dcc-9273-5afc17b64a4b",
     "itemType": "Course",
     "price": 60
   },
@@ -997,25 +997,25 @@
   },
   {
     "id": "13223ac6-d835-4d82-9c10-62c8258995f7",
-    "authorId": "b816edee-9d46-4d40-b2ca-56bce62c8e32",
+    "authorId": "81a45a7c-f791-4d0f-9ef4-024fb08cfa9f",
     "itemType": "Course",
     "price": 110
   },
   {
     "id": "21ece2dc-9cf0-4e9a-8c1b-ba83418677fc",
-    "authorId": "b816edee-9d46-4d40-b2ca-56bce62c8e32",
+    "authorId": "81a45a7c-f791-4d0f-9ef4-024fb08cfa9f",
     "itemType": "Course",
     "price": 120
   },
   {
     "id": "9fa2b902-903c-4622-90e4-7247a9ced72a",
-    "authorId": "b816edee-9d46-4d40-b2ca-56bce62c8e32",
+    "authorId": "81a45a7c-f791-4d0f-9ef4-024fb08cfa9f",
     "itemType": "Course",
     "price": 60
   },
   {
     "id": "44af979f-5b11-47b8-b282-8d373d756929",
-    "authorId": "b816edee-9d46-4d40-b2ca-56bce62c8e32",
+    "authorId": "81a45a7c-f791-4d0f-9ef4-024fb08cfa9f",
     "itemType": "Course",
     "price": 50
   },
@@ -1045,49 +1045,49 @@
   },
   {
     "id": "60e63d9d-d5f5-4702-8adb-2d53d86fe929",
-    "authorId": "cc9f707b-289c-4be1-9710-2129c09caa47",
+    "authorId": "b07b5e19-cf8a-4402-b188-9c83d3a141dd",
     "itemType": "Course",
     "price": 50
   },
   {
     "id": "9a5f6210-df70-4524-8c20-ba237370092d",
-    "authorId": "cc9f707b-289c-4be1-9710-2129c09caa47",
+    "authorId": "b07b5e19-cf8a-4402-b188-9c83d3a141dd",
     "itemType": "Course",
     "price": 120
   },
   {
     "id": "a80a4856-4885-48c0-8fb3-3cf6c4fc255a",
-    "authorId": "cc9f707b-289c-4be1-9710-2129c09caa47",
+    "authorId": "22502561-d0a5-4f7d-a2f4-702f90d62c2a",
     "itemType": "Course",
     "price": 120
   },
   {
     "id": "f4dba479-dbe1-4f56-b9eb-d90bf921c8f1",
-    "authorId": "cc9f707b-289c-4be1-9710-2129c09caa47",
+    "authorId": "22502561-d0a5-4f7d-a2f4-702f90d62c2a",
     "itemType": "Course",
     "price": 100
   },
   {
     "id": "7794a9c9-e9a1-4398-864d-74e48c0782b8",
-    "authorId": "cc9f707b-289c-4be1-9710-2129c09caa47",
+    "authorId": "22502561-d0a5-4f7d-a2f4-702f90d62c2a",
     "itemType": "Course",
     "price": 90
   },
   {
     "id": "84dc10a0-3264-4a36-9454-8f5dcaa977de",
-    "authorId": "cc9f707b-289c-4be1-9710-2129c09caa47",
+    "authorId": "853e412a-be0f-40d5-9f3b-fa53dd475773",
     "itemType": "Course",
     "price": 100
   },
   {
     "id": "7c553bed-fdb0-4822-b226-afbe3ce56f88",
-    "authorId": "cc9f707b-289c-4be1-9710-2129c09caa47",
+    "authorId": "853e412a-be0f-40d5-9f3b-fa53dd475773",
     "itemType": "Course",
     "price": 70
   },
   {
     "id": "8caa04c0-b33b-4d9b-a68e-fe9513f1782c",
-    "authorId": "cc9f707b-289c-4be1-9710-2129c09caa47",
+    "authorId": "853e412a-be0f-40d5-9f3b-fa53dd475773",
     "itemType": "Course",
     "price": 90
   },
@@ -1117,25 +1117,25 @@
   },
   {
     "id": "bd16c519-142a-48b5-9371-b170e5a274a7",
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "5a2e9ff2-ef7b-43cf-86d8-af02edacdc22",
     "itemType": "Course",
     "price": 80
   },
   {
     "id": "e395d671-7c88-4fed-b74d-46df829bfe85",
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "403a0d85-5d1f-4020-a4dc-cb6a5f5e13d6",
     "itemType": "Course",
     "price": 100
   },
   {
     "id": "5ece351b-945c-4322-b473-bd8d41bd5afe",
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "403a0d85-5d1f-4020-a4dc-cb6a5f5e13d6",
     "itemType": "Course",
     "price": 60
   },
   {
     "id": "1d590c7c-e31e-46b1-8958-1cba19bca307",
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "403a0d85-5d1f-4020-a4dc-cb6a5f5e13d6",
     "itemType": "Course",
     "price": 50
   },
@@ -1159,145 +1159,145 @@
   },
   {
     "id": "1cc7eab0-af24-4989-b79a-a8f782645125",
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "fe626e8c-1a1e-4c9b-b10f-a3df722e9a8e",
     "itemType": "Course",
     "price": 90
   },
   {
     "id": "fb082c05-a56f-4066-b5cb-6a164d706e3e",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "fe626e8c-1a1e-4c9b-b10f-a3df722e9a8e",
     "itemType": "Course",
     "price": 50
   },
   {
     "id": "66f6038c-c01a-4ec9-8a6c-d75dbd0f2f93",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "fe626e8c-1a1e-4c9b-b10f-a3df722e9a8e",
     "itemType": "Course",
     "price": 90
   },
   {
     "id": "b82b3dcc-fa23-46d2-b67c-d43efe6c1f7d",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "816479cf-10e0-4cfb-90d9-3b88d5e5e88b",
     "itemType": "Course",
     "price": 120
   },
   {
     "id": "0e88c845-5bbf-47b2-a50f-ed1d32de66eb",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "816479cf-10e0-4cfb-90d9-3b88d5e5e88b",
     "itemType": "Course",
     "price": 60
   },
   {
     "id": "e7d85f27-84fb-4b76-bca0-0152f1508a8a",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "816479cf-10e0-4cfb-90d9-3b88d5e5e88b",
     "itemType": "Course",
     "price": 60
   },
   {
     "id": "2deb49db-875a-48f8-a70b-d68c9cfd0d00",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "e6661e0f-9ecc-460c-995d-4adbc0cbb027",
     "itemType": "Course",
     "price": 50
   },
   {
     "id": "c61f203a-4dfa-43d5-bd84-1224f4e403f9",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "e6661e0f-9ecc-460c-995d-4adbc0cbb027",
     "itemType": "Course",
     "price": 50
   },
   {
     "id": "8374b50a-d8db-441a-b8a5-8f4474a64ae8",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "e6661e0f-9ecc-460c-995d-4adbc0cbb027",
     "itemType": "Course",
     "price": 120
   },
   {
     "id": "3a19a9ba-3987-44ec-97b8-570d8722a5fb",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "af196658-b276-4ec4-9e44-c6b035a23323",
     "itemType": "Course",
     "price": 120
   },
   {
     "id": "96d50f3d-dda8-4488-a5d8-17040fef3e0a",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "af196658-b276-4ec4-9e44-c6b035a23323",
     "itemType": "Course",
     "price": 60
   },
   {
     "id": "be1cfc67-ea1e-4821-9219-6cb73c8e1096",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "af196658-b276-4ec4-9e44-c6b035a23323",
     "itemType": "Course",
     "price": 70
   },
   {
     "id": "3a8f9f45-6657-4fd4-a944-1bfb1f3d5e2a",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "248ecf81-306a-4e90-9ded-72072d4c3b04",
     "itemType": "Course",
     "price": 70
   },
   {
     "id": "6b987341-2c55-440f-b8b4-14bcb44f4a36",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "248ecf81-306a-4e90-9ded-72072d4c3b04",
     "itemType": "Course",
     "price": 50
   },
   {
     "id": "7d86e6fb-0043-4357-b1c6-48ebef8c0dbd",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "248ecf81-306a-4e90-9ded-72072d4c3b04",
     "itemType": "Course",
     "price": 80
   },
   {
     "id": "848d2541-5e93-4aed-9d41-3220337c4efb",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "306a00d4-a95a-467a-8120-840ec6fd56b2",
     "itemType": "Course",
     "price": 70
   },
   {
     "id": "e2ca9d49-842f-40b2-88d7-106b2d97c0ae",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "306a00d4-a95a-467a-8120-840ec6fd56b2",
     "itemType": "Course",
     "price": 120
   },
   {
     "id": "583bc91e-b3bf-4a21-90ca-f23f00624833",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "306a00d4-a95a-467a-8120-840ec6fd56b2",
     "itemType": "Course",
     "price": 120
   },
   {
     "id": "551048c9-1bf7-4ec8-8dcd-c35874074c41",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "49a8255f-cfff-47ca-a913-473a2ebfbead",
     "itemType": "Course",
     "price": 70
   },
   {
     "id": "25c0d7dc-58bf-48be-83ba-a060c4423107",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "49a8255f-cfff-47ca-a913-473a2ebfbead",
     "itemType": "Course",
     "price": 120
   },
   {
     "id": "ca999f25-3cfe-4567-b18a-075c405692b2",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "49a8255f-cfff-47ca-a913-473a2ebfbead",
     "itemType": "Course",
     "price": 90
   },
   {
     "id": "7a895bfc-844e-46a8-a050-c3fae1513bf4",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "4d0a347c-dac2-48ab-902b-d6c1d0bba662",
     "itemType": "Course",
     "price": 60
   },
   {
     "id": "38cd0a7f-c66f-4af5-beeb-d068cd4324c2",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "4d0a347c-dac2-48ab-902b-d6c1d0bba662",
     "itemType": "Course",
     "price": 110
   },
   {
     "id": "66ae4b23-f34b-4b1f-b3c3-e42a06c1f108",
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "4d0a347c-dac2-48ab-902b-d6c1d0bba662",
     "itemType": "Course",
     "price": 120
   }

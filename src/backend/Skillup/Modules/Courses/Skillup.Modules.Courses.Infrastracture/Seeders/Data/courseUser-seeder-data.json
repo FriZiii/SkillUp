@@ -184,6 +184,197 @@
     "LastName": "Mitchell",
     "title": "Public Relations Specialist and Communications Consultant with 10 Years of Experience",
     "Biography": "I'm Victoria, a public relations specialist dedicated to building strong and positive relationships between organizations and their audiences. With 10 years of experience, I specialize in media relations, crisis management, and corporate communication strategies. My goal is to help organizations maintain their reputation and connect meaningfully with their stakeholders."
+  },
+  {
+    "firstname": "Sophia",
+    "LastName": "Miller",
+    "title": "Digital Marketing Strategist with 10 Years of Experience",
+    "Biography": "I'm Sophia, a digital marketing strategist with a decade of experience in driving brand growth through innovative campaigns. I specialize in SEO, social media marketing, and content strategy. My mission is to help businesses connect with their audiences and achieve their marketing goals effectively."
+  },
+  {
+    "firstname": "James",
+    "LastName": "Wilson",
+    "title": "Data Analyst and Business Intelligence Expert with 8 Years of Experience",
+    "Biography": "I'm James, a data analyst with a passion for transforming raw data into actionable insights. With 8 years of experience, I specialize in predictive modeling, data visualization, and BI tools. My focus is on enabling businesses to make data-driven decisions and stay ahead of the competition."
+  },
+  {
+    "firstname": "Olivia",
+    "LastName": "Davis",
+    "title": "Psychologist and Mental Health Advocate with 12 Years of Experience",
+    "Biography": "I'm Olivia, a psychologist committed to promoting mental health awareness and well-being. With 12 years of practice, I specialize in cognitive-behavioral therapy, stress management, and community outreach. My goal is to empower individuals to lead fulfilling lives through improved mental health."
+  },
+  {
+    "firstname": "Liam",
+    "LastName": "Anderson",
+    "title": "Cybersecurity Specialist with 9 Years of Experience",
+    "Biography": "I'm Liam, a cybersecurity expert dedicated to safeguarding digital assets. With 9 years of experience, I specialize in threat detection, network security, and ethical hacking. My mission is to help organizations build robust defenses against ever-evolving cyber threats."
+  },
+  {
+    "firstname": "Mia",
+    "LastName": "Martinez",
+    "title": "Creative Writer and Storytelling Coach with 7 Years of Experience",
+    "Biography": "I'm Mia, a writer and storytelling coach who believes in the power of words to inspire and connect. With 7 years of experience, I specialize in crafting compelling narratives for books, blogs, and marketing materials. My goal is to help others find their unique voice and tell their stories effectively."
+  },
+  {
+    "firstname": "Ethan",
+    "LastName": "Harris",
+    "title": "Mechanical Engineer with 15 Years of Experience",
+    "Biography": "I'm Ethan, a seasoned mechanical engineer with expertise in design, prototyping, and manufacturing. With 15 years of experience, I focus on delivering innovative solutions that enhance efficiency and performance. I strive to bridge the gap between concept and creation in the engineering world."
+  },
+  {
+    "firstname": "Ava",
+    "LastName": "Clark",
+    "title": "Fitness Coach and Wellness Consultant with 10 Years of Experience",
+    "Biography": "I'm Ava, a fitness coach dedicated to helping clients achieve their health goals. With a decade of experience, I specialize in functional training, holistic wellness, and lifestyle coaching. My approach emphasizes sustainable habits for lasting results."
+  },
+  {
+    "firstname": "Noah",
+    "LastName": "Rodriguez",
+    "title": "Photographer and Visual Storyteller with 6 Years of Experience",
+    "Biography": "I'm Noah, a passionate photographer capturing moments that tell stories. With 6 years of experience, I specialize in portrait, event, and travel photography. My goal is to create visuals that evoke emotion and preserve memories for a lifetime."
+  },
+  {
+    "firstname": "Amelia",
+    "LastName": "Walker",
+    "title": "Nutritionist and Holistic Health Coach with 8 Years of Experience",
+    "Biography": "I'm Amelia, a nutritionist focused on holistic approaches to health and well-being. With 8 years of experience, I specialize in personalized meal planning, dietary education, and health coaching. My mission is to guide individuals toward a balanced and nourishing lifestyle."
+  },
+  {
+    "firstname": "Logan",
+    "LastName": "Hall",
+    "title": "Entrepreneur and Business Consultant with 14 Years of Experience",
+    "Biography": "I'm Logan, an entrepreneur passionate about helping businesses thrive. With 14 years of experience, I specialize in strategic planning, financial management, and market analysis. My goal is to empower startups and established companies to reach new heights."
+  },
+  {
+    "firstname": "Harper",
+    "LastName": "Young",
+    "title": "Artist and Art Educator with 10 Years of Experience",
+    "Biography": "I'm Harper, an artist and educator devoted to nurturing creativity. With 10 years of experience, I specialize in painting, mixed media, and art workshops. My mission is to inspire others to express themselves and explore the transformative power of art."
+  },
+  {
+    "firstname": "Benjamin",
+    "LastName": "King",
+    "title": "Software Engineer with 12 Years of Experience",
+    "Biography": "I'm Benjamin, a software engineer focused on building scalable and efficient systems. With 12 years of experience, I specialize in backend development, cloud computing, and system architecture. My goal is to deliver reliable solutions that drive innovation."
+  },
+  {
+    "firstname": "Charlotte",
+    "LastName": "Scott",
+    "title": "Educator and Curriculum Designer with 13 Years of Experience",
+    "Biography": "I'm Charlotte, an educator passionate about designing impactful learning experiences. With 13 years of experience, I specialize in curriculum development, instructional design, and teacher training. My mission is to make education engaging and accessible for all."
+  },
+  {
+    "firstname": "Elijah",
+    "LastName": "Green",
+    "title": "Financial Analyst and Investment Advisor with 11 Years of Experience",
+    "Biography": "I'm Elijah, a financial analyst committed to helping clients achieve their financial goals. With 11 years of experience, I specialize in portfolio management, risk assessment, and strategic investments. My focus is on building wealth and securing futures."
+  },
+  {
+    "firstname": "Grace",
+    "LastName": "Baker",
+    "title": "Human Resources Manager with 9 Years of Experience",
+    "Biography": "I'm Grace, an HR manager dedicated to fostering positive workplace environments. With 9 years of experience, I specialize in talent acquisition, employee relations, and organizational development. My mission is to support teams and drive company success."
+  },
+  {
+    "firstname": "Sebastian",
+    "LastName": "Adams",
+    "title": "Music Producer and Audio Engineer with 8 Years of Experience",
+    "Biography": "I'm Sebastian, a music producer passionate about creating soundscapes that move people. With 8 years of experience, I specialize in mixing, mastering, and composition. My goal is to bring artistic visions to life through exceptional audio production."
+  },
+  {
+    "firstname": "Aria",
+    "LastName": "White",
+    "title": "Research Scientist with 6 Years of Experience",
+    "Biography": "I'm Aria, a research scientist driven by curiosity and discovery. With 6 years of experience, I specialize in experimental design, data analysis, and technical writing. My mission is to contribute to advancements in science and technology."
+  },
+  {
+    "firstname": "Daniel",
+    "LastName": "Hughes",
+    "title": "Real Estate Agent with 10 Years of Experience",
+    "Biography": "I'm Daniel, a real estate agent dedicated to helping clients find their perfect homes. With 10 years of experience, I specialize in property sales, market analysis, and client relations. My focus is on making the buying and selling process seamless and rewarding."
+  },
+  {
+    "firstname": "Chloe",
+    "LastName": "Morgan",
+    "title": "Content Creator and Social Media Influencer with 7 Years of Experience",
+    "Biography": "I'm Chloe, a content creator passionate about connecting with audiences through engaging media. With 7 years of experience, I specialize in video production, storytelling, and social media strategy. My goal is to inspire and inform through impactful content."
+  },
+  {
+    "firstname": "Henry",
+    "LastName": "Russell",
+    "title": "Veterinarian with 15 Years of Experience",
+    "Biography": "I'm Henry, a veterinarian devoted to the health and well-being of animals. With 15 years of experience, I specialize in small animal care, surgery, and preventive medicine. My mission is to provide compassionate care and support for pets and their owners."
+  },
+  {
+    "firstname": "Sophie",
+    "LastName": "Adams",
+    "title": "Digital Marketing Specialist with 10 Years of Experience",
+    "Biography": "I'm Sophie, a digital marketing expert with a passion for helping brands grow online. With 10 years of experience, I specialize in SEO, paid media, and content marketing. My goal is to drive measurable results and create impactful digital strategies."
+  },
+  {
+    "firstname": "Lucas",
+    "LastName": "Harris",
+    "title": "Software Engineer with 8 Years of Experience",
+    "Biography": "I'm Lucas, a software engineer dedicated to developing innovative solutions. With 8 years of experience, I specialize in backend development, cloud computing, and software architecture. I aim to build reliable and scalable systems that make a difference."
+  },
+  {
+    "firstname": "Olivia",
+    "LastName": "Taylor",
+    "title": "Graphic Designer with 6 Years of Experience",
+    "Biography": "I'm Olivia, a passionate graphic designer who loves to create visually compelling designs. With 6 years of experience, I specialize in branding, print design, and digital illustration. My goal is to deliver designs that captivate and communicate the right message."
+  },
+  {
+    "firstname": "Ethan",
+    "LastName": "Moore",
+    "title": "Financial Analyst with 12 Years of Experience",
+    "Biography": "I'm Ethan, a financial analyst focused on helping businesses make data-driven decisions. With 12 years of experience, I specialize in financial forecasting, budgeting, and risk management. My mission is to provide insightful analysis that supports strategic growth."
+  },
+  {
+    "firstname": "Amelia",
+    "LastName": "White",
+    "title": "Teacher with 10 Years of Experience",
+    "Biography": "I'm Amelia, a dedicated teacher passionate about inspiring students. With 10 years of experience, I specialize in elementary education and fostering a love for learning. My goal is to create an inclusive environment where students thrive."
+  },
+  {
+    "firstname": "Jack",
+    "LastName": "King",
+    "title": "Chef with 20 Years of Experience",
+    "Biography": "I'm Jack, a professional chef with a love for culinary arts. With 20 years of experience, I specialize in fine dining, creating innovative dishes, and leading kitchen teams. My aim is to provide unforgettable dining experiences through exceptional food."
+  },
+  {
+    "firstname": "Emma",
+    "LastName": "Davis",
+    "title": "Public Relations Specialist with 7 Years of Experience",
+    "Biography": "I'm Emma, a PR specialist with a knack for building strong media relationships. With 7 years of experience, I specialize in brand communication, crisis management, and event planning. My goal is to enhance the public image of brands through strategic communication."
+  },
+  {
+    "firstname": "Benjamin",
+    "LastName": "Clark",
+    "title": "Photographer with 5 Years of Experience",
+    "Biography": "I'm Benjamin, a passionate photographer with a focus on capturing moments that tell stories. With 5 years of experience, I specialize in portrait photography, events, and commercial shoots. My goal is to create timeless images that evoke emotion."
+  },
+  {
+    "firstname": "Charlotte",
+    "LastName": "Miller",
+    "title": "Fashion Designer with 8 Years of Experience",
+    "Biography": "I'm Charlotte, a fashion designer driven by creativity and innovation. With 8 years of experience, I specialize in women's fashion, clothing collections, and sustainable design. My mission is to create stylish yet eco-conscious designs for the modern woman."
+  },
+  {
+    "firstname": "Daniel",
+    "LastName": "Scott",
+    "title": "Construction Manager with 15 Years of Experience",
+    "Biography": "I'm Daniel, a construction manager with extensive experience in overseeing large-scale projects. With 15 years of experience, I specialize in project management, cost control, and safety standards. My goal is to deliver projects on time, within budget, and with high quality."
+  },
+  {
+    "firstname": "Grace",
+    "LastName": "Taylor",
+    "title": "Marketing Strategist with 6 Years of Experience",
+    "Biography": "I'm Grace, a marketing strategist with a passion for brand development and customer engagement. With 6 years of experience, I specialize in market research, campaign planning, and digital marketing. My goal is to help brands stand out in competitive markets."
+  },
+  {
+    "firstname": "Aiden",
+    "LastName": "Nelson",
+    "title": "IT Consultant with 9 Years of Experience",
+    "Biography": "I'm Aiden, an IT consultant dedicated to helping businesses optimize their technology systems. With 9 years of experience, I specialize in cybersecurity, cloud services, and IT infrastructure. My mission is to provide tailored tech solutions that enhance business efficiency."
   }
-
 ]
