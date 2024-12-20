@@ -33,6 +33,7 @@ import { CourseWalkThroughComponent } from './course/components/course-walk-thro
 import { SolveQuizComponent } from './course/components/exercises/solve-quiz/solve-quiz.component';
 import { SolveQuestionComponent } from './course/components/exercises/solve-question/solve-question.component';
 import { SolveFillTheGapComponent } from './course/components/exercises/solve-fill-the-gap/solve-fill-the-gap.component';
+import { OrderPageComponent } from './finance/components/order-page/order-page.component';
 
 export const routes: Routes = [
   {
@@ -121,6 +122,10 @@ export const routes: Routes = [
   {
     path: 'balance',
     component: BalanceComponent,
+  },
+  {
+    path: 'order/:orderId',
+    component: OrderPageComponent,
   },
   {
     path: 'reviews',

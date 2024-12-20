@@ -1,11 +1,15 @@
-<div class="su-section-mt px-12">
+<div class="su-section-mt px-12 prose max-w-none !w-full mb-8">
   @if(cart() === null){
-  <div class="prose max-w-none !w-full">
-    <h1 class="text-center text-6xl">Nothing in cart</h1>
-  </div>
+  <app-cart-empty />
   } @else {
   <div class="grid grid-cols-3 gap-20">
-    <div class="flex flex-col gap-4 col-start-1 col-span-2">
+    <div class="flex flex-col col-start-1 col-span-2">
+      <div>
+        <h1 class="my-1 text-5xl">Cart</h1>
+        <p class="my-1">{{ numberOfCartItems() }} items in cart</p>
+        <hr class="my-1" />
+      </div>
+
       @for(item of cartItems(); track item.id){
       <app-cart-item
         [cartItem]="item"
@@ -19,47 +23,68 @@
       @if(cart()?.total === cart()?.totalBeforeDiscount ||
       cart()?.totalBeforeDiscount===null){
       <div>
-        <h1 class="mb-2">Total price:</h1>
-        <h1>$ {{ cart()?.total }}</h1>
+        <p class="mb-2 text-lg">Total price:</p>
+        <h2 class="text-4xl my-0 mb-2 font-medium">
+          {{ cart()?.total | number : "1.2-2" }} $
+        </h2>
       </div>
       } @else {
       <div class="flex flex-col">
-        <h1 class="mb-2">Total price:</h1>
-        <h2 class="line-through my-0">$ {{ cart()?.totalBeforeDiscount }}</h2>
-        <h1 class="my-2">$ {{ cart()?.total }}</h1>
+        <h2 class="mb-2 text-lg font-normal">Total price:</h2>
+        <div class="flex gap-4 items-end">
+          <h2 class="text-4xl my-0 mb-2 font-medium">
+            {{ cart()?.total | number : "1.2-2" }} $
+          </h2>
+          <h2 class="line-through my-0 mb-2 text-xl font-normal">
+            {{ cart()?.totalBeforeDiscount | number : "1.2-2" }} $
+          </h2>
+        </div>
       </div>
-      } @if(cart()?.discountCode){
-      <p class="my-0 text-primary-500 text-sm">
-        Applied code {{ cart()?.discountCode?.code }}
-      </p>
       }
-      <div class="flex gap-4 items-center">
+      <div class="w-full my-2 justify-center">
+        <p-button
+          icon="pi pi-shopping-cart"
+          label="Buy"
+          class="wide-btn"
+          routerLink="/order-summary"
+          styleClass="!rounded-none"
+        ></p-button>
+      </div>
+      <hr class="my-2" />
+      <p>Discount Code</p>
+      <div class="flex items-center">
         <input
           type="text"
           pInputText
           [(ngModel)]="discountCode"
           [value]="cart()?.discountCode?.code"
           placeholder="Enter discount code"
-          class="my-0 w-full"
+          class="my-0 w-full !rounded-none"
+          [disabled]="cart()?.discountCode?.code ?? false"
         />
         @if((!cart()?.discountCode || (discountCode !==
-        cart()?.discountCode?.code)) && discountCode!==''){
-        <p-button icon="pi pi-plus" (onClick)="applyCode()"></p-button>
+        cart()?.discountCode?.code))){
+        <p-button
+          label="Apply"
+          (onClick)="applyCode()"
+          styleClass="!rounded-none"
+          class="input-btn"
+        ></p-button>
         } @else {
-        <p-button icon="pi pi-times" (onClick)="delCode()"></p-button>
+        <p-button
+          icon="pi pi-times"
+          (onClick)="delCode()"
+          styleClass="!rounded-none"
+          class="input-btn"
+          severity="danger"
+        ></p-button>
         }
       </div>
       @if(invalidCode){
-      <p class="my-0 text-red-500 text-sm pl-1">Invalid Code</p>
+      <p class="my-0 mt-1 text-red-500 text-sm pl-1">
+        The discount code entered is not valid
+      </p>
       }
-      <div class="w-full mt-4 justify-center">
-        <p-button
-          icon="pi pi-shopping-cart"
-          label="Buy"
-          class="wide-btn"
-          routerLink="/order-summary"
-        ></p-button>
-      </div>
     </div>
   </div>
 
