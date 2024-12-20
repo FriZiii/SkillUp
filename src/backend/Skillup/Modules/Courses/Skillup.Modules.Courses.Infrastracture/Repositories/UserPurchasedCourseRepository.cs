@@ -23,5 +23,8 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task<IEnumerable<UserPurchasedCourse>> GetByUserId(Guid userId)
             => await _userPurchasedCourses.Where(x => x.UserId == userId).ToListAsync();
+
+        public async Task<IEnumerable<UserPurchasedCourse>> Get()
+            => await _userPurchasedCourses.ToListAsync();
     }
 }

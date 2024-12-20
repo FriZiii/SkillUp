@@ -120,7 +120,7 @@
       }
     ],
     "id": "1aea8d31-65dc-4dce-962f-dddc98d958d7",
-    "status": "SubmitedForReview"
+    "status": "Published"
   },
   {
     "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
@@ -168,7 +168,7 @@
       }
     ],
     "id": "f4112f23-ec8c-406f-8a8a-5cc3d71fd258",
-    "status": "SubmitedForReview"
+    "status": "Published"
   },
   {
     "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
@@ -453,7 +453,7 @@
       }
     ],
     "id": "abb4de22-2e10-4677-99bb-587d287ef549",
-    "status": "SubmitedForReview"
+    "status": "Published"
   },
   {
     "authorId": "843c0b70-df1c-4cab-b539-574a5da7a731",
@@ -645,7 +645,7 @@
       }
     ],
     "id": "0b160b43-1e9a-48f7-82e7-3a6d66aa6ffe",
-    "status": "SubmitedForReview"
+    "status": "Published"
   },
   {
     "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
@@ -864,7 +864,7 @@
     },
     "sections": [],
     "id": "afa2392c-ec53-4932-bbb6-f20c7e9467c0",
-    "status": "SubmitedForReview"
+    "status": "Draft"
   },
   {
     "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
@@ -918,7 +918,7 @@
     },
     "sections": [],
     "id": "001ad0d5-9230-4bd1-be76-2ffcb72507ba",
-    "status": "SubmitedForReview"
+    "status": "Published"
   },
   {
     "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
@@ -1024,7 +1024,7 @@
     },
     "sections": [],
     "id": "a19c436a-4821-4e7f-9883-e173eb0a3c47",
-    "status": "SubmitedForReview"
+    "status": "Draft"
   },
   {
     "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
@@ -1051,7 +1051,7 @@
     },
     "sections": [],
     "id": "f0942fe5-20a8-4109-8a5a-df62618773a8",
-    "status": "SubmitedForReview"
+    "status": "Draft"
   },
   {
     "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",

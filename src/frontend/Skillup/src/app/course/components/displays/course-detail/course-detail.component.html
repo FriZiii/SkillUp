@@ -17,10 +17,14 @@
             <h1 class="text-5xl mb-0">{{ course()?.title }}</h1>
             <h2 class="my-4">{{ course()?.subtitle }}</h2>
 
+            @if(rating){
             <div class="flex gap-4">
               <p-rating [(ngModel)]="rating" [readonly]="true" />
               <p class="my-1">{{ rating }} / 5</p>
             </div>
+            } @else {
+            <p class="my-1">This course has no ratings yet.</p>
+            }
             <div class="cols-responsive-2">
               <div>
                 <p class="my-0">
