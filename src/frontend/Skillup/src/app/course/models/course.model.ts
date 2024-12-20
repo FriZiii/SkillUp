@@ -14,6 +14,8 @@ export interface Course{
     authorId: string;
     authorName:  string;
     status: CourseStatus;
+    usersCount: number;
+    level: CourseLevel;
     category: {
         id: string;
         name: string;
@@ -33,6 +35,8 @@ export interface CourseListItem{
     authorId: string;
     authorName:  string;
     status: CourseStatus;
+    usersCount: number;
+    level: CourseLevel;
     category: {
         id: string;
         name: string;
@@ -55,6 +59,7 @@ export interface CourseDetail{
     authorId: string;
     authorName:  string;
     status: CourseStatus;
+    level: CourseLevel;
     category: {
         id: string;
         name: string;
@@ -68,7 +73,6 @@ export interface CourseDetail{
     thumbnailUrl: string;
     subtitle: string;
     description: string;
-    level: CourseLevel;
     objectivesSummary: string[];
     intendedFor: string[];
     mustKnowBefore: string[];

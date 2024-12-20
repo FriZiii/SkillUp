@@ -1,0 +1,101 @@
+<div>
+  <input
+    type="text"
+    pInputText
+    [(ngModel)]="title"
+    (ngModelChange)="applyFilters()"
+    placeholder="Search..."
+  />
+  <input
+    type="text"
+    pInputText
+    [(ngModel)]="authorName"
+    (ngModelChange)="applyFilters()"
+    placeholder="Author Name"
+  />
+  @if(defaultCategory() === ''){
+  <p-select
+    [options]="categoryNames()"
+    optionLabel="name"
+    optionValue="id"
+    placeholder="Category"
+    class="w-full"
+    [(ngModel)]="selectedCategory"
+    (ngModelChange)="applyFilters()"
+  />
+  } @if(defaultSubcategory() === 'all'){
+  <p-select
+    [options]="subcategoryNames()"
+    optionLabel="name"
+    optionValue="id"
+    placeholder="Subcategory"
+    class="w-full"
+    [(ngModel)]="selectedSubcategory"
+    (ngModelChange)="applyFilters()"
+  />
+  }
+  <p-select
+    [options]="levels"
+    optionLabel="name"
+    optionValue="value"
+    placeholder="Select a level"
+    class="w-full"
+    [(ngModel)]="selectedLevel"
+    (ngModelChange)="applyFilters()"
+  />
+  <p-select
+    [options]="starsOptions"
+    optionLabel="name"
+    optionValue="value"
+    placeholder="Select course rating"
+    class="w-full"
+    [(ngModel)]="selectedStars"
+    (ngModelChange)="applyFilters()"
+  />
+  <p-select
+    [options]="ratingsCountOptions"
+    optionLabel="name"
+    optionValue="value"
+    placeholder="Select min number of ratings"
+    class="w-full"
+    [(ngModel)]="selectedRatingsCount"
+    (ngModelChange)="applyFilters()"
+  />
+  <p-select
+    [options]="userCountOptions"
+    optionLabel="name"
+    optionValue="value"
+    placeholder="Select min number of participians"
+    class="w-full"
+    [(ngModel)]="selectedUsersCount"
+    (ngModelChange)="applyFilters()"
+  />
+  <div class="mt-10">
+    <p-floatlabel class="my-5">
+      <p-inputnumber
+        id="minPrice"
+        [(ngModel)]="selectedPrice[0]"
+        class="w-full mb-4"
+        (ngModelChange)="applyFilters()"
+      />
+      <label for="minPrice">Min price</label>
+    </p-floatlabel>
+    <p-floatlabel class="my-5">
+      <p-inputnumber
+        id="maxPrice"
+        [(ngModel)]="selectedPrice[1]"
+        class="w-full mb-4"
+        (ngModelChange)="applyFilters()"
+      />
+      <label for="maxPrice">Max price</label>
+    </p-floatlabel>
+  </div>
+  <p-slider
+    [(ngModel)]="selectedPrice"
+    styleClass="w-56"
+    [step]="10"
+    [range]="true"
+    (ngModelChange)="applyFilters()"
+    max="1000"
+  />
+</div>
