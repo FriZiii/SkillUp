@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { SelectModule } from 'primeng/select';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category.model';
+import { CourseLevel } from '../../models/course-level.model';
 
 @Component({
   selector: 'app-filter-for-courses',
@@ -27,6 +28,7 @@ export class FilterForCoursesComponent implements OnChanges {
   authorName = '';
   selectedCategory = signal('');
   selectedSubcategory = signal('');
+  selectedLevel = signal<CourseLevel | null>(null);
 
   //Selects
   categories = this.courseCategoryService.categories;
@@ -53,6 +55,10 @@ export class FilterForCoursesComponent implements OnChanges {
       ? selectedCat.subcategories.map((sub) => ({ id: sub.id, name: sub.name }))
       : [];
   });
+  levels = Object.entries(CourseLevel).map(([name, value]) => ({
+    name,
+    value
+  }));
 
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -69,9 +75,10 @@ export class FilterForCoursesComponent implements OnChanges {
       .filter(course => {
         const matchesSearch = course.title?.toLowerCase().includes(this.title.toLowerCase());
         const matchesAuthor = course.authorName?.toLowerCase().includes(this.authorName.toLowerCase());
-        const matchesCategory = course.category?.id.match(this.selectedCategory());
+        const matchesCategory = course.category?.id.includes(this.selectedCategory());
         const matchesSubcategory = course.category?.subcategory.id.includes(this.selectedSubcategory());
-        return matchesSearch && matchesAuthor && matchesCategory && matchesSubcategory;
+        const matchesLevel = this.selectedLevel() === CourseLevel.None || this.selectedLevel() === null ? course : course.level.includes(this.selectedLevel()!);
+        return matchesSearch && matchesAuthor && matchesCategory && matchesSubcategory && matchesLevel;
       });
 
     this.filteredCourses.emit(filtered);

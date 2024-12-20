@@ -44,7 +44,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
             foreach (var courseDto in coursesDtos)
             {
                 purchasedCoursesByCourse.TryGetValue(courseDto.Id, out var userCount);
-                courseDto.UsersCout = userCount;
+                courseDto.UsersCount = userCount;
 
                 courseDto.AuthorName = userLookup.TryGetValue(courseDto.AuthorId, out var authorName)
                     ? authorName

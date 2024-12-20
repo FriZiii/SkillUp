@@ -34,4 +34,13 @@
     (ngModelChange)="applyFilters()"
   />
   }
+  <p-select
+    [options]="levels"
+    optionLabel="name"
+    optionValue="value"
+    placeholder="Select a level"
+    class="w-full"
+    [(ngModel)]="selectedLevel"
+    (ngModelChange)="applyFilters()"
+  />
 </div>
