@@ -6,11 +6,14 @@ import { SelectModule } from 'primeng/select';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category.model';
 import { CourseLevel } from '../../models/course-level.model';
+import { Slider, SliderModule } from 'primeng/slider';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-filter-for-courses',
   standalone: true,
-  imports: [InputTextModule, FormsModule, SelectModule],
+  imports: [InputTextModule, FormsModule, SelectModule, SliderModule, InputNumberModule, FloatLabelModule],
   templateUrl: './filter-for-courses.component.html',
   styleUrl: './filter-for-courses.component.css'
 })
@@ -30,6 +33,9 @@ export class FilterForCoursesComponent implements OnChanges {
   selectedSubcategory = signal('');
   selectedLevel = signal<CourseLevel | null>(null);
   selectedStars = signal(0);
+  selectedUsersCount = signal(0);
+  selectedRatingsCount = signal(0);
+  selectedPrice: number[] = [0, 1000];
 
   //Selects
   categories = this.courseCategoryService.categories;
@@ -67,6 +73,20 @@ export class FilterForCoursesComponent implements OnChanges {
     {name: '2 stars and more', value: 2},
     {name: 'All', value: -0.5},
   ]
+  userCountOptions = [
+    {name: '4 users and more', value: 4},
+    {name: '3 users and more ', value: 3},
+    {name: '2 users and more', value: 2},
+    {name: '1 user and more', value: 1},
+    {name: 'All', value: -0.5},
+  ]
+  ratingsCountOptions = [
+    {name: '4 ratings and more', value: 4},
+    {name: '3 ratings and more ', value: 3},
+    {name: '2 ratings and more', value: 2},
+    {name: '1 rating and more', value: 1},
+    {name: 'All', value: -0.5},
+  ]
 
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -87,7 +107,10 @@ export class FilterForCoursesComponent implements OnChanges {
         const matchesSubcategory = course.category?.subcategory.id.includes(this.selectedSubcategory());
         const matchesLevel = this.selectedLevel() === CourseLevel.None || this.selectedLevel() === null ? course : course.level.includes(this.selectedLevel()!);
         const matchesStars = course.averageRating >= this.selectedStars();
-        return matchesSearch && matchesAuthor && matchesCategory && matchesSubcategory && matchesLevel && matchesStars;
+        const matchesUsers = course.usersCount >= this.selectedUsersCount();
+        const matchesRatingCount = course.ratingsCount >= this.selectedRatingsCount();
+        const matchesPrice = course.price >= this.selectedPrice[0] && course.price <= this.selectedPrice[1];
+        return matchesSearch && matchesAuthor && matchesCategory && matchesSubcategory && matchesLevel && matchesStars && matchesUsers && matchesRatingCount && matchesPrice;
       });
 
     this.filteredCourses.emit(filtered);
