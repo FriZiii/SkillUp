@@ -43,4 +43,13 @@
     [(ngModel)]="selectedLevel"
     (ngModelChange)="applyFilters()"
   />
+  <p-select
+    [options]="starsOptions"
+    optionLabel="name"
+    optionValue="value"
+    placeholder="Select course rating"
+    class="w-full"
+    [(ngModel)]="selectedStars"
+    (ngModelChange)="applyFilters()"
+  />
 </div>

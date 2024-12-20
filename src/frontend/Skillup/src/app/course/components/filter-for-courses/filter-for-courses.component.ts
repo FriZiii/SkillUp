@@ -29,6 +29,7 @@ export class FilterForCoursesComponent implements OnChanges {
   selectedCategory = signal('');
   selectedSubcategory = signal('');
   selectedLevel = signal<CourseLevel | null>(null);
+  selectedStars = signal(0);
 
   //Selects
   categories = this.courseCategoryService.categories;
@@ -59,6 +60,13 @@ export class FilterForCoursesComponent implements OnChanges {
     name,
     value
   }));
+  starsOptions = [
+    {name: '5 stars', value: 5},
+    {name: '4 stars and more ', value: 4},
+    {name: '3 stars and more', value: 3},
+    {name: '2 stars and more', value: 2},
+    {name: 'All', value: -0.5},
+  ]
 
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -78,7 +86,8 @@ export class FilterForCoursesComponent implements OnChanges {
         const matchesCategory = course.category?.id.includes(this.selectedCategory());
         const matchesSubcategory = course.category?.subcategory.id.includes(this.selectedSubcategory());
         const matchesLevel = this.selectedLevel() === CourseLevel.None || this.selectedLevel() === null ? course : course.level.includes(this.selectedLevel()!);
-        return matchesSearch && matchesAuthor && matchesCategory && matchesSubcategory && matchesLevel;
+        const matchesStars = course.averageRating >= this.selectedStars();
+        return matchesSearch && matchesAuthor && matchesCategory && matchesSubcategory && matchesLevel && matchesStars;
       });
 
     this.filteredCourses.emit(filtered);
