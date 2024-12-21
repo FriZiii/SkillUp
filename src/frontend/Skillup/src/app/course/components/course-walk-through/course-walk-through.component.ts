@@ -19,11 +19,12 @@ import { Sentence } from '../../models/fill-the-gap/fill-the-gap.models';
 import { SolveFillTheGapComponent } from "../exercises/solve-fill-the-gap/solve-fill-the-gap.component";
 import { CoursePercentage } from '../../models/user-progress.model';
 import { CircleProgressComponent } from "../../../utils/components/circle-progress/circle-progress.component";
+import { TabsModule } from 'primeng/tabs';
 
 @Component({
   selector: 'app-course-walk-through',
   standalone: true,
-  imports: [AccordionModule, SectionItemComponent, ElementItemDisplayComponent, PdfViewerModule, VjsPlayerComponent, CommonModule, SolveQuizComponent, SolveQuestionComponent, SolveFillTheGapComponent, CircleProgressComponent],
+  imports: [AccordionModule, SectionItemComponent, ElementItemDisplayComponent, PdfViewerModule, VjsPlayerComponent, CommonModule, SolveQuizComponent, SolveQuestionComponent, SolveFillTheGapComponent, CircleProgressComponent, TabsModule],
   templateUrl: './course-walk-through.component.html',
   styleUrl: './course-walk-through.component.css'
 })
