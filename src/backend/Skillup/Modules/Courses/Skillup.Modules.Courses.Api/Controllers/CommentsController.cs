@@ -66,10 +66,10 @@ namespace Skillup.Modules.Courses.Api.Controllers
         {
             var userId = User.GetUserId();
             if (userId == null) return Unauthorized();
-            var request = new ToggleLikeForCommentRequest(commentId, (Guid)userId);
-            await _mediator.Send(request);
 
-            return Ok(await _mediator.Send(new GetCommentsByElementIdRequest(request.ElementId, (Guid)userId)));
+            await _mediator.Send(new ToggleLikeForCommentRequest(commentId, (Guid)userId));
+
+            return Ok();
         }
     }
 }

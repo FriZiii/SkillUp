@@ -16,11 +16,14 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AddNewCommentComponent } from '../add-new-comment/add-new-comment.component';
 import { CommentService } from '../../../services/comment.service';
+import { UserService } from '../../../../user/services/user.service';
+import { ConfirmationDialogHandlerService } from '../../../../core/services/confirmation-handler.service';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-comment',
   standalone: true,
-  imports: [InputTextModule, FormsModule, CommonModule, AddNewCommentComponent],
+  imports: [InputTextModule, FormsModule, CommonModule, AddNewCommentComponent, ConfirmDialogModule],
   templateUrl: './comment.component.html',
   styleUrl: './comment.component.css',
   encapsulation: ViewEncapsulation.None,
@@ -30,15 +33,23 @@ export class CommentComponent {
   parrentComment = input<SuComment>();
   elementId = input.required<string>();
 
+  //Services
+  commentService = inject(CommentService);
+  userService = inject(UserService);
+  confirmationDialogService = inject(ConfirmationDialogHandlerService);
+
+  //Variables
+  currentUser = this.userService.currentUser;
   showAddComment = false;
   newCommentContent = '';
-
-  commentService = inject(CommentService);
 
   toggleLike(){
     this.commentService.ToggleLikeForComment(this.comment().id);
   }
 
+  onCommentAdded(){
+    this.showAddComment = false;
+  }
 
   timeAgo(inputDate: string): string {
     const date = new Date(inputDate);
@@ -58,5 +69,9 @@ export class CommentComponent {
       }
     }
     return 'just now';
+  }
+
+  deleteComment(event: Event){
+    this.confirmationDialogService.confirmDelete(event, () => this.commentService.DeleteComment(this.comment().id))
   }
 }

@@ -30,12 +30,6 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Comment> Get(Guid commentId)
-        {
-            var comment = await _comments.FirstAsync(c => c.Id == commentId);
-            return comment;
-        }
-
         public async Task<IEnumerable<Comment>> GetByElementId(Guid elementId)
         {
             var rootComments = await _comments
