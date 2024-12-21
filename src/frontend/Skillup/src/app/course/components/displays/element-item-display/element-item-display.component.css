@@ -27,3 +27,10 @@
   background: white;
   color: #6e6e71;
 }
+
+.current-element-boder{
+  border-width: 2px;
+  border-color: var(--p-primary-500);
+  border-style: solid;
+  padding: 8px;
+}

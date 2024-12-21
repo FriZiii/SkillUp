@@ -47,6 +47,7 @@ export class ElementItemDisplayComponent implements OnInit {
   onClick = output<Element>();
   walkThrough = input<boolean>(false);
   attachments = input.required<Attachment[]>();
+  current = input<string>('');
 
   //Services
   userProgressService = inject(UserProgressService);

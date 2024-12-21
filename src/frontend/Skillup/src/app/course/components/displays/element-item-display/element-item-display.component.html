@@ -2,7 +2,8 @@
   class="p-2 my-2 bg-white element-item"
   [ngClass]="{
     'su-border-b ml-2 ': walkThrough(),
-    'su-border-y ml-14': !walkThrough()
+    'su-border-y ml-14': !walkThrough(),
+    'current-element-boder': current() === element().id
   }"
   (click)="elementClicked()"
 >
@@ -52,22 +53,26 @@
         <p-button (click)="addComment()" icon="pi pi-comment" />
         }
       </div>
-      @if(walkThrough() && attachments().length !== 0){
-      <p-menu #menu [model]="attachmentList" [popup]="true" />
-      <p-button
-        (click)="menu.toggle($event)"
-        icon="pi pi-angle-down"
-        label="Attachments"
-        iconPos="right"
-        severity="secondary"
-        class="attachment-btn"
-      />
-      <p-checkbox
-        [(ngModel)]="checked"
-        [value]="check()"
-        [binary]="true"
-        (onChange)="changeElementComplete()"
-      />
+      @if(walkThrough()){
+      <div class="flex flex-col gap-1 items-end">
+        <p-checkbox
+          [(ngModel)]="checked"
+          [value]="check()"
+          [binary]="true"
+          (onChange)="changeElementComplete()"
+        />
+        @if(attachments().length !== 0){
+        <p-menu #menu [model]="attachmentList" [popup]="true" />
+        <p-button
+          (click)="menu.toggle($event)"
+          icon="pi pi-angle-down"
+          label="Attachments"
+          iconPos="right"
+          severity="secondary"
+          class="attachment-btn"
+        />
+        }
+      </div>
       }
     </div>
     <div></div>

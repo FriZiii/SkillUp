@@ -98,6 +98,7 @@
               [walkThrough]="true"
               (onClick)="onElementClicked($event)"
               [attachments]="attachmentForElement(element.id)"
+              [current]="currentElement?.id ?? ''"
             ></app-element-item-display>
             }
           </p-accordion-content>
