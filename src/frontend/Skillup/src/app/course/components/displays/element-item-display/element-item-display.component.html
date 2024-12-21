@@ -1,5 +1,9 @@
 <div
-  class="su-border-y p-2 ml-14 my-2 bg-white element-item"
+  class="p-2 my-2 bg-white element-item"
+  [ngClass]="{
+    'su-border-b ml-2 ': walkThrough(),
+    'su-border-y ml-14': !walkThrough()
+  }"
   (click)="elementClicked()"
 >
   <div class="flex w-full items-start">
@@ -29,23 +33,31 @@
         } }
       </div>
 
+      @if(!walkThrough()){
       <p class="mt-1">{{ element().description }}</p>
+      }
     </div>
 
     <!-- Button Container -->
     <div class="flex justify-end w-full gap-2 px-2 self-center">
       <div class="flex gap-2 px-2 button-container self-center">
+        @if(!walkThrough()){
         <p-menu #menu [model]="items" [popup]="true" />
         <p-button
           (click)="menu.toggle($event)"
           icon="pi pi-ellipsis-h"
           severity="secondary"
         />
-        @if(moderator()){
+        } @if(moderator()){
         <p-button (click)="addComment()" icon="pi pi-comment" />
         }
       </div>
-      @if(!moderator()){
+      @if(walkThrough()){
+      <p-button
+        icon="pi pi-download"
+        severity="secondary"
+        (onClick)="changeAttachmentsDialogVisibility()"
+      ></p-button>
       <p-checkbox
         [(ngModel)]="checked"
         [value]="check()"

@@ -20,6 +20,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { UserProgressService } from '../../../services/user-progress-service';
 import { CourseContentService } from '../../../services/course-content.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-element-item-display',
@@ -34,6 +35,7 @@ import { CourseContentService } from '../../../services/course-content.service';
     ElementAttachmentsDialogComponent,
     ReviewCommentsComponent,
     ElementContentDialogComponent,
+    CommonModule
   ],
   templateUrl: './element-item-display.component.html',
   styleUrl: './element-item-display.component.css',
@@ -43,6 +45,7 @@ export class ElementItemDisplayComponent implements OnInit {
   element = input.required<Element>();
   moderator = input<boolean>(false);
   onClick = output<Element>();
+  walkThrough = input<boolean>(false);
 
   //Services
   userProgressService = inject(UserProgressService);

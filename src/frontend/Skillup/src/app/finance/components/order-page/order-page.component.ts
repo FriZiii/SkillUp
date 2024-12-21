@@ -4,13 +4,12 @@ import { Order } from '../../models/order.model';
 import { CommonModule } from '@angular/common';
 import { CoursesService } from '../../../course/services/course.service';
 import { CartItemComponent } from "../cart-item/cart-item.component";
-import { CourseItemShortComponent } from "../../../course/components/displays/course-item-short/course-item-short.component";
 import { ItemType } from '../../models/finance.model';
 
 @Component({
   selector: 'app-order-page',
   standalone: true,
-  imports: [CommonModule, CourseItemShortComponent, CartItemComponent],
+  imports: [CommonModule, CartItemComponent],
   templateUrl: './order-page.component.html',
   styleUrl: './order-page.component.css'
 })

@@ -17,11 +17,13 @@ import { SolveQuizComponent } from "../exercises/solve-quiz/solve-quiz.component
 import { SolveQuestionComponent } from "../exercises/solve-question/solve-question.component";
 import { Sentence } from '../../models/fill-the-gap/fill-the-gap.models';
 import { SolveFillTheGapComponent } from "../exercises/solve-fill-the-gap/solve-fill-the-gap.component";
+import { CoursePercentage } from '../../models/user-progress.model';
+import { CircleProgressComponent } from "../../../utils/components/circle-progress/circle-progress.component";
 
 @Component({
   selector: 'app-course-walk-through',
   standalone: true,
-  imports: [AccordionModule, SectionItemComponent, ElementItemDisplayComponent, PdfViewerModule, VjsPlayerComponent, CommonModule, SolveQuizComponent, SolveQuestionComponent, SolveFillTheGapComponent],
+  imports: [AccordionModule, SectionItemComponent, ElementItemDisplayComponent, PdfViewerModule, VjsPlayerComponent, CommonModule, SolveQuizComponent, SolveQuestionComponent, SolveFillTheGapComponent, CircleProgressComponent],
   templateUrl: './course-walk-through.component.html',
   styleUrl: './course-walk-through.component.css'
 })
@@ -31,6 +33,7 @@ export class CourseWalkThroughComponent implements OnInit{
 
   //Services
   coureContentService = inject(CourseContentService);
+  courseService = inject(CoursesService);
   userProgressService = inject(UserProgressService);
   assetService = inject(AssetService);
   cdr = inject(ChangeDetectorRef);
@@ -47,6 +50,8 @@ export class CourseWalkThroughComponent implements OnInit{
   currentQuiz:  Quiz[] = [];
   currentQuestion:  QuestionAnswer[] = [];
   currentFillTheGap:Sentence[] = [];
+  course = computed(() => this.courseService.courses().find(c => c.id === this.courseId()));
+  percentage: CoursePercentage | undefined = undefined;
 
   ngOnInit(): void {
     this.coureContentService.getSectionsByCourseId(this.courseId());
@@ -60,6 +65,10 @@ export class CourseWalkThroughComponent implements OnInit{
     .then(() => {
         this.currentElement = this.sections()[0].elements[0];
     });
+
+    this.userProgressService.getPercentage().subscribe((res) => {
+      this.percentage = res.find(x => x.courseId === this.courseId());
+    })
   
   }
 
@@ -68,13 +77,14 @@ export class CourseWalkThroughComponent implements OnInit{
   }
 
   set currentElement(value: Element) {
+    //current elemtn na accomplished
     this._currentElement = value;
     if(value.hasAsset){
       this.assetService.getAsset(value.id, value.type).subscribe((response) => {
         if(value.type === AssetType.Video || value.type === AssetType.Article){
           this.fileLink.set(response.url);
-          this.hasLink = true; // Zapamiętujemy poprzedni link
-          this.cdr.detectChanges(); // Wymusza detekcję zmian
+          this.hasLink = true;
+          this.cdr.detectChanges();
           console.log(this.fileLink());
         }
         else{
