@@ -40,7 +40,6 @@ coursesForCategory = computed(() =>  {
 courseRating: CourseDetailRating | undefined = undefined
   rating = 0;
   numberOfRating = 1567;
-  numberOfParticipians = 1945;
   totalCourseTime = 68;
   lastUpdate = '05.07.2024';
 

@@ -46,6 +46,10 @@ import { FormsModule } from '@angular/forms';
 import { CommentService } from '../../services/comment.service';
 import { UserDetail } from '../../../user/models/user.model';
 import { AuthorDescriptionComponent } from "../displays/author-description/author-description.component";
+import { CourseDetailRating } from '../../models/rating.model';
+import { CourseRatingService } from '../../services/course-rating.service';
+import { CourseRatingComponent } from "./course-ratings-list/course-rating/course-rating.component";
+import { CourseRatingsListComponent } from "./course-ratings-list/course-ratings-list.component";
 
 @Component({
   selector: 'app-course-walk-through',
@@ -63,7 +67,8 @@ import { AuthorDescriptionComponent } from "../displays/author-description/autho
     CircleProgressComponent,
     TabsModule,
     CommentsComponent,
-    AuthorDescriptionComponent
+    AuthorDescriptionComponent,
+    CourseRatingsListComponent
 ],
   templateUrl: './course-walk-through.component.html',
   styleUrl: './course-walk-through.component.css',
@@ -121,6 +126,7 @@ export class CourseWalkThroughComponent implements OnInit {
     this.userProgressService.getPercentage().subscribe((res) => {
       this.percentage = res.find((x) => x.courseId === this.courseId());
     });
+
   }
 
   attachmentForElement(elementId: string) {
