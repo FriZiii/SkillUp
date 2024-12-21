@@ -44,6 +44,8 @@ import { SuComment } from '../../models/comment.model';
 import { CommentComponent } from '../comments/comment/comment.component';
 import { FormsModule } from '@angular/forms';
 import { CommentService } from '../../services/comment.service';
+import { UserDetail } from '../../../user/models/user.model';
+import { AuthorDescriptionComponent } from "../displays/author-description/author-description.component";
 
 @Component({
   selector: 'app-course-walk-through',
@@ -61,7 +63,8 @@ import { CommentService } from '../../services/comment.service';
     CircleProgressComponent,
     TabsModule,
     CommentsComponent,
-  ],
+    AuthorDescriptionComponent
+],
   templateUrl: './course-walk-through.component.html',
   styleUrl: './course-walk-through.component.css',
 })

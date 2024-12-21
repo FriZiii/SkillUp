@@ -147,27 +147,7 @@
           <div class="prose w-full">
             <h1 class="mb-4">Trainer</h1>
           </div>
-
-          <div
-            class="bg-gray-100 ml-20 pl-24 p-4 relative cursor-pointer"
-            style="border-radius: 10px"
-            (click)="navigateToAuthor()"
-          >
-            <div
-              class="w-40 rounded-full absolute left-[-80px] top-1/2 transform -translate-y-1/2 bg-white"
-            >
-              <img class="w-40 rounded-full" [src]="author()?.profilePicture" />
-            </div>
-            <div class="w-full">
-              <div class="prose max-w-none !w-full">
-                <h2 class="mb-2">
-                  {{ author()?.firstName }} {{ author()?.lastName }}
-                </h2>
-                <h3 class="mb-1">{{ author()?.details?.title }}</h3>
-                <p>{{ author()?.details?.biography }}</p>
-              </div>
-            </div>
-          </div>
+          <app-author-description [authorId]="course()!.authorId" />
         </div>
       </div>
     </div>

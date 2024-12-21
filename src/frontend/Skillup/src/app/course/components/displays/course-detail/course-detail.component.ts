@@ -16,11 +16,12 @@ import { CourseContentService } from '../../../services/course-content.service';
 import { CourseRatingService } from '../../../services/course-rating.service';
 import { CourseDetailRating } from '../../../models/rating.model';
 import { CarouselModule } from 'primeng/carousel';
+import { AuthorDescriptionComponent } from "../author-description/author-description.component";
 
 @Component({
   selector: 'app-course-detail',
   standalone: true,
-  imports: [AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent, RatingModule, FormsModule, CarouselModule],
+  imports: [AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent, RatingModule, FormsModule, CarouselModule, AuthorDescriptionComponent],
   templateUrl: './course-detail.component.html',
   styleUrl: './course-detail.component.css'
 })
@@ -42,7 +43,6 @@ courseRating: CourseDetailRating | undefined = undefined
   numberOfParticipians = 1945;
   totalCourseTime = 68;
   lastUpdate = '05.07.2024';
-
 
   //Services
   courseService = inject(CoursesService);
@@ -83,10 +83,6 @@ courseRating: CourseDetailRating | undefined = undefined
 
     window.scrollTo({ top: 0, behavior: 'instant' });
     }
-  }
-
-  navigateToAuthor() {
-    this.router.navigate(['/user', this.author()?.id]);
   }
 
   //Changing styles while scrolling
