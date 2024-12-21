@@ -25,7 +25,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
         [SwaggerOperation("Get monthly earnings per courses")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetErningsAndSalesPerCourse(Guid authorId, [FromHeader] int year)
+        public async Task<IActionResult> GetErningsAndSalesPerCourse(Guid authorId, [FromQuery] int year)
         {
             return Ok(await _mediator.Send(new GetMonthlyEarningsPerCoursesByAuthorIdRequest(authorId, year)));
         }
