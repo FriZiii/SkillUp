@@ -1,15 +1,16 @@
+<app-add-new-comment
+  [elementId]="elementId()"
+  (commentAdded)="onCommentAdded($event)"
+></app-add-new-comment>
 <section class="comment-module">
   <ul>
     @for(comment of comments(); track comment.id){
-    <app-comment [comment]="comment" class="w-full"></app-comment>
+    <app-comment
+      [comment]="comment"
+      class="w-full"
+      [elementId]="elementId()"
+      (commentAdded)="onCommentAdded($event)"
+    ></app-comment>
     }
   </ul>
 </section>
-<div class="comment-reply">
-  <a (click)="showAddComment = !showAddComment" class="cursor-pointer">Reply</a>
-</div>
-@if(showAddComment){
-<div>
-  <input type="text" pInputText [(ngModel)]="newCommentContent" />
-</div>
-}

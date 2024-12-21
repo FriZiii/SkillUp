@@ -44,7 +44,11 @@
         </p-tablist>
         <p-tabpanels>
           <p-tabpanel value="0">
-            <app-comments [comments]="comments"></app-comments>
+            <app-comments
+              [comments]="comments()"
+              [elementId]="currentElement.id"
+              (commentAdded)="onCommentAdded($event)"
+            ></app-comments>
           </p-tabpanel>
           <p-tabpanel value="1">
             <p class="m-0">

@@ -3,7 +3,7 @@ export interface SuComment{
     elementId: string;
     author: CommentUser;
     content: string;
-    createdAt: Date;
+    createdAt: string;
     likesCount: number;
     isLiked: boolean;
     replies: SuComment[];

@@ -1,0 +1,36 @@
+<div
+  class="my-4 mb-8 flex gap-4 items-start"
+  [ngStyle]="{
+    'margin-left': parentComment() !== undefined ? '' : '26px'
+  }"
+>
+  <img
+    [src]="user()?.profilePicture"
+    alt=""
+    class="my-0"
+    [style]="'width: 50px; height: 50px'"
+  />
+  <div class="w-full mr-10 mt-1">
+    <input
+      type="text"
+      pInputText
+      [(ngModel)]="newCommentContent"
+      placeholder="Add comment"
+      class="comment-input w-full"
+    />
+    @if(newCommentContent !== ''){
+    <div class="flex gap-2 w-full justify-end mt-2">
+      <p-button
+        label="Cancel"
+        severity="secondary"
+        (onClick)="newCommentContent = ''"
+      ></p-button>
+      <p-button
+        label="Add"
+        (onClick)="addNewComment()"
+        styleClass="!px-6"
+      ></p-button>
+    </div>
+    }
+  </div>
+</div>

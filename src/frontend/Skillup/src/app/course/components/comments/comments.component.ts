@@ -1,21 +1,28 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, ViewEncapsulation } from '@angular/core';
+import { Component, inject, input, OnChanges, OnInit, output, ViewEncapsulation } from '@angular/core';
 import { SuComment } from '../../models/comment.model';
 import { CommentComponent } from "./comment/comment.component";
-import { FormsModule } from '@angular/forms';
-import { InputTextModule } from 'primeng/inputtext';
+import { AddNewCommentComponent } from "./add-new-comment/add-new-comment.component";
 
 @Component({
   selector: 'app-comments',
   standalone: true,
-  imports: [CommonModule, CommentComponent, FormsModule, InputTextModule],
+  imports: [CommonModule, CommentComponent, AddNewCommentComponent],
   templateUrl: './comments.component.html',
   styleUrl: './comments.component.css',
   encapsulation: ViewEncapsulation.None
 })
-export class CommentsComponent {
+export class CommentsComponent implements OnChanges {
   comments = input.required<SuComment[]>();
+  elementId = input.required<string>();
+  commentAdded = output<SuComment[]>();
+  
+  ngOnChanges(): void {
+    console.log(this.comments());
+  }
 
-  showAddComment = false;
-  newCommentContent = '';
+  onCommentAdded(comments: SuComment[]){
+    this.commentAdded.emit(comments)
+  }
+  
 }

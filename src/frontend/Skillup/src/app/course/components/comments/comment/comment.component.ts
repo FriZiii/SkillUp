@@ -1,13 +1,14 @@
-import { Component, input, ViewEncapsulation } from '@angular/core';
+import { Component, computed, Input, input, OnChanges, output, signal, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { SuComment } from '../../../models/comment.model';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AddNewCommentComponent } from "../add-new-comment/add-new-comment.component";
 
 @Component({
   selector: 'app-comment',
   standalone: true,
-  imports: [InputTextModule, FormsModule, CommonModule],
+  imports: [InputTextModule, FormsModule, CommonModule, AddNewCommentComponent],
   templateUrl: './comment.component.html',
   styleUrl: './comment.component.css',
   encapsulation: ViewEncapsulation.None
@@ -15,6 +16,8 @@ import { CommonModule } from '@angular/common';
 export class CommentComponent {
   comment = input.required<SuComment>();
   parrentComment = input<SuComment>();
+  elementId = input.required<string>();
+    commentAdded = output<SuComment[]>();
 
   showAddComment = false;
   newCommentContent = '';
@@ -27,8 +30,9 @@ export class CommentComponent {
     }
   }
 
-  timeAgo(date: Date): string {
-    const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
+  timeAgo(inputDate: string): string {
+    const date = new Date(inputDate);
+    const seconds = Math.floor((new Date().getTime() - date?.getTime()) / 1000);
     const intervals = [
         { label: 'year', seconds: 31536000 },
         { label: 'month', seconds: 2592000 },
@@ -44,5 +48,9 @@ export class CommentComponent {
         }
     }
     return 'just now';
+}
+
+onCommentAdded(comments: SuComment[]){
+  this.commentAdded.emit(comments)
 }
 }

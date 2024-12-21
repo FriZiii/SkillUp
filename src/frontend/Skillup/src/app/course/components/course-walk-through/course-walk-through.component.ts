@@ -24,6 +24,7 @@ import { CommentsComponent } from "../comments/comments.component";
 import { SuComment } from '../../models/comment.model';
 import { CommentComponent } from "../comments/comment/comment.component";
 import { FormsModule } from '@angular/forms';
+import { CommentService } from '../../services/comment.service';
 
 @Component({
   selector: 'app-course-walk-through',
@@ -43,6 +44,7 @@ export class CourseWalkThroughComponent implements OnInit{
   assetService = inject(AssetService);
   cdr = inject(ChangeDetectorRef);
   exerciseService = inject(ExerciseService);
+  commentService = inject(CommentService);
 
   //Variables
   AssetType = AssetType;
@@ -58,6 +60,7 @@ export class CourseWalkThroughComponent implements OnInit{
   course = computed(() => this.courseService.courses().find(c => c.id === this.courseId()));
   percentage: CoursePercentage | undefined = undefined;
   attachements = signal<Attachment[]>([]);
+  comments = signal<SuComment[]>([]);
 
 
   ngOnInit(): void {
@@ -95,6 +98,11 @@ export class CourseWalkThroughComponent implements OnInit{
   set currentElement(value: Element) {
     //current element na accomplished
     this._currentElement = value;
+    
+    this.commentService.getCommentsByElementId(value.id).subscribe((res) => {
+      this.comments.set(res);
+      console.log(this.comments());
+    })
     if(value.hasAsset){
       this.assetService.getAsset(value.id, value.type).subscribe((response) => {
         if(value.type === AssetType.Video || value.type === AssetType.Article){
@@ -127,13 +135,13 @@ export class CourseWalkThroughComponent implements OnInit{
     this.hasLink = false;
   }
 
-  comments: SuComment[] = [
+  /*  comments: SuComment[] = [
     {
         id: '1',
         elementId: 'c1',
         author: { id: '1', firstName: 'Adamsdavid', lastName: 'Lokl', email:'abd@abc.pl', profilePicture: '/assets/avatar.png' },
         content: "I genuinely think that Codewell's community is AMAZING. It's just starting out but the templates on there amazing.",
-        createdAt: new Date(Date.now() - 20 * 60 * 60 * 1000),
+        createdAt: "2024-12-21T14:38:32.852618Z",
         likesCount: 2,
         isLiked: false,
         replies: [
@@ -181,5 +189,10 @@ export class CourseWalkThroughComponent implements OnInit{
         isLiked: false,
         replies: []
     }
-];
+]; */
+
+onCommentAdded(comment: SuComment[]){
+  console.log(comment)
+  this.comments.set(comment);
+}
 }
