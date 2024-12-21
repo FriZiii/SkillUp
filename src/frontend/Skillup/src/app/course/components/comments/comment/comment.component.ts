@@ -1,6 +1,7 @@
 import {
   Component,
   computed,
+  inject,
   Input,
   input,
   OnChanges,
@@ -14,6 +15,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AddNewCommentComponent } from '../add-new-comment/add-new-comment.component';
+import { CommentService } from '../../../services/comment.service';
 
 @Component({
   selector: 'app-comment',
@@ -31,13 +33,12 @@ export class CommentComponent {
   showAddComment = false;
   newCommentContent = '';
 
-  likeComment(comment: any, type: string) {
-    if (type === 'up') {
-      comment.likes++;
-    } else {
-      comment.dislikes++;
-    }
+  commentService = inject(CommentService);
+
+  toggleLike(){
+    this.commentService.ToggleLikeForComment(this.comment().id);
   }
+
 
   timeAgo(inputDate: string): string {
     const date = new Date(inputDate);

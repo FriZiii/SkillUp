@@ -18,7 +18,13 @@
       <div class="comment-data">
         <div class="comment-likes">
           <span>{{ comment().likesCount }}</span>
-          <i class="pi pi-thumbs-up cursor-pointer"></i>
+          <i
+            class="pi pi-thumbs-up cursor-pointer"
+            (click)="toggleLike()"
+            [ngStyle]="{
+              color: comment().isLiked ? 'var(--p-primary-500)' : ''
+            }"
+          ></i>
         </div>
         <div class="comment-reply">
           <a (click)="showAddComment = !showAddComment" class="cursor-pointer"

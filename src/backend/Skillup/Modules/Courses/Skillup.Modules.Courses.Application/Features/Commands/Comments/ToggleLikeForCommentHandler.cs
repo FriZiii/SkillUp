@@ -10,6 +10,8 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Comments
 
         public async Task Handle(ToggleLikeForCommentRequest request, CancellationToken cancellationToken)
         {
+            var comment = await commentRepository.Get(request.CommentId);
+            request.ElementId = comment.ElementId;
             await commentRepository.ToggleLikeComment(request.CommentId, request.UserId);
         }
     }

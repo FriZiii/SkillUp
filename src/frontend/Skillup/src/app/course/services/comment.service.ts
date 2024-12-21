@@ -21,6 +21,8 @@ export class CommentService {
     }
 
     public ToggleLikeForComment(commentId: string) {
-        return this.httpClient.patch(environment.apiUrl + '/Courses/Elements/Comments/' + commentId + '/ToggleLike', {});
+        return this.httpClient.patch<SuComment[]>(environment.apiUrl + '/Courses/Elements/Comments/' + commentId + '/ToggleLike', {}).subscribe((res) => {
+            this.currentComments.set(res);
+        })
     }
 }
