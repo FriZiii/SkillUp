@@ -1,0 +1,15 @@
+<section class="comment-module">
+  <ul>
+    @for(comment of comments(); track comment.id){
+    <app-comment [comment]="comment" class="w-full"></app-comment>
+    }
+  </ul>
+</section>
+<div class="comment-reply">
+  <a (click)="showAddComment = !showAddComment" class="cursor-pointer">Reply</a>
+</div>
+@if(showAddComment){
+<div>
+  <input type="text" pInputText [(ngModel)]="newCommentContent" />
+</div>
+}

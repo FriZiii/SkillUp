@@ -20,11 +20,15 @@ import { SolveFillTheGapComponent } from "../exercises/solve-fill-the-gap/solve-
 import { CoursePercentage } from '../../models/user-progress.model';
 import { CircleProgressComponent } from "../../../utils/components/circle-progress/circle-progress.component";
 import { TabsModule } from 'primeng/tabs';
+import { CommentsComponent } from "../comments/comments.component";
+import { SuComment } from '../../models/comment.model';
+import { CommentComponent } from "../comments/comment/comment.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-course-walk-through',
   standalone: true,
-  imports: [AccordionModule, SectionItemComponent, ElementItemDisplayComponent, PdfViewerModule, VjsPlayerComponent, CommonModule, SolveQuizComponent, SolveQuestionComponent, SolveFillTheGapComponent, CircleProgressComponent, TabsModule],
+  imports: [AccordionModule, SectionItemComponent, ElementItemDisplayComponent, PdfViewerModule, VjsPlayerComponent, CommonModule, SolveQuizComponent, SolveQuestionComponent, SolveFillTheGapComponent, CircleProgressComponent, TabsModule, CommentsComponent],
   templateUrl: './course-walk-through.component.html',
   styleUrl: './course-walk-through.component.css'
 })
@@ -54,6 +58,7 @@ export class CourseWalkThroughComponent implements OnInit{
   course = computed(() => this.courseService.courses().find(c => c.id === this.courseId()));
   percentage: CoursePercentage | undefined = undefined;
   attachements = signal<Attachment[]>([]);
+
 
   ngOnInit(): void {
     this.coureContentService.getSectionsByCourseId(this.courseId());
@@ -121,4 +126,60 @@ export class CourseWalkThroughComponent implements OnInit{
     this.currentElement = element;
     this.hasLink = false;
   }
+
+  comments: SuComment[] = [
+    {
+        id: '1',
+        elementId: 'c1',
+        author: { id: '1', firstName: 'Adamsdavid', lastName: 'Lokl', email:'abd@abc.pl', profilePicture: '/assets/avatar.png' },
+        content: "I genuinely think that Codewell's community is AMAZING. It's just starting out but the templates on there amazing.",
+        createdAt: new Date(Date.now() - 20 * 60 * 60 * 1000),
+        likesCount: 2,
+        isLiked: false,
+        replies: [
+            {
+                id: '2',
+                elementId: 'c2',
+                author: { id: '1', firstName: 'saramay', lastName: 'Lokl', email:'abd@abc.pl', profilePicture: '/assets/avatar.png' },
+                content: "I agree. I've been coding really well (pun intended) ever since I started practicing on their templates hehe.",
+                createdAt: new Date(Date.now() - 16 * 60 * 60 * 1000),
+                likesCount: 5,
+                isLiked: false,
+                replies: [
+                    {
+                        id: '3',
+                        elementId: 'c3',
+                        author: { id: '1', firstName: 'jess', lastName: 'Lokl', email:'abd@abc.pl', profilePicture: '/assets/avatar.png' },
+                        content: 'Okay, this comment wins.',
+                        createdAt: new Date(Date.now() - 14 * 60 * 60 * 1000),
+                        likesCount: 5,
+                        isLiked: false,
+                        replies: [
+                          {
+                            id: '4',
+                            elementId: 'c3',
+                            author: { id: '1', firstName: 'mateuszek', lastName: 'super', email:'abd@abc.pl', profilePicture: '/assets/avatar.png' },
+                            content: 'Okay, this comment wins.',
+                            createdAt: new Date(Date.now() - 14 * 60 * 60 * 1000),
+                            likesCount: 5,
+                            isLiked: false,
+                            replies: []
+                        }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        id: '4',
+        elementId: 'c4',
+        author: { id: '1', firstName: 'anrzej', lastName: 'duda', email:'abd@abc.pl', profilePicture: '/assets/avatar.png' },
+        content: 'Thanks for making this, super helpful',
+        createdAt: new Date(Date.now() - 20 * 60 * 60 * 1000),
+        likesCount: 2,
+        isLiked: false,
+        replies: []
+    }
+];
 }

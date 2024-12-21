@@ -1,0 +1,108 @@
+section.comment-module ul {
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 15px;
+  margin-left: 0px;
+  margin-bottom: 0px;
+}
+section.comment-module a {
+  text-decoration: none;
+}
+section.comment-module ul li {
+  width: 100%;
+  position: relative;
+  margin: 0px;
+}
+
+section.comment-module ul li .comment {
+  width: 100%;
+  display: flex;
+  column-gap: 20px;
+}
+section.comment-module ul li .comment .comment-img {
+  width: 7%;
+  margin-top: -5px;
+}
+section.comment-module ul li .comment .comment-img img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+section.comment-module ul li .comment .comment-content {
+  width: 93%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+section.comment-module ul li .comment .comment-content .comment-details {
+  width: 100%;
+  display: flex;
+  column-gap: 15px;
+  align-items: center;
+  justify-content: flex-start;
+}
+section.comment-module ul li .comment .comment-content .comment-details .comment-name {
+  margin: 0;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+section.comment-module ul li .comment .comment-content .comment-details .comment-log {
+  color: #888;
+  font-size: 14px;
+}
+
+section.comment-module ul li .comment .comment-content  .comment-data {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 20px;
+}
+section.comment-module ul li .comment .comment-content .comment-data .comment-likes {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+}
+section.comment-module ul li .comment .comment-content .comment-data .comment-likes > div {
+  display: flex;
+  column-gap: 4px;
+  align-items: center;
+}
+section.comment-module ul li .comment .comment-content .comment-data .comment-likes > div img {
+  cursor: pointer;
+}
+section.comment-module ul li .comment .comment-content .comment-data .comment-likes > div span {
+  font-weight: 600;
+}
+section.comment-module ul li .comment .comment-content .comment-data .comment-likes > div i {
+  font-weight: 600;
+}
+section.comment-module ul li .comment .comment-content .comment-data .comment-reply a, section.comment-module ul li .comment .comment-content .comment-data .comment-report a {
+  color: #272727;
+  font-weight: 400;
+}
+section.comment-module ul li::before {
+  content: "";
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  transform: translateX(-25px);
+  width: 2px;
+  height: calc(100% - 90px);
+  background: #c5c5c5;
+}
+section.comment-module ul li ul {
+  margin-top: 35px;
+  margin-left: 50px;
+  width: calc(100% - 70px);
+}
+
+a {
+  text-decoration: none;
+  color: #272727;
+  font-weight: 400;
+}
