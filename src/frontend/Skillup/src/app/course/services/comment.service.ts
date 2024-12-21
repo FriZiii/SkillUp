@@ -1,11 +1,12 @@
 import { HttpClient } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
+import { inject, Injectable, signal } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { SuComment } from "../models/comment.model";
 
 @Injectable({ providedIn: 'root' })
 export class CommentService {
     private httpClient = inject(HttpClient);
+    public currentComments = signal<SuComment[]>([]);
 
     public getCommentsByElementId(elementId: string) {
         return this.httpClient.get<SuComment[]>(environment.apiUrl + '/Courses/Elements/' + elementId + '/Comments');

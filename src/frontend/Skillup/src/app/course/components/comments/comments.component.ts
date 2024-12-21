@@ -20,17 +20,7 @@ import { AddNewCommentComponent } from './add-new-comment/add-new-comment.compon
   styleUrl: './comments.component.css',
   encapsulation: ViewEncapsulation.None,
 })
-export class CommentsComponent implements OnChanges {
+export class CommentsComponent {
   comments = input.required<SuComment[]>();
   elementId = input.required<string>();
-  commentAdded = output<SuComment[]>();
-
-  ngOnChanges(): void {
-    console.log(this.comments());
-  }
-
-  onCommentAdded(comments: SuComment[]) {
-    console.log('CommentsComponent:onCommentAdded');
-    this.commentAdded.emit(comments);
-  }
 }

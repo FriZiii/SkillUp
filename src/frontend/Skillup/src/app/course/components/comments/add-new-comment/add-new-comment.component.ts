@@ -17,7 +17,6 @@ import { CommentService } from '../../../services/comment.service';
 export class AddNewCommentComponent {
   parentComment = input<SuComment>();
   elementId = input.required<string>();
-  commentAdded = output<SuComment[]>();
   //Services
   userService = inject(UserService);
   commentService = inject(CommentService);
@@ -28,7 +27,7 @@ export class AddNewCommentComponent {
 
   addNewComment(){
     this.commentService.addComment(this.elementId(), this.newCommentContent, this.parentComment()?.id ?? null).subscribe((res) => {
-      this.commentAdded.emit(res);
+      this.commentService.currentComments.set(res);
       this.newCommentContent = '';
     });
   }

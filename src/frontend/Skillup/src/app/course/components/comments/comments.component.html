@@ -1,7 +1,4 @@
-<app-add-new-comment
-  [elementId]="elementId()"
-  (commentAdded)="onCommentAdded($event)"
-></app-add-new-comment>
+<app-add-new-comment [elementId]="elementId()"></app-add-new-comment>
 <section class="comment-module">
   <ul>
     @for(comment of comments(); track comment.id){
@@ -9,7 +6,6 @@
       [comment]="comment"
       class="w-full"
       [elementId]="elementId()"
-      (commentAdded)="onCommentAdded($event)"
     ></app-comment>
     }
   </ul>

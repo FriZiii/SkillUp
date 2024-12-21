@@ -27,7 +27,6 @@ export class CommentComponent {
   comment = input.required<SuComment>();
   parrentComment = input<SuComment>();
   elementId = input.required<string>();
-  commentAdded = output<SuComment[]>();
 
   showAddComment = false;
   newCommentContent = '';
@@ -58,11 +57,5 @@ export class CommentComponent {
       }
     }
     return 'just now';
-  }
-
-  onCommentAdded(comments: SuComment[]) {
-    console.log('CommentComponent:onCommentAdded');
-    console.log(comments);
-    this.commentAdded.emit(comments);
   }
 }

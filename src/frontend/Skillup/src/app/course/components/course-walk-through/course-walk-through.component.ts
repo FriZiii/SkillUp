@@ -94,7 +94,7 @@ export class CourseWalkThroughComponent implements OnInit {
   );
   percentage: CoursePercentage | undefined = undefined;
   attachements = signal<Attachment[]>([]);
-  comments = signal<SuComment[]>([]);
+  comments = computed(() => this.commentService.currentComments());
 
   ngOnInit(): void {
     this.coureContentService.getSectionsByCourseId(this.courseId());
@@ -103,7 +103,6 @@ export class CourseWalkThroughComponent implements OnInit {
       .getAttachmentsByCoruseId(this.courseId())
       .subscribe((res) => {
         this.attachements.set(res);
-        console.log(this.attachements());
       });
 
     this.userProgressService
@@ -134,10 +133,7 @@ export class CourseWalkThroughComponent implements OnInit {
     this._currentElement = value;
 
     this.commentService.getCommentsByElementId(value.id).subscribe((res) => {
-      console.log('init:');
-      this.comments.set(res);
-      console.log('courseWalk:');
-      console.log(this.comments());
+      this.commentService.currentComments.set(res);
     });
 
     if (value.hasAsset) {
@@ -149,7 +145,6 @@ export class CourseWalkThroughComponent implements OnInit {
           this.fileLink.set(response.url);
           this.hasLink = true;
           this.cdr.detectChanges();
-          console.log(this.fileLink());
         } else {
           this.currentAssignment = response;
           this.exerciseService
@@ -181,66 +176,5 @@ export class CourseWalkThroughComponent implements OnInit {
   onElementClicked(element: Element) {
     this.currentElement = element;
     this.hasLink = false;
-  }
-
-  /*  comments: SuComment[] = [
-    {
-        id: '1',
-        elementId: 'c1',
-        author: { id: '1', firstName: 'Adamsdavid', lastName: 'Lokl', email:'abd@abc.pl', profilePicture: '/assets/avatar.png' },
-        content: "I genuinely think that Codewell's community is AMAZING. It's just starting out but the templates on there amazing.",
-        createdAt: "2024-12-21T14:38:32.852618Z",
-        likesCount: 2,
-        isLiked: false,
-        replies: [
-            {
-                id: '2',
-                elementId: 'c2',
-                author: { id: '1', firstName: 'saramay', lastName: 'Lokl', email:'abd@abc.pl', profilePicture: '/assets/avatar.png' },
-                content: "I agree. I've been coding really well (pun intended) ever since I started practicing on their templates hehe.",
-                createdAt: new Date(Date.now() - 16 * 60 * 60 * 1000),
-                likesCount: 5,
-                isLiked: false,
-                replies: [
-                    {
-                        id: '3',
-                        elementId: 'c3',
-                        author: { id: '1', firstName: 'jess', lastName: 'Lokl', email:'abd@abc.pl', profilePicture: '/assets/avatar.png' },
-                        content: 'Okay, this comment wins.',
-                        createdAt: new Date(Date.now() - 14 * 60 * 60 * 1000),
-                        likesCount: 5,
-                        isLiked: false,
-                        replies: [
-                          {
-                            id: '4',
-                            elementId: 'c3',
-                            author: { id: '1', firstName: 'mateuszek', lastName: 'super', email:'abd@abc.pl', profilePicture: '/assets/avatar.png' },
-                            content: 'Okay, this comment wins.',
-                            createdAt: new Date(Date.now() - 14 * 60 * 60 * 1000),
-                            likesCount: 5,
-                            isLiked: false,
-                            replies: []
-                        }
-                        ]
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        id: '4',
-        elementId: 'c4',
-        author: { id: '1', firstName: 'anrzej', lastName: 'duda', email:'abd@abc.pl', profilePicture: '/assets/avatar.png' },
-        content: 'Thanks for making this, super helpful',
-        createdAt: new Date(Date.now() - 20 * 60 * 60 * 1000),
-        likesCount: 2,
-        isLiked: false,
-        replies: []
-    }
-]; */
-
-  onCommentAdded(comment: SuComment[]) {
-    console.log(comment);
-    this.comments.set(comment);
   }
 }
