@@ -3,9 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
 using Skillup.Modules.Courses.Core.Requests.Commands.Elements;
-using Skillup.Modules.Courses.Core.Requests.Commands.Elements.Attachment;
 using Skillup.Modules.Courses.Core.Requests.Queries;
-using Skillup.Modules.Courses.Core.Requests.Queries.Assets;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Courses.Api.Controllers
@@ -59,49 +57,6 @@ namespace Skillup.Modules.Courses.Api.Controllers
         public async Task<IActionResult> DeleteElement(Guid elementId)
         {
             await _mediator.Send(new DeleteElementRequest(elementId));
-            return Ok();
-        }
-
-
-        [HttpPost("Attachments/{elementId}")]
-        [SwaggerOperation("Add attachment")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddAttachment(Guid elementId, IFormFile file)
-        {
-            var request = new AddAttachmentRequest(file, elementId);
-            await _mediator.Send(request);
-
-
-            return Ok(await _mediator.Send(new GetAttachmentRequest(request.AttachmentId)));
-        }
-
-        [HttpGet("Attachments/{attachmentId}")]
-        [SwaggerOperation("Get attachment")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetAttachment(Guid attachmentId)
-        {
-            var response = await _mediator.Send(new GetAttachmentFileRequest(attachmentId));
-            return File(response.FileData, response.ContentType, response.FileName);
-        }
-
-        [HttpGet("{elementId}/Attachments")]
-        [SwaggerOperation("Get attachments")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetAttachmentByElementId(Guid elementId)
-        {
-            return Ok(await _mediator.Send(new GetAttachmentsByElementIdRequest(elementId)));
-        }
-
-        [HttpDelete("Attachments/{attachmentId}")]
-        [SwaggerOperation("Delete attachment")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> DeleteAttachment(Guid attachmentId)
-        {
-            await _mediator.Send(new DeleteAttachmentRequest(attachmentId));
             return Ok();
         }
     }

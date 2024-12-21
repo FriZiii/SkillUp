@@ -31,6 +31,9 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         public async Task<Attachment?> Get(Guid id)
             => await _attachments.FirstOrDefaultAsync(x => x.Id == id);
 
+        public async Task<IEnumerable<Attachment>> GetByCourseId(Guid courseId)
+            => await _attachments.Where(x => x.Element.Section.CourseId == courseId).ToListAsync();
+
         public async Task<IEnumerable<Attachment>> GetByElementId(Guid elementId)
             => await _attachments.Where(x => x.ElementId == elementId).ToListAsync();
     }
