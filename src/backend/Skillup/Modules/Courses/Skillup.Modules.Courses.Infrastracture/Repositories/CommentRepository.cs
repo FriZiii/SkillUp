@@ -32,17 +32,38 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task<IEnumerable<Comment>> GetByElementId(Guid elementId)
         {
-            var commentsForElement = await _comments
-                .Where(x => x.ElementId == elementId && x.ParentCommentId == null)
-                .Include(x => x.Replies)
-                    .ThenInclude(r => r.Replies)
-                .Include(x => x.Likes)
-                .Include(x => x.Author)
+            var rootComments = await _comments
+                .Where(c => c.ElementId == elementId && c.ParentCommentId == null)
+                .Include(c => c.Replies)
+                .Include(c => c.Likes)
+                .Include(c => c.Author)
                 .ToListAsync();
 
-            ProcessDeletedComments(commentsForElement);
+            foreach (var comment in rootComments)
+            {
+                await PopulateRepliesRecursivelyAsync(comment);
+            }
 
-            return commentsForElement ?? Enumerable.Empty<Comment>();
+            ProcessDeletedComments(rootComments);
+
+            return rootComments ?? Enumerable.Empty<Comment>();
+        }
+
+        private async Task PopulateRepliesRecursivelyAsync(Comment comment)
+        {
+            if (comment.Replies?.Any() != true) return;
+
+            foreach (var reply in comment.Replies)
+            {
+                reply.Replies = await _comments
+                    .Where(c => c.ParentCommentId == reply.Id)
+                    .Include(c => c.Replies)
+                    .Include(c => c.Likes)
+                    .Include(c => c.Author)
+                    .ToListAsync();
+
+                await PopulateRepliesRecursivelyAsync(reply);
+            }
         }
 
         private static void ProcessDeletedComments(IEnumerable<Comment> comments)
