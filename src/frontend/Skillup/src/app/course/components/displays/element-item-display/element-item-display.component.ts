@@ -46,6 +46,7 @@ export class ElementItemDisplayComponent implements OnInit {
   moderator = input<boolean>(false);
   onClick = output<Element>();
   walkThrough = input<boolean>(false);
+  attachments = input.required<Attachment[]>();
 
   //Services
   userProgressService = inject(UserProgressService);
@@ -53,13 +54,13 @@ export class ElementItemDisplayComponent implements OnInit {
 
   //Variables
   items: MenuItem[] = [];
+  attachmentList: MenuItem[] =[];
   contentIcon = signal('');
   check = computed(() => {
     this.userProgressService.accomplishedElements().includes(this.element().id);
     this.checked = this.userProgressService.accomplishedElements().includes(this.element().id);
 });
   checked = false;
-  attachments: Attachment[] =[];
 
   ngOnInit(): void {
     if (this.element().hasAsset) {
@@ -67,10 +68,6 @@ export class ElementItemDisplayComponent implements OnInit {
     } else {
       this.contentIcon.set('pi pi-exclamation-triangle');
     }
-
-    this.courseContentService.getAttachmentsByElementId(this.element().id).subscribe((res) => {
-      this.attachments = res;
-    })
 
     this.items = [
       {
@@ -94,6 +91,21 @@ export class ElementItemDisplayComponent implements OnInit {
         ],
       },
     ];
+
+    setTimeout(() => {
+    this.attachmentList = [
+      {
+        label: 'Download',
+        items: this.attachments().map((attachment) => ({
+          label: attachment.name + attachment.type,
+          icon: 'pi pi-download',
+          command: () => {
+            this.downloadAttachment(attachment);
+          },
+        })),
+      },
+    ];
+  }, 500);
   }
 
   //Element Icon
@@ -146,5 +158,16 @@ export class ElementItemDisplayComponent implements OnInit {
 
   elementClicked(){
     this.onClick.emit(this.element());
+  }
+
+  downloadAttachment(attachment: Attachment){
+    this.courseContentService.getAttachment(attachment.id).subscribe((blob) => {
+      const a = document.createElement('a');
+      const objectUrl = URL.createObjectURL(blob);
+      a.href = objectUrl;
+      a.download = attachment.name;
+      a.click();
+      URL.revokeObjectURL(objectUrl);
+    });
   }
 }

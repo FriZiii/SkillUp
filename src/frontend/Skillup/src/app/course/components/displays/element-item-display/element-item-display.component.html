@@ -52,12 +52,16 @@
         <p-button (click)="addComment()" icon="pi pi-comment" />
         }
       </div>
-      @if(walkThrough()){
+      @if(walkThrough() && attachments().length !== 0){
+      <p-menu #menu [model]="attachmentList" [popup]="true" />
       <p-button
-        icon="pi pi-download"
+        (click)="menu.toggle($event)"
+        icon="pi pi-angle-down"
+        label="Attachments"
+        iconPos="right"
         severity="secondary"
-        (onClick)="changeAttachmentsDialogVisibility()"
-      ></p-button>
+        class="attachment-btn"
+      />
       <p-checkbox
         [(ngModel)]="checked"
         [value]="check()"
@@ -109,12 +113,10 @@
   [draggable]="false"
   class="cursor-default"
 >
-  @if(attachments.length != 0){
   <app-element-attachments-dialog
     [element]="this.element()"
     [visible]="attachmentsDialogVisible"
   ></app-element-attachments-dialog>
-  } @else { }
 
   <div class="flex gap-2 justify-end">
     <p-button
@@ -124,7 +126,6 @@
     />
   </div>
 </p-dialog>
-
 @if(moderator()){
 <!-- Comment Dialog -->
 <p-dialog

@@ -6,7 +6,7 @@ import { CourseContentService } from '../../services/course-content.service';
 import { AccordionModule } from 'primeng/accordion';
 import { SectionItemComponent } from "../edit-course/course-creator/section-item/section-item.component";
 import { ElementItemDisplayComponent } from '../displays/element-item-display/element-item-display.component';
-import { AssetType, Element } from '../../models/course-content.model';
+import { AssetType, Attachment, Element } from '../../models/course-content.model';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { AssetService } from '../../services/asset.service';
 import { VjsPlayerComponent } from '../../../videojs/videojs.component';
@@ -52,9 +52,15 @@ export class CourseWalkThroughComponent implements OnInit{
   currentFillTheGap:Sentence[] = [];
   course = computed(() => this.courseService.courses().find(c => c.id === this.courseId()));
   percentage: CoursePercentage | undefined = undefined;
+  attachements = signal<Attachment[]>([]);
 
   ngOnInit(): void {
     this.coureContentService.getSectionsByCourseId(this.courseId());
+
+    this.coureContentService.getAttachmentsByCoruseId(this.courseId()).subscribe((res) => {
+      this.attachements.set(res);
+      console.log(this.attachements());
+    })
 
     this.userProgressService.getAcomplishedElementsForCourse(this.courseId()).subscribe(
       (res) => {
@@ -72,12 +78,16 @@ export class CourseWalkThroughComponent implements OnInit{
   
   }
 
+  attachmentForElement(elementId: string){
+    return this.attachements().filter(a => a.elementId === elementId);
+  }
+
   get currentElement(): Element | null {
     return this._currentElement;
   }
 
   set currentElement(value: Element) {
-    //current elemtn na accomplished
+    //current element na accomplished
     this._currentElement = value;
     if(value.hasAsset){
       this.assetService.getAsset(value.id, value.type).subscribe((response) => {
