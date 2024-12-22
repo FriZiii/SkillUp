@@ -114,6 +114,8 @@ export class FillTheGapCreatorComponent {
       (res) => {
         this.sentenceAdded.emit(res
         );
+        this.fakeWords = [];
+        this.parts = [];
       }
     );
   }

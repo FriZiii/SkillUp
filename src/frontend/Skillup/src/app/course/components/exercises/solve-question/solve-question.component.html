@@ -1,9 +1,11 @@
-<div class="su-section-mt prose max-w-none !w-full flex flex-col items-center">
-  <div class="flex flex-col">
+<div
+  class="su-section-mt prose max-w-none !w-full flex flex-col items-center h-exercise-panel"
+>
+  <div class="flex flex-col w-exercise-panel">
     <h1>{{ instruction() }}</h1>
 
     @for(question of questions(); track question.id){
-    <p class="text-xl mb-2">{{ question.question }}</p>
+    <p class="text-xl mb-2">{{ $index + 1 }}. {{ question.question }}</p>
 
     @if(wrongAnswers.includes(question.id)){
     <input
@@ -23,17 +25,23 @@
     />
     } } @if(submitted && wrongAnswers.length === 0){
     <div>
-      <h2>You have mastered this topic, all your answers are correct</h2>
+      <h2>You have mastered this topic, all your answers are correct.</h2>
     </div>
     } @if(submitted && wrongAnswers.length !== 0){
     <div>
-      <h2>You should work more on your answers</h2>
+      <h2 class="mt-4 mb-0">You should work more on your answers.</h2>
     </div>
     }
 
-    <div class="flex gap-4 my-8">
-      <p-button label="Submit" (onClick)="submitAnswer()"></p-button>
-      <p-button label="Try Again" (onClick)="tryAgain()"></p-button>
+    <div class="flex gap-4 mt-4">
+      @if(!submitted){
+      <p-button
+        label="Submit"
+        (onClick)="submitAnswer()"
+        [disabled]="answers.length !== exerciseLength()"
+      ></p-button
+      >} @if(submitted && wrongAnswers.length!==0){
+      <p-button label="Try Again" (onClick)="tryAgain()"></p-button>}
     </div>
   </div>
 </div>

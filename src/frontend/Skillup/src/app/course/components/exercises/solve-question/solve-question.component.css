@@ -1,3 +1,11 @@
 .p-inputtext:disabled {
   background-color: white;
 }
+
+.h-exercise-panel {
+  min-height: 70vh;
+}
+
+.w-exercise-panel {
+  min-width: 500px;
+}

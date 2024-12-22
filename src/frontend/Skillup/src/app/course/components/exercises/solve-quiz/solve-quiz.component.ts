@@ -1,10 +1,11 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { Quiz, QuizAnswer } from '../../../models/exercise.model';
+import { Button, ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-solve-quiz',
   standalone: true,
-  imports: [],
+  imports: [ButtonModule],
   templateUrl: './solve-quiz.component.html',
   styleUrl: './solve-quiz.component.css'
 })
@@ -33,5 +34,11 @@ export class SolveQuizComponent {
     else{
       this.isComplete = true;
     }
+  }
+
+  tryAgain(){
+    this.iterator.set(0);
+    this.isComplete = false;
+    this.score = 0;
   }
 }

@@ -23,7 +23,6 @@ export class SolveQuestionComponent implements AfterContentInit {
   submitted = false;
 
   ngAfterContentInit(): void {
-    this.answers = this.questions().map(q => '');
   }
 
   submitAnswer(){
@@ -38,6 +37,6 @@ export class SolveQuestionComponent implements AfterContentInit {
   tryAgain(){
     this.submitted = false;
     this.wrongAnswers = [];
-    this.answers = this.questions().map(q => '');
+    this.answers = [];
   }
 }
