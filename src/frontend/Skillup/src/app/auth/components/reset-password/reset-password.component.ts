@@ -11,6 +11,7 @@ import {
   FormControl,
   FormGroup,
   FormsModule,
+  ReactiveFormsModule,
   ValidatorFn,
   Validators,
 } from '@angular/forms';
@@ -23,7 +24,13 @@ import { finalize } from 'rxjs';
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [ButtonModule, InputTextModule, FormsModule, PasswordModule],
+  imports: [
+    ButtonModule,
+    InputTextModule,
+    FormsModule,
+    PasswordModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.css',
 })
@@ -54,8 +61,8 @@ export class ResetPasswordComponent implements OnInit {
 
   form: FormGroup = new FormGroup(
     {
-      currentPassword: new FormControl('', Validators.required),
       newPassword: new FormControl('', Validators.required),
+      newPasswordConfirm: new FormControl('', Validators.required),
     },
     { validators: this.passwordsMatchValidator() }
   );
@@ -75,10 +82,7 @@ export class ResetPasswordComponent implements OnInit {
     this.loading = true;
 
     const subscription = this.passwordService
-      .changePassword(
-        this.form.value.currentPassword,
-        this.form.value.newPassword
-      )
+      .resetPassword(this.token()!, this.form.value.newPassword)
       .pipe(finalize(() => (this.loading = false)))
       .subscribe();
 

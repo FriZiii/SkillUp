@@ -31,7 +31,10 @@ namespace Skillup.Modules.Auth.Core.Entities
         {
             var data = $"{UserId}-{Id}-{CreatedAt.Ticks}-{ExpiresAt.Ticks}";
             var hashBytes = SHA256.HashData(Encoding.UTF8.GetBytes(data));
-            return Convert.ToBase64String(hashBytes);
+            return Convert.ToBase64String(hashBytes)
+                .Replace("/", "")
+                .Replace("+", "")
+                .Replace("=", "");
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Skillup.Modules.Auth.Core.DAL.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public Task<PasswordReset?> GetByToken(string token)
-            => _passwordResets.FirstOrDefaultAsync(r => r.Token == token);
+        public async Task<PasswordReset?> GetByToken(string token)
+            => await _passwordResets.FirstOrDefaultAsync(r => r.Token == token);
     }
 }
