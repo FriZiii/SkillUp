@@ -1,0 +1,20 @@
+<div class="flex gap-4 items-start mt-6">
+  <div class="rounded-full bg-white">
+    <img
+      class="!w-16 rounded-full my-0"
+      [src]="rating().ratedBy.profilePicture"
+    />
+  </div>
+  <div class="prose max-w-none">
+    <h3 class="my-0 font-medium text-sm">
+      {{ rating().ratedBy.firstName }} {{ rating().ratedBy.lastName }}
+    </h3>
+    <div class="flex gap-2">
+      <p-rating [(ngModel)]="rating().stars" [readonly]="true" />
+      <p class="my-0 font-light text-sm">
+        {{ rating().timestamp | date : "yyyy-MM-dd" }}
+      </p>
+    </div>
+    <p class="my-0 font-light text-base">{{ rating().feedback }}</p>
+  </div>
+</div>

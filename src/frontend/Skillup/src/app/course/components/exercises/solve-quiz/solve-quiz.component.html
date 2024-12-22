@@ -1,18 +1,26 @@
-<div class="su-section-mt prose max-w-none !w-full flex flex-col items-center">
-  @if(isComplete){
-  <h1>
-    You finished the quiz with total score of: {{ score }} /
-    {{ quizLength }} points
-  </h1>
+<div
+  class="su-section-mt prose max-w-none !w-full flex flex-col items-center h-exercise-panel"
+>
+  @if(isComplete){ @if(score === quizLength()){
+  <h1 class="mt-8">You have mastered this topic!</h1>
   } @else {
-  <h1>Instruction</h1>
+  <h1 class="mt-8">You still need some proctise on this topic.</h1>
+  }
+  <h2 class="my-3 mb-8">
+    You finished the quiz with total score of: {{ score }} /
+    {{ quizLength() }} points.
+  </h2>
+  @if(isComplete){ @if(score !== quizLength()){
+  <p-button label="Try again" (onClick)="tryAgain()" />
+  } } } @else {
+  <h1>{{ instruction() }}</h1>
 
-  <h1>{{ currentQuestion.question }}</h1>
+  <h1>{{ currentQuestion().question }}</h1>
   <div class="grid grid-cols-2 gap-10">
-    @for(answer of currentQuestion.answers; track answer.id){
+    @for(answer of currentQuestion().answers; track answer.id){
     <div
       (click)="onAnswer(answer)"
-      class="cursor-pointer w-52 h-24 shadow flex justify-center items-center"
+      class="cursor-pointer w-52 h-24 shadow flex justify-center items-center hoover-effect"
     >
       <p>{{ answer.answer }}</p>
     </div>
@@ -20,7 +28,7 @@
   </div>
   <div class="flex gap-8">
     <p>Current Question</p>
-    <p>{{ iterator + 1 }} / {{ quizLength }}</p>
+    <p>{{ iterator() + 1 }} / {{ quizLength() }}</p>
   </div>
   }
 </div>

@@ -16,7 +16,7 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
         }
 
         public async Task<Order?> GetByBalanceHistoryId(Guid balanceHistoryId)
-            => await _orders.FirstOrDefaultAsync(x => x.BalanceHistoryId == balanceHistoryId);
+            => await _orders.Include(x => x.Items).Include(x => x.BalanceHistory).FirstOrDefaultAsync(x => x.BalanceHistoryId == balanceHistoryId);
 
         public async Task<IEnumerable<Order>> GetByOrderer(Guid ordererId)
             => await _orders.Where(x => x.OrdererId == ordererId).ToListAsync();

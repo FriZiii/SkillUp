@@ -28,7 +28,7 @@ export interface UserRatingDetail{
     ratedById: string;
     stars: number;
     feedback: string;
-    time: Date;
+    timestamp: Date;
     ratedBy: {
         id: string;
         firstName: string;

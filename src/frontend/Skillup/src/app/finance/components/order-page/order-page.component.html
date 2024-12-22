@@ -1,0 +1,25 @@
+<div class="su-section-mt prose max-w-none">
+  <div>
+    <h1 class="my-1 text-3xl font-semibold">{{ order()?.title }}</h1>
+    <p class="my-1 text-lg">
+      Date {{ order()?.created | date : "dd-MM-yyyy" }}
+    </p>
+    <hr class="my-1" />
+  </div>
+  @for(course of filteredCourses(); track course.id){
+  <app-cart-item
+    [cartItem]="course"
+    class="w-full"
+    [styleForOrder]="true"
+  ></app-cart-item>
+  }
+  <div class="mb-8 mt-4">
+    <div class="flex justify-between pl-5 pr-3">
+      <h3 class="my-1 font-normal text-lg">Total</h3>
+      <h3 class="my-1 font-semibold text-base">
+        {{ order()?.totalPrice?.amount | number : "1.2-2" }} $
+      </h3>
+    </div>
+    <hr class="my-1" />
+  </div>
+</div>

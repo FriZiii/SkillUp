@@ -16,7 +16,7 @@ import { ButtonModule } from 'primeng/button';
 @Component({
   selector: 'app-fill-the-gap',
   standalone: true,
-  imports: [DragDropModule, CommonModule, FillTheGapCreatorComponent, ButtonModule],
+  imports: [DragDropModule, CommonModule, ButtonModule],
   templateUrl: './fill-the-gap.component.html',
   styleUrls: ['./fill-the-gap.component.css'],
 })

@@ -1,0 +1,24 @@
+<div class="flex gap-2">
+  <input
+    type="text"
+    pInputText
+    [(ngModel)]="searchText"
+    (ngModelChange)="applyFilters()"
+    placeholder="Search"
+    class="w-full"
+  />
+  <p-select
+    [options]="starsOptions"
+    optionLabel="name"
+    optionValue="value"
+    class="w-80"
+    placeholder="All ratings"
+    [(ngModel)]="selectedStars"
+    (ngModelChange)="applyFilters()"
+  />
+</div>
+<div class="mt-8">
+  @for(rating of filteredRatings; track rating.id){
+  <app-course-rating [rating]="rating" />
+  }
+</div>

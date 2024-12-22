@@ -1,0 +1,14 @@
+<app-add-new-comment [elementId]="elementId()"></app-add-new-comment>
+<section class="comment-module">
+  <ul>
+    @for(comment of comments(); track comment.id){
+    <app-comment
+      [comment]="comment"
+      class="w-full"
+      [elementId]="elementId()"
+    ></app-comment>
+    }
+  </ul>
+</section>
+
+<p-confirmDialog />

@@ -1,53 +1,88 @@
-<div class="su-section-mt">
+<div class="su-section-mt px-24 mb-8">
   @if(loading){
   <div class="w-full flex justify-center">
     <p-progress-spinner ariaLabel="loading" class="mt-24" />
   </div>
   } @else { @if(courses().length === 0){
   <div class="prose max-w-none !w-full">
-    <h1 class="text-5xl text-center">You did not buy any courses yet</h1>
+    <h1 class="my-1 text-5xl">Courses</h1>
+    <p class="my-1">{{ numberOfCourses() }} courses collected</p>
+    <hr class="my-1" />
+    <div class="flex flex-col items-center mt-20">
+      <h1 class="text-5xl text-center my-3 font-bold">
+        You don't have any courses
+      </h1>
+      <p class="my-2 text-2xl">Go find a course that meets your expectations</p>
+      <p-button
+        label="Search for courses"
+        class="big-btn"
+        styleClass="!rounded-none"
+        [routerLink]="''"
+      ></p-button>
+    </div>
   </div>
   } @else {
   <div class="prose max-w-none !w-full">
-    <h1 class="text-5xl text-center">List of courses you have bought</h1>
+    <div>
+      <h1 class="my-1 text-5xl">Courses</h1>
+      <p class="my-1">{{ numberOfCourses() }} courses collected</p>
+      <hr class="my-1" />
+    </div>
   </div>
   } }
-  <div class="cols-responsive-2 mt-8">
+  <div class="cols-responsive-4 gap-12 mx-12 mt-8">
     @for( course of courses(); track course.id){
-    <app-course-item-short
+    <app-student-course-item
+      class="w-80"
       [course]="course"
-      [rating]="true"
       (onRating)="addRating($event)"
-      [bought]="true"
       [percentages]="coursePercentages()"
-    ></app-course-item-short>
+      [userRatings]="courseRatings()"
+    />
     }
   </div>
 </div>
 
 <!-- Add Rating dialog -->
 <p-dialog
-  header="Add your rating"
   [modal]="true"
   [(visible)]="addRatingDialogVisible"
-  [style]="{ width: '80%' }"
+  [style]="{ width: 'auto', padding: '10px' }"
   [draggable]="false"
   class="cursor-default"
+  [focusOnShow]="false"
 >
-  <p-rating [(ngModel)]="newRating" />
-  <input type="text" pInputText [(ngModel)]="newFeedback" />
-  <div class="flex gap-2 justify-between">
-    @if(currentRating){
-    <p-button label="Edit" (click)="editRating()" />
-    <p-button icon="pi pi-trash" severity="danger" (click)="deleteRating()" />
-    } @else {
-    <p-button label="Submit" (click)="postNewRating()" />
+  <div class="prose max-w-none flex flex-col items-center mt-4">
+    <h1 class="font-semibold my-2">How do you want to rate this course?</h1>
+    @if(newRating == 1){
+    <p class="my-2 text-2xl">Very poor, not worth it.</p>
+    } @if(newRating == 2){
+    <p class="my-2 text-2xl">Below average, needs improvement.</p>
+    } @if(newRating == 3){
+    <p class="my-2 text-2xl">Average, could be better.</p>
+    } @if(newRating == 4){
+    <p class="my-2 text-2xl">Good course, worth the time.</p>
+    } @if(newRating == 5){
+    <p class="my-2 text-2xl">Excellent! Highly recommend it.</p>
     }
-
-    <p-button
-      label="Cancel"
-      severity="secondary"
-      (click)="addRatingDialogVisible = false"
-    />
+    <p-rating [(ngModel)]="newRating" />
+    @if(newRating !== 0){
+    <textarea
+      class="custom-textarea mt-4"
+      rows="5"
+      cols="50"
+      [(ngModel)]="newFeedback"
+      placeholder="Tell us more about what you think about this course."
+    ></textarea>
+    }
+    <div class="flex flex-row-reverse gap-4 w-full mt-4">
+      @if(currentRating){ @if(newRating !== 0){
+      <p-button label="Edit review" (click)="editRating()" />
+      }
+      <p-button label="Delete" severity="secondary" (click)="deleteRating()" />
+      } @else { @if(newRating !== 0){
+      <p-button label="Save" (click)="postNewRating()" />
+      } }
+    </div>
   </div>
 </p-dialog>

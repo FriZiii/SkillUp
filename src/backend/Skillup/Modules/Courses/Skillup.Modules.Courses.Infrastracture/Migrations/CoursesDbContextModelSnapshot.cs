@@ -191,6 +191,63 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.ToTable("ElementAttachments", "courses");
                 });
 
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Comments.Comment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AuthorId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("ElementId")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid?>("ParentCommentId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("ElementId");
+
+                    b.HasIndex("ParentCommentId");
+
+                    b.ToTable("Comments", "courses");
+                });
+
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Comments.Like", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CommentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("LikerId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CommentId");
+
+                    b.HasIndex("LikerId");
+
+                    b.ToTable("Likes", "courses");
+                });
+
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Element", b =>
                 {
                     b.Property<Guid>("Id")
@@ -641,6 +698,51 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
                     b.Navigation("Element");
                 });
 
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Comments.Comment", b =>
+                {
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.UserEntities.User", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Element", "Element")
+                        .WithMany()
+                        .HasForeignKey("ElementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Comments.Comment", "ParentComment")
+                        .WithMany("Replies")
+                        .HasForeignKey("ParentCommentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Element");
+
+                    b.Navigation("ParentComment");
+                });
+
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Comments.Like", b =>
+                {
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Comments.Comment", "Comment")
+                        .WithMany("Likes")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Skillup.Modules.Courses.Core.Entities.UserEntities.User", "Liker")
+                        .WithMany()
+                        .HasForeignKey("LikerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Comment");
+
+                    b.Navigation("Liker");
+                });
+
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Element", b =>
                 {
                     b.HasOne("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.Section", "Section")
@@ -864,6 +966,13 @@ namespace Skillup.Modules.Courses.Infrastracture.Migrations
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.Course", b =>
                 {
                     b.Navigation("Sections");
+                });
+
+            modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Comments.Comment", b =>
+                {
+                    b.Navigation("Likes");
+
+                    b.Navigation("Replies");
                 });
 
             modelBuilder.Entity("Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Element", b =>

@@ -1,0 +1,63 @@
+<li>
+  <div class="comment">
+    <div class="comment-img">
+      <img [src]="comment().author.profilePicture" alt="" class="my-0" />
+    </div>
+    <div class="comment-content">
+      <div class="comment-details">
+        <h4 class="comment-name my-0">
+          {{ comment().author.firstName }} {{ comment().author.lastName }}
+        </h4>
+        <span class="comment-log">{{ timeAgo(comment().createdAt) }}</span>
+      </div>
+      <div class="comment-desc">
+        <p class="my-0">
+          {{ comment().content }}
+        </p>
+      </div>
+      <div class="comment-data">
+        <div class="comment-likes">
+          <span>{{ comment().likesCount }}</span>
+          <i
+            class="pi pi-thumbs-up cursor-pointer"
+            (click)="toggleLike()"
+            [ngStyle]="{
+              color: comment().isLiked ? 'var(--p-primary-500)' : ''
+            }"
+          ></i>
+        </div>
+        <div class="comment-reply">
+          <a (click)="showAddComment = !showAddComment" class="cursor-pointer"
+            >Reply</a
+          >
+        </div>
+        @if(comment().author.id === currentUser()?.id){
+        <div class="comment-reply">
+          <a
+            (click)="deleteComment($event)"
+            class="cursor-pointer !text-red-500"
+            >Delete Comment</a
+          >
+        </div>
+        }
+      </div>
+      @if(showAddComment){
+      <app-add-new-comment
+        [elementId]="elementId()"
+        [parentComment]="comment()"
+        (commentAdded)="onCommentAdded()"
+      ></app-add-new-comment>
+      }
+    </div>
+  </div>
+  <ul>
+    @for(replyComment of comment().replies; track replyComment.id){
+    <app-comment
+      [comment]="replyComment"
+      [parrentComment]="comment()"
+      class="w-full"
+      [elementId]="elementId()"
+    ></app-comment>
+    }
+  </ul>
+</li>
