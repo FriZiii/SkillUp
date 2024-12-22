@@ -1,5 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using Skillup.Modules.Finances.Core.DTO;
+using Skillup.Shared.Infrastructure.Time;
 
 namespace Skillup.Modules.Finances.Core.Entities
 {
@@ -7,6 +8,8 @@ namespace Skillup.Modules.Finances.Core.Entities
     {
         public Guid Id { get; set; }
         public string Code { get; set; }
+        public DateTime StartAt { get; set; }
+        public DateTime? ExpireAt { get; set; }
         public decimal DiscountValue { get; set; }
         public bool AppliesToEntireCart { get; set; } = true;
         public bool IsActive { get; set; }
@@ -20,6 +23,9 @@ namespace Skillup.Modules.Finances.Core.Entities
 
         public bool CanBeUsed(Cart cart)
         {
+            if (new UtcClock().CurrentDate() < StartAt || (ExpireAt.HasValue && new UtcClock().CurrentDate() > ExpireAt.Value))
+                return false;
+
             if (!IsActive)
                 return false;
 
@@ -50,6 +56,9 @@ namespace Skillup.Modules.Finances.Core.Entities
             AppliesToEntireCart = dto.AppliesToEntireCart;
             IsActive = dto.IsActive;
             IsPublic = dto.IsPublic;
+
+            ExpireAt = dto.ExpireAt;
+            StartAt = dto.StartAt;
         }
 
         protected internal DiscountCode() { } // Only for Ef core

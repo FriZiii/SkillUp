@@ -48,7 +48,7 @@
     "status": "Published"
   },
   {
-    "authorId": "843c0b70-df1c-4cab-b539-574a5da7a731",
+    "authorId": "b07b5e19-cf8a-4402-b188-9c83d3a141dd",
     "title": "Introduction to German Language",
     "categoryName": "Languages",
     "subcategoryName": "German",
@@ -75,7 +75,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "843c0b70-df1c-4cab-b539-574a5da7a731",
+    "authorId": "b07b5e19-cf8a-4402-b188-9c83d3a141dd",
     "title": "Mastering Basic English Conversation",
     "categoryName": "Languages",
     "subcategoryName": "English",
@@ -123,7 +123,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "954f0f5b-28a1-470c-966a-a7c194f01651",
     "title": "Introduction to Artificial Intelligence",
     "categoryName": "Programming",
     "subcategoryName": "Artificial intelligence",
@@ -171,7 +171,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "954f0f5b-28a1-470c-966a-a7c194f01651",
     "title": "Project Management with Agile and Scrum",
     "categoryName": "Business",
     "subcategoryName": "Project management",
@@ -198,7 +198,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "843c0b70-df1c-4cab-b539-574a5da7a731",
+    "authorId": "954f0f5b-28a1-470c-966a-a7c194f01651",
     "title": "Algebra Essentials",
     "categoryName": "Mathematics",
     "subcategoryName": "Algebra",
@@ -225,7 +225,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "40505b38-1a69-4b52-846f-d0a96f8f0d3d",
     "title": "Creative Writing: A Beginner's Guide",
     "categoryName": "Self-development",
     "subcategoryName": "Creativity & hobbies",
@@ -252,7 +252,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "40505b38-1a69-4b52-846f-d0a96f8f0d3d",
     "title": "Finance for Non-Financial Managers",
     "categoryName": "Business",
     "subcategoryName": "Finance",
@@ -279,7 +279,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "dd17d962-0cd0-46e0-871e-ff28a41d46f0",
     "title": "Understanding World Religions",
     "categoryName": "Humanities",
     "subcategoryName": "Religions",
@@ -306,7 +306,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "dd17d962-0cd0-46e0-871e-ff28a41d46f0",
     "title": "Basics of Cybersecurity",
     "categoryName": "Programming",
     "subcategoryName": "Cybersecurity",
@@ -333,7 +333,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "dd17d962-0cd0-46e0-871e-ff28a41d46f0",
     "title": "Physics: Classical Mechanics",
     "categoryName": "Science",
     "subcategoryName": "Physics",
@@ -360,7 +360,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "b0958f3f-d007-493f-9915-8a57c3f8fec0",
     "title": "Introduction to Game Development",
     "categoryName": "Programming",
     "subcategoryName": "Game development",
@@ -408,7 +408,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "b0958f3f-d007-493f-9915-8a57c3f8fec0",
     "title": "Web Development with ASP.NET",
     "categoryName": "Programming",
     "subcategoryName": "Web development",
@@ -456,7 +456,7 @@
     "status": "Published"
   },
   {
-    "authorId": "843c0b70-df1c-4cab-b539-574a5da7a731",
+    "authorId": "40505b38-1a69-4b52-846f-d0a96f8f0d3d",
     "title": "Boosting Productivity and Motivation",
     "categoryName": "Self-development",
     "subcategoryName": "Motivation",
@@ -600,7 +600,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "6902b8fe-86e2-4fab-9820-1ccebb05dd39",
     "title": "Mastering Microsoft Excel: From Basics to Advanced",
     "categoryName": "Applications",
     "subcategoryName": "Microsoft",
@@ -648,7 +648,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "10949253-ce39-485c-85f0-c7ec2c7a94b8",
     "title": "Innovative Teaching Methods for the Classroom",
     "categoryName": "Teaching",
     "subcategoryName": "Teaching methods",
@@ -696,7 +696,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "10949253-ce39-485c-85f0-c7ec2c7a94b8",
     "title": "Teaching Teenagers: Engaging and Motivating Adolescents",
     "categoryName": "Teaching",
     "subcategoryName": "Teaching children & teenagers",
@@ -744,7 +744,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "b9981c06-5e2a-48a1-85c6-c677beb0437b",
     "title": "Using Adobe Photoshop for Beginners",
     "categoryName": "Applications",
     "subcategoryName": "Adobe",
@@ -792,7 +792,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "b9981c06-5e2a-48a1-85c6-c677beb0437b",
     "title": "Master Google Workspace: Collaborate Efficiently",
     "categoryName": "Applications",
     "subcategoryName": "Google",
@@ -840,7 +840,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "b9981c06-5e2a-48a1-85c6-c677beb0437b",
     "title": "Introduction to Western Philosophy",
     "categoryName": "Humanities",
     "subcategoryName": "Philosophy",
@@ -867,7 +867,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "fc1da420-804d-446a-bcfe-213f687d836a",
     "title": "The Evolution of Visual Arts: From Cave Paintings to Modern Art",
     "categoryName": "Art",
     "subcategoryName": "Visual arts",
@@ -894,7 +894,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "fc1da420-804d-446a-bcfe-213f687d836a",
     "title": "Music Composition: Write Your First Song",
     "categoryName": "Art",
     "subcategoryName": "Music",
@@ -921,7 +921,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "fc1da420-804d-446a-bcfe-213f687d836a",
     "title": "Art History: A Journey Through Time",
     "categoryName": "Humanities",
     "subcategoryName": "Art history",
@@ -948,7 +948,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "45ec3836-a02a-41f6-a845-44a72a5991bf",
     "title": "Exploring Cultural Diversity Through Literature",
     "categoryName": "Humanities",
     "subcategoryName": "Literature",
@@ -975,7 +975,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "6902b8fe-86e2-4fab-9820-1ccebb05dd39",
     "title": "Introduction to Legal Systems: Understanding Law",
     "categoryName": "Humanities",
     "subcategoryName": "Law",
@@ -1002,7 +1002,7 @@
     "status": "SubmitedForReview"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "45ec3836-a02a-41f6-a845-44a72a5991bf",
     "title": "Fast and Healthy Family Meals",
     "categoryName": "Other",
     "subcategoryName": "Other",
@@ -1027,7 +1027,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "45ec3836-a02a-41f6-a845-44a72a5991bf",
     "title": "Home Gardening for Beginners",
     "categoryName": "Self-development",
     "subcategoryName": "Creativity & hobbies",
@@ -1054,7 +1054,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "6902b8fe-86e2-4fab-9820-1ccebb05dd39",
     "title": "Digital Photography: Capturing Life's Moments",
     "categoryName": "Self-development",
     "subcategoryName": "Creativity & hobbies",
@@ -1081,7 +1081,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "6902b8fe-86e2-4fab-9820-1ccebb05dd39",
     "title": "Introduction to Creative Problem Solving",
     "categoryName": "Self-development",
     "subcategoryName": "Professional development",
@@ -1108,7 +1108,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "6902b8fe-86e2-4fab-9820-1ccebb05dd39",
     "title": "Basic DIY Home Repairs",
     "categoryName": "Self-development",
     "subcategoryName": "Creativity & hobbies",
@@ -1135,7 +1135,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "1577a802-6ce4-4aad-a40c-fc3761372be2",
     "title": "Introduction to Yoga for Beginners",
     "categoryName": "Self-development",
     "subcategoryName": "Sports",
@@ -1162,7 +1162,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "1577a802-6ce4-4aad-a40c-fc3761372be2",
     "title": "Running 101: From Beginner to 5K",
     "categoryName": "Self-development",
     "subcategoryName": "Sports",
@@ -1189,7 +1189,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "1577a802-6ce4-4aad-a40c-fc3761372be2",
     "title": "Introduction to Strength Training",
     "categoryName": "Self-development",
     "subcategoryName": "Sports",
@@ -1216,7 +1216,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "477170d7-69a8-4c33-98d5-86c2a8808d11",
     "title": "Spanish for Beginners: Basic Vocabulary and Grammar",
     "categoryName": "Languages",
     "subcategoryName": "Spanish",
@@ -1243,7 +1243,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "477170d7-69a8-4c33-98d5-86c2a8808d11",
     "title": "Conversational Spanish: Speak with Confidence",
     "categoryName": "Languages",
     "subcategoryName": "Spanish",
@@ -1270,7 +1270,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "477170d7-69a8-4c33-98d5-86c2a8808d11",
     "title": "Spanish Pronunciation: Master the Basics",
     "categoryName": "Languages",
     "subcategoryName": "Spanish",
@@ -1297,7 +1297,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "477170d7-69a8-4c33-98d5-86c2a8808d11",
     "title": "Spanish for Travelers: Essential Phrases and Vocabulary",
     "categoryName": "Languages",
     "subcategoryName": "Spanish",
@@ -1324,7 +1324,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "5a2e9ff2-ef7b-43cf-86d8-af02edacdc22",
     "title": "Understanding Spanish Culture Through Language",
     "categoryName": "Languages",
     "subcategoryName": "Spanish",
@@ -1351,7 +1351,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "59c60691-0f01-4cf4-8a42-44734360018e",
     "title": "Spanish Grammar Essentials: Verbs and Tenses",
     "categoryName": "Languages",
     "subcategoryName": "Spanish",
@@ -1378,7 +1378,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "59c60691-0f01-4cf4-8a42-44734360018e",
     "title": "English for Beginners: Vocabulary and Basic Grammar",
     "categoryName": "Languages",
     "subcategoryName": "English",
@@ -1405,7 +1405,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "59c60691-0f01-4cf4-8a42-44734360018e",
     "title": "Conversational English: Speak with Confidence",
     "categoryName": "Languages",
     "subcategoryName": "English",
@@ -1432,7 +1432,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "59c60691-0f01-4cf4-8a42-44734360018e",
     "title": "English Grammar Essentials: Nouns and Verbs",
     "categoryName": "Languages",
     "subcategoryName": "English",
@@ -1459,7 +1459,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "59c60691-0f01-4cf4-8a42-44734360018e",
     "title": "Business English: Communicating Effectively",
     "categoryName": "Languages",
     "subcategoryName": "English",
@@ -1486,7 +1486,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "d20f4ec3-1f41-4ea1-84ab-eaeba1f585ad",
     "title": "English Listening Skills: Improve Your Comprehension",
     "categoryName": "Languages",
     "subcategoryName": "English",
@@ -1513,7 +1513,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "d1da3543-fb2a-4487-875e-91621cd31ef4",
     "title": "English Writing Skills: Basics of Composition",
     "categoryName": "Languages",
     "subcategoryName": "English",
@@ -1540,7 +1540,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "d1da3543-fb2a-4487-875e-91621cd31ef4",
     "title": "English Vocabulary Building: Everyday Words",
     "categoryName": "Languages",
     "subcategoryName": "English",
@@ -1567,7 +1567,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "d1da3543-fb2a-4487-875e-91621cd31ef4",
     "title": "English Idioms and Expressions: Speak Like a Native",
     "categoryName": "Languages",
     "subcategoryName": "English",
@@ -1594,7 +1594,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "d20f4ec3-1f41-4ea1-84ab-eaeba1f585ad",
     "title": "French for Beginners: Essential Vocabulary and Grammar",
     "categoryName": "Languages",
     "subcategoryName": "French",
@@ -1621,7 +1621,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "d20f4ec3-1f41-4ea1-84ab-eaeba1f585ad",
     "title": "Conversational French: Speak with Confidence",
     "categoryName": "Languages",
     "subcategoryName": "French",
@@ -1648,7 +1648,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "d20f4ec3-1f41-4ea1-84ab-eaeba1f585ad",
     "title": "French Grammar Essentials: Nouns and Verbs",
     "categoryName": "Languages",
     "subcategoryName": "French",
@@ -1675,7 +1675,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "5a2e9ff2-ef7b-43cf-86d8-af02edacdc22",
     "title": "French Vocabulary Building: Everyday Words",
     "categoryName": "Languages",
     "subcategoryName": "French",
@@ -1702,7 +1702,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "16068127-c7af-4215-aa8f-e72e69297aff",
     "title": "French Listening Skills: Improve Your Comprehension",
     "categoryName": "Languages",
     "subcategoryName": "French",
@@ -1729,7 +1729,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "1329643d-67c7-4cc5-82a8-91bf618acd68",
     "title": "French Writing Skills: Basics of Composition",
     "categoryName": "Languages",
     "subcategoryName": "French",
@@ -1756,7 +1756,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "1329643d-67c7-4cc5-82a8-91bf618acd68",
     "title": "French Culture and Language: Understanding Traditions",
     "categoryName": "Languages",
     "subcategoryName": "French",
@@ -1783,7 +1783,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "1329643d-67c7-4cc5-82a8-91bf618acd68",
     "title": "Common French Idioms and Expressions",
     "categoryName": "Languages",
     "subcategoryName": "French",
@@ -1810,7 +1810,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "1329643d-67c7-4cc5-82a8-91bf618acd68",
     "title": "Italian for Beginners: Essential Vocabulary and Grammar",
     "categoryName": "Languages",
     "subcategoryName": "Other",
@@ -1837,7 +1837,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "16068127-c7af-4215-aa8f-e72e69297aff",
     "title": "Conversational Italian: Speak with Confidence",
     "categoryName": "Languages",
     "subcategoryName": "Other",
@@ -1864,7 +1864,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "16068127-c7af-4215-aa8f-e72e69297aff",
     "title": "Italian Grammar Essentials: Nouns and Verbs",
     "categoryName": "Languages",
     "subcategoryName": "Other",
@@ -1891,7 +1891,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "16068127-c7af-4215-aa8f-e72e69297aff",
     "title": "Italian Vocabulary Building: Everyday Words",
     "categoryName": "Languages",
     "subcategoryName": "Other",
@@ -1918,7 +1918,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
+    "authorId": "c8194d63-449e-49b7-976b-4437a78dc8f5",
     "title": "German for Beginners: Essential Vocabulary and Grammar",
     "categoryName": "Languages",
     "subcategoryName": "German",
@@ -1972,7 +1972,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "c8194d63-449e-49b7-976b-4437a78dc8f5",
     "title": "German Grammar Essentials: Nouns and Verbs",
     "categoryName": "Languages",
     "subcategoryName": "German",
@@ -1999,7 +1999,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "c8194d63-449e-49b7-976b-4437a78dc8f5",
     "title": "German Vocabulary Building: Everyday Words",
     "categoryName": "Languages",
     "subcategoryName": "German",
@@ -2026,7 +2026,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "c8194d63-449e-49b7-976b-4437a78dc8f5",
     "title": "Introduction to Databases: Fundamentals and SQL",
     "categoryName": "Programming",
     "subcategoryName": "Databases",
@@ -2053,7 +2053,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "c8194d63-449e-49b7-976b-4437a78dc8f5",
     "title": "Database Design: Principles and Best Practices",
     "categoryName": "Programming",
     "subcategoryName": "Databases",
@@ -2080,7 +2080,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "c8194d63-449e-49b7-976b-4437a78dc8f5",
     "title": "Working with NoSQL Databases: An Introduction",
     "categoryName": "Programming",
     "subcategoryName": "Databases",
@@ -2107,7 +2107,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
     "title": "Database Management Systems: An Overview",
     "categoryName": "Programming",
     "subcategoryName": "Databases",
@@ -2134,7 +2134,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
     "title": "SQL for Data Analysis: Extract Insights from Data",
     "categoryName": "Programming",
     "subcategoryName": "Databases",
@@ -2161,7 +2161,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "5a73b6f0-6c4c-4f79-9925-2426c5f2bc01",
     "title": "Advanced SQL: Queries and Performance Tuning",
     "categoryName": "Programming",
     "subcategoryName": "Databases",
@@ -2188,7 +2188,7 @@
     "status": "Draft"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "5a73b6f0-6c4c-4f79-9925-2426c5f2bc01",
     "title": "Data Warehousing: Concepts and Techniques",
     "categoryName": "Programming",
     "subcategoryName": "Databases",
@@ -2215,7 +2215,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "5a73b6f0-6c4c-4f79-9925-2426c5f2bc01",
     "title": "Database Security: Protecting Your Data",
     "categoryName": "Programming",
     "subcategoryName": "Databases",
@@ -2242,7 +2242,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "5a73b6f0-6c4c-4f79-9925-2426c5f2bc01",
     "title": "Introduction to Mobile App Development with Flutter",
     "categoryName": "Programming",
     "subcategoryName": "Mobile development",
@@ -2269,7 +2269,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "46b48a4b-e73a-4346-9655-2e02f074288a",
     "title": "Building iOS Apps with Swift",
     "categoryName": "Programming",
     "subcategoryName": "Mobile development",
@@ -2296,7 +2296,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "46b48a4b-e73a-4346-9655-2e02f074288a",
     "title": "Android App Development: From Beginner to Advanced",
     "categoryName": "Programming",
     "subcategoryName": "Mobile development",
@@ -2323,7 +2323,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "46b48a4b-e73a-4346-9655-2e02f074288a",
     "title": "Cross-Platform Mobile Development with React Native",
     "categoryName": "Programming",
     "subcategoryName": "Mobile development",
@@ -2350,7 +2350,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "46b48a4b-e73a-4346-9655-2e02f074288a",
     "title": "Mobile UI/UX Design: Create User-Friendly Apps",
     "categoryName": "Programming",
     "subcategoryName": "Mobile development",
@@ -2377,7 +2377,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "46b48a4b-e73a-4346-9655-2e02f074288a",
     "title": "Advanced Flutter: State Management and Networking",
     "categoryName": "Programming",
     "subcategoryName": "Mobile development",
@@ -2404,7 +2404,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "46b48a4b-e73a-4346-9655-2e02f074288a",
     "title": "Game Development for Mobile: Build Your First Game",
     "categoryName": "Programming",
     "subcategoryName": "Mobile development",
@@ -2431,7 +2431,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "ed4a068d-a9c0-46d0-8e0d-c6b3908b9c92",
     "title": "Mobile Performance Optimization: Speed Up Your Apps",
     "categoryName": "Programming",
     "subcategoryName": "Mobile development",
@@ -2458,7 +2458,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "ed4a068d-a9c0-46d0-8e0d-c6b3908b9c92",
     "title": "Introduction to Programming with Python",
     "categoryName": "Programming",
     "subcategoryName": "Basics of programming",
@@ -2485,7 +2485,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "ed4a068d-a9c0-46d0-8e0d-c6b3908b9c92",
     "title": "JavaScript Fundamentals for Beginners",
     "categoryName": "Programming",
     "subcategoryName": "Basics of programming",
@@ -2512,7 +2512,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "ed4a068d-a9c0-46d0-8e0d-c6b3908b9c92",
     "title": "C++ Programming: From Zero to Hero",
     "categoryName": "Programming",
     "subcategoryName": "Basics of programming",
@@ -2539,7 +2539,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "ed4a068d-a9c0-46d0-8e0d-c6b3908b9c92",
     "title": "Getting Started with Ruby Programming",
     "categoryName": "Programming",
     "subcategoryName": "Basics of programming",
@@ -2566,7 +2566,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "ed4a068d-a9c0-46d0-8e0d-c6b3908b9c92",
     "title": "Introduction to C# Programming",
     "categoryName": "Programming",
     "subcategoryName": "Basics of programming",
@@ -2593,7 +2593,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "9d2f150b-bd3e-4b46-a990-18117aa0eb74",
     "title": "Scratch Programming for Kids",
     "categoryName": "Programming",
     "subcategoryName": "Basics of programming",
@@ -2620,7 +2620,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "9d2f150b-bd3e-4b46-a990-18117aa0eb74",
     "title": "Getting Started with PHP for Web Development",
     "categoryName": "Programming",
     "subcategoryName": "Basics of programming",
@@ -2647,7 +2647,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "9d2f150b-bd3e-4b46-a990-18117aa0eb74",
     "title": "Programming Fundamentals with Kotlin",
     "categoryName": "Programming",
     "subcategoryName": "Basics of programming",
@@ -2701,7 +2701,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "9d2f150b-bd3e-4b46-a990-18117aa0eb74",
     "title": "Time Management Techniques for Busy Professionals",
     "categoryName": "Self-development",
     "subcategoryName": "Professional development",
@@ -2728,7 +2728,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "9d2f150b-bd3e-4b46-a990-18117aa0eb74",
     "title": "Leadership Skills for New Managers",
     "categoryName": "Self-development",
     "subcategoryName": "Professional development",
@@ -2755,7 +2755,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "9d2f150b-bd3e-4b46-a990-18117aa0eb74",
     "title": "Networking Strategies for Career Advancement",
     "categoryName": "Self-development",
     "subcategoryName": "Professional development",
@@ -2782,7 +2782,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "e1596b36-9b65-406f-8a34-442a69cf37cc",
     "title": "Unlocking Your Inner Motivation",
     "categoryName": "Self-development",
     "subcategoryName": "Motivation",
@@ -2809,7 +2809,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "e1596b36-9b65-406f-8a34-442a69cf37cc",
     "title": "Building Resilience: Staying Motivated Through Challenges",
     "categoryName": "Self-development",
     "subcategoryName": "Motivation",
@@ -2836,7 +2836,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "e1596b36-9b65-406f-8a34-442a69cf37cc",
     "title": "Goal Setting for Success: The Power of Motivation",
     "categoryName": "Self-development",
     "subcategoryName": "Motivation",
@@ -2863,7 +2863,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "e1596b36-9b65-406f-8a34-442a69cf37cc",
     "title": "The Science of Motivation: Understanding What Drives You",
     "categoryName": "Self-development",
     "subcategoryName": "Motivation",
@@ -2890,7 +2890,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "e1596b36-9b65-406f-8a34-442a69cf37cc",
     "title": "Nutrition Basics for a Healthier Lifestyle",
     "categoryName": "Self-development",
     "subcategoryName": "Health",
@@ -2917,7 +2917,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "e1596b36-9b65-406f-8a34-442a69cf37cc",
     "title": "Stress Management Techniques for Everyday Life",
     "categoryName": "Self-development",
     "subcategoryName": "Health",
@@ -2944,7 +2944,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "c9851236-38fa-46e3-a16a-cbbc25f4fd2b",
     "title": "Introduction to Mindfulness and Meditation",
     "categoryName": "Self-development",
     "subcategoryName": "Health",
@@ -2971,7 +2971,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "c9851236-38fa-46e3-a16a-cbbc25f4fd2b",
     "title": "Physical Fitness Fundamentals: Get Moving!",
     "categoryName": "Self-development",
     "subcategoryName": "Health",
@@ -2998,7 +2998,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "c9851236-38fa-46e3-a16a-cbbc25f4fd2b",
     "title": "Understanding Mental Health: A Comprehensive Guide",
     "categoryName": "Self-development",
     "subcategoryName": "Health",
@@ -3025,7 +3025,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "9ce8a11b-d7e5-402c-a765-f58c89b3549f",
     "title": "First Aid Basics: Save a Life",
     "categoryName": "Self-development",
     "subcategoryName": "Health",
@@ -3052,7 +3052,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "9ce8a11b-d7e5-402c-a765-f58c89b3549f",
     "title": "Holistic Health: Mind, Body, and Spirit Connection",
     "categoryName": "Self-development",
     "subcategoryName": "Health",
@@ -3079,7 +3079,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "9ce8a11b-d7e5-402c-a765-f58c89b3549f",
     "title": "Sleep Science: Improve Your Sleep Quality",
     "categoryName": "Self-development",
     "subcategoryName": "Health",
@@ -3106,7 +3106,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "9ce8a11b-d7e5-402c-a765-f58c89b3549f",
     "title": "Digital Marketing Fundamentals",
     "categoryName": "Business",
     "subcategoryName": "Marketing",
@@ -3133,7 +3133,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "9ce8a11b-d7e5-402c-a765-f58c89b3549f",
     "title": "Content Marketing Strategies for Growth",
     "categoryName": "Business",
     "subcategoryName": "Marketing",
@@ -3160,7 +3160,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "35837dff-090f-4f3d-9466-d0e333396ebd",
     "title": "Social Media Marketing Mastery",
     "categoryName": "Business",
     "subcategoryName": "Marketing",
@@ -3187,7 +3187,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "35837dff-090f-4f3d-9466-d0e333396ebd",
     "title": "Email Marketing Essentials: Building Relationships",
     "categoryName": "Business",
     "subcategoryName": "Marketing",
@@ -3214,7 +3214,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "35837dff-090f-4f3d-9466-d0e333396ebd",
     "title": "Search Engine Optimization (SEO) Basics",
     "categoryName": "Business",
     "subcategoryName": "Marketing",
@@ -3241,7 +3241,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "854632f8-04f1-4d6e-a937-73a0b53e2cc0",
     "title": "Branding Basics: Building a Strong Brand Identity",
     "categoryName": "Business",
     "subcategoryName": "Marketing",
@@ -3268,7 +3268,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "854632f8-04f1-4d6e-a937-73a0b53e2cc0",
     "title": "Influencer Marketing: Harnessing Social Proof",
     "categoryName": "Business",
     "subcategoryName": "Marketing",
@@ -3295,7 +3295,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "854632f8-04f1-4d6e-a937-73a0b53e2cc0",
     "title": "Analytics for Marketers: Data-Driven Decision Making",
     "categoryName": "Business",
     "subcategoryName": "Marketing",
@@ -3322,7 +3322,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "854632f8-04f1-4d6e-a937-73a0b53e2cc0",
     "title": "Fundamentals of Human Resource Management",
     "categoryName": "Business",
     "subcategoryName": "HR & recruitment",
@@ -3349,7 +3349,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "a19c129e-d173-4552-92a2-06343925c461",
     "title": "Effective Recruitment Strategies",
     "categoryName": "Business",
     "subcategoryName": "HR & recruitment",
@@ -3376,7 +3376,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "a19c129e-d173-4552-92a2-06343925c461",
     "title": "Employee Engagement and Retention Strategies",
     "categoryName": "Business",
     "subcategoryName": "HR & recruitment",
@@ -3403,7 +3403,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "a19c129e-d173-4552-92a2-06343925c461",
     "title": "Performance Management: Strategies for Success",
     "categoryName": "Business",
     "subcategoryName": "HR & recruitment",
@@ -3430,7 +3430,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "03b23b0c-383a-4e7b-9714-35eb69e4918d",
     "title": "Personal Finance Basics",
     "categoryName": "Business",
     "subcategoryName": "Finance",
@@ -3457,7 +3457,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "03b23b0c-383a-4e7b-9714-35eb69e4918d",
     "title": "Introduction to Corporate Finance",
     "categoryName": "Business",
     "subcategoryName": "Finance",
@@ -3484,7 +3484,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "03b23b0c-383a-4e7b-9714-35eb69e4918d",
     "title": "Investment Strategies for Beginners",
     "categoryName": "Business",
     "subcategoryName": "Finance",
@@ -3511,7 +3511,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "03b23b0c-383a-4e7b-9714-35eb69e4918d",
     "title": "Financial Analysis and Forecasting",
     "categoryName": "Business",
     "subcategoryName": "Finance",
@@ -3538,7 +3538,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "5cf375a4-d802-40aa-90f6-de7844c116de",
     "title": "Introduction to Cell Biology",
     "categoryName": "Science",
     "subcategoryName": "Biology",
@@ -3565,7 +3565,7 @@
     "status": "Published"
   },
   {
-    "authorId": "12b1aedf-ad61-41fa-90c4-f18f65de4ba2",
+    "authorId": "5cf375a4-d802-40aa-90f6-de7844c116de",
     "title": "Ecology and Environmental Science",
     "categoryName": "Science",
     "subcategoryName": "Biology",
@@ -3646,7 +3646,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "5cf375a4-d802-40aa-90f6-de7844c116de",
     "title": "Introduction to Classical Mechanics",
     "categoryName": "Science",
     "subcategoryName": "Physics",
@@ -3673,7 +3673,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "5cf375a4-d802-40aa-90f6-de7844c116de",
     "title": "Fundamentals of Electricity and Magnetism",
     "categoryName": "Science",
     "subcategoryName": "Physics",
@@ -3700,7 +3700,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "5cf375a4-d802-40aa-90f6-de7844c116de",
     "title": "Introduction to Modern Physics",
     "categoryName": "Science",
     "subcategoryName": "Physics",
@@ -3727,7 +3727,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "5cf375a4-d802-40aa-90f6-de7844c116de",
     "title": "Thermodynamics: The Science of Heat and Energy",
     "categoryName": "Science",
     "subcategoryName": "Physics",
@@ -3754,7 +3754,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "5b616f1b-fbda-4bed-8251-a9d5e859c22e",
     "title": "Introduction to General Chemistry",
     "categoryName": "Science",
     "subcategoryName": "Chemistry",
@@ -3781,7 +3781,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "5b616f1b-fbda-4bed-8251-a9d5e859c22e",
     "title": "Organic Chemistry Basics",
     "categoryName": "Science",
     "subcategoryName": "Chemistry",
@@ -3808,7 +3808,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "5b616f1b-fbda-4bed-8251-a9d5e859c22e",
     "title": "Physical Chemistry Fundamentals",
     "categoryName": "Science",
     "subcategoryName": "Chemistry",
@@ -3835,7 +3835,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "988f4fd7-17c3-41dd-8256-63f8c1a7f6c0",
     "title": "Analytical Chemistry Techniques",
     "categoryName": "Science",
     "subcategoryName": "Chemistry",
@@ -3862,7 +3862,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "988f4fd7-17c3-41dd-8256-63f8c1a7f6c0",
     "title": "Introduction to Electrical Engineering",
     "categoryName": "Science",
     "subcategoryName": "Engineering",
@@ -3889,7 +3889,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "988f4fd7-17c3-41dd-8256-63f8c1a7f6c0",
     "title": "Introduction to Mechanical Engineering",
     "categoryName": "Science",
     "subcategoryName": "Engineering",
@@ -3916,7 +3916,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "988f4fd7-17c3-41dd-8256-63f8c1a7f6c0",
     "title": "Civil Engineering Fundamentals",
     "categoryName": "Science",
     "subcategoryName": "Engineering",
@@ -3943,7 +3943,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "3e14584f-0f0e-4686-a386-845d3d98e2ac",
     "title": "Introduction to Software Engineering",
     "categoryName": "Science",
     "subcategoryName": "Engineering",
@@ -3970,7 +3970,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "3e14584f-0f0e-4686-a386-845d3d98e2ac",
     "title": "Basic Algebra Concepts",
     "categoryName": "Mathematics",
     "subcategoryName": "Algebra",
@@ -3997,7 +3997,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "3e14584f-0f0e-4686-a386-845d3d98e2ac",
     "title": "Intermediate Algebra",
     "categoryName": "Mathematics",
     "subcategoryName": "Algebra",
@@ -4024,7 +4024,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "3e14584f-0f0e-4686-a386-845d3d98e2ac",
     "title": "Algebraic Expressions and Equations",
     "categoryName": "Mathematics",
     "subcategoryName": "Algebra",
@@ -4051,7 +4051,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "dc3f5538-b6d1-4fed-9ea8-7203c5eeb94f",
     "title": "Advanced Algebra Techniques",
     "categoryName": "Mathematics",
     "subcategoryName": "Algebra",
@@ -4078,7 +4078,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "dc3f5538-b6d1-4fed-9ea8-7203c5eeb94f",
     "title": "Introduction to Mathematical Analysis",
     "categoryName": "Mathematics",
     "subcategoryName": "Analysis",
@@ -4105,7 +4105,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "dc3f5538-b6d1-4fed-9ea8-7203c5eeb94f",
     "title": "Advanced Real Analysis",
     "categoryName": "Mathematics",
     "subcategoryName": "Analysis",
@@ -4132,7 +4132,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "dc3f5538-b6d1-4fed-9ea8-7203c5eeb94f",
     "title": "Complex Analysis Fundamentals",
     "categoryName": "Mathematics",
     "subcategoryName": "Analysis",
@@ -4159,7 +4159,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "c12ffa1a-b4a7-4db0-987a-7784762f6d9e",
     "title": "Functional Analysis Overview",
     "categoryName": "Mathematics",
     "subcategoryName": "Analysis",
@@ -4186,7 +4186,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "c12ffa1a-b4a7-4db0-987a-7784762f6d9e",
     "title": "Introduction to Statistics",
     "categoryName": "Mathematics",
     "subcategoryName": "Statistics",
@@ -4213,7 +4213,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "c12ffa1a-b4a7-4db0-987a-7784762f6d9e",
     "title": "Intermediate Statistics",
     "categoryName": "Mathematics",
     "subcategoryName": "Statistics",
@@ -4240,7 +4240,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "95dc0338-7eaf-42a5-be88-5021e8413744",
     "title": "Applied Statistics for Data Science",
     "categoryName": "Mathematics",
     "subcategoryName": "Statistics",
@@ -4267,7 +4267,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "95dc0338-7eaf-42a5-be88-5021e8413744",
     "title": "Biostatistics Basics",
     "categoryName": "Mathematics",
     "subcategoryName": "Statistics",
@@ -4294,7 +4294,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "95dc0338-7eaf-42a5-be88-5021e8413744",
     "title": "Introduction to Probability",
     "categoryName": "Mathematics",
     "subcategoryName": "Probability",
@@ -4321,7 +4321,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "95dc0338-7eaf-42a5-be88-5021e8413744",
     "title": "Intermediate Probability",
     "categoryName": "Mathematics",
     "subcategoryName": "Probability",
@@ -4348,7 +4348,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "fb909251-568b-4441-80f5-f0ce0b34620f",
     "title": "Probability Theory and Applications",
     "categoryName": "Mathematics",
     "subcategoryName": "Probability",
@@ -4375,7 +4375,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "fb909251-568b-4441-80f5-f0ce0b34620f",
     "title": "Advanced Probability and Stochastic Processes",
     "categoryName": "Mathematics",
     "subcategoryName": "Probability",
@@ -4402,7 +4402,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "fb909251-568b-4441-80f5-f0ce0b34620f",
     "title": "Introduction to Discrete Mathematics",
     "categoryName": "Mathematics",
     "subcategoryName": "Discrete mathematics",
@@ -4429,7 +4429,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "6230e604-efe3-4fe3-b8b2-ebcee9cc088d",
     "title": "Graph Theory and Applications",
     "categoryName": "Mathematics",
     "subcategoryName": "Discrete mathematics",
@@ -4456,7 +4456,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "6230e604-efe3-4fe3-b8b2-ebcee9cc088d",
     "title": "Combinatorics and Its Applications",
     "categoryName": "Mathematics",
     "subcategoryName": "Discrete mathematics",
@@ -4483,7 +4483,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "6230e604-efe3-4fe3-b8b2-ebcee9cc088d",
     "title": "Algorithms and Complexity",
     "categoryName": "Mathematics",
     "subcategoryName": "Discrete mathematics",
@@ -4510,7 +4510,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "6230e604-efe3-4fe3-b8b2-ebcee9cc088d",
     "title": "Introduction to Philosophy",
     "categoryName": "Humanities",
     "subcategoryName": "Philosophy",
@@ -4537,7 +4537,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "f880fc98-86ca-4dcc-9273-5afc17b64a4b",
     "title": "Ethics: Theory and Practice",
     "categoryName": "Humanities",
     "subcategoryName": "Philosophy",
@@ -4564,7 +4564,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "f880fc98-86ca-4dcc-9273-5afc17b64a4b",
     "title": "Philosophy of Mind",
     "categoryName": "Humanities",
     "subcategoryName": "Philosophy",
@@ -4591,7 +4591,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "f880fc98-86ca-4dcc-9273-5afc17b64a4b",
     "title": "Political Philosophy: Ideas and Ideals",
     "categoryName": "Humanities",
     "subcategoryName": "Philosophy",
@@ -4618,7 +4618,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "f880fc98-86ca-4dcc-9273-5afc17b64a4b",
     "title": "Introduction to World History",
     "categoryName": "Humanities",
     "subcategoryName": "History",
@@ -4645,7 +4645,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "92fdce8e-1fc6-4b71-9f4d-cbceccc95329",
     "title": "The History of Ancient Civilizations",
     "categoryName": "Humanities",
     "subcategoryName": "History",
@@ -4672,7 +4672,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "92fdce8e-1fc6-4b71-9f4d-cbceccc95329",
     "title": "Modern European History",
     "categoryName": "Humanities",
     "subcategoryName": "History",
@@ -4699,7 +4699,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "92fdce8e-1fc6-4b71-9f4d-cbceccc95329",
     "title": "American History: A Comprehensive Overview",
     "categoryName": "Humanities",
     "subcategoryName": "History",
@@ -4726,7 +4726,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "92fdce8e-1fc6-4b71-9f4d-cbceccc95329",
     "title": "Introduction to World Literature",
     "categoryName": "Humanities",
     "subcategoryName": "Literature",
@@ -4753,7 +4753,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "81a45a7c-f791-4d0f-9ef4-024fb08cfa9f",
     "title": "Shakespeare and His Works",
     "categoryName": "Humanities",
     "subcategoryName": "Literature",
@@ -4780,7 +4780,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "81a45a7c-f791-4d0f-9ef4-024fb08cfa9f",
     "title": "Romanticism in Literature",
     "categoryName": "Humanities",
     "subcategoryName": "Literature",
@@ -4807,7 +4807,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "81a45a7c-f791-4d0f-9ef4-024fb08cfa9f",
     "title": "Modernist Literature: Breaking Boundaries",
     "categoryName": "Humanities",
     "subcategoryName": "Literature",
@@ -4834,7 +4834,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "81a45a7c-f791-4d0f-9ef4-024fb08cfa9f",
     "title": "Introduction to Global Cultures",
     "categoryName": "Humanities",
     "subcategoryName": "Culture",
@@ -4861,7 +4861,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "b816edee-9d46-4d40-b2ca-56bce62c8e32",
     "title": "Cultural Anthropology: Understanding Human Societies",
     "categoryName": "Humanities",
     "subcategoryName": "Culture",
@@ -4888,7 +4888,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "b816edee-9d46-4d40-b2ca-56bce62c8e32",
     "title": "Pop Culture and Society",
     "categoryName": "Humanities",
     "subcategoryName": "Culture",
@@ -4915,7 +4915,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "b816edee-9d46-4d40-b2ca-56bce62c8e32",
     "title": "Cultural Heritage and Preservation",
     "categoryName": "Humanities",
     "subcategoryName": "Culture",
@@ -4942,7 +4942,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "b816edee-9d46-4d40-b2ca-56bce62c8e32",
     "title": "Introduction to World Religions",
     "categoryName": "Humanities",
     "subcategoryName": "Religions",
@@ -4969,7 +4969,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "b07b5e19-cf8a-4402-b188-9c83d3a141dd",
     "title": "Comparative Religions: A Global Perspective",
     "categoryName": "Humanities",
     "subcategoryName": "Religions",
@@ -4996,7 +4996,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "b07b5e19-cf8a-4402-b188-9c83d3a141dd",
     "title": "Religion and Society: The Role of Faith",
     "categoryName": "Humanities",
     "subcategoryName": "Religions",
@@ -5023,7 +5023,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "22502561-d0a5-4f7d-a2f4-702f90d62c2a",
     "title": "The Sacred Texts of Major Religions",
     "categoryName": "Humanities",
     "subcategoryName": "Religions",
@@ -5050,7 +5050,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "22502561-d0a5-4f7d-a2f4-702f90d62c2a",
     "title": "Introduction to Legal Systems",
     "categoryName": "Humanities",
     "subcategoryName": "Law",
@@ -5077,7 +5077,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "22502561-d0a5-4f7d-a2f4-702f90d62c2a",
     "title": "International Law and Human Rights",
     "categoryName": "Humanities",
     "subcategoryName": "Law",
@@ -5104,7 +5104,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "853e412a-be0f-40d5-9f3b-fa53dd475773",
     "title": "Criminal Law: Principles and Practices",
     "categoryName": "Humanities",
     "subcategoryName": "Law",
@@ -5131,7 +5131,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "853e412a-be0f-40d5-9f3b-fa53dd475773",
     "title": "Constitutional Law: Understanding Governance",
     "categoryName": "Humanities",
     "subcategoryName": "Law",
@@ -5158,7 +5158,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "853e412a-be0f-40d5-9f3b-fa53dd475773",
     "title": "Introduction to Music Theory",
     "categoryName": "Art",
     "subcategoryName": "Music",
@@ -5185,7 +5185,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "cc9f707b-289c-4be1-9710-2129c09caa47",
     "title": "History of Western Classical Music",
     "categoryName": "Art",
     "subcategoryName": "Music",
@@ -5212,7 +5212,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "cc9f707b-289c-4be1-9710-2129c09caa47",
     "title": "Music Composition for Beginners",
     "categoryName": "Art",
     "subcategoryName": "Music",
@@ -5239,7 +5239,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "cc9f707b-289c-4be1-9710-2129c09caa47",
     "title": "The Evolution of Popular Music",
     "categoryName": "Art",
     "subcategoryName": "Music",
@@ -5266,7 +5266,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "cc9f707b-289c-4be1-9710-2129c09caa47",
     "title": "Introduction to Visual Arts",
     "categoryName": "Art",
     "subcategoryName": "Visual arts",
@@ -5293,7 +5293,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "5a2e9ff2-ef7b-43cf-86d8-af02edacdc22",
     "title": "History of Visual Arts",
     "categoryName": "Art",
     "subcategoryName": "Visual arts",
@@ -5320,7 +5320,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "403a0d85-5d1f-4020-a4dc-cb6a5f5e13d6",
     "title": "Fundamentals of Drawing and Sketching",
     "categoryName": "Art",
     "subcategoryName": "Visual arts",
@@ -5347,7 +5347,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "403a0d85-5d1f-4020-a4dc-cb6a5f5e13d6",
     "title": "Digital Art and Design: An Introduction",
     "categoryName": "Art",
     "subcategoryName": "Visual arts",
@@ -5374,7 +5374,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "403a0d85-5d1f-4020-a4dc-cb6a5f5e13d6",
     "title": "Introduction to Effective Teaching Methods",
     "categoryName": "Teaching",
     "subcategoryName": "Teaching methods",
@@ -5401,7 +5401,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
     "title": "Active Learning Strategies for the Classroom",
     "categoryName": "Teaching",
     "subcategoryName": "Teaching methods",
@@ -5428,7 +5428,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
     "title": "Differentiated Instruction: Meeting Diverse Learners' Needs",
     "categoryName": "Teaching",
     "subcategoryName": "Teaching methods",
@@ -5455,7 +5455,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "412caa05-d858-4b8a-826e-3c8ca72933a7",
     "title": "Assessing Student Learning: Tools and Techniques",
     "categoryName": "Teaching",
     "subcategoryName": "Teaching methods",
@@ -5482,7 +5482,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "fe626e8c-1a1e-4c9b-b10f-a3df722e9a8e",
     "title": "Introduction to Online Teaching",
     "categoryName": "Teaching",
     "subcategoryName": "Online teaching",
@@ -5509,7 +5509,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "fe626e8c-1a1e-4c9b-b10f-a3df722e9a8e",
     "title": "Designing Engaging Online Courses",
     "categoryName": "Teaching",
     "subcategoryName": "Online teaching",
@@ -5536,7 +5536,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "fe626e8c-1a1e-4c9b-b10f-a3df722e9a8e",
     "title": "Assessment and Feedback in Online Teaching",
     "categoryName": "Teaching",
     "subcategoryName": "Online teaching",
@@ -5563,7 +5563,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "816479cf-10e0-4cfb-90d9-3b88d5e5e88b",
     "title": "Building Community in Online Classrooms",
     "categoryName": "Teaching",
     "subcategoryName": "Online teaching",
@@ -5590,7 +5590,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "816479cf-10e0-4cfb-90d9-3b88d5e5e88b",
     "title": "Microsoft Office Essentials",
     "categoryName": "Applications",
     "subcategoryName": "Microsoft",
@@ -5617,7 +5617,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "816479cf-10e0-4cfb-90d9-3b88d5e5e88b",
     "title": "Advanced Excel Techniques",
     "categoryName": "Applications",
     "subcategoryName": "Microsoft",
@@ -5644,7 +5644,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "e6661e0f-9ecc-460c-995d-4adbc0cbb027",
     "title": "Creating Impactful Presentations with PowerPoint",
     "categoryName": "Applications",
     "subcategoryName": "Microsoft",
@@ -5671,7 +5671,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "e6661e0f-9ecc-460c-995d-4adbc0cbb027",
     "title": "Microsoft Teams for Effective Collaboration",
     "categoryName": "Applications",
     "subcategoryName": "Microsoft",
@@ -5698,7 +5698,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "e6661e0f-9ecc-460c-995d-4adbc0cbb027",
     "title": "Getting Started with macOS",
     "categoryName": "Applications",
     "subcategoryName": "Apple",
@@ -5725,7 +5725,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "af196658-b276-4ec4-9e44-c6b035a23323",
     "title": "Introduction to iWork: Pages, Numbers, and Keynote",
     "categoryName": "Applications",
     "subcategoryName": "Apple",
@@ -5752,7 +5752,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "af196658-b276-4ec4-9e44-c6b035a23323",
     "title": "Mastering Final Cut Pro for Video Editing",
     "categoryName": "Applications",
     "subcategoryName": "Apple",
@@ -5779,7 +5779,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "af196658-b276-4ec4-9e44-c6b035a23323",
     "title": "Creating Apps with Xcode and Swift",
     "categoryName": "Applications",
     "subcategoryName": "Apple",
@@ -5806,7 +5806,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "248ecf81-306a-4e90-9ded-72072d4c3b04",
     "title": "Introduction to AutoCAD",
     "categoryName": "Applications",
     "subcategoryName": "Autodesk",
@@ -5833,7 +5833,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "248ecf81-306a-4e90-9ded-72072d4c3b04",
     "title": "3D Modeling with Autodesk Maya",
     "categoryName": "Applications",
     "subcategoryName": "Autodesk",
@@ -5860,7 +5860,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "248ecf81-306a-4e90-9ded-72072d4c3b04",
     "title": "Architectural Design with Revit",
     "categoryName": "Applications",
     "subcategoryName": "Autodesk",
@@ -5887,7 +5887,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "306a00d4-a95a-467a-8120-840ec6fd56b2",
     "title": "Animation Fundamentals with 3ds Max",
     "categoryName": "Applications",
     "subcategoryName": "Autodesk",
@@ -5914,7 +5914,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "306a00d4-a95a-467a-8120-840ec6fd56b2",
     "title": "Photoshop Fundamentals",
     "categoryName": "Applications",
     "subcategoryName": "Adobe",
@@ -5941,7 +5941,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "306a00d4-a95a-467a-8120-840ec6fd56b2",
     "title": "Creating Stunning Videos with Adobe Premiere Pro",
     "categoryName": "Applications",
     "subcategoryName": "Adobe",
@@ -5968,7 +5968,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "49a8255f-cfff-47ca-a913-473a2ebfbead",
     "title": "Illustration Techniques with Adobe Illustrator",
     "categoryName": "Applications",
     "subcategoryName": "Adobe",
@@ -5995,7 +5995,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "49a8255f-cfff-47ca-a913-473a2ebfbead",
     "title": "Creating Interactive PDFs with Adobe InDesign",
     "categoryName": "Applications",
     "subcategoryName": "Adobe",
@@ -6022,7 +6022,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "49a8255f-cfff-47ca-a913-473a2ebfbead",
     "title": "Getting Started with Google Workspace",
     "categoryName": "Applications",
     "subcategoryName": "Google",
@@ -6049,7 +6049,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "4d0a347c-dac2-48ab-902b-d6c1d0bba662",
     "title": "Mastering Google Analytics",
     "categoryName": "Applications",
     "subcategoryName": "Google",
@@ -6076,7 +6076,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "4d0a347c-dac2-48ab-902b-d6c1d0bba662",
     "title": "Creating Effective Ads with Google Ads",
     "categoryName": "Applications",
     "subcategoryName": "Google",
@@ -6103,7 +6103,7 @@
     "status": "Published"
   },
   {
-    "authorId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "authorId": "4d0a347c-dac2-48ab-902b-d6c1d0bba662",
     "title": "Data Visualization with Google Data Studio",
     "categoryName": "Applications",
     "subcategoryName": "Google",

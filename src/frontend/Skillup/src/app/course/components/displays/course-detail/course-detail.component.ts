@@ -17,11 +17,12 @@ import { CourseRatingService } from '../../../services/course-rating.service';
 import { CourseDetailRating } from '../../../models/rating.model';
 import { CarouselModule } from 'primeng/carousel';
 import { BuyButtonComponent } from "../../buy-button/buy-button.component";
+import { AuthorDescriptionComponent } from "../author-description/author-description.component";
 
 @Component({
   selector: 'app-course-detail',
   standalone: true,
-  imports: [AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent, RatingModule, FormsModule, CarouselModule, BuyButtonComponent],
+  imports: [AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent, RatingModule, FormsModule, CarouselModule, BuyButtonComponent, AuthorDescriptionComponent],
   templateUrl: './course-detail.component.html',
   styleUrl: './course-detail.component.css'
 })
@@ -49,12 +50,9 @@ coursesForCategory = computed(() =>  {
 courseRating: CourseDetailRating | undefined = undefined
   rating = 0;
   numberOfRating = 1567;
-  numberOfParticipians = 1945;
   totalCourseTime = 68;
   lastUpdate = '05.07.2024';
   courseListItem = computed(() => this.courseService.courses().find(c => c.id === this.courseId()));
-
-
 
   items = this.financeService.items;
   courseItem = computed(() => {
@@ -87,10 +85,6 @@ courseRating: CourseDetailRating | undefined = undefined
 
     window.scrollTo({ top: 0, behavior: 'instant' });
     }
-  }
-
-  navigateToAuthor() {
-    this.router.navigate(['/user', this.author()?.id]);
   }
 
   //Changing styles while scrolling

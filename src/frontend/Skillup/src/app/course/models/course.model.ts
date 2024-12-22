@@ -59,6 +59,7 @@ export interface CourseDetail{
     authorId: string;
     authorName:  string;
     status: CourseStatus;
+    usersCount: number;
     level: CourseLevel;
     category: {
         id: string;

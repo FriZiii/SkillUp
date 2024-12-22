@@ -25,6 +25,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Sections
             var oldIndex = section.Index;
 
             section.Index = request.index;
+
             await _sectionRepository.Edit(section);
             if (oldIndex < request.index)
             {

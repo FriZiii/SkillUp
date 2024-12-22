@@ -1,0 +1,27 @@
+:host ::ng-deep .p-tabpanels {
+  padding: 0px;
+}
+
+.scrollable-div {
+  height: 83vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 5px;
+}
+
+.scrollable-div::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollable-div::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scrollable-div::-webkit-scrollbar-thumb {
+  background: var(--p-primary-500);
+}
+
+.scrollable-div::-webkit-scrollbar-thumb:hover {
+  background: var(--p-primary-600);
+}
+

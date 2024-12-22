@@ -204,7 +204,7 @@ export class CourseContentService {
     addAttachment(elementId: string, articleFile: File) {
       const formData = new FormData();
       formData.append('file', articleFile);
-      return this.httpClient.post<any>(environment.apiUrl + '/Courses/Elements/Attachments/' + elementId, formData);
+      return this.httpClient.post<any>(environment.apiUrl + '/Courses/Elements/' + elementId + '/Attachments', formData);
   }
 
   getAttachment(attachmentId: string) {
@@ -220,5 +220,9 @@ export class CourseContentService {
 
   getAttachmentsByElementId(elementId: string){
     return this.httpClient.get<Attachment[]>(environment.apiUrl + '/Courses/Elements/' + elementId + '/Attachments');
+  }
+
+  getAttachmentsByCoruseId(courseId: string){
+    return this.httpClient.get<Attachment[]>(environment.apiUrl + '/Courses/' + courseId + '/Elements/Attachments');
   }
 }

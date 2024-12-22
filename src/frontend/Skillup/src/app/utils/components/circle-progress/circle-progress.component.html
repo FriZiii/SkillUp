@@ -1,7 +1,14 @@
 <div class="wrapper">
   <div class="ring">
     <svg>
-      <circle cx="26.25" cy="26.25" r="26.25"></circle>
+      <circle
+        cx="26.25"
+        cy="26.25"
+        r="26.25"
+        [ngStyle]="{ 'stroke-dashoffset': 333 }"
+        [style.stroke]="'#0303030f'"
+      ></circle>
+
       <circle
         cx="26.25"
         cy="26.25"
@@ -11,7 +18,7 @@
       ></circle>
     </svg>
     <div class="percent">
-      <h2 [ngStyle]="{ color: isWhite() ? 'white' : 'black' }">
+      <h2 [ngStyle]="{ color: isWhite() ? 'white' : 'black' }" class="my-0">
         {{ percent() }}<span>%</span>
       </h2>
     </div>

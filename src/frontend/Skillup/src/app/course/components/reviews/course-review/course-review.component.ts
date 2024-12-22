@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { ReviewStatus } from '../../../models/review.model';
 import { Router } from '@angular/router';
 import { ElementItemDisplayComponent } from '../../displays/element-item-display/element-item-display.component';
+import { Attachment } from '../../../models/course-content.model';
 
 @Component({
   selector: 'app-course-review',
@@ -26,6 +27,7 @@ export class CourseReviewComponent implements OnInit {
   commentDialogVisible=false;
   currentElementId = '';
   ReviewStatus = ReviewStatus;
+  attachments = signal<Attachment[]>([])
   
   //Services
   courseService = inject(CoursesService);
@@ -42,6 +44,12 @@ export class CourseReviewComponent implements OnInit {
         this.course.set(res);
       }
     )
+
+    this.courseContentService.getAttachmentsByCoruseId(this.courseId()).subscribe((res) => {
+      this.attachments.set(res);
+      console.log(this.attachments());
+    })
+
     this.reviewService.getReviewsByCourse(this.courseId()).subscribe(
       (res) => {
         this.reviewService.allReviewsForCourse.set(res);
@@ -51,6 +59,10 @@ export class CourseReviewComponent implements OnInit {
       (res) => {
         this.reviewService.latestReviewForCourse.set(res);
       });
+  }
+
+  attachmentForElement(elementId: string){
+    return this.attachments().filter(a => a.elementId === elementId);
   }
 
   finalizeReview(status: ReviewStatus){
