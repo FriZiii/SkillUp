@@ -32,6 +32,7 @@ import { CourseReviewComponent } from './course/components/reviews/course-review
 import { CourseWalkThroughComponent } from './course/components/course-walk-through/course-walk-through.component';
 import { SolveQuizComponent } from './course/components/exercises/solve-quiz/solve-quiz.component';
 import { SolveQuestionComponent } from './course/components/exercises/solve-question/solve-question.component';
+import { EditUserPasswordComponent } from './user/components/edit-user/edit-user-password/edit-user-password.component';
 
 export const routes: Routes = [
   {
@@ -78,7 +79,7 @@ export const routes: Routes = [
   {
     path: 'element-edit/:elementId/add-assignment',
     component: AddAssignmentComponent,
-    canActivate: [CanEnterAddAssignment]
+    canActivate: [CanEnterAddAssignment],
   },
   {
     path: 'element-edit/:elementId/assignment',
@@ -96,6 +97,7 @@ export const routes: Routes = [
       { path: 'profile', component: EditUserProfileComponent },
       { path: 'profile-picture', component: EditUserPictureComponent },
       { path: 'privacy-settings', component: EditUserPrivacySettingsComponent },
+      { path: 'change-password', component: EditUserPasswordComponent },
     ],
   },
   {

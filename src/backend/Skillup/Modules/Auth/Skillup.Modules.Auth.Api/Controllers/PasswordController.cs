@@ -35,7 +35,7 @@ namespace Skillup.Modules.Auth.Api.Controllers
         [SwaggerOperation("Request reset password")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> ResetRequest(string email)
+        public async Task<ActionResult> ResetRequest([FromQuery] string email)
         {
             await _mediator.Send(new ResetPasswordRequest(email));
             return NoContent();
