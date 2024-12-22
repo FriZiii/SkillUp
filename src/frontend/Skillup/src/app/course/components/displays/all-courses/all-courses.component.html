@@ -6,8 +6,14 @@
     />
   </div>
   <div style="width: 75%">
-    @for(course of filteredCourses(); track course.id){
+    @if(courses().length == 0){
+    <div class="w-full flex items-center justify-center">
+      <p-progress-spinner ariaLabel="loading" class="mt-24" />
+    </div>
+    } @for(course of filteredCourses(); track course.id){ @defer(on viewport){
     <app-course-item [course]="course" />
-    }
+    } @placeholder {
+    <p></p>
+    } }
   </div>
 </div>

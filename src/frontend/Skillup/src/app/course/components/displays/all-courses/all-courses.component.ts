@@ -3,11 +3,12 @@ import { FilterForCoursesComponent } from "../../filter-for-courses/filter-for-c
 import { CoursesService } from '../../../services/course.service';
 import { CourseListItem } from '../../../models/course.model';
 import { CourseItemComponent } from "../course-item/course-item.component";
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-all-courses',
   standalone: true,
-  imports: [FilterForCoursesComponent, CourseItemComponent],
+  imports: [FilterForCoursesComponent, CourseItemComponent, ProgressSpinnerModule],
   templateUrl: './all-courses.component.html',
   styleUrl: './all-courses.component.css'
 })
