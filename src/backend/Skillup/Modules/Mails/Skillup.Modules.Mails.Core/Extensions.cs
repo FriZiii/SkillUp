@@ -21,8 +21,10 @@ internal static class Extensions
         return services
             .AddPostgres<MailDbContext>()
             .AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
-            .AddScoped<ISmtpService, SmtpService>()
             .AddConsumer<SignedUpConsumer>()
+            .AddConsumer<PasswordChangedConsumer>()
+            .AddConsumer<PasswordResetRequestedConsumer>()
+            .AddScoped<ISmtpService, SmtpService>()
             .AddSeeder<MailSeeder>()
             .AddScoped<IUserRepository, UserRepository>();
     }
