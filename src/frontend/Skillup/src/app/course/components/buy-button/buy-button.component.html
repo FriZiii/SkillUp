@@ -1,0 +1,16 @@
+@if(isAuthor()){
+<p-button icon="pi pi-cog" class="ml-2" (onClick)="navigate('edit')" />
+} @else if(isInCart()){
+<p-button
+  icon="pi pi-shopping-cart"
+  class="ml-2"
+  (onClick)="navigate('cart')"
+/>
+} @else if(isPurchased() ){ @if(detail()){ }@else{
+<p-button
+  icon="pi pi-external-link"
+  class="ml-2"
+  (onClick)="navigate('detail')"
+/>}}@else if(isInCart() === false){
+<p-button icon="pi pi-cart-arrow-down" class="ml-2" (onClick)="addToCart()" />
+}

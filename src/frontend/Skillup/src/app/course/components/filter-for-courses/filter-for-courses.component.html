@@ -123,9 +123,9 @@
     }
   </div>
 
+  @if(defaultCategory() === ''){
   <hr class="my-4" />
   <h2 class="my-0 mb-2 font-semibold text-base">Category</h2>
-  @if(defaultCategory() === ''){
   <p-select
     [options]="categoryNames()"
     optionLabel="name"
@@ -135,10 +135,10 @@
     [(ngModel)]="selectedCategory"
     (ngModelChange)="applyFilters()"
   />
-  }
+  } @if(defaultSubcategory() === 'all' || defaultSubcategory() === ''){
+
   <hr class="my-4" />
   <h2 class="my-0 mb-2 font-semibold text-base">Subcategory</h2>
-  @if(defaultSubcategory() === 'all' || defaultSubcategory() === ''){
   <p-select
     [options]="subcategoryNames()"
     optionLabel="name"
