@@ -11,7 +11,7 @@
       <p-progress-spinner ariaLabel="loading" class="mt-24" />
     </div>
     } @for(course of filteredCourses(); track course.id){ @defer(on viewport){
-    <app-course-item [course]="course" />
+    <app-all-courses-course-item [course]="course" />
     } @placeholder {
     <p></p>
     } }
