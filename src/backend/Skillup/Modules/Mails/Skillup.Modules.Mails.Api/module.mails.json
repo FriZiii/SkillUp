@@ -4,5 +4,10 @@
       "Name": "Mails",
       "Enabled": true
     }
+  },
+  "Smtp": {
+    "SenderEmail": "",
+    "Password": "",
+    "Username": ""
   }
 }
