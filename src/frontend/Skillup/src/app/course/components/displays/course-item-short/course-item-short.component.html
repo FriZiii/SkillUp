@@ -1,47 +1,33 @@
-<div class="flex p-5 my-5 su-border gap-4">
+<div class="flex my-5 su-border gap-4">
   <img
     [src]="course().thumbnailUrl"
-    class="h-16 cursor-pointer"
+    class="h-20 cursor-pointer m-3"
     [routerLink]="'/course-detail/' + course().id"
-    [routerLink]="
-      bought()
-        ? '/course/' + course().id + '/walk-through'
-        : '/course-detail/' + course().id
-    "
+    [routerLink]="'/course-detail/' + course().id"
   />
   <div
-    class="prose max-w-none !w-full cursor-pointer"
-    [routerLink]="
-      bought()
-        ? '/course/' + course().id + '/walk-through'
-        : '/course-detail/' + course().id
-    "
+    class="prose max-w-none !w-full cursor-pointer my-3"
+    [routerLink]="'/course-detail/' + course().id"
   >
-    <p class="mb-1 text-lg">{{ course().title | truncate }}</p>
+    <p class="mb-1 text-xl font-semibold">{{ course().title }}</p>
+    @if(moderator()){
     <p class="my-1 text-lg">{{ course().authorName }}</p>
+    } @else {
+    <p-rating [(ngModel)]="courseListItem().averageRating" [readonly]="true" />
+    }
   </div>
   @if(editable()){
-  <p-button
-    icon="pi pi-cog"
-    severity="secondary"
+  <div
+    class="su-border-l items-center flex px-4 cursor-pointer"
     [routerLink]="'/course-edit/' + course().id + '/essentials'"
-    class="-mt-5 -mr-5 cursor-pointer"
-  ></p-button>
+  >
+    <i class="pi pi-file-edit" style="font-size: 1.5rem"></i>
+  </div>
   } @if(moderator()){
   <p-button
     icon="pi pi-arrow-right"
     class="cursor-pointer"
     (onClick)="review(course().id)"
   ></p-button>
-  } @if(rating()){
-  <p-button
-    icon="pi pi-star"
-    class="cursor-pointer"
-    (onClick)="addRating(course().id)"
-  ></p-button>
-  } @if(percentage()){
-  <div class="prose">
-    <h3 class="text-nowrap">{{ percentage()?.percentage }} %</h3>
-  </div>
   }
 </div>

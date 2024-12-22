@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, input, OnInit, signal } from '@angular/core';
 import { CoursesService } from '../../services/course.service';
 import { Course } from '../../models/course.model';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
@@ -26,6 +26,7 @@ export class CoursesCreatedByYouComponent implements OnInit {
   reviewCourses = signal<Course[]>([]);
   loading = true;
   discountCodes = signal<DiscountCode[]>([]);
+  numOfPublishedCourses = computed(() => this.publishedCourses().length);
 
   //Services
   courseService = inject(CoursesService);
