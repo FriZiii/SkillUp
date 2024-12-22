@@ -20,7 +20,7 @@
     @for(answer of currentQuestion().answers; track answer.id){
     <div
       (click)="onAnswer(answer)"
-      class="cursor-pointer w-52 h-24 shadow flex justify-center items-center"
+      class="cursor-pointer w-52 h-24 shadow flex justify-center items-center hoover-effect"
     >
       <p>{{ answer.answer }}</p>
     </div>

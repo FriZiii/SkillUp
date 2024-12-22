@@ -8,3 +8,7 @@
 .h-exercise-panel {
   min-height: 70vh;
 }
+
+.hoover-effect:hover {
+  background-color: var(--p-surface-100);
+}
