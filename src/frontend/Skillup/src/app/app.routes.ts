@@ -33,6 +33,7 @@ import { CourseWalkThroughComponent } from './course/components/course-walk-thro
 import { SolveQuizComponent } from './course/components/exercises/solve-quiz/solve-quiz.component';
 import { SolveQuestionComponent } from './course/components/exercises/solve-question/solve-question.component';
 import { OrderPageComponent } from './finance/components/order-page/order-page.component';
+import { AllCoursesComponent } from './course/components/displays/all-courses/all-courses.component';
 
 export const routes: Routes = [
   {
@@ -56,6 +57,10 @@ export const routes: Routes = [
   {
     path: 'course-carousels',
     component: CoursesCarouselsComponent,
+  },
+  {
+    path: 'courses',
+    component: AllCoursesComponent,
   },
   {
     path: 'courses-list/:category/:subcategory',

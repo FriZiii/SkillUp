@@ -1,18 +1,130 @@
-<div>
+<div class="mr-4">
+  <hr class="my-4" />
+  <h2 class="my-0 mb-2 font-semibold text-base">Title</h2>
   <input
     type="text"
     pInputText
     [(ngModel)]="title"
     (ngModelChange)="applyFilters()"
-    placeholder="Search..."
+    placeholder="Enter course title"
+    class="w-full"
   />
+  <hr class="my-4" />
+  <h2 class="my-0 mb-2 font-semibold text-base">Author</h2>
   <input
     type="text"
     pInputText
     [(ngModel)]="authorName"
     (ngModelChange)="applyFilters()"
-    placeholder="Author Name"
+    placeholder="Enter author name"
+    class="w-full"
   />
+
+  <hr class="my-4" />
+  <h2 class="my-0 mb-2 font-semibold text-base">Price</h2>
+  <div class="flex gap-2 mb-4 items-center justify-center">
+    <label class="font-light text-sm">Min</label>
+    <div class="w-20">
+      <p-inputnumber
+        [(ngModel)]="selectedPrice[0]"
+        fluid="true"
+        (ngModelChange)="applyFilters()"
+      />
+    </div>
+    <label class="font-light text-sm">-</label>
+    <label class="font-light text-sm">Max</label>
+    <div class="w-20">
+      <p-inputnumber
+        [(ngModel)]="selectedPrice[1]"
+        fluid="true"
+        (ngModelChange)="applyFilters()"
+      />
+    </div>
+  </div>
+  <div class="mx-2">
+    <p-slider
+      [(ngModel)]="selectedPrice"
+      styleClass="w-full"
+      [step]="10"
+      [range]="true"
+      (ngModelChange)="applyFilters()"
+      [max]="1000"
+    />
+  </div>
+
+  <hr class="my-4" />
+  <h2 class="my-0 mb-2 font-semibold text-base">Levels</h2>
+  <div class="flex flex-col">
+    @for(level of levels; track level.name){ @if($index === 0){} @else{
+    @if(level.name === 'ForEveryone'){
+    <div class="flex">
+      <p-checkbox
+        [(ngModel)]="selectedLevel[$index]"
+        [binary]="true"
+        [inputId]="levels[$index].name"
+        (ngModelChange)="applyFilters()"
+      />
+      <label [for]="levels[$index].name" class="ml-2"> For Everyone</label>
+    </div>
+    } @else{
+    <div class="flex">
+      <p-checkbox
+        [(ngModel)]="selectedLevel[$index]"
+        [binary]="true"
+        [inputId]="levels[$index].name"
+        (ngModelChange)="applyFilters()"
+      />
+      <label [for]="levels[$index].name" class="ml-2">{{ level.name }}</label>
+    </div>
+    } } }
+  </div>
+
+  <hr class="my-4" />
+  <h2 class="my-0 mb-2 font-semibold text-base">Ratings</h2>
+
+  <div>
+    @for(option of starsOptions; track option.value){
+    <div class="flex items-center">
+      @if(option.name === 'All'){
+      <p-radiobutton
+        [value]="option.value"
+        [(ngModel)]="selectedStars"
+        [inputId]="option.name"
+        (ngModelChange)="applyFilters()"
+      />
+      <label [for]="option.name" class="ml-2">{{ option.name }}</label>
+      }@else{
+      <p-radiobutton
+        [value]="option.value"
+        [(ngModel)]="selectedStars"
+        [inputId]="option.name"
+        (ngModelChange)="applyFilters()"
+      />
+      <p-rating [(ngModel)]="option.value" class="ml-2" [readonly]="true" />
+      <label [for]="option.name" class="ml-2">{{ option.name }}</label
+      >}
+    </div>
+    }
+  </div>
+
+  <hr class="my-4" />
+  <h2 class="my-0 mb-2 font-semibold text-base">Number of ratings</h2>
+  <div>
+    @for(option of ratingsCountOptions; track option.value){
+    <div class="flex items-center">
+      <p-radiobutton
+        [value]="option.value"
+        [(ngModel)]="selectedRatingsCount"
+        [inputId]="option.name"
+        (ngModelChange)="applyFilters()"
+      />
+      <label [for]="option.name" class="ml-2">{{ option.name }}</label>
+    </div>
+    }
+  </div>
+
+  <hr class="my-4" />
+  <h2 class="my-0 mb-2 font-semibold text-base">Category</h2>
   @if(defaultCategory() === ''){
   <p-select
     [options]="categoryNames()"
@@ -23,7 +135,10 @@
     [(ngModel)]="selectedCategory"
     (ngModelChange)="applyFilters()"
   />
-  } @if(defaultSubcategory() === 'all'){
+  }
+  <hr class="my-4" />
+  <h2 class="my-0 mb-2 font-semibold text-base">Subcategory</h2>
+  @if(defaultSubcategory() === 'all' || defaultSubcategory() === ''){
   <p-select
     [options]="subcategoryNames()"
     optionLabel="name"
@@ -34,68 +149,19 @@
     (ngModelChange)="applyFilters()"
   />
   }
-  <p-select
-    [options]="levels"
-    optionLabel="name"
-    optionValue="value"
-    placeholder="Select a level"
-    class="w-full"
-    [(ngModel)]="selectedLevel"
-    (ngModelChange)="applyFilters()"
-  />
-  <p-select
-    [options]="starsOptions"
-    optionLabel="name"
-    optionValue="value"
-    placeholder="Select course rating"
-    class="w-full"
-    [(ngModel)]="selectedStars"
-    (ngModelChange)="applyFilters()"
-  />
-  <p-select
-    [options]="ratingsCountOptions"
-    optionLabel="name"
-    optionValue="value"
-    placeholder="Select min number of ratings"
-    class="w-full"
-    [(ngModel)]="selectedRatingsCount"
-    (ngModelChange)="applyFilters()"
-  />
-  <p-select
-    [options]="userCountOptions"
-    optionLabel="name"
-    optionValue="value"
-    placeholder="Select min number of participians"
-    class="w-full"
-    [(ngModel)]="selectedUsersCount"
-    (ngModelChange)="applyFilters()"
-  />
-  <div class="mt-10">
-    <p-floatlabel class="my-5">
-      <p-inputnumber
-        id="minPrice"
-        [(ngModel)]="selectedPrice[0]"
-        class="w-full mb-4"
+  <hr class="my-4" />
+  <h2 class="my-0 mb-2 font-semibold text-base">Participians</h2>
+  <div>
+    @for(option of userCountOptions; track option.value){
+    <div class="flex items-center">
+      <p-radiobutton
+        [value]="option.value"
+        [(ngModel)]="selectedUsersCount"
+        [inputId]="option.name"
         (ngModelChange)="applyFilters()"
       />
-      <label for="minPrice">Min price</label>
-    </p-floatlabel>
-    <p-floatlabel class="my-5">
-      <p-inputnumber
-        id="maxPrice"
-        [(ngModel)]="selectedPrice[1]"
-        class="w-full mb-4"
-        (ngModelChange)="applyFilters()"
-      />
-      <label for="maxPrice">Max price</label>
-    </p-floatlabel>
+      <label [for]="option.name" class="ml-2">{{ option.name }}</label>
+    </div>
+    }
   </div>
-  <p-slider
-    [(ngModel)]="selectedPrice"
-    styleClass="w-56"
-    [step]="10"
-    [range]="true"
-    (ngModelChange)="applyFilters()"
-    max="1000"
-  />
 </div>

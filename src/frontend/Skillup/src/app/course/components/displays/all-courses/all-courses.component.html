@@ -1,0 +1,13 @@
+<div class="flex su-section-mt">
+  <div style="width: 25%">
+    <app-filter-for-courses
+      [courses]="courses()"
+      (filteredCourses)="onFilteredCourses($event)"
+    />
+  </div>
+  <div style="width: 75%">
+    @for(course of filteredCourses(); track course.id){
+    <app-course-item [course]="course" />
+    }
+  </div>
+</div>
