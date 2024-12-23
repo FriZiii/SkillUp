@@ -64,9 +64,19 @@ export class DiscountCodesComponent implements OnInit {
           discountValue: res.discountValue, 
           appliesToEntireCart: res.appliesToEntireCart,
         isActive: res.isActive,
-      isPublic: res.isPublic} : code));
+      isPublic: res.isPublic, 
+      startAt: res.startAt,
+      expireAt: res.expireAt
+    } : code));
     }
   );
+}
+
+toggleItem(res: DiscountCode){
+  this.discountCodes.update((prevCodes) => 
+    prevCodes.map(code => code.id === res.id ? {
+      ...code, 
+      discountedItems: res.discountedItems} : code));
 }
 
 deleteCode(codeId: string){

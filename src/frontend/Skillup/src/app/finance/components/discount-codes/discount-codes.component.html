@@ -18,6 +18,7 @@
         <th>Expiration date</th>
         <th>Public</th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -45,6 +46,11 @@
         <td>
           <div class="cursor-pointer" (click)="onEditDiscountCode(code)">
             <i class="pi pi-file-edit" style="font-size: 1rem"></i>
+          </div>
+        </td>
+        <td>
+          <div class="cursor-pointer" (click)="deleteCode(code.id)">
+            <i class="pi pi-trash" style="font-size: 1rem; color: red"></i>
           </div>
         </td>
       </tr>
@@ -82,6 +88,7 @@
       [discountCodeInput]="currentDiscountCode"
       (onClose)="editDiscountCodeDialogVisible = false"
       (onEdit)="editCode($event)"
+      (onToggleItem)="toggleItem($event)"
     ></app-edit-discount-code>
   </p-dialog>
 </div>

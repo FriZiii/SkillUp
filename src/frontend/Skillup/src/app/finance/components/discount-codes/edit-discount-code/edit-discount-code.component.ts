@@ -1,4 +1,4 @@
-import { Component, input, OnChanges, output, signal, SimpleChanges } from '@angular/core';
+import { Component, inject, input, OnChanges, output, signal, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DiscountCode, DiscountCodeType } from '../../../models/discountCodes.model';
 import { CommonModule } from '@angular/common';
@@ -9,6 +9,10 @@ import { SelectModule } from 'primeng/select';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
+import { UserService } from '../../../../user/services/user.service';
+import { CoursesService } from '../../../../course/services/course.service';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { DiscountCodeService } from '../../../services/discountCode.service';
 
 function expirationAfterStart(control: AbstractControl) {
   const startDate = control.get('startDate')?.value;
@@ -21,7 +25,7 @@ function expirationAfterStart(control: AbstractControl) {
 @Component({
   selector: 'app-edit-discount-code',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, CommonModule, ButtonModule, CheckboxModule, DatePickerModule, SelectModule, InputGroupModule, InputGroupAddonModule, InputTextModule],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule, ButtonModule, CheckboxModule, DatePickerModule, SelectModule, InputGroupModule, InputGroupAddonModule, InputTextModule, MultiSelectModule],
   templateUrl: './edit-discount-code.component.html',
   styleUrl: './edit-discount-code.component.css'
 })
@@ -29,6 +33,7 @@ export class EditDiscountCodeComponent implements OnChanges {
   discountCodeInput = input.required<DiscountCode | null>();
   onEdit = output<DiscountCode>();
   onClose = output();
+  onToggleItem = output<DiscountCode>();
   
   today: Date = new Date();
 
@@ -54,6 +59,8 @@ export class EditDiscountCodeComponent implements OnChanges {
   
 
   expires = true;
+  selectedCourses: selectCourse[] = [];
+  prevSelectedCourses: selectCourse[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['discountCodeInput'] && this.discountCodeInput() !== null){
@@ -66,6 +73,19 @@ export class EditDiscountCodeComponent implements OnChanges {
         isActive: discountCode.isActive,
         isPublic: discountCode.isPublic,
       });
+
+      if(this.discountCodeInput()?.discountedItems){
+        this.selectedCourses = this.discountCodeInput()?.discountedItems
+        ? this.coursesForSelect.filter(course =>
+            this.discountCodeInput()!.discountedItems?.some(item => item?.id === course.id)
+          )
+        : [];
+        this.prevSelectedCourses = this.discountCodeInput()?.discountedItems
+        ? this.coursesForSelect.filter(course =>
+            this.discountCodeInput()!.discountedItems?.some(item => item?.id === course.id)
+          )
+        : [];
+      }
 
     }
   }
@@ -118,4 +138,40 @@ export class EditDiscountCodeComponent implements OnChanges {
     })
     }
   
+
+    userService = inject(UserService);
+    courseService = inject(CoursesService);
+    discountCodeService = inject(DiscountCodeService);
+    coursesByAuthor = this.courseService.getCoursesByAuthor(this.userService.currentUser()!.id);
+    coursesForSelect: selectCourse[] = this.coursesByAuthor.map(course => ({
+      id: course.id,
+      title: course.title
+    }));
+   
+
+    toggleItem(){
+      const newSelectedIds = this.selectedCourses.map(course => course.id);
+      const prevSelectedIds = this.prevSelectedCourses.map(course => course.id);
+
+const allChanges = [
+  ...this.selectedCourses.filter(course => !prevSelectedIds.includes(course.id)), // added items
+  ...this.prevSelectedCourses.filter(course => !newSelectedIds.includes(course.id)) // removed items
+];
+    
+      for (var item of allChanges) {
+        this.discountCodeService.toggleDiscountCodeItem(this.discountCodeInput()!.id, item.id).subscribe(
+          (res) => {
+            this.onToggleItem.emit(res);
+          }
+        )
+      }
+    
+      this.prevSelectedCourses = [...this.selectedCourses];
+    }
+    
+}
+
+export interface selectCourse{
+  id: string;
+  title: string;
 }
