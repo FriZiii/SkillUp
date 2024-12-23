@@ -33,7 +33,3 @@
     font-size: 16px;
     text-align: center; 
   }
-  
-  tbody tr:nth-child(even) {
-    background-color: #fafafa;
-  }
