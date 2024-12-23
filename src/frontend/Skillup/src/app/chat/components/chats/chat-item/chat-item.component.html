@@ -1,0 +1,9 @@
+<div (click)="onSelect()">
+  <div
+    class="border-2"
+    [ngClass]="isSelected() ? 'border-blue-500' : 'border-gray-500'"
+  >
+    <p>CourseID:{{ chat().courseId }}</p>
+    <p>{{ chat().lastMessage?.content }}</p>
+  </div>
+</div>

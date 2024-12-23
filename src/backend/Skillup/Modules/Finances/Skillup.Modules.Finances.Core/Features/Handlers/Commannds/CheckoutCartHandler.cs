@@ -59,7 +59,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
             switch (item.Type)
             {
                 case ItemType.Course:
-                    await _publishEndpoint.Publish(new CoursePurchased(item.Id, userId), cancellationToken);
+                    await _publishEndpoint.Publish(new CoursePurchased(item.Id, userId, item.AuthorId), cancellationToken);
                     break;
                 default:
                     break;

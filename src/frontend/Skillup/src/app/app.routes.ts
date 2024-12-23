@@ -34,6 +34,7 @@ import { SolveQuizComponent } from './course/components/exercises/solve-quiz/sol
 import { SolveQuestionComponent } from './course/components/exercises/solve-question/solve-question.component';
 import { SolveFillTheGapComponent } from './course/components/exercises/solve-fill-the-gap/solve-fill-the-gap.component';
 import { OrderPageComponent } from './finance/components/order-page/order-page.component';
+import { ChatsComponent } from './chat/components/chats/chats.component';
 
 export const routes: Routes = [
   {
@@ -80,7 +81,7 @@ export const routes: Routes = [
   {
     path: 'element-edit/:elementId/add-assignment',
     component: AddAssignmentComponent,
-    canActivate: [CanEnterAddAssignment]
+    canActivate: [CanEnterAddAssignment],
   },
   {
     path: 'element-edit/:elementId/assignment',
@@ -154,6 +155,10 @@ export const routes: Routes = [
   {
     path: 'access-denied',
     component: AccessDeniedComponent,
+  },
+  {
+    path: 'chats',
+    component: ChatsComponent,
   },
   {
     path: '**',

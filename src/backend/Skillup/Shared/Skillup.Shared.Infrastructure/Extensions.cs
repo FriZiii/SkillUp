@@ -52,6 +52,7 @@ namespace Skillup.Shared.Infrastructure
 
             services.AddModuleInfo(modules);
 
+            services.AddSignalR();
             services.AddPostgres();
             services.AddRabbitMQ();
             services.AddAwsS3();
@@ -105,10 +106,12 @@ namespace Skillup.Shared.Infrastructure
             {
                 ForwardedHeaders = ForwardedHeaders.All
             });
-            SkillupCorsExtensions.UseCors(app);
             app.UseHttpsRedirection();
-            app.UseErrorHandling();
             app.UseRouting();
+
+            SkillupCorsExtensions.UseCors(app);
+
+            app.UseErrorHandling();
             app.UseAuth();
             app.UseAuthorization();
             app.UseSwaggerWithUi();

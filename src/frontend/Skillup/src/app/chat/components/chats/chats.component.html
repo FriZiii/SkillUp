@@ -1,0 +1,16 @@
+<div class="flex flex-row">
+  <div class="flex flex-col gap-4">
+    <h2>Chats</h2>
+    @for (chat of chats(); track $index) {
+    <app-chat-item
+      [isSelected]="isChatSelected(chat)"
+      (onSelected)="selectChat($event)"
+      [chat]="chat"
+    ></app-chat-item>
+    }
+  </div>
+
+  <div class="w-full">
+    <app-chat-window [chat]="selectedChat()"></app-chat-window>
+  </div>
+</div>
