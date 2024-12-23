@@ -71,19 +71,3 @@
     </p-tabpanels>
   </p-tabs>
 </div>
-
-<div class="prose max-w-none !w-full">
-  @if(discountCodes().length > 0){
-  <h1 class="text-5xl text-center">Your discount codes</h1>
-  }
-</div>
-@for(code of discountCodes(); track code.id){
-<app-discount-code-item
-  [discountCodeInput]="code"
-  (onEditCode)="editCode($event)"
-  (onDeleteCode)="deleteCode($event)"
-></app-discount-code-item>
-}
-<app-add-new-discount-code
-  (onAddCode)="addDiscountCode($event)"
-></app-add-new-discount-code>

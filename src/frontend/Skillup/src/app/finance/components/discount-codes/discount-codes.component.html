@@ -1,0 +1,87 @@
+<div class="prose max-w-none su-section-mt">
+  <h1 class="my-1 text-5xl">Discount Codes</h1>
+  <p class="my-1">{{ discountCodes().length }} discount codes</p>
+  <hr class="my-1" />
+  <p-button
+    (onClick)="addNewDiscountCodeDialogVisible = true"
+    label="Create discount code"
+    styleClass="!rounded-none !my-4"
+  />
+  <table>
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Type</th>
+        <th>Start date</th>
+        <th>Expiration date</th>
+        <th>Public</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(code of discountCodes(); track code.id){
+      <tr>
+        <td>{{ code.code }}</td>
+        <td>{{ code.discountValue + " " + getType(code.type) }}</td>
+        @if(code.isActive){
+        <td>Active</td>
+        } @else {
+        <td>Inactive</td>
+        } @if(code.appliesToEntireCart){
+        <td>Applies on entire cart</td>
+        }@else {
+        <td>Applies on {{ code.discountedItems?.length }} items</td>
+        }
+        <td>{{ code.startAt | date : "dd-MM-yyyy" }}</td>
+        @if(code.expireAt === null){
+
+        <td>Never</td>
+        }@else{
+        <td>{{ code.expireAt | date : "dd-MM-yyyy" }}</td>
+        }
+        <td>{{ code.isPublic ? "Yes" : "No" }}</td>
+        <td>
+          <div class="cursor-pointer" (click)="onEditDiscountCode(code)">
+            <i class="pi pi-file-edit" style="font-size: 1rem"></i>
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+  <!--  @for(code of discountCodes(); track code.id){
+  <app-discount-code-item
+    [discountCodeInput]="code"
+    (onEditCode)="editCode($event)"
+    (onDeleteCode)="deleteCode($event)"
+  ></app-discount-code-item>
+  } -->
+
+  <p-dialog
+    [modal]="true"
+    [(visible)]="addNewDiscountCodeDialogVisible"
+    [draggable]="false"
+    [style]="{ width: '600px' }"
+  >
+    <app-add-new-discount-code
+      (onAddCode)="addDiscountCode($event)"
+      (onClose)="addNewDiscountCodeDialogVisible = false"
+    ></app-add-new-discount-code>
+  </p-dialog>
+
+  <p-dialog
+    [modal]="true"
+    [(visible)]="editDiscountCodeDialogVisible"
+    [draggable]="false"
+    [style]="{ width: '600px' }"
+  >
+    <app-edit-discount-code
+      [discountCodeInput]="currentDiscountCode"
+      (onClose)="editDiscountCodeDialogVisible = false"
+      (onEdit)="editCode($event)"
+    ></app-edit-discount-code>
+  </p-dialog>
+</div>

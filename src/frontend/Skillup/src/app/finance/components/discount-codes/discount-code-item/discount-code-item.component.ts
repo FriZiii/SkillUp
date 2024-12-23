@@ -1,18 +1,18 @@
 import { Component, computed, inject, input, OnInit, output, signal } from '@angular/core';
-import { DiscountCode, DiscountCodeType } from '../../models/discountCodes.model';
+import { DiscountCode, DiscountCodeType } from '../../../models/discountCodes.model';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-import { CoursesService } from '../../../course/services/course.service';
-import { DiscountCodeService } from '../../services/discountCode.service';
-import { ConfirmationDialogHandlerService } from '../../../core/services/confirmation-handler.service';
+import { CoursesService } from '../../../../course/services/course.service';
+import { DiscountCodeService } from '../../../services/discountCode.service';
+import { ConfirmationDialogHandlerService } from '../../../../core/services/confirmation-handler.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ItemType } from '../../models/finance.model';
-import { UserService } from '../../../user/services/user.service';
-import { ToastHandlerService } from '../../../core/services/toast-handler.service';
+import { ItemType } from '../../../models/finance.model';
+import { UserService } from '../../../../user/services/user.service';
+import { ToastHandlerService } from '../../../../core/services/toast-handler.service';
 
 @Component({
   selector: 'app-discount-code-item',
@@ -80,7 +80,7 @@ export class DiscountCodeItemComponent implements OnInit{
     this.onDeleteCode.emit(this.discountCode()!.id);
   }
 
-  editCode(){
+/*   editCode(){
     this.editing = !this.editing;
     this.onEditCode.emit({
       id: this.discountCode()!.id,
@@ -92,7 +92,7 @@ export class DiscountCodeItemComponent implements OnInit{
     isPublic: this.isPublic,
     discountedItems: null
     })
-  }
+  } */
 
   removeItem(event: Event, id: string){
     this.confirmDialogService.confirmDelete(event, () =>{
