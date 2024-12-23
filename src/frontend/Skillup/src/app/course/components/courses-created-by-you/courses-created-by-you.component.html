@@ -16,9 +16,16 @@
   } }
   <p-tabs value="0">
     <p-tablist>
-      <p-tab value="0">{{ numOfPublishedCourses() }} Published Courses</p-tab>
-      <p-tab value="1">Drafts</p-tab>
-      <p-tab value="2">During Review</p-tab>
+      @if(publishedCourses().length !== 0){
+      <p-tab value="0">{{ publishedCourses().length }} Published Courses</p-tab
+      >} @if(draftCourses().length !== 0){
+      <p-tab value="1"> {{ draftCourses().length }} Drafts</p-tab>}
+      @if(reviewCourses().length !== 0){
+      <p-tab value="2">{{ reviewCourses().length }} During Review</p-tab>}
+      @if(requiredChangesCourses().length !== 0){
+      <p-tab value="3"
+        >{{ requiredChangesCourses().length }} Required Changes</p-tab
+      >}
     </p-tablist>
     <p-tabpanels>
       <p-tabpanel value="0">
@@ -44,6 +51,16 @@
       <p-tabpanel value="2">
         <div class="cols-responsive-2 mt-8">
           @for( course of reviewCourses(); track course.id){
+          <app-course-item-short
+            [course]="course"
+            [editable]="true"
+          ></app-course-item-short>
+          }
+        </div>
+      </p-tabpanel>
+      <p-tabpanel value="3">
+        <div class="cols-responsive-2 mt-8">
+          @for( course of requiredChangesCourses(); track course.id){
           <app-course-item-short
             [course]="course"
             [editable]="true"

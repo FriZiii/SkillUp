@@ -24,9 +24,9 @@ export class CoursesCreatedByYouComponent implements OnInit {
   publishedCourses = signal<Course[]>([]);
   draftCourses = signal<Course[]>([]);
   reviewCourses = signal<Course[]>([]);
+  requiredChangesCourses = signal<Course[]>([]);
   loading = true;
   discountCodes = signal<DiscountCode[]>([]);
-  numOfPublishedCourses = computed(() => this.publishedCourses().length);
 
   //Services
   courseService = inject(CoursesService);
@@ -38,7 +38,8 @@ export class CoursesCreatedByYouComponent implements OnInit {
       (res) => {
         this.courses.set(res);
         this.publishedCourses.set(this.courses().filter(c => c.status === CourseStatus.Published))
-        this.reviewCourses.set(this.courses().filter(c => c.status === CourseStatus.SubmitedForReview || c.status === CourseStatus.PendingReview || c.status === CourseStatus.ChangesRequired))
+        this.reviewCourses.set(this.courses().filter(c => c.status === CourseStatus.SubmitedForReview || c.status === CourseStatus.PendingReview))
+        this.requiredChangesCourses.set(this.courses().filter(c => c.status === CourseStatus.ChangesRequired))
         this.draftCourses.set(this.courses().filter(c => c.status === CourseStatus.Draft))
         this.loading = false;
       }
