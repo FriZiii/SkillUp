@@ -6,6 +6,7 @@ namespace Skillup.Modules.Finances.Core.DTO
     {
         public Guid Id { get; set; }
         public DateTime Created { get; set; }
+        public string Title { get; set; }
         public Currency TotalPrice { get; set; }
         public IEnumerable<OrderItemDto> Items { get; set; }
     }

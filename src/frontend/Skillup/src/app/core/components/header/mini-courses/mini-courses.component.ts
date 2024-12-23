@@ -32,7 +32,6 @@ export class MiniCoursesComponent implements OnInit {
    ngOnInit(): void {
     this.userProgressService.getPercentage().subscribe((res) => {
       this.coursePercentages.set(res);
-      console.log(res)
     })
   }
 }

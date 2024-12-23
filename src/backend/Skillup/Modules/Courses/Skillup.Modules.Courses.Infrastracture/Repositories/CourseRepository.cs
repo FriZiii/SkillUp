@@ -43,8 +43,6 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
             => await _courses
                 .Include(c => c.Category)
                 .Include(c => c.Subcategory)
-                .Include(c => c.Sections)
-                    .ThenInclude(s => s.Elements)
                 .FirstOrDefaultAsync(c => c.Id == id);
 
         public async Task EditCourseStatus(Guid courseId, CourseStatus status)

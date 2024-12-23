@@ -28,7 +28,8 @@ namespace Skillup.Modules.Auth.Core
                 .AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
                 .AddSingleton<IPasswordHasher<User>, PasswordHasher<User>>()
                 .AddSeeder<AccountSeeder>()
-                .AddScoped<IUserRepository, UserRepository>();
+                .AddScoped<IUserRepository, UserRepository>()
+                .AddScoped<IPasswordResetRepository, PasswordResetRepository>();
         }
     }
 }

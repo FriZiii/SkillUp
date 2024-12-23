@@ -41,7 +41,12 @@ export class AddNewElementComponent {
 
   submitElement(event: Event){
     this.confirmationDialogService.confirmSave(event, () => {
-    this.courseContentService.addElement(this.sectionId(), this.newElementType()!, this.newElementTitle(), this.newElementDescription(), this.newElementFree()).subscribe();
+    this.courseContentService.addElement(this.sectionId(), this.newElementType()!, this.newElementTitle(), this.newElementDescription(), this.newElementFree()).subscribe((res) => {
+      this.newElementTitle.set('');
+      this.newElementDescription.set('');
+      this.newElementType.set(null);
+      this.newElementFree.set(false);
+    });
     })
     this.changeVisibility();
   }

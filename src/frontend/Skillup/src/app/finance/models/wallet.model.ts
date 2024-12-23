@@ -12,6 +12,7 @@ export interface WalletWithBalanceHistory{
 }
 
 export interface BalanceHistory{
+    id: string;
     amount: number;
     date: Date;
     title: string;

@@ -35,6 +35,9 @@ namespace Skillup.Modules.Finances.Core.DTO
         [JsonIgnore]
         public Guid OwnerId { get; set; }
 
+        public DateTime StartAt { get; set; }
+        public DateTime? ExpireAt { get; set; }
+
         public string Code { get; set; }
         public decimal DiscountValue { get; set; }
         public bool AppliesToEntireCart { get; set; } = true;

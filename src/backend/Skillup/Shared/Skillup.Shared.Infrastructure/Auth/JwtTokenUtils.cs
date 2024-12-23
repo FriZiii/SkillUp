@@ -11,7 +11,7 @@ namespace Skillup.Shared.Infrastructure.Auth
         private static readonly Dictionary<string, IEnumerable<string>> EmptyClaims = [];
         private static readonly JwtSecurityTokenHandler _tokenHandler = new() { MapInboundClaims = false };
 
-        public static TokenValidationParameters GetTokenValidationParameters(AuthOptions options)
+        public static TokenValidationParameters GetTokenValidationParameters(JwtOptions options)
         {
             return new TokenValidationParameters
             {
@@ -27,7 +27,7 @@ namespace Skillup.Shared.Infrastructure.Auth
             };
         }
 
-        public static ClaimsPrincipal ValidateRefreshToken(AuthOptions options, string refreshToken)
+        public static ClaimsPrincipal ValidateRefreshToken(JwtOptions options, string refreshToken)
         {
             var tokenValidationParameters = new TokenValidationParameters
             {
@@ -45,7 +45,7 @@ namespace Skillup.Shared.Infrastructure.Auth
             return _tokenHandler.ValidateToken(refreshToken, tokenValidationParameters, out _);
         }
 
-        public static JsonWebToken CreateToken(AuthOptions options, Guid userId, DateTime now, int expireSeconds, UserRole? role = null, IDictionary<string, IEnumerable<string>>? claims = null)
+        public static JsonWebToken CreateToken(JwtOptions options, Guid userId, DateTime now, int expireSeconds, UserRole? role = null, IDictionary<string, IEnumerable<string>>? claims = null)
         {
             var expires = now.AddSeconds(expireSeconds);
             var jwtClaims = BuildClaims(options, userId, now, role, claims);
@@ -73,7 +73,7 @@ namespace Skillup.Shared.Infrastructure.Auth
             return userIdClaim;
         }
 
-        private static List<Claim> BuildClaims(AuthOptions options, Guid userId, DateTime now, UserRole? userRole = null, IDictionary<string, IEnumerable<string>>? claims = null)
+        private static List<Claim> BuildClaims(JwtOptions options, Guid userId, DateTime now, UserRole? userRole = null, IDictionary<string, IEnumerable<string>>? claims = null)
         {
             var jwtClaims = new List<Claim>
             {

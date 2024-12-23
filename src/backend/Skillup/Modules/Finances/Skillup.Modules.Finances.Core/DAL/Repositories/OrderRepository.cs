@@ -8,6 +8,7 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
     {
         private readonly FinancesDbContext _context = context;
         private readonly DbSet<Order> _orders = context.Orders;
+        private readonly DbSet<OrderItem> _orderItems = context.OrderItems;
 
         public async Task Add(Order order)
         {
@@ -16,9 +17,16 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
         }
 
         public async Task<Order?> GetByBalanceHistoryId(Guid balanceHistoryId)
-            => await _orders.FirstOrDefaultAsync(x => x.BalanceHistoryId == balanceHistoryId);
+            => await _orders.Include(x => x.Items).Include(x => x.BalanceHistory).FirstOrDefaultAsync(x => x.BalanceHistoryId == balanceHistoryId);
 
         public async Task<IEnumerable<Order>> GetByOrderer(Guid ordererId)
             => await _orders.Where(x => x.OrdererId == ordererId).ToListAsync();
+
+        public async Task<IEnumerable<OrderItem>> GetOrderItemsForAuthor(Guid authorId)
+        {
+            return await _orderItems.Where(x => x.Item.AuthorId == authorId)
+                .Include(x => x.Order)
+                .ToListAsync();
+        }
     }
 }

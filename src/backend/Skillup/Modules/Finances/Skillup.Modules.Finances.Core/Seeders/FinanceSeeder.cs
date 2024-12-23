@@ -40,6 +40,9 @@ namespace Skillup.Modules.Finances.Core.Seeders
                 await _wallets.AddRangeAsync(CreateWallets());
                 await _context.SaveChangesAsync();
             }
+
+            var orderSeeder = new OrdersSeeder(_context);
+            await orderSeeder.Seed();
         }
 
         private IEnumerable<Item> CreateItems()

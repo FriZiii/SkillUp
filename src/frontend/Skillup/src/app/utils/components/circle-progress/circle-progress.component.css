@@ -42,7 +42,7 @@
 }
 
 .ring circle:nth-child(2) {
-  stroke: #4aa764;
+  stroke: var(--p-primary-500);
   stroke-dasharray: 165;
 }
 

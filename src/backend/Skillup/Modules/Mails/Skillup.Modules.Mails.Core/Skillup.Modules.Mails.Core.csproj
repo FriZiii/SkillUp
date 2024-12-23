@@ -9,6 +9,8 @@
     <ItemGroup>
       <None Remove="Seeders\Data\mailUser-seeder-data.json" />
       <None Remove="Templates\AccountActivation\account_activation.html" />
+      <None Remove="Templates\PasswordChange\password_changed.html" />
+      <None Remove="Templates\PasswordResetRequested\password_reset_requested.html" />
     </ItemGroup>
 
     <ItemGroup>
@@ -16,6 +18,12 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
       <Content Include="Templates\AccountActivation\account_activation.html">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Templates\PasswordChange\password_changed.html">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Templates\PasswordResetRequested\password_reset_requested.html">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>

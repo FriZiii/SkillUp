@@ -19,6 +19,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
             {
                 Id = course.Id,
                 AuthorId = course.AuthorId,
+                Level = course.Details.Level,
                 Title = course.Title,
                 Status = course.Status,
                 Category = new CourseCategoryDto()

@@ -1,6 +1,6 @@
 ﻿namespace Skillup.Shared.Infrastructure.Auth
 {
-    public class AuthOptions
+    public class JwtOptions
     {
         public string IssuerSigningKey { get; set; }
         public string Issuer { get; set; }

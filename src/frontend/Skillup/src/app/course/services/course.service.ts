@@ -62,6 +62,8 @@ export class CoursesService {
               authorId: response.authorId,
               authorName:  response.authorName,
               status: response.status,
+              usersCount: 0,
+              level: CourseLevel.None,
               category: {
                 id: response.category.id,
                 name: response.category.name,

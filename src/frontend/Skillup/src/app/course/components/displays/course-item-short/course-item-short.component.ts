@@ -2,7 +2,7 @@ import { Component, computed, input, output } from '@angular/core';
 
 import { ButtonModule } from 'primeng/button';
 import { RouterLink } from '@angular/router';
-import { Course } from '../../../models/course.model';
+import { Course, CourseListItem } from '../../../models/course.model';
 import { TruncatePipe } from '../../../../utils/pipes/truncate.pipe';
 import { CoursePercentage } from '../../../models/user-progress.model';
 

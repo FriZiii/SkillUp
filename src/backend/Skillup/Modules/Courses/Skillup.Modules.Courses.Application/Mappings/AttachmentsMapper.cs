@@ -9,7 +9,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
     {
         public AttachmentDto AttachmentToDto(Attachment attachment)
         {
-            return new AttachmentDto() { Id = attachment.Id, Name = attachment.Name, Type = attachment.Type };
+            return new AttachmentDto() { Id = attachment.Id, Name = attachment.Name, Type = attachment.Type, ElementId = attachment.ElementId };
         }
     }
 }

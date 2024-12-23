@@ -19,6 +19,7 @@ export class CartItemComponent {
   removeItem = output<string>();
   deletable = input<boolean>(false);
   styleForSummary = input<boolean>(false);
+  styleForOrder = input<boolean>(false);
 
   onRemoveItem(event: Event, id: string){
     this.removeItem.emit(id);

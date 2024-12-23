@@ -12,5 +12,19 @@
         "mailinator"
       ]
     }
+  },
+  "Jwt": {
+    "IssuerSigningKey": "fa5DRdkVwZeQnrDAcBrHCYwAWd6y2crPUbSZq4zUWBRFwDfKDXQWH38vZRfv",
+    "Issuer": "skillup",
+    "ValidIssuer": "skillup",
+    "ValidateIssuer": true,
+    "ValidateIssuerSigningKey": true,
+    "ValidAudience": "skillup",
+    "ValidateAudience": true,
+    "ValidateLifetime": true,
+    "RequireExpirationTime": true,
+    "TokenExpireSeconds": 3600,
+    "RefreshTokenExpireSeconds": 604800,
+    "RequireHttpsMetadata": false
   }
 }

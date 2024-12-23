@@ -104,7 +104,11 @@
   <hr class="mt-8 mb-1" />
   <h2 class="my-1 text-3xl font-semibold">Balance history</h2>
   @for(item of wallet()?.balanceHistory; track $index){
-  <div class="flex justify-between">
+  <div
+    class="flex justify-between"
+    (click)="itemClick(item)"
+    [ngClass]="item.type === 'Substract' ? 'cursor-pointer' : ''"
+  >
     <div class="flex gap-4 my-2">
       <p class="my-0 text-slate-400">
         {{ item.date | date : "yyyy-MM-dd HH:mm" }}

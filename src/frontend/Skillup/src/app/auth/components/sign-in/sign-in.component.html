@@ -21,9 +21,21 @@
             <label for="email">Email</label>
           </p-floatLabel>
 
-          <p-button class="self-end btn-sm" [link]="true" routerLink="/"
-            >Forgot your password?</p-button
+          <p
+            class="self-end text-xs text-primary-500 cursor-pointer m-0 mb-1 mt-2"
+            (click)="showForgotPassword()"
           >
+            Forgot your password?
+          </p>
+
+          <p-dialog
+            [draggable]="false"
+            header="Reset password"
+            [modal]="true"
+            [(visible)]="forgotPasswordVisible"
+          >
+            <app-reset-password></app-reset-password>
+          </p-dialog>
 
           <p-floatlabel class="w-full">
             <p-password

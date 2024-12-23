@@ -2,21 +2,31 @@
   <img
     [src]="cartItem().thumbnailUrl"
     class="h-24 cursor-pointer my-4"
-    [ngClass]="{ 'h-24': !styleForSummary(), 'h-20': styleForSummary() }"
+    [ngClass]="{
+      'h-24': !styleForSummary(),
+      'h-20': styleForSummary(),
+      'h-12' : styleForOrder(),
+    }"
     [routerLink]="'/course-detail/' + cartItem().id"
   />
   <div
     class="prose max-w-none !w-full cursor-pointer ml-4"
     [routerLink]="'/course-detail/' + cartItem().id"
   >
-    <h1 class="mb-1 text-2xl font-semibold">
+    <h1
+      class="mb-1"
+      [ngClass]="{
+        'text-2xl font-semibold': !styleForOrder(),
+        'text-base font-medium': styleForOrder()
+      }"
+    >
       {{ cartItem().title | truncate }}
     </h1>
     @if(styleForSummary()){
     <p class="my-0 text-2xl text-nowrap font-medium">
       {{ cartItem().price | number : "1.2-2" }} $
     </p>
-    } @else {
+    } @else if (styleForOrder()) {} @else {
     <p class="my-1 text-base">Author: {{ cartItem().authorName }}</p>
 
     <div class="flex gap-4">
@@ -28,7 +38,13 @@
   @if(!styleForSummary()){ @if(cartItem().price ===
   cartItem().orginalItem.price){
   <div class="flex items-center gap-4 ml-4">
-    <p class="my-0 text-2xl text-nowrap font-medium">
+    <p
+      class="my-0 text-nowrap"
+      [ngClass]="{
+        'text-2xl font-medium': !styleForOrder(),
+        'text-base font-light': styleForOrder()
+      }"
+    >
       {{ cartItem().price | number : "1.2-2" }} $
     </p>
     @if(deletable()){

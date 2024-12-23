@@ -10,7 +10,8 @@ namespace Skillup.Modules.Courses.Application.Operations
         public Guid AuthorId { get; set; }
         public string AuthorName { get; set; }
         public CourseStatus Status { get; set; }
-        //author
+        public int UsersCount { get; set; }
+        public CourseLevel Level { get; set; }
         public CourseCategoryDto Category { get; set; }
         public Uri? ThumbnailUrl { get; set; }
     }
