@@ -1,4 +1,13 @@
 <div class="w-full su-section-mt">
+  <p-dialog
+    header="Change your password"
+    [modal]="true"
+    [draggable]="false"
+    [(visible)]="resetPasswordVisible"
+  >
+    <app-reset-password [token]="resetPasswordToken()"></app-reset-password>
+  </p-dialog>
+
   <div class="grid gap-6 grid-cols-12 py-12">
     <div
       class="col-start-3 col-span-8 lg:col-start-3 lg:col-span-4 prose lg:prose-xl"

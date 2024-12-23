@@ -13,6 +13,8 @@ import { AuthService } from '../../services/auth.service';
 import { RouterModule } from '@angular/router';
 import { CheckboxModule } from 'primeng/checkbox';
 import { finalize } from 'rxjs';
+import { Dialog, DialogModule } from 'primeng/dialog';
+import { ResetPasswordComponent } from '../reset-password/reset-password.component';
 
 @Component({
   selector: 'app-sign-in',
@@ -23,8 +25,10 @@ import { finalize } from 'rxjs';
     PasswordModule,
     ButtonModule,
     ReactiveFormsModule,
+    DialogModule,
     RouterModule,
-    CheckboxModule 
+    CheckboxModule,
+    ResetPasswordComponent,
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css',
@@ -32,28 +36,50 @@ import { finalize } from 'rxjs';
 export class SignInComponent {
   authService = inject(AuthService);
   loading = false;
+  forgotPasswordVisible = false;
 
   signInForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern('^(?=.*[A-Z]).*$')]),
-    remember: new FormControl(false)
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+      Validators.pattern('^(?=.*[A-Z]).*$'),
+    ]),
+    remember: new FormControl(false),
   });
 
   submitSignIn() {
     const formValue = this.signInForm.value;
     this.loading = true;
-    this.authService.signIn(formValue.email!, formValue.password!)
-    .pipe(finalize (() => this.loading = false))
-    .subscribe();
+    this.authService
+      .signIn(formValue.email!, formValue.password!)
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe();
   }
 
-  get emailIsInvalid(){
-    return this.signInForm.controls.email.dirty && this.signInForm.controls.email.invalid
+  showForgotPassword() {
+    this.forgotPasswordVisible = true;
   }
-  get passwordIsInvalid(){
-    return this.signInForm.controls.password.dirty && this.signInForm.controls.password.invalid
+
+  get emailIsInvalid() {
+    return (
+      this.signInForm.controls.email.dirty &&
+      this.signInForm.controls.email.invalid
+    );
   }
-  get formIsInvalid(){
-    return this.signInForm.pristine || this.signInForm.controls.email.dirty && this.signInForm.controls.email.invalid || this.signInForm.controls.password.dirty && this.signInForm.controls.password.invalid
+  get passwordIsInvalid() {
+    return (
+      this.signInForm.controls.password.dirty &&
+      this.signInForm.controls.password.invalid
+    );
+  }
+  get formIsInvalid() {
+    return (
+      this.signInForm.pristine ||
+      (this.signInForm.controls.email.dirty &&
+        this.signInForm.controls.email.invalid) ||
+      (this.signInForm.controls.password.dirty &&
+        this.signInForm.controls.password.invalid)
+    );
   }
 }

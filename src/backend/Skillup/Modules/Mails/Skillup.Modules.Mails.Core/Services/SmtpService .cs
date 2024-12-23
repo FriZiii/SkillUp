@@ -39,22 +39,29 @@ namespace Skillup.Modules.Mails.Core.Services
 
         public async Task<SendResponse> SendEmail(Participant sender, Participant recviver, ITemplate template)
         {
-            var templatesFolderPath = Path.Combine(AppContext.BaseDirectory, "Templates");
-
-            var fileProvider = new PhysicalFileProvider(templatesFolderPath);
-            var options = new LiquidRendererOptions
+            try
             {
-                FileProvider = fileProvider
-            };
+                var templatesFolderPath = Path.Combine(AppContext.BaseDirectory, "Templates");
 
-            Email.DefaultRenderer = new LiquidRenderer(Options.Create(options));
+                var fileProvider = new PhysicalFileProvider(templatesFolderPath);
+                var options = new LiquidRendererOptions
+                {
+                    FileProvider = fileProvider
+                };
 
-            return await Email
-                .From(sender.Email, sender.Name)
-                .To(recviver.Email, recviver.Name)
-                .Subject(template.Subject)
-                .UsingTemplateFromFile(Path.Combine(templatesFolderPath, template.Path), template.Model)
-                .SendAsync();
+                Email.DefaultRenderer = new LiquidRenderer(Options.Create(options));
+
+                return await Email
+                    .From(sender.Email, sender.Name)
+                    .To(recviver.Email, recviver.Name)
+                    .Subject(template.Subject)
+                    .UsingTemplateFromFile(Path.Combine(templatesFolderPath, template.Path), template.Model)
+                    .SendAsync();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }
 }
