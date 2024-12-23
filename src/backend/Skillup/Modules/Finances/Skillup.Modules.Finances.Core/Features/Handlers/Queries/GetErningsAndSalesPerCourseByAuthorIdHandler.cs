@@ -5,11 +5,11 @@ using Skillup.Modules.Finances.Core.Repositories;
 
 namespace Skillup.Modules.Finances.Core.Features.Handlers.Queries
 {
-    internal class GetErningsAndSalesPerCourseByAuthorIdHandler(IOrderRepository orderRepository) : IRequestHandler<GetErningsAndSalesPerCourseByAuthorIdRequest, IEnumerable<ItemEarningsDto>>
+    internal class GetEarningsAndSalesPerCourseByAuthorIdHandler(IOrderRepository orderRepository) : IRequestHandler<GetEarningsAndSalesPerCourseByAuthorIdRequest, IEnumerable<ItemEarningsDto>>
     {
         private readonly IOrderRepository orderRepository = orderRepository;
 
-        public async Task<IEnumerable<ItemEarningsDto>> Handle(GetErningsAndSalesPerCourseByAuthorIdRequest request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<ItemEarningsDto>> Handle(GetEarningsAndSalesPerCourseByAuthorIdRequest request, CancellationToken cancellationToken)
         {
             var ordersItemsPerAuthor = await orderRepository.GetOrderItemsForAuthor(request.AuthorId);
             var itemEarnings = ordersItemsPerAuthor

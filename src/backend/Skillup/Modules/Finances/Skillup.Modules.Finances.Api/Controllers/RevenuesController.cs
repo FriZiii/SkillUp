@@ -16,16 +16,16 @@ namespace Skillup.Modules.Finances.Api.Controllers
         [SwaggerOperation("Get ernings and sales per course")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetErningsAndSalesPerCourse(Guid authorId)
+        public async Task<IActionResult> GetEarningsAndSalesPerCourse(Guid authorId)
         {
-            return Ok(await _mediator.Send(new GetErningsAndSalesPerCourseByAuthorIdRequest(authorId)));
+            return Ok(await _mediator.Send(new GetEarningsAndSalesPerCourseByAuthorIdRequest(authorId)));
         }
 
         [HttpGet("Author/{authorId}/monthly")]
         [SwaggerOperation("Get monthly earnings per courses")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetErningsAndSalesPerCourse(Guid authorId, [FromQuery] int year)
+        public async Task<IActionResult> GetEarningsAndSalesPerCourse(Guid authorId, [FromQuery] int year)
         {
             return Ok(await _mediator.Send(new GetMonthlyEarningsPerCoursesByAuthorIdRequest(authorId, year)));
         }
