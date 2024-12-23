@@ -1,4 +1,12 @@
-<div class="su-border-y p-2 ml-14 my-2 bg-white element-item">
+<div
+  class="p-2 my-2 bg-white element-item"
+  [ngClass]="{
+    'su-border-b ml-2 ': walkThrough(),
+    'su-border-y ml-14': !walkThrough(),
+    'current-element-boder': current() === element().id
+  }"
+  (click)="elementClicked()"
+>
   <div class="flex w-full items-start">
     <i
       [class]="definedIcon(element().type)"
@@ -26,29 +34,45 @@
         } }
       </div>
 
+      @if(!walkThrough()){
       <p class="mt-1">{{ element().description }}</p>
+      }
     </div>
 
     <!-- Button Container -->
     <div class="flex justify-end w-full gap-2 px-2 self-center">
       <div class="flex gap-2 px-2 button-container self-center">
+        @if(!walkThrough()){
         <p-menu #menu [model]="items" [popup]="true" />
         <p-button
           (click)="menu.toggle($event)"
           icon="pi pi-ellipsis-h"
           severity="secondary"
         />
-        @if(moderator()){
+        } @if(moderator()){
         <p-button (click)="addComment()" icon="pi pi-comment" />
         }
       </div>
-      @if(!moderator()){
-      <p-checkbox
-        [(ngModel)]="checked"
-        [value]="check()"
-        [binary]="true"
-        (onChange)="changeElementComplete()"
-      />
+      @if(walkThrough()){
+      <div class="flex flex-col gap-1 items-end">
+        <p-checkbox
+          [(ngModel)]="checked"
+          [value]="check()"
+          [binary]="true"
+          (onChange)="changeElementComplete()"
+        />
+        @if(attachments().length !== 0){
+        <p-menu #menu [model]="attachmentList" [popup]="true" />
+        <p-button
+          (click)="menu.toggle($event)"
+          icon="pi pi-angle-down"
+          label="Attachments"
+          iconPos="right"
+          severity="secondary"
+          class="attachment-btn"
+        />
+        }
+      </div>
       }
     </div>
     <div></div>
@@ -94,12 +118,10 @@
   [draggable]="false"
   class="cursor-default"
 >
-  @if(attachments.length != 0){
   <app-element-attachments-dialog
     [element]="this.element()"
     [visible]="attachmentsDialogVisible"
   ></app-element-attachments-dialog>
-  } @else { }
 
   <div class="flex gap-2 justify-end">
     <p-button
@@ -109,7 +131,6 @@
     />
   </div>
 </p-dialog>
-
 @if(moderator()){
 <!-- Comment Dialog -->
 <p-dialog

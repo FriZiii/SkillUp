@@ -25,6 +25,7 @@ export enum AssetType{
 
 export interface Attachment{
     id: string;
+    elementId: string;
     name: string;
     type: string;
 }

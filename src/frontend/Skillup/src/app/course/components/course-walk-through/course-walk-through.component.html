@@ -1,22 +1,152 @@
-<p-accordion [value]="0">
-  @for (section of sections(); track section.id) {
-  <p-accordion-panel [value]="section.id">
-    <p-accordion-header>
-      <app-section-item
-        [section]="section"
-        [editable]="false"
-        class="w-full"
-      ></app-section-item>
-    </p-accordion-header>
-    <p-accordion-content>
-      @for(element of section.elements; track element.id){
-      <app-element-item-display
-        [element]="element"
-        [courseId]="courseId()"
-        [moderator]="false"
-      ></app-element-item-display>
+<div class="su-section-mt prose max-w-none w-full mb-4">
+  <div class="flex">
+    <div [style]="'width: 70%'" class="mr-8 scrollable-div">
+      @if(currentElement){ @if(currentElement.hasAsset){ @if(currentElement.type
+      === AssetType.Video){
+      <app-videojs *ngIf="hasLink" [videoLink]="fileLink()"></app-videojs>
+
+      } @if(currentElement.type === AssetType.Article){
+      <div class="w-full flex justify-center">
+        <pdf-viewer
+          [src]="fileLink()"
+          [render-text]="true"
+          [original-size]="false"
+          style="width: 50vw; height: 83vh"
+        ></pdf-viewer>
+      </div>
+      } @if(currentElement.type === AssetType.Exercise){ @if(currentAssignment
+      && currentAssignment.exerciseType===ExerciseType.Quiz){
+      <app-solve-quiz
+        [quizes]="currentQuiz"
+        [instruction]="currentAssignment.instruction"
+      ></app-solve-quiz>
+      } @if(currentAssignment &&
+      currentAssignment.exerciseType===ExerciseType.QuestionAnswer){
+      <app-solve-question
+        [questions]="currentQuestion"
+        [instruction]="currentAssignment.instruction"
+      ></app-solve-question>
+      } @if(currentAssignment &&
+      currentAssignment.exerciseType===ExerciseType.FillTheGap){
+      <app-solve-fill-the-gap
+        [sentences]="currentFillTheGap"
+        [instruction]="currentAssignment.instruction"
+      ></app-solve-fill-the-gap>
+      } } }
+      <div class="mt-8">
+        <h1>{{ currentElement.title }}</h1>
+        <p>{{ currentElement.description }}</p>
+      </div>
+
+      <p-tabs value="0">
+        <p-tablist>
+          <p-tab value="0">Comments</p-tab>
+          <p-tab value="1">Reviews</p-tab>
+          <p-tab value="2">Author</p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <app-comments
+              [comments]="comments()"
+              [elementId]="currentElement.id"
+            ></app-comments>
+          </p-tabpanel>
+          <p-tabpanel value="1">
+            <div class="mt-8">
+              <h2 class="my-2 font-semibold text-2xl">
+                Feedback from course participants
+              </h2>
+              <div class="flex gap-2 items-center">
+                <h1 class="my-0 font-medium text-6xl">
+                  {{ course()?.averageRating | number : "1.1-1" }}
+                </h1>
+
+                <i
+                  class="pi pi-star-fill text-primary-500"
+                  style="font-size: 3.5rem"
+                ></i>
+              </div>
+              <h4 class="mt-8 font-medium text-xl">Reviews</h4>
+              <app-course-ratings-list [courseId]="courseId()" />
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="2">
+            <div class="mt-8">
+              <app-author-description [authorId]="course()!.authorId" />
+            </div>
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
       }
-    </p-accordion-content>
-  </p-accordion-panel>
-  }
-</p-accordion>
+    </div>
+    <div [style]="'width: 30%'" class="scrollable-div">
+      <div class="mr-4">
+        <div class="flex items-center justify-between">
+          <div class="mt-2">
+            <h1 class="my-0 text-2xl font-semibold">{{ course()?.title }}</h1>
+            <p class="my-0 text-base font-light">{{ course()?.authorName }}</p>
+          </div>
+          <app-circle-progress
+            [percent]="percentage?.percentage ?? 0"
+          ></app-circle-progress>
+        </div>
+        <div class="flex items-start justify-between">
+          <div>
+            <h3 class="my-0 text-base font-normal">
+              {{ course()?.category?.subcategory?.name }}
+            </h3>
+            <p class="my-0 text-xs font-light">
+              {{ course()?.category?.name }}
+            </p>
+          </div>
+          <div>
+            <h3 class="my-0 text-base font-normal">
+              {{ course()?.usersCount }}
+            </h3>
+            <p class="my-0 text-xs font-light">Course participiants</p>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="my-0 text-base font-normal">
+                {{ course()?.averageRating }}
+              </h3>
+              <i
+                class="pi pi-star-fill text-yellow-300"
+                style="font-size: 1rem"
+              ></i>
+            </div>
+            <p class="my-0 text-xs font-light">
+              Ratings: {{ course()?.ratingsCount }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <p-accordion [value]="0">
+        @for (section of sections(); track section.id) {
+        <p-accordion-panel [value]="section.id" class="!border-none">
+          <p-accordion-header class="!bg-stone-100 !mt-3 !rounded-none">
+            <app-section-item
+              [section]="section"
+              [editable]="false"
+              class="w-full"
+            ></app-section-item>
+          </p-accordion-header>
+          <p-accordion-content>
+            @for(element of section.elements; track element.id){
+            <app-element-item-display
+              [element]="element"
+              [courseId]="courseId()"
+              [moderator]="false"
+              [walkThrough]="true"
+              (onClick)="onElementClicked($event)"
+              [attachments]="attachmentForElement(element.id)"
+              [current]="currentElement?.id ?? ''"
+            ></app-element-item-display>
+            }
+          </p-accordion-content>
+        </p-accordion-panel>
+        }
+      </p-accordion>
+    </div>
+  </div>
+</div>

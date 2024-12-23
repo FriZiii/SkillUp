@@ -1,0 +1,20 @@
+<h1 class="my-1 text-5xl">Cart</h1>
+<p class="my-1">0 items in cart</p>
+<hr class="my-1" />
+<div class="grid grid-cols-[1fr_auto_1fr]">
+  <div class="grid-start-1 grid-span-1"></div>
+  <div class="grid-start-2 grid-span-1 flex flex-col items-center">
+    <h4 class="text-5xl mb-2">Your cart is empty.</h4>
+    <p class="my-1 mb-3">Continue shopping and find your perfect item.</p>
+    <p-button
+      label="Continue shopping"
+      styleClass="!rounded-none mt-5"
+      class="big-btn"
+      [routerLink]="''"
+    />
+  </div>
+
+  <div class="grid-start-3 grid-span-1">
+    <img src="assets/svg/cart.svg" />
+  </div>
+</div>

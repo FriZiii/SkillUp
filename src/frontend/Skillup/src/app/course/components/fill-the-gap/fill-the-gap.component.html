@@ -1,4 +1,4 @@
-<div class="su-border mb-4">
+<div class="mb-4">
   <div cdkDropListGroup class="flex flex-col gap-4 m-8">
     <div class="flex justify-between">
       <div class="flex gap-2 items-center">
@@ -16,7 +16,8 @@
           <div
             cdkDrag
             (cdkDragEnded)="onDragEnd()"
-            class="word"
+            class="word cursor-pointer"
+            style="margin-top: -2px"
             [ngClass]="{
             'text-green-500':
               part.container[0].index === part.word.index ,
@@ -50,7 +51,7 @@
       class="flex gap-4 su-border px-4 py-2 box-border border-cyan-800 border-2"
     >
       @for (word of sentence().words; track $index) {
-      <div class="word" cdkDrag (cdkDragEnded)="onDragEnd()">
+      <div class="word cursor-pointer" cdkDrag (cdkDragEnded)="onDragEnd()">
         <div class="placeholder" *cdkDragPlaceholder></div>
         {{ word.value }}
       </div>

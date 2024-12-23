@@ -1,19 +1,21 @@
 <div class="flex w-full section-item">
   @if(!editing){
-  <div class="w-full px-4 flex gap-2 items-center">
+  <div class="w-full px-4 flex gap-2 items-start">
     <div class="prose">
-      <p>{{ section().title }}</p>
+      <p class="mb-1">{{ section().title }}</p>
+
+      <p class="my-0 text-xs font-light">Section {{ section().index + 1 }}</p>
     </div>
     @if(editable() === true){ @if(this.section().isPublished === true){
     <i
-      class="pi pi-eye cursor-default"
+      class="pi pi-eye cursor-default mt-1.5"
       style="font-size: 1rem"
       pTooltip="This section is published"
       tooltipPosition="right"
     ></i>
     }@else{
     <i
-      class="pi pi-eye-slash cursor-default"
+      class="pi pi-eye-slash cursor-default mt-1.5"
       style="font-size: 1rem"
       pTooltip="This section is not published"
       tooltipPosition="right"

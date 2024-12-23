@@ -14,6 +14,7 @@ namespace Skillup.Modules.Finances.Core.Mappings
             {
                 Id = order.Id,
                 Created = order.Created,
+                Title = order.BalanceHistory.Title,
                 TotalPrice = order.TotalPrice,
                 Items = items
             };

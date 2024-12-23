@@ -1,0 +1,66 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 11.25vh;
+}
+
+.wrapper {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border: none;
+}
+
+.ring {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  box-shadow: none;
+}
+
+.ring svg {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  transform: rotate(-90deg);
+}
+
+.ring circle {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-width: 5;
+  stroke-dasharray: 165;
+  stroke-dashoffset: 165;
+  stroke-linecap: round;
+  transform: translate(5px, 5px);
+}
+
+.ring circle:nth-child(1) {
+  stroke: black;
+}
+
+.ring circle:nth-child(2) {
+  stroke: var(--p-primary-500);
+  stroke-dasharray: 165;
+}
+
+.percent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.percent h2 {
+  font-size: 1rem;
+}
+
+.percent h2 span {
+  font-size: 0.5rem;
+}

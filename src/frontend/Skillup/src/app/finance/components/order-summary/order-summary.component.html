@@ -1,56 +1,121 @@
 <p-confirmdialog />
 
-<div class="su-section-mt px-12">
+<div class="su-section-mt px-12 prose max-w-none !w-full mb-8">
   @if(cart() === null){
-  <div class="prose max-w-none !w-full">
-    <h1 class="text-center text-6xl">Nothing in cart</h1>
-  </div>
+  <app-cart-empty />
   } @else{
+  <h1 class="my-1 text-5xl">Cart</h1>
+  <p class="my-1">{{ numberOfCartItems() }} items in cart</p>
   <div class="grid grid-cols-3 gap-20">
-    <div class="flex flex-col gap-4 col-start-1 col-span-2">
+    <div class="flex flex-col col-start-1 col-span-2">
+      <hr class="my-1" />
       @for(item of cartItems(); track item.id){
-      <app-cart-item [cartItem]="item" class="w-full"></app-cart-item>
+      <app-cart-item
+        [cartItem]="item"
+        class="w-full"
+        [styleForSummary]="true"
+      ></app-cart-item>
       }
     </div>
     <div class="flex flex-col col-start-3 prose max-w-none !w-full mt-5">
-      <h1 class="text-5xl text-center">Summary</h1>
-      <h1 class="text-center">Total: {{ this.cart()?.total }} $</h1>
+      <div class="flex justify-between">
+        <h1 class="text-center font-normal text-2xl my-1">Original price:</h1>
+        @if(cart()?.discountCode){
+        <h1 class="text-center font-semibold text-2xl my-1">
+          {{ this.cart()?.totalBeforeDiscount }} $
+        </h1>
+        } @else{
+        <h1 class="text-center font-semibold text-2xl my-1">
+          {{ this.cart()?.total | number : "1.2-2" }} $
+        </h1>
+        }
+      </div>
+      <div class="flex justify-between">
+        <h1 class="text-center font-normal text-2xl my-1">Discount:</h1>
+        @if(cart()?.discountCode){
+        <h1 class="text-center font-semibold text-2xl my-1">
+          {{ discount() | number : "1.2-2" }} $
+        </h1>
+        } @else{
+        <h1 class="text-center font-semibold text-2xl my-1">0 $</h1>
+        }
+      </div>
 
-      <hr />
+      <hr class="my-2" />
+      <div class="flex justify-between">
+        <h1 class="text-center font-normal text-2xl my-1">Total:</h1>
+        <h1 class="text-center font-semibold text-2xl my-1">
+          {{ this.cart()?.total | number : "1.2-2" }} $
+        </h1>
+      </div>
+
       @if(wallet()?.balance !== null && cart()?.total && wallet()?.balance! <
       cart()?.total!){
-      <h1 class="text-center">Your balance: {{ wallet()?.balance }} $</h1>
-      <div class="flex flex-col gap-4">
-        <p-button
-          label="Buy more currency"
-          routerLink="/buy-currency"
-          class="wide-btn"
-        ></p-button>
-        <p-button
-          label="Back to cart"
-          routerLink="/cart"
-          class="wide-btn"
-        ></p-button>
-      </div>
+      <p-button
+        label="Checkout"
+        class="wide-btn"
+        (onClick)="dialogVisible = true"
+        styleClass="!rounded-none mt-4"
+      ></p-button>
       } @else {
-      <h1>Your balance: {{ wallet()?.balance }}</h1>
-      <div class="flex flex-col gap-4">
-        <p-button
-          label="Buy"
-          (onClick)="purchaseCart($event)"
-          class="wide-btn"
-        ></p-button>
-
-        <p-button
-          label="Back to cart"
-          routerLink="/cart"
-          class="wide-btn"
-        ></p-button>
-      </div>
-
+      <p-button
+        label="Checkout"
+        class="wide-btn"
+        (onClick)="purchaseCart($event)"
+        styleClass="!rounded-none mt-4"
+      ></p-button>
       }
+
+      <p-button
+        label="Back to cart"
+        class="wide-btn"
+        routerLink="/cart"
+        styleClass="!rounded-none mt-4"
+      ></p-button>
     </div>
   </div>
 
   }
 </div>
+
+<p-dialog
+  [modal]="true"
+  [(visible)]="dialogVisible"
+  [style]="{ width: '30%' }"
+  [draggable]="false"
+  class="cursor-default"
+>
+  <div
+    class="prose max-w-none w-full flex flex-col justify-center items-center"
+  >
+    <h1 class="text-center text-3xl font-bold mb-4 mt-6">MORE FUNDS NEEDED</h1>
+    <div class="flex flex-wrap justify-center">
+      <h3 class="my-0 font-normal">You need &nbsp;</h3>
+      <h3 class="my-0 font-bold">{{ cart()?.total | number : "1.2-2" }} $</h3>
+      <h3 class="my-0 font-normal">&nbsp; to make this</h3>
+      <h3 class="my-0 font-normal text-center">
+        purchase do you want to transfer funds now?
+      </h3>
+    </div>
+    <div class="flex gap-4 w-full">
+      <div class="w-full">
+        <p-button
+          label="Transfer"
+          class="wide-btn"
+          routerLink="/balance"
+          styleClass="!rounded-none mt-4"
+        />
+      </div>
+
+      <div class="w-full">
+        <p-button
+          (onClick)="dialogVisible = false"
+          severity="secondary"
+          label="Cancel"
+          class="wide-btn"
+          styleClass="!rounded-none mt-4"
+        />
+      </div>
+    </div>
+  </div>
+</p-dialog>

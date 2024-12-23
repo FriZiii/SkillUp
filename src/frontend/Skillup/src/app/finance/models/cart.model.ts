@@ -23,4 +23,6 @@ export interface CartItemForDisplay{
     title: string;
     authorName:  string;
     thumbnailUrl: string;
+    averageRating: number;
+    ratingsCount: number;
 }
