@@ -61,8 +61,12 @@ export class ResetPasswordComponent implements OnInit {
 
   form: FormGroup = new FormGroup(
     {
-      newPassword: new FormControl('', Validators.required),
-      newPasswordConfirm: new FormControl('', Validators.required),
+      newPassword: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.pattern('^(?=.*[A-Z]).*$'),
+      ]),
+      newPasswordConfirm: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern('^(?=.*[A-Z]).*$')]),
     },
     { validators: this.passwordsMatchValidator() }
   );
@@ -73,9 +77,19 @@ export class ResetPasswordComponent implements OnInit {
       const newPassword = group.get('newPassword')?.value;
       const confirmPassword = group.get('newPasswordConfirm')?.value;
 
-      this.errorMessage = 'New password and confirm must be equal';
+      //this.errorMessage = 'New password and confirm must be equal';
       return newPassword === confirmPassword ? null : { mismatch: true };
     };
+  }
+  get passwordIsInvalid(){
+    return this.form.controls['newPassword'].dirty && this.form.controls['newPassword'].invalid
+  }
+
+  get passwordsAreEqual(){
+    if(this.form.value.newPassword === this.form.value.newPasswordConfirm){
+      return true;
+    }
+    return false;
   }
 
   resetPassword() {

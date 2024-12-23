@@ -43,8 +43,16 @@ export class EditUserPasswordComponent {
   form: FormGroup = new FormGroup(
     {
       currentPassword: new FormControl('', Validators.required),
-      newPassword: new FormControl('', Validators.required),
-      newPasswordConfirm: new FormControl('', Validators.required),
+      newPassword: new FormControl('',[
+        Validators.required,
+        Validators.minLength(6),
+        Validators.pattern('^(?=.*[A-Z]).*$'),
+      ]),
+      newPasswordConfirm: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.pattern('^(?=.*[A-Z]).*$'),
+      ]),
     },
     { validators: this.passwordsMatchValidator() }
   );
@@ -59,6 +67,8 @@ export class EditUserPasswordComponent {
       return newPassword === confirmPassword ? null : { mismatch: true };
     };
   }
+
+
   onSubmit() {
     this.loading = true;
     console.log(this.form.value);
@@ -73,5 +83,16 @@ export class EditUserPasswordComponent {
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe;
     });
+  }
+  
+  get passwordIsInvalid(){
+    return this.form.controls['newPassword'].dirty && this.form.controls['newPassword'].invalid
+  }
+
+  get passwordsAreEqual(){
+    if(this.form.value.newPassword === this.form.value.newPasswordConfirm){
+      return true;
+    }
+    return false;
   }
 }
