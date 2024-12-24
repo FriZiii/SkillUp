@@ -23,7 +23,7 @@ import {
 } from '../../models/course-content.model';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { AssetService } from '../../services/asset.service';
-import { VjsPlayerComponent } from '../../../videojs/videojs.component';
+import { VjsPlayerComponent } from '../../../utils/videojs/videojs.component';
 import { CommonModule } from '@angular/common';
 import {
   Assignment,

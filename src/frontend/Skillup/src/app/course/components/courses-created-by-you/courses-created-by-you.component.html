@@ -5,18 +5,27 @@
   </div>
   } @else { @if(courses().length === 0){
   <div class="prose max-w-none !w-full">
-    <h1 class="text-5xl text-center">You have not created any courses yet</h1>
+    <h1 class="my-1 text-5xl">Courses</h1>
+    <p class="my-1">You have not created any courses yet.</p>
+    <hr class="my-1" />
   </div>
   } @else {
   <div class="prose max-w-none !w-full">
-    <h1 class="text-5xl text-center">List of courses you are an author of</h1>
+    <h1 class="my-1 text-5xl">Courses</h1>
   </div>
   } }
   <p-tabs value="0">
     <p-tablist>
-      <p-tab value="0">Published Courses</p-tab>
-      <p-tab value="1">Drafts</p-tab>
-      <p-tab value="2">During Review</p-tab>
+      @if(publishedCourses().length !== 0){
+      <p-tab value="0">{{ publishedCourses().length }} Published Courses</p-tab
+      >} @if(draftCourses().length !== 0){
+      <p-tab value="1"> {{ draftCourses().length }} Drafts</p-tab>}
+      @if(reviewCourses().length !== 0){
+      <p-tab value="2">{{ reviewCourses().length }} During Review</p-tab>}
+      @if(requiredChangesCourses().length !== 0){
+      <p-tab value="3"
+        >{{ requiredChangesCourses().length }} Required Changes</p-tab
+      >}
     </p-tablist>
     <p-tabpanels>
       <p-tabpanel value="0">
@@ -49,22 +58,16 @@
           }
         </div>
       </p-tabpanel>
+      <p-tabpanel value="3">
+        <div class="cols-responsive-2 mt-8">
+          @for( course of requiredChangesCourses(); track course.id){
+          <app-course-item-short
+            [course]="course"
+            [editable]="true"
+          ></app-course-item-short>
+          }
+        </div>
+      </p-tabpanel>
     </p-tabpanels>
   </p-tabs>
 </div>
-
-<div class="prose max-w-none !w-full">
-  @if(discountCodes().length > 0){
-  <h1 class="text-5xl text-center">Your discount codes</h1>
-  }
-</div>
-@for(code of discountCodes(); track code.id){
-<app-discount-code-item
-  [discountCodeInput]="code"
-  (onEditCode)="editCode($event)"
-  (onDeleteCode)="deleteCode($event)"
-></app-discount-code-item>
-}
-<app-add-new-discount-code
-  (onAddCode)="addDiscountCode($event)"
-></app-add-new-discount-code>

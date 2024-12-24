@@ -16,6 +16,8 @@ namespace Skillup.Modules.Finances.Core.Mappings
             {
                 Id = discountCode.Id,
                 DiscountValue = discountCode.DiscountValue,
+                StartAt = discountCode.StartAt,
+                ExpireAt = discountCode.ExpireAt,
                 Code = discountCode.Code,
                 IsActive = discountCode.IsActive,
                 IsPublic = discountCode.IsPublic,

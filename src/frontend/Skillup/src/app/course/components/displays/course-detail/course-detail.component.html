@@ -47,10 +47,11 @@
             </div>
           </div>
         </div>
-        <div class="shadow w-full">
+        <div class="shadow w-full flex justify-between items-center">
           <div class="prose">
             <h2 class="my-2">$ {{ courseItem().price }}</h2>
           </div>
+          <app-buy-button [course]="courseListItem()!" [detail]="true" />
         </div>
       </div>
     </div>
@@ -195,10 +196,11 @@
           </div>
         </div>
       </div>
-      <div class="shadow">
+      <div class="shadow flex justify-between items-center">
         <div class="prose">
           <h2 class="my-2">$ {{ courseItem().price }}</h2>
         </div>
+        <app-buy-button [course]="courseListItem()!" [detail]="true" />
       </div>
     </div>
   </div>

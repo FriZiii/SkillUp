@@ -17,6 +17,8 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
                 Id = request.Id,
                 AppliesToEntireCart = request.AppliesToEntireCart,
                 Code = request.Code,
+                StartAt = request.StartAt,
+                ExpireAt = request.ExpireAt,
                 DiscountValue = request.DiscountValue,
                 IsActive = request.IsActive,
                 IsPublic = request.IsPublic,

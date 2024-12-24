@@ -1,10 +1,8 @@
 import {
   Component,
-  computed,
   inject,
   OnInit,
   signal,
-  Signal,
   ViewChild,
 } from '@angular/core';
 import {
@@ -30,8 +28,6 @@ import { UserService } from '../../../user/services/user.service';
 import { User } from '../../../user/models/user.model';
 import { AuthService } from '../../../auth/services/auth.service';
 import { CartService } from '../../../finance/services/cart.service';
-import { Cart } from '../../../finance/models/cart.model';
-import { CourseItemShortComponent } from '../../../course/components/displays/course-item-short/course-item-short.component';
 import { CoursesService } from '../../../course/services/course.service';
 import { UserRole } from '../../../user/models/user-role.model';
 import { MiniCartComponent } from "./mini-cart/mini-cart.component";

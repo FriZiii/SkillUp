@@ -5,3 +5,32 @@
 :host ::ng-deep .filelabel {
   display: none !important;
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  table-layout: fixed;
+}
+
+thead th {
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr {
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s ease;
+}
+
+tbody td {
+  padding: 10px;
+  color: #555;
+  font-size: 16px;
+  text-align: center;
+}

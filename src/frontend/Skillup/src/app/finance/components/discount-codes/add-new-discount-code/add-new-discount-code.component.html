@@ -1,0 +1,109 @@
+<div class="prose max-w-none" [style]="{ height: '700px' }">
+  <h1 class="my-0 font-semibold text-3xl">Create discount code</h1>
+  <form [formGroup]="discountCodeForm" [style]="{ height: '650px' }">
+    <div class="flex flex-col gap-2" [style]="{ height: '650px' }">
+      <p class="my-0 mb-2 font-light text-base">Discount Code</p>
+      <input
+        type="text"
+        pInputText
+        formControlName="code"
+        [ngClass]="{
+          'ng-invalid':
+            discountCodeForm.get('code')?.invalid &&
+            discountCodeForm.get('code')?.dirty
+        }"
+      />
+      <p class="my-0 font-light text-base">Amount</p>
+      <div class="flex gap-2">
+        <p-select
+          [options]="types"
+          optionLabel="name"
+          optionValue="value"
+          placeholder="Select a type"
+          class="w-full"
+          formControlName="codeType"
+        />
+
+        <p-inputgroup>
+          <p-inputNumber
+            formControlName="discountValue"
+            [ngClass]="{
+              'ng-invalid':
+                discountCodeForm.get('discountValue')?.invalid &&
+                discountCodeForm.get('discountValue')?.dirty
+            }"
+          />
+          <p-inputgroup-addon>{{ getAddonSymbol() }}</p-inputgroup-addon>
+        </p-inputgroup>
+      </div>
+
+      <p class="my-0 font-light text-base">Start date</p>
+      <p-datepicker
+        [minDate]="today"
+        [iconDisplay]="'input'"
+        [showIcon]="true"
+        inputId="icondisplay"
+        formControlName="startDate"
+      />
+      <p class="my-0 font-light text-base">Expiration date</p>
+      <div class="flex">
+        <p-datepicker
+          [minDate]="today"
+          [iconDisplay]="'input'"
+          [showIcon]="true"
+          inputId="icondisplay"
+          formControlName="expirationDate"
+          class="no-border-radius-right"
+        />
+        <div
+          class="su-border flex gap-2 items-center px-3"
+          [style]="{ borderRadius: '0 0.5rem 0.5rem 0' }"
+        >
+          <p-checkbox
+            class="mt-[-10px]"
+            [(ngModel)]="expires"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="changeExpire()"
+            [binary]="true"
+          />
+
+          <p class="my-0 font-light text-base items-center">Never expires</p>
+        </div>
+      </div>
+      <div class="">
+        <p class="my-1">Type</p>
+        <p-select
+          [options]="apliesToEntireCart"
+          optionLabel="name"
+          optionValue="value"
+          placeholder="Select type"
+          class="w-full"
+          formControlName="appliesToEntireCart"
+        />
+      </div>
+      <div class="flex gap-4 justify-center">
+        <div class="flex gap-4">
+          <p class="my-1">Is active?</p>
+          <p-checkbox [binary]="true" formControlName="isActive" />
+        </div>
+        <div class="flex gap-4">
+          <p class="my-1">Is public?</p>
+          <p-checkbox [binary]="true" formControlName="isPublic" />
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 w-full h-full items-end">
+        <p-button
+          label="Cancel"
+          (onClick)="close()"
+          severity="secondary"
+        ></p-button>
+        <p-button
+          label="Save"
+          (onClick)="addNewDiscountCode($event)"
+          [disabled]="this.discountCodeForm.invalid"
+        ></p-button>
+      </div>
+    </div>
+  </form>
+</div>

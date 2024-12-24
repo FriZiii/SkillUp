@@ -26,28 +26,7 @@
     <div>$ {{ course.price }}</div>
     <p-rating [(ngModel)]="course.averageRating" [readonly]="true" />
     <span>
-      <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
-      @if(isAuthor()){
-      <p-button icon="pi pi-cog" class="ml-2" (onClick)="navigate('edit')" />
-      } @else if(isInCart()){
-      <p-button
-        icon="pi pi-shopping-cart"
-        class="ml-2"
-        (onClick)="navigate('cart')"
-      />
-      }@else if(isPurchased()){
-      <p-button
-        icon="pi pi-external-link"
-        class="ml-2"
-        (onClick)="navigate('detail')"
-      />
-      } @else{
-      <p-button
-        icon="pi pi-cart-arrow-down"
-        class="ml-2"
-        (onClick)="addToCart()"
-      />
-      }
+      <app-buy-button [course]="course" />
     </span>
   </div>
 </p-card>
