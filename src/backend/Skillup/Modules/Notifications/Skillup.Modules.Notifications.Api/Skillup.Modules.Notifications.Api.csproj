@@ -19,6 +19,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\Shared\Skillup.Shared.Abstractions\Skillup.Shared.Abstractions.csproj" />
       <ProjectReference Include="..\..\..\Shared\Skillup.Shared.Infrastructure\Skillup.Shared.Infrastructure.csproj" />
+      <ProjectReference Include="..\Skillup.Modules.Notifications.Core\Skillup.Modules.Notifications.Core.csproj" />
     </ItemGroup>
 
 </Project>

@@ -36,6 +36,8 @@ import { CoursesService } from '../../../course/services/course.service';
 import { UserRole } from '../../../user/models/user-role.model';
 import { MiniCartComponent } from "./mini-cart/mini-cart.component";
 import { MiniCoursesComponent } from "./mini-courses/mini-courses.component";
+import { MiniNotificationsComponent } from "./mini-notifications/mini-notifications.component";
+import { NotificationService } from '../../../notifications/services/notification.service';
 
 @Component({
   selector: 'app-header',
@@ -58,7 +60,10 @@ import { MiniCoursesComponent } from "./mini-courses/mini-courses.component";
     AvatarModule,
     StyleClassModule,
     MiniCartComponent,
-    MiniCoursesComponent
+    MiniCoursesComponent,
+    MiniNotificationsComponent,
+    BadgeModule,
+    OverlayBadgeModule 
 ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
@@ -70,10 +75,12 @@ export class HeaderComponent implements OnInit {
   authService = inject(AuthService);
   cartService = inject(CartService);
   courseService = inject(CoursesService);
+  notificationService = inject(NotificationService);
   UserRole = UserRole;
 
   visible: boolean = false;
   user = signal<User | null>(null);
+  notificationsNumber = this.notificationService.numberOfNotifications;
 
 
   ngOnInit(): void {

@@ -32,6 +32,7 @@ import { CourseReviewComponent } from './course/components/reviews/course-review
 import { CourseWalkThroughComponent } from './course/components/course-walk-through/course-walk-through.component';
 import { SolveQuizComponent } from './course/components/exercises/solve-quiz/solve-quiz.component';
 import { SolveQuestionComponent } from './course/components/exercises/solve-question/solve-question.component';
+import { NotificationsComponent } from './notifications/notifications-component/notifications.component';
 import { EditUserPasswordComponent } from './user/components/edit-user/edit-user-password/edit-user-password.component';
 import { SolveFillTheGapComponent } from './course/components/exercises/solve-fill-the-gap/solve-fill-the-gap.component';
 import { OrderPageComponent } from './finance/components/order-page/order-page.component';
@@ -152,6 +153,10 @@ export const routes: Routes = [
   {
     path: 'fillgap',
     component: SolveFillTheGapComponent,
+  },
+  {
+    path: 'notifications',
+    component: NotificationsComponent,
   },
   {
     path: 'access-denied',

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Skillup.Modules.Notifications.Core</RootNamespace>
+    </PropertyGroup>
+    <ItemGroup>
+      <None Remove="Seeders\Data\notification-seeder-data.json" />
+      <None Remove="Seeders\Data\notification-users-seeder-data.json" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="Seeders\Data\notification-seeder-data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Seeders\Data\notification-users-seeder-data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="DAL\Migrations\" />
+      <Folder Include="DTO\" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Shared\Skillup.Shared.Infrastructure\Skillup.Shared.Infrastructure.csproj" />
+    </ItemGroup>
+</Project>

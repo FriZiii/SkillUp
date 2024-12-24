@@ -54,16 +54,19 @@
         (mouseenter)="po_my_courses.hide()"
         (mouseenter)="po_cart.hide()"
         (mouseenter)="po_notifications.show($event)"
+        [badge]="notificationsNumber().toString()"
+        badgeSeverity="primary"
         (onClick)="po_notifications.hide()"
       >
         <p-popover [showCloseIcon]="true" #po_notifications
           ><div
-            class="w-64 h-96 flex justify-center"
+            class="w-64 flex justify-center"
             (mouseleave)="po_notifications.hide()"
           >
-            <h1>Notifications</h1>
-          </div></p-popover
-        >
+            <app-mini-notifications
+              class="w-full mt-[-12px]"
+            ></app-mini-notifications></div
+        ></p-popover>
       </p-button>
 
       <div>
