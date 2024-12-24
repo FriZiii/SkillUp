@@ -3,7 +3,8 @@
     public class CourseReviewCommentDto
     {
         public Guid Id { get; set; }
-        public Guid CourseElementId { get; set; }
+        public Guid? CourseElementId { get; set; }
+        public Guid CourseId { get; set; }
         public string Comment { get; set; }
         public bool IsResolved { get; set; }
         public DateTime CreatedAt { get; set; }

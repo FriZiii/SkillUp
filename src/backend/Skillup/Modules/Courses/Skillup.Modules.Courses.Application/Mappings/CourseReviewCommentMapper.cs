@@ -11,6 +11,7 @@ namespace Skillup.Modules.Courses.Application.Mappings
         {
             return new CourseReviewCommentDto()
             {
+                CourseId = courseReviewComment.CourseId,
                 CourseElementId = courseReviewComment.CourseElementId,
                 CreatedAt = courseReviewComment.CreatedAt,
                 Id = courseReviewComment.Id,

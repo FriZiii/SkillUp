@@ -18,6 +18,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Review
                 CommentText = request.Comment,
                 CourseReviewId = request.ReviewId,
                 IsResolved = false,
+                CourseId = request.CourseId,
                 CourseElementId = request.ElementId,
                 CreatedAt = _clock.CurrentDate()
             };
