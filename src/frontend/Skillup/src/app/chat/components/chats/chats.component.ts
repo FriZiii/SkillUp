@@ -32,9 +32,10 @@ export class ChatsComponent implements OnInit {
   searchValue = '';
   courses = this.courseService.courses;
   availableCourses = computed(() => this.courses().filter(course => 
-    this.chats().some(chat => chat.courseId === course.id)
+    this.chats().some(chat => chat.courseId === course.id && chat.authorId === this.user()?.id)
   ));
   UserRole = UserRole;
+  searchVisible = false;
 
   ngOnInit(): void {
     this.userService.user.subscribe((user) => {
@@ -45,7 +46,10 @@ export class ChatsComponent implements OnInit {
           .fetchChats(this.user()!.id)
           .subscribe((chats: Chat[]) => {
             this.chats.set(chats);
-            this.filteredChats.set(chats);
+            this.filteredChats.set(chats.filter(chats => chats.authorId !== this.user()?.id));
+            if(this.filteredChats().length !== 0){
+              this.searchVisible = true;
+            }
           });
       }
     });
@@ -75,13 +79,13 @@ export class ChatsComponent implements OnInit {
       });
 
       const filteredChats = this.chats().filter(chat => 
-        filtered.some(course => course.id === chat.courseId)
+        filtered.some(course => course.id === chat.courseId) && chat.authorId !== this.user()?.id
       );
       
       this.filteredChats.set(filteredChats);
   }
 
   getChatsForCourse(courseId: string) {
-    return this.chats().filter(chat => chat.courseId === courseId);
+    return this.chats().filter(chat => chat.courseId === courseId && chat.authorId === this.user()?.id);
   }
 }

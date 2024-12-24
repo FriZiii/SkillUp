@@ -68,7 +68,7 @@ export class ChatWindowComponent implements OnChanges {
           
         });
 
-        if(this.currentUser()?.isInRole(UserRole.Instructor)){
+        if(this.chat()?.authorId === this.currentUser()?.id){
           if(this.chat()?.userId){
             this.userService.getUserWithoutDetail(this.chat()!.userId).subscribe((res) => {
               this.talker.set(res); 

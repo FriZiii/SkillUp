@@ -36,21 +36,20 @@
       }
     </p-accordion>
 
-    }@else {
+    } @if(searchVisible){
     <input
       type="text"
       pInputText
       [(ngModel)]="searchValue"
       (ngModelChange)="applyFilter()"
       placeholder="Search..."
-    />
-    @for (chat of filteredChats(); track $index) {
+    />} @for (chat of filteredChats(); track $index) {
     <app-chat-item
       [isSelected]="isChatSelected(chat)"
       (onSelected)="selectChat($event)"
       [chat]="chat"
     ></app-chat-item>
-    }}
+    }
   </div>
 
   <div class="w-full">

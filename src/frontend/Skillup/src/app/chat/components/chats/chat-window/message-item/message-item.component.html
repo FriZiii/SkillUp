@@ -2,7 +2,7 @@
   @if( message().sendedByYou ){
   <div class="w-full flex justify-end">
     <div class="flex flex-col">
-      <p class="text-right text-sm">
+      <p class="text-right text-sm m-1 mr-3 mt-3">
         {{ message().timeStamp.toString() | timeAgo }}
       </p>
       <div class="flex bg-primary-500 border-2 py-2 px-4 pl-8 rounded-2xl">
@@ -25,7 +25,9 @@
   }@else {
   <div class="w-full flex justify-start">
     <div class="flex flex-col">
-      <p class="text-sm">{{ message().timeStamp.toString() | timeAgo }}</p>
+      <p class="text-sm m-1 ml-3 mt-3">
+        {{ message().timeStamp.toString() | timeAgo }}
+      </p>
       <div class="flex bg-surface-200 border-2 py-2 px-4 pr-8 rounded-2xl">
         <img
           [src]="talker()?.profilePicture"
