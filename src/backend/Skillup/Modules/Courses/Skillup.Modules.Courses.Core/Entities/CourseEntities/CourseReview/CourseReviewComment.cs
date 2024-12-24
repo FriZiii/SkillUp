@@ -9,8 +9,11 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
         public Guid CourseReviewId { get; set; }
         public CourseReview CourseReview { get; set; }
 
-        public Guid CourseElementId { get; set; }
-        public Element CourseElement { get; set; }
+        public Guid CourseId { get; set; }
+        public Course Course { get; set; }
+
+        public Guid? CourseElementId { get; set; }
+        public Element? CourseElement { get; set; }
 
         public string CommentText { get; set; }
         public bool IsResolved { get; set; }
