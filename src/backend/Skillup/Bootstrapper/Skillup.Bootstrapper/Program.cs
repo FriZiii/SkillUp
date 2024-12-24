@@ -1,3 +1,4 @@
+using Skillup.Modules.Chat.Core;
 using Skillup.Shared.Infrastructure;
 using Skillup.Shared.Infrastructure.Logging;
 using Skillup.Shared.Infrastructure.Modules;
@@ -23,7 +24,8 @@ var app = builder.Build();
 app.UseModularInfrastructure();
 modules.ForEach(module => module.Use(app));
 
-// Cnfigure endpoints
+// Configure endpoints
+app.MapHub<ChatHub>("/chatHub");
 app.MapControllers();
 app.MapGet("/", () => "Inflow API");
 app.MapModuleInfo();

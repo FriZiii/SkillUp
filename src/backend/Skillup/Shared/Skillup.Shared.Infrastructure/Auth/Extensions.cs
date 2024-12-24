@@ -35,6 +35,21 @@ namespace Skillup.Shared.Infrastructure.Auth
             {
                 o.RequireHttpsMetadata = options.RequireHttpsMetadata;
                 o.TokenValidationParameters = tokenValidationParameters;
+                //o.Events = new JwtBearerEvents
+                //{
+                //    OnMessageReceived = context =>
+                //    {
+                //        if (context.HttpContext.Request.Path.StartsWithSegments("/chatHub"))
+                //        {
+                //            var accessToken = context.Request.Headers.Authorization.ToString().Replace("Bearer ", "");
+                //            if (!string.IsNullOrEmpty(accessToken))
+                //            {
+                //                context.Token = accessToken;
+                //            }
+                //        }
+                //        return Task.CompletedTask;
+                //    }
+                //};
                 o.MapInboundClaims = false;
             });
 

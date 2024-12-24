@@ -34,9 +34,9 @@ export class AppComponent implements OnInit {
   MyPreset = definePreset(Aura, {
     semantic: {
       primary: {
-        50: '{fuchsia.0}',
-        100: '{fuchsia.50}',
-        200: '{fuchsia.100}',
+        50: '{green.50}',
+        100: '{green.100}',
+        200: '{green.200}',
         300: '{fuchsia.200}',
         400: '{fuchsia.300}',
         500: '{green.600}',

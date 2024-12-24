@@ -138,6 +138,12 @@ export class UserService {
     );
   }
 
+  getUserWithoutDetail(userId: string) {
+    return this.httpClient.get<User>(
+      `${environment.apiUrl}/courses/users/${userId}?details=${false}`
+    );
+  }
+
   getUser(userId: string){
     return this.httpClient.get<UserDetail>(
       `${environment.apiUrl}/courses/users/${userId}?details=${true}`

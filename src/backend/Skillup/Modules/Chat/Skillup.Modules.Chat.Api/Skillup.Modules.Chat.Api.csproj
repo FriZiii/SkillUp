@@ -16,4 +16,8 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Skillup.Modules.Chat.Core\Skillup.Modules.Chat.Core.csproj" />
+    </ItemGroup>
+
 </Project>

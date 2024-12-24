@@ -1,0 +1,36 @@
+@if(chat()){
+<div class="">
+  <div class="flex flex-col gap-1 scrollable-div" style="height: 70vh">
+    @for (message of messages(); track $index) {
+    <app-message-item
+      [message]="message"
+      [talker]="talker()"
+      [currentUser]="currentUser()"
+    ></app-message-item>
+    }
+  </div>
+  <div class="flex w-full flex-row justify-between pt-4 gap-2">
+    <input
+      type="text"
+      pInputText
+      class="w-full rounded-full"
+      [(ngModel)]="currentMessage"
+      placeholder="Write something..."
+    />
+    <button
+      (click)="sendMessage()"
+      class="bg-primary-500 rounded-full w-10 h-10 flex items-center justify-center"
+    >
+      <i class="pi pi-send" style="font-size: 1rem; color: white"></i>
+    </button>
+  </div>
+</div>
+} @else {
+<div
+  class="flex flex-col gap-6 items-center justify-center"
+  style="height: 70vh"
+>
+  <h1 class="font-semibold text-5xl">Select chat</h1>
+  <img src="assets/svg/chat.svg" style="width: 400px" />
+</div>
+}

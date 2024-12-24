@@ -12,8 +12,8 @@ namespace Skillup.Shared.Infrastructure.Cors
 
             services.AddCors(o =>
             {
-                o.AddPolicy("cors",
-                    builder => builder.WithOrigins(options.Origins)
+                o.AddPolicy(_policyName,
+                    builder => builder
                                       .AllowAnyMethod()
                                       .AllowCredentials()
                                       .AllowAnyHeader());

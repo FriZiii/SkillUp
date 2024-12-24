@@ -1,0 +1,45 @@
+<div class="flex flex-row w-full">
+  @if( message().sendedByYou ){
+  <div class="w-full flex justify-end">
+    <div class="flex flex-col">
+      <p class="text-right text-sm">
+        {{ message().timeStamp.toString() | timeAgo }}
+      </p>
+      <div class="flex bg-primary-500 border-2 py-2 px-4 pl-8 rounded-2xl">
+        <div class="flex flex-col mr-2">
+          <p class="font-medium text-sm text-white text-right">
+            {{ currentUser()?.firstName }} {{ currentUser()?.lastName }}
+          </p>
+          <p class="font-medium text-base text-white text-right">
+            {{ message().content }}
+          </p>
+        </div>
+        <img
+          [src]="currentUser()?.profilePicture"
+          style="width: 50px; height: 50px"
+          class="bg-slate-600 rounded-full"
+        />
+      </div>
+    </div>
+  </div>
+  }@else {
+  <div class="w-full flex justify-start">
+    <div class="flex flex-col">
+      <p class="text-sm">{{ message().timeStamp.toString() | timeAgo }}</p>
+      <div class="flex bg-surface-200 border-2 py-2 px-4 pr-8 rounded-2xl">
+        <img
+          [src]="talker()?.profilePicture"
+          style="width: 50px; height: 50px"
+          class="bg-slate-600 rounded-full"
+        />
+        <div class="flex flex-col ml-2">
+          <p class="font-medium text-sm">
+            {{ talker()?.firstName }} {{ talker()?.lastName }}
+          </p>
+          <p class="font-medium text-base">{{ message().content }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>

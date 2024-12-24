@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillup.Modules.Courses.Inf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillup.Modules.Courses.Application", "Modules\Courses\Skillup.Modules.Courses.Application\Skillup.Modules.Courses.Application.csproj", "{8215A5CE-1B89-4DA6-B650-E589A49D8E36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillup.Modules.Chat.Core", "Modules\Chat\Skillup.Modules.Chat.Core\Skillup.Modules.Chat.Core.csproj", "{250C0C2C-D4E9-45E5-9626-01C356BEEA1D}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillup.Modules.Notifications.Core", "Modules\Notifications\Skillup.Modules.Notifications.Core\Skillup.Modules.Notifications.Core.csproj", "{35C6DA8F-0FB5-4992-B57B-7C5FECEB144A}"
 EndProject
 Global
@@ -125,6 +127,10 @@ Global
 		{8215A5CE-1B89-4DA6-B650-E589A49D8E36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8215A5CE-1B89-4DA6-B650-E589A49D8E36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8215A5CE-1B89-4DA6-B650-E589A49D8E36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{250C0C2C-D4E9-45E5-9626-01C356BEEA1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{250C0C2C-D4E9-45E5-9626-01C356BEEA1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{250C0C2C-D4E9-45E5-9626-01C356BEEA1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{250C0C2C-D4E9-45E5-9626-01C356BEEA1D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{35C6DA8F-0FB5-4992-B57B-7C5FECEB144A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{35C6DA8F-0FB5-4992-B57B-7C5FECEB144A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35C6DA8F-0FB5-4992-B57B-7C5FECEB144A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -155,6 +161,7 @@ Global
 		{5D315A59-0C37-4B7C-A1DE-4334599437AA} = {0CCAF292-9B40-4841-985A-F0068FBE2A12}
 		{C804086C-1717-49EA-8628-E5A0A3DE93FA} = {0CCAF292-9B40-4841-985A-F0068FBE2A12}
 		{8215A5CE-1B89-4DA6-B650-E589A49D8E36} = {0CCAF292-9B40-4841-985A-F0068FBE2A12}
+		{250C0C2C-D4E9-45E5-9626-01C356BEEA1D} = {2DEE15CD-AA2C-4CED-9339-AD52EB3C1A85}
 		{35C6DA8F-0FB5-4992-B57B-7C5FECEB144A} = {60B9D8E0-0285-4A60-9E55-16001C2BE8C4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
