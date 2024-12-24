@@ -14,6 +14,29 @@
 }@else{
 <div class="flex flex-row su-section-mt mb-8 gap-6">
   <div class="flex flex-col gap-4 scrollable-div pr-4" style="width: 25%">
+    @if(user()?.isInRole(UserRole.Instructor)){
+    <p-accordion value="0">
+      @for(course of availableCourses(); track course.id){
+      <p-accordion-panel [value]="$index">
+        <p-accordion-header>
+          {{ course.title }}
+        </p-accordion-header>
+        <p-accordion-content>
+          <div class="flex flex-col gap-4 mt-4">
+            @for (chat of getChatsForCourse(course.id); track $index) {
+            <app-chat-item
+              [isSelected]="isChatSelected(chat)"
+              (onSelected)="selectChat($event)"
+              [chat]="chat"
+            ></app-chat-item
+            >}
+          </div>
+        </p-accordion-content>
+      </p-accordion-panel>
+      }
+    </p-accordion>
+
+    }@else {
     <input
       type="text"
       pInputText
@@ -27,7 +50,7 @@
       (onSelected)="selectChat($event)"
       [chat]="chat"
     ></app-chat-item>
-    }
+    }}
   </div>
 
   <div class="w-full">
