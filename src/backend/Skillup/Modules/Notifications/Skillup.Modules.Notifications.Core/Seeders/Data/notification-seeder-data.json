@@ -1,0 +1,38 @@
+[
+  {
+    "userId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "type": "Instructor",
+    "message": "course lalala lalal lalaa",
+    "seen": false
+  },
+  {
+    "userId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "type": "Instructor",
+    "message": "course made published",
+    "seen": false
+  },
+  {
+    "userId": "40df9811-f430-4775-8812-d531df7eb7ac",
+    "type": "User",
+    "message": "user lalala lalal lalaa",
+    "seen": false
+  },
+  {
+    "userId": "0fb4f41e-8863-4bdb-9870-0c0981044ab7",
+    "type": "User",
+    "message": "user lalala lalal lalaa",
+    "seen": false
+  },
+  {
+    "userId": "0fb4f41e-8863-4bdb-9870-0c0981044ab7",
+    "type": "User",
+    "message": "something happened lalala lalal lalaa",
+    "seen": false
+  },
+  {
+    "userId": "0fb4f41e-8863-4bdb-9870-0c0981044ab7",
+    "type": "User",
+    "message": "yeah lalala lalal lalaa",
+    "seen": false
+  }
+]

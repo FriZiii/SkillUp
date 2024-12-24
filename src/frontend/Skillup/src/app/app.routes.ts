@@ -31,11 +31,13 @@ import { CourseDetailComponent } from './course/components/displays/course-detai
 import { CourseReviewComponent } from './course/components/reviews/course-review/course-review.component';
 import { CourseWalkThroughComponent } from './course/components/course-walk-through/course-walk-through.component';
 import { SolveQuizComponent } from './course/components/exercises/solve-quiz/solve-quiz.component';
-import { SolveQuestionComponent } from './course/components/exercises/solve-question/solve-question.component';
+import { NotificationsComponent } from './notifications/notifications-component/notifications.component';
 import { EditUserPasswordComponent } from './user/components/edit-user/edit-user-password/edit-user-password.component';
 import { SolveFillTheGapComponent } from './course/components/exercises/solve-fill-the-gap/solve-fill-the-gap.component';
 import { OrderPageComponent } from './finance/components/order-page/order-page.component';
 import { ChatsComponent } from './chat/components/chats/chats.component';
+import { AllCoursesComponent } from './course/components/displays/all-courses/all-courses.component';
+import { DiscountCodesComponent } from './finance/components/discount-codes/discount-codes.component';
 
 export const routes: Routes = [
   {
@@ -59,6 +61,10 @@ export const routes: Routes = [
   {
     path: 'course-carousels',
     component: CoursesCarouselsComponent,
+  },
+  {
+    path: 'courses',
+    component: AllCoursesComponent,
   },
   {
     path: 'courses-list/:category/:subcategory',
@@ -115,6 +121,10 @@ export const routes: Routes = [
     data: { requiredRole: UserRole.Instructor },
   },
   {
+    path: 'author/:authorId/discount-codes',
+    component: DiscountCodesComponent,
+  },
+  {
     path: 'cart',
     component: CartComponent,
   },
@@ -153,6 +163,10 @@ export const routes: Routes = [
   {
     path: 'fillgap',
     component: SolveFillTheGapComponent,
+  },
+  {
+    path: 'notifications',
+    component: NotificationsComponent,
   },
   {
     path: 'access-denied',

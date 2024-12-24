@@ -16,18 +16,28 @@ import { CourseContentService } from '../../../services/course-content.service';
 import { CourseRatingService } from '../../../services/course-rating.service';
 import { CourseDetailRating } from '../../../models/rating.model';
 import { CarouselModule } from 'primeng/carousel';
+import { BuyButtonComponent } from "../../buy-button/buy-button.component";
 import { AuthorDescriptionComponent } from "../author-description/author-description.component";
 
 @Component({
   selector: 'app-course-detail',
   standalone: true,
-  imports: [AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent, RatingModule, FormsModule, CarouselModule, AuthorDescriptionComponent],
+  imports: [AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent, RatingModule, FormsModule, CarouselModule, BuyButtonComponent, AuthorDescriptionComponent],
   templateUrl: './course-detail.component.html',
   styleUrl: './course-detail.component.css'
 })
 export class CourseDetailComponent implements OnChanges {
-  //Variables
   courseId = input.required<string>();
+  
+  //Services
+  courseService = inject(CoursesService);
+  financeService = inject(FinanceService);
+  userService = inject(UserService);
+  courseContentService = inject(CourseContentService);
+  ratingService = inject(CourseRatingService);
+  router = inject(Router);
+
+  //Variables
   course = signal<CourseDetail | null>(null);
   author = signal<UserDetail | null>(null);
   sections = computed(() => this.courseContentService.sections());
@@ -42,14 +52,7 @@ courseRating: CourseDetailRating | undefined = undefined
   numberOfRating = 1567;
   totalCourseTime = 68;
   lastUpdate = '05.07.2024';
-
-  //Services
-  courseService = inject(CoursesService);
-  financeService = inject(FinanceService);
-  userService = inject(UserService);
-  courseContentService = inject(CourseContentService);
-  ratingService = inject(CourseRatingService);
-  router = inject(Router);
+  courseListItem = computed(() => this.courseService.courses().find(c => c.id === this.courseId()));
 
   items = this.financeService.items;
   courseItem = computed(() => {

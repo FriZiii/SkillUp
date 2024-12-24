@@ -1,8 +1,6 @@
-import { ChangeDetectorRef, Component, computed, inject, input, OnInit, signal } from '@angular/core';
-import { Course } from '../../models/course.model';
+import { Component, computed, inject, input, OnInit, signal } from '@angular/core';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { PurchasedItemsService } from '../../services/purchasedItems.service';
-import { CourseItemShortComponent } from '../displays/course-item-short/course-item-short.component';
 import { CourseRatingService } from '../../services/course-rating.service';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
@@ -11,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { UserService } from '../../../user/services/user.service';
 import { UserRating } from '../../models/rating.model';
-import { UserRole } from '../../../user/models/user-role.model';
 import { UserProgressService } from '../../services/user-progress-service';
 import { CoursePercentage } from '../../models/user-progress.model';
 import { StudentCourseItemComponent } from "../displays/student-course-item/student-course-item.component";

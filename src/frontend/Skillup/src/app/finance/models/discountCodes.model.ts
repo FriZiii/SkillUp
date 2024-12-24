@@ -15,6 +15,8 @@ export interface AppliedDiscountCode{
 export interface DiscountCode{
     id: string;
     type: DiscountCodeType;
+    startAt: Date;
+    expireAt: Date | null;
     code: string;
     discountValue: number;
     appliesToEntireCart: boolean;
@@ -24,9 +26,12 @@ export interface DiscountCode{
 }
 
 export interface AddDiscountCode{
+    startAt: Date;
+    expireAt: Date | null;
     code: string;
     discountValue: number;
     appliesToEntireCart: boolean;
     isActive: boolean;
     isPublic: boolean;
+    
 }
