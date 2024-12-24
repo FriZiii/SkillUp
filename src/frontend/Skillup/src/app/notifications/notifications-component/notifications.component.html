@@ -1,0 +1,57 @@
+<div class="su-section-mt px-24">
+  <div>
+    <h1 class="my-1 text-5xl font-bold">Notifications</h1>
+    <p class="mt-1 mb-0">
+      {{ numberOfUnseenNotofications() }} unseen notifications
+    </p>
+    <hr class="my-4" />
+  </div>
+  <input
+    type="text"
+    pInputText
+    [(ngModel)]="searchValue"
+    class="w-full"
+    placeholder="Search"
+  />
+  <div class="flex gap-2 mt-2 mb-6 items-center pl-4">
+    <div (click)="sortDesc = !sortDesc" class="cursor-pointer mr-2">
+      <i
+        [ngClass]="sortDesc ? 'pi pi-sort-amount-down' : 'pi pi-sort-amount-up'"
+        style="font-size: 1rem"
+      ></i>
+    </div>
+    <div
+      [ngClass]="seen ? 'badge-clicked' : 'badge'"
+      (click)="toggleSeen()"
+      class="cursor-pointer"
+    >
+      <p>Seen</p>
+    </div>
+    <div
+      [ngClass]="unseen ? 'badge-clicked' : 'badge'"
+      (click)="toggleUnseen()"
+      class="cursor-pointer"
+    >
+      <p>Unseen</p>
+    </div>
+    <div
+      [ngClass]="user ? 'badge-clicked' : 'badge'"
+      (click)="toggleUser()"
+      class="cursor-pointer"
+    >
+      <p>User</p>
+    </div>
+    @if(currentUser()?.role === UserRole.Instructor){
+    <div
+      [ngClass]="instructor ? 'badge-clicked' : 'badge'"
+      (click)="toggleInstructor()"
+      class="cursor-pointer"
+    >
+      <p>Instructor</p>
+    </div>
+    }
+  </div>
+  @for(notification of filteredNotifications; track notification.id){
+  <app-notification-item [notification]="notification"></app-notification-item>
+  }
+</div>

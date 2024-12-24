@@ -59,6 +59,10 @@ footer {
   @apply border-b-[1px] border-surface-300;
 }
 
+.su-border-l {
+  @apply border-l-[1px] border-surface-300;
+}
+
 .su-section-mt {
   @apply mt-8 mx-4;
 }

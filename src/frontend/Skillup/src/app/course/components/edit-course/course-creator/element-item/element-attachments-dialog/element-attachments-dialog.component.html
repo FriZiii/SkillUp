@@ -1,10 +1,42 @@
 <div class="flex flex-col justify-center">
   <div class="prose">
-    <h2>Add New Attachments!</h2>
+    <h2 class="my-1 font-semibold text-xl">Add New Attachment</h2>
   </div>
+
+  @if(attachments.length !== 0){
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Extension</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(attachment of attachments; track attachment.id){
+      <tr>
+        <td>{{ attachment.name }}</td>
+        <td>{{ attachment.type }}</td>
+        <td>
+          <div class="cursor-pointer" (click)="downloadAttachment(attachment)">
+            <i class="pi pi-download" style="font-size: 1rem"></i>
+          </div>
+        </td>
+        <td>
+          <div class="cursor-pointer" (click)="deleteAttachment(attachment.id)">
+            <i class="pi pi-trash" style="font-size: 1rem"></i>
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  }
+
   <!-- File Upload -->
 
-  <div class="grid grid-cols-2 w-3/4">
+  <div class="grid grid-cols-2 mt-4" [style]="{ width: '400px' }">
     <p-button
       (onClick)="upload()"
       [disabled]="!selectedFile"
@@ -30,26 +62,4 @@
     />
     }
   </div>
-  @if(attachments.length === 0){
-  <p>this element does not have any attachments</p>
-  } @else{
-  <div class="prose">
-    <h2>Attachments:</h2>
-  </div>
-  @for(attachment of attachments; track attachment.id){
-  <div class="flex gap-4">
-    <p>{{ attachment.name }}{{ attachment.type }}</p>
-    <div class="flex gap-2 self-end">
-      <p-button
-        icon="pi pi-download"
-        (onClick)="downloadAttachment(attachment)"
-      ></p-button>
-      <p-button
-        icon="pi pi-trash"
-        severity="danger"
-        (onClick)="deleteAttachment(attachment.id)"
-      ></p-button>
-    </div>
-  </div>
-  } }
 </div>

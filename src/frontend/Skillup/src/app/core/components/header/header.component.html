@@ -54,16 +54,19 @@
         (mouseenter)="po_my_courses.hide()"
         (mouseenter)="po_cart.hide()"
         (mouseenter)="po_notifications.show($event)"
+        [badge]="notificationsNumber().toString()"
+        badgeSeverity="primary"
         (onClick)="po_notifications.hide()"
       >
         <p-popover [showCloseIcon]="true" #po_notifications
           ><div
-            class="w-64 h-96 flex justify-center"
+            class="w-64 flex justify-center"
             (mouseleave)="po_notifications.hide()"
           >
-            <h1>Notifications</h1>
-          </div></p-popover
-        >
+            <app-mini-notifications
+              class="w-full mt-[-12px]"
+            ></app-mini-notifications></div
+        ></p-popover>
       </p-button>
 
       <div>
@@ -288,6 +291,20 @@
                           <span class="font-medium"
                             >Courses created by you</span
                           >
+                        </a>
+                      </li>
+
+                      <li>
+                        <a
+                          pRipple
+                          routerLinkActive="active-link"
+                          [routerLink]="
+                            'author/' + user()?.id + '/discount-codes'
+                          "
+                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                        >
+                          <i class="pi pi-gift mr-2"></i>
+                          <span class="font-medium">Your discount codes</span>
                         </a>
                       </li>
 

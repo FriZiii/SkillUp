@@ -1,0 +1,7 @@
+:host ::ng-deep .p-rating-icon {
+    cursor: default !important;
+  }
+  
+  :host ::ng-deep .p-inputnumber input{
+    padding: 0px 4px;
+}

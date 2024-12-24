@@ -17,6 +17,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { WalletService } from '../../finance/services/wallet.service';
 import { PurchasedItemsService } from '../../course/services/purchasedItems.service';
+import { NotificationService } from '../../notifications/services/notification.service';
 
 interface CustomJwtPayload extends JwtPayload {
   'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'?: string;
@@ -29,6 +30,7 @@ export class UserService {
   private httpClient = inject(HttpClient);
   private walletService = inject(WalletService);
   private purchasedItemsService = inject(PurchasedItemsService);
+  private notificationService = inject(NotificationService);
   private userSubject = new BehaviorSubject<User | null>(null);
   private userDetailSubject = new BehaviorSubject<UserDetail | null>(null);
   currentUser = signal<User | null>(null);  //used in guards so checking user info will be quicker
@@ -101,6 +103,7 @@ export class UserService {
 
     this.walletService.getWallet(user.id);
     this.purchasedItemsService.getPurchasedCourses(user.id);
+    this.notificationService.getNotifications(user.id);
   }
 
   clearUser(): void {

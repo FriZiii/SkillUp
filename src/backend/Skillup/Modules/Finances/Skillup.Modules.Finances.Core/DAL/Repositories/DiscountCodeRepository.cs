@@ -43,6 +43,9 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
             discountCodeToEdit.Code = discountCode.Code;
             discountCodeToEdit.DiscountValue = discountCode.DiscountValue;
 
+            discountCodeToEdit.StartAt = discountCode.StartAt;
+            discountCodeToEdit.ExpireAt = discountCode.ExpireAt;
+
             discountCodeToEdit.IsActive = discountCode.IsActive;
             discountCodeToEdit.IsPublic = discountCode.IsPublic;
 

@@ -2,12 +2,14 @@ import { HttpInterceptorFn, HttpErrorResponse, HttpRequest, HttpHandlerFn, HttpE
 import { inject } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Observable, switchMap, catchError, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 export const AuthInterceptor: HttpInterceptorFn = (
   req: HttpRequest<any>,
   next: HttpHandlerFn
 ): Observable<HttpEvent<any>> => {
   const authService = inject(AuthService);
+  const router = inject(Router);
 
   const modifiedReq = req.clone({
     setHeaders: {
@@ -36,6 +38,7 @@ export const AuthInterceptor: HttpInterceptorFn = (
               'Failed to refresh token. Redirecting to login.',
               err
             );
+            router.navigate(['/sign-in'])
             return throwError(() => err);
           })
         );
