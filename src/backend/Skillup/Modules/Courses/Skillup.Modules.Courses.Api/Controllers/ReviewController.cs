@@ -93,9 +93,9 @@ namespace Skillup.Modules.Courses.Api.Controllers
         [Route("{reviewId}/Comments")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddComment(Guid reviewId, [FromQuery] Guid elementId, string comment)
+        public async Task<IActionResult> AddComment(Guid reviewId, [FromQuery] Guid courseId, [FromQuery] Guid? elementId, string comment)
         {
-            await _mediator.Send(new AddReviewCommentRequest(reviewId, elementId, comment));
+            await _mediator.Send(new AddReviewCommentRequest(reviewId, courseId, elementId, comment));
             return Ok(await _mediator.Send(new GetReviewByIdRequest(reviewId)));
         }
 
