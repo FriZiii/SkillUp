@@ -1,9 +1,32 @@
-<div (click)="onSelect()">
-  <div
-    class="border-2"
-    [ngClass]="isSelected() ? 'border-blue-500' : 'border-gray-500'"
-  >
-    <p>CourseID:{{ chat().courseId }}</p>
-    <p>{{ chat().lastMessage?.content }}</p>
+<div
+  (click)="onSelect()"
+  class="cursor-pointer py-2"
+  [ngClass]="isSelected() ? '' : 'su-border-y'"
+>
+  <div class="rounded-md py-2" [ngClass]="isSelected() ? 'bg-primary-100' : ''">
+    <div
+      class="flex gap-1 items-center rounded-sm"
+      [ngClass]="isSelected() ? 'selected' : ''"
+    >
+      <img [src]="author()?.profilePicture" style="width: 50px; height: 50px" />
+      <div class="prose max-w-none">
+        @if(currentUser()?.id !== author()?.id){
+        <p class="my-0 font-medium text-sm">
+          {{ course()!.title | truncate }}
+        </p>
+        <p class="my-0 font-light text-sm text-nowrap">
+          ({{ author()?.firstName }} {{ author()?.lastName }})
+        </p>
+        }@else {
+        <p class="my-0 font-medium text-sm text-nowrap">
+          ({{ talker()?.firstName }} {{ talker()?.lastName }})
+        </p>
+        } @if(chat().lastMessage && chat().lastMessage?.content !== ''){
+        <p class="my-0 font-light text-sm">
+          You: {{ chat().lastMessage!.content | truncate }}
+        </p>
+        }
+      </div>
+    </div>
   </div>
 </div>
