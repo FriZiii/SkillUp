@@ -8,7 +8,7 @@ using Skillup.Shared.Infrastructure.Client;
 
 namespace Skillup.Modules.Mails.Core.Commands.Handlers
 {
-    internal class AccountActivationHandler : IRequestHandler<AccountActivation>
+    internal class AccountActivationHandler : IRequestHandler<AccountActivationRequest>
     {
         private readonly ISmtpService _smtpService;
         private readonly ClientOptions _clientOptions;
@@ -23,7 +23,7 @@ namespace Skillup.Modules.Mails.Core.Commands.Handlers
             _logger = logger;
         }
 
-        public async Task Handle(AccountActivation request, CancellationToken cancellationToken)
+        public async Task Handle(AccountActivationRequest request, CancellationToken cancellationToken)
         {
             var sender = new Participant() { Email = _smtpOptions.SenderEmail, Name = "SkillUp" };
             var reciver = new Participant() { Email = request.Email };

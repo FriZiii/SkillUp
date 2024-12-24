@@ -9,13 +9,13 @@ namespace Skillup.Shared.Infrastructure.Auth
 {
     public class AuthManager : IAuthManager
     {
-        private readonly AuthOptions _options;
+        private readonly JwtOptions _options;
         private readonly IClock _clock;
         private readonly ILogger<AuthManager> _logger;
         private readonly SigningCredentials _signingCredentials;
         private readonly string _issuer;
 
-        public AuthManager(AuthOptions options, IClock clock, ILogger<AuthManager> logger)
+        public AuthManager(JwtOptions options, IClock clock, ILogger<AuthManager> logger)
         {
             _options = options;
             _clock = clock;

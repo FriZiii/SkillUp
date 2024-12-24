@@ -1,11 +1,6 @@
 ﻿using MediatR;
 using Skillup.Modules.Mails.Core.Entities;
 using Skillup.Modules.Mails.Core.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Skillup.Modules.Mails.Core.Commands.Handlers
 {

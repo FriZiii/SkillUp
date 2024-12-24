@@ -14,7 +14,7 @@ import { UserDetail } from '../../models/user.model';
 export class EditUserComponent implements OnInit {
   userService = inject(UserService);
   userDetail = signal<UserDetail | null>(null);
-  
+
   tabs = [
     {
       route: 'profile',
@@ -27,6 +27,10 @@ export class EditUserComponent implements OnInit {
     {
       route: 'privacy-settings',
       label: 'Privacy settings',
+    },
+    {
+      route: 'change-password',
+      label: 'Change password',
     },
   ];
 

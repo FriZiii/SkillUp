@@ -6,11 +6,19 @@ import { CoursesService } from '../../../course/services/course.service';
 import { CategoryService } from '../../../course/services/category.service';
 import { UserService } from '../../../user/services/user.service';
 import { CourseCarouselComponent } from '../../../course/components/displays/courses-carousels/course-carousel/course-carousel.component';
+import { DialogModule } from 'primeng/dialog';
+import { ResetPasswordComponent } from '../../../auth/components/reset-password/reset-password.component';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [ButtonModule, RouterLink, CourseCarouselComponent],
+  imports: [
+    ButtonModule,
+    RouterLink,
+    CourseCarouselComponent,
+    DialogModule,
+    ResetPasswordComponent,
+  ],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.css',
 })
@@ -26,20 +34,34 @@ export class HeroComponent implements OnInit {
   activationToken: string | null = null;
   user = this.userService.currentUser;
 
-  selectedCategories = computed(() => this.cetegoriesService.categories().sort(() => 0.5 - Math.random()).slice(0, 3));
+  selectedCategories = computed(() =>
+    this.cetegoriesService
+      .categories()
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 3)
+  );
 
   courseCaruseles = computed(() => {
-    return this.selectedCategories().map(category => {
+    return this.selectedCategories().map((category) => {
       const courses = this.coursesService.getCouresByCategoryId(category.id);
       return { category, courses };
     });
   });
 
+  resetPasswordVisible = false;
+  resetPasswordToken = signal<string | null>(null);
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.queryParamMap.get('userId');
     this.activationToken =
       this.route.snapshot.queryParamMap.get('activationToken');
+
+    this.resetPasswordToken.set(
+      this.route.snapshot.queryParamMap.get('passwordResetToken')
+    );
+
+    if (this.resetPasswordToken() !== null && this.resetPasswordToken() !== '')
+      this.resetPasswordVisible = true;
 
     this.activateAccount();
   }

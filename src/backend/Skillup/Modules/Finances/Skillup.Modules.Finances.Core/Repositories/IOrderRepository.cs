@@ -7,5 +7,6 @@ namespace Skillup.Modules.Finances.Core.Repositories
         Task Add(Order order);
         Task<IEnumerable<Order>> GetByOrderer(Guid ordererId);
         Task<Order?> GetByBalanceHistoryId(Guid balanceHistoryId);
+        Task<IEnumerable<OrderItem>> GetOrderItemsForAuthor(Guid authorId);
     }
 }

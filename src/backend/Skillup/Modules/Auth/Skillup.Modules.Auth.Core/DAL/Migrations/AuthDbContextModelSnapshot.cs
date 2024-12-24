@@ -23,6 +23,35 @@ namespace Skillup.Modules.Auth.Core.DAL.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Skillup.Modules.Auth.Core.Entities.PasswordReset", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("ExpiresAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PasswordResets", "auth");
+                });
+
             modelBuilder.Entity("Skillup.Modules.Auth.Core.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -60,6 +89,17 @@ namespace Skillup.Modules.Auth.Core.DAL.Migrations
                         .IsUnique();
 
                     b.ToTable("Users", "auth");
+                });
+
+            modelBuilder.Entity("Skillup.Modules.Auth.Core.Entities.PasswordReset", b =>
+                {
+                    b.HasOne("Skillup.Modules.Auth.Core.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
