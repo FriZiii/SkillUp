@@ -1,10 +1,13 @@
 import {
+  AfterViewInit,
   Component,
+  ElementRef,
   inject,
   input,
   OnChanges,
   signal,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import { ChatService } from '../../../services/chat.service';
 import { AuthService } from '../../../../auth/services/auth.service';
@@ -26,7 +29,8 @@ import { UserRole } from '../../../../user/models/user-role.model';
 })
 export class ChatWindowComponent implements OnChanges {
   chat = input.required<Chat | null>();
-
+  @ViewChild('scrollableDiv') scrollableDiv!: ElementRef;
+  
   //Services
   userService = inject(UserService);
   authService = inject(AuthService);
@@ -80,15 +84,20 @@ export class ChatWindowComponent implements OnChanges {
               this.talker.set(res); 
             });}
         }
-        
-
-        
       }
+      setTimeout(() => {
+        this.scrollToBottom();
+      }, 200);
     }
   }
 
   sendMessage() {
     this.chatService.sendMessage(this.chat()!.id, this.currentMessage);
     this.currentMessage = '';
+  }
+
+  scrollToBottom(): void {
+    const scrollableElement = this.scrollableDiv.nativeElement;
+    scrollableElement.scrollTop = scrollableElement.scrollHeight;
   }
 }
