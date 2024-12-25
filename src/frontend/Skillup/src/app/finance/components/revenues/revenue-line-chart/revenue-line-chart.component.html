@@ -1,0 +1,7 @@
+@if(!loading){
+<div class="card">
+  <p-chart type="line" [data]="data" [options]="options" class="h-[30rem]" />
+</div>
+} @else {
+<p-skeleton width="1125px" height="500px" />
+}

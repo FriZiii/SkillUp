@@ -1,0 +1,91 @@
+<div class="su-section-mt prose max-w-none mb-6">
+  <h1 class="my-1 text-5xl">Dashboard</h1>
+  <p class="my-1">{{ revenue?.itemsCovered }} courses covered</p>
+  <hr class="my-1" />
+</div>
+<div class="mb-8">
+  <div class="flex gap-6">
+    <div class="flex flex-col gap-6">
+      @if(revenue){
+      <div class="shadow">
+        <p class="my-0 text-base font-light">Total Revenue</p>
+        <h1 class="my-0 mt-6 text-5xl font-semibold text-nowrap text-center">
+          $ {{ revenue.totalRevenue | number : "1.2-2" }}
+        </h1>
+        <p class="my-0 text-base font-semibold text-center">
+          since {{ revenue.beginDate | date : "MM.yyyy" }}
+        </p>
+      </div>
+      <div class="shadow">
+        <p class="my-0 text-base font-light">Week Revenue</p>
+        <h1 class="my-0 mt-6 text-5xl font-semibold text-nowrap text-center">
+          $ {{ revenue.lastWeekRevenue | number : "1.2-2" }}
+        </h1>
+        <p class="my-0 text-base font-normal text-green-500 text-center">
+          {{ revenue.changePercentage | number : "1.0-0" }} %
+        </p>
+        <p class="my-0 text-base font-semibold text-center">
+          vs previous 7 days
+        </p>
+      </div>
+      }@else {
+      <p-skeleton width="300px" height="160px" />
+      <p-skeleton width="300px" height="160px" />
+      }
+    </div>
+    @if(revenue){
+    <div class="shadow w-full flex flex-col">
+      <div class="flex gap-2 self-end mb-4">
+        <p-select
+          [options]="years"
+          optionLabel="name"
+          optionValue="value"
+          placeholder="Select year"
+          class="w-56"
+          [(ngModel)]="selectedYear"
+          (ngModelChange)="selectedCourse = null"
+        />
+        <p-select
+          [options]="authorCourses()"
+          optionLabel="name"
+          optionValue="name"
+          placeholder="Select course"
+          class="w-56"
+          [(ngModel)]="selectedCourse"
+        />
+      </div>
+      <app-revenue-line-chart
+        [authorId]="authorId()"
+        [year]="selectedYear"
+        [course]="selectedCourse"
+      />
+    </div>
+    } @else{ <p-skeleton width="1165px" height="664px" />}
+    <div class="flex flex-col gap-6">
+      @if(!loading){
+      <div class="flex flex-col justify-center items-center shadow">
+        <p class="my-0 mb-4 text-base font-light">Course Sales Quantity</p>
+        <p-chart
+          type="pie"
+          [data]="courseQuantity"
+          [options]="options"
+          class="w-full md:w-[15rem]"
+        />
+      </div>
+
+      <div class="flex flex-col justify-center items-center shadow">
+        <p class="my-0 mb-4 text-base font-light">Earnings by Course</p>
+        <p-chart
+          type="pie"
+          [data]="courseTotals"
+          [options]="options"
+          class="w-full md:w-[15rem]"
+        />
+      </div>
+      }@else {
+      <p-skeleton width="280px" height="320px" />
+
+      <p-skeleton width="280px" height="320px" />}
+    </div>
+  </div>
+</div>

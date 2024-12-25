@@ -38,6 +38,7 @@ import { OrderPageComponent } from './finance/components/order-page/order-page.c
 import { ChatsComponent } from './chat/components/chats/chats.component';
 import { AllCoursesComponent } from './course/components/displays/all-courses/all-courses.component';
 import { DiscountCodesComponent } from './finance/components/discount-codes/discount-codes.component';
+import { RevenuesComponent } from './finance/components/revenues/revenues.component';
 
 export const routes: Routes = [
   {
@@ -123,6 +124,12 @@ export const routes: Routes = [
   {
     path: 'author/:authorId/discount-codes',
     component: DiscountCodesComponent,
+    canMatch: [hasRole],
+    data: { requiredRole: UserRole.Instructor },
+  },
+  {
+    path: 'author/:authorId/revenues',
+    component: RevenuesComponent,
     canMatch: [hasRole],
     data: { requiredRole: UserRole.Instructor },
   },
