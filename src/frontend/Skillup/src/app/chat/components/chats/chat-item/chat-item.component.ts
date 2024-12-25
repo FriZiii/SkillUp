@@ -6,11 +6,12 @@ import { UserService } from '../../../../user/services/user.service';
 import { User } from '../../../../user/models/user.model';
 import { TruncatePipe } from "../../../../utils/pipes/truncate.pipe";
 import { UserRole } from '../../../../user/models/user-role.model';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-chat-item',
   standalone: true,
-  imports: [CommonModule, TruncatePipe],
+  imports: [CommonModule, TruncatePipe, SkeletonModule],
   templateUrl: './chat-item.component.html',
   styleUrl: './chat-item.component.css',
 })

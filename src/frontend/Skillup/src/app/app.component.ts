@@ -16,11 +16,8 @@ import { FilterHeaderComponent } from './core/components/filter-header/filter-he
   selector: 'app-root',
   standalone: true,
   imports: [
-    SignInComponent,
-    SignUpComponent,
     RouterOutlet,
     HeaderComponent,
-    AddCourseComponent,
     ToastModule,
     FooterComponent,
     FilterHeaderComponent,

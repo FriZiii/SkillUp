@@ -20,3 +20,9 @@
   .scrollable-div::-webkit-scrollbar-thumb:hover {
     background: var(--p-primary-600);
   }
+
+  :host ::ng-deep .p-accordionheader {
+    background: var(--p-primary-500);
+    color: white;
+    margin: 2px 0px 2px 0px ;
+  }

@@ -8,20 +8,35 @@
       class="flex gap-1 items-center rounded-sm"
       [ngClass]="isSelected() ? 'selected' : ''"
     >
+      @if(author()?.profilePicture){
       <img [src]="author()?.profilePicture" style="width: 50px; height: 50px" />
+      }@else {
+      <p-skeleton shape="circle" size="2rem" styleClass="mr-2" />
+      }
       <div class="prose max-w-none">
-        @if(currentUser()?.id !== author()?.id){
+        @if(currentUser()?.id !== author()?.id){ @if(course()?.title){
         <p class="my-0 font-medium text-sm">
           {{ course()!.title | truncate }}
         </p>
+        } @else{
+        <p-skeleton width="8rem" styleClass="mb-2" borderRadius="16px" />}
+        @if(author()){
         <p class="my-0 font-light text-sm text-nowrap">
           ({{ author()?.firstName }} {{ author()?.lastName }})
         </p>
-        }@else {
+        } @else{<p-skeleton
+          width="8rem"
+          styleClass="mb-2"
+          borderRadius="16px"
+        />} }@else { @if(talker()){
         <p class="my-0 font-medium text-sm text-nowrap">
-          ({{ talker()?.firstName }} {{ talker()?.lastName }})
+          {{ talker()?.firstName }} {{ talker()?.lastName }}
         </p>
-        } @if(chat().lastMessage && chat().lastMessage?.content !== ''){
+        } @else {<p-skeleton
+          width="8rem"
+          styleClass="mb-2"
+          borderRadius="16px"
+        />} } @if(chat().lastMessage && chat().lastMessage?.content !== ''){
         <p class="my-0 font-light text-sm">
           You: {{ chat().lastMessage!.content | truncate }}
         </p>
