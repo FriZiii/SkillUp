@@ -1,5 +1,4 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
-import { DiscountCodeItemComponent } from "./discount-code-item/discount-code-item.component";
 import { AddNewDiscountCodeComponent } from "./add-new-discount-code/add-new-discount-code.component";
 import { DiscountCodeService } from '../../services/discountCode.service';
 import { DiscountCode, DiscountCodeType } from '../../models/discountCodes.model';
@@ -12,7 +11,7 @@ import { EditDiscountCodeComponent } from "./edit-discount-code/edit-discount-co
 @Component({
   selector: 'app-discount-codes',
   standalone: true,
-  imports: [AddNewDiscountCodeComponent, ButtonModule, DialogModule, TableModule, CommonModule, EditDiscountCodeComponent, DiscountCodeItemComponent],
+  imports: [AddNewDiscountCodeComponent, ButtonModule, DialogModule, TableModule, CommonModule, EditDiscountCodeComponent],
   templateUrl: './discount-codes.component.html',
   styleUrl: './discount-codes.component.css'
 })

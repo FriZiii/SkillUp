@@ -17,7 +17,6 @@ export class NotificationService {
         .pipe(
           tap((res) => {
             this.notifications.set(res);
-            console.log(this.notifications());
           })
         ).subscribe();
     }

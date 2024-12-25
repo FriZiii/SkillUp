@@ -2,10 +2,6 @@ import { Component, computed, inject, input, OnInit, signal } from '@angular/cor
 import { CoursesService } from '../../services/course.service';
 import { Course } from '../../models/course.model';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { AddNewDiscountCodeComponent } from "../../../finance/components/discount-codes/add-new-discount-code/add-new-discount-code.component";
-import { DiscountCodeService } from '../../../finance/services/discountCode.service';
-import { DiscountCode } from '../../../finance/models/discountCodes.model';
-import { DiscountCodeItemComponent } from '../../../finance/components/discount-codes/discount-code-item/discount-code-item.component';
 import { CourseItemShortComponent } from '../displays/course-item-short/course-item-short.component';
 import { TabsModule } from 'primeng/tabs';
 import { CourseStatus } from '../../models/course-status.model';
