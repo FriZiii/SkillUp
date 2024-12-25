@@ -3,25 +3,29 @@ import { greenShades, YearEarnings } from '../../../models/revenues.model';
 import { RevenueService } from '../../../services/revenues.service';
 import { ChartModule } from 'primeng/chart';
 import { CoursesService } from '../../../../course/services/course.service';
+import { Skeleton, SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-revenue-line-chart',
   standalone: true,
-  imports: [ChartModule],
+  imports: [ChartModule, SkeletonModule],
   templateUrl: './revenue-line-chart.component.html',
   styleUrl: './revenue-line-chart.component.css'
 })
 export class RevenueLineChartComponent implements OnChanges {
   authorId = input.required<string>();
   year = input.required<number>();
+  course = input.required<string | null>();
 
   //Services
   revenueService = inject(RevenueService);
   courseService = inject(CoursesService);
 
   //Variables
+  loading = true;
   yearEarnings: YearEarnings | null = null;
-  data: any;
+  constData: Data | null = null;
+  data: Data | null = null;
   courses = this.courseService.courses;
   documentStyle = getComputedStyle(document.documentElement);
   textColor = this.documentStyle.getPropertyValue('--p-text-color');
@@ -60,6 +64,7 @@ export class RevenueLineChartComponent implements OnChanges {
 };
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.loading = true;
     if(changes['year']){
       this.revenueService.getMonthlyEarningsAndSalesPerCourse(this.authorId(), this.year()).subscribe((res) => {
         this.yearEarnings = res;
@@ -78,9 +83,29 @@ export class RevenueLineChartComponent implements OnChanges {
               tension: 0.4
           }))
       };
+      this.constData = this.data;
       console.log(this.data);
+      this.loading = false;
     }, 1000); 
     });
     }
+    if(changes['course']){
+      if(this.course()){
+        this.data = {
+          labels: this.constData!.labels,
+          datasets: this.constData!.datasets.filter(x => x.label === this.course())
+        }
+      }
+    }
   }
 }
+
+export interface Data{
+  labels: string[];
+    datasets: {
+      label: string | undefined;
+      data: number[];
+      fill: boolean;
+      borderColor: string;
+      tension: number;
+}[]}

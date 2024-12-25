@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit } from '@angular/core';
+import { Component, computed, inject, input, OnInit } from '@angular/core';
 import { RevenueService } from '../../services/revenues.service';
 import { greenShades, ItemEarnings, Revenue, YearEarnings } from '../../models/revenues.model';
 import { CoursesService } from '../../../course/services/course.service';
@@ -6,11 +6,13 @@ import { ChartModule } from 'primeng/chart';
 import { RevenueLineChartComponent } from "./revenue-line-chart/revenue-line-chart.component";
 import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-revenues',
   standalone: true,
-  imports: [ChartModule, RevenueLineChartComponent, SelectModule, FormsModule],
+  imports: [ChartModule, RevenueLineChartComponent, SelectModule, FormsModule, CommonModule, SkeletonModule],
   templateUrl: './revenues.component.html',
   styleUrl: './revenues.component.css'
 })
@@ -24,6 +26,7 @@ export class RevenuesComponent implements OnInit {
   //Variables
   itemsEarings: ItemEarnings[] = [];
   revenue: Revenue | null = null;
+  loading = true;
 
   courses = this.courseService.courses;
 
@@ -39,6 +42,21 @@ export class RevenuesComponent implements OnInit {
     { name: '2021', value: 2021 },
 ];
 selectedYear = 2024;
+authorCourses = computed(() => this.courseService.getCoursesByAuthor(this.authorId()).map((course) => ({
+      name: course.title,
+      value: course.id
+  })));
+  selectedCourse: string | null = null;
+options = {
+  plugins: {
+      legend: {
+          display: false  // Ukrywa legendę nad wykresem
+      },
+      tooltip: {
+          enabled: true  // Pokazuje etykiety po najechaniu
+      }
+  }
+}
 
   ngOnInit(): void {
     this.revenueService.getEarningsAndSalesPerCourse(this.authorId()).subscribe((res) => {
@@ -72,9 +90,9 @@ selectedYear = 2024;
             }
         ]
     };
+    this.loading = false;
   }, 2000); 
   });
-    this.revenueService.getMonthlyEarningsAndSalesPerCourse(this.authorId(), 2024).subscribe();
     this.revenueService.getRevenue(this.authorId()).subscribe((res) => this.revenue = res);
   }
 
