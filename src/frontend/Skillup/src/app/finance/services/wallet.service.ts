@@ -1,9 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
-import { Wallet, WalletWithBalanceHistory } from "../models/wallet.model";
+import { WalletWithBalanceHistory } from "../models/wallet.model";
 import { environment } from "../../../environments/environment";
 import { tap } from "rxjs";
-import { UserService } from "../../user/services/user.service";
 
 @Injectable({ providedIn: 'root' })
 export class WalletService {
