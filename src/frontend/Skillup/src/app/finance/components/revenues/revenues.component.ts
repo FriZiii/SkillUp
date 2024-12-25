@@ -3,11 +3,14 @@ import { RevenueService } from '../../services/revenues.service';
 import { greenShades, ItemEarnings, Revenue, YearEarnings } from '../../models/revenues.model';
 import { CoursesService } from '../../../course/services/course.service';
 import { ChartModule } from 'primeng/chart';
+import { RevenueLineChartComponent } from "./revenue-line-chart/revenue-line-chart.component";
+import { SelectModule } from 'primeng/select';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-revenues',
   standalone: true,
-  imports: [ChartModule],
+  imports: [ChartModule, RevenueLineChartComponent, SelectModule, FormsModule],
   templateUrl: './revenues.component.html',
   styleUrl: './revenues.component.css'
 })
@@ -27,6 +30,15 @@ export class RevenuesComponent implements OnInit {
   //Charts Data
   courseQuantity: any;
   courseTotals: any;
+
+  //Select
+  years = [
+    { name: '2024', value: 2024 },
+    { name: '2023', value: 2023 },
+    { name: '2022', value: 2022 },
+    { name: '2021', value: 2021 },
+];
+selectedYear = 2024;
 
   ngOnInit(): void {
     this.revenueService.getEarningsAndSalesPerCourse(this.authorId()).subscribe((res) => {

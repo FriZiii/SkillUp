@@ -1,4 +1,12 @@
-<p>revenues works!</p>
+<p-select
+  [options]="years"
+  optionLabel="name"
+  optionValue="value"
+  placeholder="Select year"
+  class="w-56"
+  [(ngModel)]="selectedYear"
+/>
+<app-revenue-line-chart [authorId]="authorId()" [year]="selectedYear" />
 
 <div class="card flex justify-center">
   <p-chart type="pie" [data]="courseQuantity" class="w-full md:w-[30rem]" />
