@@ -2,7 +2,7 @@
   <h1 class="my-0 font-semibold text-3xl">Create discount code</h1>
   <form [formGroup]="discountCodeForm" [style]="{ height: '650px' }">
     <div class="flex flex-col gap-2" [style]="{ height: '650px' }">
-      <p class="my-0 mb-2 font-light text-base">Discount Code</p>
+      <p class="my-0 mt-6 font-light text-base">Discount Code</p>
       <input
         type="text"
         pInputText
@@ -12,6 +12,7 @@
             discountCodeForm.get('code')?.invalid &&
             discountCodeForm.get('code')?.dirty
         }"
+        class="w-72"
       />
       <p class="my-0 font-light text-base">Amount</p>
       <div class="flex gap-2">
@@ -20,21 +21,23 @@
           optionLabel="name"
           optionValue="value"
           placeholder="Select a type"
-          class="w-full"
+          class="w-56"
           formControlName="codeType"
         />
 
-        <p-inputgroup>
-          <p-inputNumber
-            formControlName="discountValue"
-            [ngClass]="{
-              'ng-invalid':
-                discountCodeForm.get('discountValue')?.invalid &&
-                discountCodeForm.get('discountValue')?.dirty
-            }"
-          />
-          <p-inputgroup-addon>{{ getAddonSymbol() }}</p-inputgroup-addon>
-        </p-inputgroup>
+        <div class="w-28">
+          <p-inputgroup>
+            <p-inputNumber
+              formControlName="discountValue"
+              [ngClass]="{
+                'ng-invalid':
+                  discountCodeForm.get('discountValue')?.invalid &&
+                  discountCodeForm.get('discountValue')?.dirty
+              }"
+            />
+            <p-inputgroup-addon>{{ getAddonSymbol() }}</p-inputgroup-addon>
+          </p-inputgroup>
+        </div>
       </div>
 
       <p class="my-0 font-light text-base">Start date</p>
@@ -79,9 +82,10 @@
           placeholder="Select type"
           class="w-full"
           formControlName="appliesToEntireCart"
+          class="w-72"
         />
       </div>
-      <div class="flex gap-4 justify-center">
+      <div class="flex gap-4 mt-4">
         <div class="flex gap-4">
           <p class="my-1">Is active?</p>
           <p-checkbox [binary]="true" formControlName="isActive" />

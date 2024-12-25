@@ -34,6 +34,7 @@ export class EditDiscountCodeComponent implements OnChanges {
   onEdit = output<DiscountCode>();
   onClose = output();
   onToggleItem = output<DiscountCode>();
+  showSelect = false;
   
   today: Date = new Date();
 
@@ -65,6 +66,7 @@ export class EditDiscountCodeComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['discountCodeInput'] && this.discountCodeInput() !== null){
       const discountCode = this.discountCodeInput()!;
+      this.showSelect = !this.discountCodeInput()!.appliesToEntireCart;
       console.log(this.discountCodeInput());
       this.discountCodeForm.patchValue({
         code: discountCode.code,
@@ -136,6 +138,10 @@ export class EditDiscountCodeComponent implements OnChanges {
     isPublic: this.discountCodeForm.controls.isPublic.value!,
     discountedItems: this.discountCodeInput()?.discountedItems ?? null
     })
+    if(this.discountCodeForm.controls.appliesToEntireCart.value === false){
+      this.showSelect = true;
+    }
+    else{this.showSelect = false}
     }
   
 

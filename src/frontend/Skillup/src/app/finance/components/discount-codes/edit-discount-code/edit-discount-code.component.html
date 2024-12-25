@@ -1,16 +1,21 @@
 <form [formGroup]="discountCodeForm">
-  <div class="prose max-w-none" [style]="{ height: '800px' }">
+  <div class="prose max-w-none" [style]="{ height: '770px' }">
     <h1 class="my-0 font-semibold text-3xl">Edit discount code</h1>
-    <div class="flex flex-col gap-2" [style]="{ height: '750px' }">
-      <p class="my-0 mb-2 font-light text-base">Discount Code</p>
-      <input type="text" pInputText formControlName="code" />
-
-      <p class="my-0 font-light text-base">Amount</p>
-      <div class="flex gap-2">
-        <p-inputgroup>
-          <input type="text" pInputText formControlName="discountValue" />
-          <p-inputgroup-addon>{{ getAddonSymbol() }}</p-inputgroup-addon>
-        </p-inputgroup>
+    <div class="flex flex-col gap-2" [style]="{ height: '730px' }">
+      <div class="flex gap-4 mt-6">
+        <div>
+          <p class="my-0 font-light text-base">Discount Code</p>
+          <input type="text" pInputText formControlName="code" class="w-72" />
+        </div>
+        <div>
+          <p class="my-0 font-light text-base">Amount</p>
+          <div class="w-28">
+            <p-inputgroup>
+              <input type="text" pInputText formControlName="discountValue" />
+              <p-inputgroup-addon>{{ getAddonSymbol() }}</p-inputgroup-addon>
+            </p-inputgroup>
+          </div>
+        </div>
       </div>
 
       <p class="my-0 font-light text-base">Start date</p>
@@ -56,10 +61,11 @@
           placeholder="Select type"
           class="w-full"
           formControlName="appliesToEntireCart"
+          class="w-72"
         />
       </div>
 
-      <div class="flex gap-4 justify-center">
+      <div class="flex gap-4 mt-4">
         <div class="flex gap-4">
           <p class="my-1">Is active?</p>
           <p-checkbox [binary]="true" formControlName="isActive" />
@@ -70,17 +76,17 @@
         </div>
       </div>
 
+      @if(showSelect){
       <p-multiselect
         [options]="coursesForSelect"
         [(ngModel)]="selectedCourses"
         optionLabel="title"
-        placeholder="Select Cities"
+        placeholder="Select courses"
         [maxSelectedLabels]="3"
         styleClass="w-full md:w-80"
         (ngModelChange)="toggleItem()"
         [ngModelOptions]="{ standalone: true }"
-      />
-      @if(discountCodeInput()?.appliesToEntireCart === false){ }
+      />} @if(discountCodeInput()?.appliesToEntireCart === false){ }
 
       <div class="flex justify-end gap-2 w-full h-full items-end">
         <p-button

@@ -87,6 +87,7 @@ deleteCode(codeId: string){
 
 addDiscountCode(code: DiscountCode){
   this.discountCodes.update((list) => [...list, code])
+  this.addNewDiscountCodeDialogVisible = false;
 }
 
 getType(codeType: DiscountCodeType){

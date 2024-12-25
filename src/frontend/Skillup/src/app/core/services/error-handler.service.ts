@@ -35,6 +35,9 @@ export class ErrorHandlerService implements ErrorHandler {
     else if(error.status === 400 && error.error?.errors?.[0]?.code){
       this.toastService.showError(error.error.errors[0].message);  //invalid credentials message from api
     }
+    else if(error.status === 500){
+      this.toastService.showError(error.error.errors[0].message);
+    }
     else{
     }
     /*

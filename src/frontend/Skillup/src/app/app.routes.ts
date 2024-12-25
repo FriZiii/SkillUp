@@ -123,6 +123,8 @@ export const routes: Routes = [
   {
     path: 'author/:authorId/discount-codes',
     component: DiscountCodesComponent,
+    canMatch: [hasRole],
+    data: { requiredRole: UserRole.Instructor },
   },
   {
     path: 'cart',

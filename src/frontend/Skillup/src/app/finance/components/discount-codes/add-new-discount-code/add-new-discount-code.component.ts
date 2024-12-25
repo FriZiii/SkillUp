@@ -11,6 +11,7 @@ import { DiscountCodeService } from '../../../services/discountCode.service';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { catchError, throwError } from 'rxjs';
 
 function expirationAfterStart(control: AbstractControl) {
   const startDate = control.get('startDate')?.value;
@@ -97,8 +98,15 @@ export class AddNewDiscountCodeComponent {
     appliesToEntireCart: this.discountCodeForm.controls.appliesToEntireCart.value!,
     isActive: this.discountCodeForm.controls.isActive.value!,
     isPublic: this.discountCodeForm.controls.isPublic.value!
-    }).subscribe(
-      (res) => this.onAddCode.emit(res)
+    }).pipe(
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    ).subscribe(
+      (res) => {
+        this.onAddCode.emit(res);
+        this.discountCodeForm.reset();
+      }
     );
   }
 
