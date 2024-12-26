@@ -15,7 +15,7 @@ export const hasRole: CanMatchFn = async (route, segments) => {
     const requiredRole = route.data?.['requiredRole'];
     if(user === null)
     {
-        await new Promise(resolve => setTimeout(resolve, 1000)); 
+        await new Promise(resolve => setTimeout(resolve, 2000)); 
     }
     
     if(user!.isInRole(requiredRole)){
@@ -37,7 +37,7 @@ export const isAuthor: CanMatchFn = async (route, segments) => {
     const course = computed(() => courseSerivce.courses().find(c => c.id === courseId))
     if(user === null || course() === null)
     {
-        await new Promise(resolve => setTimeout(resolve, 1000)); 
+        await new Promise(resolve => setTimeout(resolve, 2000)); 
     }
 
     if(user!.isInRole(UserRole.Instructor) && user!.id === course()?.authorId){
@@ -56,7 +56,7 @@ export const isSignedIn: CanMatchFn = async (route, segments) => {
     })
     if(user === null)
     {
-        await new Promise(resolve => setTimeout(resolve, 1000)); 
+        await new Promise(resolve => setTimeout(resolve, 2000)); 
     }
     
     if(user !== null){
