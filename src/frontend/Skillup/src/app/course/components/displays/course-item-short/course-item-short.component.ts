@@ -12,7 +12,7 @@ import { CoursesService } from '../../../services/course.service';
 @Component({
   selector: 'app-course-item-short',
   standalone: true,
-  imports: [ButtonModule, RouterLink, TruncatePipe, RatingModule, FormsModule],
+  imports: [ButtonModule, RouterLink, RatingModule, FormsModule],
   templateUrl: './course-item-short.component.html',
   styleUrl: './course-item-short.component.css'
 })

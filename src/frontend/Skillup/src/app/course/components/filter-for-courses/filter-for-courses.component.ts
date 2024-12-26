@@ -116,8 +116,11 @@ export class FilterForCoursesComponent implements OnChanges {
         const matchesPrice = course.price >= this.selectedPrice[0] && course.price <= this.selectedPrice[1];
         return matchesSearch && matchesAuthor && matchesCategory && matchesSubcategory && matchesLevel && matchesStars && matchesUsers && matchesRatingCount && matchesPrice;
       });
-
-    console.log(filtered);
     this.filteredCourses.emit(filtered);
+  }
+
+  selectCategory(){
+    this.selectedSubcategory.set('');
+    this.applyFilters();
   }
 }

@@ -29,7 +29,7 @@ export class CoursesService {
   //Variables
   private httpClient = inject(HttpClient);
   private coursesSubject = new BehaviorSubject<Course[]>([]);
-  private courses$: Observable<Course[]> = this.coursesSubject.asObservable();
+  public courses$: Observable<Course[]> = this.coursesSubject.asObservable();
   public courses = signal<CourseListItem[]>([]);    
   public publishedCourses = computed(() => this.courses().filter(c => c.status === CourseStatus.Published)); 
 
