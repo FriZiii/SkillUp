@@ -31,7 +31,7 @@ export class UserService {
   private purchasedItemsService = inject(PurchasedItemsService);
   private userSubject = new BehaviorSubject<User | null>(null);
   private userDetailSubject = new BehaviorSubject<UserDetail | null>(null);
-  currentUser = signal<User | null>(null);  //used in guards so checking user info will be quicker
+  currentUser = signal<User | null>(null); 
 
   get user(): Observable<User | null> {
     return this.userSubject.asObservable();
