@@ -12,6 +12,7 @@ import {
   catchError,
   map,
   Observable,
+  of,
   tap,
   throwError,
 } from 'rxjs';
@@ -156,13 +157,13 @@ export class CoursesService {
     return this.publishedCourses().filter((course) => course.category.id === categoryId);
   }
 
-  getCoursesBySlug(category: string, subcategory: string): CourseListItem[] {
-    return this.publishedCourses().filter(
+  getCoursesBySlug(category: string, subcategory: string) {
+    return of(this.publishedCourses().filter(
       (course) =>
         course.category.slug === category &&
         (subcategory.toLowerCase() === 'all' ||
           course.category.subcategory.slug === subcategory)
-    );
+    ));
   }
 
   getCoursesByAuthor(authorId: string): CourseListItem[]{
