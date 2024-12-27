@@ -84,7 +84,7 @@
         severity="secondary"
       />
 
-      @if((this.course().status === CourseStatus.ChangesRequired) &&
+      @if((this.course().status === CourseStatus.SubmitedForReview) &&
       (latestComment() !== null || comments()?.length!==0)){ @if(latestComment()
       !== null){ @if(latestComment()?.isResolved === true){
       <p-button (click)="openComments()" icon="pi pi-comment" severity="info" />
@@ -168,25 +168,49 @@
   class="cursor-default"
 >
   <div class="prose max-w-none !w-full">
-    @if(comments() !== null){
-    <h3>Previous comments</h3>
-    @for(comment of comments(); track comment.id){
-    <p>{{ comment.comment }}</p>
-    } } @if(latestComment() !== null){
-    <h3>Latest comment</h3>
-    <div class="flex gap-2">
-      @if(latestComment()!.isResolved === false){
-      <p>{{ latestComment()!.comment }}</p>
-      <p-button
-        label="Mark this issue as resolved"
-        (onClick)="resolveComment(latestComment()!.id)"
-      />
-      } @else {
-      <p>{{ latestComment()!.comment }}</p>
-      <p>RESOLVED</p>
-      }
+    @if(comments() !== null){ @for(comment of comments(); track comment.id){
+    <div class="flex gap-2 mb-2 items-center">
+      <p class="my-0 font-light text-base">
+        {{ comment.createdAt | date : "HH:mm dd.MM.yyyy" }}
+      </p>
+      <p class="my-0 font-medium text-xl">{{ comment.comment }}</p>
     </div>
-    }
+    } } @if(latestComment() !== null){ @if(latestComment()!.isResolved ===
+    false){
+    <div class="mt-6 mb-8">
+      <p class="my-0 font-light text-sm text-primary-500">Newest comment</p>
+      <div class="flex items-center justify-between">
+        <div class="flex gap-2 mb-2 items-center">
+          <p class="my-0 font-light text-base">
+            {{ latestComment()!.createdAt | date : "HH:mm dd.MM.yyyy" }}
+          </p>
+          <p class="my-0 font-medium text-xl">{{ latestComment()!.comment }}</p>
+        </div>
+        <p-button
+          label="Mark as resolved"
+          (onClick)="resolveComment(latestComment()!.id)"
+        />
+      </div>
+    </div>
+    } @else {
+    <div class="mt-6 mb-8">
+      <div class="flex gap-2 items-center">
+        <p class="my-0 font-light text-sm text-primary-500">Newest comment</p>
+        <i
+          class="pi pi-check-square text-primary-500"
+          style="font-size: 0.7rem"
+        ></i>
+      </div>
+      <div class="flex gap-2 mb-2 items-center">
+        <p class="my-0 font-light text-base text-primary-500">
+          {{ latestComment()!.createdAt | date : "HH:mm dd.MM.yyyy" }}
+        </p>
+        <p class="my-0 font-medium text-xl text-primary-500">
+          {{ latestComment()!.comment }}
+        </p>
+      </div>
+    </div>
+    } }
   </div>
   <div class="flex gap-2 justify-end">
     <p-button
