@@ -84,7 +84,7 @@
         severity="secondary"
       />
 
-      @if((this.course().status === CourseStatus.SubmitedForReview) &&
+      @if((this.course().status === CourseStatus.ChangesRequired) &&
       (latestComment() !== null || comments()?.length!==0)){ @if(latestComment()
       !== null){ @if(latestComment()?.isResolved === true){
       <p-button (click)="openComments()" icon="pi pi-comment" severity="info" />
@@ -211,12 +211,5 @@
       </div>
     </div>
     } }
-  </div>
-  <div class="flex gap-2 justify-end">
-    <p-button
-      label="Cancel"
-      severity="secondary"
-      (click)="commentDialogVisible = false"
-    />
   </div>
 </p-dialog>

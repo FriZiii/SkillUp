@@ -55,7 +55,10 @@
   @if(course()?.status === CourseStatus.Draft){
   <div class="prose my-4">
     <h3>Submit your course for review</h3>
-    <p-button label="Submit" (onClick)="submitForReview($event)"></p-button>
+    <p-button
+      label="Submit for review"
+      (onClick)="submitForReview($event)"
+    ></p-button>
   </div>
   } @if(course()?.status === CourseStatus.SubmitedForReview || course()?.status
   === CourseStatus.PendingReview ){
@@ -65,7 +68,10 @@
   } @if(course()?.status === CourseStatus.ChangesRequired){ @if(ifResolved()){
   <div class="prose my-4">
     <h3>Submit your course for new review</h3>
-    <p-button label="Submit" (onClick)="submitForReview($event)"></p-button>
+    <p-button
+      label="Submit for review"
+      (onClick)="submitForReview($event)"
+    ></p-button>
   </div>
   } @else {
   <div class="prose my-4">
