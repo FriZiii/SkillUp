@@ -168,6 +168,10 @@ export const routes: Routes = [
     component: CourseWalkThroughComponent,
   },
   {
+    path: 'course/:courseId/walk-through/:currentElementId',
+    component: CourseWalkThroughComponent,
+  },
+  {
     path: 'quiz',
     component: SolveQuizComponent,
   },

@@ -41,6 +41,7 @@ import { CommentService } from '../../services/comment.service';
 import { AuthorDescriptionComponent } from "../displays/author-description/author-description.component";
 import { CourseRatingsListComponent } from "./course-ratings-list/course-ratings-list.component";
 import { SkeletonModule } from 'primeng/skeleton';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-walk-through',
@@ -68,6 +69,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 export class CourseWalkThroughComponent implements OnInit {
   //URL
   courseId = input.required<string>();
+  currentElementId = input<string>();
 
   //Services
   coureContentService = inject(CourseContentService);
@@ -77,6 +79,7 @@ export class CourseWalkThroughComponent implements OnInit {
   cdr = inject(ChangeDetectorRef);
   exerciseService = inject(ExerciseService);
   commentService = inject(CommentService);
+  router = inject(Router);
 
   //Variables
   AssetType = AssetType;
@@ -113,8 +116,13 @@ export class CourseWalkThroughComponent implements OnInit {
       });
 
     new Promise((resolve) => setTimeout(resolve, 2000)).then(() => {
-      this.currentElement = this.sections()[0].elements[0];
-      this.loading = false;
+      if(this.currentElementId !== undefined){
+        this.currentElement = this.sections().flatMap(s => s.elements).find(e => e.id === this.currentElementId()) ?? this.sections()[0].elements[0];
+        this.loading = false;
+      }else{
+        this.currentElement = this.sections()[0].elements[0];
+        this.loading = false;
+      }
     });
 
     this.userProgressService.getPercentage().subscribe((res) => {
@@ -132,7 +140,6 @@ export class CourseWalkThroughComponent implements OnInit {
   }
 
   set currentElement(value: Element) {
-    //current element na accomplished
     this._currentElement = value;
 
     this.commentService.getCommentsByElementId(value.id).subscribe((res) => {
@@ -179,5 +186,6 @@ export class CourseWalkThroughComponent implements OnInit {
   onElementClicked(element: Element) {
     this.currentElement = element;
     this.hasLink = false;
+    this.router.navigate(['course/' + this.courseId() + '/walk-through/' + element.id])
   }
 }
