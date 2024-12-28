@@ -1,5 +1,15 @@
-<div class="w-full min-h-screen px-24 mt-8 no-padding-on-small">
+<div class="w-full min-h-screen px-24 mt-2 no-padding-on-small">
   <div class="min-h-screen">
+    <p-breadcrumb class="max-w-full" [model]="breadcrumbs">
+      <ng-template let-item pTemplate="item">
+        <ng-container *ngIf="item.route">
+          <a [routerLink]="item.route" class="p-breadcrumb-item-link">
+            <span [ngClass]="[item.icon ? item.icon : '', 'text-color']"></span>
+            <span>{{ item.label }}</span>
+          </a>
+        </ng-container>
+      </ng-template>
+    </p-breadcrumb>
     <div class="grid grid-cols-2 items-stretch w-full gap-10 top-container">
       <div class="col-start-1 col-span-1 flex justify-center items-center">
         <img

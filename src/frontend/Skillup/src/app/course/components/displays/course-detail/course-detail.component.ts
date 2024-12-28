@@ -1,9 +1,8 @@
-import { Component, computed, ElementRef, inject, input, OnChanges, OnInit, Renderer2, signal, SimpleChanges, ViewChild } from '@angular/core';
-
+import { Component, computed, ElementRef, inject, input, OnChanges, Renderer2, signal, SimpleChanges, ViewChild } from '@angular/core';
 import { ViewElementItemComponent } from "./view-element-item/view-element-item.component";
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CourseItemComponent } from "../course-item/course-item.component";
-import { Rating, RatingModule } from 'primeng/rating';
+import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { CourseDetail } from '../../../models/course.model';
 import { SectionItemComponent } from '../../edit-course/course-creator/section-item/section-item.component';
@@ -18,11 +17,13 @@ import { CourseDetailRating } from '../../../models/rating.model';
 import { CarouselModule } from 'primeng/carousel';
 import { BuyButtonComponent } from "../../buy-button/buy-button.component";
 import { AuthorDescriptionComponent } from "../author-description/author-description.component";
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-course-detail',
   standalone: true,
-  imports: [AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent, RatingModule, FormsModule, CarouselModule, BuyButtonComponent, AuthorDescriptionComponent],
+  imports: [CommonModule, AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent, RatingModule, FormsModule, CarouselModule, BuyButtonComponent, AuthorDescriptionComponent, BreadcrumbModule, RouterModule ],
   templateUrl: './course-detail.component.html',
   styleUrl: './course-detail.component.css'
 })
@@ -36,6 +37,13 @@ export class CourseDetailComponent implements OnChanges {
   courseContentService = inject(CourseContentService);
   ratingService = inject(CourseRatingService);
   router = inject(Router);
+
+  breadcrumbs = [
+    { icon: 'pi pi-home', route: '/' }, 
+    { label: 'Category', route:'/' }, 
+    { label: 'Subcategory', route:'/' }, 
+  ];
+
 
   //Variables
   course = signal<CourseDetail | null>(null);
@@ -73,6 +81,11 @@ courseRating: CourseDetailRating | undefined = undefined
               this.author.set(res);
             }
           });
+          this.breadcrumbs = [
+            { icon: 'pi pi-home', route: '/' }, 
+            { label: this.course()!.category.name, route:'/courses-list/' + this.course()!.category.slug +'/all' }, 
+            { label: this.course()!.category.subcategory.name, route:'/courses-list/' + this.course()!.category.slug +'/' + this.course()!.category.subcategory.slug }, 
+          ];
         }
       })
       
