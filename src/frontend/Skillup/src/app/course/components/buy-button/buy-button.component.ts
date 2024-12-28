@@ -31,7 +31,7 @@ export class BuyButtonComponent {
   ngOnInit(){
       if(this.userService.currentUser()){
         if(this.userService.currentUser()?.role === UserRole.Instructor){
-          this.coursesByAuthor = this.courseService.getCoursesByAuthor(this.userService.currentUser()!.id)
+          this.coursesByAuthor = this.courseService.courses().filter(c => c.authorId === this.userService.currentUser()?.id);
         }
       }
     }
@@ -71,6 +71,9 @@ export class BuyButtonComponent {
     switch (whereTo){
       case 'detail' :
         this.router.navigate(['/course-detail', this.course().id])
+        break;
+      case 'walk-through' :
+        this.router.navigate(['/course', this.course().id, 'walk-through'])
         break;
       case 'edit':
         this.router.navigate(['/course-edit', this.course().id, 'creator'])

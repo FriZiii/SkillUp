@@ -19,11 +19,13 @@ import { BuyButtonComponent } from "../../buy-button/buy-button.component";
 import { AuthorDescriptionComponent } from "../author-description/author-description.component";
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { CommonModule } from '@angular/common';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { CourseStatus } from '../../../models/course-status.model';
 
 @Component({
   selector: 'app-course-detail',
   standalone: true,
-  imports: [CommonModule, AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent, RatingModule, FormsModule, CarouselModule, BuyButtonComponent, AuthorDescriptionComponent, BreadcrumbModule, RouterModule ],
+  imports: [CommonModule, AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent, RatingModule, FormsModule, CarouselModule, BuyButtonComponent, AuthorDescriptionComponent, BreadcrumbModule, RouterModule, ProgressSpinnerModule ],
   templateUrl: './course-detail.component.html',
   styleUrl: './course-detail.component.css'
 })
@@ -104,9 +106,13 @@ courseRating: CourseDetailRating | undefined = undefined
   @ViewChild('target') target!: ElementRef;
 @ViewChild('startTrigger') startTrigger!: ElementRef;
 @ViewChild('endTrigger') endTrigger!: ElementRef;
+@ViewChild('imgContainer') imgContainer!: ElementRef;
   constructor(private renderer: Renderer2) {}
 
   ngAfterViewInit(): void {
+    const height = this.startTrigger.nativeElement.offsetHeight;
+    this.imgContainer.nativeElement.style.height = `${height}px`;
+
     const observerStart = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) {

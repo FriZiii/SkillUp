@@ -166,7 +166,7 @@ export class CoursesService {
   }
 
   getCoursesByAuthor(authorId: string): CourseListItem[]{
-    return this.courses().filter((course) => course.authorId === authorId);
+    return this.publishedCourses().filter((course) => course.authorId === authorId);
   }
 
   getCourseById(id: string){
