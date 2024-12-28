@@ -15,13 +15,13 @@
       }
       <div class="prose max-w-none">
         @if(currentUser()?.id !== author()?.id){ @if(course()?.title){
-        <p class="my-0 font-medium text-sm">
+        <p class="my-0 font-medium text-sm select-none">
           {{ course()!.title | truncate }}
         </p>
         } @else{
         <p-skeleton width="8rem" styleClass="mb-2" borderRadius="16px" />}
         @if(author()){
-        <p class="my-0 font-light text-sm text-nowrap">
+        <p class="my-0 font-light text-sm text-nowrap select-none">
           ({{ author()?.firstName }} {{ author()?.lastName }})
         </p>
         } @else{<p-skeleton
@@ -29,7 +29,7 @@
           styleClass="mb-2"
           borderRadius="16px"
         />} }@else { @if(talker()){
-        <p class="my-0 font-medium text-sm text-nowrap">
+        <p class="my-0 font-medium text-sm text-nowrap select-none">
           {{ talker()?.firstName }} {{ talker()?.lastName }}
         </p>
         } @else {<p-skeleton
@@ -37,7 +37,7 @@
           styleClass="mb-2"
           borderRadius="16px"
         />} } @if(chat().lastMessage && chat().lastMessage?.content !== ''){
-        <p class="my-0 font-light text-sm">
+        <p class="my-0 font-light text-sm select-none">
           You: {{ chat().lastMessage!.content | truncate }}
         </p>
         }

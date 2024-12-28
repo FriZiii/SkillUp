@@ -126,4 +126,9 @@ export class FilterForCoursesComponent implements OnChanges {
       });
     this.filteredCourses.emit(filtered);
   }
+
+  selectCategory(){
+    this.selectedSubcategory.set('');
+    this.applyFilters();
+  }
 }

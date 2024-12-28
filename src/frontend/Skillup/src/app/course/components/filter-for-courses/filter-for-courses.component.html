@@ -1,4 +1,4 @@
-<div class="mr-4">
+<div class="mr-4 pr-5 scrollable-div" style="height: 83vh">
   <hr class="my-4" />
   <h2 class="my-0 mb-2 font-semibold text-base">Title</h2>
   <input
@@ -133,7 +133,7 @@
     placeholder="Category"
     class="w-full"
     [(ngModel)]="selectedCategory"
-    (ngModelChange)="applyFilters()"
+    (ngModelChange)="selectCategory()"
   />
   } @if(defaultSubcategory() === 'all' || defaultSubcategory() === ''){
 

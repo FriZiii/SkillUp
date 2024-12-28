@@ -1,34 +1,48 @@
+<div class="su-section-mt">
+  <h1 class="my-1 text-5xl font-bold">Courses</h1>
+</div>
 <p-tabs value="0">
   <p-tablist>
-    <p-tab value="0">Waiting for review</p-tab>
-    <p-tab value="1">Started reviews</p-tab>
+    <p-tab value="0"
+      >{{ coursesWaitingForReview().length }} Waiting for review</p-tab
+    >
+    <p-tab value="1"
+      >{{ coursesWithStartedReviews().length }} Started reviews</p-tab
+    >
   </p-tablist>
   <p-tabpanels>
     <p-tabpanel value="0">
-      <div class="su-section-mt prose max-w-none !w-full">
-        <h1 class="text-center">Courses waiting for review</h1>
+      @if(coursesWaitingForReview().length === 0){
+      <div class="mt-20 prose max-w-none !w-full">
+        <h1 class="text-center font-semibold text-5xl mb-6">
+          No courses waiting for review
+        </h1>
       </div>
-
-      @for(course of coursesWaitingForReview(); track course.id){
+      }@else{ @for(course of coursesWaitingForReview(); track course.id){
       <app-course-item-short
         [course]="course"
         [moderator]="true"
         (onReview)="startReview($event)"
       ></app-course-item-short>
-      }
+      }}
     </p-tabpanel>
     <p-tabpanel value="1">
-      <div class="su-section-mt prose max-w-none !w-full">
-        <h1 class="text-center">Courses with started review</h1>
+      @if(coursesWithStartedReviews().length === 0){
+      <div class="mt-20 prose max-w-none !w-full">
+        <h1 class="text-center font-semibold text-5xl mb-6">
+          No review started
+        </h1>
+        <p class="my-0 font-light text-base text-center">
+          Check the waiting list, maybe there is something waiting there?
+        </p>
       </div>
-
-      @for(course of coursesWithStartedReviews(); track course.id){
+      }@else{ @for(course of coursesWithStartedReviews(); track course.id){
       <app-course-item-short
         [course]="course"
         [moderator]="true"
         (onReview)="toReview($event)"
       ></app-course-item-short>
-      }
+      }}
     </p-tabpanel>
   </p-tabpanels>
 </p-tabs>

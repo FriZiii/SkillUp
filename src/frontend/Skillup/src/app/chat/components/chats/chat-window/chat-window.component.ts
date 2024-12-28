@@ -40,7 +40,7 @@ export class ChatWindowComponent implements OnChanges {
   talker = signal<User | null>(null);
   messages = signal<Message[]>([]);
 
-  currentMessage!: string;
+  currentMessage: string = '';
 
   constructor(private chatService: ChatService) {}
 
@@ -94,6 +94,9 @@ export class ChatWindowComponent implements OnChanges {
   sendMessage() {
     this.chatService.sendMessage(this.chat()!.id, this.currentMessage);
     this.currentMessage = '';
+    setTimeout(() => {
+      this.scrollToBottom();
+    }, 200);
   }
 
   scrollToBottom(): void {

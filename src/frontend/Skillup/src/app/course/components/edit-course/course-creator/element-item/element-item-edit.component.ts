@@ -4,7 +4,7 @@ import { Element, Section, AssetType } from '../../../../models/course-content.m
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
-import { NgClass } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -27,7 +27,7 @@ import { CourseStatus } from '../../../../models/course-status.model';
 @Component({
   selector: 'app-element-item-edit',
   standalone: true,
-  imports: [CardModule, ButtonModule, FormsModule, InputTextModule, NgClass, InputTextareaModule, FloatLabelModule, DragDropModule, MenuModule, DialogModule, ElementContentDialogComponent, SelectButton, ElementAttachmentsDialogComponent],
+  imports: [CardModule, CommonModule, ButtonModule, FormsModule, InputTextModule, NgClass, InputTextareaModule, FloatLabelModule, DragDropModule, MenuModule, DialogModule, ElementContentDialogComponent, SelectButton, ElementAttachmentsDialogComponent],
   templateUrl: './element-item-edit.component.html',
   styleUrl: './element-item-edit.component.css'
 })

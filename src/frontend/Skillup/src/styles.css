@@ -70,3 +70,25 @@ footer {
 .p-fileupload-basic {
   display: block !important;
 }
+
+.scrollable-div {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.scrollable-div::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollable-div::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scrollable-div::-webkit-scrollbar-thumb {
+  background: var(--p-primary-500);
+}
+
+.scrollable-div::-webkit-scrollbar-thumb:hover {
+  background: var(--p-primary-600);
+}
