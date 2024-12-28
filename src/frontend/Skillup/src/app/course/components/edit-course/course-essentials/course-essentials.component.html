@@ -111,13 +111,6 @@
       </div>
       <div class="grid grid-cols-2 gap-2 vertical-on-small">
         <p-select
-          [options]="categoryNames()"
-          optionLabel="name"
-          optionValue="id"
-          placeholder="Languages"
-          class="w-full"
-        />
-        <p-select
           [options]="levels"
           optionLabel="name"
           optionValue="value"
@@ -127,6 +120,15 @@
           (ngModelChange)="change()"
           (onBlur)="editCourseDetail()"
         />
+        <p-inputgroup>
+          <p-inputnumber
+            [(ngModel)]="price"
+            placeholder="Price"
+            (ngModelChange)="change()"
+            (onBlur)="editPrice()"
+          />
+          <p-inputgroup-addon>$</p-inputgroup-addon>
+        </p-inputgroup>
       </div>
     </div>
   </div>

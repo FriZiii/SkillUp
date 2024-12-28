@@ -1,5 +1,5 @@
-import { Component, computed, inject, input, NgModule, OnInit, Signal, signal, WritableSignal } from '@angular/core';
-import { FormArray, FormControl, FormGroup, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
+import { Component, computed, inject, input, OnInit, signal, WritableSignal } from '@angular/core';
+import { FormsModule} from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
 import { InputTextModule } from 'primeng/inputtext';
@@ -10,14 +10,17 @@ import { CourseLevel } from '../../../models/course-level.model';
 import { CategoryService } from '../../../services/category.service';
 import { FloatLabelModule } from "primeng/floatlabel"
 import { PropertiesListComponent } from "./properties-list/properties-list.component";
-import { single } from 'rxjs';
 import { ImageCroperComponent } from "../../../../utils/components/image-croper/image-croper.component";
 import { SafeUrl } from '@angular/platform-browser';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { FinanceService } from '../../../../finance/services/finance.service';
 
 @Component({
   selector: 'app-course-essentials',
   standalone: true,
-  imports: [InputTextModule, ButtonModule, FileUploadModule, SelectModule, FormsModule, FloatLabelModule, PropertiesListComponent, ImageCroperComponent],
+  imports: [InputTextModule, ButtonModule, FileUploadModule, SelectModule, FormsModule, FloatLabelModule, PropertiesListComponent, ImageCroperComponent, InputGroupModule, InputGroupAddonModule, InputNumberModule],
   templateUrl: './course-essentials.component.html',
   styleUrl: './course-essentials.component.css'
 })
@@ -25,6 +28,7 @@ export class CourseEssentialsComponent implements OnInit {
   //Services
   courseService = inject(CoursesService)
   courseCategoryService = inject(CategoryService);
+  financeService = inject(FinanceService);
   
   //Variables
   courseId = input.required<string>();
@@ -58,6 +62,7 @@ categories = this.courseCategoryService.categories;
   selectedCategory = signal('');
   selectedSubcategory = signal('');
   selectedLevel = signal<CourseLevel | null>(null);
+  price = signal(0);
   
   objectivesList = signal(['']);
   mustKnowBefore = signal(['']);
@@ -77,6 +82,7 @@ categories = this.courseCategoryService.categories;
         this.objectivesList.set(res.objectivesSummary);
         this.mustKnowBefore.set(res.mustKnowBefore);
         this.intendedFor.set(res.intendedFor);
+        this.price.set(res.price);
       }
     })
     console.log(this.courseId())
@@ -168,6 +174,14 @@ categories = this.courseCategoryService.categories;
       this.changed = true;
       const subCategory = this.subcategoryNames().find(s => s.name === 'Other');
       this.selectedSubcategory.set(subCategory!.id)
+    }
+
+    editPrice(){
+      this.financeService.editPrice(this.courseId(), this.price()).subscribe((res) => {
+        this.courseService.courses.update((prevCourses) => 
+          prevCourses.map(course => course.id === this.courseId() ? {...course, price: this.price()} : course)
+        )
+      });
     }
 
 }

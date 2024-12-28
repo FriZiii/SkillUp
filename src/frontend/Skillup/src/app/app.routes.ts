@@ -14,7 +14,6 @@ import { hasRole, isAuthor, isSignedIn } from './core/guards/auth.guard';
 import { OtherUserProfileComponent } from './user/components/other-user-profile/other-user-profile.component';
 import { EditCourseComponent } from './course/components/edit-course/edit-course.component';
 import { CourseCreatorComponent } from './course/components/edit-course/course-creator/course-creator.component';
-import { CoursePricingComponent } from './course/components/edit-course/course-pricing/course-pricing.component';
 import { CourseEssentialsComponent } from './course/components/edit-course/course-essentials/course-essentials.component';
 import { AddAssignmentComponent } from './course/components/edit-course/assignment/add-assignment/add-assignment.component';
 import { AssignmentComponent } from './course/components/edit-course/assignment/assignment.component';
@@ -86,7 +85,6 @@ export const routes: Routes = [
     children: [
       { path: 'creator', component: CourseCreatorComponent },
       { path: 'essentials', component: CourseEssentialsComponent },
-      { path: 'price', component: CoursePricingComponent },
       { path: 'landing-page', component: CourseDetailComponent },
     ],
   },

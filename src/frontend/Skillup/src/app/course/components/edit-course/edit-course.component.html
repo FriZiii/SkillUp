@@ -8,41 +8,29 @@
         <div class="flex gap-2 items-center">
           <p class="my-0.5">Navigate</p>
         </div>
-        <div class="flex gap-2 items-center menu-item">
+        <div
+          class="flex gap-2 items-center menu-item cursor-pointer"
+          routerLinkActive="active-link"
+          [routerLink]="'/course-edit/' + this.courseId() + '/creator'"
+        >
           <i class="pi pi-palette" style="font-size: 1rem"></i>
-          <p
-            class="cursor-pointer my-0.5"
-            [routerLink]="'/course-edit/' + this.courseId() + '/creator'"
-          >
-            Creator
-          </p>
+          <p class="my-0.5">Creator</p>
         </div>
-        <div class="flex gap-2 items-center menu-item">
+        <div
+          class="flex gap-2 items-center menu-item cursor-pointer"
+          routerLinkActive="active-link"
+          [routerLink]="'/course-edit/' + this.courseId() + '/essentials'"
+        >
           <i class="pi pi-link" style="font-size: 1rem"></i>
-          <p
-            class="cursor-pointer my-0.5"
-            [routerLink]="'/course-edit/' + this.courseId() + '/essentials'"
-          >
-            Essentials
-          </p>
+          <p class="my-0.5">Essentials</p>
         </div>
-        <div class="flex gap-2 items-center menu-item">
-          <i class="pi pi-dollar" style="font-size: 1rem"></i>
-          <p
-            class="cursor-pointer my-0.5"
-            [routerLink]="'/course-edit/' + this.courseId() + '/price'"
-          >
-            Price
-          </p>
-        </div>
-        <div class="flex gap-2 items-center menu-item">
+        <div
+          class="flex gap-2 items-center menu-item cursor-pointer"
+          routerLinkActive="active-link"
+          [routerLink]="'/course-edit/' + this.courseId() + '/landing-page'"
+        >
           <i class="pi pi-home" style="font-size: 1rem"></i>
-          <p
-            class="cursor-pointer my-0.5"
-            [routerLink]="'/course-edit/' + this.courseId() + '/landing-page'"
-          >
-            Landing Page
-          </p>
+          <p class="my-0.5">Landing Page</p>
         </div>
       </div>
     </div>
