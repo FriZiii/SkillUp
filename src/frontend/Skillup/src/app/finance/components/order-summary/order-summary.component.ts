@@ -10,6 +10,7 @@ import { CartItemComponent } from '../cart-item/cart-item.component';
 import { CartEmptyComponent } from "../cart-empty/cart-empty.component";
 import { DialogModule } from 'primeng/dialog';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../../../user/services/user.service';
 
 @Component({
   selector: 'app-order-summary',
@@ -24,8 +25,10 @@ export class OrderSummaryComponent {
   walletService = inject(WalletService);
   confirmationDialogService = inject(ConfirmationDialogHandlerService);
   courseService = inject(CoursesService)
+  userService = inject(UserService);
 
   //Variables
+  currentUser = this.userService.currentUser;
   cart = this.cartService.cart;
   wallet = this.walletService.currentWallet;
   dialogVisible = false;
