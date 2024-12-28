@@ -2,6 +2,7 @@
 using MediatR;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 using Skillup.Modules.Courses.Core.Interfaces;
+using Skillup.Modules.Courses.Core.Requests.Commands;
 using Skillup.Modules.Courses.Core.Requests.Commands.Review;
 using Skillup.Shared.Abstractions.Events.Notifications;
 using Skillup.Shared.Abstractions.Time;
@@ -28,6 +29,8 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Review
             };
 
             await _courseReviewRepository.Add(review);
+
+            await _mediator.Send(new EditCourseStatusRequest(review.CourseId, CourseStatus.PendingReview));
 
             await PublishNotification(request.CourseId);
 
