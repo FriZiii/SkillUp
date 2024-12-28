@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { FilterForCoursesComponent } from "../../filter-for-courses/filter-for-courses.component";
 import { CoursesService } from '../../../services/course.service';
 import { CourseListItem } from '../../../models/course.model';
@@ -13,6 +13,8 @@ import { AllCoursesCourseItemComponent } from "./all-courses-course-item/all-cou
   styleUrl: './all-courses.component.css'
 })
 export class AllCoursesComponent {
+  //FromURL
+  searchValue = input<string>();
   //Services
   courseService = inject(CoursesService);
 
@@ -22,5 +24,9 @@ export class AllCoursesComponent {
 
   onFilteredCourses(filteredCourses: CourseListItem[]){
     this.filteredCourses = computed(() =>  filteredCourses);
+  }
+
+  ngOnInit(){
+    console.log(this.searchValue());
   }
 }

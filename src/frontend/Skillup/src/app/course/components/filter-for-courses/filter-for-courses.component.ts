@@ -25,6 +25,7 @@ export class FilterForCoursesComponent implements OnChanges {
   filteredCourses = output<CourseListItem[]>();
   defaultCategory = input<string>('');
   defaultSubcategory = input<string>('');
+  defaultSearchValue = input<string>('');
 
   //Services
   courseCategoryService = inject(CategoryService)
@@ -94,10 +95,15 @@ export class FilterForCoursesComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['courses']){
-      this.title = '';
+      this.title = this.defaultSearchValue();
       this.authorName = '';
       this.selectedCategory.set('')
       this.selectedSubcategory.set('')
+      this.applyFilters();
+    }
+    if(changes['defaultSearchValue']){
+      this.title = this.defaultSearchValue();
+      this.applyFilters();
     }
   }
 

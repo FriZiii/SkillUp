@@ -3,6 +3,7 @@
     <app-filter-for-courses
       [courses]="courses()"
       (filteredCourses)="onFilteredCourses($event)"
+      [defaultSearchValue]="searchValue() ?? ''"
     />
   </div>
   <div style="width: 75%">

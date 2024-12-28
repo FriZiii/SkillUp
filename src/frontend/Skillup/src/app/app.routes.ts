@@ -68,6 +68,10 @@ export const routes: Routes = [
     component: AllCoursesComponent,
   },
   {
+    path: 'courses/:searchValue',
+    component: AllCoursesComponent,
+  },
+  {
     path: 'courses-list/:category/:subcategory',
     component: CoursesListComponent,
   },

@@ -10,6 +10,7 @@ import {
   Router,
   RouterLink,
   RouterLinkActive,
+  RouterModule,
 } from '@angular/router';
 import { Drawer, DrawerModule } from 'primeng/drawer';
 import { ButtonModule } from 'primeng/button';
@@ -34,6 +35,7 @@ import { MiniCartComponent } from "./mini-cart/mini-cart.component";
 import { MiniCoursesComponent } from "./mini-courses/mini-courses.component";
 import { MiniNotificationsComponent } from "./mini-notifications/mini-notifications.component";
 import { NotificationService } from '../../../notifications/services/notification.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -59,7 +61,8 @@ import { NotificationService } from '../../../notifications/services/notificatio
     MiniCoursesComponent,
     MiniNotificationsComponent,
     BadgeModule,
-    OverlayBadgeModule 
+    OverlayBadgeModule,
+    FormsModule
 ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
@@ -77,6 +80,7 @@ export class HeaderComponent implements OnInit {
   visible: boolean = false;
   user = signal<User | null>(null);
   notificationsNumber = this.notificationService.numberOfNotifications;
+  searchValue = '';
 
 
   ngOnInit(): void {
@@ -100,5 +104,8 @@ export class HeaderComponent implements OnInit {
     this.visible = false;
   }
 
+  navigateToCourseList(){
+    this.router.navigate(['/courses', this.searchValue]);
+  }
   
 }
