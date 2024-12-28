@@ -1,0 +1,8 @@
+:host ::ng-deep .add-btn button{
+    width: 46px !important;
+    height: 46px !important;
+}
+
+:host ::ng-deep .add-btn button span{
+    font-size: 20px;
+}

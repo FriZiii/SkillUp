@@ -57,6 +57,7 @@
         [badge]="notificationsNumber().toString()"
         badgeSeverity="primary"
         (onClick)="po_notifications.hide()"
+        [routerLink]="'notifications'"
       >
         <p-popover [showCloseIcon]="true" #po_notifications
           ><div
