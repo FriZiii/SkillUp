@@ -4,14 +4,11 @@ import {
   computed,
   inject,
   input,
-  OnChanges,
   OnInit,
   signal,
-  SimpleChanges,
 } from '@angular/core';
 import { CoursesService } from '../../services/course.service';
 import { UserProgressService } from '../../services/user-progress-service';
-import { UserService } from '../../../user/services/user.service';
 import { CourseContentService } from '../../services/course-content.service';
 import { AccordionModule } from 'primeng/accordion';
 import { SectionItemComponent } from '../edit-course/course-creator/section-item/section-item.component';
@@ -40,16 +37,10 @@ import { CoursePercentage } from '../../models/user-progress.model';
 import { CircleProgressComponent } from '../../../utils/components/circle-progress/circle-progress.component';
 import { TabsModule } from 'primeng/tabs';
 import { CommentsComponent } from '../comments/comments.component';
-import { SuComment } from '../../models/comment.model';
-import { CommentComponent } from '../comments/comment/comment.component';
-import { FormsModule } from '@angular/forms';
 import { CommentService } from '../../services/comment.service';
-import { UserDetail } from '../../../user/models/user.model';
 import { AuthorDescriptionComponent } from "../displays/author-description/author-description.component";
-import { CourseDetailRating } from '../../models/rating.model';
-import { CourseRatingService } from '../../services/course-rating.service';
-import { CourseRatingComponent } from "./course-ratings-list/course-rating/course-rating.component";
 import { CourseRatingsListComponent } from "./course-ratings-list/course-ratings-list.component";
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-course-walk-through',
@@ -68,7 +59,8 @@ import { CourseRatingsListComponent } from "./course-ratings-list/course-ratings
     TabsModule,
     CommentsComponent,
     AuthorDescriptionComponent,
-    CourseRatingsListComponent
+    CourseRatingsListComponent,
+    SkeletonModule
 ],
   templateUrl: './course-walk-through.component.html',
   styleUrl: './course-walk-through.component.css',
@@ -103,6 +95,7 @@ export class CourseWalkThroughComponent implements OnInit {
   percentage: CoursePercentage | undefined = undefined;
   attachements = signal<Attachment[]>([]);
   comments = computed(() => this.commentService.currentComments());
+  loading = true;
 
   ngOnInit(): void {
     this.coureContentService.getSectionsByCourseId(this.courseId());
@@ -121,6 +114,7 @@ export class CourseWalkThroughComponent implements OnInit {
 
     new Promise((resolve) => setTimeout(resolve, 2000)).then(() => {
       this.currentElement = this.sections()[0].elements[0];
+      this.loading = false;
     });
 
     this.userProgressService.getPercentage().subscribe((res) => {
