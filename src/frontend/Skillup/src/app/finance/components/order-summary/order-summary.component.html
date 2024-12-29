@@ -49,8 +49,15 @@
         </h1>
       </div>
 
-      @if(currentUser()){ @if(wallet()?.balance !== null && cart()?.total &&
-      wallet()?.balance! < cart()?.total!){
+      @if(!currentUser()){
+      <p-button
+        label="Checkout"
+        class="wide-btn"
+        [routerLink]="'/cart/sign-in'"
+        styleClass="!rounded-none mt-4"
+      ></p-button>
+      } @else if(currentUser()){ @if(wallet()?.balance !== null && cart()?.total
+      && wallet()?.balance! < cart()?.total!){
       <p-button
         label="Checkout"
         class="wide-btn"
@@ -72,29 +79,6 @@
         routerLink="/cart"
         styleClass="!rounded-none mt-4"
       ></p-button>
-
-      @if(!currentUser()){
-      <div class="mt-6">
-        <h1 class="my-1 font-bold text-xl text-center">
-          You must be logged in to make a purchase.
-        </h1>
-        <p-button
-          label="Sign In"
-          class="wide-btn"
-          [routerLink]="'/sign-in'"
-          styleClass="!rounded-none mt-1"
-        ></p-button>
-        <h1 class="my-1 font-bold text-xl text-center mt-4">
-          You don't have an account?
-        </h1>
-        <p-button
-          label="Sign Up"
-          class="wide-btn"
-          [routerLink]="'/sign-up'"
-          styleClass="!rounded-none mt-1"
-        ></p-button>
-      </div>
-      }
     </div>
   </div>
 

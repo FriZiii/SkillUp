@@ -49,6 +49,10 @@ export const routes: Routes = [
     component: SignInComponent,
   },
   {
+    path: ':cart/sign-in',
+    component: SignInComponent,
+  },
+  {
     path: 'sign-up',
     component: SignUpComponent,
   },
