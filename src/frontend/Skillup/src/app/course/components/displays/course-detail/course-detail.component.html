@@ -243,8 +243,9 @@
       <div class="item">
         <div class="rounded-full bg-white image-wrapper">
           <img
-            class="w-24 rounded-full"
+            class="w-24 rounded-full cursor-pointer"
             [src]="rating.ratedBy.profilePicture"
+            [routerLink]="'/user/' + rating.ratedBy.id"
           />
         </div>
         <div class="prose max-w-none flex flex-col items-center">

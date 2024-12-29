@@ -1,8 +1,9 @@
 <div class="flex gap-4 items-start mt-6">
   <div class="rounded-full bg-white">
     <img
-      class="!w-16 rounded-full my-0"
+      class="!w-16 rounded-full my-0 cursor-pointer"
       [src]="rating().ratedBy.profilePicture"
+      [routerLink]="['/user/' + rating().ratedBy.id]"
     />
   </div>
   <div class="prose max-w-none">

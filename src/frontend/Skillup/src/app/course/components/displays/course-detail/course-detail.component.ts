@@ -20,7 +20,6 @@ import { AuthorDescriptionComponent } from "../author-description/author-descrip
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { CommonModule } from '@angular/common';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { CourseStatus } from '../../../models/course-status.model';
 
 @Component({
   selector: 'app-course-detail',
