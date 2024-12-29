@@ -183,6 +183,12 @@ export class CourseWalkThroughComponent implements OnInit {
     }
   }
 
+  getPercentage(){
+    this.userProgressService.getPercentage().subscribe((res) => {
+      this.percentage = res.find((x) => x.courseId === this.courseId());
+    });
+  }
+
   onElementClicked(element: Element) {
     this.currentElement = element;
     this.hasLink = false;

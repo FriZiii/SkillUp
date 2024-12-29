@@ -50,6 +50,7 @@ export class ElementItemDisplayComponent implements OnInit, OnChanges {
   walkThrough = input<boolean>(false);
   attachments = input.required<Attachment[]>();
   current = input<string>('');
+  completeChanged = output();
 
   //Services
   userProgressService = inject(UserProgressService);
@@ -164,11 +165,15 @@ export class ElementItemDisplayComponent implements OnInit, OnChanges {
     if (!this.checked) {
       this.userProgressService
         .deleteProgress(this.courseId(), this.element().id)
-        .subscribe();
+        .subscribe((res) => {
+          this.completeChanged.emit();
+        });
     } else {
       this.userProgressService
         .addProgress(this.courseId(), this.element().id)
-        .subscribe();
+        .subscribe((res) => {
+          this.completeChanged.emit();
+        });
     }
   }
 

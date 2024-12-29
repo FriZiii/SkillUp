@@ -16,6 +16,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FinanceService } from '../../../../finance/services/finance.service';
+import { ToastHandlerService } from '../../../../core/services/toast-handler.service';
 
 @Component({
   selector: 'app-course-essentials',
@@ -29,6 +30,7 @@ export class CourseEssentialsComponent implements OnInit {
   courseService = inject(CoursesService)
   courseCategoryService = inject(CategoryService);
   financeService = inject(FinanceService);
+  toastService = inject(ToastHandlerService);
   
   //Variables
   courseId = input.required<string>();
@@ -105,7 +107,8 @@ categories = this.courseCategoryService.categories;
         next: (res : any) => {
           this.course()!.thumbnailUrl = res.thumbnailUrl;
           this.selectedFile = undefined;
-        }
+          this.toastService.showSuccess("Data successfully saved")
+        },
       });
     }
   
@@ -152,9 +155,9 @@ categories = this.courseCategoryService.categories;
           this.selectedLevel()!,
           this.objectivesList(),
           this.mustKnowBefore(),
-          this.intendedFor()).subscribe({
-          
-        });
+          this.intendedFor()).subscribe((res) => {
+            this.toastService.showSuccess("Data successfully saved");
+          });
       }
       this.changed=false;
     }
@@ -165,7 +168,9 @@ categories = this.courseCategoryService.categories;
           this.courseId(),
           this.title(), 
           this.selectedCategory(), 
-          this.selectedSubcategory()).subscribe({});
+          this.selectedSubcategory()).subscribe((res) => {
+            this.toastService.showSuccess("Data successfully saved");
+          });
       }
       this.changed=false;
     }
@@ -180,7 +185,8 @@ categories = this.courseCategoryService.categories;
       this.financeService.editPrice(this.courseId(), this.price()).subscribe((res) => {
         this.courseService.courses.update((prevCourses) => 
           prevCourses.map(course => course.id === this.courseId() ? {...course, price: this.price()} : course)
-        )
+        );
+        this.toastService.showSuccess("Data successfully saved");
       });
     }
 

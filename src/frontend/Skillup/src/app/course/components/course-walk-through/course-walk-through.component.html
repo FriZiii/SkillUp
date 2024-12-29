@@ -148,6 +148,7 @@
               (onClick)="onElementClicked($event)"
               [attachments]="attachmentForElement(element.id)"
               [current]="currentElement?.id ?? ''"
+              (completeChanged)="getPercentage()"
             ></app-element-item-display>
             }
           </p-accordion-content>
