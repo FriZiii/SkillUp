@@ -38,6 +38,7 @@ import { ChatsComponent } from './chat/components/chats/chats.component';
 import { AllCoursesComponent } from './course/components/displays/all-courses/all-courses.component';
 import { DiscountCodesComponent } from './finance/components/discount-codes/discount-codes.component';
 import { RevenuesComponent } from './finance/components/revenues/revenues.component';
+import { isStudent } from './core/guards/isStudent.guard';
 
 export const routes: Routes = [
   {
@@ -100,6 +101,7 @@ export const routes: Routes = [
   {
     path: 'element-edit/:elementId/assignment',
     component: AssignmentComponent,
+    canMatch: [isAuthor],
   },
   {
     path: 'user/:userId',
@@ -150,10 +152,12 @@ export const routes: Routes = [
   {
     path: 'balance',
     component: BalanceComponent,
+    canMatch: [isSignedIn],
   },
   {
     path: 'order/:orderId',
     component: OrderPageComponent,
+    canMatch: [isSignedIn],
   },
   {
     path: 'reviews',
@@ -170,30 +174,26 @@ export const routes: Routes = [
   {
     path: 'course/:courseId/walk-through',
     component: CourseWalkThroughComponent,
+    canMatch: [isStudent],
   },
   {
     path: 'course/:courseId/walk-through/:currentElementId',
     component: CourseWalkThroughComponent,
-  },
-  {
-    path: 'quiz',
-    component: SolveQuizComponent,
-  },
-  {
-    path: 'fillgap',
-    component: SolveFillTheGapComponent,
+    canMatch: [isStudent],
   },
   {
     path: 'notifications',
     component: NotificationsComponent,
-  },
-  {
-    path: 'access-denied',
-    component: AccessDeniedComponent,
+    canMatch: [isSignedIn],
   },
   {
     path: 'chats',
     component: ChatsComponent,
+    canMatch: [isSignedIn],
+  },
+  {
+    path: 'access-denied',
+    component: AccessDeniedComponent,
   },
   {
     path: '**',
