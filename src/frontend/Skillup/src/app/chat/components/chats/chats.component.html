@@ -1,9 +1,16 @@
-@if(chats().length === 0){
-
+@if(loading){
+<div class="flex w-full justify-center items-center" style="height: 80vh">
+  <p-progress-spinner ariaLabel="loading" />
+</div>
+}@else{ @if(chats().length === 0){
 <div class="grid grid-cols-2 prose max-w-none gap-8 su-section-mt mb-8">
-  <div class="grid-start-1 grid-span-1 flex flex-col items-right pt-12">
+  <div class="grid-start-1 grid-span-1 flex flex-col pt-12 items-end">
     <h2 class="text-5xl mb-2 text-right">You don't have any available</h2>
     <h2 class="text-5xl mb-2 text-right">chats at the moment.</h2>
+    <p class="text-xl my-4">
+      To contact the instructor, you need to purchase their course.
+    </p>
+    <p-button label="Browse courses" [routerLink]="['/courses']" />
   </div>
 
   <div class="grid-start-2 grid-span-1">
@@ -56,4 +63,4 @@
     <app-chat-window [chat]="selectedChat()"></app-chat-window>
   </div>
 </div>
-}
+}}

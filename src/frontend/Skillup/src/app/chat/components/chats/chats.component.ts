@@ -10,11 +10,14 @@ import { FormsModule } from '@angular/forms';
 import { CoursesService } from '../../../course/services/course.service';
 import { UserRole } from '../../../user/models/user-role.model';
 import { AccordionModule } from 'primeng/accordion';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ButtonModule } from 'primeng/button';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-chats',
   standalone: true,
-  imports: [ChatWindowComponent, ChatItemComponent, InputTextModule, FormsModule, AccordionModule],
+  imports: [ChatWindowComponent, ChatItemComponent, InputTextModule, FormsModule, AccordionModule, ProgressSpinnerModule, ButtonModule, RouterModule],
   templateUrl: './chats.component.html',
   styleUrl: './chats.component.css',
 })
@@ -36,6 +39,7 @@ export class ChatsComponent implements OnInit {
   ));
   UserRole = UserRole;
   searchVisible = false;
+  loading = true;
 
   ngOnInit(): void {
     this.userService.user.subscribe((user) => {
@@ -45,6 +49,7 @@ export class ChatsComponent implements OnInit {
         this.chatService
           .fetchChats(this.user()!.id)
           .subscribe((chats: Chat[]) => {
+            this.loading = false;
             this.chats.set(chats);
             this.filteredChats.set(chats.filter(chats => chats.authorId !== this.user()?.id));
             if(this.filteredChats().length !== 0){

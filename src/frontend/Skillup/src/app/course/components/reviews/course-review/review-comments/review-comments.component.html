@@ -1,27 +1,36 @@
 <div class="prose max-w-none !w-full">
   @if(comments() !== null){ @for(comment of comments(); track comment.id){
-  <p>{{ comment.comment }}</p>
+  <div class="flex gap-2 mb-2 items-center">
+    <p class="my-0 font-light text-base">
+      {{ comment.createdAt | date : "HH:mm dd.MM.yyyy" }}
+    </p>
+    <p class="my-0 font-medium text-xl">{{ comment.comment }}</p>
+  </div>
   } } @if(latestComment() === null && moderator()){
-  <h1>Add new comment</h1>
-  <input
-    type="text"
-    pInputText
-    [(ngModel)]="newComment"
-    [style]="{ borderRadius: '0.5rem 0 0 0.5rem' }"
-  />
-  <p-button
-    label="Add Comment"
-    (onClick)="addComment()"
-    [style]="{ borderRadius: '0 0.5rem 0.5rem 0' }"
-  ></p-button>
-  } @else{
-  <div class="flex gap-2 items-center">
-    <p>{{ latestComment()!.comment }}</p>
+  <div class="flex gap-4 my-4 mb-8">
+    <input type="text" pInputText [(ngModel)]="newComment" class="w-full" />
     <p-button
-      icon="pi pi-trash"
-      severity="danger"
-      (onClick)="deleteComment(latestComment()!.id)"
+      icon="pi pi-plus"
+      (onClick)="addComment()"
+      class="add-btn"
     ></p-button>
+  </div>
+  } @else{
+  <div class="mt-6 mb-8">
+    <p class="my-0 font-light text-sm text-primary-500">Newest comment</p>
+    <div class="flex items-center justify-between">
+      <div class="flex gap-2 mb-2 items-center">
+        <p class="my-0 font-light text-base">
+          {{ latestComment()!.createdAt | date : "HH:mm dd.MM.yyyy" }}
+        </p>
+        <p class="my-0 font-medium text-xl">{{ latestComment()!.comment }}</p>
+      </div>
+      <p-button
+        icon="pi pi-trash"
+        severity="danger"
+        (onClick)="deleteComment(latestComment()!.id)"
+      ></p-button>
+    </div>
   </div>
   }
 </div>

@@ -23,7 +23,8 @@
     />
     <button
       (click)="sendMessage()"
-      class="bg-primary-500 rounded-full w-10 h-10 flex items-center justify-center"
+      [disabled]="currentMessage === ''"
+      class="bg-primary-500 rounded-full w-10 h-10 flex items-center justify-center disabled:bg-surface-300"
     >
       <i class="pi pi-send" style="font-size: 1rem; color: white"></i>
     </button>

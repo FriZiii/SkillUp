@@ -11,11 +11,14 @@ import { ReviewStatus } from '../../../models/review.model';
 import { Router } from '@angular/router';
 import { ElementItemDisplayComponent } from '../../displays/element-item-display/element-item-display.component';
 import { Attachment } from '../../../models/course-content.model';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationDialogHandlerService } from '../../../../core/services/confirmation-handler.service';
+import { ReviewCommentsComponent } from "./review-comments/review-comments.component";
 
 @Component({
   selector: 'app-course-review',
   standalone: true,
-  imports: [SectionItemComponent, AccordionModule, ElementItemDisplayComponent, DialogModule, ButtonModule],
+  imports: [SectionItemComponent, AccordionModule, ElementItemDisplayComponent, DialogModule, ButtonModule, ConfirmDialogModule, ReviewCommentsComponent],
   templateUrl: './course-review.component.html',
   styleUrl: './course-review.component.css'
 })
@@ -34,6 +37,7 @@ export class CourseReviewComponent implements OnInit {
   courseContentService = inject(CourseContentService);
   reviewService = inject(CourseReviewService);
   router = inject(Router);
+  confirmDialogService = inject(ConfirmationDialogHandlerService)
 
   courseListItem = computed(() => this.courseService.courses().find(c => c.id === this.courseId()) || null);
   
@@ -65,12 +69,16 @@ export class CourseReviewComponent implements OnInit {
     return this.attachments().filter(a => a.elementId === elementId);
   }
 
-  finalizeReview(status: ReviewStatus){
-    this.reviewService.finalizeReview(this.reviewService.latestReviewForCourse()!.id, status, this.courseId() ).subscribe(
-      (res) => {
-        
-    this.router.navigate(['/reviews']);
-      }
-    );
+  finalizeReview(event: Event, status: ReviewStatus){
+    this.confirmDialogService.confirmSave(event, () => {
+      this.reviewService.finalizeReview(this.reviewService.latestReviewForCourse()!.id, status, this.courseId() ).subscribe(
+        (res) => {
+          this.router.navigate(['/reviews']);
+        });
+    })
+  }
+
+  addComment(){
+
   }
 }
