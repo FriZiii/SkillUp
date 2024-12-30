@@ -93,9 +93,20 @@
             <h1 class="my-0 text-2xl font-semibold">{{ course()?.title }}</h1>
             <p class="my-0 text-base font-light">{{ course()?.authorName }}</p>
           </div>
-          <app-circle-progress
-            [percent]="percentage?.percentage ?? 0"
-          ></app-circle-progress>
+          <div class="flex gap-4">
+            @if(percentage?.percentage === 100){
+            <div class="flex items-center">
+              <p-button
+                icon="pi pi-download"
+                label="Certificate"
+                severity="secondary"
+              />
+            </div>
+            }
+            <app-circle-progress
+              [percent]="percentage?.percentage ?? 0"
+            ></app-circle-progress>
+          </div>
         </div>
         <div class="flex items-start justify-between">
           <div>

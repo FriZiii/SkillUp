@@ -9,10 +9,23 @@
     [isWhite]="true"
     class="absolute top-[-12px] right-2"
   />
-  <h1 class="text-lg font-bold my-0 text-wrap">{{ course().title }}</h1>
-  <p class="my-0 text-slate-500">{{ course().authorName }}</p>
+  <div class="flex justify-between">
+    <div>
+      <h1 class="text-lg font-bold my-0 text-wrap">{{ course().title }}</h1>
+      <p class="my-0 text-slate-500">{{ course().authorName }}</p>
 
-  <div (click)="addRating(course().id)" class="w-min mt-1">
-    <p-rating [(ngModel)]="userRating()!.stars" [readonly]="true" />
+      <div (click)="addRating(course().id)" class="w-min mt-1">
+        <p-rating [(ngModel)]="userRating()!.stars" [readonly]="true" />
+      </div>
+    </div>
+    @if(percentage()?.percentage === 100){
+    <div class="flex items-center">
+      <p-button
+        icon="pi pi-download"
+        label="Certificate"
+        severity="secondary"
+      />
+    </div>
+    }
   </div>
 </div>

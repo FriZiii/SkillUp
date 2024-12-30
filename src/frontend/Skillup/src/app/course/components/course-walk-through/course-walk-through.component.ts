@@ -42,6 +42,7 @@ import { AuthorDescriptionComponent } from "../displays/author-description/autho
 import { CourseRatingsListComponent } from "./course-ratings-list/course-ratings-list.component";
 import { SkeletonModule } from 'primeng/skeleton';
 import { Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-course-walk-through',
@@ -61,7 +62,8 @@ import { Router } from '@angular/router';
     CommentsComponent,
     AuthorDescriptionComponent,
     CourseRatingsListComponent,
-    SkeletonModule
+    SkeletonModule,
+    ButtonModule
 ],
   templateUrl: './course-walk-through.component.html',
   styleUrl: './course-walk-through.component.css',
@@ -115,6 +117,10 @@ export class CourseWalkThroughComponent implements OnInit {
         this.userProgressService.accomplishedElements.set(res);
       });
 
+    this.userProgressService.getPercentage().subscribe((res) => {
+      this.percentage = res.find((x) => x.courseId === this.courseId());
+    });
+
     new Promise((resolve) => setTimeout(resolve, 2000)).then(() => {
       if(this.currentElementId !== undefined){
         this.currentElement = this.sections().flatMap(s => s.elements).find(e => e.id === this.currentElementId()) ?? this.sections()[0].elements[0];
@@ -124,11 +130,6 @@ export class CourseWalkThroughComponent implements OnInit {
         this.loading = false;
       }
     });
-
-    this.userProgressService.getPercentage().subscribe((res) => {
-      this.percentage = res.find((x) => x.courseId === this.courseId());
-    });
-
   }
 
   attachmentForElement(elementId: string) {

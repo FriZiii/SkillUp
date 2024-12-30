@@ -113,13 +113,12 @@ export class ElementItemDisplayComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-
     if(changes['current']){
-      if(this.current() === this.element().id){
+      if(this.current() === this.element().id && this.checked === false){
         this.userProgressService
           .addProgress(this.courseId(), this.element().id)
           .subscribe((res) => {
-            this.checked = true;
+            this.completeChanged.emit();
           });
       }
     }
@@ -178,7 +177,6 @@ export class ElementItemDisplayComponent implements OnInit, OnChanges {
   }
 
   elementClicked(){
-    console.log('clicked');
     this.onClick.emit(this.element());
   }
 
