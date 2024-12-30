@@ -26,37 +26,52 @@
     ></p-button>
   </div>
 
-  <div class="flex flex-col">
-    <div class="flex">
-      <input
-        size="small"
-        type="text"
-        [(ngModel)]="fakeWord"
-        pInputText
-        class="!border-r-0 !rounded-r-none"
-      />
-      <p-button
-        (onClick)="addFakeWord()"
-        severity="contrast"
-        styleClass="!border-r-0 !rounded-l-none !h-full"
-        icon="pi pi-plus"
-      ></p-button>
+  <div class="flex gap-20 mt-4">
+    <div>
+      <h3 class="my-1 text-lg">Add fake words</h3>
+      <div class="flex">
+        <input
+          size="small"
+          type="text"
+          [(ngModel)]="fakeWord"
+          pInputText
+          class="!border-r-0 !rounded-r-none"
+        />
+        <p-button
+          (onClick)="addFakeWord()"
+          severity="contrast"
+          styleClass="!border-r-0 !rounded-l-none !h-full"
+          icon="pi pi-plus"
+        ></p-button>
+      </div>
     </div>
 
-    <p-table [value]="fakeWords" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table
+      [value]="fakeWords"
+      [tableStyle]="{ 'min-width': '40rem', 'margin-top': '-12px' }"
+      class="words-table"
+    >
       <ng-template pTemplate="header">
         <tr>
-          <th>Value</th>
+          <th>Words</th>
           <th></th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-product>
         <tr>
           <td>{{ product.value }}</td>
+          <td>
+            <i
+              (click)="deleteFakeWord(product.value)"
+              class="pi pi-trash cursor-pointer hover:text-red-400"
+            ></i>
+          </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
 
-  <p-button (onClick)="onSave()" label="Save"></p-button>
+  <div class="mt-4">
+    <p-button (onClick)="onSave()" label="Save"></p-button>
+  </div>
 </div>

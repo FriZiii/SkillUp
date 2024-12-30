@@ -101,7 +101,6 @@ export const routes: Routes = [
   {
     path: 'element-edit/:elementId/assignment',
     component: AssignmentComponent,
-    canMatch: [isAuthor],
   },
   {
     path: 'user/:userId',
