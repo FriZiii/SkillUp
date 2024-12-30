@@ -11,18 +11,18 @@
         <div
           class="flex gap-2 items-center menu-item cursor-pointer"
           routerLinkActive="active-link"
-          [routerLink]="'/course-edit/' + this.courseId() + '/creator'"
-        >
-          <i class="pi pi-palette" style="font-size: 1rem"></i>
-          <p class="my-0.5">Creator</p>
-        </div>
-        <div
-          class="flex gap-2 items-center menu-item cursor-pointer"
-          routerLinkActive="active-link"
           [routerLink]="'/course-edit/' + this.courseId() + '/essentials'"
         >
           <i class="pi pi-link" style="font-size: 1rem"></i>
           <p class="my-0.5">Essentials</p>
+        </div>
+        <div
+          class="flex gap-2 items-center menu-item cursor-pointer"
+          routerLinkActive="active-link"
+          [routerLink]="'/course-edit/' + this.courseId() + '/creator'"
+        >
+          <i class="pi pi-palette" style="font-size: 1rem"></i>
+          <p class="my-0.5">Creator</p>
         </div>
         <div
           class="flex gap-2 items-center menu-item cursor-pointer"

@@ -84,8 +84,13 @@
       >} }}
     </div>
     <div [style]="'width: 30%'" class="scrollable-div">
-      @if(!course()){
-      <p-skeleton width="100%" height="70vh" />
+      @if(loading){
+      <div class="flex flex-col gap-4">
+        <p-skeleton width="100%" height="15vh" />
+        @for(i of [1, 1, 1, 1, 1]; track $index){
+        <p-skeleton width="100%" height="9vh" />
+        }
+      </div>
       }@else {
       <div class="mr-4">
         <div class="flex items-center justify-between">

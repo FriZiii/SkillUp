@@ -41,6 +41,7 @@
     </div>
   </div>
 
+  @if(courseCaruseles().length !== 0){
   <div>
     <div class="prose px-4">
       <h1>Recommended for you</h1>
@@ -63,4 +64,5 @@
       [courses]="courseCaruseles()[2].courses"
     ></app-course-carousel>
   </div>
+  }
 </div>
