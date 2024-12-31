@@ -7,17 +7,19 @@ import { UserService } from '../../../user/services/user.service';
 import { UserRole } from '../../../user/models/user-role.model';
 import { CoursesService } from '../../services/course.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-buy-button',
   standalone: true,
-  imports: [ButtonModule],
+  imports: [ButtonModule, CommonModule],
   templateUrl: './buy-button.component.html',
   styleUrl: './buy-button.component.css'
 })
 export class BuyButtonComponent {
   course = input.required<CourseListItem>();
   detail = input<boolean>(false);
+  white = input<boolean>(false);
   //Services
   cartService = inject(CartService);
   purchasedItemsService = inject(PurchasedItemsService);

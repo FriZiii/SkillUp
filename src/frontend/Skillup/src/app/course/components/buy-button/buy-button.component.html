@@ -4,6 +4,7 @@
   label="Edit course"
   class="ml-2"
   (onClick)="navigate('edit')"
+  [severity]="white() ? 'secondary' : 'primary'"
 />
 } @else if(isInCart()){
 <p-button
@@ -11,6 +12,7 @@
   label="Go to cart"
   class="ml-2"
   (onClick)="navigate('cart')"
+  [severity]="white() ? 'secondary' : 'primary'"
 />
 } @else if(isPurchased() ){
 <p-button
@@ -18,12 +20,14 @@
   label="Start learning"
   class="ml-2"
   (onClick)="navigate('walk-through')"
+  [severity]="white() ? 'secondary' : 'primary'"
 />}@else if(isInCart() === false){
 <p-button
   icon="pi pi-cart-arrow-down"
   label="Add to cart"
   class="ml-2"
   (onClick)="addToCart()"
+  [severity]="white() ? 'secondary' : 'primary'"
 />
 } }@else { @if(isAuthor()){
 <p-button icon="pi pi-cog" class="ml-2" (onClick)="navigate('edit')" />

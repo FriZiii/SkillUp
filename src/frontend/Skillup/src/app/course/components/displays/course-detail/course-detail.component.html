@@ -1,4 +1,4 @@
-<div class="w-full min-h-screen px-24 mt-2 no-padding-on-small">
+<div class="w-full min-h-screen px-24 mt-2 no-padding-on-small mb-8">
   <div class="min-h-screen">
     <p-breadcrumb class="max-w-full" [model]="breadcrumbs">
       <ng-template let-item pTemplate="item">
@@ -70,7 +70,7 @@
       </div>
     </div>
 
-    <div class="shadow w-full mt-8">
+    <div class="shadow w-full mt-12">
       <div class="prose mb-2">
         <h2>What will you learn:</h2>
       </div>
@@ -85,28 +85,13 @@
         }
       </div>
     </div>
-    <div class="grid grid-cols-2 mt-8 gap-4 mb-8">
+    <div class="mt-12 gap-4">
       <div class="shadow">
         <div class="prose mb-2">
           <h2>Intended for:</h2>
         </div>
-        <div class="cols-responsive-2">
+        <div class="cols-responsive-3">
           @for (item of course()?.intendedFor; track item) {
-          <div class="flex gap-2 items-center mb-2">
-            <i class="pi pi-circle-on" style="font-size: 0.3rem"></i>
-            <div class="prose">
-              <p class="m-0">{{ item }}</p>
-            </div>
-          </div>
-          }
-        </div>
-      </div>
-      <div class="shadow col-start-2">
-        <div class="prose mb-2">
-          <h2>Must know before:</h2>
-        </div>
-        <div class="cols-responsive-2">
-          @for (item of course()?.mustKnowBefore; track item) {
           <div class="flex gap-2 items-center mb-2">
             <i class="pi pi-circle-on" style="font-size: 0.3rem"></i>
             <div class="prose">
@@ -156,6 +141,18 @@
           <div class="prose max-w-none !w-full">
             <h1 class="mb-2">Description</h1>
             <p>{{ course()?.description }}</p>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <div class="prose max-w-none !w-full">
+            <h1 class="mb-2">Requirements</h1>
+            @for(item of course()?.mustKnowBefore; track item){
+            <div class="flex gap-2 items-center mb-2">
+              <i class="pi pi-circle-on" style="font-size: 0.3rem"></i>
+              <p class="m-0">{{ item }}</p>
+            </div>
+            }
           </div>
         </div>
 
@@ -222,8 +219,13 @@
   <!-- Green Strap -->
   <div class="bg-primary-500 left-0 px-24 py-4 my-8 sticky top-14 z-10 mb-10">
     <div #endTrigger class="relative">
-      <div class="prose max-w-none !w-full">
+      <div class="prose max-w-none !w-full flex justify-between">
         <h2 class="text-5xl m-0 text-white">{{ course()?.title }}</h2>
+        <app-buy-button
+          [course]="courseListItem()!"
+          [detail]="true"
+          [white]="true"
+        />
       </div>
     </div>
   </div>
