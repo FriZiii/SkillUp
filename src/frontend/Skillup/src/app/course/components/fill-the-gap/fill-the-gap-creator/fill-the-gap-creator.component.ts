@@ -17,6 +17,7 @@ import Part, {
   PartType,
 } from '../../../models/fill-the-gap/creator.models';
 import { ExerciseService } from '../../../services/exercise.service';
+import { ToastHandlerService } from '../../../../core/services/toast-handler.service';
 @Component({
   selector: 'app-fill-the-gap-creator',
   standalone: true,
@@ -37,6 +38,7 @@ export class FillTheGapCreatorComponent {
   assignmentId = input.required<string>();
   sentenceAdded = output<Sentence>();
   exerciseService = inject(ExerciseService);
+  toastService = inject(ToastHandlerService);
 
   parts: Part[] = [];
   dragged = false;
@@ -54,11 +56,20 @@ export class FillTheGapCreatorComponent {
   }
 
   addFakeWord() {
+    if(this.fakeWords.find(w => w.value === this.fakeWord)){
+      this.toastService.showWarn('Cannot add the same word twice')
+    }
+    else{
     this.fakeWords.push({
       value: this.fakeWord,
     });
 
     this.fakeWord = '';
+  }
+  }
+
+  deleteFakeWord(word: string){
+    this.fakeWords = this.fakeWords.filter(w => w.value !== word);
   }
 
   drop(event: CdkDragDrop<Part[]>) {

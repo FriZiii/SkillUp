@@ -4,9 +4,11 @@ import {
   effect,
   inject,
   input,
+  OnChanges,
   OnInit,
   output,
   signal,
+  SimpleChanges,
 } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
@@ -40,7 +42,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './element-item-display.component.html',
   styleUrl: './element-item-display.component.css',
 })
-export class ElementItemDisplayComponent implements OnInit {
+export class ElementItemDisplayComponent implements OnInit, OnChanges {
   courseId = input.required<string>();
   element = input.required<Element>();
   moderator = input<boolean>(false);
@@ -48,6 +50,7 @@ export class ElementItemDisplayComponent implements OnInit {
   walkThrough = input<boolean>(false);
   attachments = input.required<Attachment[]>();
   current = input<string>('');
+  completeChanged = output();
 
   //Services
   userProgressService = inject(UserProgressService);
@@ -109,6 +112,18 @@ export class ElementItemDisplayComponent implements OnInit {
   }, 500);
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['current']){
+      if(this.current() === this.element().id && this.checked === false){
+        this.userProgressService
+          .addProgress(this.courseId(), this.element().id)
+          .subscribe((res) => {
+            this.completeChanged.emit();
+          });
+      }
+    }
+  }
+
   //Element Icon
   definedIcon(type: AssetType): string {
     switch (type) {
@@ -149,11 +164,15 @@ export class ElementItemDisplayComponent implements OnInit {
     if (!this.checked) {
       this.userProgressService
         .deleteProgress(this.courseId(), this.element().id)
-        .subscribe();
+        .subscribe((res) => {
+          this.completeChanged.emit();
+        });
     } else {
       this.userProgressService
         .addProgress(this.courseId(), this.element().id)
-        .subscribe();
+        .subscribe((res) => {
+          this.completeChanged.emit();
+        });
     }
   }
 

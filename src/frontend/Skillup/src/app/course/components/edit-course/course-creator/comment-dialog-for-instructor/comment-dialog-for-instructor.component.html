@@ -1,0 +1,44 @@
+<div class="prose max-w-none !w-full">
+  @if(comments() !== null){ @for(comment of comments(); track comment.id){
+  <div class="flex gap-2 mb-2 items-center">
+    <p class="my-0 font-light text-base">
+      {{ comment.createdAt | date : "HH:mm dd.MM.yyyy" }}
+    </p>
+    <p class="my-0 font-medium text-xl">{{ comment.comment }}</p>
+  </div>
+  } } @if(latestComment() !== null){ @if(latestComment()!.isResolved === false){
+  <div class="mt-6 mb-8">
+    <p class="my-0 font-light text-sm text-primary-500">Newest comment</p>
+    <div class="flex items-center justify-between">
+      <div class="flex gap-2 mb-2 items-center">
+        <p class="my-0 font-light text-base">
+          {{ latestComment()!.createdAt | date : "HH:mm dd.MM.yyyy" }}
+        </p>
+        <p class="my-0 font-medium text-xl">{{ latestComment()!.comment }}</p>
+      </div>
+      <p-button
+        label="Mark as resolved"
+        (onClick)="resolveComment(latestComment()!.id)"
+      />
+    </div>
+  </div>
+  } @else {
+  <div class="mt-6 mb-8">
+    <div class="flex gap-2 items-center">
+      <p class="my-0 font-light text-sm text-primary-500">Newest comment</p>
+      <i
+        class="pi pi-check-square text-primary-500"
+        style="font-size: 0.7rem"
+      ></i>
+    </div>
+    <div class="flex gap-2 mb-2 items-center">
+      <p class="my-0 font-light text-base text-primary-500">
+        {{ latestComment()!.createdAt | date : "HH:mm dd.MM.yyyy" }}
+      </p>
+      <p class="my-0 font-medium text-xl text-primary-500">
+        {{ latestComment()!.comment }}
+      </p>
+    </div>
+  </div>
+  } }
+</div>

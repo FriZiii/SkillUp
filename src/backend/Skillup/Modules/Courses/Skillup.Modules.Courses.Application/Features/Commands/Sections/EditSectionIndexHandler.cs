@@ -45,7 +45,8 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Sections
             }
 
             var sectionMapper = new SectionMapper();
-            var newSections = await _sectionRepository.GetSectionsByCourseId(section.CourseId);
+            var newSections = (await _sectionRepository.GetSectionsByCourseId(section.CourseId)).Select(section => { section.Elements = section.Elements.OrderBy(e => e.Index).ToList(); return section; });
+
             var sectionDtos = newSections.Select(s => sectionMapper.SectionToSectionDto(s)).ToList();
             _logger.LogInformation("Section index changed");
             return sectionDtos;

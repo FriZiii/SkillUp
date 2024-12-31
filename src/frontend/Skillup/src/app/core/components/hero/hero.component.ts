@@ -36,7 +36,7 @@ export class HeroComponent implements OnInit {
 
   selectedCategories = computed(() =>
     this.cetegoriesService
-      .categories()
+      .categories().filter(c => c.name !== 'Other')
       .sort(() => 0.5 - Math.random())
       .slice(0, 3)
   );

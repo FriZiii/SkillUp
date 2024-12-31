@@ -24,15 +24,6 @@ export class AllCoursesCourseItemComponent {
   courseService = inject(CoursesService);
   purchasedItemsService = inject(PurchasedItemsService);
   userService = inject(UserService);
-  coursesByAuthor: CourseListItem[] = [] 
-
-  ngOnInit(){
-    if(this.userService.currentUser()){
-      if(this.userService.currentUser()?.role === UserRole.Instructor){
-        this.coursesByAuthor = this.courseService.getCoursesByAuthor(this.userService.currentUser()!.id)
-      }
-    }
-  }
 
   navigate(whereTo: string){
     switch (whereTo){

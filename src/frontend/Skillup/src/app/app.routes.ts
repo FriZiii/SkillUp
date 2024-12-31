@@ -14,7 +14,6 @@ import { hasRole, isAuthor, isSignedIn } from './core/guards/auth.guard';
 import { OtherUserProfileComponent } from './user/components/other-user-profile/other-user-profile.component';
 import { EditCourseComponent } from './course/components/edit-course/edit-course.component';
 import { CourseCreatorComponent } from './course/components/edit-course/course-creator/course-creator.component';
-import { CoursePricingComponent } from './course/components/edit-course/course-pricing/course-pricing.component';
 import { CourseEssentialsComponent } from './course/components/edit-course/course-essentials/course-essentials.component';
 import { AddAssignmentComponent } from './course/components/edit-course/assignment/add-assignment/add-assignment.component';
 import { AssignmentComponent } from './course/components/edit-course/assignment/assignment.component';
@@ -39,6 +38,7 @@ import { ChatsComponent } from './chat/components/chats/chats.component';
 import { AllCoursesComponent } from './course/components/displays/all-courses/all-courses.component';
 import { DiscountCodesComponent } from './finance/components/discount-codes/discount-codes.component';
 import { RevenuesComponent } from './finance/components/revenues/revenues.component';
+import { isStudent } from './core/guards/isStudent.guard';
 
 export const routes: Routes = [
   {
@@ -47,6 +47,10 @@ export const routes: Routes = [
   },
   {
     path: 'sign-in',
+    component: SignInComponent,
+  },
+  {
+    path: ':cart/sign-in',
     component: SignInComponent,
   },
   {
@@ -68,6 +72,10 @@ export const routes: Routes = [
     component: AllCoursesComponent,
   },
   {
+    path: 'courses/:searchValue',
+    component: AllCoursesComponent,
+  },
+  {
     path: 'courses-list/:category/:subcategory',
     component: CoursesListComponent,
   },
@@ -82,7 +90,6 @@ export const routes: Routes = [
     children: [
       { path: 'creator', component: CourseCreatorComponent },
       { path: 'essentials', component: CourseEssentialsComponent },
-      { path: 'price', component: CoursePricingComponent },
       { path: 'landing-page', component: CourseDetailComponent },
     ],
   },
@@ -144,10 +151,12 @@ export const routes: Routes = [
   {
     path: 'balance',
     component: BalanceComponent,
+    canMatch: [isSignedIn],
   },
   {
     path: 'order/:orderId',
     component: OrderPageComponent,
+    canMatch: [isSignedIn],
   },
   {
     path: 'reviews',
@@ -164,26 +173,26 @@ export const routes: Routes = [
   {
     path: 'course/:courseId/walk-through',
     component: CourseWalkThroughComponent,
+    canMatch: [isStudent],
   },
   {
-    path: 'quiz',
-    component: SolveQuizComponent,
-  },
-  {
-    path: 'fillgap',
-    component: SolveFillTheGapComponent,
+    path: 'course/:courseId/walk-through/:currentElementId',
+    component: CourseWalkThroughComponent,
+    canMatch: [isStudent],
   },
   {
     path: 'notifications',
     component: NotificationsComponent,
-  },
-  {
-    path: 'access-denied',
-    component: AccessDeniedComponent,
+    canMatch: [isSignedIn],
   },
   {
     path: 'chats',
     component: ChatsComponent,
+    canMatch: [isSignedIn],
+  },
+  {
+    path: 'access-denied',
+    component: AccessDeniedComponent,
   },
   {
     path: '**',

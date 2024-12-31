@@ -4,14 +4,11 @@ import {
   computed,
   inject,
   input,
-  OnChanges,
   OnInit,
   signal,
-  SimpleChanges,
 } from '@angular/core';
 import { CoursesService } from '../../services/course.service';
 import { UserProgressService } from '../../services/user-progress-service';
-import { UserService } from '../../../user/services/user.service';
 import { CourseContentService } from '../../services/course-content.service';
 import { AccordionModule } from 'primeng/accordion';
 import { SectionItemComponent } from '../edit-course/course-creator/section-item/section-item.component';
@@ -40,16 +37,12 @@ import { CoursePercentage } from '../../models/user-progress.model';
 import { CircleProgressComponent } from '../../../utils/components/circle-progress/circle-progress.component';
 import { TabsModule } from 'primeng/tabs';
 import { CommentsComponent } from '../comments/comments.component';
-import { SuComment } from '../../models/comment.model';
-import { CommentComponent } from '../comments/comment/comment.component';
-import { FormsModule } from '@angular/forms';
 import { CommentService } from '../../services/comment.service';
-import { UserDetail } from '../../../user/models/user.model';
 import { AuthorDescriptionComponent } from "../displays/author-description/author-description.component";
-import { CourseDetailRating } from '../../models/rating.model';
-import { CourseRatingService } from '../../services/course-rating.service';
-import { CourseRatingComponent } from "./course-ratings-list/course-rating/course-rating.component";
 import { CourseRatingsListComponent } from "./course-ratings-list/course-ratings-list.component";
+import { SkeletonModule } from 'primeng/skeleton';
+import { Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-course-walk-through',
@@ -68,7 +61,9 @@ import { CourseRatingsListComponent } from "./course-ratings-list/course-ratings
     TabsModule,
     CommentsComponent,
     AuthorDescriptionComponent,
-    CourseRatingsListComponent
+    CourseRatingsListComponent,
+    SkeletonModule,
+    ButtonModule
 ],
   templateUrl: './course-walk-through.component.html',
   styleUrl: './course-walk-through.component.css',
@@ -76,6 +71,7 @@ import { CourseRatingsListComponent } from "./course-ratings-list/course-ratings
 export class CourseWalkThroughComponent implements OnInit {
   //URL
   courseId = input.required<string>();
+  currentElementId = input<string>();
 
   //Services
   coureContentService = inject(CourseContentService);
@@ -85,6 +81,7 @@ export class CourseWalkThroughComponent implements OnInit {
   cdr = inject(ChangeDetectorRef);
   exerciseService = inject(ExerciseService);
   commentService = inject(CommentService);
+  router = inject(Router);
 
   //Variables
   AssetType = AssetType;
@@ -103,6 +100,7 @@ export class CourseWalkThroughComponent implements OnInit {
   percentage: CoursePercentage | undefined = undefined;
   attachements = signal<Attachment[]>([]);
   comments = computed(() => this.commentService.currentComments());
+  loading = true;
 
   ngOnInit(): void {
     this.coureContentService.getSectionsByCourseId(this.courseId());
@@ -119,14 +117,19 @@ export class CourseWalkThroughComponent implements OnInit {
         this.userProgressService.accomplishedElements.set(res);
       });
 
-    new Promise((resolve) => setTimeout(resolve, 2000)).then(() => {
-      this.currentElement = this.sections()[0].elements[0];
-    });
-
     this.userProgressService.getPercentage().subscribe((res) => {
       this.percentage = res.find((x) => x.courseId === this.courseId());
     });
 
+    new Promise((resolve) => setTimeout(resolve, 2000)).then(() => {
+      if(this.currentElementId !== undefined){
+        this.currentElement = this.sections().flatMap(s => s.elements).find(e => e.id === this.currentElementId()) ?? this.sections()[0].elements[0];
+        this.loading = false;
+      }else{
+        this.currentElement = this.sections()[0].elements[0];
+        this.loading = false;
+      }
+    });
   }
 
   attachmentForElement(elementId: string) {
@@ -138,7 +141,6 @@ export class CourseWalkThroughComponent implements OnInit {
   }
 
   set currentElement(value: Element) {
-    //current element na accomplished
     this._currentElement = value;
 
     this.commentService.getCommentsByElementId(value.id).subscribe((res) => {
@@ -182,8 +184,15 @@ export class CourseWalkThroughComponent implements OnInit {
     }
   }
 
+  getPercentage(){
+    this.userProgressService.getPercentage().subscribe((res) => {
+      this.percentage = res.find((x) => x.courseId === this.courseId());
+    });
+  }
+
   onElementClicked(element: Element) {
     this.currentElement = element;
     this.hasLink = false;
+    this.router.navigate(['course/' + this.courseId() + '/walk-through/' + element.id])
   }
 }

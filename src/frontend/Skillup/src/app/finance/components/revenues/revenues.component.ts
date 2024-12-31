@@ -93,7 +93,16 @@ options = {
     this.loading = false;
   }, 2000); 
   });
-    this.revenueService.getRevenue(this.authorId()).subscribe((res) => this.revenue = res);
+    this.revenueService.getRevenue(this.authorId()).subscribe((res) => {
+      this.revenue = res;
+      const currentYear = new Date().getFullYear();
+      const beginYear = new Date(res.beginDate).getFullYear();
+      this.years = Array.from({ length: currentYear - beginYear + 1 }, (_, i) => {
+        const year = currentYear - i;
+        return { name: year.toString(), value: year };
+      });
+      this.selectedYear = this.years[0].value;
+    });
   }
 
 

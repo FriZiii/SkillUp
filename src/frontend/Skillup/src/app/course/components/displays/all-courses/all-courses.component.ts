@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { FilterForCoursesComponent } from "../../filter-for-courses/filter-for-courses.component";
 import { CoursesService } from '../../../services/course.service';
 import { CourseListItem } from '../../../models/course.model';
@@ -14,6 +14,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
   styleUrl: './all-courses.component.css'
 })
 export class AllCoursesComponent implements OnInit {
+  //FromURL
+  searchValue = input<string>();
   //Services
   courseService = inject(CoursesService);
 

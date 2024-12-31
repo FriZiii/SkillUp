@@ -1,7 +1,12 @@
 <li>
   <div class="comment">
     <div class="comment-img">
-      <img [src]="comment().author.profilePicture" alt="" class="my-0" />
+      <img
+        [src]="comment().author.profilePicture"
+        alt=""
+        class="my-0 cursor-pointer"
+        [routerLink]="['/user/' + comment().author.id]"
+      />
     </div>
     <div class="comment-content">
       <div class="comment-details">

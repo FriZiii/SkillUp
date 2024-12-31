@@ -22,7 +22,7 @@ export class MiniCoursesComponent implements OnInit {
 
   //Variables
   user = this.userService.currentUser;
-  coursePercentages = signal<CoursePercentage[]>([]);
+  coursePercentages = computed(() => this.userProgressService.percentages());
   courses = this.purchasedItemsService.purchasedCourses;
   coursesWithPercentage = computed(() => this.courses().map(course => {
     const percentage = this.coursePercentages().find(p => p.courseId === course.id);
@@ -31,7 +31,6 @@ export class MiniCoursesComponent implements OnInit {
 
    ngOnInit(): void {
     this.userProgressService.getPercentage().subscribe((res) => {
-      this.coursePercentages.set(res);
     })
   }
 }

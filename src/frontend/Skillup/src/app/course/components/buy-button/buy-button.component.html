@@ -1,4 +1,35 @@
-@if(isAuthor()){
+@if(detail()){ @if(isAuthor()){
+<p-button
+  icon="pi pi-cog"
+  label="Edit course"
+  class="ml-2"
+  (onClick)="navigate('edit')"
+  [severity]="white() ? 'secondary' : 'primary'"
+/>
+} @else if(isInCart()){
+<p-button
+  icon="pi pi-shopping-cart"
+  label="Go to cart"
+  class="ml-2"
+  (onClick)="navigate('cart')"
+  [severity]="white() ? 'secondary' : 'primary'"
+/>
+} @else if(isPurchased() ){
+<p-button
+  icon="pi pi-external-link"
+  label="Start learning"
+  class="ml-2"
+  (onClick)="navigate('walk-through')"
+  [severity]="white() ? 'secondary' : 'primary'"
+/>}@else if(isInCart() === false){
+<p-button
+  icon="pi pi-cart-arrow-down"
+  label="Add to cart"
+  class="ml-2"
+  (onClick)="addToCart()"
+  [severity]="white() ? 'secondary' : 'primary'"
+/>
+} }@else { @if(isAuthor()){
 <p-button icon="pi pi-cog" class="ml-2" (onClick)="navigate('edit')" />
 } @else if(isInCart()){
 <p-button
@@ -6,11 +37,11 @@
   class="ml-2"
   (onClick)="navigate('cart')"
 />
-} @else if(isPurchased() ){ @if(detail()){ }@else{
+} @else if(isPurchased() ){
 <p-button
   icon="pi pi-external-link"
   class="ml-2"
-  (onClick)="navigate('detail')"
-/>}}@else if(isInCart() === false){
+  (onClick)="navigate('walk-through')"
+/>}@else if(isInCart() === false){
 <p-button icon="pi pi-cart-arrow-down" class="ml-2" (onClick)="addToCart()" />
-}
+} }

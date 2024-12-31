@@ -3,6 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Item } from '../models/finance.model';
+import { CoursesService } from '../../course/services/course.service';
 
 @Injectable({ providedIn: 'root' })
 export class FinanceService {
@@ -31,5 +32,15 @@ export class FinanceService {
         })
       )
       .subscribe();
+  }
+
+  public editPrice(itemId: string, price: number){
+    return this.httpClient.put(environment.apiUrl + '/Finances/Items/' + itemId, {currency: price}).pipe(
+      tap((items) => {
+        this.items.update((prevItems) => 
+          prevItems.map(item => item.id === itemId ? {...item, price: price} : item)
+        )
+      })
+    )
   }
 }

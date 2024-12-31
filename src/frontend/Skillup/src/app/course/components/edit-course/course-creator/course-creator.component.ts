@@ -19,11 +19,12 @@ import { ElementListComponent } from "./element-list/element-list.component";
 import { CourseReviewService } from '../../../services/course-review.service';
 import { CoursesService } from '../../../services/course.service';
 import { CourseStatus } from '../../../models/course-status.model';
+import { CommentDialogForInstructorComponent } from "./comment-dialog-for-instructor/comment-dialog-for-instructor.component";
 
 @Component({
   selector: 'app-course-creator',
   standalone: true,
-  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule, HiddenFormWrapperComponent, AddNewElementComponent, DragDropModule, SectionItemComponent, FloatLabelModule, ConfirmDialogModule, ElementListComponent],
+  imports: [AccordionModule, ButtonModule, DialogModule, InputTextModule, ReactiveFormsModule, CardModule, FormsModule, HiddenFormWrapperComponent, AddNewElementComponent, DragDropModule, SectionItemComponent, FloatLabelModule, ConfirmDialogModule, ElementListComponent, CommentDialogForInstructorComponent],
   templateUrl: './course-creator.component.html',
   styleUrl: './course-creator.component.css'
 })
@@ -111,4 +112,21 @@ export class CourseCreatorComponent implements OnInit {
         this.reviewService.submitToReview(this.courseId()).subscribe();
       })
     }
+
+    canSubmit(){
+      if(this.sections().every(s => s.isPublished === true)){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+
+
+  //Comments for course review
+  latestReview = computed(() => this.reviewService.latestReviewForCourse());
+  allReviews = computed(() => this.reviewService.allReviewsForCourse()?.filter(r => r.id != this.latestReview()?.id));
+  latestComment = computed(() => this.latestReview()?.comments.find(comment => comment.courseElementId === null) || null)
+  comments = computed(() => this.allReviews()?.flatMap(review => review.comments).filter(comment => comment.courseElementId === null) || null)
+  commentDialogVisible = false;
 }

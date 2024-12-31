@@ -95,6 +95,7 @@ export class RevenueLineChartComponent implements OnChanges {
           labels: this.constData!.labels,
           datasets: this.constData!.datasets.filter(x => x.label === this.course())
         }
+        this.loading = false;
       }
     }
   }
