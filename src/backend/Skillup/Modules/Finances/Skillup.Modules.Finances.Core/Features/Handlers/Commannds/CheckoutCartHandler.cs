@@ -4,6 +4,7 @@ using Skillup.Modules.Finances.Core.Entities;
 using Skillup.Modules.Finances.Core.Features.Requests;
 using Skillup.Modules.Finances.Core.Repositories;
 using Skillup.Shared.Abstractions.Events.Finances;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 using Skillup.Shared.Abstractions.Time;
 
 namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
@@ -23,8 +24,8 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 
         public async Task Handle(CheckoutCartRequest request, CancellationToken cancellationToken)
         {
-            var wallet = await _walletRepository.GetWallet(request.WalletId) ?? throw new Exception(); // TODO: Custom Ex: wallet with id doesnt exist
-            var cart = await _cartRepository.GetCart(request.CartId) ?? throw new Exception(); // TODO: Custom Ex: cart with id doesnt exist
+            var wallet = await _walletRepository.GetWallet(request.WalletId) ?? throw new NotFoundException($"Wallet with ID {request.WalletId} not found");
+            var cart = await _cartRepository.GetCart(request.CartId) ?? throw new NotFoundException($"Cart with ID {request.CartId} not found");
 
             var orderId = Guid.NewGuid();
             wallet.SubtractFromBalance(cart.Total);

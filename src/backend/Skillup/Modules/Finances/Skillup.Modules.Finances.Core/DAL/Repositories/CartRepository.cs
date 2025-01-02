@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Finances.Core.Entities;
 using Skillup.Modules.Finances.Core.Repositories;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Finances.Core.DAL.Repositories
 {
@@ -42,9 +43,9 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
         public async Task DeleteItemFromCart(Guid cartId, Guid itemId)
         {
             var cart = await _carts.Include(x => x.Items)
-                .FirstOrDefaultAsync(x => x.Id == cartId) ?? throw new Exception(); // TODO: custom ex: cart with id doesnt exist
+                .FirstOrDefaultAsync(x => x.Id == cartId) ?? throw new NotFoundException($"Cart with ID {cartId} not found");
 
-            var cartItemToDelete = await _cartItems.Include(x => x.Cart).FirstOrDefaultAsync(x => x.CartId == cartId && x.ItemId == itemId) ?? throw new Exception(); // TODO: custom ex:cart item with id doesnt exist
+            var cartItemToDelete = await _cartItems.Include(x => x.Cart).FirstOrDefaultAsync(x => x.CartId == cartId && x.ItemId == itemId) ?? throw new NotFoundException($"Cart item with ID {itemId} not found");
 
             _cartItems.Remove(cartItemToDelete);
 

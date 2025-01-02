@@ -4,6 +4,7 @@ using Skillup.Modules.Courses.Application.Mappings;
 using Skillup.Modules.Courses.Application.Operations;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Requests.Commands;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 using Skillup.Shared.Abstractions.S3;
 
 namespace Skillup.Modules.Courses.Application.Features.Commands
@@ -24,7 +25,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
         }
         public async Task<CourseDto> Handle(EditCourseRequest request, CancellationToken cancellationToken)
         {
-            var course = await _courseRepository.GetById(request.CourseID) ?? throw new Exception(); // TODO: Custom ex: course with id doesnt exist
+            var course = await _courseRepository.GetById(request.CourseID) ?? throw new NotFoundException($"Course with ID {request.CourseID} not found");
             course.Title = request.Title;
             course.CategoryId = request.CategoryId;
             course.SubcategoryId = request.SubcategoryId;
@@ -32,10 +33,10 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
             await _courseRepository.Edit(course);
             _logger.LogInformation("Element edited");
 
-            var newCourse = await _courseRepository.GetById(request.CourseID) ?? throw new Exception(); // TODO: Custom ex: course with id doesnt exist
+            var newCourse = await _courseRepository.GetById(request.CourseID) ?? throw new NotFoundException($"Element with ID {request.CourseID} not found");
             var courseMapper = new CourseMapper(_amazonS3Service);
             var courseDto = courseMapper.CourseToCourseDto(newCourse);
-            var user = await _userRepository.GetById(courseDto.AuthorId) ?? throw new Exception(); // TODO: Custom ex: author with id doesnt exist
+            var user = await _userRepository.GetById(courseDto.AuthorId) ?? throw new NotFoundException($"User with ID {courseDto.AuthorId} not found");
             courseDto.AuthorName = user.FirstName + " " + user.LastName;
             return courseDto;
         }

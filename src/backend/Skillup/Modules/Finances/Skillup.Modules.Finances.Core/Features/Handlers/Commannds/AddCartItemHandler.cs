@@ -2,6 +2,7 @@
 using Skillup.Modules.Finances.Core.Entities;
 using Skillup.Modules.Finances.Core.Features.Requests.Commannds;
 using Skillup.Modules.Finances.Core.Repositories;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 {
@@ -14,14 +15,14 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
         {
             if (request.CartId is not null)
             {
-                var cart = await _cartRepository.GetCart((Guid)request.CartId) ?? throw new Exception(); // TODO: Custom ex: cart with id doesnt exist
+                var cart = await _cartRepository.GetCart((Guid)request.CartId) ?? throw new NotFoundException($"Cart with ID {request.CartId} not found");
             }
             else
             {
                 request.CartId = Guid.NewGuid();
             }
 
-            var item = await _itemRepository.GetById(request.ItemId) ?? throw new Exception(); // TODO: Custom ex: item with id doesnt exist
+            var item = await _itemRepository.GetById(request.ItemId) ?? throw new NotFoundException($"Item with ID {request.ItemId} not found");
 
             await _cartRepository.AddCartItem(
                 new CartItem()

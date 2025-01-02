@@ -2,6 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using Skillup.Modules.Finances.Core.Features.Requests.Commannds;
 using Skillup.Modules.Finances.Core.Repositories;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 {
@@ -12,7 +13,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 
         public async Task Handle(ToggleDiscountCodeForCartRequest request, CancellationToken cancellationToken)
         {
-            var cart = await _cartRepository.GetCart(request.CartId) ?? throw new Exception(); // TODO: Custom Ex: cart  with id doesnt exist
+            var cart = await _cartRepository.GetCart(request.CartId) ?? throw new NotFoundException($"Cart with ID {request.CartId} not found");
 
             if (request.DiscountCode.IsNullOrEmpty())
             {
@@ -23,7 +24,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
             }
             else
             {
-                var discountCode = await _discountCodeRepository.GetByCode(request.DiscountCode!) ?? throw new Exception(); // TODO: Custom Ex: discount code dosnt exist 
+                var discountCode = await _discountCodeRepository.GetByCode(request.DiscountCode!) ?? throw new NotFoundException($"DiscountCode with Code {request.DiscountCode} not found");
                 cart.ApplyDiscountCode(discountCode);
             }
 

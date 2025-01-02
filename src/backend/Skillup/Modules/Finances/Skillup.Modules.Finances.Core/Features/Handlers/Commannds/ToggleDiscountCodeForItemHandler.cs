@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Skillup.Modules.Finances.Core.Features.Requests.Commannds;
 using Skillup.Modules.Finances.Core.Repositories;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 {
@@ -11,11 +12,11 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 
         public async Task Handle(ToggleDiscountCodeForItemRequest request, CancellationToken cancellationToken)
         {
-            var discountCode = await _discountCodeRepository.GetById(request.DiscountCodeId) ?? throw new Exception(); // TODO: Custom Ex: discount code with id doesnt exist
+            var discountCode = await _discountCodeRepository.GetById(request.DiscountCodeId) ?? throw new NotFoundException($"DiscountCode with ID {request.DiscountCodeId} not found");
             if (discountCode.AppliesToEntireCart)
                 throw new Exception(); // TOOD: Custom Ex
 
-            var item = await _itemRepository.GetById(request.ItemId) ?? throw new Exception(); // TODO: Custom ex: item with id doesnt exist
+            var item = await _itemRepository.GetById(request.ItemId) ?? throw new NotFoundException($"Item with ID {request.ItemId} not found");
 
             discountCode.AppliesToEntireCart = false;
 

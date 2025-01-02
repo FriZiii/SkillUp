@@ -5,6 +5,7 @@ using Skillup.Modules.Mails.Core.Repositories;
 using Skillup.Modules.Mails.Core.Services;
 using Skillup.Modules.Mails.Core.Templates.PasswordChange;
 using Skillup.Shared.Abstractions;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Mails.Core.Commands.Handlers
 {
@@ -21,7 +22,7 @@ namespace Skillup.Modules.Mails.Core.Commands.Handlers
 
         public async Task Handle(PasswordChangedRequest request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.Get(request.UserId) ?? throw new Exception(); // TODO: Custom ex
+            var user = await _userRepository.Get(request.UserId) ?? throw new NotFoundException($"User with ID {request.UserId} not found");
 
             var sender = new Participant() { Email = _smtpOptions.SenderEmail, Name = "SkillUp" };
             var reciver = new Participant() { Email = user.Email };

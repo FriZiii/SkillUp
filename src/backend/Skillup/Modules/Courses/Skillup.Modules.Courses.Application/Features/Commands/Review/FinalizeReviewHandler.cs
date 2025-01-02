@@ -3,6 +3,7 @@ using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Requests.Commands;
 using Skillup.Modules.Courses.Core.Requests.Commands.Review;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 using Skillup.Shared.Abstractions.Time;
 
 namespace Skillup.Modules.Courses.Application.Features.Commands.Review
@@ -18,7 +19,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Review
             if (request.Status == ReviewStatus.InProgress)
                 return;
 
-            var review = await _courseReviewRepository.Get(request.ReviewId) ?? throw new Exception(); //TODO: Custom ex: review with id doesnt exist
+            var review = await _courseReviewRepository.Get(request.ReviewId) ?? throw new NotFoundException($"Review with ID {request.ReviewId} not found");
 
             review.Status = request.Status;
             review.FinalizedAt = _clock.CurrentDate();

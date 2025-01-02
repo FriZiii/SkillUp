@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Finances.Core.Entities;
-using Skillup.Modules.Finances.Core.Exceptions;
 using Skillup.Modules.Finances.Core.Repositories;
 using Skillup.Modules.Finances.Core.ValueObjects;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Finances.Core.DAL.Repositories
 {
@@ -25,14 +25,14 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
 
         public async Task Edit(Guid itemId, Currency currency)
         {
-            var itemToEdit = await _items.FirstOrDefaultAsync(x => x.Id == itemId) ?? throw new ItemNotFoundException(itemId);
+            var itemToEdit = await _items.FirstOrDefaultAsync(x => x.Id == itemId) ?? throw new NotFoundException($"Item with ID {itemId} not found");
             itemToEdit.Price = currency;
             await _context.SaveChangesAsync();
         }
 
         public async Task<Item> GetById(Guid itemId)
         {
-            var item = await _items.FirstOrDefaultAsync(x => x.Id == itemId) ?? throw new ItemNotFoundException(itemId);
+            var item = await _items.FirstOrDefaultAsync(x => x.Id == itemId) ?? throw new NotFoundException($"Item with ID {itemId} not found");
             return item;
         }
 

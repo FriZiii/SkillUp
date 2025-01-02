@@ -3,6 +3,7 @@ using Skillup.Modules.Courses.Core.DTO.Assets;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Requests.Queries.Assets;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 using Skillup.Shared.Abstractions.S3;
 
 namespace Skillup.Modules.Courses.Application.Features.Queries.Assets
@@ -14,9 +15,9 @@ namespace Skillup.Modules.Courses.Application.Features.Queries.Assets
 
         public async Task<VideoAssetDto> Handle(GetVideoAssetRequest request, CancellationToken cancellationToken)
         {
-            var video = await _assetsRepository.GetByElementId(request.ElementId) as Video ?? throw new Exception(); // TODO: Custom ex: Video for element with id doesnt exist
+            var video = await _assetsRepository.GetByElementId(request.ElementId) as Video ?? throw new NotFoundException($"Vide for Element with ID {request.ElementId} not found");
 
-            var videoUrl = await _amazonS3Service.GetPresignedUrl(S3FolderPaths.CourseAsset + video.Key); // TODO: Change timeToLive of presignedURL
+            var videoUrl = await _amazonS3Service.GetPresignedUrl(S3FolderPaths.CourseAsset + video.Key);
 
             return new VideoAssetDto()
             {

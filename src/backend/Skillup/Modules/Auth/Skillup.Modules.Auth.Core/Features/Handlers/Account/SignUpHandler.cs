@@ -3,11 +3,11 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Skillup.Modules.Auth.Core.Entities;
-using Skillup.Modules.Auth.Core.Exceptions;
 using Skillup.Modules.Auth.Core.Features.Commands.Account;
 using Skillup.Modules.Auth.Core.Repositories;
 using Skillup.Shared.Abstractions.Auth;
 using Skillup.Shared.Abstractions.Events.Auth;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 using Skillup.Shared.Abstractions.Time;
 
 namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
@@ -30,25 +30,25 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
         {
             if (!_registrationOptions.Enabled)
             {
-                throw new SignUpDisabledException();
+                throw new UnauthorizedException("Signup disabled");
             }
 
             var email = request.Email.ToLowerInvariant();
             var provider = email.Split("@").Last();
             if (_registrationOptions.InvalidEmailProviders?.Any(provider.Contains) is true)
             {
-                throw new InvalidEmailException(email);
+                throw new UnauthorizedException("Invalid email adress");
             }
 
             if (string.IsNullOrWhiteSpace(request.Password) || request.Password.Length is > 100 or < 6)
             {
-                throw new InvalidPasswordException("not matching the criteria");
+                throw new UnauthorizedException("Password not matching the criteria");
             }
 
             var user = await _userRepository.Get(email);
             if (user is not null)
             {
-                throw new EmailInUseException();
+                throw new UnauthorizedException("Email adress is already in use");
             }
 
             var now = _clock.CurrentDate();

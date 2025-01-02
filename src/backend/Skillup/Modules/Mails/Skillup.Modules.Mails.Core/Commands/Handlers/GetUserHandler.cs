@@ -2,11 +2,6 @@
 using Skillup.Modules.Mails.Core.DTO;
 using Skillup.Modules.Mails.Core.Repositories;
 using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Skillup.Modules.Mails.Core.Commands.Handlers
 {
@@ -21,7 +16,7 @@ namespace Skillup.Modules.Mails.Core.Commands.Handlers
 
         public async Task<UserDto> Handle(GetUserRequest request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.Get(request.UserId) ?? throw new UserNotFoundException(request.UserId);
+            var user = await _userRepository.Get(request.UserId) ?? throw new NotFoundException($"User with ID {request.UserId} not found");
             var userDto = new UserDto()
             {
                 Id = user.Id,

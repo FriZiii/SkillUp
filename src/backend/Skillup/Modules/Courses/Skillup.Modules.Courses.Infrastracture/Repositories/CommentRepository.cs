@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Comments;
 using Skillup.Modules.Courses.Core.Interfaces;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Courses.Infrastracture.Repositories
 {
@@ -25,7 +26,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task Delete(Guid commentId)
         {
-            var commentToDelete = await _comments.FirstOrDefaultAsync(c => c.Id == commentId) ?? throw new Exception(); // TODO: Custom ex: Comments doesnt exist
+            var commentToDelete = await _comments.FirstOrDefaultAsync(c => c.Id == commentId) ?? throw new NotFoundException($"Comment with ID {commentId} not found");
             commentToDelete.IsDeleted = true;
             await _context.SaveChangesAsync();
         }

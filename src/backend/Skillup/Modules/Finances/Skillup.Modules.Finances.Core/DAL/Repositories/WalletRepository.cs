@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Finances.Core.Entities;
 using Skillup.Modules.Finances.Core.Repositories;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Finances.Core.DAL.Repositories
 {
@@ -26,7 +27,7 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
 
         public async Task UpdateWalletBalance(Wallet wallet, BalanceHistory balanceHistory)
         {
-            var walletToUpdate = await _wallets.FirstOrDefaultAsync(x => x.Id == wallet.Id) ?? throw new Exception(); //TODO: Custom ex: Wallet doesnt exist
+            var walletToUpdate = await _wallets.FirstOrDefaultAsync(x => x.Id == wallet.Id) ?? throw new NotFoundException($"Wallet with ID {wallet.Id} not found");
             walletToUpdate = new Wallet(wallet);
 
             _balanceHistories.Add(balanceHistory);

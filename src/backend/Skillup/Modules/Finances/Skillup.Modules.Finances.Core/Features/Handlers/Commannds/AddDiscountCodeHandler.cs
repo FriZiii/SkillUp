@@ -3,6 +3,7 @@ using Skillup.Modules.Finances.Core.Entities;
 using Skillup.Modules.Finances.Core.Features.Requests.Commannds;
 using Skillup.Modules.Finances.Core.Repositories;
 using Skillup.Modules.Finances.Core.ValueObjects;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 {
@@ -27,7 +28,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
             }
 
             if (discountCodeToAdd == null)
-                throw new Exception();  // TODO: Custom Ex: an error occured while creating discount code
+                throw new BadRequestException("An error occured while creating discount code");
 
             discountCodeToAdd.Owner = owner;
             discountCodeToAdd.OwnerId = request.OwnerId;

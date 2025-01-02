@@ -1,4 +1,5 @@
 ﻿using Skillup.Shared.Abstractions.Exceptions;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 using System.Collections.Concurrent;
 using System.Net;
 
@@ -11,9 +12,16 @@ namespace Skillup.Shared.Infrastructure.Exceptions
         public ExceptionResponse Map(Exception exception)
             => exception switch
             {
-                SkillupException ex => new ExceptionResponse(new ErrorsResponse(new Error(GetErrorCode(ex), ex.Message))
+                UnauthorizedException ex => new ExceptionResponse(new ErrorsResponse(new Error(GetErrorCode(ex), ex.Message))
+                    , HttpStatusCode.Unauthorized),
+
+                NotFoundException ex => new ExceptionResponse(new ErrorsResponse(new Error(GetErrorCode(ex), ex.Message))
+                    , HttpStatusCode.NotFound),
+
+                BadRequestException ex => new ExceptionResponse(new ErrorsResponse(new Error(GetErrorCode(ex), ex.Message))
                     , HttpStatusCode.BadRequest),
-                _ => new ExceptionResponse(new ErrorsResponse(new Error("Error", "There was an error.")),
+
+                _ => new ExceptionResponse(new ErrorsResponse(new Error("Error", "Server error")),
                     HttpStatusCode.InternalServerError)
             };
 

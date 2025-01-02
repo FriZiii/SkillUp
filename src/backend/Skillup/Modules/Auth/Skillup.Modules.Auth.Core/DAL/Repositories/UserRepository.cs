@@ -37,21 +37,21 @@ namespace Skillup.Modules.Auth.Core.DAL.Repositories
 
         public async Task ChangeState(Guid userId, UserState state)
         {
-            var userToChange = await _users.FirstOrDefaultAsync(x => x.Id.Equals(userId)) ?? throw new UserNotFoundException(userId);
+            var userToChange = await _users.FirstOrDefaultAsync(x => x.Id.Equals(userId)) ?? throw new NotFoundException($"User with ID {userId} not found");
             userToChange.State = state;
             await _context.SaveChangesAsync();
         }
 
         public async Task ChangeRole(Guid userId, UserRole role)
         {
-            var userToChange = await _users.FirstOrDefaultAsync(x => x.Id.Equals(userId)) ?? throw new UserNotFoundException(userId);
+            var userToChange = await _users.FirstOrDefaultAsync(x => x.Id.Equals(userId)) ?? throw new NotFoundException($"User with ID {userId} not found");
             userToChange.Role = role;
             await _context.SaveChangesAsync();
         }
 
         public async Task<UserRole> GetUserRole(Guid userId)
         {
-            var user = await _users.FirstOrDefaultAsync(x => x.Id.Equals(userId)) ?? throw new UserNotFoundException(userId);
+            var user = await _users.FirstOrDefaultAsync(x => x.Id.Equals(userId)) ?? throw new NotFoundException($"User with ID {userId} not found");
             return user.Role;
         }
     }

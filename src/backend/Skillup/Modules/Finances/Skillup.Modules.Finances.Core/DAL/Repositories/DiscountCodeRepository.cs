@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Finances.Core.Entities;
 using Skillup.Modules.Finances.Core.Repositories;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Finances.Core.DAL.Repositories
 {
@@ -23,17 +24,17 @@ namespace Skillup.Modules.Finances.Core.DAL.Repositories
                 {
                     if (exception.SqlState == Npgsql.PostgresErrorCodes.UniqueViolation)
                     {
-                        throw new Exception("This code already exist, is not unique"); // TODO: Custom ex This code already exist, is not unique
+                        throw new BadRequestException("This code already exist, is not unique");
                     }
                 }
-                throw new Exception(); // smth went wrong
+                throw new BadRequestException("Something went wrong");
             }
         }
 
         public async Task Update(DiscountCode discountCode)
         {
             var discountCodeToEdit = await _discountCodes.Include(x => x.DiscountedItems)
-                .FirstOrDefaultAsync(x => x.Id == discountCode.Id) ?? throw new Exception(); // TODO: Custom Ex: discount code with id doesnt exist
+                .FirstOrDefaultAsync(x => x.Id == discountCode.Id) ?? throw new NotFoundException($"DiscountCode with ID {discountCode.Id} not found");
 
             if (!discountCodeToEdit.AppliesToEntireCart && discountCode.AppliesToEntireCart)
             {

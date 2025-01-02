@@ -4,6 +4,7 @@ using Skillup.Modules.Courses.Application.Features.Commands.Users;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Options;
 using Skillup.Modules.Courses.Core.Requests.Commands;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 using Skillup.Shared.Abstractions.S3;
 using System.Net;
 
@@ -24,7 +25,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands
 
         public async Task Handle(EditCourseTumbnailRequest request, CancellationToken cancellationToken)
         {
-            var course = await _courseRepository.GetById(request.CourseId) ?? throw new Exception(); // TODO: Custom ex: Course with id doesnt exist
+            var course = await _courseRepository.GetById(request.CourseId) ?? throw new NotFoundException($"Course with ID {request.CourseId} not found");
 
             var key = course.Details.ThumbnailKey;
 

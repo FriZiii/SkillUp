@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using Skillup.Modules.Finances.Core.Exceptions;
 using Skillup.Modules.Finances.Core.Features.Requests.Commannds;
 using Skillup.Modules.Finances.Core.Repositories;
 using Skillup.Modules.Finances.Core.ValueObjects;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 {
@@ -22,7 +22,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
         {
             var itemToEdit = await _itemRepository.GetById(request.ItemId);
 
-            if (!itemToEdit.AuthorId.Equals(request.UserId)) throw new OnlyAuthorCanChangePriceException(itemToEdit.Type);
+            if (!itemToEdit.AuthorId.Equals(request.UserId)) throw new UnauthorizedException("Only author of item can change price");
 
             var currency = new Currency(request.Currency);
             await _itemRepository.Edit(request.ItemId, currency);

@@ -3,6 +3,7 @@ using Skillup.Modules.Courses.Application.Mappings;
 using Skillup.Modules.Courses.Core.DTO;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Requests.Queries;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 using Skillup.Shared.Abstractions.S3;
 
 namespace Skillup.Modules.Courses.Application.Features.Queries
@@ -22,7 +23,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
 
         public async Task<CourseDetailDto> Handle(GetCourseByIdRequest request, CancellationToken cancellationToken)
         {
-            var course = await _courseRepository.GetById(request.CourseId) ?? throw new Exception(); //TODO: Custom ex: course with id doesnt exist
+            var course = await _courseRepository.GetById(request.CourseId) ?? throw new NotFoundException($"Course with ID {request.CourseId} not found");
 
             var user = await _userRepository.GetById(course.AuthorId) ?? throw new Exception();
             var authorName = user.FirstName + " " + user.LastName;

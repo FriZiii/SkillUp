@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Skillup.Modules.Auth.Core.Features.Requests.Password;
 using Skillup.Modules.Auth.Core.Repositories;
 using Skillup.Shared.Abstractions.Events.Auth;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 using Skillup.Shared.Abstractions.Time;
 
 namespace Skillup.Modules.Auth.Core.Features.Handlers.Password
@@ -24,15 +25,17 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Password
 
         public async Task Handle(ResetPasswordSubmitRequest request, CancellationToken cancellationToken)
         {
-            var passwordReset = await _passwordResetRepository.GetByToken(request.Token) ?? throw new Exception(); // TODO: Custom ex
+            var passwordReset = await _passwordResetRepository.GetByToken(request.Token)
+                ?? throw new UnauthorizedException("Invalid password reset token");
 
             if (!passwordReset.IsActive)
-                throw new Exception();
+                throw new UnauthorizedException("Password reset token is inactive");
 
             if (_clock.CurrentDate() > passwordReset.ExpiresAt)
-                throw new Exception();
+                throw new UnauthorizedException("Password reset token is expired");
 
-            var user = await _userRepository.Get(passwordReset.UserId) ?? throw new Exception();
+            var user = await _userRepository.Get(passwordReset.UserId)
+                ?? throw new UnauthorizedException($"User with {passwordReset.UserId} doesn't exist. Password reset failed");
 
             user.Password = _passwordHasher.HashPassword(user, request.NewPassword); ;
             await _userRepository.Update(user);
