@@ -14,6 +14,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
+        [Authorize]
         [SwaggerOperation("Get user wallet by user id")]
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetUserWallet(Guid userId)

@@ -26,14 +26,14 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Token
 
         public async Task Handle(RefreshRequest request, CancellationToken cancellationToken)
         {
-            var userId = _authManager.GetUserIdFromExpiredToken(request.AccessToken) ?? throw new UnauthorizedException("Token refresh failed");
+            var userId = _authManager.GetUserIdFromExpiredToken(request.AccessToken) ?? throw new BadRequestException("Token refresh failed");
 
-            var user = await _userRepository.Get(userId) ?? throw new UnauthorizedException("Token refresh failed");
+            var user = await _userRepository.Get(userId) ?? throw new BadRequestException("Token refresh failed");
 
             if (user.State == UserState.Locked)
             {
                 _logger.LogError("User is in locked state");
-                throw new UnauthorizedException("User is in locked state");
+                throw new BadRequestException("User is in locked state");
             }
 
             try
@@ -45,7 +45,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Token
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                throw new UnauthorizedException("Token refresh failed");
+                throw new BadRequestException("Token refresh failed");
             }
         }
     }

@@ -21,7 +21,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Password
             if (_passwordHasher.VerifyHashedPassword(user, user.Password, request.CurrentPassword) ==
                 PasswordVerificationResult.Failed)
             {
-                throw new UnauthorizedException("Invalid password");
+                throw new BadRequestException("Invalid password");
             }
 
             user.Password = _passwordHasher.HashPassword(user, request.NewPassword); ;

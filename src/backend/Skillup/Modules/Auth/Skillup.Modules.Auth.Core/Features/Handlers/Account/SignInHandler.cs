@@ -25,17 +25,17 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
 
         public async Task Handle(SignInRequest request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.Get(request.Email.ToLowerInvariant()) ?? throw new UnauthorizedException("Invalid credencials");
+            var user = await _userRepository.Get(request.Email.ToLowerInvariant()) ?? throw new BadRequestException("Invalid credencials");
 
             if (user.State != UserState.Active)
             {
-                throw new UnauthorizedException("This account has not been activated. Check your email to activate your account");
+                throw new BadRequestException("This account has not been activated. Check your email to activate your account");
             }
 
             if (_passwordHasher.VerifyHashedPassword(user, user.Password, request.Password) ==
                 PasswordVerificationResult.Failed)
             {
-                throw new UnauthorizedException("Invalid credencials");
+                throw new BadRequestException("Invalid credencials");
             }
 
             var tokens = _authManager.CreateTokens(user.Id, user.Role);

@@ -10,17 +10,17 @@ namespace Skillup.Modules.Auth.Core.DTO
 
         public TokensDto(AuthTokens? tokens)
             : this(tokens?.AccessToken?.Token
-                   ?? throw new UnauthorizedException("Invalid auth token"),
+                   ?? throw new BadRequestException("Invalid auth token"),
                    tokens?.RefreshToken?.Token
-                   ?? throw new UnauthorizedException("Invalid auth token"))
+                   ?? throw new BadRequestException("Invalid auth token"))
         { }
 
         public TokensDto(string? accessToken, string? refreshToken)
         {
             if (string.IsNullOrEmpty(accessToken))
-                throw new UnauthorizedException("Invalid auth token");
+                throw new BadRequestException("Invalid auth token");
             if (string.IsNullOrEmpty(refreshToken))
-                throw new UnauthorizedException("Invalid auth token");
+                throw new BadRequestException("Invalid auth token");
 
             AccessToken = accessToken;
             RefreshToken = refreshToken;

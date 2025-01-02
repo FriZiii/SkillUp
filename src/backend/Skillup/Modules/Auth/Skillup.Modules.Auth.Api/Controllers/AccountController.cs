@@ -1,11 +1,9 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Auth.Api.Controllers.Base;
 using Skillup.Modules.Auth.Core.Features.Commands.Account;
 using Skillup.Modules.Auth.Core.Services;
-using Skillup.Shared.Infrastructure.Auth;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Auth.Api.Controllers
@@ -48,18 +46,13 @@ namespace Skillup.Modules.Auth.Api.Controllers
             return Ok(new { tokens.AccessToken.Token });
         }
 
-        [Authorize]
         [HttpDelete("sign-out")]
         [SwaggerOperation("Sign out")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async new Task<IActionResult> SignOut()
         {
-            var userId = User.GetUserId();
-            if (userId == null) return Unauthorized();
-
-            await _mediator.Send(new SignOutRequest((Guid)userId));
+            //await _mediator.Send(new SignOutRequest(new Guid()));
             return NoContent();
         }
 

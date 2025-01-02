@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Requests.Commands.Users;
@@ -22,6 +23,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(await _mediator.Send(new GetUserByIdRequest(userId, details)));
         }
 
+        [Authorize]
         [HttpPut("{userId}")]
         [SwaggerOperation("Edit user")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -34,6 +36,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(await _mediator.Send(new GetUserByIdRequest(userId, true)));
         }
 
+        [Authorize]
         [HttpPut("{userId}/Privacy-Settings")]
         [SwaggerOperation("Edit privacy settings")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -45,6 +48,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(await _mediator.Send(new GetUserByIdRequest(userId, true)));
         }
 
+        [Authorize]
         [HttpPut("{userId}/Profile-Picture")]
         [SwaggerOperation("Edit profile picture")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

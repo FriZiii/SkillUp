@@ -15,13 +15,13 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
 
         public async Task Handle(AccountActivationRequest request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.Get(request.UserId) ?? throw new UnauthorizedException("Account activation failed");
+            var user = await _userRepository.Get(request.UserId) ?? throw new BadRequestException("Account activation failed");
 
             if (user.TokenExpiration < _clock.CurrentDate())
-                throw new UnauthorizedException("Account activation failed. Invalid activation token");
+                throw new BadRequestException("Account activation failed. Invalid activation token");
 
             if (user.ActivationToken != request.ActivationToken)
-                throw new UnauthorizedException("Account activation failed. Invalid activation token");
+                throw new BadRequestException("Account activation failed. Invalid activation token");
 
             await _userRepository.ChangeState(request.UserId, Entities.UserState.Active);
             _logger.LogInformation("User activated");

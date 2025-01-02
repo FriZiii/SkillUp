@@ -22,7 +22,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
         {
             var itemToEdit = await _itemRepository.GetById(request.ItemId);
 
-            if (!itemToEdit.AuthorId.Equals(request.UserId)) throw new UnauthorizedException("Only author of item can change price");
+            if (!itemToEdit.AuthorId.Equals(request.UserId)) throw new BadRequestException("Only author of item can change price");
 
             var currency = new Currency(request.Currency);
             await _itemRepository.Edit(request.ItemId, currency);

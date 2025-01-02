@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Finances.Core.Entities;
 using Skillup.Modules.Finances.Core.Features.Requests.Commannds;
@@ -14,6 +15,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
+        [Authorize]
         [HttpPost("{type}")]
         [SwaggerOperation("Add new discount code")]
         public async Task<IActionResult> Add([FromRoute] DiscountCodeType type, AddDiscountCodeRequest request)
@@ -29,6 +31,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
             return Ok(await _mediator.Send(new GetDiscountCodeByIdRequest(request.Id)));
         }
 
+        [Authorize]
         [HttpDelete("{discountCodeId}")]
         [SwaggerOperation("Delete discount code")]
         public async Task<IActionResult> Delete(Guid discountCodeId)
@@ -37,6 +40,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPut("{discountCodeId}")]
         [SwaggerOperation("Edit discount code")]
         public async Task<IActionResult> Edit(Guid discountCodeId, EditDiscountCodeRequest request)
@@ -53,6 +57,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
             return Ok(await _mediator.Send(new GetPublicDiscountCodesRequest()));
         }
 
+        [Authorize]
         [HttpPost("{discountCodeId}/{itemId}")]
         [SwaggerOperation("Toggle discount code for item")]
         public async Task<IActionResult> ToggleDiscountCodeForItem(Guid discountCodeId, Guid itemId)

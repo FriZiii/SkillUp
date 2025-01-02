@@ -1,9 +1,11 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
 using Skillup.Modules.Courses.Core.Requests.Commands.Elements;
 using Skillup.Modules.Courses.Core.Requests.Queries;
+using Skillup.Shared.Abstractions.Auth;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Courses.Api.Controllers
@@ -14,6 +16,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpPost("{assetType}/{sectionId}")]
         [SwaggerOperation("Add element")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -29,6 +32,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(element);
         }
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpPut("{elementId}/{newIndex}")]
         [SwaggerOperation("Change element index")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -39,6 +43,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(section);
         }
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpPut("{elementId}")]
         [SwaggerOperation("Edit element")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -50,6 +55,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpDelete("{elementId}")]
         [SwaggerOperation("Delete element")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

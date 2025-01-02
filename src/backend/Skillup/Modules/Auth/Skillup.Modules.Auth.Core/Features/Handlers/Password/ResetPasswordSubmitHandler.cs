@@ -26,16 +26,16 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Password
         public async Task Handle(ResetPasswordSubmitRequest request, CancellationToken cancellationToken)
         {
             var passwordReset = await _passwordResetRepository.GetByToken(request.Token)
-                ?? throw new UnauthorizedException("Invalid password reset token");
+                ?? throw new BadRequestException("Invalid password reset token");
 
             if (!passwordReset.IsActive)
-                throw new UnauthorizedException("Password reset token is inactive");
+                throw new BadRequestException("Password reset token is inactive");
 
             if (_clock.CurrentDate() > passwordReset.ExpiresAt)
-                throw new UnauthorizedException("Password reset token is expired");
+                throw new BadRequestException("Password reset token is expired");
 
             var user = await _userRepository.Get(passwordReset.UserId)
-                ?? throw new UnauthorizedException($"User with {passwordReset.UserId} doesn't exist. Password reset failed");
+                ?? throw new NotFoundException($"User with {passwordReset.UserId} doesn't exist. Password reset failed");
 
             user.Password = _passwordHasher.HashPassword(user, request.NewPassword); ;
             await _userRepository.Update(user);

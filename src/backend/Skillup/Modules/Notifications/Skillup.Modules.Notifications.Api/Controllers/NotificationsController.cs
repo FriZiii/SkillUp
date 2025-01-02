@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Notifications.Core.Features.Requests;
 using Swashbuckle.AspNetCore.Annotations;
@@ -11,6 +12,7 @@ namespace Skillup.Modules.Notifications.Api.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
+        [Authorize]
         [HttpGet("/Notifications/Users/{userId}")]
         [SwaggerOperation("Get notifications by user id")]
         public async Task<IActionResult> GetNotificationsByUserId(Guid userId)
@@ -18,6 +20,7 @@ namespace Skillup.Modules.Notifications.Api.Controllers
             return Ok(await _mediator.Send(new GetNotificationsByUserIdRequest(userId)));
         }
 
+        [Authorize]
         [HttpPatch("/Notifications/{notificationId}")]
         [SwaggerOperation("Mark notification as seen")]
         public async Task<IActionResult> MarkNotificationAsSeen(Guid notificationId)

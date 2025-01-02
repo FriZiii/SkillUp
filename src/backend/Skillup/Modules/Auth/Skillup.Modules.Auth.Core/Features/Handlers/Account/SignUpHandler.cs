@@ -30,25 +30,25 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
         {
             if (!_registrationOptions.Enabled)
             {
-                throw new UnauthorizedException("Signup disabled");
+                throw new BadRequestException("Signup disabled");
             }
 
             var email = request.Email.ToLowerInvariant();
             var provider = email.Split("@").Last();
             if (_registrationOptions.InvalidEmailProviders?.Any(provider.Contains) is true)
             {
-                throw new UnauthorizedException("Invalid email adress");
+                throw new BadRequestException("Invalid email adress");
             }
 
             if (string.IsNullOrWhiteSpace(request.Password) || request.Password.Length is > 100 or < 6)
             {
-                throw new UnauthorizedException("Password not matching the criteria");
+                throw new BadRequestException("Password not matching the criteria");
             }
 
             var user = await _userRepository.Get(email);
             if (user is not null)
             {
-                throw new UnauthorizedException("Email adress is already in use");
+                throw new BadRequestException("Email adress is already in use");
             }
 
             var now = _clock.CurrentDate();
