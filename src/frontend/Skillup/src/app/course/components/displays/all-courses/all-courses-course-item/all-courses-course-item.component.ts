@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { CourseListItem } from '../../../../models/course.model';
 import { Router, RouterModule } from '@angular/router';
 import { CartService } from '../../../../../finance/services/cart.service';
@@ -9,6 +9,8 @@ import { UserRole } from '../../../../../user/models/user-role.model';
 import { CommonModule } from '@angular/common';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
+import { DiscountCodeService } from '../../../../../finance/services/discountCode.service';
+import { DiscountCode, DiscountCodeType } from '../../../../../finance/models/discountCodes.model';
 
 @Component({
   selector: 'app-all-courses-course-item',
@@ -24,6 +26,9 @@ export class AllCoursesCourseItemComponent {
   courseService = inject(CoursesService);
   purchasedItemsService = inject(PurchasedItemsService);
   userService = inject(UserService);
+  discountCodeService = inject(DiscountCodeService);
+
+  discountCodes = computed(() => this.discountCodeService.findDiscountCodesByItemId(this.course().id));
 
   navigate(whereTo: string){
     switch (whereTo){
@@ -36,6 +41,15 @@ export class AllCoursesCourseItemComponent {
       case 'cart':
         this.router.navigate(['/cart'])
         break;
+    }
+  }
+
+  getType(code: DiscountCode){
+    if(code.type === DiscountCodeType.Percentage){
+      return '%';
+    }
+    else{
+      return '$';
     }
   }
 }

@@ -1,11 +1,11 @@
-<div class="flex w-full items-center px-4">
+<div class="flex w-full items-start px-4">
   <img
     [src]="course().thumbnailUrl"
     class="h-36 cursor-pointer my-4"
     [routerLink]="'/course-detail/' + course().id"
   />
   <div
-    class="prose max-w-none !w-full h-full items-start cursor-pointer ml-4"
+    class="prose max-w-none !w-full h-full items-start cursor-pointer ml-4 mt-5"
     [routerLink]="'/course-detail/' + course().id"
   >
     <h1 class="mb-1 text-2xl font-semibold">
@@ -20,10 +20,18 @@
       <p class="my-1 text-base">({{ course().ratingsCount }})</p>
     </div>
   </div>
-  <div class="flex items-center gap-4 ml-4">
+  <div class="flex flex-col items-end gap-2 ml-4 mt-5">
     <p class="my-0 text-nowrap text-2xl font-bold">
       {{ course().price | number : "1.2-2" }} $
     </p>
+    @for(code of discountCodes(); track code.id){
+    <div class="bg-primary-500 px-4 rounded-3xl flex gap-1">
+      <p class="my-0 text-zinc-100 text-nowrap">
+        - {{ code.discountValue }}{{ getType(code) }} with {{ code.code }}
+      </p>
+    </div>
+
+    }
   </div>
 </div>
 <hr class="my-4" />
