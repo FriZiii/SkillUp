@@ -1,0 +1,5 @@
+:host ::ng-deep .big-btn .p-button {
+  width: 270px;
+  height: 70px;
+  font-size: 25px;
+}
