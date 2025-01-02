@@ -25,12 +25,7 @@
       {{ course().price | number : "1.2-2" }} $
     </p>
     @for(code of discountCodes(); track code.id){
-    <div class="bg-primary-500 px-4 rounded-3xl flex gap-1">
-      <p class="my-0 text-zinc-100 text-nowrap">
-        - {{ code.discountValue }}{{ getType(code) }} with {{ code.code }}
-      </p>
-    </div>
-
+    <app-mini-code [code]="code" />
     }
   </div>
 </div>

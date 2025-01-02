@@ -1,0 +1,8 @@
+<div
+  class="bg-primary-500 px-3 rounded-3xl flex gap-1 w-min cursor-pointer"
+  (click)="copyCode()"
+>
+  <p class="my-0 text-zinc-100 text-nowrap">
+    - {{ code().discountValue }}{{ getType() }} with {{ code().code }}
+  </p>
+</div>

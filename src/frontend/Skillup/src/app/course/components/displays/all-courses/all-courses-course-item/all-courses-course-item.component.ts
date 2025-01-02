@@ -11,11 +11,12 @@ import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { DiscountCodeService } from '../../../../../finance/services/discountCode.service';
 import { DiscountCode, DiscountCodeType } from '../../../../../finance/models/discountCodes.model';
+import { MiniCodeComponent } from "../../../../../finance/components/mini-code/mini-code.component";
 
 @Component({
   selector: 'app-all-courses-course-item',
   standalone: true,
-  imports: [CommonModule, RouterModule, RatingModule, FormsModule],
+  imports: [CommonModule, RouterModule, RatingModule, FormsModule, MiniCodeComponent],
   templateUrl: './all-courses-course-item.component.html',
   styleUrl: './all-courses-course-item.component.css'
 })
@@ -41,15 +42,6 @@ export class AllCoursesCourseItemComponent {
       case 'cart':
         this.router.navigate(['/cart'])
         break;
-    }
-  }
-
-  getType(code: DiscountCode){
-    if(code.type === DiscountCodeType.Percentage){
-      return '%';
-    }
-    else{
-      return '$';
     }
   }
 }

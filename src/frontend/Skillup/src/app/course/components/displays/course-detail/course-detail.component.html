@@ -61,11 +61,18 @@
             </div>
           </div>
         </div>
-        <div class="shadow w-full flex justify-between items-center">
+        <div class="shadow w-full flex justify-between items-start">
           <div class="prose">
-            <h2 class="my-2">$ {{ courseItem().price }}</h2>
+            <h2 class="mb-2">$ {{ courseItem().price }}</h2>
+            <div class="flex flex-wrap gap-2">
+              @for(code of discountCodes(); track code.id){
+              <app-mini-code [code]="code" />
+              }
+            </div>
           </div>
-          <app-buy-button [course]="courseListItem()!" [detail]="true" />
+          @if(!loading){
+          <app-buy-button [course]="courseListItem()!" [detail]="true" />}@else{
+          <p-skeleton width="143px" height="42px" />}
         </div>
       </div>
     </div>
@@ -210,8 +217,15 @@
       <div class="shadow flex justify-between items-center">
         <div class="prose">
           <h2 class="my-2">$ {{ courseItem().price }}</h2>
+          <div class="flex flex-wrap gap-2">
+            @for(code of discountCodes(); track code.id){
+            <app-mini-code [code]="code" />
+            }
+          </div>
         </div>
-        <app-buy-button [course]="courseListItem()!" [detail]="true" />
+        @if(!loading){
+        <app-buy-button [course]="courseListItem()!" [detail]="true" />}@else{
+        <p-skeleton width="143px" height="42px" />}
       </div>
     </div>
   </div>
@@ -219,13 +233,21 @@
   <!-- Green Strap -->
   <div class="bg-primary-500 left-0 px-24 py-4 my-8 sticky top-14 z-10 mb-10">
     <div #endTrigger class="relative">
-      <div class="prose max-w-none !w-full flex justify-between">
-        <h2 class="text-5xl m-0 text-white">{{ course()?.title }}</h2>
-        <app-buy-button
-          [course]="courseListItem()!"
-          [detail]="true"
-          [white]="true"
-        />
+      <div class="prose max-w-none !w-full flex justify-between gap-6">
+        <h2 class="text-5xl my-0 pb-1 text-white text-nowrap overflow-hidden">
+          {{ course()?.title! | truncate2 }}
+        </h2>
+        <div class="flex gap-6">
+          <h2 class="text-5xl m-0 text-white text-nowrap">
+            $ {{ courseItem().price }}
+          </h2>
+          @if(!loading){
+          <app-buy-button
+            [course]="courseListItem()!"
+            [detail]="true"
+            [white]="true"
+          />}@else{ <p-skeleton width="143px" height="42px" />}
+        </div>
       </div>
     </div>
   </div>
