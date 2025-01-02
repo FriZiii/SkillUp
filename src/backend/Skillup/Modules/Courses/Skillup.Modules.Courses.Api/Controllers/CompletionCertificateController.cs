@@ -23,8 +23,10 @@ namespace Skillup.Modules.Courses.Api.Controllers
             //if (userId == null) return Unauthorized();
             //request.UserId = (Guid)userId;
 
+            var cid = new Guid("001ad0d5-9230-4bd1-be76-2ffcb72507ba");
+            var userId = new Guid("03b23b0c-383a-4e7b-9714-35eb69e4918d");
 
-            var response = await _mediator.Send(new GetCompletionCertificateRequest(Guid.NewGuid(), Guid.NewGuid()));
+            var response = await _mediator.Send(new GetCompletionCertificateRequest(cid, userId));
             return File(response.FileData, response.ContentType, response.FileName);
         }
     }
