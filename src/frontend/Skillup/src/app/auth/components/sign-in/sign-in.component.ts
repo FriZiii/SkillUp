@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -10,7 +10,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { AuthService } from '../../services/auth.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CheckboxModule } from 'primeng/checkbox';
 import { finalize } from 'rxjs';
 import { Dialog, DialogModule } from 'primeng/dialog';
@@ -34,7 +34,9 @@ import { ResetPasswordComponent } from '../reset-password/reset-password.compone
   styleUrl: './sign-in.component.css',
 })
 export class SignInComponent {
+  cart = input<string>('');
   authService = inject(AuthService);
+  router = inject(Router);
   loading = false;
   forgotPasswordVisible = false;
 
@@ -54,7 +56,11 @@ export class SignInComponent {
     this.authService
       .signIn(formValue.email!, formValue.password!)
       .pipe(finalize(() => (this.loading = false)))
-      .subscribe();
+      .subscribe((res) => {
+        if(this.cart() === 'cart'){
+          this.router.navigate(['/cart']);
+        }
+      });
   }
 
   showForgotPassword() {

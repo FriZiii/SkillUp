@@ -1,13 +1,7 @@
 import {
   Component,
-  computed,
   inject,
-  Input,
   input,
-  OnChanges,
-  output,
-  signal,
-  SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
 import { SuComment } from '../../../models/comment.model';
@@ -19,11 +13,12 @@ import { CommentService } from '../../../services/comment.service';
 import { UserService } from '../../../../user/services/user.service';
 import { ConfirmationDialogHandlerService } from '../../../../core/services/confirmation-handler.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-comment',
   standalone: true,
-  imports: [InputTextModule, FormsModule, CommonModule, AddNewCommentComponent, ConfirmDialogModule],
+  imports: [InputTextModule, FormsModule, CommonModule, AddNewCommentComponent, ConfirmDialogModule, RouterModule],
   templateUrl: './comment.component.html',
   styleUrl: './comment.component.css',
   encapsulation: ViewEncapsulation.None,

@@ -24,10 +24,11 @@
     <i class="pi pi-file-edit" style="font-size: 1.5rem"></i>
   </div>
   } @if(moderator()){
-  <p-button
-    icon="pi pi-arrow-right"
-    class="cursor-pointer"
-    (onClick)="review(course().id)"
-  ></p-button>
+  <div
+    class="su-border-l items-center flex px-4 cursor-pointer"
+    (click)="review(course().id)"
+  >
+    <i class="pi pi-angle-right" style="font-size: 1.5rem"></i>
+  </div>
   }
 </div>

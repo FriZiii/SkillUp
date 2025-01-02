@@ -55,7 +55,6 @@ export class YourCoursesComponent implements OnInit {
 
     this.userProgressService.getPercentage().subscribe((res) => {
       this.coursePercentages.set(res);
-      console.log(res)
     })
   }
 

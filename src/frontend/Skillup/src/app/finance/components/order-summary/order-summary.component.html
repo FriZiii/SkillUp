@@ -49,8 +49,15 @@
         </h1>
       </div>
 
-      @if(wallet()?.balance !== null && cart()?.total && wallet()?.balance! <
-      cart()?.total!){
+      @if(!currentUser()){
+      <p-button
+        label="Checkout"
+        class="wide-btn"
+        [routerLink]="'/cart/sign-in'"
+        styleClass="!rounded-none mt-4"
+      ></p-button>
+      } @else if(currentUser()){ @if(wallet()?.balance !== null && cart()?.total
+      && wallet()?.balance! < cart()?.total!){
       <p-button
         label="Checkout"
         class="wide-btn"
@@ -64,7 +71,7 @@
         (onClick)="purchaseCart($event)"
         styleClass="!rounded-none mt-4"
       ></p-button>
-      }
+      } }
 
       <p-button
         label="Back to cart"

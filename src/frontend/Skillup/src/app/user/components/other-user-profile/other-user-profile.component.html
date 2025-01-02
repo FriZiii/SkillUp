@@ -1,4 +1,4 @@
-<div class="w-full su-section-mt">
+<div class="w-full su-section-mt mb-16">
   <div class="grid grid-cols-2">
     <div
       class="col-start-1 col-span-1 flex flex-col justify-center items-center"
@@ -8,6 +8,7 @@
         [src]="user()?.profilePicture!"
       />
 
+      @if(user()?.privacySettings?.isAccountPublicForLoggedInUsers){
       <div class="mt-10 flex gap-4">
         @if(user()?.socialMediaLinks?.website != null){
         <p-button
@@ -42,6 +43,7 @@
           (onClick)="openWebsite('linkedIn')"
         />}
       </div>
+      }
     </div>
 
     <div class="col-start-2 col-span-1 flex flex-col su-section-mt prose">
@@ -59,6 +61,15 @@
   @if(this.userId() === this.loggedUser()?.id){
   <div class="w-full mt-10 flex flex-row-reverse">
     <p-button (click)="goToEdit()">Edit</p-button>
+  </div>
+  } @if(this.user()?.privacySettings?.showCoursesOnUserProfile){
+  <h1 class="text-4xl font-bold text-center mt-16">
+    Courses bought by this user
+  </h1>
+  <div class="flex flex-wrap gap-8 mx-12 justify-center">
+    @for(course of courses(); track course.id){
+    <app-course-item [course]="course" />
+    }
   </div>
   }
 </div>

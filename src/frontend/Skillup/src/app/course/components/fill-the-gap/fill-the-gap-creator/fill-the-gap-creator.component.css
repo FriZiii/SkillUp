@@ -1,3 +1,13 @@
-.placeholder{
-    @apply border-2 border-dotted box-border border-stone-600 w-16 h-6
+.placeholder {
+  @apply border-2 border-dotted box-border border-stone-600 w-16 h-6;
+}
+
+:host ::ng-deep .words-table table {
+  margin: 0px;
+}
+:host ::ng-deep .words-table tr {
+  width: 100%;
+}
+:host ::ng-deep .words-table td {
+  width: 100%;
 }

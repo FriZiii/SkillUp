@@ -25,6 +25,7 @@ export class FilterForCoursesComponent implements OnChanges {
   filteredCourses = output<CourseListItem[]>();
   defaultCategory = input<string>('');
   defaultSubcategory = input<string>('');
+  defaultSearchValue = input<string>('');
 
   //Services
   courseCategoryService = inject(CategoryService)
@@ -37,7 +38,7 @@ export class FilterForCoursesComponent implements OnChanges {
   selectedStars = signal(0);
   selectedUsersCount = signal(0);
   selectedRatingsCount = signal(0);
-  maxPrice = computed(() => this.courses().reduce((max, course) => course.price > max.price ? course : max, this.courses()[0]).price)
+  maxPrice = 1000;
   selectedPrice: number[] = [0, 1000];
 
   //Selects
@@ -94,10 +95,17 @@ export class FilterForCoursesComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['courses']){
-      this.title = '';
+      this.title = this.defaultSearchValue();
       this.authorName = '';
       this.selectedCategory.set('')
       this.selectedSubcategory.set('')
+      this.applyFilters();
+      this.maxPrice = this.courses().reduce((max, course) => course.price > max.price ? course : max, this.courses()[0]).price;
+      this.selectedPrice = [0, this.maxPrice];
+    }
+    if(changes['defaultSearchValue']){
+      this.title = this.defaultSearchValue();
+      this.applyFilters();
     }
   }
 
@@ -116,8 +124,11 @@ export class FilterForCoursesComponent implements OnChanges {
         const matchesPrice = course.price >= this.selectedPrice[0] && course.price <= this.selectedPrice[1];
         return matchesSearch && matchesAuthor && matchesCategory && matchesSubcategory && matchesLevel && matchesStars && matchesUsers && matchesRatingCount && matchesPrice;
       });
-
-    console.log(filtered);
     this.filteredCourses.emit(filtered);
+  }
+
+  selectCategory(){
+    this.selectedSubcategory.set('');
+    this.applyFilters();
   }
 }

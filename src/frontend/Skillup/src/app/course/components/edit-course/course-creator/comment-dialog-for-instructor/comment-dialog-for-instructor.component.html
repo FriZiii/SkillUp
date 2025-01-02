@@ -6,16 +6,7 @@
     </p>
     <p class="my-0 font-medium text-xl">{{ comment.comment }}</p>
   </div>
-  } } @if(latestComment() === null && moderator()){
-  <div class="flex gap-4 my-4 mb-8">
-    <input type="text" pInputText [(ngModel)]="newComment" class="w-full" />
-    <p-button
-      icon="pi pi-plus"
-      (onClick)="addComment()"
-      class="add-btn"
-    ></p-button>
-  </div>
-  } @else{
+  } } @if(latestComment() !== null){ @if(latestComment()!.isResolved === false){
   <div class="mt-6 mb-8">
     <p class="my-0 font-light text-sm text-primary-500">Newest comment</p>
     <div class="flex items-center justify-between">
@@ -26,11 +17,28 @@
         <p class="my-0 font-medium text-xl">{{ latestComment()!.comment }}</p>
       </div>
       <p-button
-        icon="pi pi-trash"
-        severity="danger"
-        (onClick)="deleteComment(latestComment()!.id)"
-      ></p-button>
+        label="Mark as resolved"
+        (onClick)="resolveComment(latestComment()!.id)"
+      />
     </div>
   </div>
-  }
+  } @else {
+  <div class="mt-6 mb-8">
+    <div class="flex gap-2 items-center">
+      <p class="my-0 font-light text-sm text-primary-500">Newest comment</p>
+      <i
+        class="pi pi-check-square text-primary-500"
+        style="font-size: 0.7rem"
+      ></i>
+    </div>
+    <div class="flex gap-2 mb-2 items-center">
+      <p class="my-0 font-light text-base text-primary-500">
+        {{ latestComment()!.createdAt | date : "HH:mm dd.MM.yyyy" }}
+      </p>
+      <p class="my-0 font-medium text-xl text-primary-500">
+        {{ latestComment()!.comment }}
+      </p>
+    </div>
+  </div>
+  } }
 </div>

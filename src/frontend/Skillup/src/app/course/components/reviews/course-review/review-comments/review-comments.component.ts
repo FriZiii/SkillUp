@@ -4,16 +4,17 @@ import { CourseReviewService } from '../../../../services/course-review.service'
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-review-comments',
   standalone: true,
-  imports: [InputTextModule, ButtonModule, FormsModule],
+  imports: [InputTextModule, ButtonModule, FormsModule, CommonModule],
   templateUrl: './review-comments.component.html',
   styleUrl: './review-comments.component.css'
 })
 export class ReviewCommentsComponent {
-  elementId = input.required<string>();
+  elementId = input<string | null>(null);
   courseId = input<string>();
   moderator = input<boolean>(false);
   
@@ -22,12 +23,21 @@ export class ReviewCommentsComponent {
   //Variables
   latestReview = computed(() => this.reviewService.latestReviewForCourse());
   allReviews = computed(() => this.reviewService.allReviewsForCourse()?.filter(r => r.id != this.latestReview()?.id));
-  latestComment = computed(() => this.latestReview()?.comments.find(comment => comment.courseElementId === this.elementId()) || null)
-  comments = computed(() => this.allReviews()?.flatMap(review => review.comments).filter(comment => comment.courseElementId === this.elementId()) || null)
+  latestComment = computed(() => this.latestReview()?.comments.find(comment =>{
+    if(this.elementId() !== null){
+      return comment.courseElementId === this.elementId()}
+    else{
+      return comment.courseElementId === null;
+    }}) || null)
+  comments = computed(() => this.allReviews()?.flatMap(review => review.comments).filter(comment => {
+    if(this.elementId() !== null){return comment.courseElementId === this.elementId()}
+    else{
+      return comment.courseElementId === null;}}) || null)
   newComment = '';
 
   addComment(){
-    this.reviewService.addComment(this.latestReview()!.id, this.elementId(), this.newComment).subscribe(
+    console.log(this.latestComment());
+    this.reviewService.addComment(this.latestReview()!.id, this.courseId()!, this.elementId() ?? null, this.newComment).subscribe(
       (res) => {
       this.reviewService.latestReviewForCourse.set(res);
       this.newComment = '';

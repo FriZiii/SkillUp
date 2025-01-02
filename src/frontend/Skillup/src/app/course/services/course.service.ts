@@ -12,6 +12,7 @@ import {
   catchError,
   map,
   Observable,
+  of,
   tap,
   throwError,
 } from 'rxjs';
@@ -29,7 +30,7 @@ export class CoursesService {
   //Variables
   private httpClient = inject(HttpClient);
   private coursesSubject = new BehaviorSubject<Course[]>([]);
-  private courses$: Observable<Course[]> = this.coursesSubject.asObservable();
+  public courses$: Observable<Course[]> = this.coursesSubject.asObservable();
   public courses = signal<CourseListItem[]>([]);    
   public publishedCourses = computed(() => this.courses().filter(c => c.status === CourseStatus.Published)); 
 
@@ -156,17 +157,17 @@ export class CoursesService {
     return this.publishedCourses().filter((course) => course.category.id === categoryId);
   }
 
-  getCoursesBySlug(category: string, subcategory: string): CourseListItem[] {
-    return this.publishedCourses().filter(
+  getCoursesBySlug(category: string, subcategory: string) {
+    return of(this.publishedCourses().filter(
       (course) =>
         course.category.slug === category &&
         (subcategory.toLowerCase() === 'all' ||
           course.category.subcategory.slug === subcategory)
-    );
+    ));
   }
 
   getCoursesByAuthor(authorId: string): CourseListItem[]{
-    return this.courses().filter((course) => course.authorId === authorId);
+    return this.publishedCourses().filter((course) => course.authorId === authorId);
   }
 
   getCourseById(id: string){

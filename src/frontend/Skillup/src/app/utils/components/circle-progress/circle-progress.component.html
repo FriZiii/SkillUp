@@ -18,7 +18,10 @@
       ></circle>
     </svg>
     <div class="percent">
-      <h2 [ngStyle]="{ color: isWhite() ? 'white' : 'black' }" class="my-0">
+      <h2
+        [ngStyle]="{ color: isWhite() ? 'white' : 'black' }"
+        class="my-0 select-none"
+      >
         {{ percent() }}<span>%</span>
       </h2>
     </div>

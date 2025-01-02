@@ -3,6 +3,7 @@ import { UserRatingDetail } from '../../../../models/rating.model';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-course-rating',
@@ -10,7 +11,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     RatingModule,
     FormsModule,
-  CommonModule],
+  CommonModule, RouterModule],
   templateUrl: './course-rating.component.html',
   styleUrl: './course-rating.component.css'
 })

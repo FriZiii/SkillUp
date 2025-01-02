@@ -1,5 +1,22 @@
-<div class="prose mb-8">
+<div class="prose mb-8 flex justify-between items-center max-w-none w-full">
   <h1>Edit your course content!</h1>
+  @if((this.course()?.status === CourseStatus.ChangesRequired) &&
+  (latestComment() !== null || comments()?.length!==0)){ @if(latestComment() !==
+  null){ @if(latestComment()?.isResolved === true){
+  <p-button (click)="commentDialogVisible = true" icon="pi pi-comment" />
+  } @else {
+  <p-button
+    (click)="commentDialogVisible = true"
+    icon="pi pi-comment"
+    severity="danger"
+  />
+  } } @else {
+  <p-button
+    (click)="commentDialogVisible = true"
+    icon="pi pi-comment"
+    severity="secondary"
+  />
+  } }
 </div>
 <p-accordion
   [value]="0"
@@ -52,25 +69,65 @@
   </app-hidden-form-wrapper>
 </div>
 
-@if(course()?.status === CourseStatus.Draft){
-<div class="prose my-4">
-  <h3>Submit your course for review</h3>
-  <p-button label="Submit" (onClick)="submitForReview($event)"></p-button>
+@if(sections().length !== 0){
+<div class="w-full flex justify-end">
+  @if(course()?.status === CourseStatus.Draft){ @if(canSubmit()){
+  <div class="prose my-4 flex flex-col items-end">
+    <h3>Submit your course for review</h3>
+    <p-button
+      label="Submit for review"
+      (onClick)="submitForReview($event)"
+    ></p-button>
+  </div>
+  }@else {
+  <div class="prose my-4 flex items-end flex-col">
+    <h3 class="my-0">Cannot submit for review</h3>
+    <p class="my-1">
+      You must set all your sections as published before submitting for review
+    </p>
+  </div>
+  } } @if(course()?.status === CourseStatus.SubmitedForReview ||
+  course()?.status === CourseStatus.PendingReview ){
+  <div class="prose my-4">
+    <h3>Your course is waiting for review</h3>
+  </div>
+  } @if(course()?.status === CourseStatus.ChangesRequired){ @if(ifResolved()){
+  @if(canSubmit()){
+  <div class="prose my-4 flex flex-col items-end">
+    <h3>Submit your course for new review</h3>
+    <p-button
+      label="Submit for review"
+      (onClick)="submitForReview($event)"
+    ></p-button>
+  </div>
+  } @else{
+  <div class="prose my-4 flex items-end flex-col">
+    <h3 class="my-0">Cannot submit for review</h3>
+    <p class="my-1">
+      You must set all your sections as published before submitting for review
+    </p>
+  </div>
+  } } @else {
+  <div class="prose my-4">
+    <h3>Your course requires changes</h3>
+  </div>
+  } }
 </div>
-} @if(course()?.status === CourseStatus.SubmitedForReview || course()?.status
-=== CourseStatus.PendingReview ){
-<div class="prose my-4">
-  <h3>Your course is waiting for review</h3>
-</div>
-} @if(course()?.status === CourseStatus.ChangesRequired){ @if(ifResolved()){
-<div class="prose my-4">
-  <h3>Submit your course for new review</h3>
-  <p-button label="Submit" (onClick)="submitForReview($event)"></p-button>
-</div>
-} @else {
-<div class="prose my-4">
-  <h3>Your course requires changes</h3>
-</div>
-} }
+}
 
 <p-confirmdialog />
+
+<!-- Comments dialog -->
+<p-dialog
+  header="Comments"
+  [modal]="true"
+  [(visible)]="commentDialogVisible"
+  [style]="{ width: '80%' }"
+  [draggable]="false"
+  class="cursor-default"
+>
+  <app-comment-dialog-for-instructor
+    [comments]="comments()"
+    [latestComment]="latestComment()"
+  ></app-comment-dialog-for-instructor>
+</p-dialog>

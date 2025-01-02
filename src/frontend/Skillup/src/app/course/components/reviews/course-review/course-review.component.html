@@ -99,12 +99,52 @@
     }
   </p-accordion>
 
-  <p-button
-    label="Request changes"
-    (onClick)="finalizeReview(ReviewStatus.FinalizedWithRequiredChanges)"
-  />
-  <p-button
-    label="Approve and submit"
-    (onClick)="finalizeReview(ReviewStatus.Finalized)"
-  />
+  <div class="flex mt-6">
+    <div class="w-48">
+      <p-button
+        label="Add comment"
+        icon="pi pi-comment"
+        (onClick)="commentDialogVisible = true"
+        styleClass="!rounded-none"
+      />
+    </div>
+    <div class="flex justify-end gap-2 w-full">
+      <p-button
+        label="Request changes"
+        (onClick)="
+          finalizeReview($event, ReviewStatus.FinalizedWithRequiredChanges)
+        "
+        styleClass="!rounded-none"
+        severity="danger"
+      />
+      <p-button
+        label="Approve and submit"
+        (onClick)="finalizeReview($event, ReviewStatus.Finalized)"
+        styleClass="!rounded-none"
+      />
+    </div>
+  </div>
 </div>
+
+<p-confirmdialog />
+<p-dialog
+  header="Comments"
+  [modal]="true"
+  [(visible)]="commentDialogVisible"
+  [style]="{ width: '80%' }"
+  [draggable]="false"
+  class="cursor-default"
+>
+  <app-review-comments
+    [courseId]="courseId()"
+    [moderator]="true"
+  ></app-review-comments>
+
+  <div class="flex gap-2 justify-end">
+    <p-button
+      label="Cancel"
+      severity="secondary"
+      (click)="commentDialogVisible = false"
+    />
+  </div>
+</p-dialog>

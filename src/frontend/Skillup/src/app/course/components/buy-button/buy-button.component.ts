@@ -7,17 +7,19 @@ import { UserService } from '../../../user/services/user.service';
 import { UserRole } from '../../../user/models/user-role.model';
 import { CoursesService } from '../../services/course.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-buy-button',
   standalone: true,
-  imports: [ButtonModule],
+  imports: [ButtonModule, CommonModule],
   templateUrl: './buy-button.component.html',
   styleUrl: './buy-button.component.css'
 })
 export class BuyButtonComponent {
   course = input.required<CourseListItem>();
   detail = input<boolean>(false);
+  white = input<boolean>(false);
   //Services
   cartService = inject(CartService);
   purchasedItemsService = inject(PurchasedItemsService);
@@ -31,7 +33,7 @@ export class BuyButtonComponent {
   ngOnInit(){
       if(this.userService.currentUser()){
         if(this.userService.currentUser()?.role === UserRole.Instructor){
-          this.coursesByAuthor = this.courseService.getCoursesByAuthor(this.userService.currentUser()!.id)
+          this.coursesByAuthor = this.courseService.courses().filter(c => c.authorId === this.userService.currentUser()?.id);
         }
       }
     }
@@ -71,6 +73,9 @@ export class BuyButtonComponent {
     switch (whereTo){
       case 'detail' :
         this.router.navigate(['/course-detail', this.course().id])
+        break;
+      case 'walk-through' :
+        this.router.navigate(['/course', this.course().id, 'walk-through'])
         break;
       case 'edit':
         this.router.navigate(['/course-edit', this.course().id, 'creator'])

@@ -1,8 +1,9 @@
-<div class="flex su-section-mt">
+<div class="flex su-section-mt mb-2">
   <div style="width: 25%">
     <app-filter-for-courses
       [courses]="courses()"
       (filteredCourses)="onFilteredCourses($event)"
+      [defaultSearchValue]="searchValue() ?? ''"
     />
   </div>
   <div style="width: 75%">
@@ -10,10 +11,21 @@
     <div class="w-full flex items-center justify-center">
       <p-progress-spinner ariaLabel="loading" class="mt-24" />
     </div>
-    } @for(course of filteredCourses(); track course.id){ @defer(on viewport){
-    <app-all-courses-course-item [course]="course" />
-    } @placeholder {
-    <p></p>
-    } }
+    } @else {@if(filteredCourses.length === 0){
+    <div class="flex w-full justify-center items-center" style="height: 70vh">
+      <h1 class="text-3xl font-semibold">No results found</h1>
+    </div>
+    }
+    <cdk-virtual-scroll-viewport
+      itemSize="200"
+      class="example-viewport scrollable-div"
+    >
+      <div *cdkVirtualFor="let course of filteredCourses">
+        <app-all-courses-course-item
+          [course]="course"
+        ></app-all-courses-course-item>
+      </div>
+    </cdk-virtual-scroll-viewport>
+    }
   </div>
 </div>

@@ -4,7 +4,15 @@
   <p-fluid>
     <p-iconfield>
       <p-inputicon styleClass="pi pi-search" />
-      <input type="text" pInputText id="search" fluid placeholder="Search" />
+      <input
+        type="text"
+        pInputText
+        id="search"
+        fluid
+        placeholder="Search"
+        (keydown.enter)="navigateToCourseList()"
+        [(ngModel)]="searchValue"
+      />
     </p-iconfield>
   </p-fluid>
 
@@ -57,6 +65,7 @@
         [badge]="notificationsNumber().toString()"
         badgeSeverity="primary"
         (onClick)="po_notifications.hide()"
+        [routerLink]="'notifications'"
       >
         <p-popover [showCloseIcon]="true" #po_notifications
           ><div
@@ -139,6 +148,8 @@
 
                       <li>
                         <a
+                          routerLinkActive="active-link"
+                          [routerLink]="'/notifications'"
                           pRipple
                           class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
                         >
@@ -149,83 +160,25 @@
 
                       <li>
                         <a
+                          routerLinkActive="active-link"
+                          [routerLink]="'/balance'"
                           pRipple
-                          pStyleClass="@next"
-                          enterFromClass="hidden"
-                          enterActiveClass="animate-slidedown"
-                          leaveToClass="hidden"
-                          leaveActiveClass="animate-slideup"
                           class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
                         >
                           <i class="pi pi-wallet mr-2"></i>
-                          <span class="font-medium">Reports</span>
-                          <i class="pi pi-chevron-down ml-auto"></i>
+                          <span class="font-medium">Balance</span>
                         </a>
-                        <ul
-                          class="list-none py-0 pl-4 pr-0 m-0 hidden overflow-y-hidden transition-all duration-[400ms] ease-in-out"
-                        >
-                          <li>
-                            <a
-                              pRipple
-                              pStyleClass="@next"
-                              enterFromClass="hidden"
-                              enterActiveClass="animate-slidedown"
-                              leaveToClass="hidden"
-                              leaveActiveClass="animate-slideup"
-                              class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                            >
-                              <i class="pi pi-chart-line mr-2"></i>
-                              <span class="font-medium">Revenue</span>
-                              <i class="pi pi-chevron-down ml-auto"></i>
-                            </a>
-                            <ul
-                              class="list-none py-0 pl-4 pr-0 m-0 hidden overflow-y-hidden transition-all duration-[400ms] ease-in-out"
-                            >
-                              <li>
-                                <a
-                                  pRipple
-                                  class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                                >
-                                  <i class="pi pi-table mr-2"></i>
-                                  <span class="font-medium">View</span>
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  pRipple
-                                  class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                                >
-                                  <i class="pi pi-search mr-2"></i>
-                                  <span class="font-medium">Search</span>
-                                </a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li>
-                            <a
-                              pRipple
-                              class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                            >
-                              <i class="pi pi-chart-line mr-2"></i>
-                              <span class="font-medium">Expenses</span>
-                            </a>
-                          </li>
-                        </ul>
                       </li>
 
                       <li>
                         <a
+                          routerLinkActive="active-link"
                           [routerLink]="'/chats'"
                           pRipple
                           class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
                         >
                           <i class="pi pi-comments mr-2"></i>
                           <span class="font-medium">Chats</span>
-                          <span
-                            class="inline-flex items-center justify-center ml-auto bg-primary text-primary-contrast rounded-full"
-                            style="min-width: 1.5rem; height: 1.5rem"
-                            >3</span
-                          >
                         </a>
                       </li>
 
@@ -238,16 +191,6 @@
                         >
                           <i class="pi pi-shopping-cart mr-2"></i>
                           <span class="font-medium">My cart</span>
-                        </a>
-                      </li>
-
-                      <li>
-                        <a
-                          pRipple
-                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                        >
-                          <i class="pi pi-cog mr-2"></i>
-                          <span class="font-medium">Settings</span>
                         </a>
                       </li>
                     </ul>
@@ -270,16 +213,6 @@
                       <i class="pi pi-chevron-down"></i>
                     </div>
                     <ul class="list-none p-0 m-0 overflow-hidden">
-                      <li>
-                        <a
-                          pRipple
-                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                        >
-                          <i class="pi pi-home mr-2"></i>
-                          <span class="font-medium">Dashboard</span>
-                        </a>
-                      </li>
-
                       <li>
                         <a
                           pRipple
@@ -322,19 +255,12 @@
                       <li>
                         <a
                           pRipple
+                          routerLinkActive="active-link"
+                          [routerLink]="'author/' + user()?.id + '/revenues'"
                           class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
                         >
                           <i class="pi pi-chart-bar mr-2"></i>
                           <span class="font-medium">Performance</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          pRipple
-                          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
-                        >
-                          <i class="pi pi-cog mr-2"></i>
-                          <span class="font-medium">Settings</span>
                         </a>
                       </li>
                     </ul>

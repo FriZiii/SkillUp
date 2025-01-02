@@ -1,5 +1,8 @@
 ﻿using Skillup.Modules.Finances.Core.ValueObjects;
 using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Skillup.Modules.Finances.Tests")]
 
 namespace Skillup.Modules.Finances.Core.Entities
 {

@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillup.Modules.Chat.Core",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillup.Modules.Notifications.Core", "Modules\Notifications\Skillup.Modules.Notifications.Core\Skillup.Modules.Notifications.Core.csproj", "{35C6DA8F-0FB5-4992-B57B-7C5FECEB144A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillup.Modules.Finances.Tests", "Modules\Finances\Skillup.Modules.Finances.Tests\Skillup.Modules.Finances.Tests.csproj", "{AD86584D-4037-4F20-A860-F32415A7CA19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{35C6DA8F-0FB5-4992-B57B-7C5FECEB144A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35C6DA8F-0FB5-4992-B57B-7C5FECEB144A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35C6DA8F-0FB5-4992-B57B-7C5FECEB144A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD86584D-4037-4F20-A860-F32415A7CA19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD86584D-4037-4F20-A860-F32415A7CA19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD86584D-4037-4F20-A860-F32415A7CA19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD86584D-4037-4F20-A860-F32415A7CA19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -163,6 +169,7 @@ Global
 		{8215A5CE-1B89-4DA6-B650-E589A49D8E36} = {0CCAF292-9B40-4841-985A-F0068FBE2A12}
 		{250C0C2C-D4E9-45E5-9626-01C356BEEA1D} = {2DEE15CD-AA2C-4CED-9339-AD52EB3C1A85}
 		{35C6DA8F-0FB5-4992-B57B-7C5FECEB144A} = {60B9D8E0-0285-4A60-9E55-16001C2BE8C4}
+		{AD86584D-4037-4F20-A860-F32415A7CA19} = {E7B27A4B-F153-41B3-BE04-BFA74CD05BC0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ED4D30F8-9E03-48F1-BA18-5FB6694B89FC}

@@ -111,13 +111,6 @@
       </div>
       <div class="grid grid-cols-2 gap-2 vertical-on-small">
         <p-select
-          [options]="categoryNames()"
-          optionLabel="name"
-          optionValue="id"
-          placeholder="Languages"
-          class="w-full"
-        />
-        <p-select
           [options]="levels"
           optionLabel="name"
           optionValue="value"
@@ -127,6 +120,15 @@
           (ngModelChange)="change()"
           (onBlur)="editCourseDetail()"
         />
+        <p-inputgroup>
+          <p-inputnumber
+            [(ngModel)]="price"
+            placeholder="Price"
+            (ngModelChange)="change()"
+            (onBlur)="editPrice()"
+          />
+          <p-inputgroup-addon>$</p-inputgroup-addon>
+        </p-inputgroup>
       </div>
     </div>
   </div>
@@ -158,7 +160,7 @@
         (itemRemoved)="removeFrom(this.mustKnowBefore, $event)"
       ></app-properties-list>
     </div>
-    <div class="col-start-2 col-span-1 mb-2">
+    <div class="col-start-2 col-span-1 mb-8">
       <div class="prose">
         <h2 class="my-2">Intended for</h2>
         <p>For whom is this course intended for.</p>

@@ -12,7 +12,7 @@ import { UserRating } from '../../../models/rating.model';
 @Component({
   selector: 'app-student-course-item',
   standalone: true,
-  imports: [RatingModule, FormsModule, CircleProgressComponent, RouterModule],
+  imports: [RatingModule, FormsModule, CircleProgressComponent, RouterModule, ButtonModule],
   templateUrl: './student-course-item.component.html',
   styleUrl: './student-course-item.component.css'
 })

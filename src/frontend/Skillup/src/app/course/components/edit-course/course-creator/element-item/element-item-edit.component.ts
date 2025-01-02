@@ -4,7 +4,7 @@ import { Element, Section, AssetType } from '../../../../models/course-content.m
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
-import { NgClass } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -15,19 +15,19 @@ import { MenuItem, MenuItemCommandEvent } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { AssetService } from '../../../../services/asset.service';
 import { ElementContentDialogComponent } from "./element-content-dialog/element-content-dialog.component";
-import { Tooltip } from 'primeng/tooltip';
 import { SelectButton } from 'primeng/selectbutton';
 import { ElementAttachmentsDialogComponent } from "./element-attachments-dialog/element-attachments-dialog.component";
-import { Router, RoutesRecognized } from '@angular/router';
+import { Router } from '@angular/router';
 import { CanEnterAddAssignment } from '../../../../../core/guards/canEnterAddAssignment.guard';
 import { CourseReviewService } from '../../../../services/course-review.service';
 import { CourseListItem } from '../../../../models/course.model';
 import { CourseStatus } from '../../../../models/course-status.model';
+import { CommentDialogForInstructorComponent } from "../comment-dialog-for-instructor/comment-dialog-for-instructor.component";
 
 @Component({
   selector: 'app-element-item-edit',
   standalone: true,
-  imports: [CardModule, ButtonModule, FormsModule, InputTextModule, NgClass, InputTextareaModule, FloatLabelModule, DragDropModule, MenuModule, DialogModule, ElementContentDialogComponent, SelectButton, ElementAttachmentsDialogComponent],
+  imports: [CardModule, CommonModule, ButtonModule, FormsModule, InputTextModule, NgClass, InputTextareaModule, FloatLabelModule, DragDropModule, MenuModule, DialogModule, ElementContentDialogComponent, SelectButton, ElementAttachmentsDialogComponent, CommentDialogForInstructorComponent],
   templateUrl: './element-item-edit.component.html',
   styleUrl: './element-item-edit.component.css'
 })
@@ -209,11 +209,5 @@ export class ElementItemEditComponent implements OnInit {
 
   openComments(){
     this.commentDialogVisible = true;
-  }
-
-  resolveComment(commentId: string){
-    this.reviewService.resolveComment(commentId).subscribe(
-      (res) => this.reviewService.latestReviewForCourse.set(res)
-    );
   }
 }

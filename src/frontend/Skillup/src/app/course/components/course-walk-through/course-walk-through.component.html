@@ -1,8 +1,10 @@
 <div class="su-section-mt prose max-w-none w-full mb-4">
   <div class="flex">
     <div [style]="'width: 70%'" class="mr-8 scrollable-div">
-      @if(currentElement){ @if(currentElement.hasAsset){ @if(currentElement.type
-      === AssetType.Video){
+      @if(loading){
+      <p-skeleton width="100%" height="70vh" />
+      }@else{ @if(currentElement){ @if(currentElement.hasAsset){
+      @if(currentElement.type === AssetType.Video){
       <app-videojs *ngIf="hasLink" [videoLink]="fileLink()"></app-videojs>
 
       } @if(currentElement.type === AssetType.Article){
@@ -38,6 +40,9 @@
         <p>{{ currentElement.description }}</p>
       </div>
 
+      @if(!course()){
+      <p-skeleton width="100%" height="20vh" />
+      }@else{
       <p-tabs value="0">
         <p-tablist>
           <p-tab value="0">Comments</p-tab>
@@ -75,20 +80,38 @@
               <app-author-description [authorId]="course()!.authorId" />
             </div>
           </p-tabpanel>
-        </p-tabpanels>
-      </p-tabs>
-      }
+        </p-tabpanels> </p-tabs
+      >} }}
     </div>
     <div [style]="'width: 30%'" class="scrollable-div">
+      @if(loading){
+      <div class="flex flex-col gap-4">
+        <p-skeleton width="100%" height="15vh" />
+        @for(i of [1, 1, 1, 1, 1]; track $index){
+        <p-skeleton width="100%" height="9vh" />
+        }
+      </div>
+      }@else {
       <div class="mr-4">
         <div class="flex items-center justify-between">
           <div class="mt-2">
             <h1 class="my-0 text-2xl font-semibold">{{ course()?.title }}</h1>
             <p class="my-0 text-base font-light">{{ course()?.authorName }}</p>
           </div>
-          <app-circle-progress
-            [percent]="percentage?.percentage ?? 0"
-          ></app-circle-progress>
+          <div class="flex gap-4">
+            @if(percentage?.percentage === 100){
+            <div class="flex items-center">
+              <p-button
+                icon="pi pi-download"
+                label="Certificate"
+                severity="secondary"
+              />
+            </div>
+            }
+            <app-circle-progress
+              [percent]="percentage?.percentage ?? 0"
+            ></app-circle-progress>
+          </div>
         </div>
         <div class="flex items-start justify-between">
           <div>
@@ -141,12 +164,14 @@
               (onClick)="onElementClicked($event)"
               [attachments]="attachmentForElement(element.id)"
               [current]="currentElement?.id ?? ''"
+              (completeChanged)="getPercentage()"
             ></app-element-item-display>
             }
           </p-accordion-content>
         </p-accordion-panel>
         }
       </p-accordion>
+      }
     </div>
   </div>
 </div>
