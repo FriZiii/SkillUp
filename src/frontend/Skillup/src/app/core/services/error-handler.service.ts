@@ -17,7 +17,6 @@ export class ErrorHandlerService implements ErrorHandler {
     } */
     this.lastError = error.message;
     
-    console.log(error);
     if(error.status === 0){
       if(this.lastToast === 'Api not working'){
         return;
@@ -45,6 +44,11 @@ export class ErrorHandlerService implements ErrorHandler {
       this.toastService.showError(error.error.errors[0].message);
     }
     else{
+      if(this.lastError === error.message){
+      return;
+      }
+      this.lastError = error.message;
+      console.log(error);
     }
   }
 }

@@ -52,7 +52,6 @@ ngAfterViewInit(): void {
 readyVideojsPlayer() {
 
     this.player = videojs(this.target.nativeElement, this.options, function () { });
-    console.log(this.videoLink());
     this.player.src({
 
        src: this.videoLink(),

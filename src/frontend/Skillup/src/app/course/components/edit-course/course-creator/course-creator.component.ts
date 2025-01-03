@@ -82,7 +82,6 @@ export class CourseCreatorComponent implements OnInit {
 
     dropSection(event: CdkDragDrop<Section[]>) {
       moveItemInArray(this.sections(), event.previousIndex, event.currentIndex);
-      console.log(event);
       const section = this.sections().find(s => s.index === event.previousIndex);
       this.courseContentService.updateSectionIndex(section!.id, event.currentIndex).subscribe();
     }

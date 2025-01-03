@@ -49,6 +49,7 @@ export class SignUpComponent {
     .pipe(finalize (() => this.loading = false))
     .subscribe();
     this.signUpForm.reset()
+    this.signUpForm.patchValue({marketing: true});
   }
   
   get emailIsInvalid(){

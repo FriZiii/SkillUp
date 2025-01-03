@@ -81,7 +81,6 @@ export class ElementItemDisplayComponent implements OnInit, OnChanges {
             label: 'Content',
             icon: this.contentIcon(),
             command: () => {
-              console.log(this.element());
               this.changecontentDialogVisibility();
             },
           },

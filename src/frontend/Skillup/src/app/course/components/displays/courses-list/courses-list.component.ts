@@ -27,7 +27,6 @@ export class CoursesListComponent implements OnChanges, OnInit {
   filteredCoursesForCategory = signal<CourseListItem[]>([]);
 
   ngOnInit(): void {
-    console.log('init')
     this.courseService.getCoursesBySlug(this.category(), this.subcategory()).subscribe((res) => {
       this.allCoursesForCategory.set(res);
       this.filteredCoursesForCategory.set(res);
@@ -38,7 +37,6 @@ export class CoursesListComponent implements OnChanges, OnInit {
 
 ngOnChanges(changes: SimpleChanges): void {
   if((changes['category'] && changes['category'].currentValue) || (changes['subcategory'] && changes['subcategory'].currentValue )){
-    console.log('changes')
     this.courseService.getCoursesBySlug(this.category(), this.subcategory()).subscribe((res) => {
       this.allCoursesForCategory.set(res);
       this.filteredCoursesForCategory.set(res);

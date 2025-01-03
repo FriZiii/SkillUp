@@ -14,9 +14,4 @@ export class MessageItemComponent {
   message = input.required<Message>();
   currentUser = input.required<User | null>();
   talker = input.required<User | null>()
-
-  ngOnInit(){
-    console.log(this.currentUser())
-    console.log(this.talker())
-  }
 }

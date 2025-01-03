@@ -47,8 +47,6 @@ export class ChatWindowComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['chat']) {
       if (this.chat()) {
-        console.log(this.chat());
-
         this.chatService.fetchChatHistory(this.chat()!.id).subscribe((res) => {
           this.messages.set(res);
         });

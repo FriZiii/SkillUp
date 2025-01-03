@@ -84,7 +84,6 @@ export class RevenueLineChartComponent implements OnChanges {
           }))
       };
       this.constData = this.data;
-      console.log(this.data);
       this.loading = false;
     }, 1000); 
     });

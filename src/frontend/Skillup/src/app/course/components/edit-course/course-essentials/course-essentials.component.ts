@@ -87,8 +87,6 @@ categories = this.courseCategoryService.categories;
         this.price.set(res.price);
       }
     })
-    console.log(this.courseId())
-    console.log(this.levels);
   }
 
     //Files

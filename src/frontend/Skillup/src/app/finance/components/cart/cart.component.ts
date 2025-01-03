@@ -54,11 +54,7 @@ export class CartComponent implements OnInit {
   }
 
   removeItem(itemId: string){
-    this.cartService.deleteItemFromCart(itemId).subscribe({
-      error: (error) => {
-        console.log(error)
-      },
-    });
+    this.cartService.deleteItemFromCart(itemId).subscribe();
   }
 
   applyCode(){
@@ -72,11 +68,7 @@ export class CartComponent implements OnInit {
   }
 
   delCode(){
-    this.cartService.delCode().subscribe({
-      error: (error) => {
-      },
-    }
-    );
+    this.cartService.delCode().subscribe();
   }
 
 }

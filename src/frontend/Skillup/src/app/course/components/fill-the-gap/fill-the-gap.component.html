@@ -6,7 +6,7 @@
         <div>{{ numberInList() }} .</div>
         } @for (part of parts; track $index) { @if(part.word.index !== -1) {
         <div
-          class="w-16 h-6 box-border border-black border-b-2"
+          class="w-16 h-6 box-border border-black border-b-2 select-none"
           cdkDropList
           [cdkDropListData]="part.container"
           [cdkDropListEnterPredicate]="todoPredicate"
@@ -16,7 +16,7 @@
           <div
             cdkDrag
             (cdkDragEnded)="onDragEnd()"
-            class="word cursor-pointer"
+            class="word cursor-pointer select-none"
             style="margin-top: -2px"
             [ngClass]="{
             'text-green-500':
@@ -31,7 +31,7 @@
           }
         </div>
         } @else {
-        <div>{{ part.word.value }}</div>
+        <div class="select-none">{{ part.word.value }}</div>
         } }
       </div>
       @if(deletable()){
@@ -48,11 +48,11 @@
       (cdkDropListDropped)="dropInToContainer($event)"
       [cdkDropListData]="sentence().words"
       [cdkDropListOrientation]="'horizontal'"
-      class="flex gap-4 su-border px-4 py-2 box-border border-cyan-800 border-2"
+      class="flex gap-4 su-border px-4 py-2 box-border border-cyan-800 border-2 select-none"
     >
       @for (word of sentence().words; track $index) {
       <div class="word cursor-pointer" cdkDrag (cdkDragEnded)="onDragEnd()">
-        <div class="placeholder" *cdkDragPlaceholder></div>
+        <div class="placeholder select-none" *cdkDragPlaceholder></div>
         {{ word.value }}
       </div>
       }

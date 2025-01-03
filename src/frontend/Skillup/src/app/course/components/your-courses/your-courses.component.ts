@@ -106,7 +106,6 @@ export class YourCoursesComponent implements OnInit {
   }
 
   getPercentage(courseId: string){
-    console.log( this.coursePercentages())
     return this.coursePercentages().find(p => p.courseId === courseId);
   }
 

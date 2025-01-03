@@ -120,7 +120,6 @@ export class FillTheGapCreatorComponent {
 
     this.sentence.words.push(...newWords);
 
-    console.log(this.sentence);
     this.exerciseService.addFillTheGap(this.assignmentId(), this.sentence.value, this.sentence.words).subscribe(
       (res) => {
         this.sentenceAdded.emit(res

@@ -9,12 +9,10 @@ import {
 import { environment } from '../../../environments/environment';
 import {
   BehaviorSubject,
-  catchError,
   map,
   Observable,
   of,
   tap,
-  throwError,
 } from 'rxjs';
 import { FinanceService } from '../../finance/services/finance.service';
 import { CourseLevel } from '../models/course-level.model';
@@ -50,11 +48,7 @@ export class CoursesService {
     return this.httpClient
       .post<any>(environment.apiUrl + '/Courses', courseData)
       .pipe(
-        catchError((error) => {
-          return throwError(() => error);
-        }),
         tap((response: any) => {
-          console.log(response);
           this.courses.set([
             ...this.courses(),
             {
@@ -96,9 +90,6 @@ export class CoursesService {
         tap((courses) => {
           this.coursesSubject.next(courses);
         }),
-        catchError((error) => {
-          return throwError(() => error);
-        })
       )
       .subscribe();
   }
@@ -118,22 +109,12 @@ export class CoursesService {
 
   getCourseByAuthorId(authorId: string){
     return this.httpClient
-      .get<any>(environment.apiUrl + '/Courses/Author/' + authorId)
-      .pipe(
-        catchError((error) => {
-          return throwError(() => error);
-        })
-      );
+      .get<any>(environment.apiUrl + '/Courses/Author/' + authorId);
   }
 
   private fetchCourseById(courseId: string) {
     return this.httpClient
-      .get<any>(environment.apiUrl + '/Courses/' + courseId)
-      .pipe(
-        catchError((error) => {
-          return throwError(() => error);
-        })
-      );
+      .get<any>(environment.apiUrl + '/Courses/' + courseId);
   }
 
   mapCourseToCourseItem(course: Course): CourseListItem {
@@ -192,9 +173,6 @@ export class CoursesService {
                   slug: response.category.subcategory.slug,
                 },
         }} : course));
-      }),
-      catchError((error) => {
-        return throwError(() => error);
       })
     );
   }
@@ -206,9 +184,6 @@ export class CoursesService {
           tap(() => {
             this.courses.update((prevCourses) => 
              prevCourses.map(course => course.id === courseId ? {...course, subtitle: subtitle, description: description, level: level, objectivesSummary: objectivesSummary, mustKnowBefore: mustKnowBefore, intendedFor: intededFor} : course));
-          }),
-          catchError((error) => {
-            return throwError(() => error);
           })
         );
 
@@ -223,10 +198,6 @@ export class CoursesService {
           tap((res: any) => {
             this.courses.update((prevCourses) => 
              prevCourses.map(course => course.id === courseId ? {...course, thumbnailUrl: res.thumbnailUrl} : course));
-            console.log(this.courses().find(c => c.id === courseId))
-          }),
-          catchError((error) => {
-            return throwError(() => error);
           })
         );
   }

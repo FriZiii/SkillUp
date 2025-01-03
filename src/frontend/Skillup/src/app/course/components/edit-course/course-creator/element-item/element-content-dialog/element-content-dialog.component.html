@@ -62,7 +62,33 @@
       [original-size]="false"
       style="width: 50vw; height: 70vh"
     ></pdf-viewer>
+    } }
+    <!-- Exercise -->
+    @if(this.element().type === AssetType.Exercise){
+    <!-- Quiz -->
+    @if(currentAssignment &&
+    currentAssignment.exerciseType===ExerciseType.Quiz){
+    <app-solve-quiz
+      [quizes]="currentQuiz"
+      [instruction]="currentAssignment.instruction"
+    ></app-solve-quiz>
+    }
+    <!-- Question -->
+    @if(currentAssignment &&
+    currentAssignment.exerciseType===ExerciseType.QuestionAnswer){
+    <app-solve-question
+      [questions]="currentQuestion"
+      [instruction]="currentAssignment.instruction"
+    ></app-solve-question>
+    }
 
+    <!-- FillTheGap -->
+    @if(currentAssignment &&
+    currentAssignment.exerciseType===ExerciseType.FillTheGap){
+    <app-solve-fill-the-gap
+      [sentences]="currentFillTheGap"
+      [instruction]="currentAssignment.instruction"
+    ></app-solve-fill-the-gap>
     } }
   </div>
   }

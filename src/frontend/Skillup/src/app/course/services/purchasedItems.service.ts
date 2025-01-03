@@ -2,7 +2,7 @@ import { inject, Injectable, signal } from "@angular/core";
 import { Course } from "../models/course.model";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
-import { catchError, tap, throwError } from "rxjs";
+import { tap } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class PurchasedItemsService {
@@ -16,9 +16,6 @@ export class PurchasedItemsService {
             tap((res) => {
               //this.purchasedCourses.set(res.map((course) => this.mapCourseToCourseItem(course)))
               this.purchasedCourses.set(res)
-            }),
-            catchError((error) => {
-              return throwError(() => error);
             })
           ).subscribe();
       }}
