@@ -14,7 +14,6 @@ export class PurchasedItemsService {
           .get<Course[]>(environment.apiUrl + '/Courses/UserId/' +  userId)
           .pipe(
             tap((res) => {
-              //this.purchasedCourses.set(res.map((course) => this.mapCourseToCourseItem(course)))
               this.purchasedCourses.set(res)
             }),
             catchError((error) => {

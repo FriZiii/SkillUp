@@ -18,7 +18,9 @@ export const isStudent: CanMatchFn = async (route, segments) => {
     {
         await new Promise(resolve => setTimeout(resolve, 2000)); 
     }
-    purchasedItemsService.getPurchasedCourses(user!.id);
+    if(purchasedItems().length === 0){
+        purchasedItemsService.getPurchasedCourses(user!.id);
+    }
     if(purchasedItems().find(c => c.id === courseId)){
         return true;
     }
