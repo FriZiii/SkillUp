@@ -67,7 +67,9 @@ export class ChatWindowComponent implements OnChanges {
             };
 
             this.messages.set([...this.messages(), message]);
-          
+            setTimeout(() => {
+              this.scrollToBottom();
+            }, 200);
         });
 
         if(this.chat()?.authorId === this.currentUser()?.id){
@@ -90,6 +92,12 @@ export class ChatWindowComponent implements OnChanges {
   }
 
   sendMessage() {
+    if (!this.chatService.isConnected()) {
+      this.chatService.startConnection(
+        this.authService.getAccessToken()!,
+        this.chat()!.id
+      );
+    }
     this.chatService.sendMessage(this.chat()!.id, this.currentMessage);
     this.currentMessage = '';
     setTimeout(() => {

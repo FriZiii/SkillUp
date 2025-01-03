@@ -12,6 +12,10 @@ export class ChatService {
   private hubConnection!: signalR.HubConnection;
   private httpClient = inject(HttpClient);
 
+  isConnected(): boolean {
+    return this.hubConnection && this.hubConnection.state === signalR.HubConnectionState.Connected;
+  }
+  
   //SignalR
   startConnection(token: string, chatId: string) {
     this.hubConnection = new signalR.HubConnectionBuilder()

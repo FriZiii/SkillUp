@@ -20,6 +20,7 @@
       class="w-full rounded-full"
       [(ngModel)]="currentMessage"
       placeholder="Write something..."
+      (keydown.enter)="sendMessage()"
     />
     <button
       (click)="sendMessage()"
