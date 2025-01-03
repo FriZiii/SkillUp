@@ -99,6 +99,16 @@ export class AddNewDiscountCodeComponent {
       (res) => {
         this.onAddCode.emit(res);
         this.discountCodeForm.reset();
+        this.discountCodeForm.patchValue({
+          codeType: this.DiscountCodeType.FixedAmount,
+          code: '',
+          discountValue: 0,
+          startDate: this.today,
+          expirationDate: null,
+          appliesToEntireCart: true,
+          isActive: true,
+          isPublic: false
+        });
       }
     );
   }

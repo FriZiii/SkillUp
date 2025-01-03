@@ -21,6 +21,7 @@ import { PasswordModule } from 'primeng/password';
 import { PasswordService } from '../../services/password.service';
 import { finalize } from 'rxjs';
 import { Router } from '@angular/router';
+import { ToastHandlerService } from '../../../core/services/toast-handler.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -47,9 +48,11 @@ export class ResetPasswordComponent implements OnInit {
   errorMessage = '';
   destroyRef = inject(DestroyRef);
   router = inject(Router);
+  toastService = inject(ToastHandlerService);
 
   sendIntruction() {
     this.loading = true;
+    this.toastService.showInfo('Check your email for instructions');
 
     const subscription = this.passwordService
       .sendPasswordResetInstruction(this.email())

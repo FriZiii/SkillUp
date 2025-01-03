@@ -82,9 +82,10 @@
   }@else {
   <div class="prose my-4 flex items-end flex-col">
     <h3 class="my-0">Cannot submit for review</h3>
-    <p class="my-1">
-      You must set all your sections as published before submitting for review
+    <p class="my-0 mt-1 text-right">
+      Before submitting for review all sections must be set as published
     </p>
+    <p class="my-0 text-right">and all elements must have content.</p>
   </div>
   } } @if(course()?.status === CourseStatus.SubmitedForReview ||
   course()?.status === CourseStatus.PendingReview ){

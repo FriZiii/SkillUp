@@ -114,7 +114,10 @@ export class CourseCreatorComponent implements OnInit {
 
     canSubmit(){
       if(this.sections().every(s => s.isPublished === true)){
-        return true;
+        if(this.sections().every(s => s.elements.every(e => e.hasAsset))){
+          return true;
+        }
+        return false;
       }
       else{
         return false;

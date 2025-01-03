@@ -119,12 +119,12 @@ export class ElementItemEditComponent implements OnInit {
     }
     else{
       if(this.element().hasAsset === false){
-        this.router.navigate(['/element-edit/', this.element().id, 'add-assignment']);
+        this.router.navigate(['/course-edit/' + this.courseId() +'/element-edit/', this.element().id, 'add-assignment']);
         this.canEnterAddAssignmentGuard.setAllowed(true);
         this.canEnterAddAssignmentGuard.courseId = this.courseId();
       }
       else{
-        this.router.navigate(['/element-edit/', this.element().id, 'assignment']);
+        this.router.navigate(['/course-edit/' + this.courseId() +'/element-edit/', this.element().id, 'assignment']);
       }
     }
   }
