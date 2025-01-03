@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { CircleProgressComponent } from "../../../../utils/components/circle-progress/circle-progress.component";
 import { RouterModule } from '@angular/router';
 import { UserRating } from '../../../models/rating.model';
+import { CertificateService } from '../../../services/certificate.service';
 
 @Component({
   selector: 'app-student-course-item',
@@ -24,6 +25,7 @@ export class StudentCourseItemComponent  {
 
   //Services
   courseService = inject(CoursesService);
+  certificateService = inject(CertificateService);
   
 
   //Variables
@@ -41,5 +43,16 @@ export class StudentCourseItemComponent  {
 
   addRating(courseId: string){
     this.onRating.emit(courseId);
+  }
+
+  download(){
+    this.certificateService.getCertificate(this.course().id).subscribe((blob) => {
+      const a = document.createElement('a');
+      const objectUrl = URL.createObjectURL(blob);
+      a.href = objectUrl;
+      a.download = this.course().title + "-certificate";
+      a.click();
+      URL.revokeObjectURL(objectUrl);
+    });
   }
 }

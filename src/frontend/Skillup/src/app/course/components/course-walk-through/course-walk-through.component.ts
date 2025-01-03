@@ -43,6 +43,7 @@ import { CourseRatingsListComponent } from "./course-ratings-list/course-ratings
 import { SkeletonModule } from 'primeng/skeleton';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { CertificateService } from '../../services/certificate.service';
 
 @Component({
   selector: 'app-course-walk-through',
@@ -82,6 +83,7 @@ export class CourseWalkThroughComponent implements OnInit {
   exerciseService = inject(ExerciseService);
   commentService = inject(CommentService);
   router = inject(Router);
+  certificateService = inject(CertificateService);
 
   //Variables
   AssetType = AssetType;
@@ -196,5 +198,16 @@ export class CourseWalkThroughComponent implements OnInit {
     this.currentElement = element;
     this.hasLink = false;
     this.router.navigate(['course/' + this.courseId() + '/walk-through/' + element.id])
+  }
+
+  download(){
+    this.certificateService.getCertificate(this.courseId()).subscribe((blob) => {
+      const a = document.createElement('a');
+      const objectUrl = URL.createObjectURL(blob);
+      a.href = objectUrl;
+      a.download = this.course()?.title + "-certificate";
+      a.click();
+      URL.revokeObjectURL(objectUrl);
+    });
   }
 }
