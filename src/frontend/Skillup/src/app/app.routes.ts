@@ -95,7 +95,7 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'element-edit/:elementId/add-assignment',
+    path: 'course-edit/:courseId/element-edit/:elementId/add-assignment',
     component: AddAssignmentComponent,
     canActivate: [CanEnterAddAssignment],
   },

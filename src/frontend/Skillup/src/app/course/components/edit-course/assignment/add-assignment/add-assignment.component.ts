@@ -18,6 +18,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 export class AddAssignmentComponent {
   //FromUrl
   elementId = input.required<string>();
+  courseId = input.required<string>();
 
   //Services
   assetService = inject(AssetService);
@@ -33,7 +34,7 @@ export class AddAssignmentComponent {
   submit(){
     this.assetService.addAssignment(this.elementId(), this.selectedType()!, this.instruction()).subscribe(
       (res) => {
-        this.router.navigate(['/element-edit/', this.elementId(), 'assignment']);
+        this.router.navigate(['course-edit/' + this.courseId() +'/element-edit/', this.elementId(), 'assignment']);
       }
     );
   }
