@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Item } from '../models/finance.model';
-import { CoursesService } from '../../course/services/course.service';
 
 @Injectable({ providedIn: 'root' })
 export class FinanceService {
@@ -26,9 +25,6 @@ export class FinanceService {
       .pipe(
         tap((items) => {
           this.itemSubject.next(items);
-        }),
-        catchError((error) => {
-          return throwError(() => error);
         })
       )
       .subscribe();

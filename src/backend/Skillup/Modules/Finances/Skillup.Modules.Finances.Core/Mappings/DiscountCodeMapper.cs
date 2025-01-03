@@ -2,6 +2,7 @@
 using Skillup.Modules.Finances.Core.DTO;
 using Skillup.Modules.Finances.Core.Entities;
 using Skillup.Modules.Finances.Core.ValueObjects;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Finances.Core.Mappings
 {
@@ -49,7 +50,7 @@ namespace Skillup.Modules.Finances.Core.Mappings
                 return new FixedAmountDiscountCode(discountCode);
             }
 
-            throw new Exception(); // TODO: Custom Exception
+            throw new BadRequestException("Invalid discount code type");
         }
     }
 }

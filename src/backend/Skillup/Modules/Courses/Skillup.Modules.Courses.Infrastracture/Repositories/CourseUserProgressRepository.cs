@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 using Skillup.Modules.Courses.Core.Interfaces;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Courses.Infrastracture.Repositories
 {
@@ -31,7 +32,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task Delete(Guid id)
         {
-            var toDelete = await _coursUserProgress.FirstOrDefaultAsync(x => x.Id == id) ?? throw new Exception(); // TODO: Custom ex: _coursUserProgress with id doesnt exist
+            var toDelete = await _coursUserProgress.FirstOrDefaultAsync(x => x.Id == id) ?? throw new NotFoundException($"User progess with ID {id} not found");
             _coursUserProgress.Remove(toDelete);
             await _context.SaveChangesAsync();
         }

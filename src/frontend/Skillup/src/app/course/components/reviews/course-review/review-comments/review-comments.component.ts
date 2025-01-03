@@ -36,7 +36,6 @@ export class ReviewCommentsComponent {
   newComment = '';
 
   addComment(){
-    console.log(this.latestComment());
     this.reviewService.addComment(this.latestReview()!.id, this.courseId()!, this.elementId() ?? null, this.newComment).subscribe(
       (res) => {
       this.reviewService.latestReviewForCourse.set(res);

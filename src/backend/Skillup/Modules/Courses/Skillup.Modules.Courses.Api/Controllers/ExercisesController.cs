@@ -1,9 +1,11 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets;
 using Skillup.Modules.Courses.Core.Requests.Commands.Assets.Exercises;
 using Skillup.Modules.Courses.Core.Requests.Queries.Assets.Exercise;
+using Skillup.Shared.Abstractions.Auth;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Courses.Api.Controllers
@@ -14,6 +16,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpPost("Question/{assignmentId}")]
         [SwaggerOperation("Add question")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -25,6 +28,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(exercise);
         }
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpPost("Quiz/{assignmentId}")]
         [SwaggerOperation("Add quiz")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -36,6 +40,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(exercise);
         }
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpPost("FillTheGap/{assignmentId}")]
         [SwaggerOperation("Add fill the gap")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -62,6 +67,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             };
         }
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpDelete("{exerciseType}/{exerciseId}")]
         [SwaggerOperation("Delete exercise")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

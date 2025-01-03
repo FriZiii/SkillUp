@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Finances.Core.Features.Requests.Queries;
@@ -12,6 +13,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
+        [Authorize]
         [HttpGet("{ordererId}")]
         [SwaggerOperation("Get orders by orderer id")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -21,6 +23,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
             return Ok(await _mediator.Send(new GetOrdersByOrdererIdRequest(ordererId)));
         }
 
+        [Authorize]
         [HttpGet]
         [SwaggerOperation("Get order by balance history id")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

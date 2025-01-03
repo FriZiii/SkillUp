@@ -1,4 +1,5 @@
 ﻿using Skillup.Modules.Finances.Core.ValueObjects;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Skillup.Modules.Finances.Tests")]
@@ -16,7 +17,7 @@ namespace Skillup.Modules.Finances.Core.Entities
         public void ApplyDiscountCode(DiscountCode discountCode)
         {
             if (!discountCode.CanBeUsed(this))
-                throw new InvalidOperationException("The discount code cannot be applied to this cart."); // TODO: Custom Ex: The discount code cannot be applied to this cart.
+                throw new BadRequestException("The discount code cannot be applied to this cart.");
 
             DiscountCode = discountCode;
             DiscountCodeId = discountCode.Id;

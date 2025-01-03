@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using Skillup.Modules.Auth.Core.Entities;
-using Skillup.Modules.Auth.Core.Exceptions;
 using Skillup.Modules.Auth.Core.Features.Commands.Token;
 using Skillup.Modules.Auth.Core.Repositories;
 using Skillup.Modules.Auth.Core.Services;
 using Skillup.Shared.Abstractions.Auth;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Auth.Core.Features.Handlers.Token
 {
@@ -26,14 +26,14 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Token
 
         public async Task Handle(RefreshRequest request, CancellationToken cancellationToken)
         {
-            var userId = _authManager.GetUserIdFromExpiredToken(request.AccessToken) ?? throw new Exception();
+            var userId = _authManager.GetUserIdFromExpiredToken(request.AccessToken) ?? throw new BadRequestException("Token refresh failed");
 
-            var user = await _userRepository.Get(userId) ?? throw new Exception();
+            var user = await _userRepository.Get(userId) ?? throw new BadRequestException("Token refresh failed");
 
             if (user.State == UserState.Locked)
             {
                 _logger.LogError("User is in locked state");
-                throw new Exception(); //TODO: Custom Ex: User is in locked
+                throw new BadRequestException("User is in locked state");
             }
 
             try
@@ -45,7 +45,7 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Token
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                throw new TokenValidationFailed();
+                throw new BadRequestException("Token refresh failed");
             }
         }
     }

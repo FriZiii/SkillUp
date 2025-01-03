@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Requests.Commands.Elements.Attachment;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 using Skillup.Shared.Abstractions.S3;
 
 namespace Skillup.Modules.Courses.Application.Features.Commands.Elements.Attachments
@@ -12,7 +13,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Elements.Attachm
 
         public async Task Handle(DeleteAttachmentRequest request, CancellationToken cancellationToken)
         {
-            var attachment = await _elementAttachmentRepository.Get(request.AttachmentId) ?? throw new Exception(); // TODO: Custom ex: attachment with id doesnt exist
+            var attachment = await _elementAttachmentRepository.Get(request.AttachmentId) ?? throw new NotFoundException($"Attachment with ID {request.AttachmentId} not found");
 
             await _amazonS3Service.Delete(S3FolderPaths.ElementsAttachments + attachment.Key);
             await _elementAttachmentRepository.Delete(attachment.Id);

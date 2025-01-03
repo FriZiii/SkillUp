@@ -20,6 +20,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { PasswordService } from '../../services/password.service';
 import { finalize } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -45,6 +46,7 @@ export class ResetPasswordComponent implements OnInit {
   loading = false;
   errorMessage = '';
   destroyRef = inject(DestroyRef);
+  router = inject(Router);
 
   sendIntruction() {
     this.loading = true;
@@ -98,7 +100,9 @@ export class ResetPasswordComponent implements OnInit {
     const subscription = this.passwordService
       .resetPassword(this.token()!, this.form.value.newPassword)
       .pipe(finalize(() => (this.loading = false)))
-      .subscribe();
+      .subscribe((res) => {
+        this.router.navigate(['/sign-in']);
+      });
 
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe;

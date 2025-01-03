@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
 using Skillup.Modules.Courses.Core.Interfaces;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Courses.Infrastracture.Repositories
 {
@@ -37,7 +38,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task Update(CourseReview review)
         {
-            var reviewToEdit = await _courseReviews.FirstOrDefaultAsync(x => x.Id == review.Id) ?? throw new Exception(); // TODO: Custom ex: review with id doesnt exist
+            var reviewToEdit = await _courseReviews.FirstOrDefaultAsync(x => x.Id == review.Id) ?? throw new NotFoundException($"CourseReview progess with ID {review.Id} not found");
             reviewToEdit.FinalizedAt = review.FinalizedAt;
             review.Status = review.Status;
             await _context.SaveChangesAsync();

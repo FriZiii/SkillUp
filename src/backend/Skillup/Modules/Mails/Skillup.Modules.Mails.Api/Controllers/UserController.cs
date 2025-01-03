@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Mails.Core.Commands;
@@ -21,6 +22,7 @@ namespace Skillup.Modules.Mails.Api.Controllers
             return Ok(await _mediator.Send(new GetUserRequest(userId)));
         }
 
+        [Authorize]
         [HttpPut("{userId}")]
         [SwaggerOperation("Edit mail information by user id")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

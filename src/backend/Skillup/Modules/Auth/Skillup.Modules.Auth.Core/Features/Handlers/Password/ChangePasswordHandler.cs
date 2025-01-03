@@ -1,7 +1,6 @@
 ﻿using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Skillup.Modules.Auth.Core.Exceptions;
 using Skillup.Modules.Auth.Core.Features.Requests.Password;
 using Skillup.Modules.Auth.Core.Repositories;
 using Skillup.Shared.Abstractions.Events.Auth;
@@ -17,12 +16,12 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Password
 
         public async Task Handle(ChangePasswordRequest request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.Get(request.UserId) ?? throw new UserNotFoundException(request.UserId);
+            var user = await _userRepository.Get(request.UserId) ?? throw new NotFoundException($"Item with ID {request.UserId} not found");
 
             if (_passwordHasher.VerifyHashedPassword(user, user.Password, request.CurrentPassword) ==
                 PasswordVerificationResult.Failed)
             {
-                throw new InvalidPasswordException("current password is invalid"); // TODO: Custom ex
+                throw new BadRequestException("Invalid password");
             }
 
             user.Password = _passwordHasher.HashPassword(user, request.NewPassword); ;

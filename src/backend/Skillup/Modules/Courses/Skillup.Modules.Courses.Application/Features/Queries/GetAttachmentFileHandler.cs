@@ -2,6 +2,7 @@
 using Skillup.Modules.Courses.Core.DTO;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Requests.Queries.Assets;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 using Skillup.Shared.Abstractions.S3;
 using System.Text;
 
@@ -14,9 +15,9 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
 
         public async Task<AttachmentFileDto> Handle(GetAttachmentFileRequest request, CancellationToken cancellationToken)
         {
-            var attachment = await _elementAttachmentRepository.Get(request.AttachmentId) ?? throw new Exception(); // TODO: Custom ex: attachment with id doesnt exist
+            var attachment = await _elementAttachmentRepository.Get(request.AttachmentId) ?? throw new NotFoundException($"Attachment with ID {request.AttachmentId} not found");
 
-            var response = await _amazonS3Service.Download(S3FolderPaths.ElementsAttachments + attachment.Key) ?? throw new Exception(); // TODO: Custom ex: attachment file with key doesnt exist
+            var response = await _amazonS3Service.Download(S3FolderPaths.ElementsAttachments + attachment.Key) ?? throw new NotFoundException($"Attachment file with KEY {attachment.Key} not found");
 
             using var responseStream = response.ResponseStream;
 

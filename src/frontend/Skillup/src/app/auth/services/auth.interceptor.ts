@@ -38,6 +38,7 @@ export const AuthInterceptor: HttpInterceptorFn = (
               'Failed to refresh token. Redirecting to login.',
               err
             );
+            authService.signOut().subscribe();
             router.navigate(['/sign-in'])
             return throwError(() => err);
           })

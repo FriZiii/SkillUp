@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Skillup.Modules.Auth.Core.Entities;
-using Skillup.Modules.Auth.Core.Exceptions;
 using Skillup.Modules.Auth.Core.Features.Commands.Account;
 using Skillup.Modules.Auth.Core.Repositories;
 using Skillup.Modules.Auth.Core.Services;
 using Skillup.Shared.Abstractions.Auth;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
 {
@@ -25,17 +25,17 @@ namespace Skillup.Modules.Auth.Core.Features.Handlers.Account
 
         public async Task Handle(SignInRequest request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.Get(request.Email.ToLowerInvariant()) ?? throw new InvalidCredentialsException();
+            var user = await _userRepository.Get(request.Email.ToLowerInvariant()) ?? throw new BadRequestException("Invalid credencials");
 
             if (user.State != UserState.Active)
             {
-                throw new UserNotActiveException(user.Id);
+                throw new BadRequestException("This account has not been activated. Check your email to activate your account");
             }
 
             if (_passwordHasher.VerifyHashedPassword(user, user.Password, request.Password) ==
                 PasswordVerificationResult.Failed)
             {
-                throw new InvalidCredentialsException();
+                throw new BadRequestException("Invalid credencials");
             }
 
             var tokens = _authManager.CreateTokens(user.Id, user.Role);

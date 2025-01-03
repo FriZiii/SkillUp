@@ -58,7 +58,6 @@ export class FillTheGapComponent implements OnInit {
   }
 
   dropInToContainer(event: CdkDragDrop<Word[]>) {
-    console.log(event);
     transferArrayItem(
       event.previousContainer.data,
       event.container.data,

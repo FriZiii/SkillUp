@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Notifications.Core.Entitites;
 using Skillup.Modules.Notifications.Core.Repositories;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Notifications.Core.DAL.Repositories
 {
@@ -26,7 +27,7 @@ namespace Skillup.Modules.Notifications.Core.DAL.Repositories
 
         public async Task MarkAsSeen(Guid notificationId)
         {
-            var notificationToEdit = await _notifications.FirstOrDefaultAsync(x => x.Id == notificationId) ?? throw new Exception(); // TODO: Custom ex: notification doesnt exist
+            var notificationToEdit = await _notifications.FirstOrDefaultAsync(x => x.Id == notificationId) ?? throw new NotFoundException($"Notification with ID {notificationId} not found");
             notificationToEdit.Seen = true;
             await _context.SaveChangesAsync();
         }

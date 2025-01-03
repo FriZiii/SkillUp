@@ -1,10 +1,12 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets;
 using Skillup.Modules.Courses.Core.Requests.Commands.Assets;
 using Skillup.Modules.Courses.Core.Requests.Queries.Assets;
+using Skillup.Shared.Abstractions.Auth;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Courses.Api.Controllers
@@ -15,6 +17,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpPost("video/{elementId}")]
         [SwaggerOperation("Add video")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -25,6 +28,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpPost("article/{elementId}")]
         [SwaggerOperation("Add article")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -35,6 +39,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpPost("assignment/{exerciseType}/{elementId}")]
         [SwaggerOperation("Add assignment")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -47,6 +52,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(assignment);
         }
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpPut("assignment/{elementId}")]
         [SwaggerOperation("Edit assignment")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -58,6 +64,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpDelete("{elementId}")]
         [SwaggerOperation("Delete asset by elementId")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

@@ -21,7 +21,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
 
         public async Task<UserDto> Handle(GetUserByIdRequest request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetById(request.UserId) ?? throw new UserNotFoundException(request.UserId);
+            var user = await _userRepository.GetById(request.UserId) ?? throw new NotFoundException($"User with ID {request.UserId} not found");
             var userMapper = new UserMapper(_s3Service);
 
             return userMapper.UserToUserDto(user, request.Details);

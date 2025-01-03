@@ -31,7 +31,6 @@ export class FillTheGapListComponent implements OnInit {
     }
 
     newSentendeAdded(event: Sentence){
-      console.log(event);
       this.sentences.push(event);
     }
 

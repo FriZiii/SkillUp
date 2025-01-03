@@ -4,6 +4,7 @@ using Skillup.Modules.Courses.Core.DTO.Assets.Exercises;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.Exercises;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Requests.Commands.Assets.Exercises;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Courses.Application.Features.Commands.Assets.Exercises
 {
@@ -17,7 +18,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Assets.Exercises
             var assignment = await _assetsRepository.GetAssignmentById(request.AssignmentId);
             if (assignment.ExerciseType != Core.Entities.CourseEntities.CourseContent.ElementContent.Assets.ExerciseType.QuestionAnswer)
             {
-                throw new Exception();  //TODO: wrong exercise type
+                throw new BadRequestException("Wrong exercise type");
             }
             var exercise = new QuestionAnswer()
             {

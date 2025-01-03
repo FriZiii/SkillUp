@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Skillup.Modules.Finances.Core.Entities;
 using Skillup.Modules.Finances.Core.Features.Requests.Commannds;
 using Skillup.Modules.Finances.Core.Repositories;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 {
@@ -19,7 +20,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Commannds
 
         public async Task Handle(AddBalanceToWalletRequest request, CancellationToken cancellationToken)
         {
-            var wallet = await _walletRepository.GetWallet(request.WalletId) ?? throw new Exception(); // TODO: Custom ex: wallet with id doesnt exist
+            var wallet = await _walletRepository.GetWallet(request.WalletId) ?? throw new NotFoundException($"Wallet with ID {request.WalletId} not found");
             wallet.AddToBalance(request.Balance);
             var history = new BalanceHistory(wallet.Id, wallet.Balance, "Money transfer", "Add");
             await _walletRepository.UpdateWalletBalance(wallet, history);

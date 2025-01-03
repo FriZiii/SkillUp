@@ -24,7 +24,7 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Users
 
         public async Task Handle(EditUserProfilePictureRequest request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetById(request.UserId) ?? throw new UserNotFoundException(request.UserId);
+            var user = await _userRepository.GetById(request.UserId) ?? throw new NotFoundException($"User with ID {request.UserId} not found");
 
             var key = user.ProfilePictureKey;
             if (user.ProfilePictureKey == CourseModuleOptions.DefaultValues.DefaultUserProfilePictureKey)

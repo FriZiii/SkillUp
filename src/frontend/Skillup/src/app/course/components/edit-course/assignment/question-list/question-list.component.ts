@@ -33,7 +33,6 @@ export class QuestionListComponent implements OnInit {
     this.exerciseService.getExercises(this.assignmentId(), ExerciseType.QuestionAnswer).subscribe(
       (res) => {
         this.questions.set(res);
-        console.log(res);
       }
     )
   }

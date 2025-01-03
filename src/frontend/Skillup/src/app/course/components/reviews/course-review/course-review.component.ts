@@ -51,7 +51,6 @@ export class CourseReviewComponent implements OnInit {
 
     this.courseContentService.getAttachmentsByCoruseId(this.courseId()).subscribe((res) => {
       this.attachments.set(res);
-      console.log(this.attachments());
     })
 
     this.reviewService.getReviewsByCourse(this.courseId()).subscribe(

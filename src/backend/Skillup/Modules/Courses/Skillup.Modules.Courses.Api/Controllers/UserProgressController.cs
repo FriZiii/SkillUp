@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Requests.Commands.Elements.Progress;
@@ -15,7 +16,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         private readonly IMediator _mediator = mediator;
 
         [HttpPost]
-        //[Authorize(Roles = nameof(UserRole.User))]
+        [Authorize]
         [SwaggerOperation("Add progress")]
         [Route("/Courses/{courseId}/Elements/{elementId}/Progress")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -30,7 +31,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         }
 
         [HttpDelete]
-        //[Authorize(Roles = nameof(UserRole.User))]
+        [Authorize]
         [SwaggerOperation("Delete progress by id")]
         [Route("/Courses/{courseId}/Elements/{elementId}/Progress")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -45,7 +46,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = nameof(UserRole.User))]
+        [Authorize]
         [SwaggerOperation("Get progress as percetage for courses by signed in user id")]
         [Route("/Courses/Progress")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -59,7 +60,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = nameof(UserRole.User))]
+        [Authorize]
         [SwaggerOperation("Get completed elements for course")]
         [Route("/Courses/{courseId}/Progress")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -69,7 +70,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             var userId = User.GetUserId();
             if (userId == null) return Unauthorized();
 
-            //zwracamy cały progress dla danego kursu, dla zalogowanego usera
+            //return all progress for a given course, for the logged-in user
             return Ok(await _mediator.Send(new GetProgressForCourseRequest((Guid)userId, courseId)));
         }
     }

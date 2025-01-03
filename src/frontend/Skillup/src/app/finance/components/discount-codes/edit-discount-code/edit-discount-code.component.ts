@@ -67,7 +67,6 @@ export class EditDiscountCodeComponent implements OnChanges {
     if(changes['discountCodeInput'] && this.discountCodeInput() !== null){
       const discountCode = this.discountCodeInput()!;
       this.showSelect = !this.discountCodeInput()!.appliesToEntireCart;
-      console.log(this.discountCodeInput());
       this.discountCodeForm.patchValue({
         code: discountCode.code,
         discountValue: discountCode.discountValue,

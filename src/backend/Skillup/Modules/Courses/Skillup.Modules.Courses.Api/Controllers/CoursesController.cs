@@ -70,6 +70,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(courses);
         }
 
+        [Authorize]
         [HttpGet]
         [SwaggerOperation("Get course purchased by user")]
         [Route("/Courses/UserId/{userId}")]
@@ -81,6 +82,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return Ok(course);
         }
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpPut]
         [SwaggerOperation("Edit course")]
         [Route("/Courses/{courseId}")]

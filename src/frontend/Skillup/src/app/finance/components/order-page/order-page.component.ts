@@ -46,7 +46,6 @@ export class OrderPageComponent implements OnInit{
     this.orderService.getOrderByBalanceHistoryId(this.orderId()).subscribe(
       (res) => {
         this.order.set(res);
-        console.log(this.order)
       }
     )
   }

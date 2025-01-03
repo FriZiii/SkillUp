@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Category } from '../models/category.model';
-import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { ToastHandlerService } from '../../core/services/toast-handler.service';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService {
@@ -27,9 +26,6 @@ export class CategoryService {
       .pipe(
         tap((categories) => {
           this.categoriesSubject.next(categories);
-        }),
-        catchError((error) => {
-          return throwError(() => error);
         })
       )
       .subscribe();

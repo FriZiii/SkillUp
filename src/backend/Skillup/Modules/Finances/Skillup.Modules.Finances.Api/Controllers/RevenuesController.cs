@@ -1,7 +1,9 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Finances.Core.Features.Requests.Queries;
+using Skillup.Shared.Abstractions.Auth;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Finances.Api.Controllers
@@ -12,6 +14,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpGet("Author/{authorId}/per-courses")]
         [SwaggerOperation("Get ernings and sales per course")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -21,6 +24,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
             return Ok(await _mediator.Send(new GetEarningsAndSalesPerCourseByAuthorIdRequest(authorId)));
         }
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpGet("Author/{authorId}/monthly")]
         [SwaggerOperation("Get monthly earnings per courses")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -30,6 +34,7 @@ namespace Skillup.Modules.Finances.Api.Controllers
             return Ok(await _mediator.Send(new GetMonthlyEarningsPerCoursesByAuthorIdRequest(authorId, year)));
         }
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpGet("Author/{authorId}")]
         [SwaggerOperation("Get revenue")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

@@ -7,7 +7,6 @@ namespace Skillup.Modules.Courses.Core.Entities.CourseEntities
     {
         public string Subtitle { get; set; }    //subtitle (ex. c# course with practical exercises)
         public string Description { get; set; }    // long course description (exacly what is in the course)
-        // TODO : Add Language public string Language { get; set; } 
         public string ThumbnailKey { get; set; } //minature photo of course
         public CourseLevel Level { get; set; }
         public StringListValueObject ObjectivesSummary { get; set; }  //list of things that you will learn throughout the course (ex. you will learn how to program moblie apps)

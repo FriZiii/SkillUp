@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent;
 using Skillup.Modules.Courses.Core.Interfaces;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Courses.Infrastracture.Repositories
 {
@@ -25,7 +26,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         {
             var section = await _sections
                 .Include(s => s.Elements).ThenInclude(e => e.Asset)
-                .FirstOrDefaultAsync(s => s.Id == sectionId) ?? throw new Exception();  //TODO: Custom exception for null check in repo
+                .FirstOrDefaultAsync(s => s.Id == sectionId) ?? throw new BadRequestException($"Section with ID {sectionId} doesn't exist");
             return section;
         }
 
@@ -42,7 +43,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task Edit(Section section)
         {
-            var sectionToEdit = await _sections.FirstOrDefaultAsync(s => s.Id == section.Id) ?? throw new Exception();  //TODO: Custom exception for null check in repo
+            var sectionToEdit = await _sections.FirstOrDefaultAsync(s => s.Id == section.Id) ?? throw new BadRequestException($"Section with ID {section.Id} doesn't exist");
 
             sectionToEdit.Title = section.Title;
             sectionToEdit.IsPublished = section.IsPublished;

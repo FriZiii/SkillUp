@@ -122,11 +122,13 @@ export class CourseWalkThroughComponent implements OnInit {
     });
 
     new Promise((resolve) => setTimeout(resolve, 2000)).then(() => {
-      if(this.currentElementId !== undefined){
+      if(this.currentElementId() !== undefined && this.sections()[0] !== undefined){
         this.currentElement = this.sections().flatMap(s => s.elements).find(e => e.id === this.currentElementId()) ?? this.sections()[0].elements[0];
         this.loading = false;
       }else{
-        this.currentElement = this.sections()[0].elements[0];
+        if(this.sections()?.[0]?.elements !== undefined){
+          this.currentElement = this.sections()[0].elements[0];
+        }
         this.loading = false;
       }
     });

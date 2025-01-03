@@ -33,15 +33,12 @@ export class QuizListComponent implements OnInit {
     ngOnInit(): void {
       this.exerciseService.getExercises(this.assignmentId(), ExerciseType.Quiz).subscribe(
         (res) => {
-          console.log(res);
           this.quizes.set(res);
         }
       )
     }
 
     addQuiz(event: Event){
-      console.log(this.answers)
-      console.log(this.correct)
       this.exerciseService.addQuizQuestion(this.assignmentId(), this.newQuestion(), this.answers, this.correct).subscribe(
         (res) => {
           this.quizes.update((list) => [...list, res])

@@ -71,7 +71,6 @@ export class EditUserPasswordComponent {
 
   onSubmit() {
     this.loading = true;
-    console.log(this.form.value);
     const subscription = this.passwordService
       .changePassword(
         this.form.value.currentPassword,

@@ -1,5 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using Skillup.Modules.Finances.Core.DTO;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 using Skillup.Shared.Infrastructure.Time;
 
 namespace Skillup.Modules.Finances.Core.Entities
@@ -38,16 +39,16 @@ namespace Skillup.Modules.Finances.Core.Entities
         public virtual void ApplyDisountOnCart(Cart cart)
         {
             if (!CanBeUsed(cart))
-                throw new InvalidOperationException("The discount code cannot be applied to this cart."); // TODO: Custom Ex: The discount code cannot be applied to this cart
+                throw new BadRequestException("The discount code cannot be applied to this cart.");
         }
 
         protected DiscountCode(AddDiscountCodeDto dto)
         {
             if (dto.Code.IsNullOrEmpty())
-                throw new Exception(); // TODO: Custom Ex: code value in discountcode cannot be null
+                throw new BadRequestException("Code value cannot be empty");
 
             if (dto.DiscountValue < 0)
-                throw new Exception();
+                throw new BadRequestException("Discount code value cannot be less then 0");
 
             Id = dto.Id;
             Code = dto.Code;

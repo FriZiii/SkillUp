@@ -27,7 +27,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task Edit(User user)
         {
-            var userToEdit = await _users.FirstOrDefaultAsync(x => x.Id == user.Id) ?? throw new UserNotFoundException(user.Id);
+            var userToEdit = await _users.FirstOrDefaultAsync(x => x.Id == user.Id) ?? throw new NotFoundException($"User with ID {user.Id} not found");
 
             userToEdit.Email = user.Email;
             userToEdit.FirstName = user.FirstName;
@@ -42,7 +42,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task EditUserPrivacySettings(Guid userId, PrivacySettings privacySettings)
         {
-            var userToEdit = await _users.FirstOrDefaultAsync(x => x.Id == userId) ?? throw new UserNotFoundException(userId);
+            var userToEdit = await _users.FirstOrDefaultAsync(x => x.Id == userId) ?? throw new NotFoundException($"User with ID {userId} not found");
 
             userToEdit.PrivacySettings = privacySettings;
 

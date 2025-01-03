@@ -1,9 +1,11 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skillup.Modules.Courses.Core.Requests.Commands.Elements.Attachment;
 using Skillup.Modules.Courses.Core.Requests.Queries;
 using Skillup.Modules.Courses.Core.Requests.Queries.Assets;
+using Skillup.Shared.Abstractions.Auth;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Skillup.Modules.Courses.Api.Controllers
@@ -14,6 +16,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpPost]
         [Route("/Courses/Elements/{elementId}/Attachments")]
         [SwaggerOperation("Add attachment")]
@@ -39,6 +42,7 @@ namespace Skillup.Modules.Courses.Api.Controllers
             return File(response.FileData, response.ContentType, response.FileName);
         }
 
+        [Authorize(Roles = nameof(UserRole.Instructor))]
         [HttpDelete]
         [Route("/Courses/Elements/Attachments/{attachmentId}")]
         [SwaggerOperation("Delete attachment")]

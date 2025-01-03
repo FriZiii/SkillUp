@@ -1,5 +1,5 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { computed, inject, Injectable, signal } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { inject, Injectable, signal } from "@angular/core";
 import { Cart, CartItemForDisplay } from "../models/cart.model";
 import { environment } from "../../../environments/environment";
 import { catchError, tap, throwError } from "rxjs";
@@ -25,8 +25,6 @@ export class CartService
       this.getCart(this.cartId).subscribe((res) => 
         {
           this.cart.set(res);
-          //this.cartItemsDisplay.set(this.getItemsForDisplay());
-          console.log(this.cart());
         }
       )
     }
@@ -113,9 +111,7 @@ export class CartService
 
     private getCart(cartId: string){
         return this.httpClient
-        .get<any>(environment.apiUrl + '/Finances/Cart/' + cartId)
-        .pipe(
-        );
+        .get<any>(environment.apiUrl + '/Finances/Cart/' + cartId);
     }
 
     checkoutCart(){
@@ -124,7 +120,6 @@ export class CartService
         .pipe(
           tap((response) => {
             localStorage.removeItem('cartId');
-            //this.walletService.setWallet(this.walletService.currentWallet()!.balance - this.cart()!.total);
             this.walletService.getWallet(this.userService.currentUser()!.id);
 
             const addedCourseItems = this.courseService.courses().filter(course => this.cart()?.items.some(item => item.id === course.id))

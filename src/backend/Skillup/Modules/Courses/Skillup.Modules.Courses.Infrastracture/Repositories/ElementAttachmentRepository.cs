@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent;
 using Skillup.Modules.Courses.Core.Interfaces;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Courses.Infrastracture.Repositories
 {
@@ -23,7 +24,7 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task Delete(Guid id)
         {
-            var attachmentToDelete = await _attachments.FirstOrDefaultAsync(x => x.Id == id) ?? throw new Exception(); // TODO: Custom ex: attachment with id doesnt exist
+            var attachmentToDelete = await _attachments.FirstOrDefaultAsync(x => x.Id == id) ?? throw new NotFoundException($"Attachment with ID {id} not found");
             _attachments.Remove(attachmentToDelete);
             await _context.SaveChangesAsync();
         }

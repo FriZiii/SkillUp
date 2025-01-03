@@ -1,4 +1,4 @@
-﻿using Skillup.Shared.Abstractions.Kernel.Exceptions;
+﻿using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 using System.Text.RegularExpressions;
 
 namespace Skillup.Shared.Abstractions.Kernel.ValueObjects
@@ -15,18 +15,18 @@ namespace Skillup.Shared.Abstractions.Kernel.ValueObjects
         {
             if (string.IsNullOrWhiteSpace(value))
             {
-                throw new InvalidEmailException(value);
+                throw new BadRequestException("Invalid email adress");
             }
 
             if (value.Length > 100)
             {
-                throw new InvalidEmailException(value);
+                throw new BadRequestException("Invalid email adress");
             }
 
             value = value.ToLowerInvariant();
             if (!_regex.IsMatch(value))
             {
-                throw new InvalidEmailException(value);
+                throw new BadRequestException("Invalid email adress");
             }
 
             Value = value;

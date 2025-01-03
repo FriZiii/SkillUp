@@ -1,11 +1,9 @@
 import { Component, computed, inject, input, OnInit, signal } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User, UserDetail } from '../../models/user.model';
-import { catchError, throwError } from 'rxjs';
 import { ButtonModule } from 'primeng/button';
 import { Router, RouterModule } from '@angular/router';
 import { CoursesService } from '../../../course/services/course.service';
-import { CourseListItem } from '../../../course/models/course.model';
 import { PurchasedItemsService } from '../../../course/services/purchasedItems.service';
 import { CourseItemComponent } from "../../../course/components/displays/course-item/course-item.component";
 
@@ -37,9 +35,6 @@ export class OtherUserProfileComponent implements OnInit{
     }});
 
     this.userService.getUser(this.userId())
-      .pipe(
-        catchError(error => { return throwError(() => error)}),
-      )
       .subscribe({
         next: (data) => {
           this.user.set(data);

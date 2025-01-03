@@ -14,7 +14,7 @@ namespace Skillup.Modules.Finances.Core.Features.Handlers.Queries
         public async Task<WalletWithBalanceHistoryDto> Handle(GetUserWalletByOwnerIdRequest request, CancellationToken cancellationToken)
         {
             var mapper = new WalletMapper();
-            var wallet = await _walletRepository.GetWalletByOwnerId(request.UserId) ?? throw new UserNotFoundException(request.UserId); // TODO: Custom ex
+            var wallet = await _walletRepository.GetWalletByOwnerId(request.UserId) ?? throw new NotFoundException($"Wallet for user with ID {request.UserId} not found");
             var ballanceHistory = await _walletRepository.GetBalanceHistoryByWalletId(wallet.Id);
 
             return mapper.WalletToWalletWithBalanceHistoryDto(wallet, ballanceHistory);

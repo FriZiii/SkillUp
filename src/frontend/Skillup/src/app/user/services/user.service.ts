@@ -1,14 +1,12 @@
 import { inject, Injectable, signal } from '@angular/core';
 import {
   BehaviorSubject,
-  catchError,
   filter,
   map,
   Observable,
   switchMap,
   take,
   tap,
-  throwError,
 } from 'rxjs';
 import { EditUser, User, UserDetail } from '../models/user.model';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
@@ -153,7 +151,6 @@ export class UserService {
   editUser(userId: string, userData:EditUser){
     return this.httpClient.put<any>(`${environment.apiUrl}/courses/users/${userId}`, userData)
     .pipe(
-      catchError(error => { return throwError(() => error)}),
       tap((result: any) => {
         this.userDetailSubject.next(result);
       })
@@ -167,7 +164,6 @@ export class UserService {
       showCoursesOnUserProfile: visibleCourses
     })
     .pipe(
-      catchError(error => { return throwError(() => error)}),
       tap((result: any) => {
         this.userDetailSubject.next(result);
       })

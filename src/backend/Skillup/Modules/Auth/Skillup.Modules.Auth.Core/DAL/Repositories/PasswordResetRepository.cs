@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Auth.Core.Entities;
 using Skillup.Modules.Auth.Core.Repositories;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Auth.Core.DAL.Repositories
 {
@@ -23,7 +24,7 @@ namespace Skillup.Modules.Auth.Core.DAL.Repositories
 
         public async Task Update(PasswordReset passwordReset)
         {
-            var passwordResetToEdit = await _passwordResets.FirstOrDefaultAsync(x => x.Id == passwordReset.Id) ?? throw new Exception(); // TODO: Custom ex
+            var passwordResetToEdit = await _passwordResets.FirstOrDefaultAsync(x => x.Id == passwordReset.Id) ?? throw new NotFoundException($"Password reset token with ID {passwordReset.Id} doesnt exist");
             passwordResetToEdit.IsActive = passwordReset.IsActive;
             await _context.SaveChangesAsync();
         }

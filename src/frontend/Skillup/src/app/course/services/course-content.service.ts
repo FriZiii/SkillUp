@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
 import { environment } from "../../../environments/environment";
-import { catchError, map, tap, throwError } from "rxjs";
+import { map, tap } from "rxjs";
 import { ToastHandlerService } from "../../core/services/toast-handler.service";
 import { AssetType, Attachment, Section } from "../models/course-content.model";
 
@@ -24,11 +24,7 @@ export class CourseContentService {
           .pipe(
             map((response) => {
               response.type = response.type as AssetType;
-              console.log(response);
               return response;
-            }),
-            catchError((error) => {
-              return throwError(() => error);
             })
           );
     }
@@ -49,9 +45,6 @@ export class CourseContentService {
               elements: []
             }
             ])
-          }),
-          catchError((error) => {
-            return throwError(() => error);
           })
         );
     }
@@ -65,9 +58,6 @@ export class CourseContentService {
             this.sections.set(prevSections
               .filter(p => p.id !== sectionId)
               .map((section, index) => ({ ...section, index })));
-          }),
-          catchError((error) => {
-            return throwError(() => error);
           })
         );
     }
@@ -79,9 +69,6 @@ export class CourseContentService {
           tap(() => {
             this.sections.update((prevSections) => 
             prevSections.map(section => section.id === sectionId ? {...section, title: sectionTitle, isPublished: sectionIsPublished} : section));
-          }),
-          catchError((error) => {
-            return throwError(() => error);
           })
         );
     }
@@ -92,9 +79,6 @@ export class CourseContentService {
         .pipe(
           tap((response: Section[]) => {
             this.sections.set(response);
-          }),
-          catchError((error) => {
-            return throwError(() => error);
           })
         );
     }
@@ -128,9 +112,6 @@ export class CourseContentService {
               return section;
             });
               this.sections.set(updatedSections);
-          }),
-          catchError((error) => {
-            return throwError(() => error);
           })
         );
     }
@@ -151,9 +132,6 @@ export class CourseContentService {
                 return section;
               })
             );
-          }),
-          catchError((error) => {
-            return throwError(() => error);
           })
         );
     }
@@ -174,9 +152,6 @@ export class CourseContentService {
                 return section;
               })
             );
-          }),
-          catchError((error) => {
-            return throwError(() => error);
           })
         );
     }
@@ -194,9 +169,6 @@ export class CourseContentService {
                 return section;
               })
             );
-          }),
-          catchError((error) => {
-            return throwError(() => error);
           })
         );
     }

@@ -1,5 +1,5 @@
-﻿using Skillup.Modules.Auth.Core.Exceptions;
-using Skillup.Shared.Abstractions.Auth;
+﻿using Skillup.Shared.Abstractions.Auth;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
 namespace Skillup.Modules.Auth.Core.DTO
 {
@@ -10,17 +10,17 @@ namespace Skillup.Modules.Auth.Core.DTO
 
         public TokensDto(AuthTokens? tokens)
             : this(tokens?.AccessToken?.Token
-                   ?? throw new TokensNullOrEmptyException(nameof(tokens.AccessToken)),
+                   ?? throw new BadRequestException("Invalid auth token"),
                    tokens?.RefreshToken?.Token
-                   ?? throw new TokensNullOrEmptyException(nameof(tokens.RefreshToken)))
+                   ?? throw new BadRequestException("Invalid auth token"))
         { }
 
         public TokensDto(string? accessToken, string? refreshToken)
         {
             if (string.IsNullOrEmpty(accessToken))
-                throw new TokensNullOrEmptyException(nameof(accessToken));
+                throw new BadRequestException("Invalid auth token");
             if (string.IsNullOrEmpty(refreshToken))
-                throw new TokensNullOrEmptyException(nameof(refreshToken));
+                throw new BadRequestException("Invalid auth token");
 
             AccessToken = accessToken;
             RefreshToken = refreshToken;

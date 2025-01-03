@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Assets;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Modules.Courses.Core.Requests.Commands.Assets;
+using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 using Skillup.Shared.Abstractions.S3;
 
 namespace Skillup.Modules.Courses.Application.Features.Commands.Assets
@@ -22,12 +23,12 @@ namespace Skillup.Modules.Courses.Application.Features.Commands.Assets
         {
             if (request.File == null)
             {
-                throw new ArgumentException("No file provided"); //TODO: Custom ex: No video file provided
+                throw new BadRequestException("No video file provided");
             }
 
             if (!IsVideoFile(request.File))
             {
-                throw new ArgumentException("Provided file is not a valid video format"); //TODO: Custom ex: Provided file is not a valid video format
+                throw new BadRequestException("Provided file is not a valid video format");
             }
 
             await _amazonS3Service.Upload(request.File, S3FolderPaths.CourseAsset + request.Key);
