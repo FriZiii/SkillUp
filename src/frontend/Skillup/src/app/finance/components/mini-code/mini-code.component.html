@@ -1,0 +1,13 @@
+<div
+  class="px-3 rounded-3xl flex gap-1 w-min cursor-pointer bg-"
+  (click)="copyCode()"
+  [ngClass]="{ 'bg-primary-500': !copied, 'bg-gray-200': copied }"
+>
+  @if(copied){
+  <p class="my-0 text-nowrap">copied</p>
+  }@else{
+  <p class="my-0 text-zinc-100 text-nowrap">
+    - {{ code().discountValue }}{{ getType() }} with {{ code().code }}
+  </p>
+  }
+</div>

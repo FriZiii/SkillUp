@@ -39,6 +39,7 @@ import { AllCoursesComponent } from './course/components/displays/all-courses/al
 import { DiscountCodesComponent } from './finance/components/discount-codes/discount-codes.component';
 import { RevenuesComponent } from './finance/components/revenues/revenues.component';
 import { isStudent } from './core/guards/isStudent.guard';
+import { BecomeInstructorComponent } from './user/components/become-instructor/become-instructor.component';
 
 export const routes: Routes = [
   {
@@ -121,6 +122,12 @@ export const routes: Routes = [
     path: 'user/:userId/courses',
     component: YourCoursesComponent,
     canMatch: [isSignedIn],
+  },
+  {
+    path: 'become-instructor',
+    component: BecomeInstructorComponent,
+    canMatch: [hasRole],
+    data: { requiredRole: UserRole.User },
   },
   {
     path: 'author/:authorId/courses',

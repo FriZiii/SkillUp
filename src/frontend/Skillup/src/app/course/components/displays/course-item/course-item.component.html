@@ -1,32 +1,32 @@
-<p-card
-  [style]="{
-    width: '20rem',
-    overflow: 'hidden',
-    margin: '0.5rem',
-    height: '26rem'
-  }"
-  class="prose"
+<div
+  class="prose max-w-none shadow rounded-lg"
+  style="width: 20rem; height: 23rem; margin: 0.5rem; overflow: hidden"
 >
-  <ng-template pTemplate="header">
-    <img
-      alt="{{ course.title }}"
-      class="w-full max-h-40 cursor-pointer"
-      src="{{ course.thumbnailUrl }}"
-      (click)="navigate('detail')"
-    />
-  </ng-template>
-  <ng-template pTemplate="title">
-    <span pTooltip="{{ course.title }}">
-      {{ course.title | truncate }}
-    </span>
-  </ng-template>
-  <ng-template pTemplate="subtitle"> {{ course.authorName }} </ng-template>
+  <img
+    alt="{{ course.title }}"
+    class="w-full max-h-40 cursor-pointer my-0"
+    src="{{ course.thumbnailUrl }}"
+    (click)="navigate('detail')"
+  />
+  <div class="p-4">
+    <div style="height: 64px" class="overflow-hidden">
+      <h1 pTooltip="{{ course.title }}" class="font-semibold text-2xl my-0">
+        {{ course.title }}
+      </h1>
+    </div>
 
-  <div class="flex justify-between items-center">
-    <div>$ {{ course.price }}</div>
-    <p-rating [(ngModel)]="course.averageRating" [readonly]="true" />
-    <span>
-      <app-buy-button [course]="course" />
-    </span>
+    <div class="flex justify-between items-start">
+      <div>
+        <p class="my-3 font-light text-lg">{{ course.authorName }}</p>
+        <p-rating [(ngModel)]="course.averageRating" [readonly]="true" />
+        <div class="mt-3 flex gap-2">
+          <h2 class="my-0 font-bold text-xl">$ {{ course.price }}</h2>
+          @for(code of discountCodes(); track code.id){
+          <app-mini-code [code]="code" />
+          }
+        </div>
+      </div>
+      <app-buy-button [course]="course" class="mt-4" />
+    </div>
   </div>
-</p-card>
+</div>
