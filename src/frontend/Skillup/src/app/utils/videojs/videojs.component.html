@@ -2,13 +2,7 @@
   #target
   class="video-js"
   controls
-  muted
   playsinline
-  preload="none"
-  style="object-fit: cover"
-  [style]="'width: 100%; height: 80vh'"
->
-  <source [src]="videoLink()" type="video/mp4" />
-</video>
-
-<!--  <video id="video-player" preload="metadata" class="video-js vjs-default-skin"></video> -->
+  preload="auto"
+  style="margin: 0"
+></video>

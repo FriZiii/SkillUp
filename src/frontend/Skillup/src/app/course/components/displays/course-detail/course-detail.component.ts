@@ -20,11 +20,15 @@ import { AuthorDescriptionComponent } from "../author-description/author-descrip
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { CommonModule } from '@angular/common';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { DiscountCodeService } from '../../../../finance/services/discountCode.service';
+import { MiniCodeComponent } from "../../../../finance/components/mini-code/mini-code.component";
+import { SkeletonModule } from 'primeng/skeleton';
+import { Truncate2Pipe } from "../../../../utils/pipes/truncate.pipe";
 
 @Component({
   selector: 'app-course-detail',
   standalone: true,
-  imports: [CommonModule, AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent, RatingModule, FormsModule, CarouselModule, BuyButtonComponent, AuthorDescriptionComponent, BreadcrumbModule, RouterModule, ProgressSpinnerModule ],
+  imports: [SkeletonModule, CommonModule, AccordionModule, SectionItemComponent, ViewElementItemComponent, CourseItemComponent, RatingModule, FormsModule, CarouselModule, BuyButtonComponent, AuthorDescriptionComponent, BreadcrumbModule, RouterModule, ProgressSpinnerModule, MiniCodeComponent, Truncate2Pipe],
   templateUrl: './course-detail.component.html',
   styleUrl: './course-detail.component.css'
 })
@@ -38,6 +42,9 @@ export class CourseDetailComponent implements OnChanges {
   courseContentService = inject(CourseContentService);
   ratingService = inject(CourseRatingService);
   router = inject(Router);
+  discountCodeService = inject(DiscountCodeService);
+  
+  discountCodes = computed(() => this.discountCodeService.findDiscountCodesByItemId(this.courseId()));
 
   breadcrumbs = [
     { icon: 'pi pi-home', route: '/' }, 
@@ -71,6 +78,7 @@ courseRating: CourseDetailRating | undefined = undefined
       price:  item?.price ?? 0,
     };
   });
+  loading = true;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['courseId']) {
@@ -98,6 +106,9 @@ courseRating: CourseDetailRating | undefined = undefined
      })
 
     window.scrollTo({ top: 0, behavior: 'instant' });
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
     }
   }
 

@@ -6,6 +6,7 @@ import { MessageService } from 'primeng/api';
 import { UserService } from '../../user/services/user.service';
 import { Router } from '@angular/router';
 import { ToastHandlerService } from '../../core/services/toast-handler.service';
+import { UserRole } from '../../user/models/user-role.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -145,5 +146,17 @@ export class AuthService {
 
   getAccessToken(): string | null {
     return localStorage.getItem(this.accessTokenKey);
+  }
+
+  changeUserRole(userId: string, role: UserRole){
+    return this.httpClient.patch<any>(`${environment.apiUrl}/auth/user/user-role`, {
+      userId: userId,
+      role: role
+    })
+    .pipe(
+      tap((result: any) => {
+        this.refreshTokens().subscribe();
+      })
+    );
   }
 }
