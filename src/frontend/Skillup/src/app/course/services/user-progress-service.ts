@@ -2,12 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { CoursePercentage } from '../models/user-progress.model';
-import { tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserProgressService {
   private httpClient = inject(HttpClient);
   public accomplishedElements = signal<string[]>([]);
+  private accomplishedSubject = new BehaviorSubject<string[]>([]);
+  public accomplished$: Observable<string[]> = this.accomplishedSubject.asObservable();
   public percentages = signal<CoursePercentage[]>([]);
 
   public addProgress(courseId: string, elementId: string) {
@@ -33,6 +35,10 @@ export class UserProgressService {
   public getAcomplishedElementsForCourse(courseId: string) {
     return this.httpClient.get<string[]>(
       environment.apiUrl + '/Courses/' + courseId + '/Progress'
-    );
+    ).pipe(
+      tap((res) => {
+        this.accomplishedSubject.next(res);
+      })
+    )
   }
 }

@@ -60,10 +60,6 @@ export class ElementItemDisplayComponent implements OnInit, OnChanges {
   items: MenuItem[] = [];
   attachmentList: MenuItem[] =[];
   contentIcon = signal('');
-  check = computed(() => {
-    this.userProgressService.accomplishedElements().includes(this.element().id);
-    this.checked = this.userProgressService.accomplishedElements().includes(this.element().id);
-});
   checked = false;
 
   ngOnInit(): void {
@@ -114,13 +110,19 @@ export class ElementItemDisplayComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['current']){
-      if(this.current() === this.element().id && this.checked === false){
-        this.userProgressService
-          .addProgress(this.courseId(), this.element().id)
-          .subscribe((res) => {
-            this.completeChanged.emit();
-          });
-      }
+      this.userProgressService.accomplished$.subscribe((res) => {
+        this.checked = this.userProgressService.accomplishedElements().includes(this.element().id);
+        console.log(this.checked);
+        if(this.current() === this.element().id && this.checked === false){
+          this.userProgressService
+            .addProgress(this.courseId(), this.element().id)
+            .subscribe((res) => {
+              console.log('addProgres');
+              this.completeChanged.emit();
+              this.checked = true;
+            });
+        }
+      })
     }
   }
 
@@ -165,12 +167,14 @@ export class ElementItemDisplayComponent implements OnInit, OnChanges {
       this.userProgressService
         .deleteProgress(this.courseId(), this.element().id)
         .subscribe((res) => {
+          console.log('delProgres');
           this.completeChanged.emit();
         });
     } else {
       this.userProgressService
         .addProgress(this.courseId(), this.element().id)
         .subscribe((res) => {
+          console.log('addProgres2');
           this.completeChanged.emit();
         });
     }
