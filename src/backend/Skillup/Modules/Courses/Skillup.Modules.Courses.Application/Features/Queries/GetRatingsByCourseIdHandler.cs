@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using Skillup.Modules.Courses.Application.Mappings;
 using Skillup.Modules.Courses.Core.DTO.Rating;
 using Skillup.Modules.Courses.Core.Interfaces;
@@ -7,10 +8,11 @@ using Skillup.Shared.Abstractions.S3;
 
 namespace Skillup.Modules.Courses.Application.Features.Queries
 {
-    internal class GetRatingsByCourseIdHandler(ICourseRatingRepository courseRatingRepository, IAmazonS3Service amazonS3Service) : IRequestHandler<GetRatingsByCourseIdRequest, CourseDetailedRatingDto?>
+    internal class GetRatingsByCourseIdHandler(ICourseRatingRepository courseRatingRepository, IAmazonS3Service amazonS3Service, ILogger<GetRatingsByCourseIdHandler> logger) : IRequestHandler<GetRatingsByCourseIdRequest, CourseDetailedRatingDto?>
     {
         private readonly ICourseRatingRepository _courseRatingRepository = courseRatingRepository;
         private readonly IAmazonS3Service _amazonS3Service = amazonS3Service;
+        private readonly ILogger<GetRatingsByCourseIdHandler> logger = logger;
 
         public async Task<CourseDetailedRatingDto?> Handle(GetRatingsByCourseIdRequest request, CancellationToken cancellationToken)
         {
@@ -30,7 +32,7 @@ namespace Skillup.Modules.Courses.Application.Features.Queries
             return new CourseDetailedRatingDto()
             {
                 Rating = mapper.CourseRatingToCourseAverageRatingDto(ratings),
-                UserRatings = userRatings.Select(x => mapper.CourseRatingToCourseUserRatingDetailedDto(x, _amazonS3Service))
+                UserRatings = userRatings.Select(x => mapper.CourseRatingToCourseUserRatingDetailedDto(x, _amazonS3Service, logger))
             };
         }
     }

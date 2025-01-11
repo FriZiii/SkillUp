@@ -20,20 +20,28 @@ namespace Skillup.Shared.Infrastructure.S3
 
         public async Task<PutObjectResponse?> Upload(IFormFile file, string key)
         {
-            var putObjectRequest = new PutObjectRequest()
+            try
             {
-                BucketName = _options.BucketName,
-                Key = key,
-                ContentType = file.ContentType,
-                InputStream = file.OpenReadStream(),
-                Metadata =
+                var putObjectRequest = new PutObjectRequest()
                 {
-                    ["x-amz-meta-orginalname"] = Convert.ToBase64String(Encoding.UTF8.GetBytes(file.FileName)),
-                    ["x-amz-meta-extension"] = Path.GetExtension(file.FileName)
-                }
-            };
+                    BucketName = _options.BucketName,
+                    Key = key,
+                    ContentType = file.ContentType,
+                    InputStream = file.OpenReadStream(),
+                    Metadata =
+                    {
+                        ["x-amz-meta-orginalname"] = Convert.ToBase64String(Encoding.UTF8.GetBytes(file.FileName)),
+                        ["x-amz-meta-extension"] = Path.GetExtension(file.FileName)
+                    }
+                };
 
-            return await _client.PutObjectAsync(putObjectRequest);
+                return await _client.PutObjectAsync(putObjectRequest);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return null;
+            }
         }
 
         public async Task<GetObjectResponse> Download(string key)
