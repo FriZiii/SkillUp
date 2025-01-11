@@ -23,7 +23,30 @@ namespace Skillup.Shared.Infrastructure.Exceptions
             }
             catch (Exception exception)
             {
-                _logger.LogError(exception.Message);
+                var exceptionType = exception.GetType().FullName;
+                var stackTrace = exception.StackTrace;
+
+                var stackFrames = new System.Diagnostics.StackTrace(exception, true).GetFrames();
+                if (stackFrames != null && stackFrames.Length > 0)
+                {
+                    var stackTraceInfo = new List<string>();
+
+                    foreach (var frame in stackFrames)
+                    {
+                        var declaringType = frame?.GetMethod()?.DeclaringType;
+                        var methodName = frame?.GetMethod()?.Name;
+                        stackTraceInfo.Add($"{declaringType}.{methodName}");
+                    }
+
+                    var stackTraceString = string.Join(" -> ", stackTraceInfo);
+
+                    _logger.LogError($"Unhandled Exception of type {exceptionType} in {stackTraceString}", exceptionType, stackTrace);
+                }
+                else
+                {
+                    _logger.LogError($"{exceptionType}: {exception.Message}", exceptionType, stackTrace);
+                }
+
                 await HandleErrorAsync(context, exception);
             }
         }
