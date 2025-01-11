@@ -58,7 +58,7 @@ services:
     container_name: skillup-api-dev
     image: ${DOCKER_REGISTRY-}skillupbootstrapper
     environment:
-      - aspnetcore_environment=${environment}
+      - aspnetcore_environment=${ENVIRONMENT}
       - aspnetcore_http_ports=8080
     ports:
       - "8080"
@@ -91,7 +91,7 @@ services:
     container_name: skillup-api
     image: ${DOCKER_REGISTRY-}skillupbootstrapper
     environment:
-      - aspnetcore_environment=${environment}
+      - aspnetcore_environment=${ENVIRONMENT}
       - aspnetcore_http_ports=8080
     ports:
       - "8080"
@@ -111,7 +111,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ./nginx/nginx.production.conf:/etc/nginx/nginx.conf:ro
+      - ./Nginx/nginx.production.conf:/etc/nginx/nginx.conf:ro
       - /etc/letsencrypt/live/api.skillup.ovh/fullchain.pem:/etc/ssl/certs/fullchain.pem:ro
       - /etc/letsencrypt/live/api.skillup.ovh/privkey.pem:/etc/ssl/certs/privkey.pem:ro
     depends_on:
