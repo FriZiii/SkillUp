@@ -4,7 +4,7 @@
     <div class="px-4 prose max-w-none !w-full mr-8">
       <div class="flex items-baseline justify-between">
         <h4 class="b-0 m-0">{{ element().title }}</h4>
-        @if(element().hasAsset){
+        @if(element().hasAsset && element().isFree){
         <p
           (click)="showContentDialog()"
           class="cursor-pointer text-primary-500 m-0"

@@ -133,11 +133,10 @@
               </p-accordion-header>
               <p-accordion-content>
                 @for(element of section.elements; track element.id){
-                @if(element.isFree === true){
                 <app-view-element-item
                   [element]="element"
                 ></app-view-element-item>
-                } }
+                }
               </p-accordion-content>
             </p-accordion-panel>
             } }
