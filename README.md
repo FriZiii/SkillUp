@@ -54,8 +54,10 @@ If you are running the app in Visual Studio you should:
 1. Set startup project to Docker Compose.
 ![image](https://github.com/user-attachments/assets/d8270f34-83c9-4b59-aa2d-f1504c0443b4)
 
+
 3. Set Launch Settings accordingly.
 ![image](https://github.com/user-attachments/assets/c603c29f-f7e3-4a00-af66-9e54586bb94e)
+
 
 5. If you deveopCheck if init.sh file has end of line sequence set to LF.
 6. You can read more about running Docker Compose [here](https://learn.microsoft.com/pl-pl/visualstudio/containers/launch-profiles?view=vs-2022/).
@@ -75,6 +77,10 @@ If you are running the app in Visual Studio you should:
 ### Reset password
 ![resertpassword1](https://github.com/user-attachments/assets/934dad1e-245e-4818-a006-f742fafd3efd)
 ### Reset password email
+<p align="center">
+  <img src="[https://picsum.photos/460/300](https://github.com/user-attachments/assets/a114be81-2448-4875-b2f9-e84b352a40b0)">
+</p>
+
 ![reset-password-email](https://github.com/user-attachments/assets/a114be81-2448-4875-b2f9-e84b352a40b0)
 ### Profile edit
 ![profile](https://github.com/user-attachments/assets/c8b1e7e5-5443-44ef-8b5b-2c3c24d539fe)
