@@ -1,7 +1,7 @@
 
 # Skillup
 
-Skillup is a web application developed using .NET and Agular frameworks. It was developed as final university project. Skillup is an e-learing platform that allows users for creating courses with articles, movies and exercises. After buying certain course you gain access to those added elements, chat with course's author and possibility to comment and leave a review.
+Skillup is a web application developed using .NET and Agular frameworks. It was developed as final university project. Skillup is an e-learing platform that allows users for creating courses with articles, videos and exercises. After buying certain course you gain access to those added elements, chat with course's author and possibility to comment and leave a review.
 
 ## Architecture & technologies
 ### Backend
