@@ -14,7 +14,7 @@
     }
   },
   "Jwt": {
-    "IssuerSigningKey": "PDws23Sqwd2Dqija12Sad0ksjxRpkPUlk24j09vfgNOqZjF92fQW313RrxDf",
+    "IssuerSigningKey": "fe14edf5e188bd6c9c0e4dfa7816ab8350f75126619c4e07994c29f2e099",
     "Issuer": "skillup",
     "ValidIssuer": "skillup",
     "ValidateIssuer": true,
