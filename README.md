@@ -52,12 +52,12 @@ In order to run the application you should follow these steps:
 ### Visual Studio
 If you are running the app in Visual Studio you should:
 1. Set startup project to Docker Compose.
+
 ![image](https://github.com/user-attachments/assets/d8270f34-83c9-4b59-aa2d-f1504c0443b4)
 
-
 3. Set Launch Settings accordingly.
+   
 ![image](https://github.com/user-attachments/assets/c603c29f-f7e3-4a00-af66-9e54586bb94e)
-
 
 5. If you deveopCheck if init.sh file has end of line sequence set to LF.
 6. You can read more about running Docker Compose [here](https://learn.microsoft.com/pl-pl/visualstudio/containers/launch-profiles?view=vs-2022/).
