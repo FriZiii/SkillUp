@@ -43,6 +43,7 @@ In order to run the application you should follow these steps:
 
 ### Production
 2. Update sections Client, AmazonS3 and Cors in appsettings.json file according to your configuration.
+3. Update server_name and Access-Control-Allow-Origin in nginx.production.conf
 3. Update your Smtp server data in module.mails.json file.
 4. Run docker with command. 
 ```bash
