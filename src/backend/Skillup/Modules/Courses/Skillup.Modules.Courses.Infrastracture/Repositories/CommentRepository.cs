@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Comments;
+using Skillup.Modules.Courses.Core.Entities.UserEntities;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
@@ -10,12 +11,14 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         private readonly CoursesDbContext _context;
         private readonly DbSet<Comment> _comments;
         private readonly DbSet<Like> _likes;
+        private readonly DbSet<User> _users;
 
         public CommentRepository(CoursesDbContext context)
         {
             _context = context;
             _comments = _context.Comments;
             _likes = _context.Likes;
+            _users = _context.Users;
         }
 
         public async Task Add(Comment comment)
@@ -37,12 +40,14 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
                 .Where(c => c.ElementId == elementId && c.ParentCommentId == null)
                 .Include(c => c.Replies)
                 .Include(c => c.Likes)
-                .Include(c => c.Author)
                 .ToListAsync();
 
             foreach (var comment in rootComments)
             {
-                await PopulateRepliesRecursivelyAsync(comment);
+                await InjectAuthor(comment);
+
+                if (comment.Replies.Count > 0)
+                    await PopulateRepliesRecursivelyAsync(comment);
             }
 
             ProcessDeletedComments(rootComments);
@@ -60,11 +65,19 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
                     .Where(c => c.ParentCommentId == reply.Id)
                     .Include(c => c.Replies)
                     .Include(c => c.Likes)
-                    .Include(c => c.Author)
                     .ToListAsync();
 
-                await PopulateRepliesRecursivelyAsync(reply);
+                await InjectAuthor(reply);
+
+                if (reply.Replies.Count > 0)
+                    await PopulateRepliesRecursivelyAsync(comment);
             }
+        }
+
+        private async Task InjectAuthor(Comment comment)
+        {
+            var author = await _users.FindAsync(comment.AuthorId);
+            comment.Author = author;
         }
 
         private static void ProcessDeletedComments(IEnumerable<Comment> comments)
