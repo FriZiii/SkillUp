@@ -13,6 +13,7 @@ namespace Skillup.Modules.Finances.Core.Seeders
         private readonly DbSet<Item> _items;
         private readonly DbSet<User> _users;
         private DbSet<Wallet> _wallets;
+        private DbSet<Order> _orders;
 
         public FinanceSeeder(FinancesDbContext context)
         {
@@ -20,6 +21,7 @@ namespace Skillup.Modules.Finances.Core.Seeders
             _items = context.Items;
             _users = context.Users;
             _wallets = context.Wallets;
+            _orders = context.Orders;
         }
         public async Task Seed()
         {
@@ -41,8 +43,11 @@ namespace Skillup.Modules.Finances.Core.Seeders
                 await _context.SaveChangesAsync();
             }
 
-            var orderSeeder = new OrdersSeeder(_context);
-            await orderSeeder.Seed();
+            if (!await _orders.AnyAsync())
+            {
+                var orderSeeder = new OrdersSeeder(_context);
+                await orderSeeder.Seed();
+            }
         }
 
         private IEnumerable<Item> CreateItems()
