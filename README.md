@@ -77,10 +77,6 @@ If you are running the app in Visual Studio you should:
 ### Reset password
 ![resertpassword1](https://github.com/user-attachments/assets/934dad1e-245e-4818-a006-f742fafd3efd)
 ### Reset password email
-<p align="center">
-  <img src="[https://picsum.photos/460/300](https://github.com/user-attachments/assets/a114be81-2448-4875-b2f9-e84b352a40b0)">
-</p>
-
 ![reset-password-email](https://github.com/user-attachments/assets/a114be81-2448-4875-b2f9-e84b352a40b0)
 ### Profile edit
 ![profile](https://github.com/user-attachments/assets/c8b1e7e5-5443-44ef-8b5b-2c3c24d539fe)
