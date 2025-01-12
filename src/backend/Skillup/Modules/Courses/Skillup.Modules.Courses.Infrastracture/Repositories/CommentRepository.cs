@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities.CourseContent.ElementContent.Comments;
+using Skillup.Modules.Courses.Core.Entities.UserEntities;
 using Skillup.Modules.Courses.Core.Interfaces;
 using Skillup.Shared.Abstractions.Exceptions.GlobalExceptions;
 
@@ -10,12 +11,14 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
         private readonly CoursesDbContext _context;
         private readonly DbSet<Comment> _comments;
         private readonly DbSet<Like> _likes;
+        private readonly DbSet<User> _users;
 
         public CommentRepository(CoursesDbContext context)
         {
             _context = context;
             _comments = _context.Comments;
             _likes = _context.Likes;
+            _users = _context.Users;
         }
 
         public async Task Add(Comment comment)
@@ -33,39 +36,41 @@ namespace Skillup.Modules.Courses.Infrastracture.Repositories
 
         public async Task<IEnumerable<Comment>> GetByElementId(Guid elementId)
         {
-            var rootComments = await _comments
-                .Where(c => c.ElementId == elementId && c.ParentCommentId == null)
-                .Include(c => c.Replies)
+            var comments = await _comments
+                .Where(c => c.ElementId == elementId)
                 .Include(c => c.Likes)
-                .Include(c => c.Author)
                 .ToListAsync();
 
-            foreach (var comment in rootComments)
+            var authorIds = comments.Select(x => x.AuthorId).Distinct();
+            var authors = await _users
+                .Where(u => authorIds.Contains(u.Id))
+                .ToListAsync();
+
+            var authorsDict = authors.ToDictionary(a => a.Id, a => a);
+            foreach (var comment in comments)
             {
-                await PopulateRepliesRecursivelyAsync(comment);
+                comment.Author = authorsDict[comment.AuthorId];
             }
+
+            var commentLookup = comments.ToLookup(c => c.ParentCommentId);
+            void AssignReplies(ICollection<Comment> parentComments)
+            {
+                foreach (var comment in parentComments)
+                {
+                    comment.Replies = commentLookup[comment.Id].ToList();
+
+                    AssignReplies(comment.Replies);
+                }
+            }
+
+            var rootComments = comments.Where(c => c.ParentCommentId == null).ToList();
+            AssignReplies(rootComments);
 
             ProcessDeletedComments(rootComments);
 
             return rootComments ?? Enumerable.Empty<Comment>();
         }
 
-        private async Task PopulateRepliesRecursivelyAsync(Comment comment)
-        {
-            if (comment.Replies?.Any() != true) return;
-
-            foreach (var reply in comment.Replies)
-            {
-                reply.Replies = await _comments
-                    .Where(c => c.ParentCommentId == reply.Id)
-                    .Include(c => c.Replies)
-                    .Include(c => c.Likes)
-                    .Include(c => c.Author)
-                    .ToListAsync();
-
-                await PopulateRepliesRecursivelyAsync(reply);
-            }
-        }
 
         private static void ProcessDeletedComments(IEnumerable<Comment> comments)
         {

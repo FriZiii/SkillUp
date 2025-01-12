@@ -1,4 +1,5 @@
-﻿using Riok.Mapperly.Abstractions;
+﻿using Microsoft.Extensions.Logging;
+using Riok.Mapperly.Abstractions;
 using Skillup.Modules.Courses.Core.DTO.Rating;
 using Skillup.Modules.Courses.Core.DTO.User;
 using Skillup.Modules.Courses.Core.Entities.CourseEntities;
@@ -19,9 +20,9 @@ namespace Skillup.Modules.Courses.Application.Mappings
             };
         }
 
-        public CourseUserRatingDetailedDto CourseRatingToCourseUserRatingDetailedDto(CourseRating coursesRating, IAmazonS3Service amazonS3Service)
+        public CourseUserRatingDetailedDto CourseRatingToCourseUserRatingDetailedDto(CourseRating coursesRating, IAmazonS3Service amazonS3Service, ILogger logger)
         {
-            var userMapper = new UserMapper(amazonS3Service);
+            var userMapper = new UserMapper(amazonS3Service, logger);
 
             return new CourseUserRatingDetailedDto()
             {

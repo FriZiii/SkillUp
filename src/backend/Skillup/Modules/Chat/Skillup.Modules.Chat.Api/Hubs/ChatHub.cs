@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Logging;
 using Skillup.Modules.Chat.Core.Entities;
 using Skillup.Modules.Chat.Core.Repositories;
 using Skillup.Shared.Abstractions.Time;
@@ -7,29 +8,37 @@ using Skillup.Shared.Infrastructure.Auth;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Skillup.Bootstrapper")]
-namespace Skillup.Modules.Chat.Core
+namespace Skillup.Modules.Chat.Api.Hubs
 {
     [Authorize]
-    internal class ChatHub(IClock clock, IChatRepository chatRepository) : Hub
+    internal class ChatHub(IClock clock, IChatRepository chatRepository, ILogger<ChatHub> logger) : Hub
     {
         private readonly IClock _clock = clock;
         private readonly IChatRepository _chatRepository = chatRepository;
+        private readonly ILogger<ChatHub> _logger = logger;
 
         public override async Task OnConnectedAsync()
         {
-            var userId = Context?.User?.GetUserId();
+            try
+            {
+                var userId = Context?.User?.GetUserId();
 
-            if (userId is null)
-                return;
+                if (userId is null)
+                    return;
 
-            var chatId = Context?.GetHttpContext()?.Request.Query["chatId"];
+                var chatId = Context?.GetHttpContext()?.Request.Query["chatId"];
 
-            if (chatId is null)
-                return;
+                if (chatId is null)
+                    return;
 
-            await base.OnConnectedAsync();
+                await base.OnConnectedAsync();
 
-            await Groups.AddToGroupAsync(Context!.ConnectionId, chatId!);
+                await Groups.AddToGroupAsync(Context!.ConnectionId, chatId!);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+            }
         }
 
         public async Task SendMessage(string chatId, string content)
@@ -53,6 +62,9 @@ namespace Skillup.Modules.Chat.Core
 
         public override Task OnDisconnectedAsync(Exception? exception)
         {
+            if (exception != null)
+                _logger.LogError(exception?.Message);
+
             return base.OnDisconnectedAsync(exception);
         }
     }

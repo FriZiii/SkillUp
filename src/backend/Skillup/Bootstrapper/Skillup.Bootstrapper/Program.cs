@@ -1,4 +1,4 @@
-using Skillup.Modules.Chat.Core;
+using Skillup.Modules.Chat.Api.Hubs;
 using Skillup.Shared.Infrastructure;
 using Skillup.Shared.Infrastructure.Logging;
 using Skillup.Shared.Infrastructure.Modules;
