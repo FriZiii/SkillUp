@@ -52,14 +52,10 @@ In order to run the application you should follow these steps:
 ### Visual Studio
 If you are running the app in Visual Studio you should:
 1. Set startup project to Docker Compose.
-<p align="center">
 ![image](https://github.com/user-attachments/assets/d8270f34-83c9-4b59-aa2d-f1504c0443b4)
-</p>
 
 3. Set Launch Settings accordingly.
-<p align="center">
 ![image](https://github.com/user-attachments/assets/c603c29f-f7e3-4a00-af66-9e54586bb94e)
-</p>
 
 5. If you deveopCheck if init.sh file has end of line sequence set to LF.
 6. You can read more about running Docker Compose [here](https://learn.microsoft.com/pl-pl/visualstudio/containers/launch-profiles?view=vs-2022/).
@@ -75,17 +71,11 @@ If you are running the app in Visual Studio you should:
 ### Registation page
 ![sign-up](https://github.com/user-attachments/assets/a7a44291-153c-427c-9a5c-d3bb0bd358a7)
 ### Activate account email
-<p align="center">
 ![activation-email](https://github.com/user-attachments/assets/b8ec6b24-b4a2-4819-a30c-f5dfd61f695e)
-</p>
 ### Reset password
-<p align="center">
 ![resertpassword1](https://github.com/user-attachments/assets/934dad1e-245e-4818-a006-f742fafd3efd)
-</p>
 ### Reset password email
-<p align="center">
 ![reset-password-email](https://github.com/user-attachments/assets/a114be81-2448-4875-b2f9-e84b352a40b0)
-</p>
 ### Profile edit
 ![profile](https://github.com/user-attachments/assets/c8b1e7e5-5443-44ef-8b5b-2c3c24d539fe)
 ### Balance page
